@@ -1,27 +1,30 @@
-from falkordb import FalkorDB
+from dotenv import load_dotenv
+import json
+from graphrag_sdk.source import URL
+from graphrag_sdk import KnowledgeGraph, Ontology
+from graphrag_sdk.models.litellm import LiteModel
+from graphrag_sdk.model_config import KnowledgeGraphModelConfig
 
-# Connect to FalkorDB
-db = FalkorDB(host='localhost', port=6379)
+load_dotenv()
 
-# Create the 'MotoGP' graph
-g = db.select_graph('MotoGP')
-g.query("""CREATE (:Rider {name:'Valentino Rossi'})-[:rides]->(:Team {name:'Yamaha'}),
-                  (:Rider {name:'Dani Pedrosa'})-[:rides]->(:Team {name:'Honda'}),
-                  (:Rider {name:'Andrea Dovizioso'})-[:rides]->(:Team {name:'Ducati'})""")
+# Import Data
+urls = ["https://www.rottentomatoes.com/m/side_by_side_2012",
+"https://www.rottentomatoes.com/m/matrix",
+"https://www.rottentomatoes.com/m/matrix_revolutions",
+"https://www.rottentomatoes.com/m/matrix_reloaded",
+"https://www.rottentomatoes.com/m/speed_1994",
+"https://www.rottentomatoes.com/m/john_wick_chapter_4"]
 
-# Query which riders represents Yamaha?
-res = g.query("""MATCH (r:Rider)-[:rides]->(t:Team)
-                 WHERE t.name = 'Yamaha'
-                 RETURN r.name""")
+sources = [URL(url) for url in urls]
 
-for row in res.result_set:
-	print(row[0])
+# Model - vendor: openai, model: gpt-4.1 -> openai/gpt-4.1
+model = LiteModel(model_name="openai/gpt-4.1")
 
-# Prints: "Valentino Rossi"
-
-# Query how many riders represent team Ducati ?
-res = g.query("""MATCH (r:Rider)-[:rides]->(t:Team {name:'Ducati'})
-                 RETURN count(r)""")
-
-print(res.result_set[0][0])
-# Prints: 1
+# Ontology Auto-Detection
+ontology = Ontology.from_sources(
+    sources=sources,
+    model=model,
+)
+# Save the ontology to the disk as a json file.
+with open("ontology.json", "w", encoding="utf-8") as file:
+    file.write(json.dumps(ontology.to_json(), indent=2))
