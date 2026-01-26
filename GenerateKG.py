@@ -60,18 +60,32 @@ class DataItem:
 
 def preprocess(text: str):
     # 1. We transform all the characters in lowercase 
-    new_text = text.lower()
-    new_text = re.sub(r'\b([A-Z]{2,})\b', lambda m: m.group(1).upper(), text)
-
+    new_text = text
     # 2. We normalize unicode (accents, apostrophes, etc.)
     new_text = unicodedata.normalize("NFKC", new_text) 
     # 3. We remove the special characters
     new_text = ''.join(c for c in new_text if c.isprintable() or c in '\n\t')
     new_text = re.sub(r'\s+([.,;:!?])', r'\1', new_text)
-    new_text = re.sub(r'(\w+)\s*-\s*(\w+)', r'\1-\2', new_text)
+    new_text = re.sub(r'(\w+)-\n+(\w+)', r'\1-\2', new_text)
+
+
+    acronyms = []
+    for acronym in re.findall(r'[A-Z][A-Z\s\']*[A-Z]', new_text):
+        acronym = acronym.lower()
+        if acronym not in acronyms:
+            acronyms.append(acronym)
+
+    new_text = new_text.lower()
+            
+
+    for acronym in acronyms:
+        new_text = re.sub(rf'\b{acronym}\b', acronym.upper(), new_text)
 
     return new_text
 
+
+# Direi di fare un approccio iterativo: si passa un documento e l'ontologia creata e si chiede di arricchirla (se necessario). Alla fine si mergia tutto e
+# si eliminano duplicato come espresso nel paper (si usa sempre il LLM).
 
 
 def retrieve_text_from_pdf(pdf_path: str):
