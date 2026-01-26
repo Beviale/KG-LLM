@@ -1,0 +1,106 @@
+{
+  "entities": [
+    {
+      "label": "SoggettoAggregatore",
+      "attributes": [
+        {
+          "name": "region",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ],
+      "description": ""
+    },
+    {
+      "label": "Platform",
+      "attributes": [
+        {
+          "name": "name",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ],
+      "description": ""
+    },
+    {
+      "label": "User",
+      "attributes": [
+        {
+          "name": "user_id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ],
+      "description": ""
+    },
+    {
+      "label": "Enterprise",
+      "attributes": [
+        {
+          "name": "name",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ],
+      "description": ""
+    },
+    {
+      "label": "LegitimateEntity",
+      "attributes": [
+        {
+          "name": "name",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "relations": [
+    {
+      "label": "USES",
+      "source": {
+        "label": "User"
+      },
+      "target": {
+        "label": "Platform"
+      },
+      "attributes": []
+    },
+    {
+      "label": "BELONGS_TO",
+      "source": {
+        "label": "Enterprise"
+      },
+      "target": {
+        "label": "SoggettoAggregatore"
+      },
+      "attributes": []
+    },
+    {
+      "label": "PARTICIPATES_IN",
+      "source": {
+        "label": "User"
+      },
+      "target": {
+        "label": "Platform"
+      },
+      "attributes": []
+    },
+    {
+      "label": "REGISTERED_WITH",
+      "source": {
+        "label": "Enterprise"
+      },
+      "target": {
+        "label": "Platform"
+      },
+      "attributes": []
+    }
+  ]
+}
