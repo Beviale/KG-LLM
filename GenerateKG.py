@@ -59,6 +59,9 @@ class DataItem:
 
     
 def selective_lower(match):
+    """
+    A function that, given a word match, returns the same word if it is an acronym (like 'UE'); otherwise, it returns the word in lowercase.    
+    """
     word = match.group(0)
     exclude_pattern = re.compile(r'[A-Z\']+')
     if exclude_pattern.fullmatch(word):
@@ -67,16 +70,23 @@ def selective_lower(match):
 
 
 def preprocess(text: str):
-    # 1. We transform all the characters in lowercase 
+    """
+    A function that processes the given text extracted from a PDF file, cleaning out unwanted characters and minimizing the number of tokens required for the LLM API call.       
+    """
     new_text = text
-    # 2. We normalize unicode (accents, apostrophes, etc.)
+    # 1. We normalize unicode (accents, apostrophes, etc.)
     new_text = unicodedata.normalize("NFKC", new_text) 
-    # 3. We remove the special characters
+    # 2. We remove the special characters
     new_text = ''.join(c for c in new_text if c.isprintable() or c in '\n\t')
+    # 3. From "prova :" to-> "prova:"
     new_text = re.sub(r'\s+([.,;:!?])', r'\1', new_text)
-    new_text = re.sub(r'(\w+)\s*-\s*(\w+)', r'\1-\2', new_text)
-    new_text = re.sub(r'(\r?\n){3,}', r'\n\n', new_text)
-    word_pattern = re.compile(r'\b[\w\']+\b')
+    # 4. From "prova1 - prova2" to-> "prova1-prova2"
+    new_text = re.sub(r'([A-Za-zÀ-ÿ]+)\s*[-]\s*([A-Za-zÀ-ÿ]+)', r'\1-\2', new_text)
+    # 5. We remove the empty rows
+    pattern_emty_rows = r'(?:^\s*\r?\n){3,}'
+    new_text = re.sub(pattern_emty_rows, r'\r\n', new_text, flags=re.MULTILINE)
+    # 6. We transform all the text in lowercase excpet for the acronyms
+    word_pattern = re.compile(r'\b[\w]+\b')
     new_text =  word_pattern.sub(selective_lower, new_text)
     return new_text
 
@@ -97,6 +107,9 @@ def retrieve_text_from_pdf(pdf_path: str):
 
 
 def save_text(category: str, pdf_path: str, pdf_text: str):
+    """
+    Given a text extracted from a .pdf file, it creates the corresponding .txt file.
+    """
     pdf_path_split = pdf_path.split("\\")
     pdf_name = pdf_path_split[len(pdf_path_split) - 1].removesuffix(".pdf")
     pdf_text_path = r"InputPDFtoText/" + category + r"/" + pdf_name + ".txt"
@@ -107,6 +120,11 @@ def save_text(category: str, pdf_path: str, pdf_text: str):
 
 
 def preprocess_pdf(pdf_dict):
+    """
+    Given a pdf_dict, it created the corresponding .txt files.
+    
+    :param pdf_dict:: a dictionary where each key is a category/topic (e.g., "DisciplinaDiUtilizzo") and each value is the list of PDF file paths associated with it.
+    """
     dataItems = []
     for category, pdf_paths in pdf_dict.items():
         for pdf_path in pdf_paths:
@@ -123,6 +141,8 @@ def generate_ontology(category, dataItems=None):
     else:
         directory = Path(f"InputPDFtoText/{category}")
         all_text_paths = list(directory.rglob("*.txt"))
+
+
 
 
     sources = [TEXT(text_path) for text_path in all_text_paths]
@@ -158,7 +178,6 @@ def main():
     pdf_dict["Normativa"] = pdf_paths_Normativa
 
 
-
     while(True):
         print("1. Preprocess all the .pdf files converting them to .txt files")
         print("2. Generate the ontologies")
@@ -192,8 +211,6 @@ def main():
         else:
             print("Invalid choice. Please try again")
         
-
-
 
 
 if __name__ == "__main__":
