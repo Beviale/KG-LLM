@@ -8,6 +8,7 @@ from graphrag_sdk.source import TEXT
 from pypdf import PdfReader
 import unicodedata
 import re
+from pathlib import Path
 
 load_dotenv()
 
@@ -15,8 +16,9 @@ class DataItem:
     """
     Reperesents a PDF document to process
     """
-    def __init__(self, pdf_path):
+    def __init__(self, category, pdf_path):
         self.pdf_path = pdf_path
+        self.category = category
         self._text = None
         self._text_path = None
         self._num_pages = None
@@ -48,7 +50,7 @@ class DataItem:
     @property
     def text_path(self):
         if self._text_path == None:
-           self._text_path = save_text(self.pdf_path, self.text)
+           self._text_path = save_text(self.category, str(self.pdf_path), self.text)
         return self._text_path
 
     @text_path.setter
@@ -56,6 +58,12 @@ class DataItem:
        self._text_path = value
 
     
+def selective_lower(match):
+    word = match.group(0)
+    exclude_pattern = re.compile(r'[A-Z\']+')
+    if exclude_pattern.fullmatch(word):
+        return word
+    return word.lower()
 
 
 def preprocess(text: str):
@@ -66,27 +74,13 @@ def preprocess(text: str):
     # 3. We remove the special characters
     new_text = ''.join(c for c in new_text if c.isprintable() or c in '\n\t')
     new_text = re.sub(r'\s+([.,;:!?])', r'\1', new_text)
-    new_text = re.sub(r'(\w+)-\n+(\w+)', r'\1-\2', new_text)
-
-
-    acronyms = []
-    for acronym in re.findall(r'[A-Z][A-Z\s\']*[A-Z]', new_text):
-        acronym = acronym.lower()
-        if acronym not in acronyms:
-            acronyms.append(acronym)
-
-    new_text = new_text.lower()
-            
-
-    for acronym in acronyms:
-        new_text = re.sub(rf'\b{acronym}\b', acronym.upper(), new_text)
-
+    new_text = re.sub(r'(\w+)\s*-\s*(\w+)', r'\1-\2', new_text)
+    new_text = re.sub(r'(\r?\n){3,}', r'\n\n', new_text)
+    word_pattern = re.compile(r'\b[\w\']+\b')
+    new_text =  word_pattern.sub(selective_lower, new_text)
     return new_text
 
-
-# Direi di fare un approccio iterativo: si passa un documento e l'ontologia creata e si chiede di arricchirla (se necessario). Alla fine si mergia tutto e
-# si eliminano duplicato come espresso nel paper (si usa sempre il LLM).
-
+   
 
 def retrieve_text_from_pdf(pdf_path: str):
     """
@@ -102,35 +96,106 @@ def retrieve_text_from_pdf(pdf_path: str):
     return pdf_text, num_pages
 
 
-def save_text(pdf_path: str, pdf_text: str):
+def save_text(category: str, pdf_path: str, pdf_text: str):
     pdf_path_split = pdf_path.split("\\")
     pdf_name = pdf_path_split[len(pdf_path_split) - 1].removesuffix(".pdf")
-    pdf_text_path = r"InputPDFtoText/" + pdf_name + ".txt"
+    pdf_text_path = r"InputPDFtoText/" + category + r"/" + pdf_name + ".txt"
     with open(pdf_text_path, "w", encoding="utf-8") as f:
         f.write(pdf_text)
     return pdf_text_path
 
 
 
-# Import Data
-pdf_paths = [r"InputPDF\Disciplina di utilizzo\DISCIPLINA_Utilizzo_EmPULIA_ver_1 7.pdf"]
-dataItems = []
-for pdf_path in pdf_paths:
-    dataItem = DataItem(pdf_path)
-    path = dataItem.text_path
-    dataItems.append(dataItem)
+def preprocess_pdf(pdf_dict):
+    dataItems = []
+    for category, pdf_paths in pdf_dict.items():
+        for pdf_path in pdf_paths:
+            dataItem = DataItem(category, pdf_path)
+            path = dataItem.text_path
+            dataItems.append(dataItem)
+            print(f"PDF file \"{pdf_path}\" processed correctly.")
+    return dataItems
 
-all_text_paths = [item.text_path for item in dataItems]
 
-sources = [TEXT(text_path) for text_path in all_text_paths]
+def generate_ontology(category, dataItems=None):
+    if dataItems is not None:
+        all_text_paths = [item.text_path for item in dataItems]
+    else:
+        directory = Path(f"InputPDFtoText/{category}")
+        all_text_paths = list(directory.rglob("*.txt"))
 
-model = LiteModel(model_name="openai/gpt-4.1-nano")
 
-# Ontology Auto-Detection
-ontology = Ontology.from_sources(
-    sources=sources,
-    model=model,
-)
-# Save the ontology to the disk as a json file.
-with open("ontology.json", "w", encoding="utf-8") as file:
-    file.write(json.dumps(ontology.to_json(), indent=2))
+    sources = [TEXT(text_path) for text_path in all_text_paths]
+
+    model = LiteModel(model_name="openai/gpt-4.1-nano")
+
+    # Ontology Auto-Detection
+    ontology = Ontology.from_sources(
+        sources=sources,
+        model=model,     
+    )
+    # Save the ontology to the disk as a json file.
+    with open("ontology.json", "w", encoding="utf-8") as file:
+        file.write(json.dumps(ontology.to_json(), indent=2))
+
+
+def main():
+    pdf_dict = {} # The key is the category (DiscplinaDiUtilizzo, GuidePratiche,...) and the value is the list of associated .pdf files
+
+    # DiscplinaDiUtilizzo
+    dir_DisciplinaDiUtilizzo = Path("InputPDF/DisciplinaDiUtilizzo")
+    pdf_paths_DisciplinaDiUtilizzo = list(dir_DisciplinaDiUtilizzo.rglob("*.pdf"))
+    pdf_dict["DisciplinaDiUtilizzo"] = pdf_paths_DisciplinaDiUtilizzo
+
+    # GuidePratiche
+    dir_GuidePratiche = Path("InputPDF/GuidePratiche")
+    pdf_paths_GuidePratiche= list(dir_GuidePratiche.rglob("*.pdf"))
+    pdf_dict["GuidePratiche"] = pdf_paths_GuidePratiche
+
+    # Normativa
+    dir_Normativa = Path("InputPDF/Normativa")
+    pdf_paths_Normativa= list(dir_Normativa.rglob("*.pdf"))
+    pdf_dict["Normativa"] = pdf_paths_Normativa
+
+
+
+    while(True):
+        print("1. Preprocess all the .pdf files converting them to .txt files")
+        print("2. Generate the ontologies")
+        print("3. Exit")
+        choice = int(input("What do you want to do? "))
+        if choice == 1:
+            dataItems = preprocess_pdf(pdf_dict)
+        elif choice == 2:
+            while(True):
+                print("1. DisciplinaDiUtilizzo")
+                print("2. GuidePratiche")
+                print("3. Normativa")
+                print("4. FAQ")
+                choice_cat = int(input("For which category do you want to generate the ontology? "))
+                if choice_cat == 1:
+                    generate_ontology("DisciplinaDiUtilizzo")
+                    break
+                elif choice_cat == 2:
+                    generate_ontology("GuidePratiche")
+                    break
+                elif choice_cat == 3:
+                    generate_ontology("Normativa")
+                    break
+                elif choice_cat == 4:
+                    generate_ontology("FAQ")
+                    break
+                else:
+                    print("Invalid choice. Please try again")
+        elif choice == 3:
+            break
+        else:
+            print("Invalid choice. Please try again")
+        
+
+
+
+
+if __name__ == "__main__":
+    main()
+
