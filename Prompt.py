@@ -310,6 +310,7 @@ Non creare relazioni senza le relative entità.
 Non creare relazioni inverse duplicate; ad esempio, se hai una relazione “POSSIEDE” da Persona a Casa, non creare una relazione “POSSEDUTA_DA” da Casa a Persona.
 Non utilizzare l'esempio con Film per assumere l'ontologia. L'ontologia deve essere creata esclusivamente in base al testo fornito.
 Non creare entità senza un attributo unico. Ogni entità deve avere almeno un attributo unico.
+Correggi eventuali problemi di spaziatura o formattazione presenti nel testo se necessario.
 
 Raw text:
 {text}
@@ -420,6 +421,105 @@ Ontology:
 {ontology}
 """
 
+EXTRACT_DATA_SYSTEM_ITA = """
+Sei un assistente di altissimo livello con l'obiettivo di estrarre entità e relazioni dal testo per un graph database, utilizzando l'ontologia fornita.
+Usa solo le entità, le relazioni e gli attributi presenti nell'ontologia fornita.
+Mantieni la coerenza delle entità: quando estrai entità, è fondamentale garantire la coerenza. Se un'entità, come "John Doe", viene menzionata più volte nel testo ma con nomi o pronomi diversi (ad esempio "Joe", "lui"), usa sempre l'identificatore più completo per quell'entità all'interno del grafo della conoscenza (knowledge graph). In questo esempio, usa "John Doe" come ID dell'entità. Ricorda che il grafo della conoscenza deve essere coerente e facilmente comprensibile, quindi mantenere la coerenza nei riferimenti alle entità è cruciale.
+Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente con l'ontologia e il contesto forniti, per facilitare le query. Ad esempio, le date devono essere sempre nel formato “YYYY-MM-DD”, i nomi devono avere una spaziatura coerente, e così via.
+Non utilizzare altre entità, relazioni o attributi che non siano presenti nell'ontologia.
+Non includere spiegazioni o scuse nelle tue risposte.
+Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
+La tua risposta deve essere in formato JSON e deve seguire lo schema fornito di seguito.
+Assicurati che il JSON prodotto sia restituito inline e senza spazi, così da ridurre il numero di token in output.
+
+Schema:
+```json
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "Graph Schema",
+  "required": ["entities", "relations"],
+  "properties": {
+    "entities": {
+      "type": "array",
+      "title": "The entities Schema",
+      "items": {
+        "type": "object",
+        "title": "A Schema",
+        "required": ["label", "attributes"],
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "The label Schema",
+            "format": "titlecase"
+          },
+          "attributes": {
+            "type": "object",
+            "title": "The attributes Schema"
+          }
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "title": "The relations Schema",
+      "items": {
+        "type": "object",
+        "title": "A Schema",
+        "required": ["label", "source", "target"],
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "The label Schema",
+            "format": "uppercase"
+          },
+          "source": {
+            "type": "object",
+            "title": "The source Schema",
+            "required": ["label", "attributes"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "format": "titlecase",
+                "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
+              }
+            }
+          },
+          "target": {
+            "type": "object",
+            "title": "The target Schema",
+            "required": ["label", "attributes"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "format": "titlecase",
+                "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
+              }
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "title": "The attributes Schema"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Esempio di output:
+```{"entities":[{"label":"Person","attributes":{"name":"John Doe","age":30}},{"label":"Movie","attributes":{"title":"Inception","releaseYear":2010}}],"relations":[{"label":"ACTED_IN","source":{"label":"Person","attributes":{"name":"JohnDoe"}},"target":{"label":"Movie","attributes":{"title":"Inception"}},"attributes":{"role":"Cobb"}}]}```
+"""
 
 EXTRACT_DATA_SYSTEM = """
 You are a top-tier assistant with the goal of extracting entities and relations from text for a graph database, using the provided ontology.
@@ -525,6 +625,37 @@ Ontology:
 #ONTOLOGY
 """
 
+
+EXTRACT_DATA_PROMPT_ITA = """
+Sei incaricato di estrarre entità e relazioni dal testo riportato di seguito, utilizzando l'ontologia fornita.
+
+**Formato di output:**
+- Fornisci i dati estratti come oggetto JSON con due chiavi: "entities" e "relations".
+- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo "label" e un campo "attributes".
+- Relations: rappresentano le relazioni tra entità o concetti. Ogni relazione deve avere un "label", "source", "target" e un campo "attributes".
+
+**Linee guida:**
+- Estrai tutte le entità e le relazioni: cattura tutte le entità e tutte le relazioni menzionate nel testo.
+- Usa solo l'ontologia fornita: utilizza solo i tipi di entità, relazioni e attributi definiti nell'ontologia.
+- Assegna ID quando richiesto: assegna ID testuali alle entità e alle relazioni come specificato.
+- Evita duplicati: assicurati che ogni entità e relazione sia unica; non includere duplicati.
+
+**Formattazione:**
+- Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
+- Usa virgolette doppie per tutti i valori stringa.
+- Correggi ed evita eventuali caratteri speciali non escapati.
+- Le date devono essere nel formato "YYYY-MM-DD".
+- Correggi eventuali problemi di spaziatura o formattazione presente nel testo se necessario.
+
+Precisione: sii conciso e preciso nell'estrazione.
+
+**Ontologia**:
+{ontology}
+
+**Testo**:
+{text}
+
+"""
 EXTRACT_DATA_PROMPT = """
 You are tasked with extracting entities and relations from the text below, using the ontology provided.
 

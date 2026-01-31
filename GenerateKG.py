@@ -233,11 +233,17 @@ def generate_ontology(category, model=None, dataItems=None):
 
 
 
-def generate_data(category: str, model=None):
-    ontology_file = f"Ontologies/{category}_Ontology.json"
+def generate_data(category: str, model=None, dataItems=None):
+    if dataItems is not None:
+        all_text_paths = [item.text_path for item in dataItems]
+    else:
+        directory = Path(f"InputPDFtoText/{category}")
+        all_text_paths = list(directory.rglob("*.txt"))
+    
     if model is None:
         model = "openai/gpt-5-nano"
 
+    ontology_file = f"Ontologies/{category}_Ontology.json"
     with open(ontology_file, "r", encoding="utf-8") as file:
         textItem = file.read()
 
@@ -246,6 +252,21 @@ def generate_data(category: str, model=None):
     except Exception as e:
         print(f"Failed to read the ontology: {e}")
         return
+    
+    for text_path in all_text_paths:
+        with open(text_path, "r", encoding="utf-8") as f:
+            text = f.read()
+
+        print("File path: ", text_path)
+        print("Waiting the LLM response...")
+        
+        response = completion(
+            model=model,
+            messages=[
+                {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
+                {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=textItem, text=text)}
+            ]
+        )
     
     # Procedere con la creazione del KG! Resta da definire i prompt 
     
