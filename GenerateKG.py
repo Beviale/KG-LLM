@@ -11,6 +11,7 @@ from pypdf import PdfReader
 import unicodedata
 import re
 from pathlib import Path
+from graphrag_sdk.models.litellm import LiteModel
 import Prompt
 
 load_dotenv()
@@ -138,58 +139,119 @@ def preprocess_pdf(pdf_dict):
     return dataItems
 
 
-def generate_ontology(category, dataItems=None):
+def generate_ontology(category, model=None, dataItems=None):
     if dataItems is not None:
         all_text_paths = [item.text_path for item in dataItems]
     else:
         directory = Path(f"InputPDFtoText/{category}")
         all_text_paths = list(directory.rglob("*.txt"))
+    
+    if model is None:
+        model = "openai/gpt-5-nano"
+
+
+    first_iteration = True
+    current_ontology = None
 
     for text_path in all_text_paths:
-       
+
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
 
+        print("File path: ", text_path)
+        print("Waiting the LLM response...")
 
-        response = completion(
-            model="openai/gpt-4.1-nano",
-            messages=[
-                {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                {"role": "user",   "content": Prompt.CREATE_ONTOLOGY_PROMPT_ITA.format(text=text)}
-            ]
-        )
+        if first_iteration == True or current_ontology is None:
+            # We create the ontology
+            response = completion(
+                model="openai/gpt-4.1-nano",
+                messages=[
+                    {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                    {"role": "user",   "content": Prompt.CREATE_ONTOLOGY_PROMPT_ITA.format(text=text)}
+                ]
+            )
+            first_iteration = False
+        else:
+            # We update the ontology
+            response = completion(
+                model=model,
+                messages=[
+                    {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                    {"role": "user",   "content": Prompt.UPDATE_ONTOLOGY_PROMPT_ITA.format(ontology=current_ontology, text=text)}
+                ]
+            )
+        
+
         response_content = response.choices[0].message["content"]
         
         response_content = response_content.strip()
 
-        if response_content.startswith("'") and response_content.endswith("'"):
-            response_content = response_content[1:-1]
-
         try:
             data = json.loads(extract_json(response_content))
-        except json.decoder.JSONDecodeError as e:
+            _ = Ontology.from_json(data)
+        except Exception as e:
+            # fallback 
             print(f"Error extracting JSON: {e}")
             print(f"Prompting model to fix JSON")
-            json_fix_response = completion(
-                model="openai/gpt-4.1-nano",
-                messages=[
-                    {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                    {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=str(e))}         
-                ]
-            )
+            if isinstance(e, json.JSONDecodeError):
+                json_fix_response = completion(
+                    model=model,
+                    messages=[
+                        {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
+                    ]
+                )
+            else:
+                 json_fix_response = completion(
+                    model=model,
+                    messages=[
+                        {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                        {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=str(e))}         
+                    ]
+                )
+
             json_fix_response_content = json_fix_response.choices[0].message["content"]
             try:
                 data = json.loads(extract_json(json_fix_response_content))
-                print(f"Fixed JSON: {data}")
-            except json.decoder.JSONDecodeError as e:
-                print(f"Failed to fix JSON: {e} {json_fix_response_content}")
-                data = None
-        if data is None:
-            continue
-        ontology_file_name = category + "_Ontology.json"
+                _ = Ontology.from_json(data)
+                print(f"JSON fixed!")
+            except Exception as e:
+                print(f"Failed to fix JSON: {e}")
+                continue
+  
+       
+        current_ontology = json.dumps(data, indent=2, ensure_ascii=False)
+
+
+
+    if current_ontology is not None:
+        print(f"Ontology '{category}' created successfully!")
+        ontology_file_name = r"Ontologies/" + category + "_Ontology.json"
         # Save the ontology to the disk as a json file.
         with open(ontology_file_name, "w", encoding="utf-8") as file:
-            file.write(json.dumps(data, indent=2))
+            file.write(current_ontology)
+
+
+
+def generate_data(category: str, model=None):
+    ontology_file = f"Ontologies/{category}_Ontology.json"
+    if model is None:
+        model = "openai/gpt-5-nano"
+
+    with open(ontology_file, "r", encoding="utf-8") as file:
+        textItem = file.read()
+
+    try:
+        _ = json.loads(textItem)
+    except Exception as e:
+        print(f"Failed to read the ontology: {e}")
+        return
+    
+    # Procedere con la creazione del KG! Resta da definire i prompt 
+    
+
+    
+    return
 
 
 def main():
@@ -212,9 +274,11 @@ def main():
 
 
     while(True):
+        print("---------------------------")
         print("1. Preprocess all the .pdf files converting them to .txt files")
         print("2. Generate the ontologies")
-        print("3. Exit")
+        print("3. Load the data")
+        print("4. Exit")
         choice = int(input("What do you want to do? "))
         if choice == 1:
             dataItems = preprocess_pdf(pdf_dict)
@@ -240,6 +304,27 @@ def main():
                 else:
                     print("Invalid choice. Please try again")
         elif choice == 3:
+            while(True):
+                print("1. DisciplinaDiUtilizzo")
+                print("2. GuidePratiche")
+                print("3. Normativa")
+                print("4. FAQ")
+                choice_cat = int(input("For which category do you want to generate the data? "))
+                if choice_cat == 1:
+                    generate_data("DisciplinaDiUtilizzo")
+                    break
+                elif choice_cat == 2:
+                    generate_data("GuidePratiche")
+                    break
+                elif choice_cat == 3:
+                    generate_data("Normativa")
+                    break
+                elif choice_cat == 4:
+                    generate_data("FAQ")
+                    break
+                else:
+                    print("Invalid choice. Please try again")
+        elif choice == 4:
             break
         else:
             print("Invalid choice. Please try again")

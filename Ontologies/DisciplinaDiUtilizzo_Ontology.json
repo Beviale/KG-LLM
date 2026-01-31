@@ -1,0 +1,616 @@
+{
+  "entities": [
+    {
+      "label": "ServizioTelesocome",
+      "attributes": [
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_approvazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "determine_numero",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_versione_corrente",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "versione_storia",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SoggettoAggregatore",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "regione_di_appartenenza",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "atto_approvazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_atto_approvazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Versione",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "nota",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Protocollo",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProceduraTeionologica",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "regolamento",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "fasi",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "regole",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "EnteAderente",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "enum": [
+            "pubblico",
+            "privato"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "regione_appartenenza",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "dati_contatto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_impegno",
+          "type": "string",
+          "enum": [
+            "lavori",
+            "servizi",
+            "forniture"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "iscrizione_albo_online",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "categoria_merceologica",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "categoria_SOAS",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ispirazione_settoriale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "enum": [
+            "imprenditore",
+            "fornitore",
+            "prestatore_servizi",
+            "raggruppamento",
+            "consorzio"
+          ],
+          "required": true
+        },
+        {
+          "name": "dati_contatto",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GestoreSistema",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "enum": [
+            "responsabile tecniche",
+            "gestore"
+          ],
+          "required": true
+        },
+        {
+          "name": "dati_contatto",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ResponsabileProcedimento",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "enum": [
+            "RDA",
+            "Responsabile fabbisogni"
+          ],
+          "required": true
+        },
+        {
+          "name": "ente_appartenenza",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "dati_contatto",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "codice_accesso",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "nome_utente",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AlboFornitori",
+      "attributes": [
+        {
+          "name": "istituzione",
+          "type": "string",
+          "enum": [
+            "regionale",
+            "nazionale"
+          ],
+          "required": true
+        },
+        {
+          "name": "gestore",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "normativa",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "iscrizione",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "categorie_classi_merceologiche",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "categorie_professionali",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraGare",
+      "attributes": [
+        {
+          "name": "tipologia",
+          "type": "string",
+          "enum": [
+            "gara telematica",
+            "asta elettronica"
+          ],
+          "required": true
+        },
+        {
+          "name": "normativa_vigente",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "principi_connessione",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "tempi_registro",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "registro_prove",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SistemaDinamicoAcquisizione",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "normativa",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "funzionalità",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FabbisognoDiAcquisto",
+      "attributes": [
+        {
+          "name": "tipologia_beni",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "tipologia_servizi",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "tipologia_lavori",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "metodo_rilevazione",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "modalità_analisi",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "strumenti_telematici",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DisabilitazioneCancellazioneRDA",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "enum": [
+            "disabilitazione",
+            "cancellazione"
+          ],
+          "required": true
+        },
+        {
+          "name": "richiesta_motivazione",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "responsabile_trasmissione",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "data_richiesta",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "stato_attivo",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ManlevaResponsabilità",
+      "attributes": [
+        {
+          "name": "volontaria_scolltura",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "responsabile_sollevamento",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "motivazione",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GestioneDatiPersonali",
+      "attributes": [
+        {
+          "name": "principio",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "soggetto_titolare",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "responsabile_trattamento",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "luogo_trattamento",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "diritti_utenti",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "contatti",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AccessoAtti",
+      "attributes": [
+        {
+          "name": "tipo_richiesta",
+          "type": "string",
+          "enum": [
+            "accesso diretto",
+            "invio richiesta"
+          ],
+          "required": true
+        },
+        {
+          "name": "strumento_utilizzato",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "responsabile_ente",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "modalità",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "valore_legale",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ModificheDisciplina",
+      "attributes": [
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "motivo_modifica",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "risolutore",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "NormaFinale",
+      "attributes": [
+        {
+          "name": "norma",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "articolo",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

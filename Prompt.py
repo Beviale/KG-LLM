@@ -130,7 +130,7 @@ Schema:
             "items": {
               "type": "object",
               "title": "A Schema",
-              "required": ["name", "type", "unique"],
+              "required": ["name", "type", "unique", "required"],
               "properties": {
                 "name": {
                   "type": "string",
@@ -162,7 +162,7 @@ Schema:
 
 Per esempio:
 ```
-{"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"unique":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}}
+{"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"required":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}]}
 ```
 
 L'esempio fornito mostra un formato possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente a partire dal testo fornito.
@@ -223,37 +223,12 @@ Schema:
         "properties": {
           "label": {
             "type": "string",
-            "title": "The label Schema. Ex: StreamingService",
+            "title": "The label Schema",
             "format": "titlecase"
           },
           "attributes": {
-            "type": "array",
-            "title": "The attributes Schema",
-            "items": {
-              "type": "object",
-              "title": "A Schema",
-              "required": ["name", "type", "unique", "required"],
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "title": "The name Schema",
-                  "format": "snakecase"
-                },
-                "type": {
-                  "type": "string",
-                  "enum": ["string", "number", "boolean"],
-                  "title": "The type Schema"
-                },
-                "unique": {
-                  "type": "boolean",
-                  "title": "The unique Schema. Must have at least one unique attribute"
-                },
-                "required": {
-                  "type": "boolean",
-                  "title": "The required Schema. If the attribute is required, it cannot be null or empty"
-                }
-              }
-            }
+            "type": "object",
+            "title": "The attributes Schema"
           }
         }
       }
@@ -274,55 +249,38 @@ Schema:
           "source": {
             "type": "object",
             "title": "The source Schema",
-            "required": ["label"],
+            "required": ["label", "attributes"],
             "properties": {
               "label": {
                 "type": "string",
                 "format": "titlecase",
                 "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
               }
             }
           },
           "target": {
             "type": "object",
             "title": "The target Schema",
-            "required": ["label"],
+            "required": ["label", "attributes"],
             "properties": {
               "label": {
                 "type": "string",
                 "format": "titlecase",
                 "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
               }
             }
           },
           "attributes": {
-            "type": "array",
-            "title": "The attributes Schema",
-            "items": {
-              "type": "object",
-              "title": "A Schema",
-              "required": ["name", "type", "unique"],
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "title": "The name of the attribute",
-                  "format": "snakecase"
-                },
-                "type": {
-                  "type": "string",
-                  "enum": ["string", "number", "boolean"],
-                  "title": "The type of the attribute"
-                },
-                "unique": {
-                  "type": "boolean",
-                  "title": "If the attribute is unique or not between different relations of the same label"
-                },
-                "required": {
-                  "type": "boolean",
-                  "title": "If the attribute is required or not"
-                }
-              }
-            }
+            "type": "object",
+            "title": "The attributes Schema"
           }
         }
       }
@@ -333,7 +291,7 @@ Schema:
 
 For example:
 ```
-{"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"unique":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}}
+{"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"required":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}}
 ```
 
 Do not use the example Movie context to assume the ontology. The ontology should be created based on the provided text only.
@@ -383,6 +341,24 @@ Use the following instructions as boundaries for the ontology extraction process
 {user_boundaries}
 """
 
+UPDATE_ONTOLOGY_PROMPT_ITA = """
+Dato il seguente testo e l'ontologia, aggiorna l'ontologia in modo che esso rappresenti anche le entità e le relazioni espresse nel testo fornito.
+Estrai quante più entità e relazioni possibile per descrivere completamente i dati.
+Estrai quante più caratteristiche (attributi) possibile per descrivere le entità e le relazioni presenti nel testo.
+Gli attributi dovrebbero essere estratti come entità o relazioni ogni volta che è possibile. Ad esempio, quando si descrive un'entità Film, l'attributo "regista" può essere estratto come entità Persona e collegato all'entità Film tramite una relazione etichettata "HA_DIRETTO".
+Ad esempio, quando si descrive un'entità Film, puoi estrarre attributi come titolo, anno di uscita, genere e altri.
+Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una Persona "HA_INTERPRETATO" un Personaggio in un Film, assicurati di collegare il Personaggio al Film, altrimenti non saremo in grado di determinare da quale Film provenga il Personaggio.
+Non creare relazioni senza le corrispondenti entità.
+Non creare duplicati di relazioni inverse: ad esempio, se esiste una relazione "POSSIEDE" da Persona a Casa, non creare anche una relazione "È_POSSEDUTA" da Casa a Persona.
+Non usare il contesto dell'esempio del Film per assumere l'ontologia. L'ontologia deve essere aggiornata esclusivamente sulla base del testo fornito.
+La nuova ontologia non deve rimuovere le entità e le relazioni rappresentatati precedentemente ma deve essere una sua evoluzione sulla base del testo fornito. 
+
+Ontologia:
+{ontology}
+
+Testo:
+{text}
+"""
 UPDATE_ONTOLOGY_PROMPT = """
 Given the following text and ontology update the ontology that represents the entities and relationships in the data.
 Extract as many entities and relations as possible to fully describe the data.
@@ -593,6 +569,18 @@ You are tasked with extracting entities and relations from the text below, using
 **Raw Text**:
 {text}
 """
+
+FIX_JSON_PROMPT_ITA = """
+Dato il seguente JSON, correggi qualunque errore o informazione mancante al suo interno.
+
+L'errore durante il parsing del JSON è:
+{error}
+
+JSON:
+{json}
+"""
+
+
 
 FIX_JSON_PROMPT = """
 Given the following JSON, correct any mistakes or missing information in the JSON.
