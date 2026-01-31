@@ -2,13 +2,16 @@ from dotenv import load_dotenv
 import json
 from graphrag_sdk.source import URL
 from graphrag_sdk import KnowledgeGraph, Ontology
-from graphrag_sdk.models.litellm import LiteModel
+from graphrag_sdk.helpers import extract_json
+import litellm
+from litellm import completion
 from graphrag_sdk.model_config import KnowledgeGraphModelConfig
 from graphrag_sdk.source import TEXT
 from pypdf import PdfReader
 import unicodedata
 import re
 from pathlib import Path
+import Prompt
 
 load_dotenv()
 
@@ -142,21 +145,51 @@ def generate_ontology(category, dataItems=None):
         directory = Path(f"InputPDFtoText/{category}")
         all_text_paths = list(directory.rglob("*.txt"))
 
+    for text_path in all_text_paths:
+       
+        with open(text_path, "r", encoding="utf-8") as f:
+            text = f.read()
 
 
+        response = completion(
+            model="openai/gpt-4.1-nano",
+            messages=[
+                {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                {"role": "user",   "content": Prompt.CREATE_ONTOLOGY_PROMPT_ITA.format(text=text)}
+            ]
+        )
+        response_content = response.choices[0].message["content"]
+        
+        response_content = response_content.strip()
 
-    sources = [TEXT(text_path) for text_path in all_text_paths]
+        if response_content.startswith("'") and response_content.endswith("'"):
+            response_content = response_content[1:-1]
 
-    model = LiteModel(model_name="openai/gpt-4.1-nano")
-
-    # Ontology Auto-Detection
-    ontology = Ontology.from_sources(
-        sources=sources,
-        model=model,     
-    )
-    # Save the ontology to the disk as a json file.
-    with open("ontology.json", "w", encoding="utf-8") as file:
-        file.write(json.dumps(ontology.to_json(), indent=2))
+        try:
+            data = json.loads(extract_json(response_content))
+        except json.decoder.JSONDecodeError as e:
+            print(f"Error extracting JSON: {e}")
+            print(f"Prompting model to fix JSON")
+            json_fix_response = completion(
+                model="openai/gpt-4.1-nano",
+                messages=[
+                    {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                    {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=str(e))}         
+                ]
+            )
+            json_fix_response_content = json_fix_response.choices[0].message["content"]
+            try:
+                data = json.loads(extract_json(json_fix_response_content))
+                print(f"Fixed JSON: {data}")
+            except json.decoder.JSONDecodeError as e:
+                print(f"Failed to fix JSON: {e} {json_fix_response_content}")
+                data = None
+        if data is None:
+            continue
+        ontology_file_name = category + "_Ontology.json"
+        # Save the ontology to the disk as a json file.
+        with open(ontology_file_name, "w", encoding="utf-8") as file:
+            file.write(json.dumps(data, indent=2))
 
 
 def main():

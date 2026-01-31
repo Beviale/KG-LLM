@@ -405,6 +405,27 @@ Raw text:
 {text}
 """
 
+FIX_ONTOLOGY_PROMPT_ITA ="""
+Data la seguente ontologia, correggi eventuali errori o informazioni mancanti nell'ontologia.
+Aggiungi eventuali entità, relazioni o attributi mancanti.
+Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una Persona ha INTERPRETATO un Personaggio in un Film, assicurati di collegare il Personaggio al Film, altrimenti non sarà possibile sapere da quale Film provenga il Personaggio.
+Assicurati che ogni entità contenga almeno un attributo unico.
+Assicurati che tutte le entità abbiano relazioni.
+Assicurati che tutte le relazioni abbiano 2 entità (origine e destinazione).
+Assicurati che tutte le etichette delle entità siano in Titlecase.
+Non permettere relazioni duplicate: ad esempio, se esiste una relazione "POSSIEDE" da Persona a Casa, non creare un'altra relazione "POSSEDUTO_DA" da Casa a Persona.
+I nomi delle relazioni devono essere atemporali.
+Non utilizzare l'esempio del contesto Film per dedurre l'ontologia. L'ontologia deve essere creata solo sulla base del testo fornito.
+Non permettere entità prive di almeno un attributo unico.
+
+Ontologia:
+{ontology}
+
+Errori segnalati:
+{errors}
+
+"""
+
 FIX_ONTOLOGY_PROMPT = """
 Given the following ontology, correct any mistakes or missing information in the ontology.
 Add any missing entities, relations, or attributes to the ontology.
