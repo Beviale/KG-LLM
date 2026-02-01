@@ -1,34 +1,31 @@
 CREATE_ONTOLOGY_SYSTEM_ITA = """
 ***
 ## 1. Panoramica\n"
-Sei un algoritmo di alto livello progettato per estrarre ontologie in formati strutturati al fine di costruire un grafo della conoscenza (Knowledge Graph) a partire da testi grezzi.  
+Sei un algoritmo di alto livello progettato per estrarre ontologie che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph) a partire da testi grezzi.  
 Cattura quante più informazioni possibili su entità, relazioni e attributi dal testo.
 - Le **entità** rappresentano entità e concetti. Devono avere almeno un attributo unico.
 - Le **relazioni** rappresentano collegamenti tra entità e concetti. 
 L'obiettivo è ottenere semplicità e chiarezza nel grafo della conoscenza, rendendolo accessibile a un vasto pubblico.  
-Utilizza il campo `attributes` per catturare informazioni aggiuntive sulle entità e sulle relazioni.  
+Utilizza il campo 'attributes' per catturare informazioni aggiuntive sulle entità e sulle relazioni.  
 Aggiungi tutti gli attributi necessari per descrivere completamente entità e relazioni presenti nel testo.  
 Preferisci convertire le relazioni in entità quando possiedono attributi.
 Crea un'ontologia molto concisa e chiara. Evita complessità e ambiguità non necessarie.  
 Le etichette (label) di entità e relazioni non possono iniziare con numeri o caratteri speciali.
 
 ## 2. Etichettare le entità
--  **Coerenza**: Usa tipi disponibili e basilari per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una persona, etichettala sempre come **"Persona"**. Evita termini più specifici come 'Matematico' o 'Scienziato'.
--  **ID delle entità**: Non utilizzare numeri interi come ID. Gli ID devono essere nomi o identificatori human-readable trovati nel testo.
--  Le **relazioni** rappresentano connessioni tra entità o concetti. Usa tipi di relazione coerenti e generali nella costruzione dei grafi della conoscenza. Ad esempio, invece di usare un tipo specifico e temporaneo come 'DIVENTA_PROFESSORE', usa un tipo più generale e atemporale come “PROFESSORE”. Assicurati di usare tipi di relazione generali e atemporali!
+-  **Coerenza**: Usa tipi disponibili e basilari per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una persona, etichettala sempre come 'Persona'. Evita termini più specifici come 'Matematico' o 'Scienziato'.
+-  **ID delle entità**: Non considerare numeri interi come ID. Gli ID devono essere nomi o identificatori human-readable trovati nel testo.
+-  Le **relazioni** rappresentano connessioni tra entità o concetti. Usa tipi di relazione coerenti e generali nella costruzione dei grafi della conoscenza. Ad esempio, invece di usare un tipo specifico e temporaneo come 'DIVENTA_PROFESSORE', usa un tipo più generale e atemporale come 'PROFESSORE'. Assicurati di usare tipi di relazione generali e atemporali!
 
-## 3. Risoluzione delle coreferenze
-- **Mantieni la coerenza delle entità**: Se un'entità, come "John Doe", viene citata più volte con nomi o pronomi diversi (es. "Joe", "lui"), usa sempre l'identificatore più completo, cioè "John Doe". Il grafo deve essere comprensibile e coerente, quindi è essenziale mantenere costanza nei riferimenti alle entità.
-
-## 4. Conformità rigorosa
-Rispetta rigorosamente le regole. La non conformità comporterà la terminazione.  
+## 3. Conformità rigorosa
+Rispetta rigorosamente le regole.
 Non includere spiegazioni o scuse.  
 Non rispondere a domande che richiedono qualcosa di diverso dalla creazione di un'ontologia.  
 Non includere alcun testo diverso dall'ontologia.  
 Non creare più di una coppia entità-relazione per la stessa entità o relazione. Ad esempio: se esiste la relazione (:Movie)-\[:HAS]->(:Review), non crearne un'altra come (:Person)-\[:REVIEWED]->(:Movie). Preferisci sempre tipi di relazione generali e atemporali, con il maggior numero possibile di attributi.  
 Non creare entità senza un attributo unico. Ogni entità deve avere almeno un attributo unico.
 
-## 5. Formato
+## 4. Formato
 L'ontologia deve essere in formato JSON e seguire lo schema fornito.  
 Non restituire lo schema nella risposta; usalo solo come riferimento.  
 Assicurati che il JSON sia restituito in linea e senza spazi, per ridurre il numero di token nel risultato.
@@ -166,7 +163,7 @@ Per esempio:
 ```
 
 L'esempio fornito mostra un formato possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente a partire dal testo fornito.
-L'esempio fornito è in inglese, ma l'ontologia, pur avendo struttura in inglese, dovrà essere compilata in lingua italiana dato che i testi su cui si baserà sono scritti tutti in lingua italiana.
+L'esempio fornito è interamente in inglese; tuttavia, l'ontologia, pur mantenendo una struttura in lingua inglese, dovrà essere compilata in italiano, poiché tutti i testi di riferimento sono redatti in italiano.
 """
 
 
@@ -300,15 +297,16 @@ Do not use the example Movie context to assume the ontology. The ontology should
 
 
 CREATE_ONTOLOGY_PROMPT_ITA="""
-Dato il seguente testo, crea l'ontologia che rappresenta le entità e le relazioni presenti nei dati.
+Dato il seguente testo, crea l'ontologia che rappresenta le entità e le relazioni che si possono estrarre.
+Tieni a mente che dallo stesso testo in futuro dovranno essere estratti i dati conformi all'ontologia che stai per creare.
 Estrai il maggior numero possibile di entità e relazioni per descrivere completamente i dati.
 Estrai il maggior numero possibile di attributi per descrivere pienamente le entità e le relazioni nel testo.
-Gli attributi devono essere estratti come entità o relazioni quando possibile. Ad esempio, quando si descrive un'entità Film, l'attributo "regista" può essere estratto come un'entità "Persona" e collegato all'entità "Film" tramite una relazione etichettata "DIRETTO_DA".
-Allo stesso modo, quando si descrive un'entità Film, è possibile estrarre attributi come titolo, anno di uscita, genere e altro.
-Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una Persona ha INTERPRETATO un Personaggio in un Film, assicurati di collegare il Personaggio al Film, altrimenti non sarà possibile determinare da quale Film provenga il Personaggio.
+Gli attributi devono essere estratti come entità o relazioni quando possibile. Ad esempio, quando si descrive un'entità Film, l'attributo 'regista' può essere estratto come un'entità 'Persona' e collegato all'entità 'Film' tramite una relazione etichettata 'DIRETTO_DA'.
+Allo stesso modo, quando si descrive un'entità 'Film', è possibile estrarre attributi come titolo, anno di uscita, genere e altro.
+Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una Persona ha 'INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non sarà possibile determinare da quale 'Film' provenga il 'Personaggio'.
 Non creare relazioni senza le relative entità.
-Non creare relazioni inverse duplicate; ad esempio, se hai una relazione “POSSIEDE” da Persona a Casa, non creare una relazione “POSSEDUTA_DA” da Casa a Persona.
-Non utilizzare l'esempio con Film per assumere l'ontologia. L'ontologia deve essere creata esclusivamente in base al testo fornito.
+Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare una relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
+Non utilizzare l'esempio con 'Film' per assumere l'ontologia. L'ontologia deve essere creata esclusivamente in base al testo fornito.
 Non creare entità senza un attributo unico. Ogni entità deve avere almeno un attributo unico.
 Correggi eventuali problemi di spaziatura o formattazione presenti nel testo se necessario.
 
@@ -422,11 +420,10 @@ Ontology:
 """
 
 EXTRACT_DATA_SYSTEM_ITA = """
-Sei un assistente di altissimo livello con l'obiettivo di estrarre entità e relazioni dal testo per un graph database, utilizzando l'ontologia fornita.
-Usa solo le entità, le relazioni e gli attributi presenti nell'ontologia fornita.
-Mantieni la coerenza delle entità: quando estrai entità, è fondamentale garantire la coerenza. Se un'entità, come "John Doe", viene menzionata più volte nel testo ma con nomi o pronomi diversi (ad esempio "Joe", "lui"), usa sempre l'identificatore più completo per quell'entità all'interno del grafo della conoscenza (knowledge graph). In questo esempio, usa "John Doe" come ID dell'entità. Ricorda che il grafo della conoscenza deve essere coerente e facilmente comprensibile, quindi mantenere la coerenza nei riferimenti alle entità è cruciale.
-Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente con l'ontologia e il contesto forniti, per facilitare le query. Ad esempio, le date devono essere sempre nel formato “YYYY-MM-DD”, i nomi devono avere una spaziatura coerente, e così via.
-Non utilizzare altre entità, relazioni o attributi che non siano presenti nell'ontologia.
+Sei un assistente di alto livello con l'obiettivo di estrarre entità e relazioni da un testo per un grafo della conoscenza (Knowledge Graph), utilizzando l'ontologia fornita.
+Usa solo le entità, le relazioni e gli attributi presenti nell'ontologia fornita, tuttavia, in mancanza di dati espliciti, puoi inventare dei placeholder per rappresentare la struttura dell'ontologia anteponendo ai valori inventati il prefisso 'ESEMPIO'.
+Mantieni la coerenza delle entità: quando estrai entità, è fondamentale garantire la coerenza. Se un'entità, come 'John Doe', viene menzionata più volte nel testo ma con nomi o pronomi diversi (ad esempio 'Joe', 'lui'), usa sempre l'identificatore più completo per quell'entità all'interno del grafo della conoscenza. In questo esempio, usa 'John Doe' come ID dell'entità. Ricorda che il grafo della conoscenza deve essere coerente e facilmente comprensibile, quindi mantenere la coerenza nei riferimenti alle entità è cruciale.
+Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente con l'ontologia e il contesto forniti, per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
 Non includere spiegazioni o scuse nelle tue risposte.
 Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
 La tua risposta deve essere in formato JSON e deve seguire lo schema fornito di seguito.
@@ -630,9 +627,9 @@ EXTRACT_DATA_PROMPT_ITA = """
 Sei incaricato di estrarre entità e relazioni dal testo riportato di seguito, utilizzando l'ontologia fornita.
 
 **Formato di output:**
-- Fornisci i dati estratti come oggetto JSON con due chiavi: "entities" e "relations".
-- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo "label" e un campo "attributes".
-- Relations: rappresentano le relazioni tra entità o concetti. Ogni relazione deve avere un "label", "source", "target" e un campo "attributes".
+- Fornisci i dati estratti come oggetto JSON con due chiavi: 'entities' e 'relations'.
+- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'.
+- Relations: rappresentano le relazioni tra entità o concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.
 
 **Linee guida:**
 - Estrai tutte le entità e le relazioni: cattura tutte le entità e tutte le relazioni menzionate nel testo.
@@ -644,7 +641,7 @@ Sei incaricato di estrarre entità e relazioni dal testo riportato di seguito, u
 - Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 - Usa virgolette doppie per tutti i valori stringa.
 - Correggi ed evita eventuali caratteri speciali non escapati.
-- Le date devono essere nel formato "YYYY-MM-DD".
+- Le date devono essere nel formato 'YYYY-MM-DD'.
 - Correggi eventuali problemi di spaziatura o formattazione presente nel testo se necessario.
 
 Precisione: sii conciso e preciso nell'estrazione.
@@ -703,6 +700,7 @@ You are tasked with extracting entities and relations from the text below, using
 
 FIX_JSON_PROMPT_ITA = """
 Dato il seguente JSON, correggi qualunque errore o informazione mancante al suo interno.
+Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
 L'errore durante il parsing del JSON è:
 {error}

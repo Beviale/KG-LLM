@@ -13,8 +13,23 @@ import re
 from pathlib import Path
 from graphrag_sdk.models.litellm import LiteModel
 import Prompt
+import os
+from falkordb import FalkorDB
+from graphrag_sdk.steps import extract_data_step
+
 
 load_dotenv()
+host = os.getenv("FALKORDB_HOST", "localhost")
+port = int(os.getenv("FALKORDB_PORT", "6379"))
+username = os.getenv("FALKORDB_USERNAME", "beviale")  
+password = os.getenv("FALKORDB_PASSWORD", "12345678Ab!") 
+
+client_kwargs = {
+    "host": host,
+    "port": port,
+}
+
+
 
 class DataItem:
     """
@@ -147,7 +162,7 @@ def generate_ontology(category, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-nano"
+        model = "openai/gpt-5-mini"
 
 
     first_iteration = True
@@ -234,6 +249,9 @@ def generate_ontology(category, model=None, dataItems=None):
 
 
 def generate_data(category: str, model=None, dataItems=None):
+    client = FalkorDB(**client_kwargs)
+    graph = client.select_graph(category)
+
     if dataItems is not None:
         all_text_paths = [item.text_path for item in dataItems]
     else:
@@ -241,14 +259,15 @@ def generate_data(category: str, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-nano"
+        model = "openai/gpt-5-mini"
 
     ontology_file = f"Ontologies/{category}_Ontology.json"
     with open(ontology_file, "r", encoding="utf-8") as file:
         textItem = file.read()
 
     try:
-        _ = json.loads(textItem)
+        jsonItem = json.loads(textItem)
+        ontology = Ontology.from_json(jsonItem)
     except Exception as e:
         print(f"Failed to read the ontology: {e}")
         return
@@ -267,12 +286,59 @@ def generate_data(category: str, model=None, dataItems=None):
                 {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=textItem, text=text)}
             ]
         )
-    
-    # Procedere con la creazione del KG! Resta da definire i prompt 
-    
+        response_content = response.choices[0].message["content"]
+        response_content = response_content.strip()
+        response_content = unicodedata.normalize('NFD',   response_content)
+        response_content =  ''.join(ch for ch in response_content if unicodedata.category(ch) != 'Mn')
 
-    
-    return
+        try:
+            data = json.loads(extract_json(response_content))
+        except Exception as e:
+            # fallback 
+            print(f"Error extracting JSON: {e}")
+            print(f"Prompting model to fix JSON")
+            json_fix_response = completion(
+                    model=model,
+                    messages=[
+                        {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
+                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
+                    ]
+                )
+            
+            json_fix_response_content = json_fix_response.choices[0].message["content"]
+            json_fix_response_content = json_fix_response_content.strip()
+            json_fix_response_content = unicodedata.normalize('NFD',  json_fix_response_content)
+            json_fix_response_content =  ''.join(ch for ch in  json_fix_response_content if unicodedata.category(ch) != 'Mn')
+
+            try:
+                data = json.loads(extract_json(json_fix_response_content))
+                print(f"JSON fixed!")
+            except Exception as e:
+                print(f"Failed to fix JSON: {e}")
+                continue
+
+
+        if "entities" not in data or "relations" not in data:
+            print(f"Invalid data format. Missing entities or relations")
+            continue
+               
+        for entity in data["entities"]:
+            try:
+                extract_data_step.create_entity(graph, entity, ontology)
+            except Exception as e:
+                print(f"Error creating entity: {e}")
+                continue
+        print("Entities created correctly!")
+
+        for relation in data["relations"]:
+            try:
+                extract_data_step.create_relation(graph, relation, ontology)
+            except Exception as e:
+                print(f"Error creating relation: {e}")
+                continue
+        print("Relations created correctly!")
+
+        
 
 
 def main():

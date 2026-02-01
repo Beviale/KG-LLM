@@ -10,13 +10,7 @@
           "required": true
         },
         {
-          "name": "domanda",
-          "type": "string",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "risposta",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": true
@@ -24,7 +18,7 @@
       ]
     },
     {
-      "label": "Sistema",
+      "label": "HelpDesk",
       "attributes": [
         {
           "name": "nome",
@@ -33,68 +27,10 @@
           "required": true
         },
         {
-          "name": "tipo",
-          "type": "string",
-          "enum": [
-            "OS",
-            "browser",
-            "connessione"
-          ],
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "versione",
+          "name": "comunicazioni_invio",
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "supporta_html5",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "supporta_css3",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "java_script_abilitato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cookie_abilitati",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "pop_up_abilitati",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "RequisitiSistema",
-      "attributes": [
-        {
-          "name": "proprietà",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "valore",
-          "type": "string",
-          "unique": false,
-          "required": true
         }
       ]
     },
@@ -104,10 +40,6 @@
         {
           "name": "tipo",
           "type": "string",
-          "enum": [
-            "utente",
-            "amministratore"
-          ],
           "unique": false,
           "required": true
         },
@@ -126,162 +58,178 @@
       ]
     },
     {
-      "label": "Ditta",
+      "label": "RequisitiSistema",
       "attributes": [
         {
-          "name": "nome",
+          "name": "sistema_operativo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "codice_fiscale",
+          "name": "browser_supportato",
           "type": "string",
-          "unique": true,
+          "unique": false,
           "required": true
         },
         {
-          "name": "ragione_sociale",
+          "name": "software_antivirus",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "partita_iva",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CategoriaSOA",
-      "attributes": [
-        {
-          "name": "CODICE",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "DESCRIZIONE",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "ProceduraGara",
-      "attributes": [
-        {
-          "name": "id_gara",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo",
-          "type": "string",
-          "enum": [
-            "procedura",
-            "gara"
-          ],
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "enum": [
-            "aperta",
-            "chiusa",
-            "in corso"
-          ],
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "orario_invio",
-          "type": "string",
-          "format": "date-time",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "supporto_tecnico_necessario",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "risposta_offerta_automaticamente",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "File",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "dimensione_MB",
+          "name": "connessione_internet_minima_Mbps",
           "type": "number",
           "unique": false,
           "required": true
         },
         {
-          "name": "formato",
+          "name": "latenza_ridotta",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RequisitiConnessione",
+      "attributes": [
+        {
+          "name": "velocita_Mbps",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "latenza",
           "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Browser",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "supporta_HTML5_CSS3",
+          "type": "boolean",
           "unique": false,
           "required": true
         },
         {
-          "name": "firma_digitale",
-          "type": "string",
-          "enum": [
-            "PAdES",
-            "CAdES"
-          ],
+          "name": "JavaScript_abilitato",
+          "type": "boolean",
           "unique": false,
+          "required": true
+        },
+        {
+          "name": "cookie_abilitati",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "pop_up_abilitati",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "disattivazione_toolbar",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AccessoPortale",
+      "attributes": [
+        {
+          "name": "pagella_interna",
+          "type": "string",
+          "unique": true,
           "required": false
         },
         {
-          "name": "hash_codice",
-          "type": "string",
+          "name": "disabilitare_blocco_popup",
+          "type": "boolean",
           "unique": false,
           "required": true
         }
       ]
     },
     {
-      "label": "FirmaDigitale",
+      "label": "Password",
       "attributes": [
         {
-          "name": "tipo",
+          "name": "id_utente",
           "type": "string",
-          "enum": [
-            "PAdES",
-            "CAdES"
-          ],
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ditta",
+      "attributes": [
+        {
+          "name": "id_ditta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "corporate_name",
+          "type": "string",
           "unique": false,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "id_firma_digitale",
+          "name": "dettagli",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "MailNotifiche",
+      "attributes": [
+        {
+          "name": "mittente",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "indirizzo",
           "type": "string",
           "unique": true,
           "required": true
@@ -289,22 +237,62 @@
       ]
     },
     {
-      "label": "Credenziali",
+      "label": "AlboFornitori",
       "attributes": [
         {
-          "name": "codice_accesso",
+          "name": "categorie",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "username",
+          "name": "richiesta_participazione",
           "type": "string",
           "unique": false,
           "required": true
         },
         {
-          "name": "password",
+          "name": "avvalimento",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "normativa_riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProcedureLavori",
+      "attributes": [
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "iscrizione_necessaria",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CategorieMerceologiche",
+      "attributes": [
+        {
+          "name": "elenco",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "pagina_riferimento",
           "type": "string",
           "unique": false,
           "required": true
@@ -315,121 +303,128 @@
       "label": "SupportoTecnico",
       "attributes": [
         {
-          "name": "dettagli",
+          "name": "garanzia_tempo",
           "type": "string",
-          "unique": false,
-          "required": false
+          "unique": true,
+          "required": true
         },
         {
           "name": "orario_disponibilita",
           "type": "string",
-          "enum": [
-            "09:00-13:00",
-            "14:00-18:00"
-          ],
           "unique": false,
-          "required": false
-        },
-        {
-          "name": "id_supporto_tecnico",
-          "type": "string",
-          "unique": true,
           "required": true
         }
       ]
     },
     {
-      "label": "Notifica",
+      "label": "Offerta",
       "attributes": [
         {
-          "name": "mittente",
-          "type": "string",
-          "enum": [
-            "Portale",
-            "Help Desk"
-          ],
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "metodo",
-          "type": "string",
-          "enum": [
-            "email",
-            "pec"
-          ],
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "oggetto",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "contenuto",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "id_notifica",
+          "name": "stato",
           "type": "string",
           "unique": true,
+          "required": true
+        },
+        {
+          "name": "ridimensionamento_file",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "password_inviata",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FileSystem",
+      "attributes": [
+        {
+          "name": "dimensione_massima_MB",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nomi_file_regole",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formato_supportato",
+          "type": "string",
+          "unique": false,
           "required": true
         }
       ]
     },
     {
-      "label": "IndicatoreTecnico",
+      "label": "FirmaDigitale",
       "attributes": [
+        {
+          "name": "modalita_pades",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "modalita_cades",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "nome_file",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "estensione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DocumentoCaricato",
+      "attributes": [
+        {
+          "name": "hash_codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
         {
           "name": "tipologia",
           "type": "string",
-          "enum": [
-            "Velocità",
-            "Latenza",
-            "Compatibilità"
-          ],
           "unique": false,
           "required": true
         },
         {
-          "name": "valore",
-          "type": "string",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "unità",
-          "type": "string",
-          "enum": [
-            "Mbps",
-            "ms"
-          ],
+          "name": "modifica_autorizzata",
+          "type": "boolean",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "id_indicatore_tecnico",
-          "type": "string",
-          "unique": true,
-          "required": true
         }
       ]
     },
     {
-      "label": "PaginaWeb",
+      "label": "SistemaOperativo",
       "attributes": [
         {
-          "name": "url",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "contenuto",
+          "name": "versione",
           "type": "string",
           "unique": false,
           "required": false
@@ -437,238 +432,92 @@
       ]
     },
     {
-      "label": "CategorieMerceologiche",
+      "label": "ConnessioneInternet",
       "attributes": [
         {
-          "name": "nome_categorie",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "velocita_Mbps",
+          "type": "number",
+          "unique": true,
+          "required": false
+        },
+        {
+          "name": "latenza_ms",
+          "type": "number",
+          "unique": false,
+          "required": false
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "HA_CREDENZIALI",
+      "label": "INFORMA",
+      "source": {
+        "label": "Faq"
+      },
+      "target": {
+        "label": "HelpDesk"
+      }
+    },
+    {
+      "label": "RICHIESTO",
       "source": {
         "label": "Utente"
       },
       "target": {
-        "label": "Credenziali"
-      },
-      "attributes": [
-        {
-          "name": "livello_accesso",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
+        "label": "Faq"
+      }
     },
     {
-      "label": "UTILIZZA_SISTEMA",
+      "label": "CONSULTA",
       "source": {
         "label": "Utente"
       },
       "target": {
-        "label": "Sistema"
-      },
-      "attributes": [
-        {
-          "name": "livello_utilizzo",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RICEVE_NOTIFICA",
-      "source": {
-        "label": "Notifica"
-      },
-      "target": {
-        "label": "Utente"
-      },
-      "attributes": [
-        {
-          "name": "data_notifica",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "GESTISCE",
-      "source": {
         "label": "Ditta"
-      },
-      "target": {
-        "label": "ProceduraGara"
-      },
-      "attributes": [
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
+      }
     },
     {
-      "label": "HA_FIRMA_DIGITALE",
+      "label": "ANNUNCIA",
       "source": {
-        "label": "File"
+        "label": "HelpDesk"
       },
       "target": {
-        "label": "FirmaDigitale"
-      },
-      "attributes": [
-        {
-          "name": "uso_firma",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
+        "label": "Utente"
+      }
     },
     {
-      "label": "MONITORA",
+      "label": "REQUISITI_SISTEMA",
       "source": {
-        "label": "Sistema"
-      },
-      "target": {
-        "label": "IndicatoreTecnico"
-      },
-      "attributes": [
-        {
-          "name": "tipo_monitor",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "FORNISCE",
-      "source": {
-        "label": "Sistema"
-      },
-      "target": {
-        "label": "PaginaWeb"
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "HA_REQUISITI",
-      "source": {
-        "label": "Sistema"
-      },
-      "target": {
         "label": "RequisitiSistema"
       },
-      "attributes": [
-        {
-          "name": "descrizione_requisiti",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
+      "target": {
+        "label": "SistemaOperativo"
+      }
     },
     {
-      "label": "ASSOCIATO_A",
+      "label": "REQUISITI_SISTEMA",
       "source": {
-        "label": "ProceduraGara"
+        "label": "RequisitiSistema"
       },
       "target": {
-        "label": "CategoriaSOA"
-      },
-      "attributes": [
-        {
-          "name": "codifica_categoria",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
+        "label": "Browser"
+      }
     },
     {
-      "label": "RIGUARDA",
+      "label": "REQUISITI_CONN",
       "source": {
-        "label": "CategoriaSOA"
+        "label": "RequisitiConnessione"
       },
       "target": {
-        "label": "CategorieMerceologiche"
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERITO_A",
-      "source": {
-        "label": "Faq"
-      },
-      "target": {
-        "label": "Sistema"
-      },
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ASSISTE",
-      "source": {
-        "label": "SupportoTecnico"
-      },
-      "target": {
-        "label": "Utente"
-      },
-      "attributes": [
-        {
-          "name": "tipologia_assistenza",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RIFERIMENTO_FAQ",
-      "source": {
-        "label": "Faq"
-      },
-      "target": {
-        "label": "Sistema"
-      },
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
+        "label": "ConnessioneInternet"
+      }
     }
   ]
 }
