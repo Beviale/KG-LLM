@@ -1,7 +1,7 @@
 {
   "entities": [
     {
-      "label": "Faq",
+      "label": "FAQ",
       "attributes": [
         {
           "name": "sigla",
@@ -10,24 +10,13 @@
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "domande",
           "type": "string",
           "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "HelpDesk",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
+          "required": false
         },
         {
-          "name": "comunicazioni_invio",
+          "name": "risposte",
           "type": "string",
           "unique": false,
           "required": false
@@ -35,25 +24,25 @@
       ]
     },
     {
-      "label": "Utente",
+      "label": "Helpdesk",
       "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": true
-        },
         {
           "name": "nome",
           "type": "string",
-          "unique": false,
+          "unique": true,
           "required": true
         },
         {
-          "name": "email",
+          "name": "modo_operativo",
           "type": "string",
-          "unique": true,
-          "required": true
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "orari_disponibilita",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -67,65 +56,37 @@
           "required": true
         },
         {
-          "name": "browser_supportato",
-          "type": "string",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "software_antivirus",
+          "name": "software_anti_mus",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "connessione_internet_minima_Mbps",
+          "name": "connessione_internet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "velocita_minima_mbps",
           "type": "number",
           "unique": false,
           "required": true
         },
         {
-          "name": "latenza_ridotta",
-          "type": "boolean",
+          "name": "browser",
+          "type": "string",
           "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "RequisitiConnessione",
-      "attributes": [
-        {
-          "name": "velocita_Mbps",
-          "type": "number",
-          "unique": true,
           "required": true
         },
         {
-          "name": "latenza",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Browser",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "supporta_HTML5_CSS3",
+          "name": "supporto_html5_css3",
           "type": "boolean",
           "unique": false,
           "required": true
         },
         {
-          "name": "JavaScript_abilitato",
+          "name": "java_script_abilitato",
           "type": "boolean",
           "unique": false,
           "required": true
@@ -144,40 +105,23 @@
         },
         {
           "name": "disattivazione_toolbar",
-          "type": "boolean",
+          "type": "string",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "AccessoPortale",
+      "label": "Utente",
       "attributes": [
         {
-          "name": "pagella_interna",
-          "type": "string",
-          "unique": true,
-          "required": false
-        },
-        {
-          "name": "disabilitare_blocco_popup",
-          "type": "boolean",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Password",
-      "attributes": [
-        {
-          "name": "id_utente",
+          "name": "tipo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato",
+          "name": "azioni",
           "type": "string",
           "unique": false,
           "required": false
@@ -188,31 +132,13 @@
       "label": "Ditta",
       "attributes": [
         {
-          "name": "id_ditta",
+          "name": "nome_ditta",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "corporate_name",
-          "type": "string",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "partita_iva",
-          "type": "string",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "codice_fiscale",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "dettagli",
+          "name": "dati",
           "type": "string",
           "unique": false,
           "required": false
@@ -220,18 +146,24 @@
       ]
     },
     {
-      "label": "MailNotifiche",
+      "label": "Newsletter",
       "attributes": [
         {
-          "name": "mittente",
+          "name": "tipo_notifica",
           "type": "string",
           "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo_email",
+          "type": "string",
+          "unique": true,
           "required": true
         },
         {
-          "name": "indirizzo",
+          "name": "modalità_receptione",
           "type": "string",
-          "unique": true,
+          "unique": false,
           "required": true
         }
       ]
@@ -240,25 +172,13 @@
       "label": "AlboFornitori",
       "attributes": [
         {
-          "name": "categorie",
+          "name": "categorie_SOAs",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "richiesta_participazione",
-          "type": "string",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "avvalimento",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "normativa_riferimento",
+          "name": "ricorso",
           "type": "string",
           "unique": false,
           "required": false
@@ -266,35 +186,29 @@
       ]
     },
     {
-      "label": "ProcedureLavori",
+      "label": "ProceduraLavoriInEconomia",
       "attributes": [
         {
-          "name": "tipologia",
+          "name": "iscrizione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "iscrizione_necessaria",
-          "type": "boolean",
+          "name": "elenco_classi_SOAs",
+          "type": "string",
           "unique": false,
-          "required": true
+          "required": false
         }
       ]
     },
     {
-      "label": "CategorieMerceologiche",
+      "label": "CategoriaMerceologica",
       "attributes": [
         {
           "name": "elenco",
           "type": "string",
           "unique": true,
-          "required": true
-        },
-        {
-          "name": "pagina_riferimento",
-          "type": "string",
-          "unique": false,
           "required": true
         }
       ]
@@ -303,21 +217,21 @@
       "label": "SupportoTecnico",
       "attributes": [
         {
-          "name": "garanzia_tempo",
+          "name": "disponibilità",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "orario_disponibilita",
+          "name": "orari",
           "type": "string",
           "unique": false,
-          "required": true
+          "required": false
         }
       ]
     },
     {
-      "label": "Offerta",
+      "label": "OffertaGara",
       "attributes": [
         {
           "name": "stato",
@@ -326,13 +240,7 @@
           "required": true
         },
         {
-          "name": "ridimensionamento_file",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "password_inviata",
+          "name": "conferma_invio",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -340,25 +248,76 @@
       ]
     },
     {
-      "label": "FileSystem",
+      "label": "DimensioneFile",
       "attributes": [
         {
-          "name": "dimensione_massima_MB",
+          "name": "massima_dimensione_MB",
           "type": "number",
           "unique": true,
           "required": true
         },
         {
-          "name": "nomi_file_regole",
+          "name": "modalità_caricamento",
           "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OrarioGara",
+      "attributes": [
+        {
+          "name": "orario_riferimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "segna_temporale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "QualificaImpresa",
+      "attributes": [
+        {
+          "name": "categoria",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "categorie_speciali",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "NominazioneFile",
+      "attributes": [
+        {
+          "name": "nomenclatura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "lunghezza_max_char",
+          "type": "number",
           "unique": false,
           "required": true
         },
         {
-          "name": "formato_supportato",
+          "name": "caratteri_soprattutto_invalicabili",
           "type": "string",
           "unique": false,
-          "required": true
+          "required": false
         }
       ]
     },
@@ -366,65 +325,19 @@
       "label": "FirmaDigitale",
       "attributes": [
         {
-          "name": "modalita_pades",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "modalita_cades",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "nome_file",
+          "name": "modalita",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "estensione",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "DocumentoCaricato",
-      "attributes": [
-        {
-          "name": "hash_codice",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipologia",
+          "name": "formato_file_firmato",
           "type": "string",
           "unique": false,
           "required": true
         },
         {
-          "name": "modifica_autorizzata",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "SistemaOperativo",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "versione",
+          "name": "guida_utente",
           "type": "string",
           "unique": false,
           "required": false
@@ -432,92 +345,39 @@
       ]
     },
     {
-      "label": "ConnessioneInternet",
+      "label": "IntegritàFile",
       "attributes": [
         {
-          "name": "nome",
+          "name": "corrispondente_codice_hash",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "velocita_Mbps",
-          "type": "number",
+          "name": "garanzia_non_modificabile",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CredenzialiSistema",
+      "attributes": [
+        {
+          "name": "vecchio",
+          "type": "string",
           "unique": true,
-          "required": false
+          "required": true
         },
         {
-          "name": "latenza_ms",
-          "type": "number",
-          "unique": false,
-          "required": false
+          "name": "nuovo",
+          "type": "string",
+          "unique": true,
+          "required": true
         }
       ]
     }
   ],
-  "relations": [
-    {
-      "label": "INFORMA",
-      "source": {
-        "label": "Faq"
-      },
-      "target": {
-        "label": "HelpDesk"
-      }
-    },
-    {
-      "label": "RICHIESTO",
-      "source": {
-        "label": "Utente"
-      },
-      "target": {
-        "label": "Faq"
-      }
-    },
-    {
-      "label": "CONSULTA",
-      "source": {
-        "label": "Utente"
-      },
-      "target": {
-        "label": "Ditta"
-      }
-    },
-    {
-      "label": "ANNUNCIA",
-      "source": {
-        "label": "HelpDesk"
-      },
-      "target": {
-        "label": "Utente"
-      }
-    },
-    {
-      "label": "REQUISITI_SISTEMA",
-      "source": {
-        "label": "RequisitiSistema"
-      },
-      "target": {
-        "label": "SistemaOperativo"
-      }
-    },
-    {
-      "label": "REQUISITI_SISTEMA",
-      "source": {
-        "label": "RequisitiSistema"
-      },
-      "target": {
-        "label": "Browser"
-      }
-    },
-    {
-      "label": "REQUISITI_CONN",
-      "source": {
-        "label": "RequisitiConnessione"
-      },
-      "target": {
-        "label": "ConnessioneInternet"
-      }
-    }
-  ]
+  "relations": []
 }

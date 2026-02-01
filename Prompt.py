@@ -26,8 +26,8 @@ Non creare più di una coppia entità-relazione per la stessa entità o relazion
 Non creare entità senza un attributo unico. Ogni entità deve avere almeno un attributo unico.
 
 ## 4. Formato
-L'ontologia deve essere in formato JSON e seguire lo schema fornito.  
-Non restituire lo schema nella risposta; usalo solo come riferimento.  
+L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
+Non restituire lo schema nella risposta; usalo solo ed come riferimento.  
 Assicurati che il JSON sia restituito in linea e senza spazi, per ridurre il numero di token nel risultato.
 
 Schema:
@@ -157,10 +157,11 @@ Schema:
 }
 ```
 
-Per esempio:
+Eccoti un esempio di output che potresti restituirmi:
 ```
 {"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"required":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}]}
 ```
+ATTENZIONE: Stai attento alla seguente sequenza di parentesi "}]}},"...prima di scriverla, sicuro sia corretta? Sicuro che non darà errore di formattazione JSON? Il JSON non deve avere errori di formattazione! 
 
 L'esempio fornito mostra un formato possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente a partire dal testo fornito.
 L'esempio fornito è interamente in inglese; tuttavia, l'ontologia, pur mantenendo una struttura in lingua inglese, dovrà essere compilata in italiano, poiché tutti i testi di riferimento sono redatti in italiano.
@@ -342,15 +343,17 @@ Use the following instructions as boundaries for the ontology extraction process
 
 UPDATE_ONTOLOGY_PROMPT_ITA = """
 Dato il seguente testo e l'ontologia, aggiorna l'ontologia in modo che esso rappresenti anche le entità e le relazioni espresse nel testo fornito.
+Tieni a mente che dallo stesso testo in futuro dovranno essere estratti i dati conformi all'ontologia che stai per creare.
 Estrai quante più entità e relazioni possibile per descrivere completamente i dati.
 Estrai quante più caratteristiche (attributi) possibile per descrivere le entità e le relazioni presenti nel testo.
-Gli attributi dovrebbero essere estratti come entità o relazioni ogni volta che è possibile. Ad esempio, quando si descrive un'entità Film, l'attributo "regista" può essere estratto come entità Persona e collegato all'entità Film tramite una relazione etichettata "HA_DIRETTO".
-Ad esempio, quando si descrive un'entità Film, puoi estrarre attributi come titolo, anno di uscita, genere e altri.
-Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una Persona "HA_INTERPRETATO" un Personaggio in un Film, assicurati di collegare il Personaggio al Film, altrimenti non saremo in grado di determinare da quale Film provenga il Personaggio.
+Gli attributi dovrebbero essere estratti come entità o relazioni ogni volta che è possibile. Ad esempio, quando si descrive un'entità 'Film', l'attributo 'regista' può essere estratto come entità 'Persona' e collegato all'entità 'Film' tramite una relazione etichettata 'HA_DIRETTO'.
+Ad esempio, quando si descrive un'entità 'Film', puoi estrarre attributi come titolo, anno di uscita, genere e altri.
+Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una 'Persona' 'HA_INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non saremo in grado di determinare da quale 'Film' provenga il 'Personaggio'.
 Non creare relazioni senza le corrispondenti entità.
-Non creare duplicati di relazioni inverse: ad esempio, se esiste una relazione "POSSIEDE" da Persona a Casa, non creare anche una relazione "È_POSSEDUTA" da Casa a Persona.
-Non usare il contesto dell'esempio del Film per assumere l'ontologia. L'ontologia deve essere aggiornata esclusivamente sulla base del testo fornito.
+Non creare duplicati di relazioni inverse: ad esempio, se esiste una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare anche una relazione 'È_POSSEDUTA' da 'Casa' a 'Persona'.
+Non usare il contesto dell'esempio del 'Film' per assumere l'ontologia. L'ontologia deve essere aggiornata esclusivamente sulla base del testo fornito.
 La nuova ontologia non deve rimuovere le entità e le relazioni rappresentatati precedentemente ma deve essere una sua evoluzione sulla base del testo fornito. 
+Correggi eventuali problemi di spaziatura o formattazione presenti nel testo se necessario.
 
 Ontologia:
 {ontology}
@@ -383,14 +386,14 @@ Raw text:
 FIX_ONTOLOGY_PROMPT_ITA ="""
 Data la seguente ontologia, correggi eventuali errori o informazioni mancanti nell'ontologia.
 Aggiungi eventuali entità, relazioni o attributi mancanti.
-Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una Persona ha INTERPRETATO un Personaggio in un Film, assicurati di collegare il Personaggio al Film, altrimenti non sarà possibile sapere da quale Film provenga il Personaggio.
+Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una 'Persona' ha 'INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non sarà possibile sapere da quale 'Film' provenga il 'Personaggio'.
 Assicurati che ogni entità contenga almeno un attributo unico.
 Assicurati che tutte le entità abbiano relazioni.
 Assicurati che tutte le relazioni abbiano 2 entità (origine e destinazione).
 Assicurati che tutte le etichette delle entità siano in Titlecase.
-Non permettere relazioni duplicate: ad esempio, se esiste una relazione "POSSIEDE" da Persona a Casa, non creare un'altra relazione "POSSEDUTO_DA" da Casa a Persona.
+Non permettere relazioni duplicate: ad esempio, se esiste una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare un'altra relazione 'POSSEDUTO_DA' da 'Casa' a 'Persona'.
 I nomi delle relazioni devono essere atemporali.
-Non utilizzare l'esempio del contesto Film per dedurre l'ontologia. L'ontologia deve essere creata solo sulla base del testo fornito.
+Non utilizzare l'esempio del contesto 'Film' per dedurre l'ontologia. L'ontologia deve essere creata solo sulla base del testo fornito.
 Non permettere entità prive di almeno un attributo unico.
 
 Ontologia:

@@ -4,7 +4,7 @@ from graphrag_sdk.source import URL
 from graphrag_sdk import KnowledgeGraph, Ontology
 from graphrag_sdk.helpers import extract_json
 import litellm
-from litellm import completion
+from litellm import completion, ContextWindowExceededError
 from graphrag_sdk.model_config import KnowledgeGraphModelConfig
 from graphrag_sdk.source import TEXT
 from pypdf import PdfReader
@@ -154,6 +154,56 @@ def preprocess_pdf(pdf_dict):
     return dataItems
 
 
+def process_response_ontology(category, response, current_ontology, model):
+    response_content = response.choices[0].message["content"]       
+    response_content = response_content.strip()
+
+    try:
+        data = json.loads(extract_json(response_content))
+        _ = Ontology.from_json(data)
+    except Exception as e:
+        # fallback 
+        print(f"Error extracting JSON: {e}")
+        print(f"Prompting model to fix JSON")
+        if isinstance(e, json.JSONDecodeError):
+            json_fix_response = completion(
+                model=model,
+                messages=[
+                    {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                    {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
+                ]
+            )
+        else:
+                json_fix_response = completion(
+                model=model,
+                messages=[
+                    {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                    {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=str(e))}         
+                ]
+            )
+
+        json_fix_response_content = json_fix_response.choices[0].message["content"]
+        try:
+            data = json.loads(extract_json(json_fix_response_content))
+            _ = Ontology.from_json(data)
+            print(f"JSON fixed!")
+        except Exception as e:
+            print(f"Failed to fix JSON: {e}")
+            return current_ontology
+
+    
+    current_ontology_ident = json.dumps(data, indent=2, ensure_ascii=False)
+    current_ontology = json.dumps(data, ensure_ascii=False)
+    if current_ontology_ident is not None:
+        print(f"Ontology '{category}' created successfully!")
+        ontology_file_name = r"Ontologies/" + category + "_Ontology.json"
+        # Save the ontology to the disk as a json file.
+        with open(ontology_file_name, "w", encoding="utf-8") as file:
+            file.write(current_ontology_ident)
+    return current_ontology
+
+
+
 def generate_ontology(category, model=None, dataItems=None):
     if dataItems is not None:
         all_text_paths = [item.text_path for item in dataItems]
@@ -164,87 +214,62 @@ def generate_ontology(category, model=None, dataItems=None):
     if model is None:
         model = "openai/gpt-5-mini"
 
+    first_iteration=True
+    current_ontology=None
 
-    first_iteration = True
-    current_ontology = None
-
+    count = 1
     for text_path in all_text_paths:
 
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
 
-        print("File path: ", text_path)
-        print("Waiting the LLM response...")
+        print(f"File path: '{text_path}', current state: {count}/{len( all_text_paths)}.")
+        count = count + 1
 
-        if first_iteration == True or current_ontology is None:
-            # We create the ontology
-            response = completion(
-                model="openai/gpt-4.1-nano",
-                messages=[
-                    {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                    {"role": "user",   "content": Prompt.CREATE_ONTOLOGY_PROMPT_ITA.format(text=text)}
-                ]
-            )
-            first_iteration = False
-        else:
-            # We update the ontology
-            response = completion(
-                model=model,
-                messages=[
-                    {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                    {"role": "user",   "content": Prompt.UPDATE_ONTOLOGY_PROMPT_ITA.format(ontology=current_ontology, text=text)}
-                ]
-            )
-        
+        textsToProcess = []
+        textsToAdd = []
+        textsToProcess.append(text)
 
-        response_content = response.choices[0].message["content"]
-        
-        response_content = response_content.strip()
+        while(True):
+            for text in textsToProcess:
+                print("Waiting the LLM response...")
+                try:
+                    if first_iteration == True or current_ontology is None:
+                        # We create the ontology
+                        response = completion(
+                            model="openai/gpt-4.1-nano",
+                            messages=[
+                                {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                                {"role": "user",   "content": Prompt.CREATE_ONTOLOGY_PROMPT_ITA.format(text=text)}
+                            ]
+                        )
+                        first_iteration = False
+                    else:
+                        # We update the ontology
+                        response = completion(
+                            model=model,
+                            messages=[
+                                {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                                {"role": "user",   "content": Prompt.UPDATE_ONTOLOGY_PROMPT_ITA.format(ontology=current_ontology, text=text)}
+                            ]
+                        ) 
+                    current_ontology = process_response_ontology(category, response, current_ontology, model)   
+                except ContextWindowExceededError as e:
+                    mid = len(text) // 2
+                    print(f"Halving the text size from '{len(text)}' to '{mid}'")
+                    part1 = text[:mid]
+                    part2 = text[mid:]
+                    textsToAdd.append(part1)
+                    textsToAdd.append(part2)
+                    continue
 
-        try:
-            data = json.loads(extract_json(response_content))
-            _ = Ontology.from_json(data)
-        except Exception as e:
-            # fallback 
-            print(f"Error extracting JSON: {e}")
-            print(f"Prompting model to fix JSON")
-            if isinstance(e, json.JSONDecodeError):
-                json_fix_response = completion(
-                    model=model,
-                    messages=[
-                        {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
-                    ]
-                )
+            if textsToAdd:
+                textsToProcess.clear()
+                for textToAdd in textsToAdd:
+                    textsToProcess.append(textToAdd)
+                textsToAdd.clear()
             else:
-                 json_fix_response = completion(
-                    model=model,
-                    messages=[
-                        {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                        {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=str(e))}         
-                    ]
-                )
-
-            json_fix_response_content = json_fix_response.choices[0].message["content"]
-            try:
-                data = json.loads(extract_json(json_fix_response_content))
-                _ = Ontology.from_json(data)
-                print(f"JSON fixed!")
-            except Exception as e:
-                print(f"Failed to fix JSON: {e}")
-                continue
-  
-       
-        current_ontology = json.dumps(data, indent=2, ensure_ascii=False)
-
-
-
-    if current_ontology is not None:
-        print(f"Ontology '{category}' created successfully!")
-        ontology_file_name = r"Ontologies/" + category + "_Ontology.json"
-        # Save the ontology to the disk as a json file.
-        with open(ontology_file_name, "w", encoding="utf-8") as file:
-            file.write(current_ontology)
+                break
 
 
 
@@ -382,7 +407,7 @@ def main():
                 elif choice_cat == 2:
                     generate_ontology("GuidePratiche")
                     break
-                elif choice_cat == 3:
+                elif choice_cat == 3:                    
                     generate_ontology("Normativa")
                     break
                 elif choice_cat == 4:
