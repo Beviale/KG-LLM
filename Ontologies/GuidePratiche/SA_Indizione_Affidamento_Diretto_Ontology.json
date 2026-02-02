@@ -1,0 +1,480 @@
+{
+  "entities": [
+    {
+      "label": "Societa",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "proprieta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riconosciuta_come",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Manuale",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Procedura",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "fase",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo_totale",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_fine",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ente",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_entita",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "profili",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "responsabile",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ResponsabileUnicoDiProgetto",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "cognome",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contatti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraGara",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "fase_procedurale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "numero_identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "importo_base_asta",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo_opzioni",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo_sicurezza",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "regime_alleggerito",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_gara",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "inizio_presentazione_risposte",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termine_richiesta_quesiti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termine_risposta_quesiti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termine_presentazione_risposte",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "prima_seduta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": true,
+          "required": false
+        },
+        {
+          "name": "stato_attuale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "profili",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "category_soa",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "certificazioni",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "recapiti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OffertaEconomica",
+      "attributes": [
+        {
+          "name": "id_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "importo_offerta",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "percentuale_ribasso",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_offerta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "validato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "firma_digitale_richiesta",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "estensione_file",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "file_path",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "obbligatorieta",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "categoria",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "PROPONE",
+      "source": {
+        "label": "Societa"
+      },
+      "target": {
+        "label": "Manuale"
+      }
+    },
+    {
+      "label": "GESTISCE",
+      "source": {
+        "label": "ProceduraGara"
+      },
+      "target": {
+        "label": "Ente"
+      }
+    },
+    {
+      "label": "RESPONSABILE_DI",
+      "source": {
+        "label": "ProceduraGara"
+      },
+      "target": {
+        "label": "ResponsabileUnicoDiProgetto"
+      }
+    },
+    {
+      "label": "COINVOLGE",
+      "source": {
+        "label": "ProceduraGara"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      }
+    },
+    {
+      "label": "PARTECIPA_CON",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "OffertaEconomica"
+      }
+    },
+    {
+      "label": "RICHIEDE",
+      "source": {
+        "label": "Documento"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      }
+    },
+    {
+      "label": "ALLEGA",
+      "source": {
+        "label": "ProceduraGara"
+      },
+      "target": {
+        "label": "Documento"
+      }
+    }
+  ]
+}

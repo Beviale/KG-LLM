@@ -1,0 +1,552 @@
+{
+  "entities": [
+    {
+      "label": "Manuale",
+      "attributes": [
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ConcorsiDiIdeeProgettazione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fase",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Fase",
+      "attributes": [
+        {
+          "name": "numero_fase",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Commissione",
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "membri",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Seduta",
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "verbale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ValutazioneTecnica",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "fase",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "punteggio",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "motivazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Risposta",
+      "attributes": [
+        {
+          "name": "codice_risposta_progressivo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_partecipante",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "punteggio_finale",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "esito",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "GiudizioPerCriterio",
+      "attributes": [
+        {
+          "name": "criterio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "punteggio",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "motivazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Graduatoria",
+      "attributes": [
+        {
+          "name": "posizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_partecipante",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "punteggio_finale",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "premio_assegnato",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "vincitore",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "secondo_classificato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatorEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "partecipazione_in_forma",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Partecipazione",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_operatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "candidatura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "allegati",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "percorso_file",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Notifica",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "destinatari",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "testo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Cronologia",
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "utente",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiAggiudicazione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Invito",
+      "attributes": [
+        {
+          "name": "fase",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "invito_inviato",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "VerificaRequisiti",
+      "attributes": [
+        {
+          "name": "codice_operatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_verifica",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "risultato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "PARTECIPA",
+      "source": {
+        "label": "ConcorsiDiIdeeProgettazione"
+      },
+      "target": {
+        "label": "Fase"
+      }
+    },
+    {
+      "label": "EFFETTUA",
+      "source": {
+        "label": "Commissione"
+      },
+      "target": {
+        "label": "Seduta"
+      }
+    },
+    {
+      "label": "SUPERATE",
+      "source": {
+        "label": "Risposta"
+      },
+      "target": {
+        "label": "Fase"
+      }
+    },
+    {
+      "label": "VALUTA",
+      "source": {
+        "label": "ValutazioneTecnica"
+      },
+      "target": {
+        "label": "Risposta"
+      }
+    },
+    {
+      "label": "ASSEGNATO",
+      "source": {
+        "label": "Risposta"
+      },
+      "target": {
+        "label": "GiudizioPerCriterio"
+      }
+    },
+    {
+      "label": "ORDINA",
+      "source": {
+        "label": "Graduatoria"
+      },
+      "target": {
+        "label": "OperatorEconomico"
+      }
+    },
+    {
+      "label": "FARE_RAPPRESENTARE",
+      "source": {
+        "label": "OperatorEconomico"
+      },
+      "target": {
+        "label": "Partecipazione"
+      }
+    },
+    {
+      "label": "ALLEGA",
+      "source": {
+        "label": "Documento"
+      },
+      "target": {
+        "label": "Allegato"
+      }
+    },
+    {
+      "label": "INVIA",
+      "source": {
+        "label": "Notifica"
+      },
+      "target": {
+        "label": "OperatorEconomico"
+      }
+    },
+    {
+      "label": "ANNUNCIA",
+      "source": {
+        "label": "ProceduraDiAggiudicazione"
+      },
+      "target": {
+        "label": "ConcorsiDiIdeeProgettazione"
+      }
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+{
+  "entities": [
+    {
+      "label": "Fornitore",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "categoria",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "abilitazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_abilitazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "scadenza_rinnovo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "p_iva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cognome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "azienda_id",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Azienda",
+      "attributes": [
+        {
+          "name": "nomeazienda",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "p_iva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "forma_giuridica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sedi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contatti_telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contatti_email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sito_web",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_scadenza_rinnovo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Categoria",
+      "attributes": [
+        {
+          "name": "nome_categoria",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "livello_dettaglio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "ABBONATO_A",
+      "source": {
+        "label": "Fornitore"
+      },
+      "target": {
+        "label": "Azienda"
+      },
+      "attributes": [
+        {
+          "name": "data_inizio_adesione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "categoria",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ISCRITTO_IN",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Azienda"
+      },
+      "attributes": [
+        {
+          "name": "data_iscrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GOVERNA",
+      "source": {
+        "label": "Azienda"
+      },
+      "target": {
+        "label": "Categoria"
+      },
+      "attributes": [
+        {
+          "name": "tipo_abilitazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "categoria",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_approvazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_di_scadenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,341 @@
+{
+  "entities": [
+    {
+      "label": "Piattaforma",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_ultimo_aggiornamento",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RichiestaCIGDerivati",
+      "attributes": [
+        {
+          "name": "id_richiesta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_richiesta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato_invio_piena",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "amministrazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "profilo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ambiente",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SchedaAd4",
+      "attributes": [
+        {
+          "name": "id_scheda",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Organizzatore",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Procedimento",
+      "attributes": [
+        {
+          "name": "id_procedimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "anno",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GestionePCP",
+      "attributes": [
+        {
+          "name": "id_gestione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato_servizio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_ultimo_aggiornamento",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Originario",
+      "attributes": [
+        {
+          "name": "id_originario",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "responsabile",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "RICHIEDE",
+      "source": {
+        "label": "RichiestaCIGDerivati"
+      },
+      "target": {
+        "label": "SchedaAd4"
+      },
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "GESTISCE",
+      "source": {
+        "label": "Piattaforma"
+      },
+      "target": {
+        "label": "RichiestaCIGDerivati"
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_ultimo_accesso",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ESEGUE",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "GestionePCP"
+      },
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_evento",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FIRMA",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "SchedaAd4"
+      },
+      "attributes": [
+        {
+          "name": "tipo_firma",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_firma",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "COLLABORA",
+      "source": {
+        "label": "Procedimento"
+      },
+      "target": {
+        "label": "Organizzatore"
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "responsabile",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ]
+}

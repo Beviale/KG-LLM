@@ -1,0 +1,312 @@
+{
+  "entities": [
+    {
+      "label": "SoggettoAggregatore",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "legge_regionale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "regione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Empulia",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "id_univoco",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "pec",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "categoria_merceologica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "attestazioni_certificazioni",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "iscritto_albo",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "categoria_albo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "attivo",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AlboFornitori",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "regolamento",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "anno_istituzione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "categorie_merceologiche",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "categorie_prestazioni",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "is_validato",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ResponsabileProcedimento",
+      "attributes": [
+        {
+          "name": "id_univoco",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ResponsabileFabbisogni",
+      "attributes": [
+        {
+          "name": "id_univoco",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "UTILIZZA",
+      "source": {
+        "label": "SoggettoAggregatore"
+      },
+      "target": {
+        "label": "Empulia"
+      },
+      "attributes": []
+    },
+    {
+      "label": "UTILIZZA",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "Empulia"
+      },
+      "attributes": []
+    },
+    {
+      "label": "ISCRITTO",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "AlboFornitori"
+      },
+      "attributes": [
+        {
+          "name": "categorie_merceologiche",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "categorie_prestazioni",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GESTISCE",
+      "source": {
+        "label": "ResponsabileProcedimento"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": []
+    },
+    {
+      "label": "RILEVA",
+      "source": {
+        "label": "ResponsabileFabbisogni"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": []
+    },
+    {
+      "label": "INTERAGISCE",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": []
+    }
+  ]
+}

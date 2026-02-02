@@ -1,0 +1,564 @@
+{
+  "entities": [
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_fine",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "file_path",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "motivo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "testo_comunicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione_allegato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "professione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Procedura",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_fine",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "responsabile",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "lingua",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "region",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_lotti",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Avviso",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "testo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "allegato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EsitoPubblicazione",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "allegato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FascicoloGara",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_fine",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "richiesto",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_documenti",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_allegati",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoGara",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "file_path",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_ultima_modifica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "cognome",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ruolo_sistema",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RichiestaRimessione",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "motivo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "operator_name",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_richiesta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_approvazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "esito",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contatto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Contratto",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_stipula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Corsa",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_fine",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fase",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": []
+}

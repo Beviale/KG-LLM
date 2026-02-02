@@ -1,0 +1,531 @@
+{
+  "entities": [
+    {
+      "label": "Societa",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "forma_giuridica",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "piva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "sede",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "persona_di_riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Manuale",
+      "attributes": [
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Albo",
+      "attributes": [
+        {
+          "name": "codice_albo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "modalita",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Bando",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "scadenza",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo_albo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo_richiesta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "numero_dettaglio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "obiettivi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo_web",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Richiesta Di Abilitazione",
+      "attributes": [
+        {
+          "name": "numero_protocollo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "fase",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "termine_scadenza",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "documenti_allegati",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "risposta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "risposta_integrazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "esito_valutazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_documento",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoriEconomici",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "pec",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "id_documento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_scadenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "file",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "firma_digitale",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comunicazione",
+      "attributes": [
+        {
+          "name": "id_comunicazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "protocollo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "RICHIEDE",
+      "source": {
+        "label": "OperatoriEconomici"
+      },
+      "target": {
+        "label": "Albo"
+      },
+      "attributes": [
+        {
+          "name": "data_richiesta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo_di_richiesta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PRATICA",
+      "source": {
+        "label": "OperatoriEconomici"
+      },
+      "target": {
+        "label": "Richiesta Di Abilitazione"
+      },
+      "attributes": [
+        {
+          "name": "data_presentata",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo_documento",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "INVIATO",
+      "source": {
+        "label": "Richiesta Di Abilitazione"
+      },
+      "target": {
+        "label": "Documento"
+      },
+      "attributes": [
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "COMUNICAZIONE",
+      "source": {
+        "label": "OperatoriEconomici"
+      },
+      "target": {
+        "label": "Comunicazione"
+      },
+      "attributes": [
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "risposta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_risposta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "protocollo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICATO_IN",
+      "source": {
+        "label": "Bando"
+      },
+      "target": {
+        "label": "Albo"
+      },
+      "attributes": [
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DISCIPLINA",
+      "source": {
+        "label": "Manuale"
+      },
+      "target": {
+        "label": "Albo"
+      },
+      "attributes": [
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RAPPRESENTA",
+      "source": {
+        "label": "Societa"
+      },
+      "target": {
+        "label": "OperatoriEconomici"
+      },
+      "attributes": [
+        {
+          "name": "data_associazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ]
+}

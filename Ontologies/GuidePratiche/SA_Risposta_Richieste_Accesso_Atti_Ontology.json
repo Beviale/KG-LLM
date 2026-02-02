@@ -1,0 +1,532 @@
+{
+  "entities": [
+    {
+      "label": "Manuale",
+      "attributes": [
+        {
+          "name": "version",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RichiestaDiAccesso",
+      "attributes": [
+        {
+          "name": "codice_univoco",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "enum": [
+            "inviata",
+            "evasa"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "registra_sistema",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "registra_sistema_bando",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fascicolo_sistema",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fornitore",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sede_azienda",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo_azienda",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RispostaAAccesso",
+      "attributes": [
+        {
+          "name": "codice_univoco",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "enum": [
+            "salvata",
+            "inviata"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "registro_sistema",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "registro_sistema_bando",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fascicolo_sistema",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fornitore",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sede_azienda",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo_azienda",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "commento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentazioneArt36Comma1",
+      "attributes": [
+        {
+          "name": "tipo_documento",
+          "type": "string",
+          "enum": [
+            "comunicazione di aggiudicazione"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "allegato",
+          "type": "string",
+          "long": true,
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentazioneArt36Comma2",
+      "attributes": [
+        {
+          "name": "tipo_documento",
+          "type": "string",
+          "enum": [
+            "scheda ex art. 36 c.2"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "documento_originale",
+          "type": "string",
+          "long": true,
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "versione_condivisa",
+          "type": "string",
+          "long": true,
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "documento_sentinella",
+          "type": "string",
+          "long": true,
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraGara",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "enum": [
+            "procedura di gara"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "enum": [
+            "finalizzata"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "partecipante",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "classifica",
+          "type": "string",
+          "enum": [
+            "prima"
+          ],
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "sede",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AnacDocument",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "enum": [
+            "determinazione"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "file",
+          "type": "string",
+          "long": true,
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "nome_file",
+          "type": "string",
+          "long": true,
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "HA",
+      "source": {
+        "label": "RichiestaDiAccesso"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "enum": [
+            "richiedente"
+          ],
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RISPONDE_A",
+      "source": {
+        "label": "RispostaAAccesso"
+      },
+      "target": {
+        "label": "RichiestaDiAccesso"
+      },
+      "attributes": []
+    },
+    {
+      "label": "COMUNICA",
+      "source": {
+        "label": "ProceduraGara"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": [
+        {
+          "name": "tipo_comunicazione",
+          "type": "string",
+          "enum": [
+            "aggiudicazione definitiva",
+            "art. 36 c.2"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "determinazione",
+          "type": "string",
+          "long": true,
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ALLEGATO",
+      "source": {
+        "label": "ProceduraGara"
+      },
+      "target": {
+        "label": "Documento"
+      },
+      "attributes": [
+        {
+          "name": "tipo_documento",
+          "type": "string",
+          "enum": [
+            "allegato"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "nome_file",
+          "type": "string",
+          "long": true,
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CONDIVIDE",
+      "source": {
+        "label": "DocumentazioneArt36Comma2"
+      },
+      "target": {
+        "label": "Documento"
+      },
+      "attributes": [
+        {
+          "name": "tipo_condivisibile",
+          "type": "string",
+          "enum": [
+            "parziale",
+            "totale"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "parte_da_oscurare",
+          "type": "string",
+          "long": true,
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "parte_da_maschera",
+          "type": "string",
+          "long": true,
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "timestamp",
+          "type": "string",
+          "long": true,
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FIRMA_BAG",
+      "source": {
+        "label": "RichiestaDiAccesso"
+      },
+      "target": {
+        "label": "Manuale"
+      },
+      "attributes": []
+    }
+  ]
+}

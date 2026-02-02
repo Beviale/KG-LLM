@@ -1,0 +1,379 @@
+{
+  "entities": [
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "proprietario",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "obbligo_di_autorizzazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "proprieta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Società",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProceduraGara",
+      "attributes": [
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "modalita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ambito",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "modello_offerta_selezionato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "modalita_gara",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Figura",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProdottoLotto",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ambito",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "modello_offerta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Prodotto",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "quantita",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "unita_di_misura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Attributo",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "decimali",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "richiesto",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "richiedi_firma",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_file",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "lotto_voce",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "visibilita",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FormulaCalcolo",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "attributo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Vincolo",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contesto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "espressione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "attributo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "operatore",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ValoreEconomico",
+      "attributes": [
+        {
+          "name": "valore_finale",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "base_asta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "POSSEDE",
+      "source": {
+        "label": "Società"
+      },
+      "target": {
+        "label": "Documento"
+      }
+    },
+    {
+      "label": "PARTECIPA_A",
+      "source": {
+        "label": "Figura"
+      },
+      "target": {
+        "label": "ProceduraGara"
+      }
+    },
+    {
+      "label": "INCLUSO_IN",
+      "source": {
+        "label": "Prodotto"
+      },
+      "target": {
+        "label": "ProdottoLotto"
+      }
+    },
+    {
+      "label": "RICHIEDE_ATTRIBUTO",
+      "source": {
+        "label": "Ruolo"
+      },
+      "target": {
+        "label": "Attributo"
+      }
+    },
+    {
+      "label": "UTILIZZA_FORMULA",
+      "source": {
+        "label": "Attributo"
+      },
+      "target": {
+        "label": "FormulaCalcolo"
+      }
+    },
+    {
+      "label": "VINCOLA",
+      "source": {
+        "label": "Ruolo"
+      },
+      "target": {
+        "label": "Vincolo"
+      }
+    }
+  ]
+}

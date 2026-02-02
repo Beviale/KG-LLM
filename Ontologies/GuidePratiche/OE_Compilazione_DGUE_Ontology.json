@@ -1,0 +1,642 @@
+{
+  "entities": [
+    {
+      "label": "Manuale",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_ultima_modifica",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Societa",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "GestorePiattaforma",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "partecipazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "associata",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiGara",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "modalita",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoDiGaraUnicoEuropeo",
+      "attributes": [
+        {
+          "name": "codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Sezione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Domanda",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "testo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "obbligatoria",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo_risposta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Risposta",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "testo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "valore_numerico",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "selezione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Lotto",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Requisito",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RequisitoCollegatoAiLotti",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "requisito_id",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "lotto_id",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RichiestaDiCompilazioneDGUE",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "richiedente",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "destinatario",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato_richiesta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_richiesta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RispostaAllaRichiestaDiCompilazione",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "rispettato",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "dettaglio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Attivita",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "azienda",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_fine",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "ELABORA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "DocumentoDiGaraUnicoEuropeo"
+      },
+      "attributes": [
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ISTITUISCE",
+      "source": {
+        "label": "ProceduraDiGara"
+      },
+      "target": {
+        "label": "DocumentoDiGaraUnicoEuropeo"
+      },
+      "attributes": [
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_fine",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CONTROLLA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Risposta"
+      },
+      "attributes": [
+        {
+          "name": "esito",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ASSOCIA",
+      "source": {
+        "label": "Requisito"
+      },
+      "target": {
+        "label": "Lotto"
+      },
+      "attributes": [
+        {
+          "name": "tipo_associazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDI",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "RichiestaDiCompilazioneDGUE"
+      },
+      "attributes": [
+        {
+          "name": "data_richiesta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "INVIATA",
+      "source": {
+        "label": "RichiestaDiCompilazioneDGUE"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": [
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "COMPILA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "DocumentoDiGaraUnicoEuropeo"
+      },
+      "attributes": [
+        {
+          "name": "data_compilazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FIRMA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "DocumentoDiGaraUnicoEuropeo"
+      },
+      "attributes": [
+        {
+          "name": "data_firma",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "GENERA",
+      "source": {
+        "label": "ProceduraDiGara"
+      },
+      "target": {
+        "label": "DocumentoDiGaraUnicoEuropeo"
+      },
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DESCRIVE",
+      "source": {
+        "label": "Manuale"
+      },
+      "target": {
+        "label": "DocumentoDiGaraUnicoEuropeo"
+      }
+    },
+    {
+      "label": "GESTISCE",
+      "source": {
+        "label": "Societa"
+      },
+      "target": {
+        "label": "GestorePiattaforma"
+      }
+    },
+    {
+      "label": "FORNISCE",
+      "source": {
+        "label": "GestorePiattaforma"
+      },
+      "target": {
+        "label": "ProceduraDiGara"
+      }
+    },
+    {
+      "label": "COMPRENDE",
+      "source": {
+        "label": "DocumentoDiGaraUnicoEuropeo"
+      },
+      "target": {
+        "label": "Sezione"
+      }
+    },
+    {
+      "label": "INCLUDE",
+      "source": {
+        "label": "Sezione"
+      },
+      "target": {
+        "label": "Domanda"
+      }
+    },
+    {
+      "label": "HA_RISPOSTA",
+      "source": {
+        "label": "Domanda"
+      },
+      "target": {
+        "label": "Risposta"
+      }
+    },
+    {
+      "label": "COLLEGA_REQUISITO",
+      "source": {
+        "label": "RequisitoCollegatoAiLotti"
+      },
+      "target": {
+        "label": "Requisito"
+      }
+    },
+    {
+      "label": "COLLEGA_LOTTO",
+      "source": {
+        "label": "RequisitoCollegatoAiLotti"
+      },
+      "target": {
+        "label": "Lotto"
+      }
+    },
+    {
+      "label": "RISPONDE_A",
+      "source": {
+        "label": "RispostaAllaRichiestaDiCompilazione"
+      },
+      "target": {
+        "label": "RichiestaDiCompilazioneDGUE"
+      }
+    },
+    {
+      "label": "FORNITA_DA",
+      "source": {
+        "label": "RispostaAllaRichiestaDiCompilazione"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      }
+    },
+    {
+      "label": "ESEGUITA_DA",
+      "source": {
+        "label": "Attivita"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      }
+    },
+    {
+      "label": "RIGUARDA",
+      "source": {
+        "label": "Attivita"
+      },
+      "target": {
+        "label": "DocumentoDiGaraUnicoEuropeo"
+      }
+    }
+  ]
+}

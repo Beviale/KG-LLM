@@ -1,0 +1,1264 @@
+{
+  "entities": [
+    {
+      "label": "Società",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ceo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sede",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "abilitato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "registrato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "forma_partecipazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Gara",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "importo",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "scadenza",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "enum": [
+            "pubblicato",
+            "in corso",
+            "scaduto",
+            "revocato"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "regione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Invito",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "destinatario",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "enum": [
+            "ricevuto",
+            "risposto",
+            "scaduto"
+          ],
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Quesito",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "testo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "risposta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "enum": [
+            "inviato",
+            "risposto"
+          ],
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "enum": [
+            "salvata",
+            "inviata",
+            "eliminata",
+            "modificata"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "valore_economico",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "forma_partecipazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SezioneOfferta",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "enum": [
+            "testata",
+            "busta documentazione",
+            "prodotti",
+            "busta tecnica/conformità",
+            "busta economica",
+            "caricamento lotti",
+            "elenco lotti",
+            "attestato di partecipazione"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "documento",
+          "type": "string",
+          "format": "uri",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "enum": [
+            "offerta",
+            "questionario",
+            "documento collegato",
+            "firma digitale",
+            "allegato"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "link",
+          "type": "string",
+          "format": "uri",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Lotto",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "importo",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "enum": [
+            "singolo",
+            "complesso",
+            "multivoci"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "enum": [
+            "valido",
+            "non valido"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "varianti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Prodotto",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "prezzo_unitario",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "quantita",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "allegato",
+          "type": "string",
+          "format": "uri",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_file",
+          "type": "string",
+          "default": "xlsx",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comunicazione",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Risposta",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_risposta",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DGUE",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_compilazione",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Bando",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_aggiornamento",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "PARTECIPA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Gara"
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_partecipazione",
+          "type": "string",
+          "enum": [
+            "pubblica",
+            "invito",
+            "specifico"
+          ],
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "INVITA",
+      "source": {
+        "label": "Società"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": [
+        {
+          "name": "data_invio",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "enum": [
+            "pubblico",
+            "privato"
+          ],
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE",
+      "source": {
+        "label": "Società"
+      },
+      "target": {
+        "label": "Quesito"
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_richiesta",
+          "type": "string",
+          "enum": [
+            "informativa",
+            "procedura"
+          ],
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FARE_OFFERTA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Offerta"
+      },
+      "attributes": [
+        {
+          "name": "data_invio",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "INVIATO",
+      "source": {
+        "label": "Offerta"
+      },
+      "target": {
+        "label": "Gara"
+      },
+      "attributes": [
+        {
+          "name": "data_invio",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SALVATA",
+      "source": {
+        "label": "Offerta"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": [
+        {
+          "name": "data_salvataggio",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ELIMINATA",
+      "source": {
+        "label": "Offerta"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": [
+        {
+          "name": "motivo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_eliminazione",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "MODIFICATA",
+      "source": {
+        "label": "Offerta"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": [
+        {
+          "name": "data_modifica",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "COMUNICA",
+      "source": {
+        "label": "Gara"
+      },
+      "target": {
+        "label": "Comunicazione"
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "enum": [
+            "integrativa",
+            "comunicazione",
+            "verifica",
+            "offerta migliorativa",
+            "aggiudicazione"
+          ],
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RISPOSTA",
+      "source": {
+        "label": "Comunicazione"
+      },
+      "target": {
+        "label": "Risposta"
+      },
+      "attributes": [
+        {
+          "name": "data_risposta",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RESTITUISCE",
+      "source": {
+        "label": "Quesito"
+      },
+      "target": {
+        "label": "Risposta"
+      },
+      "attributes": [
+        {
+          "name": "data_risoluzione",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contenuto_risposte",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "COMPILA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "DGUE"
+      },
+      "attributes": [
+        {
+          "name": "data_compilazione",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ALLEGATO",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Documento"
+      },
+      "attributes": [
+        {
+          "name": "tipo_allegato",
+          "type": "string",
+          "enum": [
+            "economico",
+            "tecnico",
+            "amministrativo"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CONFERMA_PRESA_VISIONE",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Comunicazione"
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "NUOVA_OFFERTA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Offerta"
+      },
+      "attributes": [
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "MODIFICA_OFFERTA_INV",
+      "source": {
+        "label": "Offerta"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": [
+        {
+          "name": "data_modifica",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RITIRA_OFFERTA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Offerta"
+      },
+      "attributes": [
+        {
+          "name": "motivo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "INVIATA",
+      "source": {
+        "label": "Offerta"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": [
+        {
+          "name": "data_invio",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ELABORA_OFFERTA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Offerta"
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "valore",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GESTISCE",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Offerta"
+      },
+      "attributes": [
+        {
+          "name": "utente",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ELIMINA_OFFERTA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Offerta"
+      },
+      "attributes": [
+        {
+          "name": "motivo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SELEZIONA_LOTTI",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Lotto"
+      },
+      "attributes": [
+        {
+          "name": "lotti",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FORMA_PARTECIPAZIONE",
+      "source": {
+        "label": "Società"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": [
+        {
+          "name": "forma",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AGGIORNA_DATI_BANDO",
+      "source": {
+        "label": "Gara"
+      },
+      "target": {
+        "label": "Bando"
+      },
+      "attributes": [
+        {
+          "name": "data_aggiornamento",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CARICA_DOCUMENTI",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Documento"
+      },
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "enum": [
+            "amministrativo",
+            "tecnico",
+            "economico"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GOVERNA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Offerta"
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "COMPILA_DGUE",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "DGUE"
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ALLEGATO_DGUE",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Documento"
+      },
+      "attributes": [
+        {
+          "name": "tipo_allegato",
+          "type": "string",
+          "enum": [
+            "economico",
+            "tecnico",
+            "amministrativo"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PRATICARE",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Offerta"
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AGGIUNGI_ALLEGATO",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Documento"
+      },
+      "attributes": [
+        {
+          "name": "tipo_allegato",
+          "type": "string",
+          "enum": [
+            "economico",
+            "tecnico",
+            "amministrativo"
+          ],
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FASE_INVIO",
+      "source": {
+        "label": "Offerta"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AUTO_GESTISCE",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Offerta"
+      },
+      "attributes": [
+        {
+          "name": "utente",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GONE",
+      "source": {
+        "label": "Offerta"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "format": "date",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ]
+}

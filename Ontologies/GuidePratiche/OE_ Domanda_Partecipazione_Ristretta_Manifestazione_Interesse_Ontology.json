@@ -1,0 +1,342 @@
+{
+  "entities": [
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_ultima_modifica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Società",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "proprieta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "raggruppamento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Richiesta",
+      "attributes": [
+        {
+          "name": "id_richiesta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_scadenza",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "esito",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Bando",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_scadenza",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ManifestazioneInteresse",
+      "attributes": [
+        {
+          "name": "id_manifestazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_presentazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoAllegato",
+      "attributes": [
+        {
+          "name": "nome_file",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_file",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "firma_digitalizzata",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "obbligatorio",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "iniziativa",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RichiestaInformazioni",
+      "attributes": [
+        {
+          "name": "id_richiesta_informazioni",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "risposta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_risposta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "nome_utente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ditta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "PARTECIPA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Bando"
+      }
+    },
+    {
+      "label": "INVIATA",
+      "source": {
+        "label": "Richiesta"
+      },
+      "target": {
+        "label": "Utente"
+      }
+    },
+    {
+      "label": "ALLEGHA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "DocumentoAllegato"
+      }
+    },
+    {
+      "label": "RISPONDE",
+      "source": {
+        "label": "Richiesta"
+      },
+      "target": {
+        "label": "RichiestaInformazioni"
+      }
+    },
+    {
+      "label": "GESTISCE",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "Documento"
+      }
+    }
+  ]
+}

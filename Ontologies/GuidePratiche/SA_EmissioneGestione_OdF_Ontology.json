@@ -1,0 +1,426 @@
+{
+  "entities": [
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "proprietario",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "contenuti_condivisi",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ruolo_autorizzazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Societa",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Manuale",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "numero_pag",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DocumentoProcedura",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_fine",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Fornitura",
+      "attributes": [
+        {
+          "name": "id_fornitura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "quantita",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "valore_accessorio",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_scadenza",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "importo_totale",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_fornitura",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "id_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "quantita",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "importo_unitario",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "valore_accessorio",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "prezzo_modificato",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "motivo_modifica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "raggruppamento",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Convenzione",
+      "attributes": [
+        {
+          "name": "id_convenzione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "totale_ordinato",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "residuo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "scadenza",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "quota_riservata",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AccordoQuadro",
+      "attributes": [
+        {
+          "name": "id_accquadro",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "scadenza",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RichiestaCIG",
+      "attributes": [
+        {
+          "name": "id_richiesta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "cig_derivato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_richiesta",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "TransazionePCP",
+      "attributes": [
+        {
+          "name": "id_transazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "dettagli",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AffidamentoDiretto",
+      "attributes": [
+        {
+          "name": "id_affidamento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "riga_interventi",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "cig_padre",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "cig_derivato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "dettagli",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": []
+}

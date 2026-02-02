@@ -1,0 +1,288 @@
+{
+  "entities": [
+    {
+      "label": "Persona",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ente",
+      "attributes": [
+        {
+          "name": "nome_ente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_ente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Norma",
+      "attributes": [
+        {
+          "name": "riferimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "articolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "titolo_norma",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Referendum",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "risultato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Elezione",
+      "attributes": [
+        {
+          "name": "oggetto_elezione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ufficio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "organismo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "ASSOCIATO_A",
+      "source": {
+        "label": "Documento"
+      },
+      "target": {
+        "label": "Ente"
+      },
+      "attributes": [
+        {
+          "name": "tipo_associazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ruolo_emittente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EMANATO_DA",
+      "source": {
+        "label": "Documento"
+      },
+      "target": {
+        "label": "Persona"
+      },
+      "attributes": [
+        {
+          "name": "ruolo_persona",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AI_SENSI_DI",
+      "source": {
+        "label": "Documento"
+      },
+      "target": {
+        "label": "Norma"
+      },
+      "attributes": [
+        {
+          "name": "articolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_legge",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DOCUMENTA_ELEZIONE",
+      "source": {
+        "label": "Documento"
+      },
+      "target": {
+        "label": "Elezione"
+      },
+      "attributes": [
+        {
+          "name": "ufficio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "organismo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DOCUMENTA_REFERENDUM",
+      "source": {
+        "label": "Documento"
+      },
+      "target": {
+        "label": "Referendum"
+      },
+      "attributes": [
+        {
+          "name": "risultato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "MODIFICA",
+      "source": {
+        "label": "Documento"
+      },
+      "target": {
+        "label": "Documento"
+      },
+      "attributes": [
+        {
+          "name": "campo_modificato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_modifica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ]
+}

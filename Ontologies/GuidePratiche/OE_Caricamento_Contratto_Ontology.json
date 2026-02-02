@@ -1,7 +1,36 @@
 {
   "entities": [
     {
-      "label": "SoggettoAggregatoreRegionale",
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "version",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "proprietario",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "contenuti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Società",
       "attributes": [
         {
           "name": "nome",
@@ -10,31 +39,7 @@
           "required": true
         },
         {
-          "name": "regione",
-          "type": "string",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "legge",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "codice",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "responsabile",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "sede",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
@@ -42,10 +47,10 @@
       ]
     },
     {
-      "label": "ServizioTelematico",
+      "label": "Manuale",
       "attributes": [
         {
-          "name": "nome",
+          "name": "titolo",
           "type": "string",
           "unique": true,
           "required": true
@@ -54,13 +59,13 @@
           "name": "versione",
           "type": "string",
           "unique": false,
-          "required": false
+          "required": true
         },
         {
-          "name": "abbreviation",
+          "name": "data_pubblicazione",
           "type": "string",
           "unique": false,
-          "required": false
+          "required": true
         },
         {
           "name": "descrizione",
@@ -71,47 +76,106 @@
       ]
     },
     {
-      "label": "Piattaforma",
+      "label": "Procedura",
       "attributes": [
         {
-          "name": "nome",
+          "name": "tipologia",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "indirizzo_web",
+          "name": "fase",
           "type": "string",
           "unique": false,
           "required": true
+        },
+        {
+          "name": "strumento",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "Utente",
+      "label": "Contratto",
       "attributes": [
         {
-          "name": "tipo",
+          "name": "oggetto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": true
         },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "valore",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stazione_appaltante",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "aggiudicatario",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "documenti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "firma",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_firma",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "motivazione_rifiuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Persona",
+      "attributes": [
         {
           "name": "nome",
           "type": "string",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "email",
-          "type": "string",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "PEC",
-          "type": "string",
-          "unique": false,
+          "unique": true,
           "required": true
         },
         {
@@ -121,25 +185,7 @@
           "required": false
         },
         {
-          "name": "partita_IVA",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "codice_fiscale",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "nome_utente",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "password",
+          "name": "azienda",
           "type": "string",
           "unique": false,
           "required": false
@@ -147,7 +193,7 @@
       ]
     },
     {
-      "label": "OperatoreEconomico",
+      "label": "GruppoFunzionale",
       "attributes": [
         {
           "name": "nome",
@@ -156,39 +202,50 @@
           "required": true
         },
         {
-          "name": "categoria_merceologica",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "attestazioni",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "certificazioni",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
           "name": "tipo",
           "type": "string",
-          "enum": [
-            "ditta individuale",
-            "società",
-            "consorzio",
-            "altro"
-          ],
           "unique": false,
-          "required": true
+          "required": false
         }
       ]
     },
     {
-      "label": "ResponsabileDelProcedimento",
+      "label": "DocumentoRinnovoEstensione",
+      "attributes": [
+        {
+          "name": "tipo_documento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "registro_sistema_contratto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Sistema",
       "attributes": [
         {
           "name": "nome",
@@ -197,147 +254,86 @@
           "required": true
         },
         {
-          "name": "ente",
+          "name": "scopo",
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "tipo",
-          "type": "string",
-          "enum": [
-            "RDA"
-          ],
-          "unique": false,
-          "required": true
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "UTILIZZA",
+      "label": "HA",
       "source": {
-        "label": "SoggettoAggregatoreRegionale"
+        "label": "Società"
       },
       "target": {
-        "label": "ServizioTelematico"
-      },
-      "attributes": []
+        "label": "Manuale"
+      }
     },
     {
       "label": "GESTISCE",
       "source": {
-        "label": "SoggettoAggregatoreRegionale"
+        "label": "Sistema"
       },
       "target": {
-        "label": "Piattaforma"
-      },
-      "attributes": []
+        "label": "Contratto"
+      }
     },
     {
-      "label": "INTERAGISCE_CON",
+      "label": "CONTROLLA",
       "source": {
-        "label": "Utente"
+        "label": "Contratto"
       },
       "target": {
-        "label": "Piattaforma"
-      },
-      "attributes": [
-        {
-          "name": "funzionalità",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
+        "label": "Persona"
+      }
     },
     {
-      "label": "ISCRITTO_A",
+      "label": "RAPPRESENTA",
       "source": {
-        "label": "OperatoreEconomico"
+        "label": "Persona"
       },
       "target": {
-        "label": "AlboOnlineFornitori"
-      },
-      "attributes": []
+        "label": "Contratto"
+      }
     },
     {
-      "label": "RICHIEDE",
+      "label": "FA",
       "source": {
-        "label": "OperatoreEconomico"
+        "label": "Contratto"
       },
       "target": {
-        "label": "IscrizioneAlbo"
-      },
-      "attributes": []
+        "label": "Documento"
+      }
     },
     {
-      "label": "Esegue",
+      "label": "APPARTIENE",
       "source": {
-        "label": "ResponsabileDelProcedimento"
+        "label": "Documento"
       },
       "target": {
-        "label": "ProcedureGara"
-      },
-      "attributes": []
+        "label": "Società"
+      }
     },
     {
-      "label": "PARTECIPA",
+      "label": "FA_RINNOVO",
       "source": {
-        "label": "OperatoreEconomico"
+        "label": "Contratto"
       },
       "target": {
-        "label": "ProceduraGara"
-      },
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
+        "label": "DocumentoRinnovoEstensione"
+      }
     },
     {
-      "label": "ACQUISTO_DA",
+      "label": "FIRMATO",
       "source": {
-        "label": "EnteAderente"
+        "label": "Documento"
       },
       "target": {
-        "label": "ConvenzioneQuadro"
-      },
-      "attributes": []
-    },
-    {
-      "label": "GESTISCE",
-      "source": {
-        "label": "SoggettoAggregatoreRegionale"
-      },
-      "target": {
-        "label": "RicognizioneFabbisogni"
-      },
-      "attributes": []
-    },
-    {
-      "label": "COMPILA",
-      "source": {
-        "label": "ResponsabileFabbisogni"
-      },
-      "target": {
-        "label": "QuestionarioFabbisogni"
-      },
-      "attributes": []
-    },
-    {
-      "label": "DISABILITA",
-      "source": {
-        "label": "ResponsabileDelProcedimento"
-      },
-      "target": {
-        "label": "ResponsabileRDA"
-      },
-      "attributes": []
+        "label": "Persona"
+      }
     }
   ]
 }

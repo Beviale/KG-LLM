@@ -16,6 +16,7 @@ import Prompt
 import os
 from falkordb import FalkorDB
 from graphrag_sdk.steps import extract_data_step
+import spacy
 
 
 load_dotenv()
@@ -154,7 +155,7 @@ def preprocess_pdf(pdf_dict):
     return dataItems
 
 
-def process_response_ontology(category, response, current_ontology, model):
+def process_response_ontology(text_filename, category, index_chunk, response, model):
     response_content = response.choices[0].message["content"]       
     response_content = response_content.strip()
 
@@ -189,18 +190,139 @@ def process_response_ontology(category, response, current_ontology, model):
             print(f"JSON fixed!")
         except Exception as e:
             print(f"Failed to fix JSON: {e}")
-            return current_ontology
+            return
 
     
     current_ontology_ident = json.dumps(data, indent=2, ensure_ascii=False)
-    current_ontology = json.dumps(data, ensure_ascii=False)
     if current_ontology_ident is not None:
-        print(f"Ontology '{category}' created successfully!")
-        ontology_file_name = r"Ontologies/" + category + "_Ontology.json"
+        print(f"Ontology '{text_filename}' created successfully!")
+        ontology_file_name = f"Ontologies/{category}/{text_filename}_{index_chunk}_Ontology.json"
         # Save the ontology to the disk as a json file.
         with open(ontology_file_name, "w", encoding="utf-8") as file:
             file.write(current_ontology_ident)
-    return current_ontology
+
+
+def split_text_chunks(text: str, max_characters=1000):
+    nlp = spacy.load("it_core_news_sm")
+    doc = nlp(text)
+    sentences = [sent.text.strip() for sent in doc.sents]
+    sentences = [sentence for sentence in sentences if sentence]
+    chunks = []
+    chunk = []
+    while(True):
+        if not sentences:
+            break
+        maximum_reached = False
+        for sentence in sentences:
+            chunk.append(sentence)
+            number_of_charachters = sum(len(s) for s in chunk)
+            if (number_of_charachters>max_characters): 
+                maximum_reached = True             
+                break
+            
+        if maximum_reached:
+            chunk_reverse = chunk.copy()
+            chunk_reverse.reverse()
+            number_of_characters = 0
+            index = 0
+            for chunk_rev in chunk_reverse:
+                index = index + 1
+                number_of_characters = number_of_characters + len(chunk_rev)
+                if (number_of_characters>200):
+                    break
+            sentences = sentences[len(chunk)-index:]
+           
+        else:
+            break
+        chunks.append(" ".join(chunk))
+        chunk.clear()
+    return chunks
+        
+
+def merge_ontologies_chunk(category, text_filename, model=None):
+    if model is None:
+        model = "openai/gpt-5-mini"
+    index = 0
+    json_merge = []
+    while(True):
+        file_path = Path(f"Ontologies/{category}/{text_filename}_{index}_Ontology.json")
+        if file_path.exists()==False:
+            break
+        
+        with file_path.open("r", encoding="utf-8") as f:
+            json_item = json.load(f)
+
+        json_merge.append(json_item)
+        index += 1
+    
+    ontologies = ';'.join(
+        json.dumps(obj, ensure_ascii=False, separators=(',', ':'))
+        for obj in json_merge
+    )
+
+    print("Waiting the LLM response to merge the ontologies...")
+    response = completion(
+        model=model,
+        messages=[
+            {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
+            {"role": "user",   "content": Prompt.MERGE_ONTOLOGY_PROMPT_ITA.format(ontologies=ontologies)}
+        ]
+    ) 
+    response_content = response.choices[0].message["content"]       
+    response_content = response_content.strip()
+
+    try:
+        data = json.loads(extract_json(response_content))
+        _ = Ontology.from_json(data)
+    except Exception as e:
+        # fallback 
+        print(f"Error extracting JSON: {e}")
+        print(f"Prompting model to fix JSON")
+        if isinstance(e, json.JSONDecodeError):
+            json_fix_response = completion(
+                model=model,
+                messages=[
+                    {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                    {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
+                ]
+            )
+        else:
+                json_fix_response = completion(
+                model=model,
+                messages=[
+                    {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                    {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=str(e))}         
+                ]
+            )
+
+        json_fix_response_content = json_fix_response.choices[0].message["content"]
+        try:
+            data = json.loads(extract_json(json_fix_response_content))
+            _ = Ontology.from_json(data)
+            print(f"JSON fixed!")
+        except Exception as e:
+            print(f"Failed to fix JSON: {e}")
+            return
+   
+    for ent in data.get("entities", []):
+        ent["text_reference"] = ""
+
+    for rel in data.get("relations", []):
+        rel["text_reference"] = ""
+
+    current_ontology_ident = json.dumps(data, indent=2, ensure_ascii=False)
+    if current_ontology_ident is not None:
+        print(f"Ontology '{text_filename}' created successfully!")
+        ontology_file_name = f"Ontologies/{category}/{text_filename}_Ontology.json"
+        with open(ontology_file_name, "w", encoding="utf-8") as file:
+            file.write(current_ontology_ident)
+
+    for i in range(index):
+        file_path = Path(f"Ontologies/{category}/{text_filename}_{index}_Ontology.json")    
+        if os.path.exists(file_path):
+            os.remove(file_path)
+
+        
 
 
 
@@ -214,11 +336,9 @@ def generate_ontology(category, model=None, dataItems=None):
     if model is None:
         model = "openai/gpt-5-mini"
 
-    first_iteration=True
-    current_ontology=None
-
     count = 1
     for text_path in all_text_paths:
+        text_filename = text_path.name.removesuffix(".txt")
 
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
@@ -226,50 +346,49 @@ def generate_ontology(category, model=None, dataItems=None):
         print(f"File path: '{text_path}', current state: {count}/{len( all_text_paths)}.")
         count = count + 1
 
-        textsToProcess = []
-        textsToAdd = []
-        textsToProcess.append(text)
+        file = Path(f"Ontologies/{category}/{text_filename}_Ontology.json")
+        if file.exists():
+           print("This ontology already exists!")
 
-        while(True):
-            for text in textsToProcess:
-                print("Waiting the LLM response...")
-                try:
-                    if first_iteration == True or current_ontology is None:
+
+        chunks = split_text_chunks(text)
+        index_chunk = 0
+
+        for chunk in chunks:
+            textsToProcess = []
+            textsToAdd = []
+            textsToProcess.append(chunk)
+            while(True):
+                for text in textsToProcess: 
+                    print("Waiting the LLM response...")
+                    try:     
                         # We create the ontology
-                        response = completion(
-                            model="openai/gpt-4.1-nano",
-                            messages=[
-                                {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                                {"role": "user",   "content": Prompt.CREATE_ONTOLOGY_PROMPT_ITA.format(text=text)}
-                            ]
-                        )
-                        first_iteration = False
-                    else:
-                        # We update the ontology
                         response = completion(
                             model=model,
                             messages=[
                                 {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                                {"role": "user",   "content": Prompt.UPDATE_ONTOLOGY_PROMPT_ITA.format(ontology=current_ontology, text=text)}
+                                {"role": "user",   "content": Prompt.CREATE_ONTOLOGY_PROMPT_ITA.format(text=text)}
                             ]
-                        ) 
-                    current_ontology = process_response_ontology(category, response, current_ontology, model)   
-                except ContextWindowExceededError as e:
-                    mid = len(text) // 2
-                    print(f"Halving the text size from '{len(text)}' to '{mid}'")
-                    part1 = text[:mid]
-                    part2 = text[mid:]
-                    textsToAdd.append(part1)
-                    textsToAdd.append(part2)
-                    continue
+                        )                  
+                        process_response_ontology(text_filename, category, index_chunk, response, model)   
+                    except ContextWindowExceededError as e:
+                        mid = len(text) // 2
+                        print(f"Halving the text size from '{len(text)}' to '{mid}'")
+                        part1 = text[:mid]
+                        part2 = text[mid:]
+                        textsToAdd.append(part1)
+                        textsToAdd.append(part2)
+                        continue
 
-            if textsToAdd:
-                textsToProcess.clear()
-                for textToAdd in textsToAdd:
-                    textsToProcess.append(textToAdd)
-                textsToAdd.clear()
-            else:
-                break
+                if textsToAdd:
+                    textsToProcess.clear()
+                    for textToAdd in textsToAdd:
+                        textsToProcess.append(textToAdd)
+                    textsToAdd.clear()
+                else:
+                    break
+            index_chunk = index_chunk + 1
+        merge_ontologies_chunk()
 
 
 
@@ -286,18 +405,19 @@ def generate_data(category: str, model=None, dataItems=None):
     if model is None:
         model = "openai/gpt-5-mini"
 
-    ontology_file = f"Ontologies/{category}_Ontology.json"
-    with open(ontology_file, "r", encoding="utf-8") as file:
-        textItem = file.read()
-
-    try:
-        jsonItem = json.loads(textItem)
-        ontology = Ontology.from_json(jsonItem)
-    except Exception as e:
-        print(f"Failed to read the ontology: {e}")
-        return
-    
     for text_path in all_text_paths:
+        text_filename = text_path.name
+        text_filename = text_filename.removesuffix(".txt")
+        ontology_file = f"Ontologies/{category}/{text_filename}_Ontology.json"
+        with open(ontology_file, "r", encoding="utf-8") as file:
+            textOntology = file.read()
+        try:
+            jsonOntology = json.loads(textOntology)
+            ontology = Ontology.from_json(jsonOntology)
+        except Exception as e:
+            print(f"Failed to read the ontology: {e}")
+            continue
+
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
 
@@ -308,7 +428,7 @@ def generate_data(category: str, model=None, dataItems=None):
             model=model,
             messages=[
                 {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-                {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=textItem, text=text)}
+                {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=ontology, text=text)}
             ]
         )
         response_content = response.choices[0].message["content"]
@@ -363,10 +483,24 @@ def generate_data(category: str, model=None, dataItems=None):
                 continue
         print("Relations created correctly!")
 
-        
+
+def create_dir():
+    os.makedirs("Ontologies",  exist_ok=True)    
+    os.makedirs("Ontologies/DisciplinaDiUtilizzo",  exist_ok=True)    
+    os.makedirs("Ontologies/Normativa",  exist_ok=True)    
+    os.makedirs("Ontologies/FAQ",  exist_ok=True)    
+    os.makedirs("Ontologies/GuidePratiche",  exist_ok=True) 
+
+    os.makedirs("InputPDFtoText",  exist_ok=True)   
+    os.makedirs("InputPDFtoText/DisciplinaDiUtilizzo",  exist_ok=True)    
+    os.makedirs("InputPDFtoText/Normativa",  exist_ok=True)    
+    os.makedirs("InputPDFtoText/FAQ",  exist_ok=True)    
+    os.makedirs("InputPDFtoText/GuidePratiche",  exist_ok=True) 
+
 
 
 def main():
+    create_dir()
     pdf_dict = {} # The key is the category (DiscplinaDiUtilizzo, GuidePratiche,...) and the value is the list of associated .pdf files
 
     # DiscplinaDiUtilizzo

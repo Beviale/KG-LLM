@@ -1,0 +1,361 @@
+{
+  "entities": [
+    {
+      "label": "Societa",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "proprietari",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "regione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiGara",
+      "attributes": [
+        {
+          "name": "codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_fine",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "modalita",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "forma_partecipazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": true,
+          "required": false
+        },
+        {
+          "name": "data_iscrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "comune_residenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "regione_residenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Partecipante",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "operator_economico",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "partecipazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_partecipazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "manifestazione_interesse",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "categorie",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "lotto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "nome_file",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "presentato_da",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "presentazione_data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "obbligatorio",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDialogo",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "attivata_da",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "attivata_il",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "disattivata_il",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "attiva_chat",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Messaggio",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "mittente",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_ora_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Graduatoria",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "classifica",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "operatore_economico",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "punteggio",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "esito",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "PARTECIPA_A",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "ProceduraDiGara"
+      }
+    },
+    {
+      "label": "INVIA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Documento"
+      }
+    },
+    {
+      "label": "INVIA",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Messaggio"
+      }
+    },
+    {
+      "label": "LANCIA",
+      "source": {
+        "label": "ProceduraDiGara"
+      },
+      "target": {
+        "label": "ProceduraDialogo"
+      }
+    },
+    {
+      "label": "HA",
+      "source": {
+        "label": "ProceduraDiGara"
+      },
+      "target": {
+        "label": "Graduatoria"
+      }
+    }
+  ]
+}

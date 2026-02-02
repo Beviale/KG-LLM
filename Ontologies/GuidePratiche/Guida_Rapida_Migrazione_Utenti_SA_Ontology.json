@@ -1,0 +1,160 @@
+{
+  "entities": [
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "email",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome_utente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "struttura_appartenenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "approvatore_di_riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "completamento_profilazione",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "profilazione_completata",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "firma_digitale",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "evento_formativo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Credenziali",
+      "attributes": [
+        {
+          "name": "codice_accesso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome_utente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "validità",
+          "type": "string",
+          "enum": [
+            "solo per piattaforma nuova"
+          ],
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "MIGRA_TO",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "Credenziali"
+      },
+      "attributes": [
+        {
+          "name": "date_migration",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "APPARTENENTE_A",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "Struttura"
+      },
+      "attributes": []
+    },
+    {
+      "label": "ASSEGNATO_A",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "GruppoFunzionale"
+      },
+      "attributes": []
+    },
+    {
+      "label": "HA",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "Ruolo"
+      },
+      "attributes": []
+    },
+    {
+      "label": "RICERCA",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "Attività"
+      },
+      "attributes": []
+    }
+  ]
+}

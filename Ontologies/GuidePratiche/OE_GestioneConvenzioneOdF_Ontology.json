@@ -1,30 +1,7 @@
 {
   "entities": [
     {
-      "label": "FAQ",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "domande",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "risposte",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Helpdesk",
+      "label": "Societa",
       "attributes": [
         {
           "name": "nome",
@@ -33,13 +10,19 @@
           "required": true
         },
         {
-          "name": "modo_operativo",
+          "name": "sigla",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "orari_disponibilita",
+          "name": "proprietaria",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
@@ -47,67 +30,344 @@
       ]
     },
     {
-      "label": "RequisitiSistema",
+      "label": "Documentazione",
       "attributes": [
         {
-          "name": "sistema_operativo",
+          "name": "nome_file",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "software_anti_mus",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "connessione_internet",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": true
         },
         {
-          "name": "velocita_minima_mbps",
+          "name": "firma_digitalizzata",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Convenzione",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "previsione_integrazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "previsione_estensione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "lista_documenti_collegati",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tabella_prodotto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "percentuale_restituzione",
           "type": "number",
           "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ente",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
           "required": true
         },
         {
-          "name": "browser",
+          "name": "codice_fiscale",
           "type": "string",
           "unique": false,
           "required": true
         },
         {
-          "name": "supporto_html5_css3",
-          "type": "boolean",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "java_script_abilitato",
-          "type": "boolean",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "cookie_abilitati",
-          "type": "boolean",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "pop_up_abilitati",
-          "type": "boolean",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "disattivazione_toolbar",
+          "name": "tipo_ente",
           "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Fornitore",
+      "attributes": [
+        {
+          "name": "nome_fornitore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fornitore",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_fornitore",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Listino",
+      "attributes": [
+        {
+          "name": "numero_listino",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Prodotto",
+      "attributes": [
+        {
+          "name": "codice_prodotto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_prodotto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "quantita",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "prezzo_unitario",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Raggruppamento",
+      "attributes": [
+        {
+          "name": "codice_raggruppamento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_raggruppamento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Rappresentante",
+      "attributes": [
+        {
+          "name": "nome_rappresentante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RinnovoEstensione",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_fine",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "valore",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ListinoConvenzione",
+      "attributes": [
+        {
+          "name": "numero_listino",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "previsione_ord_integra",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ordinativo",
+      "attributes": [
+        {
+          "name": "numero_ordinativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_scadenza",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "importo_totale",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "professione",
+          "type": "string",
+          "unique": false,
+          "required": true
         }
       ]
     },
@@ -115,266 +375,57 @@
       "label": "Utente",
       "attributes": [
         {
-          "name": "tipo",
+          "name": "nome_utente",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "azioni",
+          "name": "profilo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Operazione",
+      "attributes": [
+        {
+          "name": "id_operazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_operazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_operazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ruolo_operatore",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato_operazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "note_operazione",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "Ditta",
-      "attributes": [
-        {
-          "name": "nome_ditta",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "dati",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Newsletter",
-      "attributes": [
-        {
-          "name": "tipo_notifica",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "indirizzo_email",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "modalità_receptione",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "AlboFornitori",
-      "attributes": [
-        {
-          "name": "categorie_SOAs",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ricorso",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ProceduraLavoriInEconomia",
-      "attributes": [
-        {
-          "name": "iscrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "elenco_classi_SOAs",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CategoriaMerceologica",
-      "attributes": [
-        {
-          "name": "elenco",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "SupportoTecnico",
-      "attributes": [
-        {
-          "name": "disponibilità",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "orari",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OffertaGara",
-      "attributes": [
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "conferma_invio",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "DimensioneFile",
-      "attributes": [
-        {
-          "name": "massima_dimensione_MB",
-          "type": "number",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "modalità_caricamento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OrarioGara",
-      "attributes": [
-        {
-          "name": "orario_riferimento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "segna_temporale",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "QualificaImpresa",
-      "attributes": [
-        {
-          "name": "categoria",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "categorie_speciali",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "NominazioneFile",
-      "attributes": [
-        {
-          "name": "nomenclatura",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "lunghezza_max_char",
-          "type": "number",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "caratteri_soprattutto_invalicabili",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "FirmaDigitale",
-      "attributes": [
-        {
-          "name": "modalita",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "formato_file_firmato",
-          "type": "string",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "guida_utente",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "IntegritàFile",
-      "attributes": [
-        {
-          "name": "corrispondente_codice_hash",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "garanzia_non_modificabile",
-          "type": "boolean",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "CredenzialiSistema",
-      "attributes": [
-        {
-          "name": "vecchio",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nuovo",
-          "type": "string",
-          "unique": true,
-          "required": true
         }
       ]
     }

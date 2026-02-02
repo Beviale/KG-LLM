@@ -1,0 +1,594 @@
+{
+  "entities": [
+    {
+      "label": "ProceduraGara",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "pagina",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "nome_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FormulaEconomica",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "interdipendente",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "indipendente",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "valore",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "intervallo_alpha",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ValoreAssoluto",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore_minimo_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "valore_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "MassimoSconto",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "sconto_percentuale_massimo_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "sconto_percentuale_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "MassimoScontoNonLineare",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "sconto_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "sconto_massimo_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "alpha",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RibassoMassimo",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ribasso_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ribasso_massimo_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RibassoMassimoNonLineare",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ribasso_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ribasso_massimo_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "alpha",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ValoreSogliaRibassi",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ribasso_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ribasso_massimo_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "a_soglia",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "coefficiente",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ValoreSogliaRibassiCondizionata",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ribasso_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "ribasso_massimo_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "a_soglia",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "n_off",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "coefficiente",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ValoreSogliaSconti",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "sconto_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "sconto_massimo_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "a_soglia",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "coefficiente",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ValoreSogliaScontiCondizionata",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "sconto_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "sconto_massimo_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "a_soglia",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "n_off",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "coefficiente",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "MassimoSpreadAScalino",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "valore_massimo_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "alfa",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "MinimoSpreadAScalino",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "valore_minimo_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "alfa",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ValoreOffertaMassimoValoreOfferta",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "valore_massimo_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PercentualeOffertaMassimaPercentualeOfferta",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "percentuale_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "percentuale_massima_offerta",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EsponenzialeOffertaBase",
+      "attributes": [
+        {
+          "name": "punteggio_massimo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore_offerto",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "valore_base_asta",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "alpha",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "formula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ValutazioneSoggettiva",
+      "attributes": [
+        {
+          "name": "coefficiente",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "punteggio_finale",
+          "type": "number",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": []
+}

@@ -1,0 +1,548 @@
+{
+  "entities": [
+    {
+      "label": "Società",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sigla",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiGara",
+      "attributes": [
+        {
+          "name": "id_gara",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_fine",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Fornitore",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contatti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Contratto",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_stipula",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_scadenza",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "valore",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoContratto",
+      "attributes": [
+        {
+          "name": "nome_file",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_caricamento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "firma_digitale",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "id_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "contenuto_tecnico",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contenuto_economico",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_presentazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Strumento",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Listino",
+      "attributes": [
+        {
+          "name": "id_listino",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "prodotto_servizio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "prezzo_unitario",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "quantita",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo_totale",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contatti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraAggiudicazione",
+      "attributes": [
+        {
+          "name": "id_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "registro_sistema",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione_gara",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "cig",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "numero_lotto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_comunicazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "esito",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "nome_file",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_caricamento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "firma_digitale",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FirmaDigitale",
+      "attributes": [
+        {
+          "name": "id_firma",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "firma",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale_firmatario",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_firma",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProdottoServizio",
+      "attributes": [
+        {
+          "name": "codice_prodotto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "unita_misura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "STIPULA",
+      "source": {
+        "label": "Società"
+      },
+      "target": {
+        "label": "Contratto"
+      }
+    },
+    {
+      "label": "CONSEGNABILE_A",
+      "source": {
+        "label": "Contratto"
+      },
+      "target": {
+        "label": "Fornitore"
+      }
+    },
+    {
+      "label": "SPONSORIZZA",
+      "source": {
+        "label": "ProceduraDiGara"
+      },
+      "target": {
+        "label": "Società"
+      }
+    },
+    {
+      "label": "EROGATO_DA",
+      "source": {
+        "label": "Contratto"
+      },
+      "target": {
+        "label": "OperatoreEconomico"
+      }
+    },
+    {
+      "label": "ILABORA",
+      "source": {
+        "label": "Contratto"
+      },
+      "target": {
+        "label": "DocumentoContratto"
+      }
+    },
+    {
+      "label": "INCLUDERE",
+      "source": {
+        "label": "Listino"
+      },
+      "target": {
+        "label": "ProdottoServizio"
+      }
+    },
+    {
+      "label": "OFFRE",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Offerta"
+      }
+    },
+    {
+      "label": "ALLEGATO_DI",
+      "source": {
+        "label": "Contratto"
+      },
+      "target": {
+        "label": "Allegato"
+      }
+    },
+    {
+      "label": "FIRMA_DI",
+      "source": {
+        "label": "DocumentoContratto"
+      },
+      "target": {
+        "label": "FirmaDigitale"
+      }
+    },
+    {
+      "label": "UTILIZZATO_IN",
+      "source": {
+        "label": "Strumento"
+      },
+      "target": {
+        "label": "ProceduraDiGara"
+      }
+    },
+    {
+      "label": "RIGUARDA",
+      "source": {
+        "label": "ProceduraAggiudicazione"
+      },
+      "target": {
+        "label": "ProceduraDiGara"
+      }
+    }
+  ]
+}

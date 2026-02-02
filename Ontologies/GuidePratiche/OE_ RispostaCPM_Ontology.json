@@ -1,0 +1,443 @@
+{
+  "entities": [
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contatto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RaggruppamentoTemporaneoImpresa",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "composto_da",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ResponsabileProcedimento",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contatto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ConsultazionePreliminare",
+      "attributes": [
+        {
+          "name": "id_consultazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_scadenza",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "dettaglio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RispostaConsultazione",
+      "attributes": [
+        {
+          "name": "id_risposta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "operatore_in_carico",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "registro_di_sistema",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "risposta_personale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato_validita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoRichiesto",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_file",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "obbligatorio",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "richiesta_firma_digitalmente",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "documento_iniziativa",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "id_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "file",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "firmato_digitalmente",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comunicazione",
+      "attributes": [
+        {
+          "name": "id_comunicazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_messaggio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RispostaComunicazione",
+      "attributes": [
+        {
+          "name": "id_risposta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "testo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "allegati",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "IN_CARICO",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "ResponsabileProcedimento"
+      }
+    },
+    {
+      "label": "INVIA",
+      "source": {
+        "label": "RispostaConsultazione"
+      },
+      "target": {
+        "label": "ConsultazionePreliminare"
+      }
+    },
+    {
+      "label": "ALLEGA",
+      "source": {
+        "label": "RispostaConsultazione"
+      },
+      "target": {
+        "label": "DocumentoRichiesto"
+      }
+    },
+    {
+      "label": "RICHIEDE",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "ConsultazionePreliminare"
+      }
+    },
+    {
+      "label": "RISPONDE_A",
+      "source": {
+        "label": "RispostaConsultazione"
+      },
+      "target": {
+        "label": "ConsultazionePreliminare"
+      }
+    },
+    {
+      "label": "INVIA",
+      "source": {
+        "label": "RispostaComunicazione"
+      },
+      "target": {
+        "label": "Comunicazione"
+      }
+    },
+    {
+      "label": "COLLEGA",
+      "source": {
+        "label": "RispostaConsultazione"
+      },
+      "target": {
+        "label": "Allegato"
+      }
+    },
+    {
+      "label": "RICHIEDE",
+      "source": {
+        "label": "OperatoreEconomico"
+      },
+      "target": {
+        "label": "Comunicazione"
+      }
+    },
+    {
+      "label": "RISPONDE_A",
+      "source": {
+        "label": "RispostaComunicazione"
+      },
+      "target": {
+        "label": "Comunicazione"
+      }
+    }
+  ]
+}
