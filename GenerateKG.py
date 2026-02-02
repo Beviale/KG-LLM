@@ -255,62 +255,69 @@ def merge_ontologies_chunk(category, text_filename, model=None):
         json_merge.append(json_item)
         index += 1
     
-    ontologies = ';'.join(
-        json.dumps(obj, ensure_ascii=False, separators=(',', ':'))
-        for obj in json_merge
-    )
+    new_json = None
+    for i in range(0, len(json_merge), 4):
+        json_merge_slice = json_merge[i:i+4]
+        if new_json is not None:
+            json_merge_slice.append(new_json)
 
-    print("Waiting the LLM response to merge the ontologies...")
-    response = completion(
-        model=model,
-        messages=[
-            {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
-            {"role": "user",   "content": Prompt.MERGE_ONTOLOGY_PROMPT_ITA.format(ontologies=ontologies)}
-        ]
-    ) 
-    response_content = response.choices[0].message["content"]       
-    response_content = response_content.strip()
+        ontologies = ';'.join(
+            json.dumps(obj, ensure_ascii=False, separators=(',', ':'))
+            for obj in json_merge_slice
+        )
 
-    try:
-        data = json.loads(extract_json(response_content))
-        _ = Ontology.from_json(data)
-    except Exception as e:
-        # fallback 
-        print(f"Error extracting JSON: {e}")
-        print(f"Prompting model to fix JSON")
-        if isinstance(e, json.JSONDecodeError):
-            json_fix_response = completion(
-                model=model,
-                messages=[
-                    {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                    {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
-                ]
-            )
-        else:
-                json_fix_response = completion(
-                model=model,
-                messages=[
-                    {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                    {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=str(e))}         
-                ]
-            )
+        print("Waiting the LLM response to merge the ontologies...")
+        response = completion(
+            model=model,
+            messages=[
+                {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
+                {"role": "user",   "content": Prompt.MERGE_ONTOLOGY_PROMPT_ITA.format(ontologies=ontologies)}
+            ]
+        ) 
+        response_content = response.choices[0].message["content"]       
+        response_content = response_content.strip()
 
-        json_fix_response_content = json_fix_response.choices[0].message["content"]
         try:
-            data = json.loads(extract_json(json_fix_response_content))
+            data = json.loads(extract_json(response_content))
             _ = Ontology.from_json(data)
-            print(f"JSON fixed!")
         except Exception as e:
-            print(f"Failed to fix JSON: {e}")
-            return
+            # fallback 
+            print(f"Error extracting JSON: {e}")
+            print(f"Prompting model to fix JSON")
+            if isinstance(e, json.JSONDecodeError):
+                json_fix_response = completion(
+                    model=model,
+                    messages=[
+                        {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
+                    ]
+                )
+            else:
+                    json_fix_response = completion(
+                    model=model,
+                    messages=[
+                        {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                        {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=str(e))}         
+                    ]
+                )
+
+            json_fix_response_content = json_fix_response.choices[0].message["content"]
+            try:
+                data = json.loads(extract_json(json_fix_response_content))
+                _ = Ontology.from_json(data)
+                print(f"JSON fixed!")
+                new_json = data
+            except Exception as e:
+                print(f"Failed to fix JSON: {e}")
+                return
    
-    for ent in data.get("entities", []):
+    for ent in new_json.get("entities", []):
         ent["text_reference"] = ""
 
-    for rel in data.get("relations", []):
+    for rel in new_json.get("relations", []):
         rel["text_reference"] = ""
 
-    current_ontology_ident = json.dumps(data, indent=2, ensure_ascii=False)
+    current_ontology_ident = json.dumps(new_json, indent=2, ensure_ascii=False)
     if current_ontology_ident is not None:
         print(f"Ontology '{text_filename}' created successfully!")
         ontology_file_name = f"Ontologies/{category}/{text_filename}_Ontology.json"
