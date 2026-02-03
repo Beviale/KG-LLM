@@ -156,6 +156,9 @@ def preprocess_pdf(pdf_dict):
 
 
 def process_response_ontology(text_filename, category, index_chunk, response, model):
+    """
+    Process the LLM response for the creation of the ontology. 
+    """
     response_content = response.choices[0].message["content"]       
     response_content = response_content.strip()
 
@@ -195,7 +198,7 @@ def process_response_ontology(text_filename, category, index_chunk, response, mo
     
     current_ontology_ident = json.dumps(data, indent=2, ensure_ascii=False)
     if current_ontology_ident is not None:
-        print(f"Ontology '{text_filename}' created successfully!")
+        print(f"Ontology '{text_filename}' with index chunk:'{index_chunk}' created successfully!")
         ontology_file_name = f"Ontologies/{category}/{text_filename}_{index_chunk}_Ontology.json"
         # Save the ontology to the disk as a json file.
         with open(ontology_file_name, "w", encoding="utf-8") as file:
@@ -203,6 +206,10 @@ def process_response_ontology(text_filename, category, index_chunk, response, mo
 
 
 def split_text_chunks(text: str, max_characters=1000):
+    """
+    Split the given text into chunks considering the given maximum number of characters. 
+    It returns the list of text chunks. 
+    """
     nlp = spacy.load("it_core_news_sm")
     doc = nlp(text)
     sentences = [sent.text.strip() for sent in doc.sents]
@@ -240,6 +247,9 @@ def split_text_chunks(text: str, max_characters=1000):
         
 
 def merge_ontologies_chunk(category, text_filename, model=None):
+    """
+    Merge the ontologies created for each text chunk of the given .txt file into a single ontology file.
+    """
     if model is None:
         model = "openai/gpt-5-mini"
     index = 0
@@ -256,8 +266,8 @@ def merge_ontologies_chunk(category, text_filename, model=None):
         index += 1
     
     new_json = None
-    for i in range(0, len(json_merge), 4):
-        json_merge_slice = json_merge[i:i+4]
+    for i in range(0, len(json_merge), 3):
+        json_merge_slice = json_merge[i:i+3]
         if new_json is not None:
             json_merge_slice.append(new_json)
 
@@ -280,6 +290,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
         try:
             data = json.loads(extract_json(response_content))
             _ = Ontology.from_json(data)
+            new_json = data
         except Exception as e:
             # fallback 
             print(f"Error extracting JSON: {e}")
@@ -334,6 +345,9 @@ def merge_ontologies_chunk(category, text_filename, model=None):
 
 
 def generate_ontology(category, model=None, dataItems=None):
+    """
+    Generate the ontology for each file of the given category (e.g. 'DiscplinaDiUtilizzo)
+    """
     if dataItems is not None:
         all_text_paths = [item.text_path for item in dataItems]
     else:
@@ -362,6 +376,7 @@ def generate_ontology(category, model=None, dataItems=None):
         index_chunk = 0
 
         for chunk in chunks:
+            print(f"Processing chunk '{index_chunk + 1}'/'{len(chunks)}'.")
             textsToProcess = []
             textsToAdd = []
             textsToProcess.append(chunk)
@@ -399,9 +414,57 @@ def generate_ontology(category, model=None, dataItems=None):
 
 
 
+def process_reponse_data(text_filename, category, index_chunk, response, model):
+    response_content = response.choices[0].message["content"]
+    response_content = response_content.strip()
+    response_content = unicodedata.normalize('NFD',   response_content)
+    response_content =  ''.join(ch for ch in response_content if unicodedata.category(ch) != 'Mn')
+
+    try:
+        data = json.loads(extract_json(response_content))
+    except Exception as e:
+        # fallback 
+        print(f"Error extracting JSON: {e}")
+        print(f"Prompting model to fix JSON")
+        json_fix_response = completion(
+                model=model,
+                messages=[
+                    {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
+                    {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
+                ]
+            )
+            
+        json_fix_response_content = json_fix_response.choices[0].message["content"]
+        json_fix_response_content = json_fix_response_content.strip()
+        json_fix_response_content = unicodedata.normalize('NFD',  json_fix_response_content)
+        json_fix_response_content =  ''.join(ch for ch in  json_fix_response_content if unicodedata.category(ch) != 'Mn')
+
+        try:
+            data = json.loads(extract_json(json_fix_response_content))
+            print(f"JSON fixed!")
+        except Exception as e:
+            print(f"Failed to fix JSON: {e}")
+            return
+
+
+    if "entities" not in data or "relations" not in data:
+        print(f"Invalid data format. Missing entities or relations")
+        return
+    
+    current_data_ident = json.dumps(data, indent=2, ensure_ascii=False)
+    if current_data_ident is not None:
+        print(f"Data '{text_filename} with index chunk:'{index_chunk}' created successfully!")
+        data_file_name = f"JsonData/{category}/{text_filename}_{index_chunk}_Data.json"
+        # Save the data to the disk as a json file.
+        with open(data_file_name, "w", encoding="utf-8") as file:
+            file.write(data_file_name)
+    
+
+
 def generate_data(category: str, model=None, dataItems=None):
-    client = FalkorDB(**client_kwargs)
-    graph = client.select_graph(category)
+    """
+    Generate the Knowledge Graph for the given category.
+    """
 
     if dataItems is not None:
         all_text_paths = [item.text_path for item in dataItems]
@@ -412,7 +475,11 @@ def generate_data(category: str, model=None, dataItems=None):
     if model is None:
         model = "openai/gpt-5-mini"
 
+    count = 1
     for text_path in all_text_paths:
+        print(f"File path: '{text_path}', current state: {count}/{len( all_text_paths)}.")
+        count = count + 1
+
         text_filename = text_path.name
         text_filename = text_filename.removesuffix(".txt")
         ontology_file = f"Ontologies/{category}/{text_filename}_Ontology.json"
@@ -427,68 +494,136 @@ def generate_data(category: str, model=None, dataItems=None):
 
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
-
-        print("File path: ", text_path)
-        print("Waiting the LLM response...")
         
+        chunks = split_text_chunks(text)
+        index_chunk = 0
+        for chunk in chunks:
+            print(f"Processing chunk '{index_chunk + 1}'/'{len(chunks)}'.")
+            textsToProcess = []
+            textsToAdd = []
+            textsToProcess.append(chunk)
+
+            while(True):
+                for text in textsToProcess: 
+                    print("Waiting the LLM response...")
+                    try:
+                        response = completion(
+                            model=model,
+                            messages=[
+                                {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
+                                {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=ontology, text=chunk)}
+                            ]
+                        )
+                        process_reponse_data(text_filename, category, index_chunk, response, model)
+                    except ContextWindowExceededError as e:
+                        mid = len(text) // 2
+                        print(f"Halving the text size from '{len(text)}' to '{mid}'")
+                        part1 = text[:mid]
+                        part2 = text[mid:]
+                        textsToAdd.append(part1)
+                        textsToAdd.append(part2)
+                        continue
+                    
+                if textsToAdd:
+                    textsToProcess.clear()
+                    for textToAdd in textsToAdd:
+                        textsToProcess.append(textToAdd)
+                    textsToAdd.clear()
+                else:
+                    break
+            index_chunk = index_chunk + 1
+        merge_data_chunks_and_upload(category, text_filename, ontology)
+
+
+                    
+
+
+               
+       
+
+
+def merge_data_chunks_and_upload(category, text_filename, ontology, model=None):
+    client = FalkorDB(**client_kwargs)
+    graph = client.select_graph(category)
+    if model is None:
+        model = "openai/gpt-5-mini"
+    index = 0
+    json_merge = []
+    while(True):
+        file_path = Path(f"JsonData/{category}/{text_filename}_{index}_Ontology.json")
+        if file_path.exists()==False:
+            break
+        
+        with file_path.open("r", encoding="utf-8") as f:
+            json_item = json.load(f)
+
+        json_merge.append(json_item)
+        index += 1
+    
+    new_json = None
+    for i in range(0, len(json_merge), 3):
+        json_merge_slice = json_merge[i:i+3]
+        if new_json is not None:
+            json_merge_slice.append(new_json)
+
+        datas = ';'.join(
+            json.dumps(obj, ensure_ascii=False, separators=(',', ':'))
+            for obj in json_merge_slice
+        )
+
+        print("Waiting the LLM response to merge the data...")
         response = completion(
             model=model,
             messages=[
-                {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-                {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=ontology, text=text)}
+                {"role": "system", "content": Prompt.MERGE_DATA_SYSTEM_ITA},
+                {"role": "user",   "content": Prompt.MERGE_DATA_PROMPT_ITA.format(datas=datas)}
             ]
-        )
-        response_content = response.choices[0].message["content"]
+        ) 
+        response_content = response.choices[0].message["content"]       
         response_content = response_content.strip()
-        response_content = unicodedata.normalize('NFD',   response_content)
-        response_content =  ''.join(ch for ch in response_content if unicodedata.category(ch) != 'Mn')
 
         try:
             data = json.loads(extract_json(response_content))
+            new_json = data
         except Exception as e:
             # fallback 
             print(f"Error extracting JSON: {e}")
             print(f"Prompting model to fix JSON")
             json_fix_response = completion(
-                    model=model,
-                    messages=[
-                        {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
-                    ]
-                )
-            
+                model=model,
+                messages=[
+                    {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM},
+                    {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
+                ]
+            )
             json_fix_response_content = json_fix_response.choices[0].message["content"]
-            json_fix_response_content = json_fix_response_content.strip()
-            json_fix_response_content = unicodedata.normalize('NFD',  json_fix_response_content)
-            json_fix_response_content =  ''.join(ch for ch in  json_fix_response_content if unicodedata.category(ch) != 'Mn')
-
             try:
                 data = json.loads(extract_json(json_fix_response_content))
                 print(f"JSON fixed!")
+                new_json = data
             except Exception as e:
                 print(f"Failed to fix JSON: {e}")
-                continue
-
-
-        if "entities" not in data or "relations" not in data:
-            print(f"Invalid data format. Missing entities or relations")
+                return
+            
+    for entity in data["entities"]:
+        try:
+            extract_data_step.create_entity(graph, entity, ontology)
+        except Exception as e:
+            print(f"Error creating entity: {e}")
             continue
-               
-        for entity in data["entities"]:
-            try:
-                extract_data_step.create_entity(graph, entity, ontology)
-            except Exception as e:
-                print(f"Error creating entity: {e}")
-                continue
-        print("Entities created correctly!")
+    print("Entities created correctly!")
 
-        for relation in data["relations"]:
-            try:
-                extract_data_step.create_relation(graph, relation, ontology)
-            except Exception as e:
-                print(f"Error creating relation: {e}")
-                continue
-        print("Relations created correctly!")
+    for relation in data["relations"]:
+        try:
+            extract_data_step.create_relation(graph, relation, ontology)
+        except Exception as e:
+            print(f"Error creating relation: {e}")
+            continue
+    print("Relations created correctly!")
+
+
+
+
 
 
 def create_dir():
@@ -497,6 +632,12 @@ def create_dir():
     os.makedirs("Ontologies/Normativa",  exist_ok=True)    
     os.makedirs("Ontologies/FAQ",  exist_ok=True)    
     os.makedirs("Ontologies/GuidePratiche",  exist_ok=True) 
+
+    os.makedirs("JsonData",  exist_ok=True)    
+    os.makedirs("JsonData/DisciplinaDiUtilizzo",  exist_ok=True)    
+    os.makedirs("JsonData/Normativa",  exist_ok=True)    
+    os.makedirs("JsonData/FAQ",  exist_ok=True)    
+    os.makedirs("JsonData/GuidePratiche",  exist_ok=True) 
 
     os.makedirs("InputPDFtoText",  exist_ok=True)   
     os.makedirs("InputPDFtoText/DisciplinaDiUtilizzo",  exist_ok=True)    

@@ -1,19 +1,19 @@
 MERGE_ONTOLOGY_SYSTEM_ITA = """
 ## 1. Panoramica\n"
-Sei un algoritmo di alto livello progettato per mergiare ontologie che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
+Sei un algoritmo di alto livello progettato per unire (mergiare) ontologie che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
 Cattura quante più informazioni possibili su entità, relazioni e attributi dal testo.
 - Le **entità** rappresentano entità e concetti. Devono avere almeno un attributo unico.
 - Le **relazioni** rappresentano collegamenti tra entità e concetti. 
 L'obiettivo è ottenere semplicità e chiarezza nel grafo della conoscenza, rendendolo accessibile a un vasto pubblico.  
 Utilizza il campo 'attributes' per catturare informazioni aggiuntive sulle entità e sulle relazioni.  
-Aggiungi tutti gli attributi necessari per descrivere completamente entità e relazioni presenti nel testo.  
+Aggiungi tutti gli attributi necessari per descrivere completamente entità e relazioni.  
 Preferisci convertire le relazioni in entità quando possiedono attributi.
 Crea un'ontologia molto concisa e chiara. Evita complessità e ambiguità non necessarie.  
 Le etichette (label) di entità e relazioni non possono iniziare con numeri o caratteri speciali.
 
 ## 2. Etichettare le entità
 -  **Coerenza**: Usa tipi disponibili e basilari per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una persona, etichettala sempre come 'Persona'. Evita termini più specifici come 'Matematico' o 'Scienziato'.
--  **ID delle entità**: Non considerare numeri interi come ID. Gli ID devono essere nomi o identificatori human-readable trovati nel testo.
+-  **ID delle entità**: Non considerare numeri interi come ID. Gli ID devono essere nomi o identificatori human-readable.
 -  Le **relazioni** rappresentano connessioni tra entità o concetti. Usa tipi di relazione coerenti e generali nella costruzione dei grafi della conoscenza. Ad esempio, invece di usare un tipo specifico e temporaneo come 'DIVENTA_PROFESSORE', usa un tipo più generale e atemporale come 'PROFESSORE'. Assicurati di usare tipi di relazione generali e atemporali!
 
 ## 3. Conformità rigorosa
@@ -161,9 +161,7 @@ Eccoti un esempio di output che potresti restituirmi:
 ```
 {"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"required":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}]}
 ```
-ATTENZIONE: Stai attento alla seguente sequenza di parentesi "}]}},"...prima di scriverla, sicuro sia corretta? Sicuro che non darà errore di formattazione JSON? Il JSON non deve avere errori di formattazione! 
-
-L'esempio fornito mostra un formato possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente a partire dal testo fornito.
+L'esempio fornito mostra un formato possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente unendo le ontologie fornite.
 """
 
 CREATE_ONTOLOGY_SYSTEM_ITA = """
@@ -465,9 +463,9 @@ Do not use the example Movie context to assume the ontology. The ontology should
 """
 
 MERGE_ONTOLOGY_PROMPT_ITA="""
-Date le seguente ontologie separate dal simbolo ';', crea l'ontologia che rappresenta il merge di essi.
+Date le seguenti ontologie separate dal simbolo ';', uniscile in un'unica ontologia.
 Estrai il maggior numero possibile di entità e relazioni per descrivere completamente i dati.
-Estrai il maggior numero possibile di attributi per descrivere pienamente le entità e le relazioni nel testo.
+Estrai il maggior numero possibile di attributi per descrivere pienamente le entità e le relazioni.
 Gli attributi devono essere estratti come entità o relazioni quando possibile. Ad esempio, quando si descrive un'entità 'Film', l'attributo 'regista' può essere estratto come un'entità 'Persona' e collegato all'entità 'Film' tramite una relazione etichettata 'DIRETTO_DA'.
 Allo stesso modo, quando si descrive un'entità 'Film', è possibile estrarre attributi come titolo, anno di uscita, genere e altro.
 Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una Persona ha 'INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non sarà possibile determinare da quale 'Film' provenga il 'Personaggio'.
@@ -475,6 +473,7 @@ Non creare relazioni senza le relative entità.
 Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare una relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
 Non utilizzare l'esempio con 'Film' per assumere l'ontologia. L'ontologia deve essere creata esclusivamente in base alla lista di ontologie fornite.
 Non creare entità senza un attributo unico. Ogni entità deve avere almeno un attributo unico.
+Non creare entità e relazioni duplicate. Se ci sono delle entità o delle relazioni semanticamente molto simili provvedi ad unirli.
 
 Lista di ontologie separate dal simbolo ';':
 {ontologies}
@@ -604,15 +603,18 @@ Ontology:
 {ontology}
 """
 
-EXTRACT_DATA_SYSTEM_ITA = """
-Sei un assistente di alto livello con l'obiettivo di estrarre entità e relazioni da un testo per un grafo della conoscenza (Knowledge Graph), utilizzando l'ontologia fornita.
-Usa solo le entità, le relazioni e gli attributi presenti nell'ontologia fornita, tuttavia, in mancanza di dati espliciti, puoi inventare dei placeholder per rappresentare la struttura dell'ontologia anteponendo ai valori inventati il prefisso 'ESEMPIO'.
+MERGE_DATA_SYSTEM_ITA="""
+Sei un assistente di alto livello con l'obiettivo di unire (mergiare) più file JSON contenenti entità e relazioni estratti da un testo per realizzare un grafo della conoscenza (Knowledge Graph).
+Usa solo le entità, le relazioni e gli attributi presenti nei file JSON forniti.
+Non inventare dati. Usa solo i dati presenti nel file JSON. 
 Mantieni la coerenza delle entità: quando estrai entità, è fondamentale garantire la coerenza. Se un'entità, come 'John Doe', viene menzionata più volte nel testo ma con nomi o pronomi diversi (ad esempio 'Joe', 'lui'), usa sempre l'identificatore più completo per quell'entità all'interno del grafo della conoscenza. In questo esempio, usa 'John Doe' come ID dell'entità. Ricorda che il grafo della conoscenza deve essere coerente e facilmente comprensibile, quindi mantenere la coerenza nei riferimenti alle entità è cruciale.
-Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente con l'ontologia e il contesto forniti, per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
+Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente con il contesto fornito, per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
 Non includere spiegazioni o scuse nelle tue risposte.
 Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
 La tua risposta deve essere in formato JSON e deve seguire lo schema fornito di seguito.
 Assicurati che il JSON prodotto sia restituito inline e senza spazi, così da ridurre il numero di token in output.
+Assicurati che il JSON prodotto contenga, per ogni entità o relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'text_reference' all'interno del file JSON. 
+Evita entità o relazioni duplicate. Se ci sono più entità o relazioni semanticamente molto simili provvedi ad unirli.
 
 Schema:
 ```json
@@ -700,7 +702,108 @@ Schema:
 ```
 
 Esempio di output:
-```{"entities":[{"label":"Person","attributes":{"name":"John Doe","age":30}},{"label":"Movie","attributes":{"title":"Inception","releaseYear":2010}}],"relations":[{"label":"ACTED_IN","source":{"label":"Person","attributes":{"name":"JohnDoe"}},"target":{"label":"Movie","attributes":{"title":"Inception"}},"attributes":{"role":"Cobb"}}]}```
+```{"entities":[{"label":"Person","attributes":{"name":"John Doe","age":30,"text_reference":"John Doe, a 30-year-old software engineer, has recently relocated to a new city to pursue a promising career opportunity. Known for his analytical mindset and calm approach to problem-solving, he quickly adapted to his new work environment."}},{"label":"Movie","attributes":{"title":"Inception","releaseYear":2010,"text_reference":"Inception is a 2010 science-fiction thriller written and directed by Christopher Nolan"}}],"relations":[{"label":"ACTED_IN","source":{"label":"Person","attributes":{"name":"JohnDoe"}},"target":{"label":"Movie","attributes":{"title":"Inception"}},"attributes":{"role":"Cobb", "text_reference":"John Doe, a versatile and highly regarded actor, earned widespread recognition for his performance in the 2010 film Inception. In the movie, he portrayed Dom Cobb, a complex and emotionally driven character tasked with navigating layered dream worlds"}}]}```
+"""
+
+EXTRACT_DATA_SYSTEM_ITA = """
+Sei un assistente di alto livello con l'obiettivo di estrarre entità e relazioni da un testo per un grafo della conoscenza (Knowledge Graph), utilizzando l'ontologia fornita.
+Usa solo le entità, le relazioni e gli attributi presenti nell'ontologia.
+Non inventare dati.
+Mantieni la coerenza delle entità: quando estrai entità, è fondamentale garantire la coerenza. Se un'entità, come 'John Doe', viene menzionata più volte nel testo ma con nomi o pronomi diversi (ad esempio 'Joe', 'lui'), usa sempre l'identificatore più completo per quell'entità all'interno del grafo della conoscenza. In questo esempio, usa 'John Doe' come ID dell'entità. Ricorda che il grafo della conoscenza deve essere coerente e facilmente comprensibile, quindi mantenere la coerenza nei riferimenti alle entità è cruciale.
+Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente con l'ontologia e il contesto forniti, per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
+Non includere spiegazioni o scuse nelle tue risposte.
+Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
+La tua risposta deve essere in formato JSON e deve seguire lo schema fornito di seguito.
+Assicurati che il JSON prodotto sia restituito inline e senza spazi, così da ridurre il numero di token in output.
+Assicurati che il JSON prodotto contenga, per ogni entità o relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'text_reference' all'interno del file JSON. 
+
+Schema:
+```json
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "Graph Schema",
+  "required": ["entities", "relations"],
+  "properties": {
+    "entities": {
+      "type": "array",
+      "title": "The entities Schema",
+      "items": {
+        "type": "object",
+        "title": "A Schema",
+        "required": ["label", "attributes"],
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "The label Schema",
+            "format": "titlecase"
+          },
+          "attributes": {
+            "type": "object",
+            "title": "The attributes Schema"
+          }
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "title": "The relations Schema",
+      "items": {
+        "type": "object",
+        "title": "A Schema",
+        "required": ["label", "source", "target"],
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "The label Schema",
+            "format": "uppercase"
+          },
+          "source": {
+            "type": "object",
+            "title": "The source Schema",
+            "required": ["label", "attributes"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "format": "titlecase",
+                "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
+              }
+            }
+          },
+          "target": {
+            "type": "object",
+            "title": "The target Schema",
+            "required": ["label", "attributes"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "format": "titlecase",
+                "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
+              }
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "title": "The attributes Schema"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Esempio di output:
+```{"entities":[{"label":"Person","attributes":{"name":"John Doe","age":30,"text_reference":"John Doe, a 30-year-old software engineer, has recently relocated to a new city to pursue a promising career opportunity. Known for his analytical mindset and calm approach to problem-solving, he quickly adapted to his new work environment."}},{"label":"Movie","attributes":{"title":"Inception","releaseYear":2010,"text_reference":"Inception is a 2010 science-fiction thriller written and directed by Christopher Nolan"}}],"relations":[{"label":"ACTED_IN","source":{"label":"Person","attributes":{"name":"JohnDoe"}},"target":{"label":"Movie","attributes":{"title":"Inception"}},"attributes":{"role":"Cobb", "text_reference":"John Doe, a versatile and highly regarded actor, earned widespread recognition for his performance in the 2010 film Inception. In the movie, he portrayed Dom Cobb, a complex and emotionally driven character tasked with navigating layered dream worlds"}}]}```
 """
 
 EXTRACT_DATA_SYSTEM = """
@@ -807,14 +910,38 @@ Ontology:
 #ONTOLOGY
 """
 
+MERGE_DATA_PROMPT_ITA = """
+Sei incaricato di unire le entità e le relazioni dalla lista di JSON fornita.
 
+**Formato di output:**
+- Fornisci i dati estratti come oggetto JSON con due chiavi: 'entities' e 'relations'.
+- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'text_reference' con la porzione di testo usata per la creazione dell'entità.
+- Relations: rappresentano le relazioni tra entità o concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'text_reference' con la porzione di testo usata per la creazione della relazione.
+
+**Linee guida:**
+- Estrai tutte le entità e le relazioni: cattura tutte le entità e tutte le relazioni menzionate nei file JSON.
+- Assegna ID quando richiesto: assegna ID testuali alle entità e alle relazioni come specificato.
+- Evita duplicati: assicurati che ogni entità e relazione sia unica; non includere duplicati.
+
+**Formattazione:**
+- Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
+- Usa virgolette doppie per tutti i valori stringa.
+- Correggi ed evita eventuali caratteri speciali non escapati.
+- Le date devono essere nel formato 'YYYY-MM-DD'.
+- Correggi eventuali problemi di spaziatura o formattazione se necessario.
+
+Precisione: sii conciso e preciso nell'estrazione.
+
+**Lista di JSON**:
+{datas}
+"""
 EXTRACT_DATA_PROMPT_ITA = """
 Sei incaricato di estrarre entità e relazioni dal testo riportato di seguito, utilizzando l'ontologia fornita.
 
 **Formato di output:**
 - Fornisci i dati estratti come oggetto JSON con due chiavi: 'entities' e 'relations'.
-- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'.
-- Relations: rappresentano le relazioni tra entità o concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.
+- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'text_reference' con la porzione di testo usata per la creazione dell'entità.
+- Relations: rappresentano le relazioni tra entità o concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'text_reference' con la porzione di testo usata per la creazione della relazione.
 
 **Linee guida:**
 - Estrai tutte le entità e le relazioni: cattura tutte le entità e tutte le relazioni menzionate nel testo.
