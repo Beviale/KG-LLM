@@ -265,6 +265,14 @@ def merge_ontologies_chunk(category, text_filename, model=None):
         json_merge.append(json_item)
         index += 1
     
+
+    if len(json_merge) <= 1:
+        file_path = Path(f"Ontologies/{category}/{text_filename}_0_Ontology.json")    
+        file_path_new = Path(f"Ontologies/{category}/{text_filename}_Ontology.json")    
+        if os.path.exists(file_path):
+            os.rename(file_path, file_path_new)
+        return
+
     new_json = None
     for i in range(0, len(json_merge), 3):
         json_merge_slice = json_merge[i:i+3]
@@ -370,6 +378,7 @@ def generate_ontology(category, model=None, dataItems=None):
         file = Path(f"Ontologies/{category}/{text_filename}_Ontology.json")
         if file.exists():
            print("This ontology already exists!")
+           continue
 
 
         chunks = split_text_chunks(text)
@@ -560,6 +569,13 @@ def merge_data_chunks_and_upload(category, text_filename, ontology, model=None):
         json_merge.append(json_item)
         index += 1
     
+    if len(json_merge) <= 1:
+        file_path = Path(f"JsonData/{category}/{text_filename}_0_Ontology.json")    
+        file_path_new = Path(f"JsonData/{category}/{text_filename}_Ontology.json")    
+        if os.path.exists(file_path):
+            os.rename(file_path, file_path_new)
+        return
+
     new_json = None
     for i in range(0, len(json_merge), 3):
         json_merge_slice = json_merge[i:i+3]
