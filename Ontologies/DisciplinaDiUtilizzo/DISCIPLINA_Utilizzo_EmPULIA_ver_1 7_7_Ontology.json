@@ -1,0 +1,402 @@
+{
+  "entities": [
+    {
+      "label": "Piattaforma",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Azienda",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sede",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EntePubblico",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteAderente",
+      "attributes": [
+        {
+          "name": "nomeEnte",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "NormaGiuridica",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Indirizzo",
+      "attributes": [
+        {
+          "name": "descrizione_indirizzo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SitoWeb",
+      "attributes": [
+        {
+          "name": "url",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Email",
+      "attributes": [
+        {
+          "name": "indirizzo_email",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraAccessoAtti",
+      "attributes": [
+        {
+          "name": "nomeProcedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "TrattamentoDeiDatiPersonali",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "base_giuridica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "luogo_trattamento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AutoritaJudiziaria",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AmministrazioniPubbliche",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Terzo",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RegistroDiSistema",
+      "attributes": [
+        {
+          "name": "descrizione_registro",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "GESTITA_DA",
+      "source": {
+        "label": "Piattaforma"
+      },
+      "target": {
+        "label": "Azienda"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "TITOLARE_DEI_DATI",
+      "source": {
+        "label": "Azienda"
+      },
+      "target": {
+        "label": "TrattamentoDeiDatiPersonali"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "TITOLARE_DEI_DATI",
+      "source": {
+        "label": "EntePubblico"
+      },
+      "target": {
+        "label": "TrattamentoDeiDatiPersonali"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RESPONSABILE_DEL_TRATTAMENTO",
+      "source": {
+        "label": "Azienda"
+      },
+      "target": {
+        "label": "TrattamentoDeiDatiPersonali"
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "LUOGO_DEL_TRATTAMENTO",
+      "source": {
+        "label": "TrattamentoDeiDatiPersonali"
+      },
+      "target": {
+        "label": "Indirizzo"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "COMUNICAZIONE_A_TERZI",
+      "source": {
+        "label": "TrattamentoDeiDatiPersonali"
+      },
+      "target": {
+        "label": "Terzo"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "COMUNICAZIONE_A_AUTORITA_JUDIZIARIA",
+      "source": {
+        "label": "TrattamentoDeiDatiPersonali"
+      },
+      "target": {
+        "label": "AutoritaJudiziaria"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "COMUNICAZIONE_A_AMMINISTRAZIONI",
+      "source": {
+        "label": "TrattamentoDeiDatiPersonali"
+      },
+      "target": {
+        "label": "AmministrazioniPubbliche"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ACCESSO_A_ATTI",
+      "source": {
+        "label": "ProceduraAccessoAtti"
+      },
+      "target": {
+        "label": "RegistroDiSistema"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ]
+}

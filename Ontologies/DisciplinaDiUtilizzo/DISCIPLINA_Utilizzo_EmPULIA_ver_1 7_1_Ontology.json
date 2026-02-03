@@ -1,0 +1,513 @@
+{
+  "entities": [
+    {
+      "label": "EnteAderente",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SoggettoAggregatore",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "regione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PiattaformaEmpulia",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RuoloRDA",
+      "attributes": [
+        {
+          "name": "nome_ruolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RuoloRDF",
+      "attributes": [
+        {
+          "name": "nome_ruolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Acquisto",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FabBisogno",
+      "attributes": [
+        {
+          "name": "codice_fabbisogno",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "identificativo_utente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CredenzialiAccesso",
+      "attributes": [
+        {
+          "name": "codice_accesso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome_utente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PEC",
+      "attributes": [
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FirmaDigitale",
+      "attributes": [
+        {
+          "name": "codice_certificatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "emittente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AlboOnlineFornitori",
+      "attributes": [
+        {
+          "name": "nome_albo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "regolamento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "HelpDesk",
+      "attributes": [
+        {
+          "name": "servizio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Normativa",
+      "attributes": [
+        {
+          "name": "riferimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RegolamentoRegionale",
+      "attributes": [
+        {
+          "name": "numero_regolamento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProceduraTelematicaEmpulia",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Regione",
+      "attributes": [
+        {
+          "name": "nome_regionale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ImpreseQualificate",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "NOMINATO_RDA",
+      "source": {
+        "label": "EnteAderente"
+      },
+      "target": {
+        "label": "RuoloRDA"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "NOMINATO_RDF",
+      "source": {
+        "label": "EnteAderente"
+      },
+      "target": {
+        "label": "RuoloRDF"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_PIATTAFORMA",
+      "source": {
+        "label": "RuoloRDA"
+      },
+      "target": {
+        "label": "PiattaformaEmpulia"
+      },
+      "attributes": [
+        {
+          "name": "scopo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GESTISCE_FABBISOGNI",
+      "source": {
+        "label": "RuoloRDF"
+      },
+      "target": {
+        "label": "FabBisogno"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GESTISCE_ACQUISTO",
+      "source": {
+        "label": "RuoloRDF"
+      },
+      "target": {
+        "label": "Acquisto"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GESTISCE_ALBO",
+      "source": {
+        "label": "SoggettoAggregatore"
+      },
+      "target": {
+        "label": "AlboOnlineFornitori"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_PEC",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "PEC"
+      },
+      "attributes": [
+        {
+          "name": "scopo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_FIRMA_DIGITALE",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "FirmaDigitale"
+      },
+      "attributes": [
+        {
+          "name": "scopo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ASSOCIATO_A_CREDENZIALI",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "CredenzialiAccesso"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "IDENTIFICA_IMPRESA",
+      "source": {
+        "label": "AlboOnlineFornitori"
+      },
+      "target": {
+        "label": "ImpreseQualificate"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "APPLICA_REGOLAMENTO",
+      "source": {
+        "label": "RegolamentoRegionale"
+      },
+      "target": {
+        "label": "AlboOnlineFornitori"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "COLLEGA_REGIONE",
+      "source": {
+        "label": "Regione"
+      },
+      "target": {
+        "label": "PiattaformaEmpulia"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "APPLICATO_DA_NORMATIVA",
+      "source": {
+        "label": "Normativa"
+      },
+      "target": {
+        "label": "ProceduraTelematicaEmpulia"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OFFRE_HELPDESK",
+      "source": {
+        "label": "SoggettoAggregatore"
+      },
+      "target": {
+        "label": "HelpDesk"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ASSOCIATO_A_ACQUISTO",
+      "source": {
+        "label": "Utente"
+      },
+      "target": {
+        "label": "Acquisto"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ]
+}

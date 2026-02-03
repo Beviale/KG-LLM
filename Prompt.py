@@ -327,7 +327,6 @@ Eccoti un esempio di output che potresti restituirmi:
 ```
 {"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"required":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}]}
 ```
-ATTENZIONE: Stai attento alla seguente sequenza di parentesi "}]}},"...prima di scriverla, sicuro sia corretta? Sicuro che non darà errore di formattazione JSON? Il JSON non deve avere errori di formattazione! 
 
 L'esempio fornito mostra un formato possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente a partire dal testo fornito.
 L'esempio fornito è interamente in inglese; tuttavia, l'ontologia, pur mantenendo una struttura in lingua inglese, dovrà essere compilata in italiano, poiché tutti i testi di riferimento sono redatti in italiano.

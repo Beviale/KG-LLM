@@ -1,0 +1,248 @@
+{
+  "entities": [
+    {
+      "label": "SoggettoAggregatoreRegionePuglia",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "regione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_entita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ServizioTelematico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_entita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PiattaformaTelematica",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_entita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OrganizzazioneInnovapugliaSpa",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_entita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OrganizzazioneRegionePuglia",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "regione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codice_entita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Persona",
+      "attributes": [
+        {
+          "name": "codice_entita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "affiliazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DisposizioneNormativa",
+      "attributes": [
+        {
+          "name": "codice_disciplina",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "versione_disciplina",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_entita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_entita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "APPROVATO_DA",
+      "source": {
+        "label": "Persona"
+      },
+      "target": {
+        "label": "DisposizioneNormativa"
+      },
+      "attributes": [
+        {
+          "name": "data_approvazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA",
+      "source": {
+        "label": "SoggettoAggregatoreRegionePuglia"
+      },
+      "target": {
+        "label": "ServizioTelematico"
+      }
+    },
+    {
+      "label": "CONTENUTA_NEL",
+      "source": {
+        "label": "DisposizioneNormativa"
+      },
+      "target": {
+        "label": "Articolo"
+      }
+    },
+    {
+      "label": "AMMINISTRATO_DI",
+      "source": {
+        "label": "Persona"
+      },
+      "target": {
+        "label": "OrganizzazioneInnovapugliaSpa"
+      },
+      "attributes": [
+        {
+          "name": "periodo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ]
+}

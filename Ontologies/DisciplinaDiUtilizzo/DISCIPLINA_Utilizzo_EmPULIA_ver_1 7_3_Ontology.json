@@ -1,0 +1,466 @@
+{
+  "entities": [
+    {
+      "label": "Persona",
+      "attributes": [
+        {
+          "name": "nomeCompleto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "partitaIva",
+          "type": "string",
+          "unique": true,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Albo",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Pec",
+      "attributes": [
+        {
+          "name": "indirizzoPEC",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FirmaDigitale",
+      "attributes": [
+        {
+          "name": "idFirma",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "EnteAccreditante",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AgenziaPerItaliaDigitale",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SistemaTelematico",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SoggettoAggregatore",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RegionePuglia",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Rda",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Rdf",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CategoriaMerceologica",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "NormaDiLegge",
+      "attributes": [
+        {
+          "name": "riferimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "VisuraCamerale",
+      "attributes": [
+        {
+          "name": "numeroVisura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Statuto",
+      "attributes": [
+        {
+          "name": "numeroStatuto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "nomeDocumento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Certificazione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "IstanzaIscrizione",
+      "attributes": [
+        {
+          "name": "idIstanza",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "dataPresentazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "PRESENTA_ISTANZA",
+      "source": {
+        "label": "Persona"
+      },
+      "target": {
+        "label": "IstanzaIscrizione"
+      },
+      "attributes": []
+    },
+    {
+      "label": "EFFETTIVA_ALBO",
+      "source": {
+        "label": "IstanzaIscrizione"
+      },
+      "target": {
+        "label": "Albo"
+      },
+      "attributes": [
+        {
+          "name": "dataEffettiva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FIRMA_DIGITALE_RILASCIATA_DA",
+      "source": {
+        "label": "FirmaDigitale"
+      },
+      "target": {
+        "label": "EnteAccreditante"
+      },
+      "attributes": [
+        {
+          "name": "dataEmissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_SISTEMA_TELEMATICO",
+      "source": {
+        "label": "SoggettoAggregatore"
+      },
+      "target": {
+        "label": "SistemaTelematico"
+      },
+      "attributes": [
+        {
+          "name": "servizio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "VERIFICA_CATEGORIE",
+      "source": {
+        "label": "SoggettoAggregatore"
+      },
+      "target": {
+        "label": "CategoriaMerceologica"
+      },
+      "attributes": []
+    },
+    {
+      "label": "INVITO_GARA",
+      "source": {
+        "label": "Rda"
+      },
+      "target": {
+        "label": "Persona"
+      },
+      "attributes": [
+        {
+          "name": "numeroInvitati",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SORTEGGIATO",
+      "source": {
+        "label": "SistemaTelematico"
+      },
+      "target": {
+        "label": "Persona"
+      },
+      "attributes": [
+        {
+          "name": "numeroSorteggio",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "VISURA_VERIFICATA",
+      "source": {
+        "label": "VisuraCamerale"
+      },
+      "target": {
+        "label": "Persona"
+      },
+      "attributes": [
+        {
+          "name": "verificata",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ALLEGATI_ISCRIZIONE",
+      "source": {
+        "label": "IstanzaIscrizione"
+      },
+      "target": {
+        "label": "Documento"
+      },
+      "attributes": []
+    },
+    {
+      "label": "RIFERIMENTO_NORMA",
+      "source": {
+        "label": "IstanzaIscrizione"
+      },
+      "target": {
+        "label": "NormaDiLegge"
+      },
+      "attributes": [
+        {
+          "name": "riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "VERIFICA_CERTIFICAZIONI",
+      "source": {
+        "label": "IstanzaIscrizione"
+      },
+      "target": {
+        "label": "Certificazione"
+      },
+      "attributes": []
+    },
+    {
+      "label": "UTILIZZA_EMPULIA",
+      "source": {
+        "label": "RegionePuglia"
+      },
+      "target": {
+        "label": "SistemaTelematico"
+      },
+      "attributes": [
+        {
+          "name": "scopo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERIMENTO_RDF",
+      "source": {
+        "label": "IstanzaIscrizione"
+      },
+      "target": {
+        "label": "Rdf"
+      },
+      "attributes": [
+        {
+          "name": "riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERIMENTO_STATUTO",
+      "source": {
+        "label": "IstanzaIscrizione"
+      },
+      "target": {
+        "label": "Statuto"
+      },
+      "attributes": [
+        {
+          "name": "riferimentoStatuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GESTISCE_PEC",
+      "source": {
+        "label": "AgenziaPerItaliaDigitale"
+      },
+      "target": {
+        "label": "Pec"
+      },
+      "attributes": [
+        {
+          "name": "scopo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "INVIA_PEC",
+      "source": {
+        "label": "Persona"
+      },
+      "target": {
+        "label": "Pec"
+      },
+      "attributes": [
+        {
+          "name": "via",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ]
+}

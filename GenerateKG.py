@@ -205,9 +205,9 @@ def process_response_ontology(text_filename, category, index_chunk, response, mo
             file.write(current_ontology_ident)
 
 
-def split_text_chunks(text: str, max_characters=1000):
+def split_text_chunks(text: str, max_characters=4000):
     """
-    Split the given text into chunks considering the given maximum number of characters. 
+    Split the given text into text chunks considering the given maximum number of characters. 
     It returns the list of text chunks. 
     """
     nlp = spacy.load("it_core_news_sm")
@@ -240,7 +240,7 @@ def split_text_chunks(text: str, max_characters=1000):
             sentences = sentences[len(chunk)-index:]
            
         else:
-            break
+            sentences = [] 
         chunks.append(" ".join(chunk))
         chunk.clear()
     return chunks
@@ -274,7 +274,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
         return
 
     new_json = None
-    for i in range(0, len(json_merge), 3):
+    for i in range(0, len(json_merge), 2):
         json_merge_slice = json_merge[i:i+3]
         if new_json is not None:
             json_merge_slice.append(new_json)
@@ -330,11 +330,33 @@ def merge_ontologies_chunk(category, text_filename, model=None):
                 print(f"Failed to fix JSON: {e}")
                 return
    
-    for ent in new_json.get("entities", []):
-        ent["text_reference"] = ""
+    new_attr = {
+        "name": "text_reference",
+        "type": "string",
+        "unique": False,
+        "required": True
+    }
 
-    for rel in new_json.get("relations", []):
-        rel["text_reference"] = ""
+    for entity in new_json.get("entities", []): 
+        attrs = entity.get("attributes")     
+        if attrs is None:
+            attrs = []
+            entity["attributes"] = attrs
+        
+        exists = any(a.get("name") == "text_reference" for a in attrs)
+        if not exists:
+            attrs.append(new_attr)
+
+    for relation in new_json.get("relations", []): 
+        attrs = relation.get("attributes")     
+        if attrs is None:
+            attrs = []
+            relation["attributes"] = attrs
+        
+        exists = any(a.get("name") == "text_reference" for a in attrs)
+        if not exists:
+            attrs.append(new_attr)
+
 
     current_ontology_ident = json.dumps(new_json, indent=2, ensure_ascii=False)
     if current_ontology_ident is not None:
@@ -363,11 +385,12 @@ def generate_ontology(category, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-mini"
+        model = "openai/gpt-5-nano"
 
     count = 1
     for text_path in all_text_paths:
         text_filename = text_path.name.removesuffix(".txt")
+        merge_ontologies_chunk(category, text_filename)
 
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
@@ -385,7 +408,7 @@ def generate_ontology(category, model=None, dataItems=None):
         index_chunk = 0
 
         for chunk in chunks:
-            print(f"Processing chunk '{index_chunk + 1}'/'{len(chunks)}'.")
+            print(f"Processing chunk {index_chunk + 1}/{len(chunks)}.")
             textsToProcess = []
             textsToAdd = []
             textsToProcess.append(chunk)
@@ -419,7 +442,7 @@ def generate_ontology(category, model=None, dataItems=None):
                 else:
                     break
             index_chunk = index_chunk + 1
-        merge_ontologies_chunk()
+        merge_ontologies_chunk(category, text_filename)
 
 
 
@@ -482,7 +505,7 @@ def generate_data(category: str, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-mini"
+        model = "openai/gpt-5-nano"
 
     count = 1
     for text_path in all_text_paths:
@@ -507,7 +530,7 @@ def generate_data(category: str, model=None, dataItems=None):
         chunks = split_text_chunks(text)
         index_chunk = 0
         for chunk in chunks:
-            print(f"Processing chunk '{index_chunk + 1}'/'{len(chunks)}'.")
+            print(f"Processing chunk {index_chunk + 1}/{len(chunks)}.")
             textsToProcess = []
             textsToAdd = []
             textsToProcess.append(chunk)

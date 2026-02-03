@@ -1,0 +1,365 @@
+{
+  "entities": [
+    {
+      "label": "EnteAderente",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codiceFiscale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sede",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SoggettoAggregatore",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "pec",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PiattaformaEmpulia",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RichiestaDiAcquisto",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "responsabileProcedimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "enteEmissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GestoreSistema",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "pec",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "UtenteRda",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ResponsabileFabbisogni",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ConvenzioneQuadro",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "enteStipulante",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "articoloDiRiferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SistemiDinamiciDiAcquisizione",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RegionePuglia",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "STIPULA",
+      "source": {
+        "label": "SoggettoAggregatore"
+      },
+      "target": {
+        "label": "ConvenzioneQuadro"
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EMETTE",
+      "source": {
+        "label": "EnteAderente"
+      },
+      "target": {
+        "label": "RichiestaDiAcquisto"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA",
+      "source": {
+        "label": "EnteAderente"
+      },
+      "target": {
+        "label": "PiattaformaEmpulia"
+      },
+      "attributes": [
+        {
+          "name": "canale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "REGISTRA",
+      "source": {
+        "label": "GestoreSistema"
+      },
+      "target": {
+        "label": "UtenteRda"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "REGISTRA",
+      "source": {
+        "label": "GestoreSistema"
+      },
+      "target": {
+        "label": "ResponsabileFabbisogni"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "TRANMETTE",
+      "source": {
+        "label": "GestoreSistema"
+      },
+      "target": {
+        "label": "UtenteRda"
+      },
+      "attributes": [
+        {
+          "name": "chiaviAccesso",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RIFERITA_A",
+      "source": {
+        "label": "RichiestaDiAcquisto"
+      },
+      "target": {
+        "label": "ConvenzioneQuadro"
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA",
+      "source": {
+        "label": "SistemiDinamiciDiAcquisizione"
+      },
+      "target": {
+        "label": "RichiestaDiAcquisto"
+      },
+      "attributes": [
+        {
+          "name": "descrizioneFunzionale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OPERANTE_NELLA_REGIONE",
+      "source": {
+        "label": "SoggettoAggregatore"
+      },
+      "target": {
+        "label": "RegionePuglia"
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ]
+}

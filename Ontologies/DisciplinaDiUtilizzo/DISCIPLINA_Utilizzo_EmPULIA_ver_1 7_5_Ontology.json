@@ -1,0 +1,451 @@
+{
+  "entities": [
+    {
+      "label": "Regione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SoggettoAggregatore",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "sito_web",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteAderente",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_ente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Piattaforma",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraTelematica",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ConvenzioneQuadro",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_convenzione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OrdineDiFornitura",
+      "attributes": [
+        {
+          "name": "numero_ordinativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "quantita",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "BeneServizio",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "categoria",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Questionario",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "periodo_riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Contatto",
+      "attributes": [
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "valore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Persona",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ManualeUtente",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "url_manuale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Fabbisogno",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "periodo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Organizzazione",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "STIPULA_CONVENZIONE_QUADRO",
+      "source": {
+        "label": "SoggettoAggregatore"
+      },
+      "target": {
+        "label": "ConvenzioneQuadro"
+      },
+      "attributes": [
+        {
+          "name": "oggetto_convenzione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_stipula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FORNISCE_PROCEDURE_TELEMATICHE",
+      "source": {
+        "label": "SoggettoAggregatore"
+      },
+      "target": {
+        "label": "ProceduraTelematica"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "USO_PROCEDURA_TELEMATICA",
+      "source": {
+        "label": "EnteAderente"
+      },
+      "target": {
+        "label": "ProceduraTelematica"
+      },
+      "attributes": [
+        {
+          "name": "utilizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RICOGNIZIONE_FABBISOGNI",
+      "source": {
+        "label": "ProceduraTelematica"
+      },
+      "target": {
+        "label": "Fabbisogno"
+      },
+      "attributes": [
+        {
+          "name": "tipo_fabbisogno",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ANALISI_FABBISOGNI",
+      "source": {
+        "label": "ProceduraTelematica"
+      },
+      "target": {
+        "label": "Fabbisogno"
+      },
+      "attributes": [
+        {
+          "name": "metodo_analisi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EMESSO_ORDINATIVO",
+      "source": {
+        "label": "Persona"
+      },
+      "target": {
+        "label": "OrdineDiFornitura"
+      },
+      "attributes": [
+        {
+          "name": "ruolo_emittente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ASSEGNAMENTO_QUESTIONARIO",
+      "source": {
+        "label": "Organizzazione"
+      },
+      "target": {
+        "label": "Questionario"
+      },
+      "attributes": [
+        {
+          "name": "scadenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "COMPILA_QUESTIONARIO",
+      "source": {
+        "label": "Persona"
+      },
+      "target": {
+        "label": "Questionario"
+      },
+      "attributes": [
+        {
+          "name": "stato_compilazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ORDINATIVO_ASSOCIATO_BENE",
+      "source": {
+        "label": "OrdineDiFornitura"
+      },
+      "target": {
+        "label": "BeneServizio"
+      },
+      "attributes": [
+        {
+          "name": "quantita_conferita",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RICEVE_BENE_DA_ENTE",
+      "source": {
+        "label": "EnteAderente"
+      },
+      "target": {
+        "label": "BeneServizio"
+      }
+    },
+    {
+      "label": "LOCALIZZATA_IN",
+      "source": {
+        "label": "Regione"
+      },
+      "target": {
+        "label": "Organizzazione"
+      }
+    },
+    {
+      "label": "DISPONIBILE_MANUALE",
+      "source": {
+        "label": "Piattaforma"
+      },
+      "target": {
+        "label": "ManualeUtente"
+      }
+    },
+    {
+      "label": "CONTATTO_ASSOCIATO_A_PERSONA",
+      "source": {
+        "label": "Persona"
+      },
+      "target": {
+        "label": "Contatto"
+      }
+    }
+  ]
+}
