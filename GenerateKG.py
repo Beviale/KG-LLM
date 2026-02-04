@@ -373,6 +373,24 @@ def merge_ontologies_chunk(category, text_filename, model=None):
             os.remove(file_path)
 
         
+def split_codice_appalti(file_path):
+    pattern = re.compile(r'^Art\.\s*\d+(-[\w]+)?\.\s*\(.*\)$', flags=re.UNICODE)
+    chunks = []
+    chunk = ""
+    with file_path.open('r', encoding='utf-8', errors='replace') as f:
+        for lineno, raw_line in enumerate(f, start=1):
+            line = raw_line.rstrip('\r\n')
+            line_nfc = unicodedata.normalize('NFC', line)
+            
+            if pattern.match(line_nfc):
+                chunks.append(chunk)
+                chunk = ""
+            chunk = chunk + "\n" + line_nfc
+        chunks.append(chunk)
+    return chunks
+
+
+
 
 
 
@@ -405,8 +423,13 @@ def generate_ontology(category, model=None, dataItems=None):
            print("This ontology already exists!")
            continue
 
+        chunks = []
+        if category == 'CodiceAppalti':
+            chunks = split_codice_appalti(text_path)
+        else:
+            chunks = split_text_chunks(text)
 
-        chunks = split_text_chunks(text)
+
         index_chunk = 0
 
         for chunk in chunks:
@@ -529,8 +552,13 @@ def generate_data(category: str, model=None, dataItems=None):
 
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
-        
-        chunks = split_text_chunks(text)
+
+        chunks = []
+        if category == 'CodiceAppalti':
+            chunks = split_codice_appalti(text)
+        else:
+            chunks = split_text_chunks(text)
+            
         index_chunk = 0
         for chunk in chunks:
             print(f"Processing chunk {index_chunk + 1}/{len(chunks)}.")
@@ -755,6 +783,7 @@ def main():
                 print("2. GuidePratiche")
                 print("3. Normativa")
                 print("4. FAQ")
+                print("5. CodiceAppalti")
                 choice_cat = int(input("For which category do you want to generate the data? "))
                 if choice_cat == 1:
                     generate_data("DisciplinaDiUtilizzo")
@@ -767,6 +796,10 @@ def main():
                     break
                 elif choice_cat == 4:
                     generate_data("FAQ")
+                    break
+                    break
+                elif choice_cat == 5:
+                    generate_data("CodiceAppalti")
                     break
                 else:
                     print("Invalid choice. Please try again")

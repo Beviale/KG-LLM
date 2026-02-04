@@ -1,12 +1,10 @@
 MERGE_ONTOLOGY_SYSTEM_ITA = """
 ## 1. Panoramica\n"
 Sei un algoritmo di alto livello progettato per unire (mergiare) ontologie che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
-Il dominio di applicazione è quello relativa alla Pubblica Amministrazione e al Codice degli appalti italiano.
-Cattura quante più informazioni possibili su entità, relazioni e attributi dal testo.
+Il dominio di applicazione è quello relativo alla Pubblica Amministrazione e al Codice degli appalti italiano.
 - Le **entità** rappresentano entità e concetti. Devono avere almeno un attributo unico.
 - Le **relazioni** rappresentano collegamenti tra entità e concetti. 
 L'obiettivo è ottenere semplicità e chiarezza nel grafo della conoscenza, rendendolo accessibile a un vasto pubblico.  
-Utilizza il campo 'attributes' per catturare informazioni aggiuntive sulle entità e sulle relazioni.  
 Aggiungi tutti gli attributi necessari per descrivere completamente entità e relazioni.  
 Preferisci convertire le relazioni in entità quando possiedono attributi.
 Crea un'ontologia molto concisa e chiara. Evita complessità e ambiguità non necessarie.  
@@ -24,11 +22,11 @@ Non rispondere a domande che richiedono qualcosa di diverso dalla creazione di u
 Non includere alcun testo diverso dall'ontologia.  
 Non creare più di una coppia entità-relazione per la stessa entità o relazione. Ad esempio: se esiste la relazione (:Movie)-\[:HAS]->(:Review), non crearne un'altra come (:Person)-\[:REVIEWED]->(:Movie). Preferisci sempre tipi di relazione generali e atemporali, con il maggior numero possibile di attributi.  
 Non creare entità senza un attributo unico. Ogni entità deve avere almeno un attributo unico.
-Non creare entità o relazione duplicate.
+Non creare entità o relazioni duplicate.
 
 ## 4. Formato
 L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
-Non restituire lo schema nella risposta; usalo solo ed come riferimento.  
+Non restituire lo schema nella risposta; usalo solo come riferimento.  
 Assicurati che il JSON sia restituito in linea e senza spazi, per ridurre il numero di token nel risultato.
 
 Schema:
@@ -196,7 +194,7 @@ Non creare entità senza un attributo unico. Ogni entità deve avere almeno un a
 
 ## 4. Formato
 L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
-Non restituire lo schema nella risposta; usalo solo ed come riferimento.  
+Non restituire lo schema nella risposta; usalo solo come riferimento.  
 Assicurati che il JSON sia restituito in linea e senza spazi, per ridurre il numero di token nel risultato.
 
 Schema:
@@ -466,21 +464,22 @@ Do not use the example Movie context to assume the ontology. The ontology should
 
 MERGE_ONTOLOGY_PROMPT_ITA="""
 Date le seguenti ontologie separate dal simbolo ';', uniscile in un'unica ontologia.
+Unisci le ontologie in un'unica ontologia eliminando entità o relazioni duplicate.
+Due entità sono da considerare equivalenti se hanno label o attributi simili.
+Due relazioni sono da considerare equivalenti se hanno label, attributi o sorgente/destinazione simili.
+Non inventare nuove entità né nuove relazioni non presenti nelle ontologie fornite.
 Estrai il maggior numero possibile di entità e relazioni per descrivere completamente i dati.
 Estrai il maggior numero possibile di attributi per descrivere pienamente le entità e le relazioni.
-Gli attributi devono essere estratti come entità o relazioni quando possibile. Ad esempio, quando si descrive un'entità 'Film', l'attributo 'regista' può essere estratto come un'entità 'Persona' e collegato all'entità 'Film' tramite una relazione etichettata 'DIRETTO_DA'.
-Allo stesso modo, quando si descrive un'entità 'Film', è possibile estrarre attributi come titolo, anno di uscita, genere e altro.
-Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una Persona ha 'INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non sarà possibile determinare da quale 'Film' provenga il 'Personaggio'.
 Non creare relazioni senza le relative entità.
 Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare una relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
-Non utilizzare l'esempio con 'Film' per assumere l'ontologia. L'ontologia deve essere creata esclusivamente in base alla lista di ontologie fornite.
-Non creare entità senza un attributo unico. Ogni entità deve avere almeno un attributo unico.
-Non creare entità e relazioni duplicate. Se ci sono delle entità o delle relazioni semanticamente molto simili provvedi ad unirli.
+L'ontologia deve essere creata esclusivamente in base alla lista di ontologie fornite.
+Non creare entità senza un attributo unico.
 
 Lista di ontologie separate dal simbolo ';':
 {ontologies}
 
 """
+
 CREATE_ONTOLOGY_PROMPT_ITA="""
 Dato il seguente testo, crea l'ontologia che rappresenta le entità e le relazioni che si possono estrarre da esso.
 Tieni a mente che dallo stesso testo in futuro dovranno essere estratti i dati conformi all'ontologia che stai per creare.
@@ -569,11 +568,10 @@ Raw text:
 
 FIX_ONTOLOGY_PROMPT_ITA ="""
 La seguente ontologia che hai generato precedentemente ha prodotto uno o più errori. Correggi gli errori segnalati e aggiungi eventuali informazioni mancanti all'interno dell'ontologia.
-Aggiungi eventuali entità, relazioni o attributi mancanti.
 Assicurati che tutte le relazioni abbiano 2 entità (origine e destinazione).
 Assicurati che tutte le etichette delle entità siano in Titlecase.
 Non permettere relazioni inverse duplicate: ad esempio, se esiste una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare un'altra relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
-I nomi delle relazioni devono essere atemporali.
+I nomi delle relazioni devono essere atemporali: ad esempio, invece di etichettare una relazione con 'DIVENTA_PROFESSORE' usa 'PROFESSORE'.
 Non permettere entità prive di almeno un attributo unico.
 
 Ontologia:
