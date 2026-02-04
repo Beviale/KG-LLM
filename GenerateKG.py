@@ -167,14 +167,15 @@ def process_response_ontology(text_filename, category, index_chunk, response, mo
         _ = Ontology.from_json(data)
     except Exception as e:
         # fallback 
-        print(f"Error extracting JSON: {e}")
+        print(f"Error extracting JSON. TypeError: '{type(e)}', error: '{e}'")
+        error = f"TypeError: '{type(e)}', error: '{e}'"
         print(f"Prompting model to fix JSON")
         if isinstance(e, json.JSONDecodeError):
             json_fix_response = completion(
                 model=model,
                 messages=[
                     {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                    {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
+                    {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=error, json=response_content)}         
                 ]
             )
         else:
@@ -182,7 +183,7 @@ def process_response_ontology(text_filename, category, index_chunk, response, mo
                 model=model,
                 messages=[
                     {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                    {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=str(e))}         
+                    {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=error)}         
                 ]
             )
 
@@ -192,7 +193,7 @@ def process_response_ontology(text_filename, category, index_chunk, response, mo
             _ = Ontology.from_json(data)
             print(f"JSON fixed!")
         except Exception as e:
-            print(f"Failed to fix JSON: {e}")
+            print(f"Failed to fix JSON. TypeError: '{type(e)}', error: '{e}'")
             return
 
     
@@ -251,7 +252,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
     Merge the ontologies created for each text chunk of the given .txt file into a single ontology file.
     """
     if model is None:
-        model = "openai/gpt-5-mini"
+        model = "openai/gpt-5-nano"
     index = 0
     json_merge = []
     while(True):
@@ -275,7 +276,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
 
     new_json = None
     for i in range(0, len(json_merge), 2):
-        json_merge_slice = json_merge[i:i+3]
+        json_merge_slice = json_merge[i:i+2]
         if new_json is not None:
             json_merge_slice.append(new_json)
 
@@ -301,14 +302,15 @@ def merge_ontologies_chunk(category, text_filename, model=None):
             new_json = data
         except Exception as e:
             # fallback 
-            print(f"Error extracting JSON: {e}")
+            print(f"Error extracting JSON. TypeError: '{type(e)}', error: '{e}'")
+            error = f"TypeError: '{type(e)}', error: '{e}'"
             print(f"Prompting model to fix JSON")
             if isinstance(e, json.JSONDecodeError):
                 json_fix_response = completion(
                     model=model,
                     messages=[
                         {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
+                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=error, json=response_content)}         
                     ]
                 )
             else:
@@ -316,7 +318,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
                     model=model,
                     messages=[
                         {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                        {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=str(e))}         
+                        {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=error)}         
                     ]
                 )
 
@@ -327,7 +329,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
                 print(f"JSON fixed!")
                 new_json = data
             except Exception as e:
-                print(f"Failed to fix JSON: {e}")
+                print(f"Failed to fix JSON. TypeError: '{type(e)}', error: '{e}'")
                 return
    
     new_attr = {
@@ -376,7 +378,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
 
 def generate_ontology(category, model=None, dataItems=None):
     """
-    Generate the ontology for each file of the given category (e.g. 'DiscplinaDiUtilizzo)
+    Generate the ontology for each file of the given category (e.g. 'DiscplinaDiUtilizzo')
     """
     if dataItems is not None:
         all_text_paths = [item.text_path for item in dataItems]
@@ -456,13 +458,14 @@ def process_reponse_data(text_filename, category, index_chunk, response, model):
         data = json.loads(extract_json(response_content))
     except Exception as e:
         # fallback 
-        print(f"Error extracting JSON: {e}")
+        print(f"Error extracting JSON. TypeError: '{type(e)}', error: '{e}'")
+        error = f"TypeError: '{type(e)}', error: '{e}'"
         print(f"Prompting model to fix JSON")
         json_fix_response = completion(
                 model=model,
                 messages=[
                     {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-                    {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
+                    {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=error, json=response_content)}         
                 ]
             )
             
@@ -475,7 +478,7 @@ def process_reponse_data(text_filename, category, index_chunk, response, model):
             data = json.loads(extract_json(json_fix_response_content))
             print(f"JSON fixed!")
         except Exception as e:
-            print(f"Failed to fix JSON: {e}")
+            print(f"Failed to fix JSON. TypeError: '{type(e)}', error: '{e}'")
             return
 
 
@@ -578,7 +581,7 @@ def merge_data_chunks_and_upload(category, text_filename, ontology, model=None):
     client = FalkorDB(**client_kwargs)
     graph = client.select_graph(category)
     if model is None:
-        model = "openai/gpt-5-mini"
+        model = "openai/gpt-5-nano"
     index = 0
     json_merge = []
     while(True):
@@ -626,13 +629,14 @@ def merge_data_chunks_and_upload(category, text_filename, ontology, model=None):
             new_json = data
         except Exception as e:
             # fallback 
-            print(f"Error extracting JSON: {e}")
+            print(f"Error extracting JSON. TypeError: '{type(e)}', error: '{e}'")
+            error = f"TypeError: '{type(e)}', error: '{e}'"
             print(f"Prompting model to fix JSON")
             json_fix_response = completion(
                 model=model,
                 messages=[
                     {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM},
-                    {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=str(e), json=response_content)}         
+                    {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ITA.format(error=error, json=response_content)}         
                 ]
             )
             json_fix_response_content = json_fix_response.choices[0].message["content"]
@@ -641,7 +645,7 @@ def merge_data_chunks_and_upload(category, text_filename, ontology, model=None):
                 print(f"JSON fixed!")
                 new_json = data
             except Exception as e:
-                print(f"Failed to fix JSON: {e}")
+                print(f"Failed to fix JSON. TypeError: '{type(e)}', error: '{e}'")
                 return
             
     for entity in data["entities"]:
@@ -671,18 +675,23 @@ def create_dir():
     os.makedirs("Ontologies/Normativa",  exist_ok=True)    
     os.makedirs("Ontologies/FAQ",  exist_ok=True)    
     os.makedirs("Ontologies/GuidePratiche",  exist_ok=True) 
+    os.makedirs("Ontologies/CodiceAppalti",  exist_ok=True) 
+
 
     os.makedirs("JsonData",  exist_ok=True)    
     os.makedirs("JsonData/DisciplinaDiUtilizzo",  exist_ok=True)    
     os.makedirs("JsonData/Normativa",  exist_ok=True)    
     os.makedirs("JsonData/FAQ",  exist_ok=True)    
     os.makedirs("JsonData/GuidePratiche",  exist_ok=True) 
+    os.makedirs("JsonData/CodiceAppalti",  exist_ok=True) 
 
     os.makedirs("InputPDFtoText",  exist_ok=True)   
     os.makedirs("InputPDFtoText/DisciplinaDiUtilizzo",  exist_ok=True)    
     os.makedirs("InputPDFtoText/Normativa",  exist_ok=True)    
     os.makedirs("InputPDFtoText/FAQ",  exist_ok=True)    
     os.makedirs("InputPDFtoText/GuidePratiche",  exist_ok=True) 
+    os.makedirs("InputPDFtoText/CodiceAppalti",  exist_ok=True) 
+
 
 
 
@@ -721,6 +730,7 @@ def main():
                 print("2. GuidePratiche")
                 print("3. Normativa")
                 print("4. FAQ")
+                print("5. CodiceAppalti")
                 choice_cat = int(input("For which category do you want to generate the ontology? "))
                 if choice_cat == 1:
                     generate_ontology("DisciplinaDiUtilizzo")
@@ -733,6 +743,9 @@ def main():
                     break
                 elif choice_cat == 4:
                     generate_ontology("FAQ")
+                    break
+                elif choice_cat == 5:
+                    generate_ontology("CodiceAppalti")
                     break
                 else:
                     print("Invalid choice. Please try again")
