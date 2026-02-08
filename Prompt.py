@@ -20,7 +20,6 @@ Rispetta rigorosamente le regole.
 Non includere spiegazioni o scuse.  
 Non rispondere a domande che richiedono qualcosa di diverso dalla creazione di un'ontologia.  
 Non includere alcun testo diverso dall'ontologia.  
-Non creare più di una coppia entità-relazione per la stessa entità o relazione. Ad esempio: se esiste la relazione (:Movie)-\[:HAS]->(:Review), non crearne un'altra come (:Person)-\[:REVIEWED]->(:Movie). Preferisci sempre tipi di relazione generali e atemporali, con il maggior numero possibile di attributi.  
 Non creare entità senza un attributo unico. Ogni entità deve avere almeno un attributo unico.
 Non creare entità o relazioni duplicate.
 
@@ -160,6 +159,7 @@ Eccoti un esempio di output che potresti restituirmi:
 ```
 {"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"required":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}]}
 ```
+
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente unendo le ontologie fornite.
 L'esempio fornito è interamente in inglese; tuttavia, l'ontologia, pur mantenendo una struttura in lingua inglese, dovrà essere compilata in italiano.
 """
@@ -465,8 +465,8 @@ Do not use the example Movie context to assume the ontology. The ontology should
 MERGE_ONTOLOGY_PROMPT_ITA="""
 Date le seguenti ontologie separate dal simbolo ';', uniscile in un'unica ontologia.
 Unisci le ontologie in un'unica ontologia eliminando entità o relazioni duplicate.
-Due entità sono da considerare equivalenti se hanno label o attributi simili.
-Due relazioni sono da considerare equivalenti se hanno label, attributi o sorgente/destinazione simili.
+Due entità sono da considerare equivalenti se hanno label e attributi simili.
+Due relazioni sono da considerare equivalenti se hanno label, attributi e sorgente/destinazione simili.
 Non inventare nuove entità né nuove relazioni non presenti nelle ontologie fornite.
 Estrai il maggior numero possibile di entità e relazioni per descrivere completamente i dati.
 Estrai il maggior numero possibile di attributi per descrivere pienamente le entità e le relazioni.
