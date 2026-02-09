@@ -367,12 +367,12 @@ def merge_ontologies_chunk(category, text_filename, model=None):
             file.write(current_ontology_ident)
 
     for i in range(index):
-        file_path = Path(f"Ontologies/{category}/{text_filename}_{index}_Ontology.json")    
+        file_path = Path(f"Ontologies/{category}/{text_filename}_{i}_Ontology.json")    
         if os.path.exists(file_path):
             os.remove(file_path)
 
         
-def split_codice_appalti(file_path):
+def split_codice_appalti(file_path, ontology=False):
     pattern = re.compile(r'^Art\.\s*\d+(-[\w]+)?\.\s*\(.*\)$', flags=re.UNICODE)
     chunks = []
     chunk = ""
@@ -382,10 +382,12 @@ def split_codice_appalti(file_path):
             line_nfc = unicodedata.normalize('NFC', line)
             
             if pattern.match(line_nfc):
-                chunks.append(chunk)
+                if(len(chunk)>200 or ontology==False):
+                    chunks.append(chunk)
                 chunk = ""
             chunk = chunk + "\n" + line_nfc
-        chunks.append(chunk)
+        if(len(chunk)>100 or ontology==False):
+            chunks.append(chunk)
     return chunks
 
 
@@ -408,7 +410,7 @@ def generate_ontology(category, model=None, dataItems=None):
     count = 1
     for text_path in all_text_paths:
         text_filename = text_path.name.removesuffix(".txt")
-        merge_ontologies_chunk(category, text_filename)
+        #merge_ontologies_chunk(category, text_filename)
 
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
@@ -423,7 +425,7 @@ def generate_ontology(category, model=None, dataItems=None):
 
         chunks = []
         if category == 'CodiceAppalti':
-            chunks = split_codice_appalti(text_path)
+            chunks = split_codice_appalti(text_path, ontology=True)
         else:
             chunks = split_text_chunks(text)
 

@@ -11,7 +11,7 @@ Crea un'ontologia molto concisa e chiara. Evita complessità e ambiguità non ne
 Le etichette (label) di entità e relazioni non possono iniziare con numeri o caratteri speciali.
 
 ## 2. Etichettare le entità
--  **Coerenza**: Usa tipi disponibili e basilari per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una persona, etichettala sempre come 'Persona'. Evita termini più specifici come 'Matematico' o 'Scienziato'.
+-  **Coerenza**: Usa tipi non troppo specifici per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una persona, etichettala sempre come 'Persona'. Evita termini più specifici come 'Matematico' o 'Scienziato'. Favorisci la generalizzazione.
 -  **ID delle entità**: Non considerare numeri interi come ID. Gli ID devono essere nomi o identificatori human-readable.
 -  Le **relazioni** rappresentano connessioni tra entità o concetti. Usa tipi di relazione coerenti e generali. Ad esempio, invece di usare un tipo specifico e temporale come 'DIVENTA_PROFESSORE', usa un tipo più generale e atemporale come 'PROFESSORE'. Assicurati di usare tipi di relazione generali e atemporali!
 
@@ -180,7 +180,7 @@ Crea un'ontologia molto concisa e chiara. Evita complessità e ambiguità non ne
 Le etichette (label) di entità e relazioni non possono iniziare con numeri o caratteri speciali.
 
 ## 2. Etichettare le entità
--  **Coerenza**: Usa tipi disponibili e basilari per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una persona, etichettala sempre come 'Persona'. Evita termini più specifici come 'Matematico' o 'Scienziato'.
+-  **Coerenza**: Usa tipi non troppo specifici per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una persona, etichettala sempre come 'Persona'. Evita termini più specifici come 'Matematico' o 'Scienziato'. Favorisci la generalizzazione.
 -  **ID delle entità**: Non considerare numeri interi come ID. Gli ID devono essere nomi o identificatori human-readable trovati nel testo.
 -  Le **relazioni** rappresentano connessioni tra entità o concetti. Usa tipi di relazione coerenti e generali. Ad esempio, invece di usare un tipo specifico e temporale come 'DIVENTA_PROFESSORE', usa un tipo più generale e atemporale come 'PROFESSORE'. Assicurati di usare tipi di relazione generali e atemporali!
 
@@ -465,8 +465,8 @@ Do not use the example Movie context to assume the ontology. The ontology should
 MERGE_ONTOLOGY_PROMPT_ITA="""
 Date le seguenti ontologie separate dal simbolo ';', uniscile in un'unica ontologia.
 Unisci le ontologie in un'unica ontologia eliminando entità o relazioni duplicate.
-Due entità sono da considerare equivalenti se hanno label e attributi simili.
-Due relazioni sono da considerare equivalenti se hanno label, attributi e sorgente/destinazione simili.
+Due entità sono da considerare equivalenti se hanno label o attributi simili.
+Due relazioni sono da considerare equivalenti se hanno label, attributi o sorgente/destinazione simili.
 Non inventare nuove entità né nuove relazioni non presenti nelle ontologie fornite.
 Estrai il maggior numero possibile di entità e relazioni per descrivere completamente i dati.
 Estrai il maggior numero possibile di attributi per descrivere pienamente le entità e le relazioni.
@@ -568,7 +568,7 @@ Raw text:
 
 FIX_ONTOLOGY_PROMPT_ITA ="""
 La seguente ontologia che hai generato precedentemente ha prodotto uno o più errori. Correggi gli errori segnalati e aggiungi eventuali informazioni mancanti all'interno dell'ontologia.
-Assicurati che tutte le relazioni abbiano 2 entità (origine e destinazione).
+Assicurati che tutte le relazioni abbiano 2 entità: origine (source) e destinazione (target).
 Assicurati che tutte le etichette delle entità siano in Titlecase.
 Non permettere relazioni inverse duplicate: ad esempio, se esiste una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare un'altra relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
 I nomi delle relazioni devono essere atemporali: ad esempio, invece di etichettare una relazione con 'DIVENTA_PROFESSORE' usa 'PROFESSORE'.

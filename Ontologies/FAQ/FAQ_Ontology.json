@@ -1,242 +1,241 @@
 {
   "entities": [
     {
-      "label": "Piattaforma",
+      "label": "Documento",
       "attributes": [
+        {
+          "name": "hash_univoco",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "estensione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "text_reference",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Portale",
+      "attributes": [
+        {
+          "name": "identificatore_portale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione_portale",
+          "type": "string",
+          "unique": true,
+          "required": false
+        },
+        {
+          "name": "nome_portale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
         {
           "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Azienda",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipologia",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "sede",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "EntePubblico",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipologia",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "EnteAderente",
-      "attributes": [
-        {
-          "name": "nomeEnte",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "NormaGiuridica",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "numero",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Articolo",
-      "attributes": [
-        {
-          "name": "numero",
-          "type": "number",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Indirizzo",
-      "attributes": [
-        {
-          "name": "descrizione_indirizzo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "SitoWeb",
-      "attributes": [
         {
           "name": "url",
           "type": "string",
-          "unique": true,
-          "required": true
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "descrizione_portale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "text_reference",
+          "type": "string",
+          "unique": false,
+          "required": true
         }
       ]
     },
     {
-      "label": "Email",
+      "label": "GuidaPratica",
       "attributes": [
         {
-          "name": "indirizzo_email",
+          "name": "titolo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "text_reference",
           "type": "string",
           "unique": false,
-          "required": false
+          "required": true
         }
       ]
     },
     {
-      "label": "ProceduraAccessoAtti",
+      "label": "SistemaVecchioEmPULIA",
       "attributes": [
         {
-          "name": "nomeProcedura",
+          "name": "nome_sistema",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "text_reference",
           "type": "string",
           "unique": false,
-          "required": false
+          "required": true
         }
       ]
     },
     {
-      "label": "TrattamentoDeiDatiPersonali",
+      "label": "SistemaNuovoEmPULIA",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "nome_sistema",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "base_giuridica",
+          "name": "text_reference",
           "type": "string",
           "unique": false,
-          "required": false
-        },
-        {
-          "name": "luogo_trattamento",
-          "type": "string",
-          "unique": false,
-          "required": false
+          "required": true
         }
       ]
     },
     {
-      "label": "AutoritaJudiziaria",
+      "label": "Credenziali",
+      "attributes": [
+        {
+          "name": "codice_accesso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "text_reference",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "identificativo_utente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "text_reference",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "TipoFirma",
       "attributes": [
         {
           "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
-        }
-      ]
-    },
-    {
-      "label": "AmministrazioniPubbliche",
-      "attributes": [
+        },
         {
-          "name": "nome",
+          "name": "text_reference",
           "type": "string",
-          "unique": true,
+          "unique": false,
           "required": true
         }
       ]
     },
     {
-      "label": "Terzo",
+      "label": "SoggettoTerzo",
       "attributes": [
         {
-          "name": "nome",
+          "name": "identificativo_terzo",
           "type": "string",
           "unique": true,
+          "required": true
+        },
+        {
+          "name": "text_reference",
+          "type": "string",
+          "unique": false,
           "required": true
         }
       ]
     },
     {
-      "label": "RegistroDiSistema",
+      "label": "Browser",
       "attributes": [
         {
-          "name": "descrizione_registro",
+          "name": "nome_browser",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "javascript_abilitato",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "cookie_abilitati",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "popup_abilitati",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "disabilita_toolbar",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "text_reference",
           "type": "string",
           "unique": false,
           "required": true
@@ -246,155 +245,162 @@
   ],
   "relations": [
     {
-      "label": "GESTITA_DA",
+      "label": "FIRMA_ESEGUITA_DA",
       "source": {
-        "label": "Piattaforma"
+        "label": "Documento"
       },
       "target": {
-        "label": "Azienda"
+        "label": "Utente"
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "data_firma",
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "text_reference",
+          "type": "string",
+          "unique": false,
+          "required": true
         }
       ]
     },
     {
-      "label": "TITOLARE_DEI_DATI",
+      "label": "UTILIZZA_TIPO_FIRMA",
       "source": {
-        "label": "Azienda"
+        "label": "Documento"
       },
       "target": {
-        "label": "TrattamentoDeiDatiPersonali"
+        "label": "TipoFirma"
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "text_reference",
           "type": "string",
           "unique": false,
-          "required": false
+          "required": true
         }
       ]
     },
     {
-      "label": "TITOLARE_DEI_DATI",
+      "label": "CARICATO_IN_SISTEMA_VECCHIO",
       "source": {
-        "label": "EntePubblico"
+        "label": "Documento"
       },
       "target": {
-        "label": "TrattamentoDeiDatiPersonali"
+        "label": "SistemaVecchioEmPULIA"
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "data_caricamento",
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "text_reference",
+          "type": "string",
+          "unique": false,
+          "required": true
         }
       ]
     },
     {
-      "label": "RESPONSABILE_DEL_TRATTAMENTO",
+      "label": "CARICATO_IN_SISTEMA_NUOVO",
       "source": {
-        "label": "Azienda"
+        "label": "Documento"
       },
       "target": {
-        "label": "TrattamentoDeiDatiPersonali"
+        "label": "SistemaNuovoEmPULIA"
       },
       "attributes": [
         {
-          "name": "ruolo",
+          "name": "data_caricamento",
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "text_reference",
+          "type": "string",
+          "unique": false,
+          "required": true
         }
       ]
     },
     {
-      "label": "LUOGO_DEL_TRATTAMENTO",
+      "label": "ASSOCIATA_A_PORTALE",
       "source": {
-        "label": "TrattamentoDeiDatiPersonali"
+        "label": "GuidaPratica"
       },
       "target": {
-        "label": "Indirizzo"
+        "label": "Portale"
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "data_pubblicazione",
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "text_reference",
+          "type": "string",
+          "unique": false,
+          "required": true
         }
       ]
     },
     {
-      "label": "COMUNICAZIONE_A_TERZI",
+      "label": "ACCESSO_CON_CREDENZIALI_VECCHIE",
       "source": {
-        "label": "TrattamentoDeiDatiPersonali"
+        "label": "Credenziali"
       },
       "target": {
-        "label": "Terzo"
+        "label": "SistemaVecchioEmPULIA"
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "text_reference",
           "type": "string",
           "unique": false,
-          "required": false
+          "required": true
         }
       ]
     },
     {
-      "label": "COMUNICAZIONE_A_AUTORITA_JUDIZIARIA",
+      "label": "ACCESSO_CON_CREDENZIALI_NUOVE",
       "source": {
-        "label": "TrattamentoDeiDatiPersonali"
+        "label": "Credenziali"
       },
       "target": {
-        "label": "AutoritaJudiziaria"
+        "label": "SistemaNuovoEmPULIA"
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "text_reference",
           "type": "string",
           "unique": false,
-          "required": false
+          "required": true
         }
       ]
     },
     {
-      "label": "COMUNICAZIONE_A_AMMINISTRAZIONI",
+      "label": "NON_MODIFICABILE_DA",
       "source": {
-        "label": "TrattamentoDeiDatiPersonali"
+        "label": "Documento"
       },
       "target": {
-        "label": "AmministrazioniPubbliche"
+        "label": "SoggettoTerzo"
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "text_reference",
           "type": "string",
           "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ACCESSO_A_ATTI",
-      "source": {
-        "label": "ProceduraAccessoAtti"
-      },
-      "target": {
-        "label": "RegistroDiSistema"
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
+          "required": true
         }
       ]
     }
