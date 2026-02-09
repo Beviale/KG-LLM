@@ -1,123 +1,16 @@
 {
   "entities": [
     {
-      "label": "Regione",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Comune",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Negozio",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "citta",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Indirizzo",
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Pubblicazione",
-      "attributes": [
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "numero",
-          "type": "string",
-          "unique": true,
-          "required": false
-        },
-        {
-          "name": "data_pubblicazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Regolamento",
-      "attributes": [
-        {
-          "name": "numero",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "FiguraIstituzionale",
-      "attributes": [
-        {
-          "name": "id",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
       "label": "Albo",
       "attributes": [
         {
-          "name": "denominazione",
+          "name": "nome_albo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "url",
+          "name": "descrizione_albo",
           "type": "string",
           "unique": false,
           "required": false
@@ -125,17 +18,107 @@
       ]
     },
     {
-      "label": "Impresa",
+      "label": "AmministrazionePubblica",
       "attributes": [
         {
-          "name": "denominazione_sociale",
+          "name": "denominazione_amministrazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "qualificata",
+          "name": "tipologia_amministrazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Regione",
+      "attributes": [
+        {
+          "name": "nome_regione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Portale",
+      "attributes": [
+        {
+          "name": "nome_portale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CategoriaMerceologica",
+      "attributes": [
+        {
+          "name": "denominazione_categoria",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Fornitore",
+      "attributes": [
+        {
+          "name": "denominazione_fornitore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "prodotti_servizi_offerti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Professionista",
+      "attributes": [
+        {
+          "name": "denominazione_professionista",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "curriculum_europeo_presentato",
           "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "specializzazioni",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Procedura",
+      "attributes": [
+        {
+          "name": "nome_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_procedura",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -145,13 +128,13 @@
       "label": "Norma",
       "attributes": [
         {
-          "name": "riferimento",
+          "name": "numero_normativa",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "descrizione_normativa",
           "type": "string",
           "unique": false,
           "required": false
@@ -159,161 +142,41 @@
       ]
     },
     {
-      "label": "Portale",
+      "label": "Sezione",
       "attributes": [
         {
-          "name": "url",
+          "name": "nome_sezione",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione_sezione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "PUBBLICATO_DA",
+      "label": "ISCRITTO_ALBO_FORNITORE",
       "source": {
-        "label": "Regione"
-      },
-      "target": {
-        "label": "Pubblicazione"
-      },
-      "attributes": []
-    },
-    {
-      "label": "EMANATO",
-      "source": {
-        "label": "FiguraIstituzionale"
-      },
-      "target": {
-        "label": "Regolamento"
-      },
-      "attributes": [
-        {
-          "name": "numero_regolamento",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "EMANATO",
-      "source": {
-        "label": "FiguraIstituzionale"
-      },
-      "target": {
-        "label": "Regolamento"
-      },
-      "attributes": [
-        {
-          "name": "numero_regolamento",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "EMANATO",
-      "source": {
-        "label": "FiguraIstituzionale"
-      },
-      "target": {
-        "label": "Regolamento"
-      },
-      "attributes": [
-        {
-          "name": "numero_regolamento",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RIFERITO_NORMATIVA",
-      "source": {
-        "label": "Regolamento"
-      },
-      "target": {
-        "label": "Norma"
-      },
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RIFERITO_NORMATIVA",
-      "source": {
-        "label": "Regolamento"
-      },
-      "target": {
-        "label": "Norma"
-      },
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RIFERITO_NORMATIVA",
-      "source": {
-        "label": "Regolamento"
-      },
-      "target": {
-        "label": "Norma"
-      },
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "LOCALIZZATO_IN",
-      "source": {
-        "label": "Negozio"
-      },
-      "target": {
-        "label": "Comune"
-      },
-      "attributes": []
-    },
-    {
-      "label": "GESTISCE",
-      "source": {
-        "label": "Regione"
+        "label": "Fornitore"
       },
       "target": {
         "label": "Albo"
       },
-      "attributes": []
-    },
-    {
-      "label": "ELENCA_FORNITORE",
-      "source": {
-        "label": "Albo"
-      },
-      "target": {
-        "label": "Impresa"
-      },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "data_iscrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "modalita_iscrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -321,36 +184,173 @@
       ]
     },
     {
-      "label": "OFFRE_SERVIZI",
+      "label": "ISCRITTO_ALBO_PROFESSIONISTA",
       "source": {
+        "label": "Professionista"
+      },
+      "target": {
+        "label": "Albo"
+      },
+      "attributes": [
+        {
+          "name": "data_iscrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "modalita_iscrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_ALBO",
+      "source": {
+        "label": "AmministrazionePubblica"
+      },
+      "target": {
+        "label": "Albo"
+      },
+      "attributes": [
+        {
+          "name": "scopo_utilizzo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AFFIDA_INCARICO_FORNITORE",
+      "source": {
+        "label": "AmministrazionePubblica"
+      },
+      "target": {
+        "label": "Fornitore"
+      },
+      "attributes": [
+        {
+          "name": "descrizione_incarico",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_inizio_incarico",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AFFIDA_INCARICO_PROFESSIONISTA",
+      "source": {
+        "label": "AmministrazionePubblica"
+      },
+      "target": {
+        "label": "Professionista"
+      },
+      "attributes": [
+        {
+          "name": "descrizione_incarico",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_inizio_incarico",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERIMENTO_NORMATIVO_ALBO",
+      "source": {
+        "label": "Albo"
+      },
+      "target": {
+        "label": "Norma"
+      },
+      "attributes": [
+        {
+          "name": "descrizione_riferimento",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "HA_SEZIONE_ALBO",
+      "source": {
+        "label": "Albo"
+      },
+      "target": {
+        "label": "Sezione"
+      },
+      "attributes": [
+        {
+          "name": "descrizione_sezione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CATEGORIA_MERCEOLOGICA",
+      "source": {
+        "label": "Sezione"
+      },
+      "target": {
+        "label": "CategoriaMerceologica"
+      },
+      "attributes": [
+        {
+          "name": "descrizione_categoria",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "INOLTRO_DOMANDA_ISCRIZIONE_PORTALE",
+      "source": {
+        "label": "Professionista"
+      },
+      "target": {
         "label": "Portale"
       },
-      "target": {
-        "label": "Albo"
-      },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "modalita_inoltro",
           "type": "string",
           "unique": false,
-          "required": false
+          "required": true
         }
       ]
     },
     {
-      "label": "INDIRIZZO",
+      "label": "INVIO_DOCUMENTAZIONE_ISCRIZIONE_PORTALE",
       "source": {
-        "label": "Negozio"
+        "label": "Professionista"
       },
       "target": {
-        "label": "Indirizzo"
+        "label": "Portale"
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "allegati_invio",
           "type": "string",
           "unique": false,
-          "required": false
+          "required": true
         }
       ]
     }

@@ -1,17 +1,6 @@
 {
   "entities": [
     {
-      "label": "Nazione",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
       "label": "Regione",
       "attributes": [
         {
@@ -34,28 +23,16 @@
       ]
     },
     {
-      "label": "BollettinoUfficiale",
+      "label": "Regolamento",
       "attributes": [
         {
-          "name": "nome",
+          "name": "oggetto",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "numero",
-          "type": "number",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "periodicita",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_pubblicazione",
+          "name": "data_emissione",
           "type": "string",
           "unique": false,
           "required": false
@@ -63,80 +40,24 @@
       ]
     },
     {
-      "label": "Parte",
+      "label": "Persona",
       "attributes": [
         {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Documento",
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "TipoDocumento",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Abbonamento",
-      "attributes": [
-        {
-          "name": "nome",
+          "name": "nome_completo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "costo",
-          "type": "number",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "conto",
+          "name": "ruolo",
           "type": "string",
           "unique": false,
-          "required": true
-        },
-        {
-          "name": "codice_tributo",
-          "type": "string",
-          "unique": false,
-          "required": true
+          "required": false
         }
       ]
     },
     {
-      "label": "Indirizzo",
-      "attributes": [
-        {
-          "name": "testo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "PuntoVendita",
+      "label": "Organizzazione",
       "attributes": [
         {
           "name": "nome",
@@ -149,22 +70,33 @@
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    }
-  ],
-  "relations": [
-    {
-      "label": "CONTIENTE",
-      "source": {
-        "label": "BollettinoUfficiale"
-      },
-      "target": {
-        "label": "Documento"
-      },
-      "attributes": [
+        },
         {
-          "name": "note",
+          "name": "citta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fax",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sito",
           "type": "string",
           "unique": false,
           "required": false
@@ -172,39 +104,148 @@
       ]
     },
     {
+      "label": "Pubblicazione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ente_emittente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "lingua",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Tribunale",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "citta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Autorizzazione",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
       "label": "EMESSO_DA",
       "source": {
-        "label": "BollettinoUfficiale"
-      },
-      "target": {
         "label": "Regione"
       },
-      "attributes": []
+      "target": {
+        "label": "Regolamento"
+      },
+      "attributes": [
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
     },
     {
-      "label": "APPARTIENE_A",
+      "label": "PUBBLICATO_DA",
       "source": {
-        "label": "Documento"
+        "label": "Regione"
       },
       "target": {
-        "label": "Parte"
+        "label": "Pubblicazione"
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "periodicita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
     },
     {
-      "label": "HA_TIPO",
+      "label": "AUTORIZZA",
       "source": {
-        "label": "Documento"
+        "label": "Tribunale"
       },
       "target": {
-        "label": "TipoDocumento"
+        "label": "Autorizzazione"
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
     },
     {
-      "label": "SEDE_DI",
+      "label": "RESPONSABILE_DI",
       "source": {
-        "label": "Comune"
+        "label": "Persona"
+      },
+      "target": {
+        "label": "Organizzazione"
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RAPPRESENTA",
+      "source": {
+        "label": "Persona"
       },
       "target": {
         "label": "Regione"
@@ -219,48 +260,21 @@
       ]
     },
     {
-      "label": "INDIRIZZO",
+      "label": "SEDE_DI",
       "source": {
-        "label": "BollettinoUfficiale"
+        "label": "Organizzazione"
       },
       "target": {
-        "label": "Indirizzo"
+        "label": "Comune"
       },
       "attributes": [
         {
-          "name": "tipologia",
+          "name": "luogo",
           "type": "string",
           "unique": false,
           "required": false
         }
       ]
-    },
-    {
-      "label": "OFFRE_ABBONAMENTO",
-      "source": {
-        "label": "Abbonamento"
-      },
-      "target": {
-        "label": "PuntoVendita"
-      },
-      "attributes": [
-        {
-          "name": "disponibilita",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "APPARTIENE_A_NAZIONE",
-      "source": {
-        "label": "Regione"
-      },
-      "target": {
-        "label": "Nazione"
-      },
-      "attributes": []
     }
   ]
 }

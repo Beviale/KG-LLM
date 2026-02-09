@@ -178,13 +178,12 @@ def process_response_ontology(text_filename, category, index_chunk, response, te
             error = f"TypeError: '{type(e)}', error: '{e}'"
             print(f"Error extracting JSON. TypeError: {error}")
             print(f"Prompting model to fix JSON")
-            response_content_dump = json.dumps(response_content, ensure_ascii=False)
             if json_error:
                 json_fix_response = completion(
                     model=model,
                     messages=[
                         {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_ITA.format(error=error, json=response_content_dump, text=text)}         
+                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_ITA.format(error=error, json=response_content, text=text)}         
                     ]
                 )
             elif ontology_error:
@@ -192,7 +191,7 @@ def process_response_ontology(text_filename, category, index_chunk, response, te
                     model=model,
                     messages=[
                         {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                        {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content_dump, errors=error, text=text)}         
+                        {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=error, text=text)}         
                     ]
                 )
 
@@ -314,14 +313,12 @@ def merge_ontologies_chunk(category, text_filename, model=None):
                 error = f"TypeError: '{type(e)}', error: '{e}'"
                 print(f"Error extracting JSON. {error}")
                 print(f"Prompting model to fix JSON")
-                response_content_dump = json.dumps(response_content, ensure_ascii=False)
-
                 if json_error:
                     json_fix_response = completion(
                         model=model,
                         messages=[
                             {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_MERGE_ITA.format(error=error, json=response_content_dump, ontologies=ontologies)}         
+                            {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_MERGE_ITA.format(error=error, json=response_content, ontologies=ontologies)}         
                         ]
                     )
                 elif ontology_error:
@@ -329,7 +326,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
                         model=model,
                         messages=[
                             {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_MERGE_ITA.format(ontology=response_content_dump, errors=error, ontologies=ontologies)}         
+                            {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_MERGE_ITA.format(ontology=response_content, errors=error, ontologies=ontologies)}         
                         ]
                     )
 
@@ -442,6 +439,11 @@ def generate_ontology(category, model=None, dataItems=None):
         index_chunk = 0
 
         for chunk in chunks:
+            chunk_path = Path(f"Ontologies/{category}/{text_filename}_{index_chunk}_Ontology.json")
+            if chunk_path.exists():
+                print("This chunk has already been processed!")
+                continue
+
             print(f"Processing chunk {index_chunk + 1}/{len(chunks)}.")
             textsToProcess = []
             textsToAdd = []
@@ -502,12 +504,11 @@ def process_reponse_data(text_filename, category, index_chunk, response, ontolog
             error = f"TypeError: '{type(e)}', error: '{e}'"
             print(f"Error extracting JSON. {error}")
             print(f"Prompting model to fix JSON")
-            response_content_dump = json.dumps(response_content, ensure_ascii=False)
             json_fix_response = completion(
                     model=model,
                     messages=[
                         {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_DATA_ITA.format(error=error, json=response_content_dump, text=text)}         
+                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_DATA_ITA.format(error=error, json=response_content, text=text)}         
                     ]
                 )
             

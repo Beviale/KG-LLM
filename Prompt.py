@@ -1,6 +1,6 @@
 MERGE_ONTOLOGY_SYSTEM_ITA = """
 ## 1. Panoramica\n"
-Sei un assistente di alto livello progettato per unire (mergiare) ontologie che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
+Sei un assistente di alto livello progettato per unire ontologie che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
 Il dominio di applicazione è quello relativo alla Pubblica Amministrazione e al Codice degli appalti italiano.
 - Le **entità** rappresentano entità e concetti. Devono avere almeno un attributo unico.
 - Le **relazioni** rappresentano collegamenti tra entità e concetti. 
@@ -170,7 +170,7 @@ CREATE_ONTOLOGY_SYSTEM_ITA = """
 ## 1. Panoramica\n"
 Sei un assistente di alto livello progettato per estrarre ontologie da testi grezzi. Tali ontologie verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
 Il dominio di applicazione è quello relativo alla Pubblica Amministrazione e al Codice degli appalti italiano.
-Cattura quante più informazioni possibili su entità, relazioni e attributi dal testo.
+Cattura dal testo quante più informazioni possibili su entità, relazioni e attributi.
 - Le **entità** rappresentano entità e concetti. Devono avere almeno un attributo unico.
 - Le **relazioni** rappresentano collegamenti tra entità e concetti. 
 L'obiettivo è ottenere semplicità e chiarezza nel grafo della conoscenza, rendendolo accessibile a un vasto pubblico.  
@@ -489,7 +489,7 @@ Estrai il maggior numero possibile di entità e relazioni per descrivere complet
 Estrai il maggior numero possibile di attributi per descrivere pienamente le entità e le relazioni nel testo.
 Correggi eventuali problemi di spaziatura o formattazione presenti nel testo se necessario.
 
-Raw text:
+Testo:
 {text}
 """
 
@@ -565,33 +565,35 @@ FIX_ONTOLOGY_PROMPT_ITA ="""
 La seguente ontologia JSON che hai generato precedentemente ha prodotto uno o più errori. Correggi gli errori segnalati e aggiungi eventuali informazioni mancanti al suo interno.
 Assicurati che tutte le relazioni abbiano 2 entità: origine (source) e destinazione (target).
 Assicurati che tutte le entità abbiano almeno un attributo unico.
+Assicurati che le parentesi siano state inserite correttamente rispettando lo schema.
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
 Ontologia da correggere:
 {ontology}
 
-Errori segnalati:
+Errori segnalati nell'ontologia da correggere:
 {errors}
 
-Testo:
+Testo usato per la generazione dell'ontologia da correggere:
 {text}
 
 """
 
 
 FIX_ONTOLOGY_PROMPT_MERGE_ITA ="""
-La seguente ontologia JSON che hai generato precedentemente dal merge di più ontologie ha prodotto uno o più errori. Correggi gli errori segnalati e aggiungi eventuali informazioni mancanti al suo interno.
+La seguente ontologia JSON che hai generato precedentemente dall'unione di più ontologie ha prodotto uno o più errori. Correggi gli errori segnalati e aggiungi eventuali informazioni mancanti al suo interno.
 Assicurati che tutte le relazioni abbiano due entità: origine (source) e destinazione (target).
 Assicurati che tutte le entità abbiano almeno un attributo unico.
+Assicurati che le parentesi siano state inserite correttamente rispettando lo schema.
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
 Ontologia da correggere:
 {ontology}
 
-Errori segnalati:
+Errori segnalati nell'ontologia da correggere:
 {errors}
 
-Lista di ontologie separate dal simbolo ';' su cui si basa l'ontologia da correggere:
+Lista di ontologie separate dal simbolo ';' che sono state usate per creare l'ontologia da correggere:
 {ontologies}
 
 """
@@ -1062,13 +1064,13 @@ L'errore durante il parsing dell'ontologia da corregere è stato il seguente:
 Ontologia da correggere:
 {json}
 
-Testo usato per la generazione dell'ontologia:
+Testo usato per la generazione dell'ontologia da correggere:
 {text}
 
 """
 
 FIX_JSON_PROMPT_ONTOLOGY_MERGE_ITA = """
-Data la seguente ontologia JSON che hai creato precedentemente dal merge di più ontologie, correggi gli errori che sono stati riscontrati durante il suo parsing.
+Data la seguente ontologia JSON che hai creato precedentemente dall'unione di più ontologie, correggi gli errori che sono stati riscontrati durante il suo parsing.
 Non modificare il significato semantico del JSON; devi solo modificare la sua struttura in modo tale da risolvere gli errori di parsing. 
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
@@ -1078,7 +1080,7 @@ L'errore durante il parsing dell'ontologia da correggere è stato il seguente:
 Ontologia da correggere:
 {json}
 
-Lista di ontologie separate dal simbolo ';' su cui si basa l'ontologia da correggere:
+Lista di ontologie separate dal simbolo ';' che sono state usate per creare l'ontologia da correggere:
 {ontologies}
 
 """

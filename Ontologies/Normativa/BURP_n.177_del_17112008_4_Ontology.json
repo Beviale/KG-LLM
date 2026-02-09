@@ -1,0 +1,411 @@
+{
+  "entities": [
+    {
+      "label": "Fornitore",
+      "attributes": [
+        {
+          "name": "identificativo_fornitore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "MotivoNonIscrizione",
+      "attributes": [
+        {
+          "name": "descrizione_motivo_non_iscrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "MotivoSospensione",
+      "attributes": [
+        {
+          "name": "descrizione_motivo_sospensione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Provvedimento",
+      "attributes": [
+        {
+          "name": "identificativo_provvedimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia_provvedimento",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "StrutturaRegionale",
+      "attributes": [
+        {
+          "name": "identificativo_struttura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Dirigente",
+      "attributes": [
+        {
+          "name": "identificativo_dirigente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Albo",
+      "attributes": [
+        {
+          "name": "identificativo_albo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Regione",
+      "attributes": [
+        {
+          "name": "nome_regione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "UfficioGarante",
+      "attributes": [
+        {
+          "name": "identificativo_ufficio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "GaranteRegionale",
+      "attributes": [
+        {
+          "name": "identificativo_garante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Segnalazione",
+      "attributes": [
+        {
+          "name": "identificativo_segnalazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "fonte_segnalazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "NormaLegale",
+      "attributes": [
+        {
+          "name": "identificativo_norma",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_norma",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RegolamentoRegionale",
+      "attributes": [
+        {
+          "name": "identificativo_regolamento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "BollettinoUfficialeRegione",
+      "attributes": [
+        {
+          "name": "identificativo_bollettino",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero_bollettino",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PresidenteGiuntaRegionale",
+      "attributes": [
+        {
+          "name": "identificativo_presidente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome_presidente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "HA_MOTIVO_NON_ISCRIZIONE",
+      "source": {
+        "label": "Fornitore"
+      },
+      "target": {
+        "label": "MotivoNonIscrizione"
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "HA_MOTIVI_DI_SOSPENSIONE",
+      "source": {
+        "label": "Fornitore"
+      },
+      "target": {
+        "label": "MotivoSospensione"
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EMANA_PROVVEDIMENTO",
+      "source": {
+        "label": "StrutturaRegionale"
+      },
+      "target": {
+        "label": "Provvedimento"
+      },
+      "attributes": [
+        {
+          "name": "descrizione_provvedimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "COMUNICATO_A_FORNITORE",
+      "source": {
+        "label": "Provvedimento"
+      },
+      "target": {
+        "label": "Fornitore"
+      },
+      "attributes": [
+        {
+          "name": "modalita_comunicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "REVOCATO_SU_RICHIESTA_FORNITORE",
+      "source": {
+        "label": "Fornitore"
+      },
+      "target": {
+        "label": "Provvedimento"
+      },
+      "attributes": [
+        {
+          "name": "motivazione_revoca",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ADOTTATO_DA_DIRIGENTE",
+      "source": {
+        "label": "Provvedimento"
+      },
+      "target": {
+        "label": "Dirigente"
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EMANA_REGOLAMENTO",
+      "source": {
+        "label": "PresidenteGiuntaRegionale"
+      },
+      "target": {
+        "label": "RegolamentoRegionale"
+      },
+      "attributes": [
+        {
+          "name": "autorita_emitente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICAZIONE_REGOLAMENTO_NEI_BOLLETTINI",
+      "source": {
+        "label": "RegolamentoRegionale"
+      },
+      "target": {
+        "label": "BollettinoUfficialeRegione"
+      },
+      "attributes": [
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "Provvedimento"
+      },
+      "target": {
+        "label": "Articolo"
+      },
+      "attributes": [
+        {
+          "name": "contenuto_articolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERIMENTO_NORMA",
+      "source": {
+        "label": "Articolo"
+      },
+      "target": {
+        "label": "NormaLegale"
+      },
+      "attributes": [
+        {
+          "name": "riferimento_norma",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EMANA_BOLLETTINO_REGIONE",
+      "source": {
+        "label": "BollettinoUfficialeRegione"
+      },
+      "target": {
+        "label": "Regione"
+      },
+      "attributes": [
+        {
+          "name": "numero_bollettino",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ]
+}
