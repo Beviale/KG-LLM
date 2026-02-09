@@ -129,7 +129,7 @@ def retrieve_text_from_pdf(pdf_path: str):
 
 def save_text(category: str, pdf_path: str, pdf_text: str):
     """
-    Given a text extracted from a .pdf file, it creates the corresponding .txt file.
+    Given a text extracted from a PDF file, it creates the corresponding .txt file.
     """
     pdf_path_split = pdf_path.split("\\")
     pdf_name = pdf_path_split[len(pdf_path_split) - 1].removesuffix(".pdf")
@@ -376,6 +376,10 @@ def merge_ontologies_chunk(category, text_filename, model=None):
 
         
 def split_codice_appalti(file_path, ontology=False):
+    """
+    It splits the given text (of the "CodiceAppalti" category) into text chunks considering the "Articoli". 
+    It returns the list of text chunks. 
+    """
     pattern = re.compile(r'^Art\.\s*\d+(-[\w]+)?\.\s*\(.*\)$', flags=re.UNICODE)
     chunks = []
     chunk = ""
@@ -605,7 +609,7 @@ def generate_data(category: str, model=None, dataItems=None):
 
 def upload_data(category, jsonData, ontology, model=None):
     """
-    Upload the given data to FalkorDB.
+    It uploads the given data to FalkorDB.
     """
     client = FalkorDB(**client_kwargs)
     graph = client.select_graph(category)

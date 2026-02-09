@@ -1,6 +1,6 @@
 MERGE_ONTOLOGY_SYSTEM_ITA = """
 ## 1. Panoramica\n"
-Sei un algoritmo di alto livello progettato per unire (mergiare) ontologie che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
+Sei un assistente di alto livello progettato per unire (mergiare) ontologie che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
 Il dominio di applicazione è quello relativo alla Pubblica Amministrazione e al Codice degli appalti italiano.
 - Le **entità** rappresentano entità e concetti. Devono avere almeno un attributo unico.
 - Le **relazioni** rappresentano collegamenti tra entità e concetti. 
@@ -168,7 +168,7 @@ L'esempio fornito è interamente in inglese; tuttavia, l'ontologia, pur mantenen
 CREATE_ONTOLOGY_SYSTEM_ITA = """
 ***
 ## 1. Panoramica\n"
-Sei un algoritmo di alto livello progettato per estrarre ontologie da testi grezzi. Tali ontologie verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
+Sei un assistente di alto livello progettato per estrarre ontologie da testi grezzi. Tali ontologie verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
 Il dominio di applicazione è quello relativo alla Pubblica Amministrazione e al Codice degli appalti italiano.
 Cattura quante più informazioni possibili su entità, relazioni e attributi dal testo.
 - Le **entità** rappresentano entità e concetti. Devono avere almeno un attributo unico.
