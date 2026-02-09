@@ -17,6 +17,8 @@ import os
 from falkordb import FalkorDB
 from graphrag_sdk.steps import extract_data_step
 import spacy
+from colorama import init, Fore, Style
+
 
 
 load_dotenv()
@@ -546,7 +548,7 @@ def generate_data(category: str, model=None, dataItems=None):
         text_filename = text_filename.removesuffix(".txt")
         ontology_file = f"Ontologies/{category}/{text_filename}_Ontology.json"
         if os.path.exists(ontology_file)==False:
-            print(f"The ontology file '{ontology_file}' is missing!")
+            print(f"{Fore.RED}The ontology file '{ontology_file}' is missing!")
             continue
 
         with open(ontology_file, "r", encoding="utf-8") as file:
@@ -555,7 +557,7 @@ def generate_data(category: str, model=None, dataItems=None):
             jsonOntology = json.loads(textOntology)
             ontology = Ontology.from_json(jsonOntology)
         except Exception as e:
-            print(f"Failed to read the ontology {ontology_file}, error: {e}")
+            print(f"{Fore.RED}Failed to read the ontology {ontology_file}, error: {e}")
             continue
 
         with open(text_path, "r", encoding="utf-8") as f:
@@ -615,20 +617,31 @@ def upload_data(category, jsonData, ontology, model=None):
     graph = client.select_graph(category)
     if model is None:
         model = "openai/gpt-5-nano"
+    
+    print("Uploading the data...")
+    hasErrors=False
         
     for entity in jsonData["entities"]:
         try:
             extract_data_step.create_entity(graph, entity, ontology)
         except Exception as e:
-            print(f"Error creating entity: {e}")
+            print(f"{Fore.RED}Error creating entity: {e}")
+            hasErrors=True
             continue
 
     for relation in jsonData["relations"]:
         try:
             extract_data_step.create_relation(graph, relation, ontology)
         except Exception as e:
-            print(f"Error creating relation: {e}")
+            print(f"{Fore.RED}Error creating relation: {e}")
+            hasErrors=True
             continue
+
+    if hasErrors==False:
+        print("Upload completed successfully!")
+    else:
+        print("Upload completed with {Fore.RED}ERRORS!")
+
 
 
 
