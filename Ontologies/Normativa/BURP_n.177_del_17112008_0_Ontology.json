@@ -1,0 +1,405 @@
+{
+  "entities": [
+    {
+      "label": "Regione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comune",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Bollettino",
+      "attributes": [
+        {
+          "name": "numero_edizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Sezione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Sede",
+      "attributes": [
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ContoCorrente",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "intestatario",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CodiceTributo",
+      "attributes": [
+        {
+          "name": "codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Abbonamento",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "prezzo_annuo",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "periodo_validita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Libreria",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Legge",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Referendum",
+      "attributes": [
+        {
+          "name": "codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OrganoGiudiziario",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Sentenza",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Atti",
+      "attributes": [
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Avviso",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "PUBBLICA",
+      "source": {
+        "label": "Regione"
+      },
+      "target": {
+        "label": "Bollettino"
+      },
+      "attributes": [
+        {
+          "name": "edizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CONTENUTA",
+      "source": {
+        "label": "Bollettino"
+      },
+      "target": {
+        "label": "Sezione"
+      },
+      "attributes": [
+        {
+          "name": "nome_sezione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SEDE_DI",
+      "source": {
+        "label": "Regione"
+      },
+      "target": {
+        "label": "Sede"
+      },
+      "attributes": []
+    },
+    {
+      "label": "INTESTATO_A",
+      "source": {
+        "label": "ContoCorrente"
+      },
+      "target": {
+        "label": "Regione"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "VENDUTO",
+      "source": {
+        "label": "Abbonamento"
+      },
+      "target": {
+        "label": "Libreria"
+      },
+      "attributes": [
+        {
+          "name": "prezzo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE_REFERENDUM",
+      "source": {
+        "label": "Regione"
+      },
+      "target": {
+        "label": "Referendum"
+      },
+      "attributes": [
+        {
+          "name": "risultato_atteso",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICA_ATTO",
+      "source": {
+        "label": "Regione"
+      },
+      "target": {
+        "label": "Atti"
+      },
+      "attributes": [
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICA_AVVISO",
+      "source": {
+        "label": "Regione"
+      },
+      "target": {
+        "label": "Avviso"
+      },
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FORNISCE",
+      "source": {
+        "label": "Libreria"
+      },
+      "target": {
+        "label": "Bollettino"
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CONTIENE_LEGGE",
+      "source": {
+        "label": "Bollettino"
+      },
+      "target": {
+        "label": "Legge"
+      },
+      "attributes": [
+        {
+          "name": "riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ABILITA_COMUNE",
+      "source": {
+        "label": "Regione"
+      },
+      "target": {
+        "label": "Comune"
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ]
+}

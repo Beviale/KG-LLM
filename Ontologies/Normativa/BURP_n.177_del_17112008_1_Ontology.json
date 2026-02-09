@@ -1,0 +1,294 @@
+{
+  "entities": [
+    {
+      "label": "Regione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Comune",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Azienda",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "citta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cap",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "BollettinoUfficiale",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RegolamentoRegionale",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PortaleWeb",
+      "attributes": [
+        {
+          "name": "url",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AlboFornitori",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "scopo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Organismo",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DeliberaGiuntaRegionale",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Normativa",
+      "attributes": [
+        {
+          "name": "riferimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "LeggeRegionale",
+      "attributes": [
+        {
+          "name": "riferimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "anno",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Dipartimento",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "PUBBLICAZIONE_DI",
+      "source": {
+        "label": "BollettinoUfficiale"
+      },
+      "target": {
+        "label": "Regione"
+      }
+    },
+    {
+      "label": "APPARTIENE_A",
+      "source": {
+        "label": "Comune"
+      },
+      "target": {
+        "label": "Regione"
+      }
+    },
+    {
+      "label": "INSERITO_NEL_ALBO",
+      "source": {
+        "label": "Azienda"
+      },
+      "target": {
+        "label": "AlboFornitori"
+      }
+    },
+    {
+      "label": "GESTISCE",
+      "source": {
+        "label": "Dipartimento"
+      },
+      "target": {
+        "label": "AlboFornitori"
+      }
+    },
+    {
+      "label": "OFFRE_SERVIZI_A",
+      "source": {
+        "label": "PortaleWeb"
+      },
+      "target": {
+        "label": "AlboFornitori"
+      }
+    },
+    {
+      "label": "RIFERIMENTO_NORMATIVO",
+      "source": {
+        "label": "AlboFornitori"
+      },
+      "target": {
+        "label": "Normativa"
+      }
+    },
+    {
+      "label": "ADOZIONE_DI",
+      "source": {
+        "label": "DeliberaGiuntaRegionale"
+      },
+      "target": {
+        "label": "RegolamentoRegionale"
+      }
+    },
+    {
+      "label": "EMANA",
+      "source": {
+        "label": "Organismo"
+      },
+      "target": {
+        "label": "RegolamentoRegionale"
+      }
+    },
+    {
+      "label": "RIFERIMENTO_LEGGE_REGIONALE",
+      "source": {
+        "label": "RegolamentoRegionale"
+      },
+      "target": {
+        "label": "LeggeRegionale"
+      }
+    },
+    {
+      "label": "SEDE_IN_COMUNE",
+      "source": {
+        "label": "Azienda"
+      },
+      "target": {
+        "label": "Comune"
+      }
+    }
+  ]
+}
