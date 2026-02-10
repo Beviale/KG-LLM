@@ -1,6 +1,6 @@
 MERGE_ONTOLOGY_SYSTEM_ITA = """
 ## 1. Panoramica\n"
-Sei un assistente di alto livello progettato per unire ontologie che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
+Sei un assistente di alto livello progettato per unire due ontologie che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
 Il dominio di applicazione è quello relativo alla Pubblica Amministrazione e al Codice degli appalti italiano.
 - Le **entità** rappresentano entità e concetti. Devono avere almeno un attributo unico.
 - Le **relazioni** rappresentano collegamenti tra entità e concetti. 
@@ -161,7 +161,7 @@ Eccoti un esempio di output che potresti restituirmi:
 {"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"required":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}]}
 ```
 
-L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente unendo le ontologie fornite.
+L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente unendo le due ontologie fornite.
 L'esempio fornito è interamente in inglese; tuttavia, l'ontologia, pur mantenendo una struttura in lingua inglese, deve essere compilata in italiano.
 """
 
@@ -468,17 +468,20 @@ Do not use the example Movie context to assume the ontology. The ontology should
 """
 
 MERGE_ONTOLOGY_PROMPT_ITA="""
-Date le seguenti ontologie separate dal simbolo ';', uniscile in un'unica ontologia.
+Date le seguenti due ontologie, uniscile in un'unica ontologia.
 Unisci le ontologie in un'unica ontologia eliminando entità o relazioni duplicate.
 Due entità sono da considerare equivalenti se hanno label o attributi simili.
 Due relazioni sono da considerare equivalenti se hanno label, attributi o entità source/target simili.
 Non inventare nuove entità né nuove relazioni non presenti nelle ontologie fornite.
 Estrai il maggior numero possibile di entità e relazioni per descrivere completamente i dati.
 Estrai il maggior numero possibile di attributi per descrivere pienamente le entità e le relazioni.
-L'ontologia deve essere creata esclusivamente in base alla lista di ontologie fornite.
+L'ontologia deve essere creata esclusivamente in base alle due ontologie fornite.
 
-Lista di ontologie separate dal simbolo ';':
-{ontologies}
+Prima ontologia:
+{first_ontology}
+
+Seconda ontologia:
+{second_ontology}
 
 """
 
@@ -581,7 +584,7 @@ Testo usato per la generazione dell'ontologia da correggere:
 
 
 FIX_ONTOLOGY_PROMPT_MERGE_ITA ="""
-La seguente ontologia JSON che hai generato precedentemente dall'unione di più ontologie ha prodotto uno o più errori. Correggi gli errori segnalati e aggiungi eventuali informazioni mancanti al suo interno.
+La seguente ontologia JSON che hai generato precedentemente dall'unione di due ontologie ha prodotto uno o più errori. Correggi gli errori segnalati e aggiungi eventuali informazioni mancanti al suo interno.
 Assicurati che tutte le relazioni abbiano due entità: origine (source) e destinazione (target).
 Assicurati che tutte le entità abbiano almeno un attributo unico.
 Assicurati che le parentesi siano state inserite correttamente rispettando lo schema.
@@ -593,8 +596,11 @@ Ontologia da correggere:
 Errori segnalati nell'ontologia da correggere:
 {errors}
 
-Lista di ontologie separate dal simbolo ';' che sono state usate per creare l'ontologia da correggere:
-{ontologies}
+Prima ontologia usata per creare l'ontologia da correggere:
+{first_ontology}
+
+Prima ontologia usata per creare l'ontologia da correggere:
+{second_ontology}
 
 """
 
@@ -1070,7 +1076,7 @@ Testo usato per la generazione dell'ontologia da correggere:
 """
 
 FIX_JSON_PROMPT_ONTOLOGY_MERGE_ITA = """
-Data la seguente ontologia JSON che hai creato precedentemente dall'unione di più ontologie, correggi gli errori che sono stati riscontrati durante il suo parsing.
+Data la seguente ontologia JSON che hai creato precedentemente dall'unione di due ontologie, correggi gli errori che sono stati riscontrati durante il suo parsing.
 Non modificare il significato semantico del JSON; devi solo modificare la sua struttura in modo tale da risolvere gli errori di parsing. 
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
@@ -1080,8 +1086,11 @@ L'errore durante il parsing dell'ontologia da correggere è stato il seguente:
 Ontologia da correggere:
 {json}
 
-Lista di ontologie separate dal simbolo ';' che sono state usate per creare l'ontologia da correggere:
-{ontologies}
+Prima ontologia usata per creare l'ontologia da correggere:
+{first_ontology}
+
+Seconda ontologia usata per creare l'ontologia da correggere:
+{second_ontology}
 
 """
 

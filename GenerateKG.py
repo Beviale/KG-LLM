@@ -279,21 +279,16 @@ def merge_ontologies_chunk(category, text_filename, model=None):
 
     new_json = json_merge[0]
     for i in range(1, len(json_merge)):
-        json_merge_slice = []
-        json_merge_slice.append(json_merge[i])       
-        json_merge_slice.append(new_json)
+        first_ontology =  json.dumps(new_json, ensure_ascii=False)
+        second_ontology = json.dumps(json_merge[i], ensure_ascii=False)
 
-        ontologies = ';'.join(
-            json.dumps(obj, ensure_ascii=False)
-            for obj in json_merge_slice
-        )
 
         print("Waiting the LLM response to merge the ontologies...")
         response = completion(
             model=model,
             messages=[
                 {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
-                {"role": "user",   "content": Prompt.MERGE_ONTOLOGY_PROMPT_ITA.format(ontologies=ontologies)}
+                {"role": "user",   "content": Prompt.MERGE_ONTOLOGY_PROMPT_ITA.format(first_ontology=first_ontology, second_ontology=second_ontology)}
             ]
         ) 
         response_content = response.choices[0].message["content"].strip()  
@@ -318,7 +313,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
                         model=model,
                         messages=[
                             {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_MERGE_ITA.format(error=error, json=response_content, ontologies=ontologies)}         
+                            {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_MERGE_ITA.format(error=error, json=response_content, first_ontology=first_ontology, second_ontology=second_ontology)}         
                         ]
                     )
                 elif ontology_error:
@@ -326,7 +321,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
                         model=model,
                         messages=[
                             {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_MERGE_ITA.format(ontology=response_content, errors=error, ontologies=ontologies)}         
+                            {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_MERGE_ITA.format(ontology=response_content, errors=error, first_ontology=first_ontology, second_ontology=second_ontology)}         
                         ]
                     )
 
