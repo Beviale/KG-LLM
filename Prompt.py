@@ -793,13 +793,13 @@ EXTRACT_DATA_SYSTEM_ITA = """
 Sei un assistente di alto livello con l'obiettivo di estrarre entità, relazioni e attributi da un testo grezzo con il fine ultimo di creare un grafo della conoscenza (Knowledge Graph), utilizzando l'ontologia fornita.
 Il dominio applicativo è quello della Pubblica Amministrazione e del Codice degli appalti italiano.
 L'estrazione deve avvenire usando un formato JSON. L'ontologia fonita è anch'essa in formato JSON.
-Usa solo le entità, le relazioni e gli attributi presenti nell'ontologia fornita.
+Usa solo i tipi di entità, relazioni e attributi presenti nell'ontologia fornita.
 Mantieni la coerenza delle entità: quando estrai entità, è fondamentale garantire la coerenza. Se un'entità, come 'John Doe', viene menzionata più volte nel testo ma con nomi o pronomi diversi (ad esempio 'Joe', 'lui'), usa sempre l'identificatore più completo per quell'entità. In questo esempio, usa 'John Doe' come ID dell'entità. Ricorda che il grafo della conoscenza deve essere coerente e facilmente comprensibile, quindi mantenere la coerenza nei riferimenti alle entità è cruciale.
 Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente con l'ontologia e il contesto forniti, per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
 
 ## 2. Conformità alle regole
 Rispetta rigorosamente le regole.
-Segui la struttua dell'ontologia fornita.
+Segui la struttura dell'ontologia fornita.
 Gli attributi contrassegnati come 'required:True' all'interno dell'ontologia vanno obbligatoriamente avvalorati.
 Non includere spiegazioni o scuse nelle tue risposte, solo il JSON.
 Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
@@ -808,7 +808,7 @@ Assicurati che il JSON prodotto contenga, per ogni entità o relazione, il rifer
 
 ## 3. Formattazione
 Usa virgolette doppie per tutti i valori stringa.
-Correggi ed evita eventuali caratteri speciali non escapati.
+Correggi ed evita eventuali caratteri speciali.
 Le date devono essere nel formato 'YYYY-MM-DD'.
 
 ## 4. Formato
@@ -1038,7 +1038,6 @@ Sei incaricato di estrarre entità, relazioni e attributi dal testo riportato di
 
 **Linee guida:**
 - Estrai tutte le entità e le relazioni: cattura tutte le entità e tutte le relazioni menzionate nel testo.
-- Usa solo l'ontologia fornita: utilizza solo i tipi di entità, relazioni e attributi definiti nell'ontologia.
 - Assegna ID quando richiesto: assegna ID testuali alle entità e alle relazioni come specificato.
 - Evita duplicati: assicurati che ogni entità e relazione sia unica; non includere duplicati.
 - Correggi eventuali problemi di spaziatura o formattazione presenti nel testo se necessario.
@@ -1100,7 +1099,7 @@ You are tasked with extracting entities and relations from the text below, using
 
 
 FIX_JSON_PROMPT_DATA_ITA = """
-Date le segenti entità, relazioni e attributi in formato JSON che hai generato precedentemente, correggi gli errori che sono stati riscontrati durante il suo parsing.
+Date le segenti entità, relazioni e attributi in formato JSON che hai estratto precedentemente dal testo, correggi gli errori che sono stati riscontrati durante il suo parsing.
 Non modificare il significato semantico del JSON; devi solo modificare la sua struttura in modo tale da risolvere gli errori di parsing. 
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
