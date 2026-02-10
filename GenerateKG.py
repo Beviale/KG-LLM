@@ -18,6 +18,9 @@ from falkordb import FalkorDB
 from graphrag_sdk.steps import extract_data_step
 import spacy
 from colorama import init, Fore, Style
+from litellm import embedding
+import numpy as np
+from sklearn.cluster import AgglomerativeClustering
 
 
 
@@ -174,29 +177,31 @@ def process_response_ontology(text_filename, category, index_chunk, response, te
             ontology_error=False
             break
         except Exception as e:
-            # fallback 
-            error = f"TypeError: '{type(e)}', error: '{e}'"
-            print(f"Error extracting JSON. TypeError: {error}")
-            print(f"Prompting model to fix JSON")
-            if json_error:
-                json_fix_response = completion(
-                    model=model,
-                    messages=[
-                        {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_ITA.format(error=error, json=response_content, text=text)}         
-                    ]
-                )
-            elif ontology_error:
+            try:
+                # fallback 
+                error = f"TypeError: '{type(e)}', error: '{e}'"
+                print(f"Error extracting JSON. TypeError: {error}")
+                print(f"Prompting model to fix JSON")
+                if json_error:
                     json_fix_response = completion(
-                    model=model,
-                    messages=[
-                        {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                        {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=error, text=text)}         
-                    ]
-                )
-
-            response_content = json_fix_response.choices[0].message["content"].strip()
-        
+                        model=model,
+                        messages=[
+                            {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                            {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_ITA.format(error=error, json=response_content, text=text)}         
+                        ]
+                    )
+                elif ontology_error:
+                        json_fix_response = completion(
+                        model=model,
+                        messages=[
+                            {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                            {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_ITA.format(ontology=response_content, errors=error, text=text)}         
+                        ]
+                    )
+                response_content = json_fix_response.choices[0].message["content"].strip()
+            except Exception as e:
+                print(f"{Fore.RED}Exception throws: {str(e)}")
+                continue       
 
     
     current_ontology_ident = json.dumps(data, indent=2, ensure_ascii=False)
@@ -304,28 +309,32 @@ def merge_ontologies_chunk(category, text_filename, model=None):
                 new_json = data
                 break
             except Exception as e:
-                # fallback
-                error = f"TypeError: '{type(e)}', error: '{e}'"
-                print(f"Error extracting JSON. {error}")
-                print(f"Prompting model to fix JSON")
-                if json_error:
-                    json_fix_response = completion(
-                        model=model,
-                        messages=[
-                            {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_MERGE_ITA.format(error=error, json=response_content, first_ontology=first_ontology, second_ontology=second_ontology)}         
-                        ]
-                    )
-                elif ontology_error:
+                try:
+                    # fallback
+                    error = f"TypeError: '{type(e)}', error: '{e}'"
+                    print(f"Error extracting JSON. {error}")
+                    print(f"Prompting model to fix JSON")
+                    if json_error:
                         json_fix_response = completion(
-                        model=model,
-                        messages=[
-                            {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_MERGE_ITA.format(ontology=response_content, errors=error, first_ontology=first_ontology, second_ontology=second_ontology)}         
-                        ]
-                    )
+                            model=model,
+                            messages=[
+                                {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
+                                {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_MERGE_ITA.format(error=error, json=response_content, first_ontology=first_ontology, second_ontology=second_ontology)}         
+                            ]
+                        )
+                    elif ontology_error:
+                            json_fix_response = completion(
+                            model=model,
+                            messages=[
+                                {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
+                                {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_MERGE_ITA.format(ontology=response_content, errors=error, first_ontology=first_ontology, second_ontology=second_ontology)}         
+                            ]
+                        )
 
-            response_content = json_fix_response.choices[0].message["content"].strip()
+                    response_content = json_fix_response.choices[0].message["content"].strip()
+                except Exception as e:
+                    print(f"{Fore.RED}Exception throws: {str(e)}")
+                    continue
             
    
     new_attr = {
@@ -477,9 +486,9 @@ def generate_ontology(category, model=None, dataItems=None):
 
 
 
-def process_reponse_data(text_filename, category, index_chunk, response, ontology, text, model):
+def process_reponse_data(text_filename, category, index_chunk, response, text, model):
     """
-    It processes the LLM response generated by the data-extraction prompt and then uploads the extracted data to FalkorDB. 
+    It processes the LLM response generated by the data-extraction prompt. It returns the JSON object containing entities, relations and attributes.
     """
     response_content = response.choices[0].message["content"].strip()
     #response_content = unicodedata.normalize('NFD', response_content)
@@ -492,7 +501,6 @@ def process_reponse_data(text_filename, category, index_chunk, response, ontolog
                 raise Exception("Invalid data format. Missing entities")
             if "relations" not in data:
                 raise Exception("Invalid data format. Missing relations")
-            upload_data(category, data, ontology)
             break
         except Exception as e:
             # fallback 
@@ -519,6 +527,7 @@ def process_reponse_data(text_filename, category, index_chunk, response, ontolog
         # Save the data to the disk as a json file.
         with open(data_file_name, "w", encoding="utf-8") as file:
             file.write(data_file_name)
+        return data
     
 
 
@@ -534,7 +543,7 @@ def generate_data(category: str, model=None, dataItems=None):
     
     if model is None:
         model = "openai/gpt-5-nano"
-
+    json_categpry = [] # List containg all the JSON processed for the given category. Each JSON contains the entities, the relations and the attributes of a specific chunk of a specific .txt file. 
     count = 1
     for text_path in all_text_paths:
         print(f"File path: '{text_path}', current state: {count}/{len( all_text_paths)}.")
@@ -583,7 +592,9 @@ def generate_data(category: str, model=None, dataItems=None):
                                 {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=ontology, text=chunk)}
                             ]
                         )
-                        process_reponse_data(text_filename, category, index_chunk, response, ontology, chunk, model)
+                        json_data_chunk = process_reponse_data(text_filename, category, index_chunk, response, ontology, chunk, model)
+                        if json_data_chunk is not None:
+                            json_categpry.append(json_data_chunk)
                     except ContextWindowExceededError as e:
                         mid = len(text) // 2
                         print(f"Halving the text size from '{len(text)}' to '{mid}'")
@@ -601,9 +612,159 @@ def generate_data(category: str, model=None, dataItems=None):
                 else:
                     break
             index_chunk = index_chunk + 1
+    aggregate_Json = aggregate_data(json_data_chunk)
+    json_refined = refine_with_LLM(aggregate_Json)
+    upload_data(category, json_refined, ontology)
 
 
-                
+
+
+def agglomerative_clustering(item_embedding_dict: dict, distance_threshold=0.5):
+    """
+    It performs the agglomerative clustering operation on the given items.
+    
+    :param item_embedding_dict: dictionary where each key is a generic item and the value si the corresponding embedding vector. 
+    :param distance_threshold: the linkage distance threshold at or above which clusters will not be merged.
+    """
+    items = list(item_embedding_dict.keys())
+    # Convert the embeddings in a numpy matrix
+    X = np.array(list(item_embedding_dict.values()))
+    # Distance range values [0,2]
+    clustering = AgglomerativeClustering(n_clusters=None, metric="cosine", compute_full_tree=True, linkage="maximum", distance_threshold=distance_threshold)
+    labels = clustering.fit_predict(X)
+
+    clusters = dict()
+    for item, label_cluster in zip(items, labels):
+        clusters[label_cluster].append(item)
+
+    return clusters
+
+
+
+def ask_LLM_merge_similar_entities(entities_in_partition, model=None):
+    if model is None:
+        model =""
+    print("Asking LLM to merge similar entities..")
+    try:
+        response = completion(
+            model=model,
+            messages=[
+                {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
+                {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=ontology, text=chunk)}
+            ]
+        )
+    json_data_chunk = process_reponse_data(text_filename, category, index_chunk, response, ontology, chunk, model)
+    if json_data_chunk is not None:
+        json_category.append(json_data_chunk)
+
+
+
+def refine_with_LLM(json_data):
+    """
+    It takes as input a JSON object containing entities, relations, and attributes. Using the embeddings, it finds similar nodes or edges that can be duplicates.
+    The duplicates are removed and merged using LLM.
+    """
+    # We define a "text description" as an artificial text constructed to describe a relation or an entity.
+    by_text_desciption_entity_dict = dict() # The key is the entity and the value is the 'text_description'
+    by_text_desciption_relation_dict = dict() # The key is the relation and the value is the 'text_description'
+
+    for entity in json_data["entities"]:
+        label = entity.get("label")
+        by_text_desciption_entity_dict[entity].append(label)
+        
+
+    for relation in json_data["relations"]:
+        label = relation.get("label")
+        by_text_desciption_relation_dict[relation].append(label)
+       
+
+    by_text_description_embedding_entity_dict = dict() # The key is the entity and the value is the embedding of the 'text description'
+    for entity, text_descritpion in by_text_desciption_entity_dict():         
+        response_embedding = embedding(
+            model="text-embedding-3-small",
+            input=text_descritpion
+        )
+        embedding = response_embedding["data"][0]["embedding"]
+        by_text_description_embedding_entity_dict[entity] = embedding
+    entity_partitions = agglomerative_clustering(by_text_description_embedding_entity_dict)
+
+
+    by_text_description_embedding_relation_dict = dict() # The key is the relarion and the value is the embedding of the 'text description'
+    for relation, text_descritpion in by_text_desciption_relation_dict():         
+        response_embedding = embedding(
+            model="text-embedding-3-small",
+            input=text_descritpion
+        )
+        embedding = response_embedding["data"][0]["embedding"]
+        by_text_description_embedding_relation_dict[relation] = embedding
+    relation_partisions = agglomerative_clustering(by_text_description_embedding_relation_dict)
+
+    for cluster_id, entities_in_partition in entity_partitions.itmes():
+        new_entities = ask_LLM_merge_similar_entities(entities_in_partition.copy())
+        ids_to_remove = {id(e) for e in entities_in_partition}
+        json_data['entities'] = [in_json for in_json in json_data['entities'] if id(in_json) not in ids_to_remove]
+        json_data['entities'].extend(new_entities)
+
+
+    for cluster_id, relations_in_partition in relation_partisions.itmes():
+        new_relations = ask_LLM_merge_similar_relations(relations_in_partition.copy())
+        ids_to_remove = {id(e) for e in relations_in_partition}
+        json_data['relations'] = [in_json for in_json in json_data['relations'] if id(in_json) not in ids_to_remove]
+        json_data['relations'].extend(new_relations)
+
+
+
+
+
+def aggregate_data(json_data_list : list):
+    """
+    It takes as input a list of JSON objects containing entities, relations, and attributes, and merges them into a single JSON object.
+    It also merges entities and relations that have identical labels, which is useful for removing duplicates in this regard. 
+    """
+    json_data = [item for sublist in json_data_list for item in sublist] # flatten
+    
+    by_label_entity_dict = dict()
+    by_label_relation_dict = dict()
+
+    for entity in json_data["entities"]:
+        label = entity.get("label") 
+        by_label_entity_dict[label].append(entity)
+
+    for relation in json_data["relations"]:
+        label = relation.get("label") 
+        by_label_relation_dict[label].append(relation)
+
+    
+    filtered_entities_dict = {
+        label: entities
+        for label, entities in by_label_entity_dict.items()
+        if len(entities) >= 2
+    }
+
+        
+    filtered_relations_dict = {
+        label: relations
+        for label, relations in by_label_relation_dict.items()
+        if len(relations) >= 2
+    }
+
+
+    for label, entities in filtered_entities_dict.items():
+        new_entities = ask_LLM_merge_similar_entities(entities.copy())
+        ids_to_remove = {id(e) for e in entities}
+        json_data['entities'] = [in_json for in_json in json_data['entities'] if id(in_json) not in ids_to_remove]
+        json_data['entities'].extend(new_entities)
+
+    for label, relations in filtered_relations_dict.items():
+        new_relations = ask_LLM_merge_similar_relations(relations.copy())
+        ids_to_remove = {id(e) for e in relations}
+        json_data['relations'] = [in_json for in_json in json_data['relations'] if id(in_json) not in ids_to_remove]
+        json_data['relations'].extend(new_relations)
+
+    return json_data
+
+
+
 
 def upload_data(category, jsonData, ontology, model=None):
     """
