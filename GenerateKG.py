@@ -643,7 +643,7 @@ def agglomerative_clustering(item_embedding_dict: dict, distance_threshold=0.5):
 
 def ask_LLM_merge_similar_entities(entities_in_partition, model=None):
     if model is None:
-        model =""
+        model = "openai/gpt-5-nano"
     print("Asking LLM to merge similar entities..")
     try:
         response = completion(
@@ -669,13 +669,25 @@ def refine_with_LLM(json_data):
     by_text_desciption_relation_dict = dict() # The key is the relation and the value is the 'text_description'
 
     for entity in json_data["entities"]:
+        text_descritpion = ""
         label = entity.get("label")
-        by_text_desciption_entity_dict[entity].append(label)
+        text_descritpion = f"label: {label}"
+        attrs = entity.get("attrs")
+        if attrs is not None:  
+            for key, value in attrs.items():
+                text_descritpion = text_descritpion + f" {key}: {value}"
+        by_text_desciption_entity_dict[entity].append(text_descritpion)
         
 
     for relation in json_data["relations"]:
+        text_descritpion = ""
         label = relation.get("label")
-        by_text_desciption_relation_dict[relation].append(label)
+        text_descritpion = f"label: {label}"
+        attrs = entity.get("attrs")
+        if attrs is not None:
+            for key, value in attrs.items():
+                text_descritpion = text_descritpion + f" {key}: {value}"
+        by_text_desciption_relation_dict[relation].append(text_descritpion)
        
 
     by_text_description_embedding_entity_dict = dict() # The key is the entity and the value is the embedding of the 'text description'
