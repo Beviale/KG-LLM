@@ -672,6 +672,7 @@ def agglomerative_clustering(item_embedding_dict: dict, distance_threshold=0.5):
     :param item_embedding_dict: dictionary where each key is a generic item and the value si the corresponding embedding vector. 
     :param distance_threshold: the linkage distance threshold at or above which clusters will not be merged.
     """
+    #NOTA: IL RISCHIO è che agglomerative clustering sia troppo complesso a livello computazione (complessità n al quadrato), da valutare meglio utilizzo della ricerca con FAISS che consente una molto più veloce ricerca dei vettori vicini entro una certa soglia dato un vettore in input. Potrebbe essere davvero una valida alternativa qualora i dati dovessero essere numerosi. 
     items = list(item_embedding_dict.keys())
     # Convert the embeddings in a numpy matrix
     X = np.array(list(item_embedding_dict.values()))
