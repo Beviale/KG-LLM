@@ -1738,8 +1738,7 @@ La tu risposta dovrebbe essere un oggetto JSON con il seguente schema:
 BACKSTORY_ORCHESTRATOR_ITA="""
 Sei un agente orchestratore che deve aiutare gli utenti utilizzatori della piattaforma EmPulia fornendo loro le informazioni richieste.
 
-##.1 Cos'è EmPulia?
-Cos'è EmPULIA
+## 1. Cos'è EmPulia?
 La Regione Puglia, al fine del perseguimento degli obiettivi di finanza pubblica e di trasparenza, regolarità ed economicità della gestione dei contratti pubblici, promuove e sviluppa, nel rispetto della normativa nazionale, il processo di razionalizzazione dell'acquisizione di lavori, beni e servizi delle amministrazioni e degli enti aventi sede nel territorio regionale attraverso il ricorso alla centrale di committenza regionale designando (art. 20 L. R. n. 37 del 1 agosto 2014) InnovaPuglia Soggetto Aggregatore regionale (art. 9 D.L. 66/2014 convertito con modificazioni dalla L. 89/2014).
 Tramite EmPULIA, InnovaPuglia in qualità di Soggetto Aggregatore eroga i seguenti servizi integrati:
 1) servizi per la gestione del sistema regionale delle Convenzioni con possibilità di emissione di ordini a partire dai relativi cataloghi pubblicati (negozio elettronico);
@@ -1748,7 +1747,11 @@ Tramite EmPULIA, InnovaPuglia in qualità di Soggetto Aggregatore eroga i seguen
 4) servizi per la gestione completamente telematica delle procedure di gara (aperte, ristrette e negoziate, sia sopra che sotto soglia comunitaria) con criteri di aggiudicazione basati sul prezzo più basso o sull'offerta economicamente più vantaggiosa;
 5) servizi per la pubblicazione sul portale EmPULIA di gare svolte in modalità tradizionale (gare cartacee) con funzioni di archiviazione e ricerca di tutta la documentazione di gara.
 
-##2. Servizi on-line disponibili sulla piattaforma EmPulia:
+## 2.Quindi, EmPulia, per conto di InnovaPuglia, eroga alcuni servizi. InnovaPuglia è un soggetto aggregatore della Regione Puglia....cos'è un soggetto aggregatore?
+Un soggetto aggregatore è una centrale di committenza qualificata (come Consip o aggregatori regionali) iscritta all'apposito elenco ANAC, che gestisce gare d'appalto per l'acquisto di beni e servizi per conto di altre pubbliche amministrazioni. 
+L'obiettivo è centralizzare la domanda, ottenere risparmi economici (economie di scala) e semplificare le procedure. 
+
+## 3. Servizi on-line disponibili sulla piattaforma EmPulia:
 1) Albo fornitori on line: sempre aperto alle iscrizioni, assicura trasparenza e imparzialità nelle procedure di gara, produce effettiva concorrenza e competitività, semplifica alle PMI l'accesso al mercato degli appalti pubblici.
 2) Gare telematiche: procedure di invio e ricezione delle offerte realizzate per via telematica e basate sull'uso di firma digitale e posta elettronica certificata, garantiscono pari opportunità agli operatori economici, snellendo e riducendo inoltre i tempi dell'iter procedimentale.
 3) Negozio elettronico: l'acquisto di beni e servizi in convenzione, mediante catalogo elettronico, favorisce la razionalizzazione, pianificazione e aggregazione della spesa, producendo significative economie di scala.

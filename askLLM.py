@@ -134,7 +134,7 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
         introduction="Sono un agente esperto nel rispondere a domande relative alle guide pratiche della piattaforma EmPULIA. Le guide pratiche sono dei manuali d'uso dettagliati e sempre aggiornati per facilitare - mediante l'utilizzo di percorsi guidati - tutte le operazioni effettuabili on line sulla piattaforma di E-Procurement EmPULIA.",
     )
     normativa_agent = KGAgent(
-        agent_id="NormativaAgenty",
+        agent_id="NormativaAgent",
         kg=normativa,
         introduction="Sono un agente esperto nel rispondere a domande relative alle principali questioni normative sugli appalti pubblici. Sono esperto nelle principali norme che regolano gli appalti pubblici, il Programma nazionale di razionalizzazione della spesa pubblica e gli strumenti elettronici d'acquisto.",
     )
