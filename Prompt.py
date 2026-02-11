@@ -632,7 +632,7 @@ Non includere spiegazioni o scuse nelle tue risposte.
 Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
 La tua risposta deve essere in formato JSON e deve seguire lo schema fornito di seguito.
 Assicurati che il JSON prodotto sia restituito inline e senza spazi, così da ridurre il numero di token in output.
-Assicurati che il JSON prodotto contenga, per ogni entità o relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'text_reference' all'interno del file JSON. 
+Assicurati che il JSON prodotto contenga, per ogni entità o relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'riferimentoTestuale' all'interno del file JSON. 
 Evita entità o relazioni duplicate. Se ci sono più entità o relazioni semanticamente molto simili provvedi ad unirli.
 
 Schema:
@@ -721,15 +721,116 @@ Schema:
 ```
 
 Esempio di output:
-```{"entities":[{"label":"Person","attributes":{"name":"John Doe","age":30,"text_reference":"John Doe, a 30-year-old software engineer, has recently relocated to a new city to pursue a promising career opportunity. Known for his analytical mindset and calm approach to problem-solving, he quickly adapted to his new work environment."}},{"label":"Movie","attributes":{"title":"Inception","releaseYear":2010,"text_reference":"Inception is a 2010 science-fiction thriller written and directed by Christopher Nolan"}}],"relations":[{"label":"ACTED_IN","source":{"label":"Person","attributes":{"name":"JohnDoe"}},"target":{"label":"Movie","attributes":{"title":"Inception"}},"attributes":{"role":"Cobb", "text_reference":"John Doe, a versatile and highly regarded actor, earned widespread recognition for his performance in the 2010 film Inception. In the movie, he portrayed Dom Cobb, a complex and emotionally driven character tasked with navigating layered dream worlds"}}]}```
+```{"entities":[{"label":"Person","attributes":{"name":"John Doe","age":30,"riferimentoTestuale":"John Doe, a 30-year-old software engineer, has recently relocated to a new city to pursue a promising career opportunity. Known for his analytical mindset and calm approach to problem-solving, he quickly adapted to his new work environment."}},{"label":"Movie","attributes":{"title":"Inception","releaseYear":2010,"riferimentoTestuale":"Inception is a 2010 science-fiction thriller written and directed by Christopher Nolan"}}],"relations":[{"label":"ACTED_IN","source":{"label":"Person","attributes":{"name":"JohnDoe"}},"target":{"label":"Movie","attributes":{"title":"Inception"}},"attributes":{"role":"Cobb", "riferimentoTestuale":"John Doe, a versatile and highly regarded actor, earned widespread recognition for his performance in the 2010 film Inception. In the movie, he portrayed Dom Cobb, a complex and emotionally driven character tasked with navigating layered dream worlds"}}]}```
+"""
+
+
+
+MERGE_SIMILAR_RELATIONS_SYSTEM_ITA="""
+## 1. Panoramica
+Sei un assistente di alto livello con l'obiettivo di identificare e fondere relazioni duplicate descritte da attributi e riferimenti testuali.
+In particolare, il tuo scopo è quello di prendere in input una lista di relazioni in formato JSON e identificare le relazioni duplicate per poi rimuovendole e fonderle in nuove relazioni da dare in output.
+Due o più relazioni sono duplicate se sono semanticamente molto simili tra loro. Per valutare la similarità semantica, devi usare le label e gli attributi. In particolare, puoi fare riferimento all'attributo 'riferimentoTestuale' che contiene la descrizione testuale che ha giusitificato la creazione di una specifica relazione.
+Le relazioni che non ritieni duplicate devi restituirle semplicemente in output senza apportare modifiche.
+Il dominio applicativo è quello della Pubblica Amministrazione e del Codice degli appalti italiano.
+
+## 2. Conformità alle regole
+Rispetta rigorosamente le regole.
+Non includere spiegazioni o scuse nelle tue risposte.
+Non rispondere a domande che chiedono qualcosa di diverso dalla fusione di relazioni. 
+Non inventare dati dal nulla ma basati su quelli forniti.
+Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
+Se crei nuove relazioni dalla fusione di vecchie relazioni, l'attributo 'riferimentoTestuale' dovrà contenere tassativamente l'unione dei 'text-reference' delle vecchie relazioni senza apportare troppe modifiche. 
+
+## 3. Formato
+La tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
+Non restituire lo schema nella risposta; usalo solo come riferimento.
+Assicurati che il JSON prodotto sia restituito in linea e senza spazi, così da ridurre il numero di token in output.
+
+Schema:
+```json
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "Graph Schema",
+  "required": ["entities", "relations"],
+  "properties": {
+    "relations": {
+      "type": "array",
+      "title": "The relations Schema",
+      "items": {
+        "type": "object",
+        "title": "A Schema",
+        "required": ["label", "source", "target"],
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "The label Schema",
+            "format": "uppercase"
+          },
+          "source": {
+            "type": "object",
+            "title": "The source Schema",
+            "required": ["label", "attributes"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "format": "titlecase",
+                "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
+              }
+            }
+          },
+          "target": {
+            "type": "object",
+            "title": "The target Schema",
+            "required": ["label", "attributes"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "format": "titlecase",
+                "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
+              }
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "title": "The attributes Schema"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Eccoti un esempio di input-output corretto:
+Lista contenente due relazioni duplicate in input:
+```{"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimentoTestuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}},
+{"label":"HA_PRESO_PARTE_AL_CAST","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimentoTestuale": "John Doe, un attore versatile e molto apprezzato, ha preso parte al cast del film Inception del 2010, ottenendo ampio riconoscimento per la sua interpretazione di Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}
+]}
+```
+Lista in output contenente una nuova relazione creata dalla fusione delle due relazioni duplicate in input:
+```{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere del software trentenne, si è recentemente trasferito in una nuova città per perseguire una promettente opportunità di carriera. Conosciuto per la sua mentalità analitica e il suo approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Film","attributes":{"titolo":"Inception","annoDiUscita":2010,"riferimentoTestuale":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimentoTestuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}```
+
+L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le relazioni. Esso va usato solo come riferimento generale.
 """
 
 
 MERGE_SIMILAR_ENTITIES_SYSTEM_ITA="""
 ## 1. Panoramica
-Sei un assistente di alto livello con l'obiettivo di fondere e unire entità descritte da attributi e riferimenti testuali.
-Il tuo scopo è quello di prendere in input una lista di entità in formato JSON e identificare le entità duplicate per poi rimuovendole e fonderle se lo ritieni necessario.
-Due o più entita sono duplicate se sono semanticamente molto simili tra loro. Per valutare la similarità semantica, puoi usare le label e gli attributi. In particolare, puoi fare riferimento all'attributo 'text_reference' che contiene la descrizione testuale che ha giusitificato la creazione di ciascuna entità.
+Sei un assistente di alto livello con l'obiettivo di identificare e fondere entità duplicate descritte da attributi e riferimenti testuali.
+In particolare, il tuo scopo è quello di prendere in input una lista di entità in formato JSON e identificare le entità duplicate per poi rimuovendole e fonderle in nuove entità da dare in output.
+Due o più entita sono duplicate se sono semanticamente molto simili tra loro. Per valutare la similarità semantica, devi usare le label e gli attributi. In particolare, puoi fare riferimento all'attributo 'riferimentoTestuale' che contiene la descrizione testuale che ha giusitificato la creazione di una specifica entità.
+Le entità che non ritieni duplicate devi restituirle semplicemente in output senza apportare modifiche.
 Il dominio applicativo è quello della Pubblica Amministrazione e del Codice degli appalti italiano.
 
 ## 2. Conformità alle regole
@@ -739,7 +840,7 @@ Non rispondere a domande che chiedono qualcosa di diverso dalla fusione di entit
 Non inventare dati dal nulla ma basati su quelli forniti.
 Mantieni la coerenza delle entità: quando estrai entità, è fondamentale garantire la coerenza. Se un'entità, come 'John Doe', viene menzionata più volte ma con nomi o pronomi diversi (ad esempio 'Joe', 'lui'), usa sempre l'identificatore più completo per quell'entità. In questo esempio, usa 'John Doe' come ID dell'entità. Ricorda che mantenere la coerenza nei riferimenti alle entità è cruciale.
 Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
-Se crei nuove entità dalla fusione di vecchie entità, l'attributo 'text_reference' dovrà contenere tassativamente l'unione dei 'text-reference' delle vecchie entità senza apportare troppe modifiche. 
+Se crei nuove entità dalla fusione di vecchie entità, l'attributo 'riferimentoTestuale' dovrà contenere tassativamente l'unione dei 'text-reference' delle vecchie entità senza apportare troppe modifiche. 
 
 ## 3. Formato
 La tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
@@ -780,12 +881,12 @@ Schema:
 ```
 
 Eccoti un esempio di input-output corretto:
-Lista contenente due entità in input:
-```{"entities":[{"label":"Person","attributes":{"name":"John Doe","age":30,"text_reference":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Person","attributes":{"name":"JohnDoe","age":30,"text_reference":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per inseguire un'opportunità professionale emozionante e a lungo desiderata. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda."}}]}```
-Nuova entità creata dalla fusione delle due entità in input:
-```{"entities":[{"label":"Person","attributes":{"name":"John Doe","age":30,"text_reference":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda"}}]}```
+Lista contenente due entità duplicate in input:
+```{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"riferimentoTestuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per inseguire un'opportunità professionale emozionante e a lungo desiderata. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda."}}]}```
+Lista in output contenente una nuova entità creata dalla fusione delle due entità duplicate in input:
+```{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda"}}]}```
 
-L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le entità bensì va usato solo come riferimento generale.
+L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le entità. Esso va usato solo come riferimento generale.
 """
 
 EXTRACT_DATA_SYSTEM_ITA = """
@@ -804,7 +905,7 @@ Gli attributi contrassegnati come 'required:True' all'interno dell'ontologia van
 Non includere spiegazioni o scuse nelle tue risposte, solo il JSON.
 Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
 Non inventare dati.
-Assicurati che il JSON prodotto contenga, per ogni entità o relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'text_reference'.
+Assicurati che il JSON prodotto contenga, per ogni entità o relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'riferimentoTestuale'.
 
 ## 3. Formattazione
 Usa virgolette doppie per tutti i valori stringa.
@@ -861,24 +962,32 @@ Schema:
           "source": {
             "type": "object",
             "title": "The source Schema",
-            "required": ["label"],
+            "required": ["label", "attributes"],
             "properties": {
               "label": {
                 "type": "string",
                 "format": "titlecase",
                 "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
               }
             }
           },
           "target": {
             "type": "object",
             "title": "The target Schema",
-            "required": ["label"],
+            "required": ["label", "attributes"],
             "properties": {
               "label": {
                 "type": "string",
                 "format": "titlecase",
                 "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
               }
             }
           },
@@ -894,7 +1003,7 @@ Schema:
 ```
 
 Eccoti un esempio di output che potresti restituirmi:
-```{"entities":[{"label":"Persona","attributes":{"name":"John Doe","age":30,"text_reference":"John Doe, un ingegnere del software trentenne, si è recentemente trasferito in una nuova città per perseguire una promettente opportunità di carriera. Conosciuto per la sua mentalità analitica e il suo approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Film","attributes":{"title":"Inception","releaseYear":2010,"text_reference":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona"},"target":{"label":"Film"},"attributes":{"role":"Cobb","text_reference":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}```
+```{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere del software trentenne, si è recentemente trasferito in una nuova città per perseguire una promettente opportunità di carriera. Conosciuto per la sua mentalità analitica e il suo approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Film","attributes":{"titolo":"Inception","annoDiUscita":2010,"riferimentoTestuale":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona"},"target":{"label":"Film"},"attributes":{"ruolo":"Cobb","riferimentoTestuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}```
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le entità, le relazioni o gli attributi del testo. I dati devono essere estratti esclusivamente a partire dal testo fornito.
 """
@@ -1008,8 +1117,8 @@ Sei incaricato di unire le entità e le relazioni dalla lista di JSON fornita.
 
 **Formato di output:**
 - Fornisci i dati estratti come oggetto JSON con due chiavi: 'entities' e 'relations'.
-- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'text_reference' con la porzione di testo usata per la creazione dell'entità.
-- Relations: rappresentano le relazioni tra entità o concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'text_reference' con la porzione di testo usata per la creazione della relazione.
+- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'riferimentoTestuale' con la porzione di testo usata per la creazione dell'entità.
+- Relations: rappresentano le relazioni tra entità o concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'riferimentoTestuale' con la porzione di testo usata per la creazione della relazione.
 
 **Linee guida:**
 - Estrai tutte le entità e le relazioni: cattura tutte le entità e tutte le relazioni menzionate nei file JSON.
@@ -1028,13 +1137,34 @@ Precisione: sii conciso e preciso nell'estrazione.
 **Lista di JSON**:
 {datas}
 """
+
+MERGE_SIMILAR_ENTITIES_PROMPT_ITA="""
+Sei incaricato di identificare e fondere le entità duplicate riportate di seguito.
+
+**Formato di output:**
+- Fornisci i dati estratti come oggetto JSON con una chiave 'entities'.
+- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'riferimentoTestuale' con la porzione di testo usata per la creazione dell'entità.
+
+**Linee guida:**
+- Considera tutte le entità fornite.
+- Assegna ID quando richiesto: assegna ID testuali alle entità come specificato.
+- Evita duplicati: assicurati che ogni entità sia unica; non includere duplicati.
+
+Precisione: sii conciso e preciso.
+
+Lista JSON di entità:
+{entities}
+
+"""
+
+
 EXTRACT_DATA_PROMPT_ITA = """
 Sei incaricato di estrarre entità, relazioni e attributi dal testo riportato di seguito, utilizzando l'ontologia fornita.
 
 **Formato di output:**
 - Fornisci i dati estratti come oggetto JSON con due chiavi: 'entities' e 'relations'.
-- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'text_reference' con la porzione di testo usata per la creazione dell'entità.
-- Relations: rappresentano le relazioni tra entità e concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'text_reference' con la porzione di testo usata per la creazione della relazione.
+- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'riferimentoTestuale' con la porzione di testo usata per la creazione dell'entità.
+- Relations: rappresentano le relazioni tra entità e concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'riferimentoTestuale' con la porzione di testo usata per la creazione della relazione.
 
 **Linee guida:**
 - Estrai tutte le entità e le relazioni: cattura tutte le entità e tutte le relazioni menzionate nel testo.
@@ -1049,8 +1179,9 @@ Ontologia:
 
 Testo:
 {text}
-
 """
+
+
 EXTRACT_DATA_PROMPT = """
 You are tasked with extracting entities and relations from the text below, using the ontology provided.
 

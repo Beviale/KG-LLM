@@ -340,7 +340,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
             
    
     new_attr = {
-        "name": "text_reference",
+        "name": "riferimentoTestuale",
         "type": "string",
         "unique": False,
         "required": True
@@ -352,7 +352,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
             attrs = []
             entity["attributes"] = attrs
         
-        exists = any(a.get("name") == "text_reference" for a in attrs)
+        exists = any(a.get("name") == "riferimentoTestuale" for a in attrs)
         if not exists:
             attrs.append(new_attr)
 
@@ -362,7 +362,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
             attrs = []
             relation["attributes"] = attrs
         
-        exists = any(a.get("name") == "text_reference" for a in attrs)
+        exists = any(a.get("name") == "riferimentoTestuale" for a in attrs)
         if not exists:
             attrs.append(new_attr)
 
@@ -629,7 +629,7 @@ def generate_data(category: str, model=None, dataItems=None):
                     break
             index_chunk = index_chunk + 1
     aggregate_Json = aggregate_data(json_data_chunk)
-    json_refined = refine_with_LLM(aggregate_Json)
+    json_refined = refine_with_LLM(aggregate_Json, category, ontology)
     upload_correctly=upload_data(category, json_refined, ontology)
     if upload_correctly:
         print(f"{Fore.GREEN}Upload completed successfully for the '{category}' category!")
@@ -660,24 +660,29 @@ def agglomerative_clustering(item_embedding_dict: dict, distance_threshold=0.5):
 
     return clusters
 
-def ask_LLM_merge_similar_relations(relations_in_partition, model=None):
+def ask_LLM_merge_similar_relations(similar_relations, category, ontology, model=None):
+    """
+    Given a list of relations, it prompts the LLM to merge any duplicates.
+    """
     if model is None:
         model = "openai/gpt-5-nano"
-    print("Asking LLM to merge similar relations..")
+
+    print(f"{Fore.WHITE}Asking LLM to merge similar relations..")
     response = completion(
         model=model,
         messages=[
-            {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-            {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=ontology, text=chunk)}
+            {"role": "system", "content": Prompt.MERGE_SIMILAR_ENTITIES_SYSTEM_ITA},
+            {"role": "user",   "content": Prompt.MERGE_SIMILAR_ENTITIES_PROMPT_ITA.format(relations=similar_relations)}
         ]
     )
     response_content = response.choices[0].message["content"].strip()
     while(True):
         try:
-            data = json.loads(extract_json(response_content))
-            if "entities" not in data:
-                raise Exception("Invalid data format. Missing entities")
-            print("Relations merged correctly!")
+            new_relations = json.loads(extract_json(response_content))
+            if "relations" not in new_relations:
+                raise Exception(f"{Fore.WHITE}Invalid data format. Missing entities")
+            verify_json_data(new_relations, category, ontology)
+            print(f"{Fore.WHITE}Relations merged correctly!")
             break
         except Exception as e:
             try:
@@ -687,36 +692,39 @@ def ask_LLM_merge_similar_relations(relations_in_partition, model=None):
                 json_fix_response = completion(
                         model=model,
                         messages=[
-                            {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_DATA_ITA.format(error=error, json=response_content, text=text)}         
+                            {"role": "system", "content": Prompt.MERGE_SIMILAR_ENTITIES_SYSTEM_ITA},
+                            {"role": "user",   "content": Prompt.MERGE_SIMILAR_ENTITIES_PROMPT_ITA.format(relations=similar_relations)}         
                         ]
                     )
                 response_content = json_fix_response.choices[0].message["content"].strip()
             except Exception as e:
                 continue
+    return new_relations
 
 
 
-def ask_LLM_merge_similar_entities(entities_in_partition, model=None):
+def ask_LLM_merge_similar_entities(similar_entities, category, ontology, model=None):
     """
     Given a list of entities, it prompts the LLM to merge any duplicates.
     """
     if model is None:
         model = "openai/gpt-5-nano"
+
     print(f"{Fore.WHITE}Asking LLM to merge similar entities..")
     response = completion(
         model=model,
         messages=[
-            {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-            {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=ontology, text=chunk)}
+            {"role": "system", "content": Prompt.MERGE_SIMILAR_ENTITIES_SYSTEM_ITA},
+            {"role": "user",   "content": Prompt.MERGE_SIMILAR_ENTITIES_PROMPT_ITA.format(entities=similar_entities)}
         ]
     )
     response_content = response.choices[0].message["content"].strip()
     while(True):
         try:
-            data = json.loads(extract_json(response_content))
-            if "entities" not in data:
+            new_entities = json.loads(extract_json(response_content))
+            if "entities" not in new_entities:
                 raise Exception("Invalid data format. Missing entities")
+            verify_json_data(new_entities, ontology, category)
             print(f"{Fore.WHITE}Entities merged correctly!")
             break
         except Exception as e:
@@ -727,16 +735,17 @@ def ask_LLM_merge_similar_entities(entities_in_partition, model=None):
                 json_fix_response = completion(
                         model=model,
                         messages=[
-                            {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_DATA_ITA.format(error=error, json=response_content, text=text)}         
+                            {"role": "system", "content": Prompt.MERGE_SIMILAR_ENTITIES_SYSTEM_ITA},
+                            {"role": "user",   "content": Prompt.MERGE_SIMILAR_ENTITIES_PROMPT_ITA.format(entities=similar_entities)}       
                         ]
                     )
                 response_content = json_fix_response.choices[0].message["content"].strip()
             except Exception as e:
                 continue
+    return new_entities
 
 
-def refine_with_LLM(json_data):
+def refine_with_LLM(json_data, category, ontology):
     """
     It takes as input a JSON object containing entities, relations, and attributes. Using the embeddings, it finds similar nodes or edges that can be duplicates.
     The duplicates are removed and merged using LLM.
@@ -789,7 +798,7 @@ def refine_with_LLM(json_data):
     relation_partisions = agglomerative_clustering(by_text_description_embedding_relation_dict)
 
     for cluster_id, entities_in_partition in entity_partitions.itmes():
-        new_entities = ask_LLM_merge_similar_entities(entities_in_partition.copy())
+        new_entities = ask_LLM_merge_similar_entities(entities_in_partition.copy(), category, ontology)
         ids_to_remove = {id(e) for e in entities_in_partition}
         json_data['entities'] = [in_json for in_json in json_data['entities'] if id(in_json) not in ids_to_remove]
         json_data['entities'].extend(new_entities)
