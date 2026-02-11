@@ -25,6 +25,8 @@ from sklearn.cluster import AgglomerativeClustering
 
 init(autoreset=True)
 
+LIMIT_WHILE_LLM = 5 # Indicates the maximum number of times the script can repeat the same question to the LLM.
+
 
 load_dotenv()
 
@@ -168,8 +170,12 @@ def process_response_ontology(text_filename, category, index_chunk, response, te
     It processes the LLM response to create the ontology for a specific category (e.g., 'DisciplinaDiUtilizzo').
     """
     response_content = response.choices[0].message["content"].strip()  
-
+    limit_while_count = 0
     while(True):
+        limit_while_count = limit_while_count + 1
+        if limit_while_count>LIMIT_WHILE_LLM:
+            print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
+            break
         json_error=True
         ontology_error=True
         try:
@@ -300,8 +306,12 @@ def merge_ontologies_chunk(category, text_filename, model=None):
             ]
         ) 
         response_content = response.choices[0].message["content"].strip()  
-
+        limit_while_count = 0
         while(True):
+            limit_while_count = limit_while_count + 1
+            if limit_while_count>LIMIT_WHILE_LLM:
+                print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
+                break
             json_error=True
             ontology_error=True
             try:
@@ -461,7 +471,12 @@ def generate_ontology(category, model=None, dataItems=None):
             textsToProcess = []
             textsToAdd = []
             textsToProcess.append(chunk)
+            limit_while_count = 0
             while(True):
+                limit_while_count = limit_while_count + 1
+                if limit_while_count>LIMIT_WHILE_LLM:
+                    print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
+                    break
                 for text in textsToProcess: 
                     print(f"{Fore.WHITE}Waiting the LLM response...")
                     try:     
@@ -502,8 +517,12 @@ def process_reponse_data(text_filename, category, index_chunk, response, ontolog
     response_content = response.choices[0].message["content"].strip()
     #response_content = unicodedata.normalize('NFD', response_content)
     #response_content =  ''.join(ch for ch in response_content if unicodedata.category(ch) != 'Mn')
-
+    limit_while_count = 0
     while(True):
+        limit_while_count = limit_while_count + 1
+        if limit_while_count>LIMIT_WHILE_LLM:
+            print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
+            break
         try:
             data = json.loads(extract_json(response_content))
             if "entities" not in data:
@@ -598,8 +617,12 @@ def generate_data(category: str, model=None, dataItems=None):
             textsToProcess = []
             textsToAdd = []
             textsToProcess.append(chunk)
-
+            limit_while_count = 0
             while(True):
+                limit_while_count = limit_while_count + 1
+                if limit_while_count>LIMIT_WHILE_LLM:
+                    print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
+                    break
                 for text in textsToProcess: 
                     print(f"{Fore.WHITE}Waiting the LLM response...")
                     try:
@@ -659,6 +682,12 @@ def agglomerative_clustering(item_embedding_dict: dict, distance_threshold=0.5):
     clusters = dict()
     for item, label_cluster in zip(items, labels):
         clusters[label_cluster].append(item)
+        
+    clusters = {
+        label_cluster: items
+        for label_cluster, items in clusters.items()
+        if len(items) >= 2
+    }
 
     return clusters
 
@@ -678,7 +707,12 @@ def ask_LLM_merge_similar_relations(similar_relations, category, ontology, model
         ]
     )
     response_content = response.choices[0].message["content"].strip()
+    limit_while_count = 0
     while(True):
+        limit_while_count = limit_while_count + 1
+        if limit_while_count>LIMIT_WHILE_LLM:
+            print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
+            break
         try:
             new_relations = json.loads(extract_json(response_content))
             if "relations" not in new_relations:
@@ -721,7 +755,12 @@ def ask_LLM_merge_similar_entities(similar_entities, category, ontology, model=N
         ]
     )
     response_content = response.choices[0].message["content"].strip()
+    limit_while_count = 0
     while(True):
+        limit_while_count = limit_while_count + 1
+        if limit_while_count>LIMIT_WHILE_LLM:
+            print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
+            break
         try:
             new_entities = json.loads(extract_json(response_content))
             if "entities" not in new_entities:
