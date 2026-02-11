@@ -23,6 +23,8 @@ import numpy as np
 from sklearn.cluster import AgglomerativeClustering
 
 
+init(autoreset=True)
+
 
 load_dotenv()
 
@@ -817,43 +819,68 @@ def refine_with_LLM(json_data, category, ontology):
 def aggregate_data(json_data_list : list):
     """
     Takes as input a list of JSON objects containing entities, relations, and attributes, and merges them into a single JSON object.
-    It also merges entities and relations that have identical labels, which is useful for removing duplicates in this regard. 
+    It also merges entities and relations that have identical labels and attributes, which is useful for removing duplicates in this regard. 
     """
     json_data = [item for sublist in json_data_list for item in sublist] # flatten
     
-    by_label_entity_dict = dict()
-    by_label_relation_dict = dict()
+    by_ID_entity_dict = dict() # The key is an artificial entity identifier that contains the label of the entity and a concatenated string of the values of all attributes. The value is the list of entities with that identifier. This is useful for finding duplicate entities.
+    by_ID_relation_dict = dict() # The key is an artificial relation identifier that contains the label of the relation and a concatenated string of the values of all source and target attributes. The value is the list of relations with that identifier. This is useful for finding duplicate relations.
 
     for entity in json_data["entities"]:
-        label = entity.get("label") 
-        by_label_entity_dict[label].append(entity)
+        artificial_entity_identifier = ""
+        label = entity.get("label")
+        artificial_entity_identifier = f"label:{label}"
+        attrs = entity.get("attributes")
+        if attrs is not None:
+            for key, value in attrs.items():
+                if key!="riferimentoTestuale":
+                    artificial_entity_identifier = artificial_entity_identifier + f".{key}:{value}"
+        by_ID_entity_dict[artificial_entity_identifier.lower()].append(entity)
 
     for relation in json_data["relations"]:
+        artificial_relation_identifier = ""
         label = relation.get("label") 
-        by_label_relation_dict[label].append(relation)
+        artificial_relation_identifier = f"label:{label}"
+        source = relation.get("source")
+        source_label = source.get("label")
+        artificial_relation_identifier = artificial_relation_identifier + f".sourceLabel:{source_label}"
+        source_attributes = source.get("attributes")
+        target = relation.get("target")
+        target_label = target.get("label")
+        artificial_relation_identifier = artificial_relation_identifier + f".targetLabel:{target_label}"
+        target_attributes = target.get("attributes")
+        if source_attributes is not None:
+            for key, value in source_attributes.items():
+                if key!="riferimentoTestuale":
+                    artificial_relation_identifier = artificial_relation_identifier + f".sourceAttr{key}:{value}"
+        if target_attributes is not None:
+            for key, value in target_attributes.items():
+                if key!="riferimentoTestuale":
+                    artificial_relation_identifier = artificial_relation_identifier + f".targetAttr{key}:{value}"
+        by_ID_relation_dict[artificial_relation_identifier.lower()].append(relation)
 
     
     filtered_entities_dict = {
-        label: entities
-        for label, entities in by_label_entity_dict.items()
+        artificial_entity_identifier: entities
+        for artificial_entity_identifier, entities in by_ID_entity_dict.items()
         if len(entities) >= 2
     }
 
         
     filtered_relations_dict = {
-        label: relations
-        for label, relations in by_label_relation_dict.items()
+        artificial_relation_identifier: relations
+        for artificial_relation_identifier, relations in by_ID_relation_dict.items()
         if len(relations) >= 2
     }
 
 
-    for label, entities in filtered_entities_dict.items():
+    for artificial_entity_identifier, entities in filtered_entities_dict.items():
         new_entities = ask_LLM_merge_similar_entities(entities.copy())
         ids_to_remove = {id(e) for e in entities}
         json_data['entities'] = [in_json for in_json in json_data['entities'] if id(in_json) not in ids_to_remove]
         json_data['entities'].extend(new_entities)
 
-    for label, relations in filtered_relations_dict.items():
+    for artificial_relation_identifier, relations in filtered_relations_dict.items():
         new_relations = ask_LLM_merge_similar_relations(relations.copy())
         ids_to_remove = {id(e) for e in relations}
         json_data['relations'] = [in_json for in_json in json_data['relations'] if id(in_json) not in ids_to_remove]
