@@ -759,22 +759,38 @@ def refine_with_LLM(json_data, category, ontology):
     for entity in json_data["entities"]:
         text_descritpion = ""
         label = entity.get("label")
-        text_descritpion = f"label: {label}"
+        text_descritpion = f"label:'{label}'"
         attrs = entity.get("attrs")
         if attrs is not None:  
             for key, value in attrs.items():
-                text_descritpion = text_descritpion + f" {key}: {value}"
+                text_descritpion = text_descritpion + f", '{key}':'{value}'"
+        text_descritpion = text_descritpion + "."
         by_text_desciption_entity_dict[entity].append(text_descritpion)
         
 
     for relation in json_data["relations"]:
         text_descritpion = ""
         label = relation.get("label")
-        text_descritpion = f"label: {label}"
-        attrs = entity.get("attrs")
-        if attrs is not None:
-            for key, value in attrs.items():
-                text_descritpion = text_descritpion + f" {key}: {value}"
+        text_descritpion = f"label:'{label}'"
+        source = relation.get("source")
+        source_label = source.get("label")
+        text_descritpion = text_descritpion + f", sourceLabel:'{source_label}'"
+        source_attrs = source.get("attributes")
+        if source_attrs is not None:
+            for key, value in source_attrs.items():
+                text_descritpion = text_descritpion + f", sourceAttribute_{key}:'{value}'"
+        target = relation.get("target")
+        target_label = target.get("label")
+        text_descritpion = text_descritpion + f", targetLabel:'{target_label}'"
+        target_attrs = target.get("attributes")
+        if target_attrs is not None:
+            for key, value in target_attrs.items():
+                text_descritpion = text_descritpion + f", targetAttribute_{key}:'{value}"
+        relation_attrs = relation.get("attrs")
+        if relation_attrs is not None:
+            for key, value in relation_attrs.items():
+                text_descritpion = text_descritpion + f", relationAttribute_{key}:'{value}'"
+        text_descritpion = text_descritpion + "." 
         by_text_desciption_relation_dict[relation].append(text_descritpion)
        
 
