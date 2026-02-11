@@ -136,7 +136,7 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
     normativa_agent = KGAgent(
         agent_id="NormativaAgenty",
         kg=normativa,
-        introduction="Sono un agente esperto nel rispondere a domande relative alle principali questioni normative sugli appalti pubblici. Sono esperto nelle principali norme che regolano gli appalti pubblici, il Programma nazionale di razionalizzazione della spesa pubblica e gli strumenti elettronici d'acquisto.";
+        introduction="Sono un agente esperto nel rispondere a domande relative alle principali questioni normative sugli appalti pubblici. Sono esperto nelle principali norme che regolano gli appalti pubblici, il Programma nazionale di razionalizzazione della spesa pubblica e gli strumenti elettronici d'acquisto.",
     )
     faq_agent = KGAgent(
         agent_id="FAQagent",
