@@ -157,9 +157,8 @@ Schema:
 ```
 
 Eccoti un esempio di output che potresti restituirmi:
-```
-{"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"required":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}]}
-```
+```json
+{"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"required":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}]}```
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente unendo le due ontologie fornite.
 L'esempio fornito è interamente in inglese; tuttavia, l'ontologia, pur mantenendo una struttura in lingua inglese, deve essere compilata in italiano.
@@ -330,7 +329,7 @@ Schema:
 ```
 
 Eccoti un esempio di output che potresti restituirmi:
-```
+```json
 {"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"required":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}]}
 ```
 
@@ -478,10 +477,14 @@ Estrai il maggior numero possibile di attributi per descrivere pienamente le ent
 L'ontologia deve essere creata esclusivamente in base alle due ontologie fornite.
 
 Prima ontologia:
+```json
 {first_ontology}
+```
 
 Seconda ontologia:
+```json
 {second_ontology}
+```
 
 """
 
@@ -572,7 +575,9 @@ Assicurati che le parentesi siano state inserite correttamente rispettando lo sc
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
 Ontologia da correggere:
+```json
 {ontology}
+```
 
 Errori segnalati nell'ontologia da correggere:
 {errors}
@@ -591,16 +596,22 @@ Assicurati che le parentesi siano state inserite correttamente rispettando lo sc
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
 Ontologia da correggere:
+```json
 {ontology}
+```
 
 Errori segnalati nell'ontologia da correggere:
 {errors}
 
 Prima ontologia usata per creare l'ontologia da correggere:
+```json
 {first_ontology}
+```
 
 Prima ontologia usata per creare l'ontologia da correggere:
+```json
 {second_ontology}
+```
 
 """
 
@@ -814,12 +825,12 @@ Schema:
 
 Eccoti un esempio di input-output corretto:
 Lista contenente due relazioni duplicate in input:
-```{"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimentoTestuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}},
+```json{"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimentoTestuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}},
 {"label":"HA_PRESO_PARTE_AL_CAST","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimentoTestuale": "John Doe, un attore versatile e molto apprezzato, ha preso parte al cast del film Inception del 2010, ottenendo ampio riconoscimento per la sua interpretazione di Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}
 ]}
 ```
 Lista in output contenente una nuova relazione creata dalla fusione delle due relazioni duplicate in input:
-```{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere del software trentenne, si è recentemente trasferito in una nuova città per perseguire una promettente opportunità di carriera. Conosciuto per la sua mentalità analitica e il suo approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Film","attributes":{"titolo":"Inception","annoDiUscita":2010,"riferimentoTestuale":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimentoTestuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}```
+```json{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere del software trentenne, si è recentemente trasferito in una nuova città per perseguire una promettente opportunità di carriera. Conosciuto per la sua mentalità analitica e il suo approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Film","attributes":{"titolo":"Inception","annoDiUscita":2010,"riferimentoTestuale":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimentoTestuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}```
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le relazioni. Esso va usato solo come riferimento generale.
 """
@@ -882,9 +893,11 @@ Schema:
 
 Eccoti un esempio di input-output corretto:
 Lista contenente due entità duplicate in input:
-```{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"riferimentoTestuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per inseguire un'opportunità professionale emozionante e a lungo desiderata. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda."}}]}```
+```json
+{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"riferimentoTestuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per inseguire un'opportunità professionale emozionante e a lungo desiderata. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda."}}]}```
 Lista in output contenente una nuova entità creata dalla fusione delle due entità duplicate in input:
-```{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda"}}]}```
+```json
+{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda"}}]}```
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le entità. Esso va usato solo come riferimento generale.
 """
@@ -1003,7 +1016,7 @@ Schema:
 ```
 
 Eccoti un esempio di output che potresti restituirmi:
-```{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere del software trentenne, si è recentemente trasferito in una nuova città per perseguire una promettente opportunità di carriera. Conosciuto per la sua mentalità analitica e il suo approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Film","attributes":{"titolo":"Inception","annoDiUscita":2010,"riferimentoTestuale":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona"},"target":{"label":"Film"},"attributes":{"ruolo":"Cobb","riferimentoTestuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}```
+```json{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere del software trentenne, si è recentemente trasferito in una nuova città per perseguire una promettente opportunità di carriera. Conosciuto per la sua mentalità analitica e il suo approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Film","attributes":{"titolo":"Inception","annoDiUscita":2010,"riferimentoTestuale":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona"},"target":{"label":"Film"},"attributes":{"ruolo":"Cobb","riferimentoTestuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}```
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le entità, le relazioni o gli attributi del testo. I dati devono essere estratti esclusivamente a partire dal testo fornito.
 """
@@ -1153,7 +1166,30 @@ Sei incaricato di identificare e fondere le entità duplicate riportate di segui
 Precisione: sii conciso e preciso.
 
 Lista JSON di entità:
+```json
 {entities}
+```
+
+"""
+
+MERGE_SIMILAR_RELATIONS_PROMPT_ITA="""
+Sei incaricato di identificare e fondere le relazioni duplicate riportate di seguito.
+
+**Formato di output:**
+- Fornisci i dati estratti come oggetto JSON con una chiave 'relations'.
+- Relations: rappresentano le relazioni tra entità e concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'riferimentoTestuale' con la porzione di testo usata per la creazione della relazione.
+
+**Linee guida:**
+- Considera tutte le relazioni fornite.
+- Assicurati che ogni relazione abbia un'entità source e un'entità target.
+- Evita duplicati: assicurati che ogni relazione sia unica; non includere duplicati.
+
+Precisione: sii conciso e preciso.
+
+Lista JSON di relazioni:
+```json
+{relations}
+```
 
 """
 
@@ -1175,7 +1211,9 @@ Sei incaricato di estrarre entità, relazioni e attributi dal testo riportato di
 Precisione: sii conciso e preciso nell'estrazione.
 
 Ontologia:
+```json
 {ontology}
+```
 
 Testo:
 {text}
@@ -1238,7 +1276,9 @@ L'errore durante il parsing del JSON da corregere è stato il seguente:
 {error}
 
 JSON da correggere:
+```json
 {json}
+```
 
 Testo usato per la generazione del JSON da correggere:
 {text}
@@ -1254,7 +1294,9 @@ L'errore durante il parsing dell'ontologia da corregere è stato il seguente:
 {error}
 
 Ontologia da correggere:
+```json
 {json}
+```
 
 Testo usato per la generazione dell'ontologia da correggere:
 {text}
@@ -1270,13 +1312,19 @@ L'errore durante il parsing dell'ontologia da correggere è stato il seguente:
 {error}
 
 Ontologia da correggere:
+```json
 {json}
+```
 
 Prima ontologia usata per creare l'ontologia da correggere:
+```json
 {first_ontology}
+```
 
 Seconda ontologia usata per creare l'ontologia da correggere:
+```json
 {second_ontology}
+```
 
 """
 

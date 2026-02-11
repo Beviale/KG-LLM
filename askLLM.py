@@ -165,7 +165,7 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
 def run_orchestrator(orchestrator, question):
 
     # Query the orchestrator.
-    runner = orchestrator.ask("Create a two-day itinerary for a trip to Rome. Please don't ask me any questions; just provide the best itinerary you can.")
+    runner = orchestrator.ask(question)
     print(runner.output)
 
     
@@ -176,7 +176,7 @@ def main():
     if orchestrator is None:
         return
     print(f"Question: ")
-    question = int(input("What do you want to do? "))
+    question = input("What do you want to do? ")
     run_orchestrator(orchestrator, question)
 
 

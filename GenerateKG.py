@@ -702,8 +702,8 @@ def ask_LLM_merge_similar_relations(similar_relations, category, ontology, model
     response = completion(
         model=model,
         messages=[
-            {"role": "system", "content": Prompt.MERGE_SIMILAR_ENTITIES_SYSTEM_ITA},
-            {"role": "user",   "content": Prompt.MERGE_SIMILAR_ENTITIES_PROMPT_ITA.format(relations=similar_relations)}
+            {"role": "system", "content": Prompt.MERGE_SIMILAR_RELATIONS_SYSTEM_ITA},
+            {"role": "user",   "content": Prompt.MERGE_SIMILAR_RELATIONS_PROMPT_ITA.format(relations=similar_relations)}
         ]
     )
     response_content = response.choices[0].message["content"].strip()
@@ -716,7 +716,7 @@ def ask_LLM_merge_similar_relations(similar_relations, category, ontology, model
         try:
             new_relations = json.loads(extract_json(response_content))
             if "relations" not in new_relations:
-                raise Exception(f"{Fore.WHITE}Invalid data format. Missing entities")
+                raise Exception(f"{Fore.WHITE}Invalid data format. Missing relations")
             verify_json_data(new_relations, category)
             print(f"{Fore.WHITE}Relations merged correctly!")
             break
@@ -728,8 +728,8 @@ def ask_LLM_merge_similar_relations(similar_relations, category, ontology, model
                 json_fix_response = completion(
                         model=model,
                         messages=[
-                            {"role": "system", "content": Prompt.MERGE_SIMILAR_ENTITIES_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.MERGE_SIMILAR_ENTITIES_PROMPT_ITA.format(relations=similar_relations)}         
+                            {"role": "system", "content": Prompt.MERGE_SIMILAR_RELATIONS_SYSTEM_ITA},
+                            {"role": "user",   "content": Prompt.MERGE_SIMILAR_RELATIONS_PROMPT_ITA.format(relations=similar_relations)}         
                         ]
                     )
                 response_content = json_fix_response.choices[0].message["content"].strip()
