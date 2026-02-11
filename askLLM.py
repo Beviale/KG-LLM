@@ -121,37 +121,35 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
     codice_appalti_agent = KGAgent(
         agent_id="CodiceAppaltiAgent",
         kg=codice_appalti,
-        introduction="I'm a restaurant agent, specialized in finding the best restaurants for you.",
+        introduction="Sono un agente esperto nel rispondere a domande relative all'intero Codice degli appalti italiano.",
     )
     disciplina_utilizzo_agent = KGAgent(
         agent_id="DisciplinaDiUtilizzoAgent",
         kg=disciplina_utilizzo,
-        introduction="I'm a restaurant agent, specialized in finding the best restaurants for you.",
+        introduction="Sono un agente esperto nel rispondere a domande relative alla disciplina di utilizzo della piattaforma EmPULIA. La disciplina di utilizzo spiega le modalità di fruizione dei servizi applicativi e delle funzionalità della piattaforma EmPULIA del soggetto aggregatore della Regione Puglia.",
     )
     guide_pratiche_Agent = KGAgent(
         agent_id="GuidePraticheAgent",
         kg=guide_pratiche,
-        introduction="I'm a restaurant agent, specialized in finding the best restaurants for you.",
+        introduction="Sono un agente esperto nel rispondere a domande relative alle guide pratiche della piattaforma EmPULIA. Le guide pratiche sono dei manuali d'uso dettagliati e sempre aggiornati per facilitare - mediante l'utilizzo di percorsi guidati - tutte le operazioni effettuabili on line sulla piattaforma di E-Procurement EmPULIA.",
     )
     normativa_agent = KGAgent(
         agent_id="NormativaAgenty",
         kg=normativa,
-        introduction="I'm a restaurant agent, specialized in finding the best restaurants for you.",
+        introduction="Sono un agente esperto nel rispondere a domande relative alle principali questioni normative sugli appalti pubblici. Sono esperto nelle principali norme che regolano gli appalti pubblici, il Programma nazionale di razionalizzazione della spesa pubblica e gli strumenti elettronici d'acquisto.";
     )
     faq_agent = KGAgent(
         agent_id="FAQagent",
         kg=faq,
-        introduction="I'm a restaurant agent, specialized in finding the best restaurants for you.",
+        introduction="Sono un agente esperto nel rispondere alle FAQ relative alla piattaforma EmPulia. Le Frequently Asked Questions, meglio conosciute con la sigla FAQ, sono letteralmente le 'domande poste frequentemente'; più esattamente sono una serie di risposte stilate direttamente dall'helpdesk, in risposta alle domande che vengono poste più frequentemente dagli utilizzatori del servizio EmPULIA.",
     )
-
-
 
 
 
     # Initialize the orchestrator while giving it the backstory.
     orchestrator = Orchestrator(
         model,
-        backstory="You are a trip planner, and you want to provide the best possible itinerary for your clients.",
+        backstory=Prompt.BACKSTORY_ORCHESTRATOR_ITA,
     )
 
     # Register the agents that we created above.
