@@ -529,7 +529,7 @@ def process_reponse_data(text_filename, category, index_chunk, response, ontolog
                 raise Exception("Invalid data format. Missing entities")
             if "relations" not in data:
                 raise Exception("Invalid data format. Missing relations")
-            verify_json_data(data, ontology, category)
+            verify_json_data(data, ontology)
             break
         except Exception as e:
             try:
@@ -682,7 +682,7 @@ def agglomerative_clustering(item_embedding_dict: dict, distance_threshold=0.5):
     clusters = dict()
     for item, label_cluster in zip(items, labels):
         clusters[label_cluster].append(item)
-        
+
     clusters = {
         label_cluster: items
         for label_cluster, items in clusters.items()
@@ -717,7 +717,7 @@ def ask_LLM_merge_similar_relations(similar_relations, category, ontology, model
             new_relations = json.loads(extract_json(response_content))
             if "relations" not in new_relations:
                 raise Exception(f"{Fore.WHITE}Invalid data format. Missing entities")
-            verify_json_data(new_relations, category, ontology)
+            verify_json_data(new_relations, category)
             print(f"{Fore.WHITE}Relations merged correctly!")
             break
         except Exception as e:
@@ -765,7 +765,7 @@ def ask_LLM_merge_similar_entities(similar_entities, category, ontology, model=N
             new_entities = json.loads(extract_json(response_content))
             if "entities" not in new_entities:
                 raise Exception("Invalid data format. Missing entities")
-            verify_json_data(new_entities, ontology, category)
+            verify_json_data(new_entities, ontology)
             print(f"{Fore.WHITE}Entities merged correctly!")
             break
         except Exception as e:
@@ -944,13 +944,12 @@ def aggregate_data(json_data_list : list):
     return json_data
 
 
-def verify_json_data(jsonData, ontology, category):
+def verify_json_data(jsonData, ontology):
     """
     Veirifies that the input JSON object conforms to the required structure for entity and relation extraction. 
     Returns the string 'True' on success; raises an exception on failure.
     """
     client = FalkorDB(**client_kwargs)
-    graph = client.select_graph(category)
     for entity in jsonData["entities"]:
         try:
             entity = ontology.get_entity_with_label(jsonData["label"])
@@ -1166,4 +1165,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
