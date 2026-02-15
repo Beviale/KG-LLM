@@ -1,32 +1,34 @@
 MERGE_ONTOLOGY_SYSTEM_ITA = """
 ## 1. Panoramica\n"
-Sei un assistente di alto livello progettato per unire due ontologie che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
+Sei un assistente di alto livello progettato per unire due ontologie JSON che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
 Il dominio di applicazione è quello relativo alla Pubblica Amministrazione e al Codice degli appalti italiano.
-- Le **entità** rappresentano entità e concetti. Devono avere almeno un attributo unico.
-- Le **relazioni** rappresentano collegamenti tra entità e concetti. 
-L'obiettivo è ottenere semplicità e chiarezza nel grafo della conoscenza, rendendolo accessibile a un vasto pubblico.  
+- Le **entità** rappresentano entità e concetti. Ciascuna entità deve avere esattamente un attributo unico (detto anche attributo 'Key').
+- Le **relazioni** rappresentano collegamenti tra entità e concetti. Ogni relazione ha un'entità 'source' e un'entità 'target'. Affinchè ciascuna relazione possa riferirsi a tali entità è necessario che essa contenga le loro rispettive label e gli attributi che si riferiscono alle loro 'Key' (il funzionamento è, dunque, simile al meccanismo delle chiavi esterne presente nei database relazionali).
+L'obiettivo è ottenere semplicità e chiarezza nel grafo della conoscenza, rendendolo accessibile a un vasto pubblico. 
 Preferisci convertire le relazioni in entità quando possiedono attributi.
-Crea un'ontologia molto concisa e chiara. Evita complessità, ambiguità e duplicazioni non necessarie.  
+Crea un'ontologia molto concisa e chiara. Evita complessità, ambiguità e duplicazioni non necessarie.
 
 ## 2. Etichettare le entità e le relazioni
 -  **Coerenza**: Usa tipi non troppo specifici per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una regione italiana, etichettala sempre come 'Regione'. Evita termini più specifici come 'RegionePuglia' o 'RegioneBasilicata'. Favorisci la generalizzazione.
--  **ID delle entità**: Non considerare numeri interi come ID. Gli ID devono essere nomi o identificatori human-readable.
--  Le **relazioni** rappresentano connessioni tra entità o concetti. Usa tipi di relazione coerenti e generali. Ad esempio, invece di usare un tipo specifico e temporale come 'DIVENTA_PROFESSORE', usa un tipo più generale e atemporale come 'PROFESSORE'. Assicurati di usare tipi di relazione generali e atemporali!
+-  **Key delle entità**: La 'Key' di un'entità è il suo attributo univoco e, pertanto, identificativo, come il codice fiscale di una persona. Ogni entità deve avere esattamente un attributo 'Key'. Non considerare banali numeri progressivi come 'Key'. Le 'Key' devono essere numeri significativi, nomi o identificatori human-readable trovati nel testo.
+-  Le **relazioni** rappresentano connessioni tra entità e concetti. Usa tipi di relazione coerenti e generali. Ad esempio, invece di usare un tipo specifico e temporale come 'DIVENTA_PROFESSORE', usa un tipo più generale e atemporale come 'PROFESSORE'. Assicurati di usare tipi di relazione generali e atemporali!
 
 ## 3. Conformità alle regole
 Rispetta rigorosamente le regole.
 Non includere spiegazioni o scuse nelle tue risposte.
-Non rispondere a domande che richiedono qualcosa di diverso dalla creazione di un'ontologia.  
-Non includere alcun testo diverso dall'ontologia.  
-Non creare entità senza un attributo unico. Ogni entità deve avere almeno un attributo unico.
-Non creare relazioni senza le due relative entità di origine (source) e destinazione (target).
+Non rispondere a domande che richiedono qualcosa di diverso dalla creazione di un'ontologia.
+Non includere alcun testo diverso dall'ontologia.
+Non puoi creare più di un'entità con la stessa label (sarebbero duplicate).
+Non puoi creare più relazioni che presentano congiuntamente le stesse label, source label e target label (sarebbero duplicate).
+Ogni entità deve avere esattamente un attributo unico (cosiddetto attributo 'key').
+Non creare relazioni senza le due relative entità di origine ('source') e destinazione ('target'). Prima di creare una relazione che collega due entità, assicurati di aver creato le entità stesse!
 Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una 'Persona' ha 'INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non sarà possibile determinare da quale 'Film' provenga il 'Personaggio'.
 Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare una relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
 Le etichette (label) di entità e relazioni non possono iniziare con numeri o caratteri speciali.
 
 ## 4. Formato
-L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
-Non restituire lo schema nella risposta; usalo solo come riferimento.  
+L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi.
+Lo schema seguente è una definizione formale dei vincoli (JSON Schema). La tua risposta deve essere un'istanza valida di questo schema, non deve includere lo schema stesso.
 Assicurati che il JSON sia restituito in linea e senza spazi, per ridurre il numero di token nel risultato.
 
 Schema:
@@ -49,7 +51,7 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema. Ex: StreamingService",
-            "format": "titlecase"
+            "format": "PascalCase"
           },
           "attributes": {
             "type": "array",
@@ -62,20 +64,20 @@ Schema:
                 "name": {
                   "type": "string",
                   "title": "The name Schema",
-                  "format": "snakecase"
+                  "format": "snake_case"
                 },
                 "type": {
                   "type": "string",
-                  "enum": ["string", "number", "boolean"],
-                  "title": "The type Schema"
+                  "title": "The type Schema",
+                  "enum": ["string", "number", "boolean"]
                 },
                 "unique": {
                   "type": "boolean",
-                  "title": "The unique Schema. Must have at least one unique attribute"
+                  "title": "The unique Schema. 'true' if it is the key attribute of the entity, 'false' otherwise. Each entity should have exactly one key attribute."
                 },
                 "required": {
                   "type": "boolean",
-                  "title": "The required Schema. If the attribute is required, it cannot be null or empty"
+                  "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
                 }
               }
             }
@@ -94,29 +96,87 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema",
-            "format": "uppercase"
+            "format": "SCREAMING_SNAKE_CASE"
           },
           "source": {
             "type": "object",
             "title": "The source Schema",
-            "required": ["label"],
+            "required": ["label", "attributes"],
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
-                "title": "The label Schema"
+                "title": "The label Schema",
+                "format": "PascalCase"
+              },
+              "attributes": {
+                "type": "array",
+                "title": "The attributes Schema",
+                "items": {
+                  "type": "object",
+                  "title": "A Schema",
+                  "required": ["name", "type", "unique", "required"],
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "title": "The name Schema",
+                      "format": "snake_case"
+                    },
+                    "type": {
+                      "type": "string",
+                      "title": "The type Schema",
+                      "enum": ["string", "number", "boolean"]
+                    },
+                    "unique": {
+                      "type": "boolean",
+                      "title": "The unique Schema. 'true' if it is the keyref attribute that the relation uses to refer to the source entity, 'false' otherwise. The source should have exactly one unique attribute (that is the keyref)."
+                    },
+                    "required": {
+                      "type": "boolean",
+                      "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
+                    }
+                  }
+                }
               }
             }
           },
           "target": {
             "type": "object",
             "title": "The target Schema",
-            "required": ["label"],
+            "required": ["label", "attributes"],
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
-                "title": "The label Schema"
+                "title": "The label Schema",
+                "format": "PascalCase"
+              },
+              "attributes": {
+                "type": "array",
+                "title": "The attributes Schema",
+                "items": {
+                  "type": "object",
+                  "title": "A Schema",
+                  "required": ["name", "type", "unique", "required"],
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "title": "The name Schema",
+                      "format": "snake_case"
+                    },
+                    "type": {
+                      "type": "string",
+                      "title": "The type Schema",
+                      "enum": ["string", "number", "boolean"]
+                    },
+                    "unique": {
+                      "type": "boolean",
+                      "title": "The unique Schema. 'true' if it is the keyref attribute that the relation uses to refer to the target entity, 'false' otherwise. The target should have exactly one unique attribute (that is the keyref)."
+                    },
+                    "required": {
+                      "type": "boolean",
+                      "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
+                    }
+                  }
+                }
               }
             }
           },
@@ -126,25 +186,21 @@ Schema:
             "items": {
               "type": "object",
               "title": "A Schema",
-              "required": ["name", "type", "unique", "required"],
+              "required": ["name", "type", "required"],
               "properties": {
                 "name": {
                   "type": "string",
-                  "title": "The name of the attribute",
-                  "format": "snakecase"
+                  "title": "The name Schema",
+                  "format": "snake_case"
                 },
                 "type": {
                   "type": "string",
-                  "enum": ["string", "number", "boolean"],
-                  "title": "The type of the attribute"
-                },
-                "unique": {
-                  "type": "boolean",
-                  "title": "If the attribute is unique or not between different relations of the same label"
+                  "title": "The type Schema",
+                  "enum": ["string", "number", "boolean"]
                 },
                 "required": {
                   "type": "boolean",
-                  "title": "If the attribute is required or not"
+                  "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
                 }
               }
             }
@@ -158,20 +214,19 @@ Schema:
 
 Eccoti un esempio di output che potresti restituirmi:
 ```json
-{"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"required":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}]}```
+{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","required":false}]}]}```
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente unendo le due ontologie fornite.
-L'esempio fornito è interamente in inglese; tuttavia, l'ontologia, pur mantenendo una struttura in lingua inglese, deve essere compilata in italiano.
 """
 
 CREATE_ONTOLOGY_SYSTEM_ITA = """
 ***
 ## 1. Panoramica\n"
-Sei un assistente di alto livello progettato per estrarre ontologie da testi grezzi. Tali ontologie verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
+Sei un assistente di alto livello progettato per estrarre ontologie JSON da testi grezzi. Tali ontologie verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
 Il dominio di applicazione è quello relativo alla Pubblica Amministrazione e al Codice degli appalti italiano.
 Cattura dal testo quante più informazioni possibili su entità, relazioni e attributi.
-- Le **entità** rappresentano entità e concetti. Devono avere almeno un attributo unico.
-- Le **relazioni** rappresentano collegamenti tra entità e concetti. 
+- Le **entità** rappresentano entità e concetti. Ciascuna entità deve avere esattamente un attributo unico (detto anche attributo 'Key').
+- Le **relazioni** rappresentano collegamenti tra entità e concetti. Ogni relazione ha un'entità 'source' e un'entità 'target'. Affinchè ciascuna relazione possa riferirsi a tali entità è necessario che essa contenga le loro rispettive label e gli attributi che si riferiscono alle loro 'Key' (il funzionamento è, dunque, simile al meccanismo delle chiavi esterne presente nei database relazionali).
 L'obiettivo è ottenere semplicità e chiarezza nel grafo della conoscenza, rendendolo accessibile a un vasto pubblico.  
 Utilizza il campo 'attributes' per catturare informazioni aggiuntive sulle entità e sulle relazioni.  
 Aggiungi tutti gli attributi necessari per descrivere completamente entità e relazioni presenti nel testo.  
@@ -182,23 +237,25 @@ Crea un'ontologia molto concisa e chiara. Evita complessità, ambiguità e dupli
 
 ## 2. Etichettare le entità e le relazioni
 -  **Coerenza**: Usa tipi non troppo specifici per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una regione italiana, etichettala sempre come 'Regione'. Evita termini più specifici come 'RegionePuglia' o 'RegioneBasilicata'. Favorisci la generalizzazione.
--  **ID delle entità**: Non considerare numeri interi come ID. Gli ID devono essere nomi o identificatori human-readable trovati nel testo.
--  Le **relazioni** rappresentano connessioni tra entità o concetti. Usa tipi di relazione coerenti e generali. Ad esempio, invece di usare un tipo specifico e temporale come 'DIVENTA_PROFESSORE', usa un tipo più generale e atemporale come 'PROFESSORE'. Assicurati di usare tipi di relazione generali e atemporali!
+-  **Key delle entità**: La 'Key' di un'entità è il suo attributo univoco e, pertanto, identificativo, come il codice fiscale di una persona. Ogni entità deve avere esattamente un attributo 'Key'. Non considerare banali numeri progressivi come 'Key'. Le 'Key' devono essere valori numerici significativi, nomi o identificatori human-readable trovati nel testo.
+-  Le **relazioni** rappresentano connessioni tra entità e concetti. Usa tipi di relazione coerenti e generali. Ad esempio, invece di usare un tipo specifico e temporale come 'DIVENTA_PROFESSORE', usa un tipo più generale e atemporale come 'PROFESSORE'. Assicurati di usare tipi di relazione generali e atemporali!
 
 ## 3. Conformità alle regole
 Rispetta rigorosamente le regole.
 Non includere spiegazioni o scuse nelle tue risposte.
 Non rispondere a domande che richiedono qualcosa di diverso dalla creazione di un'ontologia.  
-Non includere alcun testo diverso dall'ontologia.  
-Non creare entità senza un attributo unico. Ogni entità deve avere almeno un attributo unico.
-Non creare relazioni senza le due relative entità di origine (source) e destinazione (target).
+Non includere alcun testo diverso dall'ontologia. 
+Non puoi creare più di un'entità con la stessa label (sarebbero duplicate).
+Non puoi creare più relazioni che presentano congiuntamente le stesse label, source label e target label (sarebbero duplicate).
+Ogni entità deve avere esattamente un attributo unico (cosiddetto attributo 'key').
+Non creare relazioni senza le due relative entità di origine ('source') e destinazione ('target'). Prima di creare una relazione che collega due entità, assicurati di aver creato le entità stesse!
 Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una 'Persona' ha 'INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non sarà possibile determinare da quale 'Film' provenga il 'Personaggio'.
 Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare una relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
 Le etichette (label) di entità e relazioni non possono iniziare con numeri o caratteri speciali.
 
 ## 4. Formato
 L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
-Non restituire lo schema nella risposta; usalo solo come riferimento.  
+Lo schema seguente è una definizione formale dei vincoli (JSON Schema). La tua risposta deve essere un'istanza valida di questo schema, non deve includere lo schema stesso.
 Assicurati che il JSON sia restituito in linea e senza spazi, per ridurre il numero di token nel risultato.
 
 Schema:
@@ -221,7 +278,7 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema. Ex: StreamingService",
-            "format": "titlecase"
+            "format": "PascalCase"
           },
           "attributes": {
             "type": "array",
@@ -234,20 +291,20 @@ Schema:
                 "name": {
                   "type": "string",
                   "title": "The name Schema",
-                  "format": "snakecase"
+                  "format": "snake_case"
                 },
                 "type": {
                   "type": "string",
-                  "enum": ["string", "number", "boolean"],
-                  "title": "The type Schema"
+                  "title": "The type Schema",
+                  "enum": ["string", "number", "boolean"]
                 },
                 "unique": {
                   "type": "boolean",
-                  "title": "The unique Schema. Must have at least one unique attribute"
+                  "title": "The unique Schema. 'true' if it is the key attribute of the entity, 'false' otherwise. Each entity should have exactly one key attribute."
                 },
                 "required": {
                   "type": "boolean",
-                  "title": "The required Schema. If the attribute is required, it cannot be null or empty"
+                  "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
                 }
               }
             }
@@ -266,29 +323,87 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema",
-            "format": "uppercase"
+            "format": "SCREAMING_SNAKE_CASE"
           },
           "source": {
             "type": "object",
             "title": "The source Schema",
-            "required": ["label"],
+            "required": ["label", "attributes"],
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
-                "title": "The label Schema"
+                "title": "The label Schema",
+                "format": "PascalCase"
+              },
+              "attributes": {
+                "type": "array",
+                "title": "The attributes Schema",
+                "items": {
+                  "type": "object",
+                  "title": "A Schema",
+                  "required": ["name", "type", "unique", "required"],
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "title": "The name Schema",
+                      "format": "snake_case"
+                    },
+                    "type": {
+                      "type": "string",
+                      "title": "The type Schema",
+                      "enum": ["string", "number", "boolean"]
+                    },
+                    "unique": {
+                      "type": "boolean",
+                      "title": "The unique Schema. 'true' if it is the keyref attribute that the relation uses to refer to the source entity, 'false' otherwise. The source should have exactly one unique attribute (that is the keyref)."
+                    },
+                    "required": {
+                      "type": "boolean",
+                      "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
+                    }
+                  }
+                }
               }
             }
           },
           "target": {
             "type": "object",
             "title": "The target Schema",
-            "required": ["label"],
+            "required": ["label", "attributes"],
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
-                "title": "The label Schema"
+                "title": "The label Schema",
+                "format": "PascalCase"
+              },
+              "attributes": {
+                "type": "array",
+                "title": "The attributes Schema",
+                "items": {
+                  "type": "object",
+                  "title": "A Schema",
+                  "required": ["name", "type", "unique", "required"],
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "title": "The name Schema",
+                      "format": "snake_case"
+                    },
+                    "type": {
+                      "type": "string",
+                      "title": "The type Schema",
+                      "enum": ["string", "number", "boolean"]
+                    },
+                    "unique": {
+                      "type": "boolean",
+                      "title": "The unique Schema. 'true' if it is the keyref attribute that the relation uses to refer to the target entity, 'false' otherwise. The target should have exactly one unique attribute (that is the keyref)."
+                    },
+                    "required": {
+                      "type": "boolean",
+                      "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
+                    }
+                  }
+                }
               }
             }
           },
@@ -298,25 +413,21 @@ Schema:
             "items": {
               "type": "object",
               "title": "A Schema",
-              "required": ["name", "type", "unique", "required"],
+              "required": ["name", "type", "required"],
               "properties": {
                 "name": {
                   "type": "string",
-                  "title": "The name of the attribute",
-                  "format": "snakecase"
+                  "title": "The name Schema",
+                  "format": "snake_case"
                 },
                 "type": {
                   "type": "string",
-                  "enum": ["string", "number", "boolean"],
-                  "title": "The type of the attribute"
-                },
-                "unique": {
-                  "type": "boolean",
-                  "title": "If the attribute is unique or not between different relations of the same label"
+                  "title": "The type Schema",
+                  "enum": ["string", "number", "boolean"]
                 },
                 "required": {
                   "type": "boolean",
-                  "title": "If the attribute is required or not"
+                  "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
                 }
               }
             }
@@ -330,11 +441,10 @@ Schema:
 
 Eccoti un esempio di output che potresti restituirmi:
 ```json
-{"entities":[{"label":"Person","attributes":[{"name":"name","type":"string","unique":true,"required":true},{"name":"age","type":"number","unique":false,"required":false}]},{"label":"Movie","attributes":[{"name":"title","type":"string","unique":true,"required":true},{"name":"releaseYear","type":"number","unique":false,"required":false}]}],"relations":[{"label":"ACTED_IN","source":{"label":"Person"},"target":{"label":"Movie"},"attributes":[{"name":"role","type":"string","unique":false,"required":true}]}]}
+{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","required":true}]}]}
 ```
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente a partire dal testo fornito.
-L'esempio fornito è interamente in inglese; tuttavia, l'ontologia, pur mantenendo una struttura in lingua inglese, deve essere compilata in italiano, poiché tutti i testi di riferimento sono redatti in italiano.
 """
 
 
@@ -392,7 +502,7 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema",
-            "format": "titlecase"
+            "format": "PascalCase"
           },
           "attributes": {
             "type": "object",
@@ -412,7 +522,7 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema",
-            "format": "uppercase"
+            "format": "SCREAMING_SNAKE_CASE"
           },
           "source": {
             "type": "object",
@@ -421,7 +531,7 @@ Schema:
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
+                "format": "PascalCase",
                 "title": "The label Schema"
               },
               "attributes": {
@@ -437,7 +547,7 @@ Schema:
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
+                "format": "PascalCase",
                 "title": "The label Schema"
               },
               "attributes": {
@@ -468,9 +578,9 @@ Do not use the example Movie context to assume the ontology. The ontology should
 
 MERGE_ONTOLOGY_PROMPT_ITA="""
 Date le seguenti due ontologie, uniscile in un'unica ontologia.
-Unisci le ontologie in un'unica ontologia eliminando entità o relazioni duplicate.
-Due entità sono da considerare equivalenti se hanno label o attributi simili.
-Due relazioni sono da considerare equivalenti se hanno label, attributi o entità source/target simili.
+Unisci le ontologie in un'unica ontologia identificando e fondendo assieme entità e relazioni semanticamente simili.
+Due o più entità sono da considerare semanticamente simili se hanno label o attributi simili.
+Due o più relazioni sono da considerare semanticamente simili se hanno label, attributi o entità source/target simili.
 Non inventare nuove entità né nuove relazioni non presenti nelle ontologie fornite.
 Estrai il maggior numero possibile di entità e relazioni per descrivere completamente i dati.
 Estrai il maggior numero possibile di attributi per descrivere pienamente le entità e le relazioni.
@@ -569,8 +679,6 @@ Raw text:
 
 FIX_ONTOLOGY_PROMPT_ITA ="""
 La seguente ontologia JSON che hai generato precedentemente ha prodotto uno o più errori. Correggi gli errori segnalati e aggiungi eventuali informazioni mancanti al suo interno.
-Assicurati che tutte le relazioni abbiano 2 entità: origine (source) e destinazione (target).
-Assicurati che tutte le entità abbiano almeno un attributo unico.
 Assicurati che le parentesi siano state inserite correttamente rispettando lo schema.
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
@@ -590,8 +698,6 @@ Testo usato per la generazione dell'ontologia da correggere:
 
 FIX_ONTOLOGY_PROMPT_MERGE_ITA ="""
 La seguente ontologia JSON che hai generato precedentemente dall'unione di due ontologie ha prodotto uno o più errori. Correggi gli errori segnalati e aggiungi eventuali informazioni mancanti al suo interno.
-Assicurati che tutte le relazioni abbiano due entità: origine (source) e destinazione (target).
-Assicurati che tutte le entità abbiano almeno un attributo unico.
 Assicurati che le parentesi siano state inserite correttamente rispettando lo schema.
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
@@ -608,7 +714,7 @@ Prima ontologia usata per creare l'ontologia da correggere:
 {first_ontology}
 ```
 
-Prima ontologia usata per creare l'ontologia da correggere:
+Seconda ontologia usata per creare l'ontologia da correggere:
 ```json
 {second_ontology}
 ```
@@ -622,7 +728,7 @@ Make sure to connect all related entities in the ontology. For example, if a Per
 Make sure each entity contains at least one unique attribute.
 Make sure all entities have relations.
 Make sure all relations have 2 entities (source and target).
-Make sure all entity labels are titlecase.
+Make sure all entity labels are PascalCase.
 Do not allow duplicated relationships, for example, if you have a relationship "OWNS" from Person to House, do not create another relationship "OWNS_HOUSE", or even "OWNED_BY" from House to Person.
 Relationship names must be timeless. For example "WROTE" and "WRITTEN" means the same thing, if the source and target entities are the same. Remove similar scenarios.
 Do not create relationships without their corresponding entities.
@@ -643,7 +749,7 @@ Non includere spiegazioni o scuse nelle tue risposte.
 Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
 La tua risposta deve essere in formato JSON e deve seguire lo schema fornito di seguito.
 Assicurati che il JSON prodotto sia restituito inline e senza spazi, così da ridurre il numero di token in output.
-Assicurati che il JSON prodotto contenga, per ogni entità o relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'riferimentoTestuale' all'interno del file JSON. 
+Assicurati che il JSON prodotto contenga, per ogni entità o relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'riferimento_testuale' all'interno del file JSON. 
 Evita entità o relazioni duplicate. Se ci sono più entità o relazioni semanticamente molto simili provvedi ad unirli.
 
 Schema:
@@ -666,7 +772,7 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema",
-            "format": "titlecase"
+            "format": "PascalCase"
           },
           "attributes": {
             "type": "object",
@@ -686,7 +792,7 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema",
-            "format": "uppercase"
+            "format": "SCREAMING_SNAKE_CASE"
           },
           "source": {
             "type": "object",
@@ -695,7 +801,7 @@ Schema:
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
+                "format": "PascalCase",
                 "title": "The label Schema"
               },
               "attributes": {
@@ -711,7 +817,7 @@ Schema:
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
+                "format": "PascalCase",
                 "title": "The label Schema"
               },
               "attributes": {
@@ -732,7 +838,7 @@ Schema:
 ```
 
 Esempio di output:
-```{"entities":[{"label":"Person","attributes":{"name":"John Doe","age":30,"riferimentoTestuale":"John Doe, a 30-year-old software engineer, has recently relocated to a new city to pursue a promising career opportunity. Known for his analytical mindset and calm approach to problem-solving, he quickly adapted to his new work environment."}},{"label":"Movie","attributes":{"title":"Inception","releaseYear":2010,"riferimentoTestuale":"Inception is a 2010 science-fiction thriller written and directed by Christopher Nolan"}}],"relations":[{"label":"ACTED_IN","source":{"label":"Person","attributes":{"name":"JohnDoe"}},"target":{"label":"Movie","attributes":{"title":"Inception"}},"attributes":{"role":"Cobb", "riferimentoTestuale":"John Doe, a versatile and highly regarded actor, earned widespread recognition for his performance in the 2010 film Inception. In the movie, he portrayed Dom Cobb, a complex and emotionally driven character tasked with navigating layered dream worlds"}}]}```
+```{"entities":[{"label":"Person","attributes":{"name":"John Doe","age":30,"riferimento_testuale":"John Doe, a 30-year-old software engineer, has recently relocated to a new city to pursue a promising career opportunity. Known for his analytical mindset and calm approach to problem-solving, he quickly adapted to his new work environment."}},{"label":"Movie","attributes":{"title":"Inception","releaseYear":2010,"riferimento_testuale":"Inception is a 2010 science-fiction thriller written and directed by Christopher Nolan"}}],"relations":[{"label":"ACTED_IN","source":{"label":"Person","attributes":{"name":"JohnDoe"}},"target":{"label":"Movie","attributes":{"title":"Inception"}},"attributes":{"role":"Cobb", "riferimento_testuale":"John Doe, a versatile and highly regarded actor, earned widespread recognition for his performance in the 2010 film Inception. In the movie, he portrayed Dom Cobb, a complex and emotionally driven character tasked with navigating layered dream worlds"}}]}```
 """
 
 
@@ -741,7 +847,7 @@ MERGE_SIMILAR_RELATIONS_SYSTEM_ITA="""
 ## 1. Panoramica
 Sei un assistente di alto livello con l'obiettivo di identificare e fondere relazioni duplicate descritte da attributi e riferimenti testuali.
 In particolare, il tuo scopo è quello di prendere in input una lista di relazioni in formato JSON e identificare le relazioni duplicate per poi rimuovendole e fonderle in nuove relazioni da dare in output.
-Due o più relazioni sono duplicate se sono semanticamente molto simili tra loro. Per valutare la similarità semantica, devi usare le label e gli attributi. In particolare, puoi fare riferimento all'attributo 'riferimentoTestuale' che contiene la descrizione testuale che ha giusitificato la creazione di una specifica relazione.
+Due o più relazioni sono duplicate se sono semanticamente molto simili tra loro. Per valutare la similarità semantica, devi usare le label e gli attributi. In particolare, puoi fare riferimento all'attributo 'riferimento_testuale' che contiene la descrizione testuale che ha giusitificato la creazione di una specifica relazione.
 Le relazioni che non ritieni duplicate devi restituirle semplicemente in output senza apportare modifiche.
 Il dominio applicativo è quello della Pubblica Amministrazione e del Codice degli appalti italiano.
 
@@ -751,7 +857,7 @@ Non includere spiegazioni o scuse nelle tue risposte.
 Non rispondere a domande che chiedono qualcosa di diverso dalla fusione di relazioni. 
 Non inventare dati dal nulla ma basati su quelli forniti.
 Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
-Se crei nuove relazioni dalla fusione di vecchie relazioni, l'attributo 'riferimentoTestuale' dovrà contenere tassativamente l'unione dei 'text-reference' delle vecchie relazioni senza apportare troppe modifiche. 
+Se crei nuove relazioni dalla fusione di vecchie relazioni, l'attributo 'riferimento_testuale' dovrà contenere tassativamente l'unione dei 'riferimento_testuale' delle vecchie relazioni senza apportare troppe modifiche. 
 
 ## 3. Formato
 La tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
@@ -778,7 +884,7 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema",
-            "format": "uppercase"
+            "format": "SCREAMING_SNAKE_CASE"
           },
           "source": {
             "type": "object",
@@ -787,7 +893,7 @@ Schema:
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
+                "format": "PascalCase",
                 "title": "The label Schema"
               },
               "attributes": {
@@ -803,7 +909,7 @@ Schema:
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
+                "format": "PascalCase",
                 "title": "The label Schema"
               },
               "attributes": {
@@ -825,12 +931,12 @@ Schema:
 
 Eccoti un esempio di input-output corretto:
 Lista contenente due relazioni duplicate in input:
-```json{"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimentoTestuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}},
-{"label":"HA_PRESO_PARTE_AL_CAST","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimentoTestuale": "John Doe, un attore versatile e molto apprezzato, ha preso parte al cast del film Inception del 2010, ottenendo ampio riconoscimento per la sua interpretazione di Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}
+```json{"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimento_testuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}},
+{"label":"HA_PRESO_PARTE_AL_CAST","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimento_testuale": "John Doe, un attore versatile e molto apprezzato, ha preso parte al cast del film Inception del 2010, ottenendo ampio riconoscimento per la sua interpretazione di Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}
 ]}
 ```
 Lista in output contenente una nuova relazione creata dalla fusione delle due relazioni duplicate in input:
-```json{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere del software trentenne, si è recentemente trasferito in una nuova città per perseguire una promettente opportunità di carriera. Conosciuto per la sua mentalità analitica e il suo approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Film","attributes":{"titolo":"Inception","annoDiUscita":2010,"riferimentoTestuale":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimentoTestuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}```
+```json{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimento_testuale":"John Doe, un ingegnere del software trentenne, si è recentemente trasferito in una nuova città per perseguire una promettente opportunità di carriera. Conosciuto per la sua mentalità analitica e il suo approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Film","attributes":{"titolo":"Inception","annoDiUscita":2010,"riferimento_testuale":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimento_testuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}```
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le relazioni. Esso va usato solo come riferimento generale.
 """
@@ -840,7 +946,7 @@ MERGE_SIMILAR_ENTITIES_SYSTEM_ITA="""
 ## 1. Panoramica
 Sei un assistente di alto livello con l'obiettivo di identificare e fondere entità duplicate descritte da attributi e riferimenti testuali.
 In particolare, il tuo scopo è quello di prendere in input una lista di entità in formato JSON e identificare le entità duplicate per poi rimuovendole e fonderle in nuove entità da dare in output.
-Due o più entita sono duplicate se sono semanticamente molto simili tra loro. Per valutare la similarità semantica, devi usare le label e gli attributi. In particolare, puoi fare riferimento all'attributo 'riferimentoTestuale' che contiene la descrizione testuale che ha giusitificato la creazione di una specifica entità.
+Due o più entita sono duplicate se sono semanticamente molto simili tra loro. Per valutare la similarità semantica, devi usare le label e gli attributi. In particolare, puoi fare riferimento all'attributo 'riferimento_testuale' che contiene la descrizione testuale che ha giusitificato la creazione di una specifica entità.
 Le entità che non ritieni duplicate devi restituirle semplicemente in output senza apportare modifiche.
 Il dominio applicativo è quello della Pubblica Amministrazione e del Codice degli appalti italiano.
 
@@ -851,7 +957,7 @@ Non rispondere a domande che chiedono qualcosa di diverso dalla fusione di entit
 Non inventare dati dal nulla ma basati su quelli forniti.
 Mantieni la coerenza delle entità: quando estrai entità, è fondamentale garantire la coerenza. Se un'entità, come 'John Doe', viene menzionata più volte ma con nomi o pronomi diversi (ad esempio 'Joe', 'lui'), usa sempre l'identificatore più completo per quell'entità. In questo esempio, usa 'John Doe' come ID dell'entità. Ricorda che mantenere la coerenza nei riferimenti alle entità è cruciale.
 Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
-Se crei nuove entità dalla fusione di vecchie entità, l'attributo 'riferimentoTestuale' dovrà contenere tassativamente l'unione dei 'text-reference' delle vecchie entità senza apportare troppe modifiche. 
+Se crei nuove entità dalla fusione di vecchie entità, l'attributo 'riferimento_testuale' dovrà contenere tassativamente l'unione dei 'text-reference' delle vecchie entità senza apportare troppe modifiche. 
 
 ## 3. Formato
 La tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
@@ -878,7 +984,7 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema",
-            "format": "titlecase"
+            "format": "PascalCase"
           },
           "attributes": {
             "type": "object",
@@ -894,19 +1000,19 @@ Schema:
 Eccoti un esempio di input-output corretto:
 Lista contenente due entità duplicate in input:
 ```json
-{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"riferimentoTestuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per inseguire un'opportunità professionale emozionante e a lungo desiderata. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda."}}]}```
+{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimento_testuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"riferimento_testuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per inseguire un'opportunità professionale emozionante e a lungo desiderata. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda."}}]}```
 Lista in output contenente una nuova entità creata dalla fusione delle due entità duplicate in input:
 ```json
-{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda"}}]}```
+{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimento_testuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda"}}]}```
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le entità. Esso va usato solo come riferimento generale.
 """
 
 EXTRACT_DATA_SYSTEM_ITA = """
 ## 1. Panoramica
-Sei un assistente di alto livello con l'obiettivo di estrarre entità, relazioni e attributi da un testo grezzo con il fine ultimo di creare un grafo della conoscenza (Knowledge Graph), utilizzando l'ontologia fornita.
+Sei un assistente di alto livello con l'obiettivo di estrarre entità, relazioni e attributi da un testo grezzo con il fine ultimo di creare un grafo della conoscenza (Knowledge Graph), utilizzando l'ontologia JSON fornita.
 Il dominio applicativo è quello della Pubblica Amministrazione e del Codice degli appalti italiano.
-L'estrazione deve avvenire usando un formato JSON. L'ontologia fonita è anch'essa in formato JSON.
+L'estrazione deve avvenire usando un formato JSON.
 Usa solo i tipi di entità, relazioni e attributi presenti nell'ontologia fornita.
 Mantieni la coerenza delle entità: quando estrai entità, è fondamentale garantire la coerenza. Se un'entità, come 'John Doe', viene menzionata più volte nel testo ma con nomi o pronomi diversi (ad esempio 'Joe', 'lui'), usa sempre l'identificatore più completo per quell'entità. In questo esempio, usa 'John Doe' come ID dell'entità. Ricorda che il grafo della conoscenza deve essere coerente e facilmente comprensibile, quindi mantenere la coerenza nei riferimenti alle entità è cruciale.
 Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente con l'ontologia e il contesto forniti, per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
@@ -914,11 +1020,13 @@ Mantieni la coerenza del formato: assicurati che il formato dei dati estratti si
 ## 2. Conformità alle regole
 Rispetta rigorosamente le regole.
 Segui la struttura dell'ontologia fornita.
-Gli attributi contrassegnati come 'required:True' all'interno dell'ontologia vanno obbligatoriamente avvalorati.
+Gli attributi contrassegnati come 'required:true' all'interno dell'ontologia vanno obbligatoriamente avvalorati.
+Ciascuna entità ha un attributo contrassegnato come 'unique:true': questo attributo rappresenta l'identificativo univoco di quel tipo di entità, come ad esempio l'attributo 'codice_fiscale' di un'entità con label 'Persona'.
+Ciascuna relazione ha un'entità source e un'entità target. Per fare riferimento a ciascuna di esse, la reazione contiene esattamente un attributo 'unique:True' per l'entità source e un altro per l'entità target. Tali attributi fanno riferimento agli attributi univoci delle rispettive entità (è simile al meccanismo delle chiavi esterne presente nei database relazionali).
 Non includere spiegazioni o scuse nelle tue risposte, solo il JSON.
 Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
-Non inventare dati.
-Assicurati che il JSON prodotto contenga, per ogni entità o relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'riferimentoTestuale'.
+Non inventare dati, usa solo ciò che viene riportato nel testo.
+Assicurati che il JSON prodotto contenga, per ogni entità e relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'riferimento_testuale'. Tale riferimento può essere eventualmente sintetizzato se troppo prolisso.
 
 ## 3. Formattazione
 Usa virgolette doppie per tutti i valori stringa.
@@ -927,7 +1035,7 @@ Le date devono essere nel formato 'YYYY-MM-DD'.
 
 ## 4. Formato
 La tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
-Non restituire lo schema nella risposta; usalo solo come riferimento.
+Lo schema seguente è una definizione formale dei vincoli (JSON Schema). La tua risposta deve essere un'istanza valida di questo schema, non deve includere lo schema stesso.
 Assicurati che il JSON prodotto sia restituito in linea e senza spazi, così da ridurre il numero di token in output.
 
 Schema:
@@ -950,7 +1058,7 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema",
-            "format": "titlecase"
+            "format": "PascalCase"
           },
           "attributes": {
             "type": "object",
@@ -965,12 +1073,12 @@ Schema:
       "items": {
         "type": "object",
         "title": "A Schema",
-        "required": ["label", "source", "target"],
+        "required": ["label", "source", "target", "attributes"],
         "properties": {
           "label": {
             "type": "string",
             "title": "The label Schema",
-            "format": "uppercase"
+            "format": "SCREAMING_SNAKE_CASE"
           },
           "source": {
             "type": "object",
@@ -979,7 +1087,7 @@ Schema:
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
+                "format": "PascalCase",
                 "title": "The label Schema"
               },
               "attributes": {
@@ -995,7 +1103,7 @@ Schema:
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
+                "format": "PascalCase",
                 "title": "The label Schema"
               },
               "attributes": {
@@ -1015,10 +1123,13 @@ Schema:
 }
 ```
 
-Eccoti un esempio di output che potresti restituirmi:
-```json{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimentoTestuale":"John Doe, un ingegnere del software trentenne, si è recentemente trasferito in una nuova città per perseguire una promettente opportunità di carriera. Conosciuto per la sua mentalità analitica e il suo approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Film","attributes":{"titolo":"Inception","annoDiUscita":2010,"riferimentoTestuale":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona"},"target":{"label":"Film"},"attributes":{"ruolo":"Cobb","riferimentoTestuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}```
+Data la seguente ontologia:
+```json{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false},{"name":"riferimento_testuale","type":"string","unique":false,"required":true}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false},{"name":"riferimento_testuale","type":"string","unique":false,"required":true}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","required":false},{"name":"riferimento_testuale","type":"string","unique":false,"required":true}]}]}```
 
-L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le entità, le relazioni o gli attributi del testo. I dati devono essere estratti esclusivamente a partire dal testo fornito.
+Eccoti un esempio di output che potresti restituirmi:
+```json{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimento_testuale":"John Doe è un attore 30enne di fama internazionale, noto per la sua versatilità interpretativa e la capacità di immedesimarsi in personaggi psicologicamente complessi."}},{"label":"Film","attributes":{"titolo":"Inception","anno_di_uscita":2010,"riferimento_testuale":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimento_testuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}```
+
+L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le entità, le relazioni o gli attributi del testo. I dati devono essere estratti esclusivamente a partire dal testo e dall'ontologia forniti.
 """
 
 EXTRACT_DATA_SYSTEM = """
@@ -1053,7 +1164,7 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema",
-            "format": "titlecase"
+            "format": "PascalCase"
           },
           "attributes": {
             "type": "object",
@@ -1073,7 +1184,7 @@ Schema:
           "label": {
             "type": "string",
             "title": "The label Schema",
-            "format": "uppercase"
+            "format": "SCREAMING_SNAKE_CASE"
           },
           "source": {
             "type": "object",
@@ -1082,7 +1193,7 @@ Schema:
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
+                "format": "PascalCase",
                 "title": "The label Schema"
               },
               "attributes": {
@@ -1098,7 +1209,7 @@ Schema:
             "properties": {
               "label": {
                 "type": "string",
-                "format": "titlecase",
+                "format": "PascalCase",
                 "title": "The label Schema"
               },
               "attributes": {
@@ -1130,8 +1241,8 @@ Sei incaricato di unire le entità e le relazioni dalla lista di JSON fornita.
 
 **Formato di output:**
 - Fornisci i dati estratti come oggetto JSON con due chiavi: 'entities' e 'relations'.
-- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'riferimentoTestuale' con la porzione di testo usata per la creazione dell'entità.
-- Relations: rappresentano le relazioni tra entità o concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'riferimentoTestuale' con la porzione di testo usata per la creazione della relazione.
+- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'riferimento_testuale' con la porzione di testo usata per la creazione dell'entità.
+- Relations: rappresentano le relazioni tra entità o concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'riferimento_testuale' con la porzione di testo usata per la creazione della relazione.
 
 **Linee guida:**
 - Estrai tutte le entità e le relazioni: cattura tutte le entità e tutte le relazioni menzionate nei file JSON.
@@ -1156,7 +1267,7 @@ Sei incaricato di identificare e fondere le entità duplicate riportate di segui
 
 **Formato di output:**
 - Fornisci i dati estratti come oggetto JSON con una chiave 'entities'.
-- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'riferimentoTestuale' con la porzione di testo usata per la creazione dell'entità.
+- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'riferimento_testuale' con la porzione di testo usata per la creazione dell'entità.
 
 **Linee guida:**
 - Considera tutte le entità fornite.
@@ -1177,7 +1288,7 @@ Sei incaricato di identificare e fondere le relazioni duplicate riportate di seg
 
 **Formato di output:**
 - Fornisci i dati estratti come oggetto JSON con una chiave 'relations'.
-- Relations: rappresentano le relazioni tra entità e concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'riferimentoTestuale' con la porzione di testo usata per la creazione della relazione.
+- Relations: rappresentano le relazioni tra entità e concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'riferimento_testuale' con la porzione di testo usata per la creazione della relazione.
 
 **Linee guida:**
 - Considera tutte le relazioni fornite.
@@ -1199,13 +1310,15 @@ Sei incaricato di estrarre entità, relazioni e attributi dal testo riportato di
 
 **Formato di output:**
 - Fornisci i dati estratti come oggetto JSON con due chiavi: 'entities' e 'relations'.
-- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'riferimentoTestuale' con la porzione di testo usata per la creazione dell'entità.
-- Relations: rappresentano le relazioni tra entità e concetti. Ogni relazione deve avere un 'label', 'source', 'target' e un campo 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'riferimentoTestuale' con la porzione di testo usata per la creazione della relazione.
+- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'riferimento_testuale' con la porzione di testo usata per la creazione dell'entità.
+- Relations: rappresentano le relazioni tra entità e concetti. Ogni relazione deve avere un campo 'label', 'source', 'target' e uno 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'riferimento_testuale' con la porzione di testo usata per la creazione della relazione.
 
 **Linee guida:**
 - Estrai tutte le entità e le relazioni: cattura tutte le entità e tutte le relazioni menzionate nel testo.
-- Assegna ID quando richiesto: assegna ID testuali alle entità e alle relazioni come specificato.
+- Assegna valori univoci agli attributi quando richiesto.
 - Evita duplicati: assicurati che ogni entità e relazione sia unica; non includere duplicati.
+  a) Due entità sono duplicate se hanno la stessa label e lo stesso valore per l'attributo univoco.
+  b) Due relazioni sono duplicate se hanno la stessa label, source label, target label e gli stessi valori per gli attributi univoci delle entità source e target.
 - Correggi eventuali problemi di spaziatura o formattazione presenti nel testo se necessario.
 
 Precisione: sii conciso e preciso nell'estrazione.
@@ -1217,6 +1330,7 @@ Ontologia:
 
 Testo:
 {text}
+
 """
 
 
@@ -1269,11 +1383,11 @@ You are tasked with extracting entities and relations from the text below, using
 
 FIX_JSON_PROMPT_DATA_ITA = """
 Date le segenti entità, relazioni e attributi in formato JSON che hai estratto precedentemente dal testo, correggi gli errori che sono stati riscontrati durante il suo parsing.
-Non modificare il significato semantico del JSON; devi solo modificare la sua struttura in modo tale da risolvere gli errori di parsing. 
+Non modificare il significato semantico del JSON; devi solo modificare la sua struttura in modo tale da risolvere gli errori di parsing.
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
 L'errore durante il parsing del JSON da corregere è stato il seguente:
-{error}
+{errors}
 
 JSON da correggere:
 ```json
@@ -1282,6 +1396,11 @@ JSON da correggere:
 
 Testo usato per la generazione del JSON da correggere:
 {text}
+
+Ontologia usata per la generazione del JSON da correggere:
+```json
+{ontolgy}
+```
 
 """
 
@@ -1305,11 +1424,11 @@ Testo usato per la generazione dell'ontologia da correggere:
 
 FIX_JSON_PROMPT_ONTOLOGY_MERGE_ITA = """
 Data la seguente ontologia JSON che hai creato precedentemente dall'unione di due ontologie, correggi gli errori che sono stati riscontrati durante il suo parsing.
-Non modificare il significato semantico del JSON; devi solo modificare la sua struttura in modo tale da risolvere gli errori di parsing. 
+Non modificare il significato semantico del JSON; devi solo modificare la sua struttura in modo tale da risolvere gli errori di parsing.
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
 L'errore durante il parsing dell'ontologia da correggere è stato il seguente:
-{error}
+{errors}
 
 Ontologia da correggere:
 ```json

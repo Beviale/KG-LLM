@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import json
-from graphrag_sdk.source import URL
+import Utils
 from graphrag_sdk import KnowledgeGraph, Ontology
 from graphrag_sdk.helpers import extract_json, map_dict_to_cypher_properties
 import litellm
@@ -25,7 +25,7 @@ from sklearn.cluster import AgglomerativeClustering
 
 init(autoreset=True)
 
-LIMIT_WHILE_LLM = 5 # Indicates the maximum number of times the script can repeat the same question to the LLM.
+LIMIT_WHILE_LLM = 10 # Indicates the maximum number of times the script can repeat the same question to the LLM.
 
 
 load_dotenv()
@@ -168,6 +168,7 @@ def preprocess_pdf(pdf_dict):
 def process_response_ontology(text_filename, category, index_chunk, response, text, model):
     """
     It processes the LLM response to create the ontology for a specific category (e.g., 'DisciplinaDiUtilizzo').
+    Returns 'True' if the ontology has been processed and saved correctly; 'False' otherwise.
     """
     response_content = response.choices[0].message["content"].strip()  
     limit_while_count = 0
@@ -175,23 +176,18 @@ def process_response_ontology(text_filename, category, index_chunk, response, te
         limit_while_count = limit_while_count + 1
         if limit_while_count>LIMIT_WHILE_LLM:
             print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
-            break
-        json_error=True
-        ontology_error=True
+            return False
         try:
-            data = json.loads(extract_json(response_content))
-            json_error=False
-            _ = Ontology.from_json(data)
-            ontology_error=False
+            data = Utils.validate_generated_ontology(response_content) 
             print(f"{Fore.WHITE}Chunk ontology created!")
             break
-        except Exception as e:
+        except Exception as e:        
             try:
                 # fallback 
                 error = f"TypeError: '{type(e)}', error: '{e}'"
                 print(f"Error extracting JSON. TypeError: {error}")
                 print(f"Prompting model to fix JSON")
-                if json_error:
+                if e is Utils.JSONFormattingException:
                     json_fix_response = completion(
                         model=model,
                         messages=[
@@ -199,7 +195,7 @@ def process_response_ontology(text_filename, category, index_chunk, response, te
                             {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_ITA.format(error=error, json=response_content, text=text)}         
                         ]
                     )
-                elif ontology_error:
+                else:
                         json_fix_response = completion(
                         model=model,
                         messages=[
@@ -220,6 +216,7 @@ def process_response_ontology(text_filename, category, index_chunk, response, te
         # Save the ontology to the disk as a json file.
         with open(ontology_file_name, "w", encoding="utf-8") as file:
             file.write(current_ontology_ident)
+    return True
 
 
 
@@ -229,6 +226,8 @@ def split_text_chunks(text: str, max_characters=4000):
     It returns the list of text chunks. 
     """
     nlp = spacy.load("it_core_news_sm")
+    nlp.max_length = len(text)  
+
     doc = nlp(text)
     sentences = [sent.text.strip() for sent in doc.sents]
     sentences = [sentence for sentence in sentences if sentence]
@@ -267,6 +266,7 @@ def split_text_chunks(text: str, max_characters=4000):
 def merge_ontologies_chunk(category, text_filename, model=None):
     """
     It merges the ontologies created for each text chunk of a specific category (e.g. 'DisciplinaDiUtilizzo') into a single ontology file.
+    Returns 'True' if the chunk ontologies have been merged and saved correctly; 'False' otherwise.
     """
     if model is None:
         model = "openai/gpt-5-nano"
@@ -291,66 +291,68 @@ def merge_ontologies_chunk(category, text_filename, model=None):
             os.rename(file_path, file_path_new)
         return    
 
-    new_json = json_merge[0]
-    for i in range(1, len(json_merge)):
-        first_ontology =  json.dumps(new_json, ensure_ascii=False)
-        second_ontology = json.dumps(json_merge[i], ensure_ascii=False)
+    current_json_elements = json_merge[:]
+    while len(current_json_elements) > 1:
+        next_level = []
+        for i in range(0, len(current_json_elements), 2):
+            if i + 1 < len(current_json_elements):
+                first_ontology = json.dumps(current_json_elements[i], ensure_ascii=False)
+                second_ontology = json.dumps(current_json_elements[i+1], ensure_ascii=False)
+                
+                print("Waiting the LLM response to merge the ontologies...")
+                response = completion(
+                    model=model,
+                    messages=[
+                        {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
+                        {"role": "user",   "content": Prompt.MERGE_ONTOLOGY_PROMPT_ITA.format(first_ontology=first_ontology, second_ontology=second_ontology)}
+                    ]
+                ) 
+                response_content = response.choices[0].message["content"].strip()  
+                limit_while_count = 0
+                while(True):
+                    limit_while_count = limit_while_count + 1
+                    if limit_while_count>LIMIT_WHILE_LLM:
+                        print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
+                        return False
+                    try:
+                        data = Utils.validate_generated_ontology(response_content) 
+                        new_json = data
+                        print("Chunk ontologies merged correctly!")
+                        break
+                    except Exception as e:                      
+                        try:
+                            # fallback
+                            error = f"TypeError: '{type(e)}', error: '{e}'"
+                            print(f"Error extracting JSON. {error}")
+                            print(f"Prompting model to fix JSON")
+                            if e is Utils.JSONFormattingException:
+                                json_fix_response = completion(
+                                    model=model,
+                                    messages=[
+                                        {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
+                                        {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_MERGE_ITA.format(errors=error, json=response_content, first_ontology=first_ontology, second_ontology=second_ontology)}         
+                                    ]
+                                )
+                            else:
+                                    json_fix_response = completion(
+                                    model=model,
+                                    messages=[
+                                        {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
+                                        {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_MERGE_ITA.format(ontology=response_content, errors=error, first_ontology=first_ontology, second_ontology=second_ontology)}         
+                                    ]
+                                )
+
+                            response_content = json_fix_response.choices[0].message["content"].strip()
+                        except Exception as e:
+                            print(f"{Fore.RED}Exception throws: {str(e)}")
+                            continue
+                next_level.append(new_json)
+            else:
+                next_level.append(current_json_elements[i])
+        current_json_elements = next_level
+    new_json = current_json_elements[0]
 
 
-        print("Waiting the LLM response to merge the ontologies...")
-        response = completion(
-            model=model,
-            messages=[
-                {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
-                {"role": "user",   "content": Prompt.MERGE_ONTOLOGY_PROMPT_ITA.format(first_ontology=first_ontology, second_ontology=second_ontology)}
-            ]
-        ) 
-        response_content = response.choices[0].message["content"].strip()  
-        limit_while_count = 0
-        while(True):
-            limit_while_count = limit_while_count + 1
-            if limit_while_count>LIMIT_WHILE_LLM:
-                print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
-                break
-            json_error=True
-            ontology_error=True
-            try:
-                data = json.loads(extract_json(response_content))
-                json_error = False
-                _ = Ontology.from_json(data)
-                ontology_error = False
-                new_json = data
-                print("Chunk ontologies merged correctly!")
-                break
-            except Exception as e:
-                try:
-                    # fallback
-                    error = f"TypeError: '{type(e)}', error: '{e}'"
-                    print(f"Error extracting JSON. {error}")
-                    print(f"Prompting model to fix JSON")
-                    if json_error:
-                        json_fix_response = completion(
-                            model=model,
-                            messages=[
-                                {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
-                                {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_ONTOLOGY_MERGE_ITA.format(error=error, json=response_content, first_ontology=first_ontology, second_ontology=second_ontology)}         
-                            ]
-                        )
-                    elif ontology_error:
-                            json_fix_response = completion(
-                            model=model,
-                            messages=[
-                                {"role": "system", "content": Prompt.MERGE_ONTOLOGY_SYSTEM_ITA},
-                                {"role": "user",   "content": Prompt.FIX_ONTOLOGY_PROMPT_MERGE_ITA.format(ontology=response_content, errors=error, first_ontology=first_ontology, second_ontology=second_ontology)}         
-                            ]
-                        )
-
-                    response_content = json_fix_response.choices[0].message["content"].strip()
-                except Exception as e:
-                    print(f"{Fore.RED}Exception throws: {str(e)}")
-                    continue
-            
-   
     new_attr = {
         "name": "riferimentoTestuale",
         "type": "string",
@@ -366,7 +368,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
         
         exists = any(a.get("name") == "riferimentoTestuale" for a in attrs)
         if not exists:
-            attrs.append(new_attr)
+            attrs.append(new_attr.copy())
 
     for relation in new_json.get("relations", []): 
         attrs = relation.get("attributes")     
@@ -376,7 +378,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
         
         exists = any(a.get("name") == "riferimentoTestuale" for a in attrs)
         if not exists:
-            attrs.append(new_attr)
+            attrs.append(new_attr.copy())
 
 
     current_ontology_ident = json.dumps(new_json, indent=2, ensure_ascii=False)
@@ -385,13 +387,17 @@ def merge_ontologies_chunk(category, text_filename, model=None):
         ontology_file_name = f"Ontologies/{category}/{text_filename}_Ontology.json"
         with open(ontology_file_name, "w", encoding="utf-8") as file:
             file.write(current_ontology_ident)
+    else:
+        return False
 
     for i in range(index):
         file_path = Path(f"Ontologies/{category}/{text_filename}_{i}_Ontology.json")    
         if os.path.exists(file_path):
             os.remove(file_path)
+    return True
 
         
+
 def split_codice_appalti(file_path, ontology=False):
     """
     It splits the given text (of the "CodiceAppalti" category) into text chunks considering the "Articoli". 
@@ -432,7 +438,7 @@ def generate_ontology(category, model=None, dataItems=None):
         model = "openai/gpt-5-nano"
 
     print(f"{Fore.GREEN}--Generating the ontology for the '{category}' category")
-    count = 1
+    count = 0
     for text_path in all_text_paths:
         count = count + 1
         text_filename = text_path.name.removesuffix(".txt")
@@ -445,7 +451,7 @@ def generate_ontology(category, model=None, dataItems=None):
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
 
-        print(f"{Fore.WHITE}File path: '{text_path}', current state: {count}/{len(all_text_paths)}.")
+        print(f"--{Fore.WHITE}File path: '{text_path}', current state: {count}/{len(all_text_paths)}.")
 
         file = Path(f"Ontologies/{category}/{text_filename}_Ontology.json")
         if file.exists():
@@ -460,23 +466,17 @@ def generate_ontology(category, model=None, dataItems=None):
 
 
         index_chunk = 0
-
         for chunk in chunks:
             chunk_path = Path(f"Ontologies/{category}/{text_filename}_{index_chunk}_Ontology.json")
             if chunk_path.exists():
                 print(f"{Fore.WHITE}The chunk {chunk_path} has already been processed!")
                 continue
 
-            print(f"{Fore.WHITE}Processing chunk {index_chunk + 1}/{len(chunks)}.")
+            print(f"--{Fore.WHITE}Processing chunk {index_chunk + 1}/{len(chunks)}.")
             textsToProcess = []
             textsToAdd = []
             textsToProcess.append(chunk)
-            limit_while_count = 0
-            while(True):
-                limit_while_count = limit_while_count + 1
-                if limit_while_count>LIMIT_WHILE_LLM:
-                    print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
-                    break
+            while(True):             
                 for text in textsToProcess: 
                     print(f"{Fore.WHITE}Waiting the LLM response...")
                     try:     
@@ -487,7 +487,8 @@ def generate_ontology(category, model=None, dataItems=None):
                                 {"role": "user",   "content": Prompt.CREATE_ONTOLOGY_PROMPT_ITA.format(text=text)}
                             ]
                         )                  
-                        process_response_ontology(text_filename, category, index_chunk, response, text, model)   
+                        if process_response_ontology(text_filename, category, index_chunk, response, text, model)==False:
+                            return 
                     except ContextWindowExceededError as e:
                         mid = len(text) // 2
                         print(f"{Fore.WHITE}Halving the text size from '{len(text)}' to '{mid}'")
@@ -510,7 +511,7 @@ def generate_ontology(category, model=None, dataItems=None):
 
 
 
-def process_reponse_data(text_filename, category, index_chunk, response, ontology, text, model):
+def process_reponse_data(text_filename, category, index_chunk, response, text_ontolgogy, ontology, text, model):
     """
     It processes the LLM response generated by the data-extraction prompt. It returns the JSON object containing entities, relations and attributes.
     """
@@ -522,14 +523,9 @@ def process_reponse_data(text_filename, category, index_chunk, response, ontolog
         limit_while_count = limit_while_count + 1
         if limit_while_count>LIMIT_WHILE_LLM:
             print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
-            break
+            return None
         try:
-            data = json.loads(extract_json(response_content))
-            if "entities" not in data:
-                raise Exception("Invalid data format. Missing entities")
-            if "relations" not in data:
-                raise Exception("Invalid data format. Missing relations")
-            verify_json_data(data, ontology)
+            data = Utils.get_json_data(response_content, ontology, text_ontolgogy)
             break
         except Exception as e:
             try:
@@ -541,7 +537,7 @@ def process_reponse_data(text_filename, category, index_chunk, response, ontolog
                         model=model,
                         messages=[
                             {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_DATA_ITA.format(error=error, json=response_content, text=text)}         
+                            {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_DATA_ITA.format(errors=error, json=response_content, text=text, ontology=text_ontolgogy)}         
                         ]
                     )
                 response_content = json_fix_response.choices[0].message["content"].strip()
@@ -574,8 +570,9 @@ def generate_data(category: str, model=None, dataItems=None):
     
     if model is None:
         model = "openai/gpt-5-nano"
+
     json_category = [] # List containg all the JSON processed for the given category. Each JSON contains the entities, the relations and the attributes of a specific chunk of a specific .txt file. 
-    count = 1
+    count = 0
 
     print(f"{Fore.GREEN}--Generating the ontology for the '{category}' category")
     for text_path in all_text_paths:
@@ -584,7 +581,7 @@ def generate_data(category: str, model=None, dataItems=None):
             print(f"{Fore.RED} The .txt file '{text_path}' does not exist!")
             continue
 
-        print(f"{Fore.WHITE}File path: '{text_path}', current state: {count}/{len( all_text_paths)}.")
+        print(f"--{Fore.WHITE}File path: '{text_path}', current state: {count}/{len(all_text_paths)}.")
 
         text_filename = text_path.name
         text_filename = text_filename.removesuffix(".txt")
@@ -594,12 +591,13 @@ def generate_data(category: str, model=None, dataItems=None):
             continue
 
         with open(ontology_file, "r", encoding="utf-8") as file:
-            textOntology = file.read()
+            text_ontology = file.read()
         try:
-            jsonOntology = json.loads(textOntology)
+            jsonOntology = json.loads(text_ontology)
+            text_ontology = json.dump(jsonOntology, ensure_ascii=False)
             ontology = Ontology.from_json(jsonOntology)
         except Exception as e:
-            print(f"{Fore.RED}Failed to read the ontology {ontology_file}, error: {e}")
+            print(f"{Fore.RED}Failed to read the ontology '{ontology_file}', error: {e}")
             continue
 
         with open(text_path, "r", encoding="utf-8") as f:
@@ -613,7 +611,7 @@ def generate_data(category: str, model=None, dataItems=None):
 
         index_chunk = 0
         for chunk in chunks:
-            print(f"{Fore.WHITE}Processing chunk {index_chunk + 1}/{len(chunks)}.")
+            print(f"--{Fore.WHITE}Processing chunk {index_chunk + 1}/{len(chunks)}.")
             textsToProcess = []
             textsToAdd = []
             textsToProcess.append(chunk)
@@ -622,7 +620,7 @@ def generate_data(category: str, model=None, dataItems=None):
                 limit_while_count = limit_while_count + 1
                 if limit_while_count>LIMIT_WHILE_LLM:
                     print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
-                    break
+                    return
                 for text in textsToProcess: 
                     print(f"{Fore.WHITE}Waiting the LLM response...")
                     try:
@@ -630,10 +628,10 @@ def generate_data(category: str, model=None, dataItems=None):
                             model=model,
                             messages=[
                                 {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-                                {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=ontology, text=chunk)}
+                                {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=text_ontology, text=chunk)}
                             ]
                         )
-                        json_data_chunk = process_reponse_data(text_filename, category, index_chunk, response, ontology, chunk, model)
+                        json_data_chunk = process_reponse_data(text_filename, category, index_chunk, response, text_ontology, ontology, chunk, model)
                         if json_data_chunk is not None:
                             json_category.append(json_data_chunk)
                     except ContextWindowExceededError as e:
@@ -653,7 +651,7 @@ def generate_data(category: str, model=None, dataItems=None):
                 else:
                     break
             index_chunk = index_chunk + 1
-    aggregate_Json = aggregate_data(json_data_chunk)
+    aggregate_Json = aggregate_data(json_category)
     json_refined = refine_with_LLM(aggregate_Json, category, ontology)
     upload_correctly=upload_data(category, json_refined, ontology)
     if upload_correctly:
@@ -945,77 +943,6 @@ def aggregate_data(json_data_list : list):
     return json_data
 
 
-def verify_json_data(jsonData, ontology):
-    """
-    Veirifies that the input JSON object conforms to the required structure for entity and relation extraction. 
-    Returns the string 'True' on success; raises an exception on failure.
-    """
-    client = FalkorDB(**client_kwargs)
-    for entity in jsonData["entities"]:
-        try:
-            entity = ontology.get_entity_with_label(jsonData["label"])
-            if entity is None:
-                raise Exception(f"Entity with label {jsonData['label']} not found in ontology")
-            unique_attributes_schema = [attr for attr in entity.attributes if attr.unique]
-            unique_attributes = {
-                attr.name: (
-                    jsonData["attributes"][attr.name] if attr.name in jsonData["attributes"] else ""
-                )
-                for attr in unique_attributes_schema
-            }
-            unique_attributes_text = map_dict_to_cypher_properties(unique_attributes)
-            non_unique_attributes = {
-                attr.name: jsonData["attributes"][attr.name]
-                for attr in entity.attributes
-                if not attr.unique and attr.name in jsonData["attributes"]
-            }
-            non_unique_attributes_text = map_dict_to_cypher_properties(
-                non_unique_attributes
-            )
-        except Exception as e:
-            if "label" in entity:
-                error = f"{Fore.RED}Error while validating the entity '{entity.get("label")}', error '{e}'."
-            else:
-                error = f"{Fore.RED}Error while validating an entity, error '{e}'."
-            raise Exception(error)
-
-    for relation in jsonData["relations"]:
-        try:
-            relations = ontology.get_relations_with_label(jsonData["label"])
-            if len(relations) == 0:
-                raise Exception (f"Relations with label {jsonData['label']} not found in ontology")
-            source_unique_attributes = (
-                jsonData["source"]["attributes"]
-                if "source" in jsonData and "attributes" in jsonData["source"]
-                else {}
-            )
-            source_unique_attributes_text = map_dict_to_cypher_properties(
-                source_unique_attributes
-            )
-
-            target_unique_attributes = (
-                jsonData["target"]["attributes"]
-                if "target" in jsonData and "attributes" in jsonData["target"]
-                else {}
-            )
-            target_unique_attributes_text = map_dict_to_cypher_properties(
-                target_unique_attributes
-            )
-
-            relation_attributes = (
-                map_dict_to_cypher_properties(jsonData["attributes"])
-                if "attributes" in jsonData
-                else {}
-            )
-        except Exception as e:
-            if "label" in relation:
-                error = f"{Fore.RED}Error while validating the relation '{relation.get("label")}', error '{e}'."
-            else:
-                error = f"{Fore.RED}Error while validating a relation, error '{e}'."
-            raise Exception(error)
-    return True
-
-
 def upload_data(category, jsonData, ontology, model=None):
     """
     It uploads the given data to FalkorDB. It returns 'True' on success; 'False' on failure.
@@ -1133,7 +1060,8 @@ def main():
                 else:
                     print("Invalid choice. Please try again")
         elif choice == 3:
-            while(True):
+            while(True):             
+                print(f"{Fore.WHITE}Chunk ontology created!")
                 print("1. DisciplinaDiUtilizzo")
                 print("2. GuidePratiche")
                 print("3. Normativa")
