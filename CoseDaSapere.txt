@@ -1,3 +1,46 @@
 1) Per generare i dati forse è meglio farlo per ogni chunk (senza merge) e successivamente applicare magari qualche algoritmo  per eliminre duplciati (Cercare paper). Il merge potrebbe avere senso soltanto sulle ontologie. 
 
 Per il clustering usare AgglomerativeClustering che permette di partizionare in base a similarity
+
+
+ALGORITMO PER SOSTITUIRE VECCHIE ENEITà CONE NUOVE MANTENENDO RELAZIONI:
+def aggregate_data(json_data_list : list, text_ontology: str, category: str):
+    """
+    Takes as input a list of JSON objects containing entities, relations, and attributes related to a specific category, and merges them into a single JSON object.
+    It also detects and merges entities and relations that are duplicated.
+    """
+    json_data = [item for sublist in json_data_list for item in sublist] # flatten all the JSON elements    
+
+    entities_duplicated_tuples = Utils.get_duplicated_entity_as_tuples(json_data["entities"], text_ontology)
+    relations_duplicated_tuples = Utils.get_duplicated_relations_as_tuples(json_data["relations"], text_ontology)
+    label_nameKey_dict = Utils.get_dict_label_nameKeyAttribute(text_ontology)
+
+
+    for entity_label, entity_id, json_entities in entities_duplicated_tuples:
+        entity_to_save = None 
+        id_entity_to_preserve = None
+        entity_to_save = ask_LLM_merge_duplicated_entities(json_entities.copy(), entity_label, entity_id, text_ontology)
+        name_key_attribute = label_nameKey_dict[entity_label]
+        for key, value in entity_to_save.get("attributes").items():
+            if key == name_key_attribute:
+                id_entity_to_preserve = value
+                break
+        for json_entity in json_entities: # We iterate over the duplicated entities with the current 'entity_label' and 'entity_id'
+            relations = Utils.search_relations_given_entity(json_entity, name_key_attribute, json_data["relations"], text_ontology, "source")
+            for relation in relations:
+                source = relation.get("source")
+                source_attr = source.get("attributes")
+                for key, value in source_attr.items():
+                    if key == name_key_attribute:
+                        value = entity_to_save
+                        break
+            relations = Utils.search_relations_given_entity(json_entity, name_key_attribute, json_data["relations"], text_ontology, "target")
+            for relation in relations:
+                target = relation.get("target")
+                target_attr = target.get("attributes")
+                for key, value in target_attr.items():
+                    if key == name_key_attribute:
+                        value = entity_to_save
+                        break
+            json_data.remove(json_entity)
+        json_data.add(entity_to_save)

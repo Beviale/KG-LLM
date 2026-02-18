@@ -1,69 +1,7 @@
 {
   "entities": [
     {
-      "label": "Documento",
-      "attributes": [
-        {
-          "name": "estensione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "FirmaDigitale",
-      "attributes": [
-        {
-          "name": "modalita",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Software",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "GuidaPratica",
-      "attributes": [
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Portale",
+      "label": "Piattaforma",
       "attributes": [
         {
           "name": "nome",
@@ -74,74 +12,130 @@
       ]
     },
     {
-      "label": "PiattaformaVecchia",
+      "label": "SitoWeb",
       "attributes": [
         {
-          "name": "codice_accesso_inizio",
+          "name": "url",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Gara",
+      "attributes": [
+        {
+          "name": "codice_gara",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
-          "type": "string",
+          "name": "numero_voci",
+          "type": "number",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "PiattaformaNuova",
+      "label": "OffertaTelematica",
       "attributes": [
         {
-          "name": "codice_accesso_inizio",
+          "name": "id_offerta",
           "type": "string",
           "unique": true,
           "required": true
-        },
+        }
+      ]
+    },
+    {
+      "label": "Lotto",
+      "attributes": [
         {
-          "name": "descrizione",
+          "name": "numero_lotto",
           "type": "string",
-          "unique": false,
-          "required": false
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Postazione",
+      "attributes": [
+        {
+          "name": "id_postazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Credenziale",
+      "attributes": [
+        {
+          "name": "username",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Impresa",
+      "attributes": [
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "HelpDesk",
+      "attributes": [
+        {
+          "name": "url",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OrarioRiferimento",
+      "attributes": [
+        {
+          "name": "orario",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CategoriaSpecialistica",
+      "attributes": [
+        {
+          "name": "codice_categoria",
+          "type": "string",
+          "unique": true,
+          "required": true
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "CONTENUTA_NEL",
-      "source": {
-        "label": "GuidaPratica",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Portale",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
       "label": "UTILIZZA",
       "source": {
-        "label": "FirmaDigitale",
+        "label": "Piattaforma",
         "attributes": [
           {
-            "name": "modalita",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -149,10 +143,10 @@
         ]
       },
       "target": {
-        "label": "Software",
+        "label": "SitoWeb",
         "attributes": [
           {
-            "name": "nome",
+            "name": "url",
             "type": "string",
             "unique": true,
             "required": true
@@ -161,20 +155,20 @@
       },
       "attributes": [
         {
-          "name": "descrizione_utilizzo",
+          "name": "descrizione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "NON_COMPATIBILI",
+      "label": "PUBBLICA",
       "source": {
-        "label": "PiattaformaVecchia",
+        "label": "SitoWeb",
         "attributes": [
           {
-            "name": "codice_accesso_inizio",
+            "name": "url",
             "type": "string",
             "unique": true,
             "required": true
@@ -182,17 +176,222 @@
         ]
       },
       "target": {
-        "label": "PiattaformaNuova",
+        "label": "Gara",
         "attributes": [
           {
-            "name": "codice_accesso_inizio",
+            "name": "codice_gara",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "descrizione_operazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FORNISCE",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OffertaTelematica",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_offerta",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONTIENTE",
+      "source": {
+        "label": "OffertaTelematica",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "numero_lotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AUTENTICA_CON",
+      "source": {
+        "label": "Credenziale",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Postazione",
+        "attributes": [
+          {
+            "name": "id_postazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "metodo_autenticazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVITA_A",
+      "source": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "codice_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Impresa",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_invito",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDICA_ORARIO_RIFERIMENTO",
+      "source": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "codice_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OrarioRiferimento",
+        "attributes": [
+          {
+            "name": "orario",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "valore_orario",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERISCE_A_HELPDESK",
+      "source": {
+        "label": "SitoWeb",
+        "attributes": [
+          {
+            "name": "url",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "HelpDesk",
+        "attributes": [
+          {
+            "name": "url",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
     }
   ]
 }

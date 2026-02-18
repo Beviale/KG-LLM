@@ -1,7 +1,7 @@
 {
   "entities": [
     {
-      "label": "Piattaforma",
+      "label": "Browser",
       "attributes": [
         {
           "name": "nome",
@@ -10,18 +10,18 @@
           "required": true
         },
         {
-          "name": "url",
-          "type": "string",
+          "name": "supporto_java_script",
+          "type": "boolean",
           "unique": false,
-          "required": false
+          "required": true
         }
       ]
     },
     {
-      "label": "Norma",
+      "label": "Portale",
       "attributes": [
         {
-          "name": "numero_norma",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -35,57 +35,342 @@
       ]
     },
     {
-      "label": "ModelloGara",
+      "label": "Cookie",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "nome",
           "type": "string",
           "unique": true,
+          "required": true
+        },
+        {
+          "name": "abilitato",
+          "type": "boolean",
+          "unique": false,
           "required": true
         }
       ]
     },
     {
-      "label": "SezioneCaricamento",
+      "label": "Popup",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "nome",
           "type": "string",
           "unique": true,
+          "required": true
+        },
+        {
+          "name": "abilitato",
+          "type": "boolean",
+          "unique": false,
           "required": true
         }
       ]
     },
     {
-      "label": "GareTelematiche",
+      "label": "Toolbar",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "nome",
           "type": "string",
           "unique": true,
+          "required": true
+        },
+        {
+          "name": "presente",
+          "type": "boolean",
+          "unique": false,
           "required": true
         }
       ]
     },
     {
-      "label": "OffertaTelematica",
+      "label": "RequisitiMinimi",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "FileNamingPolicy",
+      "label": "Azione",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Anagrafica",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "MessaggioPEC",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "mittente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "IndirizzoEmail",
+      "attributes": [
+        {
+          "name": "email",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Notifica",
+      "attributes": [
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "mittente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AlboFornitori",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SOACategoria",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Avvalimento",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Legge",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraLavoriEconomia",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ClasseSOA",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AlberoMerceologico",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ComunicazionePEC",
+      "attributes": [
+        {
+          "name": "mittente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "destinatario",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -93,85 +378,25 @@
       "label": "HelpDesk",
       "attributes": [
         {
-          "name": "servizio",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "FirmaDigitale",
-      "attributes": [
-        {
-          "name": "modalita",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "SistemaMarcaturaTemporale",
-      "attributes": [
-        {
           "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
-        }
-      ]
-    },
-    {
-      "label": "GestoreSistema",
-      "attributes": [
+        },
         {
-          "name": "nome",
+          "name": "descrizione",
           "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Concorrente",
-      "attributes": [
-        {
-          "name": "codice_identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Certificazione",
-      "attributes": [
-        {
-          "name": "codice_certificazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "CategoriaSpeciale",
-      "attributes": [
-        {
-          "name": "codice",
-          "type": "string",
-          "unique": true,
-          "required": true
+          "unique": false,
+          "required": false
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "RIFERITO_A",
+      "label": "COOKIES_ABILITATI",
       "source": {
-        "label": "Piattaforma",
+        "label": "Browser",
         "attributes": [
           {
             "name": "nome",
@@ -182,76 +407,10 @@
         ]
       },
       "target": {
-        "label": "Norma",
-        "attributes": [
-          {
-            "name": "numero_norma",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "GESTISCE",
-      "source": {
-        "label": "Piattaforma",
+        "label": "Cookie",
         "attributes": [
           {
             "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "GareTelematiche",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZA",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "FirmaDigitale",
-        "attributes": [
-          {
-            "name": "modalita",
             "type": "string",
             "unique": true,
             "required": true
@@ -268,9 +427,9 @@
       ]
     },
     {
-      "label": "GESTIONE_NOME_FILE",
+      "label": "POPUP_ABILITATI",
       "source": {
-        "label": "Piattaforma",
+        "label": "Browser",
         "attributes": [
           {
             "name": "nome",
@@ -281,10 +440,76 @@
         ]
       },
       "target": {
-        "label": "FileNamingPolicy",
+        "label": "Popup",
         "attributes": [
           {
-            "name": "descrizione",
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "TOOLBAR_DISABILITATA",
+      "source": {
+        "label": "Browser",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Toolbar",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_REQUISITI_MINIMI",
+      "source": {
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RequisitiMinimi",
+        "attributes": [
+          {
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -301,9 +526,372 @@
       ]
     },
     {
-      "label": "SUPPORTO_HELPDESK",
+      "label": "HA_ANAGRAFICA",
       "source": {
-        "label": "Piattaforma",
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Anagrafica",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_AZIONE",
+      "source": {
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Azione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DOCUMENTI_COLLEGATI",
+      "source": {
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ALLEGATO_MESSAGGIOPEC",
+      "source": {
+        "label": "MessaggioPEC",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVIA_MESSAGGIO_MPEC",
+      "source": {
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "IndirizzoEmail",
+        "attributes": [
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ISCRITTO_IN_SOACATEGORIA",
+      "source": {
+        "label": "AlboFornitori",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SOACategoria",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AMMETTE_AVVALIMENTO",
+      "source": {
+        "label": "Legge",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Avvalimento",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PARTECIPA_A_PROCEDURA",
+      "source": {
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraLavoriEconomia",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CLASSI_SO_A",
+      "source": {
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ClasseSOA",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_ALBERO_MERCEOLOGICO",
+      "source": {
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AlberoMerceologico",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMUNICAZIONEPEC_USATA",
+      "source": {
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ComunicazionePEC",
+        "attributes": [
+          {
+            "name": "mittente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EROGA_HELP_DESK",
+      "source": {
+        "label": "Portale",
         "attributes": [
           {
             "name": "nome",
@@ -315,138 +903,6 @@
       },
       "target": {
         "label": "HelpDesk",
-        "attributes": [
-          {
-            "name": "servizio",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PRESENTA_CERTIFICAZIONE",
-      "source": {
-        "label": "Concorrente",
-        "attributes": [
-          {
-            "name": "codice_identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Certificazione",
-        "attributes": [
-          {
-            "name": "codice_certificazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ISCRITTO_A_CATEGORIA",
-      "source": {
-        "label": "Concorrente",
-        "attributes": [
-          {
-            "name": "codice_identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CategoriaSpeciale",
-        "attributes": [
-          {
-            "name": "codice",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERIMENTO_MODALITA",
-      "source": {
-        "label": "Norma",
-        "attributes": [
-          {
-            "name": "numero_norma",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "FirmaDigitale",
-        "attributes": [
-          {
-            "name": "modalita",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERIMENTO_ORARIO",
-      "source": {
-        "label": "Norma",
-        "attributes": [
-          {
-            "name": "numero_norma",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SistemaMarcaturaTemporale",
         "attributes": [
           {
             "name": "nome",

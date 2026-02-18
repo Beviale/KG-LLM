@@ -270,7 +270,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
     """
     if model is None:
         model = "openai/gpt-5-nano"
-    index = 0
+    index = 1
     json_merge = []
     while(True):
         file_path = Path(f"Ontologies/{category}/{text_filename}_{index}_Ontology.json")
@@ -354,7 +354,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
 
 
     new_attr = {
-        "name": "riferimentoTestuale",
+        "name": "riferimento_testuale",
         "type": "string",
         "unique": False,
         "required": True
@@ -366,7 +366,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
             attrs = []
             entity["attributes"] = attrs
         
-        exists = any(a.get("name") == "riferimentoTestuale" for a in attrs)
+        exists = any(a.get("name") == "riferimento_testuale" for a in attrs)
         if not exists:
             attrs.append(new_attr.copy())
 
@@ -376,7 +376,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
             attrs = []
             relation["attributes"] = attrs
         
-        exists = any(a.get("name") == "riferimentoTestuale" for a in attrs)
+        exists = any(a.get("name") == "riferimento_testuale" for a in attrs)
         if not exists:
             attrs.append(new_attr.copy())
 
@@ -467,12 +467,13 @@ def generate_ontology(category, model=None, dataItems=None):
 
         index_chunk = 0
         for chunk in chunks:
+            index_chunk = index_chunk + 1
             chunk_path = Path(f"Ontologies/{category}/{text_filename}_{index_chunk}_Ontology.json")
             if chunk_path.exists():
                 print(f"{Fore.WHITE}The chunk {chunk_path} has already been processed!")
                 continue
 
-            print(f"--{Fore.WHITE}Processing chunk {index_chunk + 1}/{len(chunks)}.")
+            print(f"--{Fore.WHITE}Processing chunk {index_chunk}/{len(chunks)}.")
             textsToProcess = []
             textsToAdd = []
             textsToProcess.append(chunk)
@@ -505,7 +506,6 @@ def generate_ontology(category, model=None, dataItems=None):
                     textsToAdd.clear()
                 else:
                     break
-            index_chunk = index_chunk + 1
         merge_ontologies_chunk(category, text_filename)
         print(f"{Fore.GREEN}Ontology created for the '{category}' category!")
 
@@ -571,7 +571,6 @@ def generate_data(category: str, model=None, dataItems=None):
     if model is None:
         model = "openai/gpt-5-nano"
 
-    json_category = [] # List containg all the JSON processed for the given category. Each JSON contains the entities, the relations and the attributes of a specific chunk of a specific .txt file. 
     count = 0
 
     print(f"{Fore.GREEN}--Generating the ontology for the '{category}' category")
@@ -610,6 +609,7 @@ def generate_data(category: str, model=None, dataItems=None):
             chunks = split_text_chunks(text)
 
         index_chunk = 0
+        json_data_chunks = []
         for chunk in chunks:
             print(f"--{Fore.WHITE}Processing chunk {index_chunk + 1}/{len(chunks)}.")
             textsToProcess = []
@@ -633,7 +633,7 @@ def generate_data(category: str, model=None, dataItems=None):
                         )
                         json_data_chunk = process_reponse_data(text_filename, category, index_chunk, response, text_ontology, ontology, chunk, model)
                         if json_data_chunk is not None:
-                            json_category.append(json_data_chunk)
+                            json_data_chunks.append(json_data_chunk)
                     except ContextWindowExceededError as e:
                         mid = len(text) // 2
                         print(f"{Fore.WHITE}Halving the text size from '{len(text)}' to '{mid}'")
@@ -651,13 +651,12 @@ def generate_data(category: str, model=None, dataItems=None):
                 else:
                     break
             index_chunk = index_chunk + 1
-    aggregate_Json = aggregate_data(json_category)
-    json_refined = refine_with_LLM(aggregate_Json, category, ontology)
-    upload_correctly=upload_data(category, json_refined, ontology)
-    if upload_correctly:
-        print(f"{Fore.GREEN}Upload completed successfully for the '{category}' category!")
-    else:
-        print(f"{Fore.RED}Upload completed with ERRORS for the '{category}' category!")
+        aggregate_Json = aggregate_data_and_remove_duplicates(json_data_chunks, text_ontology)
+        upload_correctly = upload_data(category, aggregate_Json, ontology)
+        if upload_correctly:
+            print(f"{Fore.GREEN}Upload completed successfully for the '{category}' category!")
+        else:
+            print(f"{Fore.RED}Upload completed with ERRORS for the '{category}' category!")
 
 
 
@@ -690,19 +689,29 @@ def agglomerative_clustering(item_embedding_dict: dict, distance_threshold=0.5):
 
     return clusters
 
-def ask_LLM_merge_similar_relations(similar_relations, category, ontology, model=None):
+def ask_LLM_merge_duplicated_relations(duplicated_relations, entities, relation_label, source_label, target_label, source_keyref, target_keyref, text_ontology, model=None):
     """
     Given a list of relations, it prompts the LLM to merge any duplicates.
     """
     if model is None:
         model = "openai/gpt-5-nano"
 
-    print(f"{Fore.WHITE}Asking LLM to merge similar relations..")
+    text_ontology_relation = None
+    relations = json.load(text_ontology["relations"])
+    for relation in relations:
+        if relation.get("label") == relation_label:
+            if relation.get("source").get("label") == source_label:
+                if relation.get("target").get("label") == target_label:
+                    text_ontology_relation = json.dump(relation, ensure_ascii=False)
+                    break
+
+    print(f"{Fore.WHITE}Asking LLM to merge duplicated relations..")
+    duplicated_relations_text = json.dump(duplicated_relations, ensure_ascii=False)
     response = completion(
         model=model,
         messages=[
-            {"role": "system", "content": Prompt.MERGE_SIMILAR_RELATIONS_SYSTEM_ITA},
-            {"role": "user",   "content": Prompt.MERGE_SIMILAR_RELATIONS_PROMPT_ITA.format(relations=similar_relations)}
+            {"role": "system", "content": Prompt.MERGE_DUPLICATED_RELATIONS_SYSTEM_ITA},
+            {"role": "user",   "content": Prompt.MERGE_DUPLICATED_RELATIONS_PROMPT_ITA.format(relations=duplicated_relations_text, ontology=text_ontology_relation)}
         ]
     )
     response_content = response.choices[0].message["content"].strip()
@@ -713,11 +722,7 @@ def ask_LLM_merge_similar_relations(similar_relations, category, ontology, model
             print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
             break
         try:
-            new_relations = json.loads(extract_json(response_content))
-            if "relations" not in new_relations:
-                raise Exception(f"{Fore.WHITE}Invalid data format. Missing relations")
-            verify_json_data(new_relations, category)
-            print(f"{Fore.WHITE}Relations merged correctly!")
+            new_relation = Utils.validate_single_merged_relation(response_content, entities, relation_label, source_label, target_label, source_keyref, target_keyref, text_ontology)
             break
         except Exception as e:
             try:
@@ -727,30 +732,36 @@ def ask_LLM_merge_similar_relations(similar_relations, category, ontology, model
                 json_fix_response = completion(
                         model=model,
                         messages=[
-                            {"role": "system", "content": Prompt.MERGE_SIMILAR_RELATIONS_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.MERGE_SIMILAR_RELATIONS_PROMPT_ITA.format(relations=similar_relations)}         
+                            {"role": "system", "content": Prompt.MERGE_DUPLICATED_RELATIONS_SYSTEM_ITA},
+                            {"role": "user",   "content": Prompt.MERGE_DUPLICATED_RELATIONS_PROMPT_ERROR_ITA.format(duplicated_relations=duplicated_relations_text, ontology=text_ontology_relation, new_relation=response_content, errors=error)}         
                         ]
                     )
                 response_content = json_fix_response.choices[0].message["content"].strip()
             except Exception as e:
                 continue
-    return new_relations
+    return new_relation
 
 
-
-def ask_LLM_merge_similar_entities(similar_entities, category, ontology, model=None):
+def ask_LLM_merge_duplicated_entities(duplicated_entities, entity_label, key_attribute_value, text_ontology, model=None):
     """
     Given a list of entities, it prompts the LLM to merge any duplicates.
     """
     if model is None:
         model = "openai/gpt-5-nano"
 
-    print(f"{Fore.WHITE}Asking LLM to merge similar entities..")
+    print(f"{Fore.WHITE}Asking LLM to merge duplicated entities..")
+    duplicated_entities_text = json.dump(duplicated_entities, ensure_ascii=False)
+    text_ontology_entity = None
+    entities = json.load(text_ontology["entities"])
+    for entity in entities:
+        if entity.get("label") == entity_label:          
+            text_ontology_entity = json.dump(entity, ensure_ascii=False)
+            break
     response = completion(
         model=model,
         messages=[
-            {"role": "system", "content": Prompt.MERGE_SIMILAR_ENTITIES_SYSTEM_ITA},
-            {"role": "user",   "content": Prompt.MERGE_SIMILAR_ENTITIES_PROMPT_ITA.format(entities=similar_entities)}
+            {"role": "system", "content": Prompt.MERGE_DUPLICATED_ENTITIES_SYSTEM_ITA},
+            {"role": "user",   "content": Prompt.MERGE_DUPLICATED_ENTITIES_PROMPT_ITA.format(entities=duplicated_entities_text, ontology=text_ontology_entity)}
         ]
     )
     response_content = response.choices[0].message["content"].strip()
@@ -759,30 +770,26 @@ def ask_LLM_merge_similar_entities(similar_entities, category, ontology, model=N
         limit_while_count = limit_while_count + 1
         if limit_while_count>LIMIT_WHILE_LLM:
             print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
-            break
+            return
         try:
-            new_entities = json.loads(extract_json(response_content))
-            if "entities" not in new_entities:
-                raise Exception("Invalid data format. Missing entities")
-            verify_json_data(new_entities, ontology)
-            print(f"{Fore.WHITE}Entities merged correctly!")
+            new_entity = Utils.validate_single_merged_entity(response_content, entity_label, key_attribute_value, text_ontology)
             break
         except Exception as e:
             try:
                 # fallback 
-                error = f"{Fore.WHITE}TypeError: '{type(e)}', error: '{e}'"
-                print(f"{Fore.WHITE}Error extracting JSON. {error}")
+                error = f"TypeError: '{type(e)}', error: '{e}'"
+                print(f"{Fore.WHITE}Error extracting JSON. '{error}'")
                 json_fix_response = completion(
                         model=model,
                         messages=[
-                            {"role": "system", "content": Prompt.MERGE_SIMILAR_ENTITIES_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.MERGE_SIMILAR_ENTITIES_PROMPT_ITA.format(entities=similar_entities)}       
+                            {"role": "system", "content": Prompt.MERGE_DUPLICATED_ENTITIES_SYSTEM_ITA},
+                            {"role": "user",   "content": Prompt.MERGE_DUPLICATED_ENTITIES_PROMPT_ERROR_ITA.format(duplicated_entities=duplicated_entities_text, ontology=text_ontology_entity, new_entity=response_content, errors=error)}       
                         ]
                     )
                 response_content = json_fix_response.choices[0].message["content"].strip()
             except Exception as e:
                 continue
-    return new_entities
+    return new_entity
 
 
 def refine_with_LLM(json_data, category, ontology):
@@ -854,7 +861,7 @@ def refine_with_LLM(json_data, category, ontology):
     relation_partisions = agglomerative_clustering(by_text_description_embedding_relation_dict)
 
     for cluster_id, entities_in_partition in entity_partitions.itmes():
-        new_entities = ask_LLM_merge_similar_entities(entities_in_partition.copy(), category, ontology)
+        new_entities = ask_LLM_merge_similar_entities(entities_in_partition.copy(), ontology)
         ids_to_remove = {id(e) for e in entities_in_partition}
         json_data['entities'] = [in_json for in_json in json_data['entities'] if id(in_json) not in ids_to_remove]
         json_data['entities'].extend(new_entities)
@@ -870,76 +877,34 @@ def refine_with_LLM(json_data, category, ontology):
 
 
 
-def aggregate_data(json_data_list : list):
+def aggregate_data_and_remove_duplicates(json_data_list : list, text_ontology: str):
     """
-    Takes as input a list of JSON objects containing entities, relations, and attributes, and merges them into a single JSON object.
-    It also merges entities and relations that have identical labels and attributes, which is useful for removing duplicates in this regard. 
+    Takes as input a list of JSON objects containing entities, relations, and attributes related to a specific .txt file, and merges them into a single JSON object.
+    It also detects and merges entities and relations that are duplicated.
     """
-    json_data = [item for sublist in json_data_list for item in sublist] # flatten
-    
-    by_ID_entity_dict = dict() # The key is an artificial entity identifier that contains the label of the entity and a concatenated string of the values of all attributes. The value is the list of entities with that identifier. This is useful for finding duplicate entities.
-    by_ID_relation_dict = dict() # The key is an artificial relation identifier that contains the label of the relation and a concatenated string of the values of all source and target attributes. The value is the list of relations with that identifier. This is useful for finding duplicate relations.
-
-    for entity in json_data["entities"]:
-        artificial_entity_identifier = ""
-        label = entity.get("label")
-        artificial_entity_identifier = f"label:{label}"
-        attrs = entity.get("attributes")
-        if attrs is not None:
-            for key, value in attrs.items():
-                if key!="riferimentoTestuale":
-                    artificial_entity_identifier = artificial_entity_identifier + f".{key}:{value}"
-        by_ID_entity_dict[artificial_entity_identifier.lower()].append(entity)
-
-    for relation in json_data["relations"]:
-        artificial_relation_identifier = ""
-        label = relation.get("label") 
-        artificial_relation_identifier = f"label:{label}"
-        source = relation.get("source")
-        source_label = source.get("label")
-        artificial_relation_identifier = artificial_relation_identifier + f".sourceLabel:{source_label}"
-        source_attributes = source.get("attributes")
-        target = relation.get("target")
-        target_label = target.get("label")
-        artificial_relation_identifier = artificial_relation_identifier + f".targetLabel:{target_label}"
-        target_attributes = target.get("attributes")
-        if source_attributes is not None:
-            for key, value in source_attributes.items():
-                if key!="riferimentoTestuale":
-                    artificial_relation_identifier = artificial_relation_identifier + f".sourceAttr{key}:{value}"
-        if target_attributes is not None:
-            for key, value in target_attributes.items():
-                if key!="riferimentoTestuale":
-                    artificial_relation_identifier = artificial_relation_identifier + f".targetAttr{key}:{value}"
-        by_ID_relation_dict[artificial_relation_identifier.lower()].append(relation)
-
-    
-    filtered_entities_dict = {
-        artificial_entity_identifier: entities
-        for artificial_entity_identifier, entities in by_ID_entity_dict.items()
-        if len(entities) >= 2
-    }
-
+    json_data = [item for sublist in json_data_list for item in sublist] # flatten all the JSON elements  
         
-    filtered_relations_dict = {
-        artificial_relation_identifier: relations
-        for artificial_relation_identifier, relations in by_ID_relation_dict.items()
-        if len(relations) >= 2
-    }
+
+    entities_duplicated_tuples = Utils.get_duplicated_entity_as_tuples(json_data["entities"], text_ontology)
+    relations_duplicated_tuples = Utils.get_duplicated_relations_as_tuples(json_data["relations"], text_ontology)
+    label_nameKey_dict = Utils.get_dict_label_nameKeyAttribute(text_ontology)
 
 
-    for artificial_entity_identifier, entities in filtered_entities_dict.items():
-        new_entities = ask_LLM_merge_similar_entities(entities.copy())
-        ids_to_remove = {id(e) for e in entities}
-        json_data['entities'] = [in_json for in_json in json_data['entities'] if id(in_json) not in ids_to_remove]
-        json_data['entities'].extend(new_entities)
+    for entity_label, entity_id, json_entities in entities_duplicated_tuples:
+        for json_entity in json_entities:
+            json_data['entities'].remove(json_entity)
+                
+        entity_to_save = None 
+        entity_to_save = ask_LLM_merge_duplicated_entities(json_entities.copy(), entity_label, entity_id, text_ontology)
+        json_data['entities'].add(entity_to_save)
+    
 
-    for artificial_relation_identifier, relations in filtered_relations_dict.items():
-        new_relations = ask_LLM_merge_similar_relations(relations.copy())
-        ids_to_remove = {id(e) for e in relations}
-        json_data['relations'] = [in_json for in_json in json_data['relations'] if id(in_json) not in ids_to_remove]
-        json_data['relations'].extend(new_relations)
-
+    for relation_label, source_label, target_label, source_keyref, target_keyref, json_relations in relations_duplicated_tuples:
+        for json_relation in json_relations:
+            json_data['relations'].remove(json_relation)
+        relation_to_save = None 
+        relation_to_save = ask_LLM_merge_duplicated_relations(json_relations.copy(), json_data["entities"], relation_label, source_label, target_label, source_keyref, target_keyref, text_ontology)       
+        json_data['relations'].add(relation_to_save)
     return json_data
 
 
@@ -1030,7 +995,8 @@ def main():
         print("1. Preprocess all the .pdf files converting them to .txt files")
         print("2. Generate the ontologies")
         print("3. Load the data")
-        print("4. Exit")
+        print("4. Refine the data removing similar entities/relations from the KG using LLM")
+        print("5. Exit")
         choice = int(input("What do you want to do? "))
         if choice == 1:
             dataItems = preprocess_pdf(pdf_dict)
@@ -1061,7 +1027,6 @@ def main():
                     print("Invalid choice. Please try again")
         elif choice == 3:
             while(True):             
-                print(f"{Fore.WHITE}Chunk ontology created!")
                 print("1. DisciplinaDiUtilizzo")
                 print("2. GuidePratiche")
                 print("3. Normativa")
@@ -1086,6 +1051,33 @@ def main():
                 else:
                     print("Invalid choice. Please try again")
         elif choice == 4:
+           # QUI MI DOVREI SDOGANARE DAL CONCETTO DI ONTOLOGIA DATO CHE L'ONTOLOGIA è ASSOCIATA A CIASCUN TEXT FILE (non a intera categoria)
+            # DEVO SEMPLICEMENTE FARE CLUSTERING, FAR DECIDERE A LLM COSA MERGIARE E FARE DIRETTAMENTE QUERY CHYPER PER CAMBIARE KG FINALE. 
+            while(True):             
+                print("1. DisciplinaDiUtilizzo")
+                print("2. GuidePratiche")
+                print("3. Normativa")
+                print("4. FAQ")
+                print("5. CodiceAppalti")
+                choice_cat = int(input("For which category do you want to refine the KG? "))
+                if choice_cat == 1:
+                    refine_with_LLM("DisciplinaDiUtilizzo")
+                    break
+                elif choice_cat == 2:
+                    refine_with_LLM("GuidePratiche")
+                    break
+                elif choice_cat == 3:
+                    refine_with_LLM("Normativa")
+                    break
+                elif choice_cat == 4:
+                    refine_with_LLM("FAQ")
+                    break
+                elif choice_cat == 5:
+                    refine_with_LLM("CodiceAppalti")
+                    break
+                else:
+                    print("Invalid choice. Please try again")
+        elif choice == 5:
             break
         else:
             print("Invalid choice. Please try again")

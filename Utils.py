@@ -3,7 +3,6 @@ from graphrag_sdk import KnowledgeGraph, Ontology
 from graphrag_sdk.helpers import extract_json, map_dict_to_cypher_properties
 from colorama import init, Fore, Style
 
-
 class JSONFormattingException(Exception):
     """Exception raised when the JSON structure is invalid."""
     pass
@@ -195,8 +194,8 @@ def validate_generated_ontology(ontology_text: str):
                     errors = errors + f"The target of the relation '{relation_label}' does not have the unique attribute - "
                 else:
                     errors = errors + f"The target of the relation '{relation_label}' has more than one unique attribute - "
-        
-        current_relation_ID = relation_label + "-" + source_label + "-" + target_label + "."
+        if relation_label is not None and source_label is not None and target_label is not None:
+            current_relation_ID = relation_label + "-" + source_label + "-" + target_label + "."
         if current_relation_ID in relations_IDS:
             errors = errors + f"The relation with label '{relation_label}', source label '{source_label}', and target label '{target_label}' is duplicated in the ontology - "
             continue
@@ -438,25 +437,25 @@ def check_duplicated_relation(json_relations, text_ontology, errors):
     """
     relations_IDs = [] # Lista containing all the relation IDs. The identify of a relation is composed of its label, its source label and keyref, and its target label and keyref.
     for relation in json_relations:
-        ID = ""
+        id = ""
         relation_label = relation.get("label")
         if relation_label is None:
            continue
-        ID = f"relation_label:'{relation_label}',"
+        id = f"relation_label:'{relation_label}',"
         source = relation.get("source")
         if source is None:
             continue
         source_label = source.get("label")
         if source_label is None:
             continue
-        ID = ID + f"source_label:'{source_label}',"
+        id = id + f"source_label:'{source_label}',"
         target = relation.get("target")
         if target is None:
             continue
         target_label = target.get("label")
         if target_label is None:
             continue
-        ID = ID + f"target_label:'{target_label}',"
+        id = id + f"target_label:'{target_label}',"
         
         if relation_label is not None and source_label is not None and target_label is not None:
             for relation_ontology in text_ontology['relations']:
@@ -493,27 +492,30 @@ def check_duplicated_relation(json_relations, text_ontology, errors):
             found_source_key = False
             source_attrs = source.get("attributes")
             if source_attrs is not None:
+                if source_key_attrname in source_attrs:
+                    source_attrs[source_key_attrname] = source_attrs[source_key_attrname].replace(" ", "")
                 for key, value in source_attrs.items():
                     if key == source_key_attrname:
                         found_source_key = True
-                        ID = ID + f"source_keyref_value:'{value}',"
+                        id = id + f"source_keyref_value:'{value}',"
                         break
             if found_source_key==False:
                 continue
 
-
             found_target_key = False
             target_attrs = target.get("attributes")
             if target_attrs is not None:
+                if target_key_attrname in target_attrs:
+                    target_attrs[target_key_attrname] = target_attrs[target_key_attrname].replace(" ", "")
                 for key, value in target_attrs.items():
                     if key == target_key_attrname:
                         found_target_key = True
-                        ID = ID + f"target_keyref_value:'{value}'."
+                        id = id + f"target_keyref_value:'{value}'."
                         break
             if found_target_key==False:
                 continue
         
-            relations_IDs.append(ID)
+            relations_IDs.append(id)
     seen = set()
     duplicated = set(x for x in relations_IDs if x in seen or seen.add(x))
     errors = errors + f"The following relations are duplicated. '{list(duplicated)}' - "
@@ -532,6 +534,7 @@ def get_dict_label_nameKeyAttribute(text_ontology: str):
                 label_name_key[entity_ontology_label] = attr.get("name")
                 break
     return label_name_key
+    
 
 
 
@@ -548,6 +551,8 @@ def check_duplicated_entity(json_entities, text_ontology, errors):
                 entities_label.append(entity)
         IDs = []
         for entity in entities_label:
+            if value in entity["attrs"]:
+               entity["attrs"][value] =  entity["attrs"][value].replace(" ", "")
             for attr_key, attr_value in entity.get("attrs").items():
                 if attr_key == value: # if it is the 'key' attribute
                     IDs.append(attr_value) 
@@ -569,6 +574,12 @@ def get_json_data(text_json : str, ontology, text_ontology: str):
     json_object = json.loads(extract_json(text_json))
 
     errors = ""
+
+    if 'entities' not in json_object:
+        errors = errors + " There are no entities - "
+    if 'relations' not in json_object:
+        errors = errors + " There are no relations - "
+
     for json_entity in json_object["entities"]:
         try:
             if "label" not in json_entity:
@@ -652,6 +663,274 @@ def get_json_data(text_json : str, ontology, text_ontology: str):
     else:
         return json_object
                 
+
+
+
+def get_duplicated_entity_as_tuples(json_entities, text_ontology, errors):
+    """
+    Verifies if there are duplicated entities (i.e. same label and the same value for the key attribute)
+    It returns a list of tuples composed of three elements: the first element is the entity label, the second the ID and finally we have the list of JSON entities duplicated (i.e. with that label and ID).
+    """
+    output_tuples = []
+    label_name_key = get_dict_label_nameKeyAttribute(text_ontology)
+    for label, key_attribute in label_name_key.items():
+        entities_label = [] # List containing all the entities with the same label (ie. the current 'key' of the dictionary)
+        for entity in json_entities:
+            if entity.get("label") == label:
+                entities_label.append(entity)
+        ID_entity_dict = dict() # Dictionary where the key is the ID and the value the list of entity with that ID.
+        for entity in entities_label:
+            for attr_key, attr_value in entity.get("attrs").items():
+                if attr_key == key_attribute: # if it is the 'key' attribute
+                    if attr_value not in ID_entity_dict.keys():
+                        ID_entity_dict[attr_value] = [entity]
+                    else:
+                        ID_entity_dict[attr_value].append(entity)
+                    break
+
+        for id, entities in ID_entity_dict.items():
+            if len(entities)>1:
+                for json_entity in entities:
+                    tuple_found = next((t for t in output_tuples if t[0] == label and t[1] == id), None)    
+                    if tuple_found is not None:
+                        tuple_found[2].append(json_entity)  
+                    else:                  
+                        new_tuple = [label, id, [json_entity]]
+                        output_tuples.append(new_tuple)
+
+    return output_tuples
+
+
+
+
+def get_duplicated_relations_as_tuples(json_relations, text_ontology, errors):
+    """
+    Verifies if there are duplicated relations (i.e. same label, source label, target label, and the same values for the keyref attributes)
+    It returns a list of tuples composed of six elements: 
+        1) the relation label,
+        2) the source label,
+        3) the target label,
+        4) the ID of the source entity (i.e. its key attribute value),
+        5) the ID of the target entity (i.e. its key attribute value),
+        6) List of JSON relations with that relation label, source label, target label, source entity ID and target entity ID.
+    """
+    output_tuples = []
+    for relation in json_relations:
+        relation_label = relation.get("label")
+        if relation_label is None:
+           continue
+        source = relation.get("source")
+        if source is None:
+            continue
+        source_label = source.get("label")
+        if source_label is None:
+            continue
+        target = relation.get("target")
+        if target is None:
+            continue
+        target_label = target.get("label")
+        if target_label is None:
+            continue
+        
+        if relation_label is not None and source_label is not None and target_label is not None:
+            for relation_ontology in text_ontology['relations']:
+                relation_label_ontology = relation_ontology.get("label")
+                source_ontology = relation_ontology.get("source")
+                source_label_ontology = source_ontology.get("label")
+                target_ontology = relation_ontology.get("target")
+                target_label_ontology = target_ontology.get("label")
+
+                if relation_label_ontology is not None and source_label_ontology is not None and target_label_ontology is not None:
+                    if relation_label_ontology == relation_label and source_label_ontology == source_label and target_label_ontology==target_label:
+                        relation_ontology_schema = relation_ontology
+                        break
+            if relation_ontology_schema is None:
+                continue
+
+            source_key_attrname = None
+            source_schema = relation_ontology_schema.get("source")
+            for source_attr_schema in source_schema.get("attributes", []):
+                if source_attr_schema.get("unique") == True:
+                    source_key_attrname = source_attr_schema.get("name")
+                    break
+            target_key_attrname = None
+            if relation_ontology_schema is not None:
+                target_schema = relation_ontology_schema.get("target")
+                for target_attr_schema in target_schema.get("attributes", []):
+                    if target_attr_schema.get("unique") == True:
+                        target_key_attrname = target_attr_schema.get("name")
+                        break
+
+            if source_key_attrname is None or target_key_attrname is None:
+                continue
+
+            found_source_key = False
+            source_attrs = source.get("attributes")
+            source_keyref_value = None
+            if source_attrs is not None:
+                for key, value in source_attrs.items():
+                    if key == source_key_attrname:
+                        found_source_key = True
+                        source_keyref_value = value
+                        break
+            if found_source_key==False:
+                continue
+
+
+            found_target_key = False
+            target_attrs = target.get("attributes")
+            target_keyref_value = None
+            if target_attrs is not None:
+                for key, value in target_attrs.items():
+                    if key == target_key_attrname:
+                        found_target_key = True
+                        target_keyref_value = value
+                        break
+            if found_target_key==False:
+                continue
+
+            tuple_found = next((t for t in output_tuples if t[0] == relation_label and t[1] == source_label and t[2] == target_label and t[3]==source_keyref_value and t[4]==target_keyref_value), None)    
+            if tuple_found is not None:
+                tuple_found[5].append(relation)  
+            else:                  
+                new_tuple = [relation_label, source_label, target_label, source_keyref_value, target_keyref_value, [relation]]
+                output_tuples.append(new_tuple)
+                
+    return output_tuples
+
+
+ 
+def search_relations_given_entity(json_entity, entity_name_key_attribute, relations, text_ontology: str, type: str):
+    """
+    Given a JSON entity object, it returns the JSON relations object associated to it.
+    The 'type' parameter can be 'source' or 'target'. It represenets the type of association entity-relation 
+    """
+    if type != "source" and type != "target":
+        print(f"{Fore.RED} The 'type' parameter is incorrect!")
+        return
+    output_relations = []
+    entiy_label_to_find = json_entity.get("label")
+    id_entity_to_find = None
+    for key, value in json_entity.get("attributes"):
+        if key == entity_name_key_attribute:
+            id_entity_to_find = value
+    for relation in relations:
+        entity_relation = relation.get(type)
+        if entity_relation.get("label") != entiy_label_to_find:
+            continue
+        for key, value in entity_relation.get("attributes"):
+            if key == entity_name_key_attribute:
+                if value == id_entity_to_find:
+                    output_relations.append(relation)
+                    break
+    return output_relations
+        
+
+
+def validate_single_merged_entity(text_entity: str, entity_label: str, key_attribute_value, text_ontology: str):
+    """
+    Checks if the JSON entity created by the LLM while merging a list of duplicated entities is valid or not.
+    If it is valid, it returns the corresponding JSON object.
+    If it is invalid, an exception is raised.
+    """
+    data = json.loads(text_entity)
+    label_name_key = get_dict_label_nameKeyAttribute(text_ontology)
+
+    if isinstance(data, list)==False:
+        raise Exception("The JSON is not a list")
+    if "entities" not in data:
+        raise Exception("The JSON is not a list of one entity")
+    if data["entities"]!=1:
+        raise Exception("The JSON is not a list of one entity")
+    json_entity = data["entities"][0]
+   
+
+    label = json_entity.get("label")
+    if label is None:
+        raise Exception("The entity created has not a label.")
+    if label != entity_label:
+      raise Exception("The entity created has not the correct label that is '{entity_label}' - ")
+    entity_attrs = json_entity.get("attributes")
+    if entity_attrs is not None:
+        for key, value in entity_attrs.items():
+            if key == label_name_key[entity_label]:
+                if value != key_attribute_value:
+                    raise Exception("The entity created has not the correct value for the unique attribute that is '{key_attribute_value}' - ")
+
+    errors = ""
+    verify_entity(json_entity, text_ontology, errors)
+    if errors:
+        errors = errors + "."
+        raise Exception(errors)
+    return json_entity
+
+    
+def validate_single_merged_relation(text_relation, entities, relation_label, target_label, source_label, source_keyref, target_keyref, text_ontology):
+    """
+    Checks if the JSON relation created by the LLM while merging a list of duplicated relations is valid or not.
+    If it is valid, it returns the corresponding JSON object.
+    If it is invalid, an exception is raised.
+    """
+    data = json.loads(text_relation)
+    label_nameKey = get_dict_label_nameKeyAttribute(text_ontology)
+
+    if isinstance(data, list)==False:
+        raise Exception("The JSON is not a list")
+    if "relations" not in data:
+        raise Exception("The JSON is not a list of one relation")
+    if data["relations"]!=1:
+        raise Exception("The JSON is not a list of one relation")
+    json_relation = data["relations"][0]
+
+    relation_label_new = json_relation.get("label")
+    if relation_label_new is None:
+        raise Exception("The relations does not have a label!")
+    errors = ""
+    if relation_label_new != relation_label:
+       raise Exception("The entity created has not the correct label that is '{relation_label}'")
+    source = json_relation.get("source")
+    if source is None:
+        raise Exception("The relation does not have a source")
+    source_label_new = source.get("label")
+    if source_label_new is None:
+        raise Exception("The source has not a label'")
+    if source_label_new != source_label:
+        raise Exception("The source has not the correct label that is '{source_label}'")
+
+    target = json_relation.get("target")
+    if target is None:
+        raise Exception("The relation does not have a target")
+    target_label_new = target.get("label")
+    if target_label_new is None:
+        raise Exception("The target has not a label'")
+    if target_label_new != target_label:
+        raise Exception(f"The target has not the correct label that is '{target_label}'")
+    
+    errors = ""
+    verify_relation(json_relation, entities, text_ontology, errors)
+    if errors:
+        errors = errors + "."
+        raise Exception(errors)
+    else:
+        for key, value in source.get("attributes").items():
+            if key == label_nameKey[source_label]:
+                if value != source_keyref:
+                    errors = errors = "The relation refers to a different source (i.e. the keyref value is different) - "
+                break
+        for key, value in target.get("attributes").items():
+            if key == label_nameKey[target_label]:
+                if value != target_keyref:
+                    errors = errors + "The relation refers to a different target (i.e. the keyref value is different) - "
+                break
+    if errors:
+        errors = errors + "."
+        raise Exception(errors)
+    return json_relation
+
+
+
+        
+
 
 
 

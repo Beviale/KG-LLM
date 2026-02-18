@@ -233,7 +233,7 @@ Aggiungi tutti gli attributi necessari per descrivere completamente entità e re
 Gli attributi devono essere estratti come entità o relazioni quando possibile. Ad esempio, quando si descrive un'entità 'Film', l'attributo 'regista' può essere estratto come un'entità 'Persona' e collegato all'entità 'Film' tramite una relazione etichettata 'DIRETTO_DA'.
 Allo stesso modo, quando si descrive un'entità 'Film', è possibile estrarre attributi come titolo, anno di uscita, genere e altro.
 Preferisci convertire le relazioni in entità quando possiedono attributi.
-Crea un'ontologia molto concisa e chiara. Evita complessità, ambiguità e duplicazioni non necessarie.  
+Crea un'ontologia molto concisa e chiara. Evita complessità, ambiguità e duplicazioni non necessarie.
 
 ## 2. Etichettare le entità e le relazioni
 -  **Coerenza**: Usa tipi non troppo specifici per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una regione italiana, etichettala sempre come 'Regione'. Evita termini più specifici come 'RegionePuglia' o 'RegioneBasilicata'. Favorisci la generalizzazione.
@@ -257,8 +257,10 @@ Le etichette (label) di entità e relazioni non possono iniziare con numeri o ca
 L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
 Lo schema seguente è una definizione formale dei vincoli (JSON Schema). La tua risposta deve essere un'istanza valida di questo schema, non deve includere lo schema stesso.
 Assicurati che il JSON sia restituito in linea e senza spazi, per ridurre il numero di token nel risultato.
+Il JSON dell'ontologia dovrà contenere al livello più alto (root) due liste: 'entities' e 'relations'.
+Le entità, le relazioni e gli attributi non dovranno essere tradotti rispetto al testo fornito. Rispetta la lingua del testo fornito.
 
-Schema:
+JSON Schema:
 ```json
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
@@ -300,11 +302,11 @@ Schema:
                 },
                 "unique": {
                   "type": "boolean",
-                  "title": "The unique Schema. 'true' if it is the key attribute of the entity, 'false' otherwise. Each entity should have exactly one key attribute."
+                  "title": "The unique Schema. Set to 'true' if this is the key attribute of the entity, 'false' otherwise. Each entity must have exactly one key attribute."
                 },
                 "required": {
                   "type": "boolean",
-                  "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
+                  "title": "The required Schema. Specifies that the attribute cannot be null or empty. Note: Unique attributes must also be marked as required."
                 }
               }
             }
@@ -355,11 +357,11 @@ Schema:
                     },
                     "unique": {
                       "type": "boolean",
-                      "title": "The unique Schema. 'true' if it is the keyref attribute that the relation uses to refer to the source entity, 'false' otherwise. The source should have exactly one unique attribute (that is the keyref)."
+                      "title": "The unique Schema. Set to 'true' if it is the keyref attribute that the relation uses to refer the source entity, 'false' otherwise. The source should have exactly one unique attribute (that is the keyref)."
                     },
                     "required": {
                       "type": "boolean",
-                      "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
+                      "title": "The required Schema. Specifies that the attribute cannot be null or empty. Note: Unique attributes must also be marked as required."
                     }
                   }
                 }
@@ -396,11 +398,11 @@ Schema:
                     },
                     "unique": {
                       "type": "boolean",
-                      "title": "The unique Schema. 'true' if it is the keyref attribute that the relation uses to refer to the target entity, 'false' otherwise. The target should have exactly one unique attribute (that is the keyref)."
+                      "title": "The unique Schema. Set to 'true' if it is the keyref attribute that the relation uses to refer the target entity, 'false' otherwise. The target should have exactly one unique attribute (that is the keyref)."
                     },
                     "required": {
                       "type": "boolean",
-                      "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
+                      "title": "The required Schema. Specifies that the attribute cannot be null or empty. Note: Unique attributes must also be marked as required."
                     }
                   }
                 }
@@ -427,7 +429,7 @@ Schema:
                 },
                 "required": {
                   "type": "boolean",
-                  "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
+                  "title": "The required Schema. Specifies that the attribute cannot be null or empty."
                 }
               }
             }
@@ -439,7 +441,7 @@ Schema:
 }
 ```
 
-Eccoti un esempio di output che potresti restituirmi:
+Eccoti un esempio completo di output che potresti restituirmi:
 ```json
 {"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","required":true}]}]}
 ```
@@ -607,6 +609,7 @@ Correggi eventuali problemi di spaziatura o formattazione presenti nel testo se 
 
 Testo:
 {text}
+
 """
 
 
@@ -845,8 +848,8 @@ Esempio di output:
 
 MERGE_SIMILAR_RELATIONS_SYSTEM_ITA="""
 ## 1. Panoramica
-Sei un assistente di alto livello con l'obiettivo di identificare e fondere relazioni duplicate descritte da attributi e riferimenti testuali.
-In particolare, il tuo scopo è quello di prendere in input una lista di relazioni in formato JSON e identificare le relazioni duplicate per poi rimuovendole e fonderle in nuove relazioni da dare in output.
+Sei un assistente di alto livello con l'obiettivo di fondere relazioni duplicate descritte da attributi e riferimenti testuali.
+In particolare, il tuo scopo è quello di prendere in input una lista di relazioni in formato JSON che sono state già idenficate come duplicate per fonderle in un'unica relazione da dare in output.
 Due o più relazioni sono duplicate se sono semanticamente molto simili tra loro. Per valutare la similarità semantica, devi usare le label e gli attributi. In particolare, puoi fare riferimento all'attributo 'riferimento_testuale' che contiene la descrizione testuale che ha giusitificato la creazione di una specifica relazione.
 Le relazioni che non ritieni duplicate devi restituirle semplicemente in output senza apportare modifiche.
 Il dominio applicativo è quello della Pubblica Amministrazione e del Codice degli appalti italiano.
@@ -941,6 +944,107 @@ Lista in output contenente una nuova relazione creata dalla fusione delle due re
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le relazioni. Esso va usato solo come riferimento generale.
 """
 
+MERGE_DUPLICATED_RELATIONS_SYSTEM_ITA="""
+## 1. Panoramica
+Sei un assistente di alto livello con l'obiettivo di fondere relazioni duplicate descritte da attributi, seguendo l'ontologia fornita.
+Tra gli attributi delle relazioni, c'è sempre il 'riferimento_testuale' che contiene la porzione di testo che ha giustificato la creazione di tale relazione.
+In particolare, il tuo scopo è quello di prendere in input una lista di relazioni in formato JSON che sono state già identificate come duplicate per fonderle in un'unica relazione da dare in output sempre in formato JSON.
+Tali relazioni sono state identificate come duplicate perchè hanno la stessa label e connettono le due stesse entità source e target.
+Il dominio applicativo è quello della Pubblica Amministrazione e del Codice degli appalti italiano.
+
+## 2. Conformità alle regole
+Rispetta rigorosamente le regole.
+Non includere spiegazioni o scuse nelle tue risposte.
+Non rispondere a domande che chiedono qualcosa di diverso dalla fusione di relazioni duplicate. 
+Non inventare dati dal nulla ma basati su quelli forniti.
+Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
+Per la nuova relazione creata, l'attributo 'riferimento_testuale' deve contenere tassativamente l'unione dei valori di 'riferimento_testuale' delle vecchie relazioni duplicate. Se il testo risultante dovesse risultare troppo prolisso o ripetitivo, puoi effettuare un riassunto ma senza modificarne troppo il significato semantico.
+La nuova relazione creata deve avere la stessa label e gli stessi attributi per le entità source e target delle relazioni duplicate date in input (ossia la relazione deve essere dello stesso tipo e riferirisi alle stesse entità source e target); ciò che può variare sono i valori degli attributi relativi strettamente alla relazione stessa, tra cui il 'riferimento_testuale' spiegato prima.
+Rispetta rigorosamente l'ontologia fonita.
+
+## 3. Formato
+La tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
+Lo schema seguente è una definizione formale dei vincoli (JSON Schema). La tua risposta deve essere un'istanza valida di questo schema, non deve includere lo schema stesso.
+Assicurati che il JSON prodotto sia restituito in linea e senza spazi, così da ridurre il numero di token in output.
+Devi restituire una lista di 'relations' che contiene un solo elemento, ossia la nuova relazione creata dalla fusione delle relazioni duplicate date in input.
+
+Schema:
+```json
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "Graph Schema",
+  "required": ["relations"],
+  "properties": {
+    "relations": {
+      "type": "array",
+      "title": "The relations Schema",
+      "items": {
+        "type": "object",
+        "title": "A Schema",
+        "required": ["label", "source", "target"],
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "The label Schema",
+            "format": "SCREAMING_SNAKE_CASE"
+          },
+          "source": {
+            "type": "object",
+            "title": "The source Schema",
+            "required": ["label", "attributes"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "format": "PascalCase",
+                "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
+              }
+            }
+          },
+          "target": {
+            "type": "object",
+            "title": "The target Schema",
+            "required": ["label", "attributes"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "format": "PascalCase",
+                "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
+              }
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "title": "The attributes Schema"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Eccoti un esempio di input-output corretto:
+Lista in input contenente due relazioni duplicate:
+```json{"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimento_testuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}},
+{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimento_testuale": "John Doe, un attore versatile e molto apprezzato, ha preso parte al cast del film Inception del 2010, ottenendo ampio riconoscimento per la sua interpretazione di Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}
+]}
+```
+Lista in output contenente una nuova relazione creata dalla fusione delle due relazioni duplicate date in input:
+```json{"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimento_testuale":"John Doe, attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception (2010). Calatosi nel ruolo di Dom Cobb, ha dato vita a un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra i livelli multipli dei mondi onirici"}}]}
+```
+L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre la nuova relazione. Esso va usato solo come riferimento generale.
+"""
+
 
 MERGE_SIMILAR_ENTITIES_SYSTEM_ITA="""
 ## 1. Panoramica
@@ -1007,6 +1111,79 @@ Lista in output contenente una nuova entità creata dalla fusione delle due enti
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le entità. Esso va usato solo come riferimento generale.
 """
+
+
+MERGE_DUPLICATED_ENTITIES_SYSTEM_ITA="""
+## 1. Panoramica
+Sei un assistente di alto livello con l'obiettivo di fondere entità duplicate descritte da attributi, seguendo l'ontologia fornita.
+Tra gli attributi delle entità, c'è sempre il 'riferimento_testuale' che contiene la porzione di testo che ha giustificato la creazione di tale entità.
+In particolare, il tuo scopo è quello di prendere in input una lista di entità in formato JSON che sono state già identificate come duplicate per fonderle in una nuova entità da dare in output sempre in formato JSON.
+Tali entità sono state identificate come duplicate perchè hanno la stessa label e lo stesso valore per il loro attributo univoco.
+Il dominio applicativo è quello della Pubblica Amministrazione e del Codice degli appalti italiano.
+
+## 2. Conformità alle regole
+Rispetta rigorosamente le regole.
+Non includere spiegazioni o scuse nelle tue risposte.
+Non rispondere a domande che chiedono qualcosa di diverso dalla fusione di entità duplicate. 
+Non inventare dati dal nulla ma basati su quelli forniti.
+Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
+Per la nuova entità creata, l'attributo 'riferimento_testuale' deve contenere tassativamente l'unione dei valori di 'riferimento_testuale' delle vecchie entità duplicate. Se il testo risultante dovesse risultare troppo prolisso o ripetitivo, puoi effettuare un riassunto ma senza modificarne troppo il significato semantico.
+La nuova entità creata deve avere la stessa label e lo stesso valore per l'attributo univoco delle entità duplicate date in input; ciò che può variare sono i valori degli altri attributi oltre quello univoco, tra cui il 'riferimento_testuale' spiegato prima.
+Rispetta rigorosamente l'ontologia fonita.
+
+## 3. Formato
+La tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi.
+Lo schema seguente è una definizione formale dei vincoli (JSON Schema). La tua risposta deve essere un'istanza valida di questo schema, non deve includere lo schema stesso.
+Assicurati che il JSON prodotto sia restituito in linea e senza spazi, così da ridurre il numero di token in output.
+Devi restituire una lista di 'entities' che contiene un solo elemento, ossia la nuova entità creata dalla fusione delle entità duplicate date in input.
+
+Schema:
+```json
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "Graph Schema",
+  "required": ["entities"],
+  "properties": {
+    "entities": {
+      "type": "array",
+      "title": "The entities Schema",
+      "items": {
+        "type": "object",
+        "title": "A Schema",
+        "required": ["label", "attributes"],
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "The label Schema",
+            "format": "PascalCase"
+          },
+          "attributes": {
+            "type": "object",
+            "title": "The attributes Schema"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Eccoti un esempio di input-output corretto:
+Lista in input contenente due entità duplicate:
+```json
+{"entities":[{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"riferimento_testuale":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"riferimento_testuale":"Oggi, a 30 anni, John Doe può guardare con orgoglio al percorso iniziato durante i suoi studi in Ingegneria Informatica presso il Politecnico, dove ha gettato le basi della sua solida preparazione tecnica."}}]}
+```
+
+Lista in output contenente la nuova entità creata dalla fusione delle due entità duplicate in input:
+```json
+{"entities":[{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"riferimento_testuale":"Oggi, a 30 anni, l’ingegnere software John Doe può guardare con orgoglio al percorso iniziato con gli studi in Ingegneria Informatica presso il Politecnico, base della sua solida preparazione tecnica e del suo recente trasferimento in una nuova città per inseguire un'opportunità professionale emozionante e a lungo desiderata; portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda."}}]}
+```
+
+L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre la nuova entità. Esso va usato solo come riferimento generale.
+"""
+
 
 EXTRACT_DATA_SYSTEM_ITA = """
 ## 1. Panoramica
@@ -1283,6 +1460,21 @@ Lista JSON di entità:
 
 """
 
+MERGE_DUPLICATED_ENTITIES_PROMPT_ITA="""
+Sei incaricato di fondere le entità duplicate riportate di seguito, seguendo l'ontologia fornita.
+
+Lista JSON di entità duplicate:
+```json
+{entities}
+```
+
+Ontologia da seguire:
+```json
+{ontology}
+```
+
+"""
+
 MERGE_SIMILAR_RELATIONS_PROMPT_ITA="""
 Sei incaricato di identificare e fondere le relazioni duplicate riportate di seguito.
 
@@ -1301,6 +1493,69 @@ Lista JSON di relazioni:
 ```json
 {relations}
 ```
+
+"""
+
+MERGE_DUPLICATED_RELATIONS_PROMPT_ITA="""
+Sei incaricato di fondere le relazioni duplicate riportate di seguito, seguendo l'ontologia fornita.
+
+Lista JSON di relazioni duplicate:
+```json
+{relations}
+```
+
+Ontologia da seguire:
+```json
+{ontology}
+```
+
+"""
+
+
+MERGE_DUPLICATED_RELATIONS_PROMPT_ERROR_ITA="""
+Data la seguente relazione che hai creato precedentemente dalla fusione di relazioni duplicate, correggi gli errori segnalati e restituisci la nuova relazione corretta.
+
+Lista JSON di relazioni duplicate:
+```json
+{duplicated_relations}
+```
+
+Ontologia da seguire:
+```json
+{ontology}
+```
+
+Lista JSON contenente la nuova relazione che hai creato:
+```json
+{new_relation}
+```
+
+Errori segnalati nella nuova relazione che hai creato:
+{errors}
+
+"""
+
+
+MERGE_DUPLICATED_ENTITIES_PROMPT_ERROR_ITA="""
+Data la seguente entità che hai creato precedentemente dalla fusione di entità duplicate, correggi gli errori segnalati e restituisci la nuova entità corretta.
+
+Lista JSON di entità duplicate:
+```json
+{duplicated_entities}
+```
+
+Ontologia da seguire:
+```json
+{ontology}
+```
+
+Lista JSON contenente la nuova entità che hai creato:
+```json
+{new_entity}
+```
+
+Errori segnalati nella nuova entità che hai creato:
+{errors}
 
 """
 
@@ -1406,7 +1661,7 @@ Ontologia usata per la generazione del JSON da correggere:
 
 FIX_JSON_PROMPT_ONTOLOGY_ITA = """
 Data la seguente ontologia JSON che hai generato precedentemente, correggi gli errori che sono stati riscontrati durante il suo parsing.
-Non modificare il significato semantico del JSON; devi solo modificare la sua struttura in modo tale da risolvere gli errori di parsing. 
+Non modificare il significato semantico del JSON; devi solo modificare la sua struttura in modo tale da risolvere gli errori di parsing.
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
 L'errore durante il parsing dell'ontologia da corregere è stato il seguente:
