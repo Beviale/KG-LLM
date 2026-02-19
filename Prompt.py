@@ -20,7 +20,7 @@ Non rispondere a domande che richiedono qualcosa di diverso dalla creazione di u
 Non includere alcun testo diverso dall'ontologia.
 Non puoi creare più di un'entità con la stessa label (sarebbero duplicate).
 Non puoi creare più relazioni che presentano congiuntamente le stesse label, source label e target label (sarebbero duplicate).
-Ogni entità deve avere esattamente un attributo unico (cosiddetto attributo 'key').
+Ogni entità deve avere esattamente un attributo univoco (cosiddetto attributo 'key').
 Non creare relazioni senza le due relative entità di origine ('source') e destinazione ('target'). Prima di creare una relazione che collega due entità, assicurati di aver creato le entità stesse!
 Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una 'Persona' ha 'INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non sarà possibile determinare da quale 'Film' provenga il 'Personaggio'.
 Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare una relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
@@ -30,7 +30,7 @@ Le etichette (label) di entità e relazioni non possono iniziare con numeri o ca
 L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi.
 Lo schema seguente è una definizione formale dei vincoli (JSON Schema). La tua risposta deve essere un'istanza valida di questo schema, non deve includere lo schema stesso.
 Assicurati che il JSON sia restituito in linea e senza spazi, per ridurre il numero di token nel risultato.
-Il JSON dell'ontologia dovrà contenere al livello più alto (root) due liste: 'entities' e 'relations'.
+Il JSON dell'ontologia deve contenere al livello più alto (root) due liste: 'entities' e 'relations'.
 
 JSON Schema:
 ```json
@@ -74,7 +74,7 @@ JSON Schema:
                 },
                 "unique": {
                   "type": "boolean",
-                  "title": "The unique Schema. Set to 'true' if this is the key attribute of the entity, 'false' otherwise. Each entity must have exactly one key attribute."
+                  "title": "The unique Schema. Set to 'true' if it is the key attribute of the entity, 'false' otherwise. Each entity must have exactly one key attribute."
                 },
                 "required": {
                   "type": "boolean",
@@ -264,7 +264,7 @@ Non rispondere a domande che richiedono qualcosa di diverso dalla creazione di u
 Non includere alcun testo diverso dall'ontologia. 
 Non puoi creare più di un'entità con la stessa label (sarebbero duplicate).
 Non puoi creare più relazioni che presentano congiuntamente le stesse label, source label e target label (sarebbero duplicate).
-Ogni entità deve avere esattamente un attributo unico (cosiddetto attributo 'key').
+Ogni entità deve avere esattamente un attributo univoco (cosiddetto attributo 'key').
 Non creare relazioni senza le due relative entità di origine ('source') e destinazione ('target'). Prima di creare una relazione che collega due entità, assicurati di aver creato le entità stesse!
 Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una 'Persona' ha 'INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non sarà possibile determinare da quale 'Film' provenga il 'Personaggio'.
 Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare una relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
@@ -274,7 +274,7 @@ Le etichette (label) di entità e relazioni non possono iniziare con numeri o ca
 L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
 Lo schema seguente è una definizione formale dei vincoli (JSON Schema). La tua risposta deve essere un'istanza valida di questo schema, non deve includere lo schema stesso.
 Assicurati che il JSON sia restituito in linea e senza spazi, per ridurre il numero di token nel risultato.
-Il JSON dell'ontologia dovrà contenere al livello più alto (root) due liste: 'entities' e 'relations'.
+Il JSON dell'ontologia deve contenere al livello più alto (root) due liste: 'entities' e 'relations'.
 Le entità, le relazioni e gli attributi non dovranno essere tradotti rispetto al testo fornito. Rispetta la lingua del testo fornito.
 
 JSON Schema:
@@ -319,7 +319,7 @@ JSON Schema:
                 },
                 "unique": {
                   "type": "boolean",
-                  "title": "The unique Schema. Set to 'true' if this is the key attribute of the entity, 'false' otherwise. Each entity must have exactly one key attribute."
+                  "title": "The unique Schema. Set to 'true' if it is the key attribute of the entity, 'false' otherwise. Each entity must have exactly one key attribute."
                 },
                 "required": {
                   "type": "boolean",
