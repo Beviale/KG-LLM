@@ -30,8 +30,9 @@ Le etichette (label) di entità e relazioni non possono iniziare con numeri o ca
 L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi.
 Lo schema seguente è una definizione formale dei vincoli (JSON Schema). La tua risposta deve essere un'istanza valida di questo schema, non deve includere lo schema stesso.
 Assicurati che il JSON sia restituito in linea e senza spazi, per ridurre il numero di token nel risultato.
+Il JSON dell'ontologia dovrà contenere al livello più alto (root) due liste: 'entities' e 'relations'.
 
-Schema:
+JSON Schema:
 ```json
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
@@ -73,11 +74,11 @@ Schema:
                 },
                 "unique": {
                   "type": "boolean",
-                  "title": "The unique Schema. 'true' if it is the key attribute of the entity, 'false' otherwise. Each entity should have exactly one key attribute."
+                  "title": "The unique Schema. Set to 'true' if this is the key attribute of the entity, 'false' otherwise. Each entity must have exactly one key attribute."
                 },
                 "required": {
                   "type": "boolean",
-                  "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
+                  "title": "The required Schema. Specifies that the attribute cannot be null or empty. Note: Unique attributes must also be marked as required."
                 }
               }
             }
@@ -128,11 +129,11 @@ Schema:
                     },
                     "unique": {
                       "type": "boolean",
-                      "title": "The unique Schema. 'true' if it is the keyref attribute that the relation uses to refer to the source entity, 'false' otherwise. The source should have exactly one unique attribute (that is the keyref)."
+                      "title": "The unique Schema. Set to 'true' if it is the keyref attribute that the relation uses to refer the source entity, 'false' otherwise. The source should have exactly one unique attribute (that is the keyref)."
                     },
                     "required": {
                       "type": "boolean",
-                      "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
+                      "title": "The required Schema. Specifies that the attribute cannot be null or empty. Note: Unique attributes must also be marked as required."
                     }
                   }
                 }
@@ -169,11 +170,11 @@ Schema:
                     },
                     "unique": {
                       "type": "boolean",
-                      "title": "The unique Schema. 'true' if it is the keyref attribute that the relation uses to refer to the target entity, 'false' otherwise. The target should have exactly one unique attribute (that is the keyref)."
+                      "title": "The unique Schema. Set to 'true' if it is the keyref attribute that the relation uses to refer the target entity, 'false' otherwise. The target should have exactly one unique attribute (that is the keyref)."
                     },
                     "required": {
                       "type": "boolean",
-                      "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
+                      "title": "The required Schema. Specifies that the attribute cannot be null or empty. Note: Unique attributes must also be marked as required."
                     }
                   }
                 }
@@ -200,7 +201,7 @@ Schema:
                 },
                 "required": {
                   "type": "boolean",
-                  "title": "The required Schema. If the attribute is required, it cannot be null or empty. If it is unique, it should be also required."
+                  "title": "The required Schema. Specifies that the attribute cannot be null or empty."
                 }
               }
             }
@@ -212,9 +213,25 @@ Schema:
 }
 ```
 
-Eccoti un esempio di output che potresti restituirmi:
+Eccoti un esempio completo di input-output:
+
+Date in input le seguenti due ontologie:
+a) Prima ontologia
 ```json
-{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","required":false}]}]}```
+{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","required":true}]}]}
+```
+b) Seconda ontologia
+```json
+{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"titolo_di_studio","type":"string","unique":false,"required":false}]},{"label":"Cinema","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"indirizzo","type":"string","unique":false,"required":false}]}],"relations":[{"label":"DIRIGE","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Cinema","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"attributes":[{"name":"data_inizio_direzione","type":"string","required":true}]}]}
+```
+
+Questa è una possibile ontologia valida che potresti restituirimi in output:
+```json
+{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"titolo_di_studio","type":"string","unique":false,"required":false},
+{"name":"età","type":"number","unique":false,"required":false}]},{"label":"Cinema","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"indirizzo","type":"string","unique":false,"required":false}]},
+{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false}]}],"relations":[{"label":"DIRIGE","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Cinema","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"attributes":[{"name":"data_inizio_direzione","type":"string","required":true}]},
+{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","required":true}]}]}
+```
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente unendo le due ontologie fornite.
 """
