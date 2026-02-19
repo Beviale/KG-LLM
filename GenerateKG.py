@@ -187,7 +187,7 @@ def process_response_ontology(text_filename, category, index_chunk, response, te
                 error = f"TypeError: '{type(e)}', error: '{e}'"
                 print(f"Error extracting JSON. TypeError: {error}")
                 print(f"Prompting model to fix JSON")
-                if e is Utils.JSONFormattingException:
+                if isinstance(e, Utils.JSONFormattingException):
                     json_fix_response = completion(
                         model=model,
                         messages=[
@@ -325,7 +325,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
                             error = f"TypeError: '{type(e)}', error: '{e}'"
                             print(f"Error extracting JSON. {error}")
                             print(f"Prompting model to fix JSON")
-                            if e is Utils.JSONFormattingException:
+                            if isinstance(e, Utils.JSONFormattingException):
                                 json_fix_response = completion(
                                     model=model,
                                     messages=[
