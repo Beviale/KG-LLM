@@ -218,19 +218,19 @@ Eccoti un esempio completo di input-output:
 Date in input le seguenti due ontologie:
 a) Prima ontologia
 ```json
-{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","required":true}]}]}
+{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","unique":false,"required":true}]}]}
 ```
 b) Seconda ontologia
 ```json
-{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"titolo_di_studio","type":"string","unique":false,"required":false}]},{"label":"Cinema","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"indirizzo","type":"string","unique":false,"required":false}]}],"relations":[{"label":"DIRIGE","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Cinema","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"attributes":[{"name":"data_inizio_direzione","type":"string","required":true}]}]}
+{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"titolo_di_studio","type":"string","unique":false,"required":false}]},{"label":"Cinema","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"indirizzo","type":"string","unique":false,"required":false}]}],"relations":[{"label":"DIRIGE","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Cinema","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"attributes":[{"name":"data_inizio_direzione","type":"string","unique": false,"required":true}]}]}
 ```
 
 Questa è una possibile ontologia valida che potresti restituirimi in output:
 ```json
 {"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"titolo_di_studio","type":"string","unique":false,"required":false},
 {"name":"età","type":"number","unique":false,"required":false}]},{"label":"Cinema","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"indirizzo","type":"string","unique":false,"required":false}]},
-{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false}]}],"relations":[{"label":"DIRIGE","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Cinema","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"attributes":[{"name":"data_inizio_direzione","type":"string","required":true}]},
-{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","required":true}]}]}
+{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false}]}],"relations":[{"label":"DIRIGE","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Cinema","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"attributes":[{"name":"data_inizio_direzione","type":"string","unique": false,"required":true}]},
+{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","unique": false,"required":true}]}]}
 ```
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre l'ontologia. L'ontologia deve essere creata esclusivamente unendo le due ontologie fornite.
@@ -1232,7 +1232,7 @@ La tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di cre
 Lo schema seguente è una definizione formale dei vincoli (JSON Schema). La tua risposta deve essere un'istanza valida di questo schema, non deve includere lo schema stesso.
 Assicurati che il JSON prodotto sia restituito in linea e senza spazi, così da ridurre il numero di token in output.
 
-Schema:
+JSON Schema:
 ```json
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
@@ -1318,10 +1318,14 @@ Schema:
 ```
 
 Data la seguente ontologia:
-```json{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false},{"name":"riferimento_testuale","type":"string","unique":false,"required":true}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false},{"name":"riferimento_testuale","type":"string","unique":false,"required":true}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","required":false},{"name":"riferimento_testuale","type":"string","unique":false,"required":true}]}]}```
+```json
+{"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false},{"name":"riferimento_testuale","type":"string","unique":false,"required":true}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false},{"name":"riferimento_testuale","type":"string","unique":false,"required":true}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string", "unique":false,"required":false},{"name":"riferimento_testuale","type":"string","unique":false,"required":true}]}]}
+```
 
 Eccoti un esempio di output che potresti restituirmi:
-```json{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimento_testuale":"John Doe è un attore 30enne di fama internazionale, noto per la sua versatilità interpretativa e la capacità di immedesimarsi in personaggi psicologicamente complessi."}},{"label":"Film","attributes":{"titolo":"Inception","anno_di_uscita":2010,"riferimento_testuale":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","riferimento_testuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}```
+```json
+{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"riferimento_testuale":"John Doe è un attore 30enne di fama internazionale, noto per la sua versatilità interpretativa e la capacità di immedesimarsi in personaggi psicologicamente complessi."}},{"label":"Film","attributes":{"titolo":"Inception","anno_di_uscita":2010,"riferimento_testuale":"Inception è un thriller di fantascienza del 2010 scritto e diretto da Christopher Nolan"}}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"protagonista","riferimento_testuale":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato il ruolo del protagonista, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}]}
+```
 
 L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le entità, le relazioni o gli attributi del testo. I dati devono essere estratti esclusivamente a partire dal testo e dall'ontologia forniti.
 """
@@ -1582,8 +1586,8 @@ Sei incaricato di estrarre entità, relazioni e attributi dal testo riportato di
 
 **Formato di output:**
 - Fornisci i dati estratti come oggetto JSON con due chiavi: 'entities' e 'relations'.
-- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'riferimento_testuale' con la porzione di testo usata per la creazione dell'entità.
-- Relations: rappresentano le relazioni tra entità e concetti. Ogni relazione deve avere un campo 'label', 'source', 'target' e uno 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'riferimento_testuale' con la porzione di testo usata per la creazione della relazione.
+- Entities: rappresentano entità e concetti. Ogni entità ha un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'riferimento_testuale' con la porzione di testo usata per la creazione dell'entità.
+- Relations: rappresentano le relazioni tra entità e concetti. Ogni relazione ha un campo 'label', 'source', 'target' e uno 'attributes'.  All'interno del campo 'attributes', devi avvalorare il campo 'riferimento_testuale' con la porzione di testo usata per la creazione della relazione.
 
 **Linee guida:**
 - Estrai tutte le entità e le relazioni: cattura tutte le entità e tutte le relazioni menzionate nel testo.
