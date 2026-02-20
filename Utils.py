@@ -551,17 +551,16 @@ def check_duplicated_entity(json_entities, json_ontology, errors):
                 entities_label.append(entity)
         IDs = []
         for entity in entities_label:
-            entity_attrs = entity.get("attrs", {})
-            for key in entity_attrs:
-                entity_attrs[key] = entity_attrs[key].replace(" ", "")
-              
-            for attr_key, attr_value in entity.get("attrs", {}).items():
+            entity_attrs = entity.get("attributes", {})
+            for attr_key, attr_value in entity_attrs.items():
                 if attr_key == value: # if it is the 'key' attribute
-                    IDs.append(attr_value) 
+                    entity_attrs[attr_key] = entity_attrs[attr_key].replace(" ", "")
+                    IDs.append(entity_attrs[attr_key]) 
                     break
         seen = set()
         duplicated = set(x for x in IDs if x in seen or seen.add(x))
-        errors = errors + f"For the entity label '{key}' there are the following duplicates '{list(duplicated)}' - "
+        if len(duplicated)>0:
+            errors = errors + f"For the entity label '{key}' there are the following duplicates '{list(duplicated)}' - "
         
     
 
