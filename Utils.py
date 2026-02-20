@@ -216,12 +216,12 @@ def validate_generated_ontology(ontology_text: str):
             return data
 
 
-def get_unique_attribute_entity(label,  text_ontology: str):
+def get_unique_attribute_entity(label,  json_ontology):
     """
     Given an entity label, it returns the name of its unique attribute according to the given ontology.
     """
     name_entity_attrs_unique_schema = []
-    entity_schema = get_entity_schema(label, text_ontology)
+    entity_schema = get_entity_schema(label, json_ontology)
     if entity_schema is not None:
         entity_attrs_schema = entity_schema.get("attributes")
         name_entity_attrs_unique_schema = [item['name'] for item in entity_attrs_schema if 'name' in item and 'unique' in item and item['unique']==True]
@@ -231,12 +231,12 @@ def get_unique_attribute_entity(label,  text_ontology: str):
     else:
         return None
     
-def get_required_attributes_entity(label,  text_ontology: str):
+def get_required_attributes_entity(label,  json_ontology):
     """
     Given an entity label, it returns the names of its required attributes according to the given ontology.
     """
     name_entity_attrs_required_schema = []
-    entity_schema = get_entity_schema(label, text_ontology)
+    entity_schema = get_entity_schema(label, json_ontology)
     if entity_schema is not None:
         entity_attrs_schema = entity_schema.get("attributes")
         name_entity_attrs_required_schema = [item['name'] for item in entity_attrs_schema if 'name' in item and 'required' in item and item['required']==True]
@@ -247,12 +247,12 @@ def get_required_attributes_entity(label,  text_ontology: str):
         return None
 
 
-def get_entity_schema(label, text_ontology: str):
+def get_entity_schema(label, json_ontology):
     """
     Returns the entity object schema retrived from the given ontology.
     """
     entity_schema = None
-    for entity_ontology in text_ontology['entities']:
+    for entity_ontology in json_ontology['entities']:
         if entity_ontology.get("label") == label:
             entity_schema = entity_ontology
             break
@@ -260,19 +260,19 @@ def get_entity_schema(label, text_ontology: str):
 
 
 
-def verify_entity(json_entity, text_ontology: str, errors):
+def verify_entity(json_entity, json_ontology: str, errors):
     """
     Verifies that the input entity JSON object conforms to the required ontology structure for entity and relation extraction. 
     It returns the list of errors.
     """
 
     entity_label = json_entity['label']
-    entity_schema = get_entity_schema(entity_label, text_ontology)
+    entity_schema = get_entity_schema(entity_label, json_ontology)
     entity_attrs_schema = entity_schema.get("attributes")
     name_entity_attrs_schema = [item['name'] for item in entity_attrs_schema if 'name' in item]
 
     entity_attrs = json_entity.get("attributes")
-    name_entity_attrs_required_schema = get_required_attributes_entity(entity_label, text_ontology)
+    name_entity_attrs_required_schema = get_required_attributes_entity(entity_label, json_ontology)
     if entity_attrs is not None:
         for key, value in entity_attrs.items():
             if key not in name_entity_attrs_schema:
@@ -283,12 +283,12 @@ def verify_entity(json_entity, text_ontology: str, errors):
 
 
     
-def get_required_attributes_relation(label, source_label, target_label, text_ontology: str):
+def get_required_attributes_relation(label, source_label, target_label, json_ontology):
     """
     Given a relation label, it returns the names of its required attributes according to the given ontology.
     """
     name_relation_attrs_required_schema = []
-    relation_schema = get_relation_schema(label, source_label, target_label, text_ontology)
+    relation_schema = get_relation_schema(label, source_label, target_label, json_ontology)
     if relation_schema is not None:
         relation_attrs_schema = relation_schema.get("attributes")
         name_relation_attrs_required_schema = [item['name'] for item in relation_attrs_schema if 'name' in item and 'required' in item and item['required']==True]
@@ -299,19 +299,19 @@ def get_required_attributes_relation(label, source_label, target_label, text_ont
         return None
 
 
-def get_relation_schema(label, source_label, target_label, text_ontology: str):
+def get_relation_schema(label, source_label, target_label, json_ontology):
     """
     Returns the relation object schema retrived from the given ontology.
     """
     relation_schema = None
-    for relation_ontology in text_ontology['relations']:
+    for relation_ontology in json_ontology['relations']:
         if relation_ontology.get("label") == label and relation_ontology.get("source").get("label") == source_label and relation_ontology.get("target").get("label") == target_label:
             relation_schema = relation_ontology
             break
     return relation_schema
 
 
-def verify_relation(relation, entities, text_ontology, errors):
+def verify_relation(relation, entities, json_ontology, errors):
     """
     Verifies that the input relation JSON object conforms to the required ontology structure for entity and relation extraction. 
     It returns the list of errors.
@@ -340,12 +340,12 @@ def verify_relation(relation, entities, text_ontology, errors):
         return
 
 
-    relation_schema = get_relation_schema(relation_label, source_label, target_label, text_ontology)
+    relation_schema = get_relation_schema(relation_label, source_label, target_label, json_ontology)
     relation_attrs_schema = relation_schema.get("attributes")
     name_relation_attrs_schema = [item['name'] for item in relation_attrs_schema if 'name' in item]
 
     relation_attrs = relation.get("attributes")
-    name_relation_attrs_required_schema = get_required_attributes_relation(relation_label,source_label, target_label, text_ontology)
+    name_relation_attrs_required_schema = get_required_attributes_relation(relation_label,source_label, target_label, json_ontology)
     if relation_attrs is not None:
         for key, value in relation_attrs.items():
             if key not in name_relation_attrs_schema:
@@ -357,7 +357,7 @@ def verify_relation(relation, entities, text_ontology, errors):
     first_iteration_source = True
     while(first_iteration_source):
         first_iteration_source = False
-        source_schema = get_entity_schema(source_label, text_ontology)
+        source_schema = get_entity_schema(source_label, json_ontology)
         if source_schema is None:
             errors = errors + f"The source entity with label '{source_label}' of the relation '{relation_label}' does not exist in the ontology - "
             break
@@ -366,7 +366,7 @@ def verify_relation(relation, entities, text_ontology, errors):
             errors = errors + f"The source entity of the relation '{relation_label}' does not have any attributes - "
             break
 
-        name_key_attr = get_unique_attribute_entity(source_label, text_ontology)
+        name_key_attr = get_unique_attribute_entity(source_label, json_ontology)
         source_keyref_value = None
         for key, value in source_attrs.items():
             if key == name_key_attr:
@@ -394,7 +394,7 @@ def verify_relation(relation, entities, text_ontology, errors):
     first_iteration_target=True
     while(first_iteration_target):
         first_iteration_target = False
-        target_schema = get_entity_schema(target_label, text_ontology)
+        target_schema = get_entity_schema(target_label, json_ontology)
         if target_schema is None:
             errors = errors + f"The target entity with label '{target_label}' of the relation '{relation_label}' does not exist in the ontology - "
             break
@@ -403,7 +403,7 @@ def verify_relation(relation, entities, text_ontology, errors):
             errors = errors + f"The target entity of the relation '{relation_label}' does not have any attributes - "
             break
 
-        name_key_attr = get_unique_attribute_entity(target_label, text_ontology)
+        name_key_attr = get_unique_attribute_entity(target_label, json_ontology)
         target_keyref_value = None
         for key, value in target_attrs.items():
             if key == name_key_attr:
@@ -430,7 +430,7 @@ def verify_relation(relation, entities, text_ontology, errors):
 
                             
 
-def check_duplicated_relation(json_relations, text_ontology, errors):
+def check_duplicated_relation(json_relations, json_ontology, errors):
     """
     Verifies if there are duplicated relations (i.e. same label, source label, target label, and the same values for the keyref attributes)
     It returns the list of errors.
@@ -458,7 +458,7 @@ def check_duplicated_relation(json_relations, text_ontology, errors):
         id = id + f"target_label:'{target_label}',"
         
         if relation_label is not None and source_label is not None and target_label is not None:
-            for relation_ontology in text_ontology['relations']:
+            for relation_ontology in json_ontology['relations']:
                 relation_label_ontology = relation_ontology.get("label")
                 source_ontology = relation_ontology.get("source")
                 source_label_ontology = source_ontology.get("label")
@@ -521,12 +521,12 @@ def check_duplicated_relation(json_relations, text_ontology, errors):
     errors = errors + f"The following relations are duplicated. '{list(duplicated)}' - "
 
 
-def get_dict_label_nameKeyAttribute(text_ontology: str):
+def get_dict_label_nameKeyAttribute(json_ontology):
     """
     Returns a dictionary where the key is the entity label and the value the name of the unique attribute (aka key attribute)
     """
     label_name_key = dict() # Dictionary where the key is the entity label and the value the name of the unique attribute (aka key attribute)
-    for entity_ontology in text_ontology['entities']:
+    for entity_ontology in json_ontology['entities']:
         entity_ontology_label = entity_ontology.get("label")
         attrs = entity_ontology.get("attributes", [])
         for attr in attrs:
@@ -538,12 +538,12 @@ def get_dict_label_nameKeyAttribute(text_ontology: str):
 
 
 
-def check_duplicated_entity(json_entities, text_ontology, errors):
+def check_duplicated_entity(json_entities, json_ontology, errors):
     """
     Verifies if there are duplicated entities (i.e. same label and the same value for the key attribute)
     It returns the list of errors.
     """
-    label_name_key = get_dict_label_nameKeyAttribute(text_ontology)
+    label_name_key = get_dict_label_nameKeyAttribute(json_ontology)
     for key, value in label_name_key.items():
         entities_label = [] # List containing all the entities with the same label (ie. the current 'key' of the dictionary)
         for entity in json_entities:
@@ -551,9 +551,11 @@ def check_duplicated_entity(json_entities, text_ontology, errors):
                 entities_label.append(entity)
         IDs = []
         for entity in entities_label:
-            if value in entity["attrs"]:
-               entity["attrs"][value] =  entity["attrs"][value].replace(" ", "")
-            for attr_key, attr_value in entity.get("attrs").items():
+            entity_attrs = entity.get("attrs", {})
+            for key in entity_attrs:
+                entity_attrs[key] = entity_attrs[key].replace(" ", "")
+              
+            for attr_key, attr_value in entity.get("attrs", {}).items():
                 if attr_key == value: # if it is the 'key' attribute
                     IDs.append(attr_value) 
                     break
@@ -565,7 +567,7 @@ def check_duplicated_entity(json_entities, text_ontology, errors):
 
                 
 
-def get_json_data(text_json : str, ontology, text_ontology: str):
+def get_json_data(text_json : str, ontology, json_ontology):
     """
     Verifies that the input JSON conforms to the required ontology structure for entity and relation extraction. 
     If the JSON is valid, returns the JSON object.
@@ -589,7 +591,7 @@ def get_json_data(text_json : str, ontology, text_ontology: str):
             if entity is None:
                 errors = errors + f"Entity with label '{json_entity['label']}' not found in ontology - "
                 continue
-            errors = verify_entity(json_entity, text_ontology, errors)
+            errors = verify_entity(json_entity, json_ontology, errors)
             unique_attributes_schema = [attr for attr in entity.attributes if attr.unique]
             unique_attributes = {
                 attr.name: (
@@ -612,7 +614,7 @@ def get_json_data(text_json : str, ontology, text_ontology: str):
             else:
                 errors = errors + f"Error '{e}' while validating an entity' - "
             continue
-    errors = check_duplicated_entity(json_object["entities"], text_ontology, errors)
+    errors = check_duplicated_entity(json_object["entities"], json_ontology, errors)
 
 
     for relation in json_object["relations"]:
@@ -624,7 +626,7 @@ def get_json_data(text_json : str, ontology, text_ontology: str):
             if len(relations) == 0:
                 errors = errors + f"Relation with label '{relation['label']}' not found in ontology - "
                 continue
-            errors = verify_relation(relation, text_ontology, errors)
+            errors = verify_relation(relation, json_ontology, errors)
             source_unique_attributes = (
                 relation["source"]["attributes"]
                 if "source" in relation and "attributes" in relation["source"]
@@ -655,7 +657,7 @@ def get_json_data(text_json : str, ontology, text_ontology: str):
                 errors = errors + f"Error '{e}' while validating a relation - "
             continue
 
-    errors = check_duplicated_relation(json_object["relations"], text_ontology, errors)
+    errors = check_duplicated_relation(json_object["relations"], json_ontology, errors)
    
     if errors:
         errors = errors + "."
@@ -666,13 +668,13 @@ def get_json_data(text_json : str, ontology, text_ontology: str):
 
 
 
-def get_duplicated_entity_as_tuples(json_entities, text_ontology, errors):
+def get_duplicated_entity_as_tuples(json_entities, json_ontology, errors):
     """
     Verifies if there are duplicated entities (i.e. same label and the same value for the key attribute)
     It returns a list of tuples composed of three elements: the first element is the entity label, the second the ID and finally we have the list of JSON entities duplicated (i.e. with that label and ID).
     """
     output_tuples = []
-    label_name_key = get_dict_label_nameKeyAttribute(text_ontology)
+    label_name_key = get_dict_label_nameKeyAttribute(json_ontology)
     for label, key_attribute in label_name_key.items():
         entities_label = [] # List containing all the entities with the same label (ie. the current 'key' of the dictionary)
         for entity in json_entities:
@@ -703,7 +705,7 @@ def get_duplicated_entity_as_tuples(json_entities, text_ontology, errors):
 
 
 
-def get_duplicated_relations_as_tuples(json_relations, text_ontology, errors):
+def get_duplicated_relations_as_tuples(json_relations, json_ontology, errors):
     """
     Verifies if there are duplicated relations (i.e. same label, source label, target label, and the same values for the keyref attributes)
     It returns a list of tuples composed of six elements: 
@@ -733,7 +735,7 @@ def get_duplicated_relations_as_tuples(json_relations, text_ontology, errors):
             continue
         
         if relation_label is not None and source_label is not None and target_label is not None:
-            for relation_ontology in text_ontology['relations']:
+            for relation_ontology in json_ontology['relations']:
                 relation_label_ontology = relation_ontology.get("label")
                 source_ontology = relation_ontology.get("source")
                 source_label_ontology = source_ontology.get("label")
@@ -800,7 +802,7 @@ def get_duplicated_relations_as_tuples(json_relations, text_ontology, errors):
 
 
  
-def search_relations_given_entity(json_entity, entity_name_key_attribute, relations, text_ontology: str, type: str):
+def search_relations_given_entity(json_entity, entity_name_key_attribute, relations, json_ontology, type: str):
     """
     Given a JSON entity object, it returns the JSON relations object associated to it.
     The 'type' parameter can be 'source' or 'target'. It represenets the type of association entity-relation 
@@ -827,14 +829,14 @@ def search_relations_given_entity(json_entity, entity_name_key_attribute, relati
         
 
 
-def validate_single_merged_entity(text_entity: str, entity_label: str, key_attribute_value, text_ontology: str):
+def validate_single_merged_entity(text_entity: str, entity_label: str, key_attribute_value, json_ontology):
     """
     Checks if the JSON entity created by the LLM while merging a list of duplicated entities is valid or not.
     If it is valid, it returns the corresponding JSON object.
     If it is invalid, an exception is raised.
     """
     data = json.loads(text_entity)
-    label_name_key = get_dict_label_nameKeyAttribute(text_ontology)
+    label_name_key = get_dict_label_nameKeyAttribute(json_ontology)
 
     if isinstance(data, list)==False:
         raise Exception("The JSON is not a list")
@@ -858,21 +860,21 @@ def validate_single_merged_entity(text_entity: str, entity_label: str, key_attri
                     raise Exception("The entity created has not the correct value for the unique attribute that is '{key_attribute_value}' - ")
 
     errors = ""
-    verify_entity(json_entity, text_ontology, errors)
+    verify_entity(json_entity, json_ontology, errors)
     if errors:
         errors = errors + "."
         raise Exception(errors)
     return json_entity
 
     
-def validate_single_merged_relation(text_relation, entities, relation_label, target_label, source_label, source_keyref, target_keyref, text_ontology):
+def validate_single_merged_relation(text_relation, entities, relation_label, target_label, source_label, source_keyref, target_keyref, json_ontology):
     """
     Checks if the JSON relation created by the LLM while merging a list of duplicated relations is valid or not.
     If it is valid, it returns the corresponding JSON object.
     If it is invalid, an exception is raised.
     """
     data = json.loads(text_relation)
-    label_nameKey = get_dict_label_nameKeyAttribute(text_ontology)
+    label_nameKey = get_dict_label_nameKeyAttribute(json_ontology)
 
     if isinstance(data, list)==False:
         raise Exception("The JSON is not a list")
@@ -907,7 +909,7 @@ def validate_single_merged_relation(text_relation, entities, relation_label, tar
         raise Exception(f"The target has not the correct label that is '{target_label}'")
     
     errors = ""
-    verify_relation(json_relation, entities, text_ontology, errors)
+    verify_relation(json_relation, entities, json_ontology, errors)
     if errors:
         errors = errors + "."
         raise Exception(errors)
