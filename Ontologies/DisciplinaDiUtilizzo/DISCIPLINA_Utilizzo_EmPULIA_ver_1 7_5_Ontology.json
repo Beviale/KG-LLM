@@ -1,0 +1,369 @@
+{
+  "entities": [
+    {
+      "label": "Regione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_regionale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SoggettoAggregatore",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "regione_di_riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ServizioTelematico",
+      "attributes": [
+        {
+          "name": "nome_servizio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ente",
+      "attributes": [
+        {
+          "name": "denominazione_entita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_entita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipologia_entita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RDA",
+      "attributes": [
+        {
+          "name": "identificativo_rda",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione_rda",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GestoreSistema",
+      "attributes": [
+        {
+          "name": "identificativo_gestore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Convenzione",
+      "attributes": [
+        {
+          "name": "numero_convenzione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_convenzione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SDA",
+      "attributes": [
+        {
+          "name": "nome_sda",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_sda",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "FORNISCE_SERVIZIO_TELEMATICO_A",
+      "source": {
+        "label": "SoggettoAggregatore",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ente",
+        "attributes": [
+          {
+            "name": "denominazione_entita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "UTILIZZA_PROCEDURA_TELEMATICA",
+      "source": {
+        "label": "Ente",
+        "attributes": [
+          {
+            "name": "denominazione_entita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ServizioTelematico",
+        "attributes": [
+          {
+            "name": "nome_servizio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "STIPULA_CONVENZIONE",
+      "source": {
+        "label": "SoggettoAggregatore",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Convenzione",
+        "attributes": [
+          {
+            "name": "numero_convenzione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "REGISTRA_UTENTI",
+      "source": {
+        "label": "GestoreSistema",
+        "attributes": [
+          {
+            "name": "identificativo_gestore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RDA",
+        "attributes": [
+          {
+            "name": "identificativo_rda",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "INVIA_CHIAVI_DI_ACCESSO",
+      "source": {
+        "label": "GestoreSistema",
+        "attributes": [
+          {
+            "name": "identificativo_gestore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RDA",
+        "attributes": [
+          {
+            "name": "identificativo_rda",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "mezzo_di_invio",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_SDA",
+      "source": {
+        "label": "Ente",
+        "attributes": [
+          {
+            "name": "denominazione_entita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SDA",
+        "attributes": [
+          {
+            "name": "nome_sda",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "ACQUISTA_BENI_SERVIZI_SECONDO_CONVENZIONE_QUADRO",
+      "source": {
+        "label": "Ente",
+        "attributes": [
+          {
+            "name": "denominazione_entita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Convenzione",
+        "attributes": [
+          {
+            "name": "numero_convenzione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "ASSOCIA_REGIONE",
+      "source": {
+        "label": "SoggettoAggregatore",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Regione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    }
+  ]
+}

@@ -252,7 +252,7 @@ def split_text_chunks(text: str, max_characters=4000):
             for chunk_rev in chunk_reverse:
                 index = index + 1
                 number_of_characters = number_of_characters + len(chunk_rev)
-                if (number_of_characters>200):
+                if (number_of_characters>300):
                     break
             sentences = sentences[len(chunk)-index:]
            
@@ -549,11 +549,11 @@ def process_reponse_data(text_filename, category, index_chunk, response, json_on
    
     current_data_ident = json.dumps(data, indent=2, ensure_ascii=False)
     if current_data_ident is not None:
-        print(f"{Fore.WHITE}Data '{text_filename} with index chunk:'{index_chunk}' created successfully!")
+        print(f"{Fore.WHITE}Data '{text_filename}' with index chunk '{index_chunk}' created successfully!")
         data_file_name = f"JsonData/{category}/{text_filename}_{index_chunk}_Data.json"
         # Save the data to the disk as a json file.
         with open(data_file_name, "w", encoding="utf-8") as file:
-            file.write(data_file_name)
+            file.write(current_data_ident)
         return data
     
 
@@ -611,7 +611,16 @@ def generate_data(category: str, model=None, dataItems=None):
         index_chunk = 0
         json_data_chunks = []
         for chunk in chunks:
-            print(f"--{Fore.WHITE}Processing chunk {index_chunk + 1}/{len(chunks)}.")
+            index_chunk = index_chunk + 1
+            print(f"--{Fore.WHITE}Processing chunk {index_chunk}/{len(chunks)}.")
+            chunk_path = f"JsonData/{category}/{text_filename}_{index_chunk}_Data.json"
+            if os.path.exists(chunk_path):
+                with open(chunk_path, "r", encoding="utf-8") as file:
+                    load_data_chunk = json.load(file)
+                    json_data_chunks.append(load_data_chunk)
+                print("The chunk has already been processed!")
+                continue
+
             textsToProcess = []
             textsToAdd = []
             textsToProcess.append(chunk)
@@ -650,13 +659,15 @@ def generate_data(category: str, model=None, dataItems=None):
                     textsToAdd.clear()
                 else:
                     break
-            index_chunk = index_chunk + 1
         aggregate_Json = aggregate_data_and_remove_duplicates(json_data_chunks, json_ontology, text_ontology)
         upload_correctly = upload_data(category, aggregate_Json, ontology)
-        if upload_correctly:
-            print(f"{Fore.GREEN}Upload completed successfully for the '{category}' category!")
+        if upload_correctly == False:
+            print(f"{Fore.RED}Upload completed with ERRORS for the index chunk {index_chunk}!")
+            return
         else:
-            print(f"{Fore.RED}Upload completed with ERRORS for the '{category}' category!")
+            print(f"Upload completed successfully for the index chunk {index_chunk}!")
+
+    print(f"{Fore.GREEN}Upload completed successfully for the '{category}' category!")
 
 
 
@@ -689,7 +700,7 @@ def agglomerative_clustering(item_embedding_dict: dict, distance_threshold=0.5):
 
     return clusters
 
-def ask_LLM_merge_duplicated_relations(duplicated_relations, entities, relation_label, source_label, target_label, source_keyref, target_keyref, text_ontology, model=None):
+def ask_LLM_merge_duplicated_relations(duplicated_relations, entities, relation_label, source_label, target_label, source_keyref, target_keyref, json_ontology, model=None):
     """
     Given a list of relations, it prompts the LLM to merge any duplicates.
     """
@@ -697,16 +708,16 @@ def ask_LLM_merge_duplicated_relations(duplicated_relations, entities, relation_
         model = "openai/gpt-5-nano"
 
     text_ontology_relation = None
-    relations = json.load(text_ontology["relations"])
+    relations = json.load(json_ontology["relations"])
     for relation in relations:
         if relation.get("label") == relation_label:
             if relation.get("source").get("label") == source_label:
                 if relation.get("target").get("label") == target_label:
-                    text_ontology_relation = json.dump(relation, ensure_ascii=False)
+                    text_ontology_relation = json.dumps(relation, ensure_ascii=False)
                     break
 
     print(f"{Fore.WHITE}Asking LLM to merge duplicated relations..")
-    duplicated_relations_text = json.dump(duplicated_relations, ensure_ascii=False)
+    duplicated_relations_text = json.dumps(duplicated_relations, ensure_ascii=False)
     response = completion(
         model=model,
         messages=[
@@ -722,7 +733,7 @@ def ask_LLM_merge_duplicated_relations(duplicated_relations, entities, relation_
             print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
             break
         try:
-            new_relation = Utils.validate_single_merged_relation(response_content, entities, relation_label, source_label, target_label, source_keyref, target_keyref, text_ontology)
+            new_relation = Utils.validate_single_merged_relation(response_content, entities, relation_label, source_label, target_label, source_keyref, target_keyref, json_ontology)
             break
         except Exception as e:
             try:
@@ -742,7 +753,7 @@ def ask_LLM_merge_duplicated_relations(duplicated_relations, entities, relation_
     return new_relation
 
 
-def ask_LLM_merge_duplicated_entities(duplicated_entities, entity_label, key_attribute_value, text_ontology, model=None):
+def ask_LLM_merge_duplicated_entities(duplicated_entities, entity_label, key_attribute_value, json_ontology, model=None):
     """
     Given a list of entities, it prompts the LLM to merge any duplicates.
     """
@@ -750,12 +761,12 @@ def ask_LLM_merge_duplicated_entities(duplicated_entities, entity_label, key_att
         model = "openai/gpt-5-nano"
 
     print(f"{Fore.WHITE}Asking LLM to merge duplicated entities..")
-    duplicated_entities_text = json.dump(duplicated_entities, ensure_ascii=False)
+    duplicated_entities_text = json.dumps(duplicated_entities, ensure_ascii=False)
     text_ontology_entity = None
-    entities = json.load(text_ontology["entities"])
+    entities = json_ontology["entities"]
     for entity in entities:
         if entity.get("label") == entity_label:          
-            text_ontology_entity = json.dump(entity, ensure_ascii=False)
+            text_ontology_entity = json.dumps(entity, ensure_ascii=False)
             break
     response = completion(
         model=model,
@@ -772,7 +783,7 @@ def ask_LLM_merge_duplicated_entities(duplicated_entities, entity_label, key_att
             print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
             return
         try:
-            new_entity = Utils.validate_single_merged_entity(response_content, entity_label, key_attribute_value, text_ontology)
+            new_entity = Utils.validate_single_merged_entity(response_content, entity_label, key_attribute_value, json_ontology)
             break
         except Exception as e:
             try:
@@ -882,7 +893,19 @@ def aggregate_data_and_remove_duplicates(json_data_list : list, json_ontology, t
     Takes as input a list of JSON objects containing entities, relations, and attributes related to a specific .txt file, and merges them into a single JSON object.
     It also detects and merges entities and relations that are duplicated.
     """
-    json_data = [item for sublist in json_data_list for item in sublist] # flatten all the JSON elements  
+
+    print("--Removing duplicate entity and relations")
+    all_entities = []
+    all_relations = []
+
+    for chunk in json_data_list:
+        all_entities.extend(chunk.get('entities', []))
+        all_relations.extend(chunk.get('relations', []))
+
+    json_data = {
+        "entities": all_entities,
+        "relations": all_relations
+    }
         
 
     entities_duplicated_tuples = Utils.get_duplicated_entity_as_tuples(json_data["entities"], json_ontology)
@@ -894,27 +917,28 @@ def aggregate_data_and_remove_duplicates(json_data_list : list, json_ontology, t
         for json_entity in json_entities:
             json_data['entities'].remove(json_entity)
         entity_to_save = None 
-        entity_to_save = ask_LLM_merge_duplicated_entities(json_entities.copy(), entity_label, entity_id, text_ontology)
-        json_data['entities'].add(entity_to_save)
+        entity_to_save = ask_LLM_merge_duplicated_entities(json_entities.copy(), entity_label, entity_id, json_ontology)
+        print("New entity created!")
+        json_data['entities'].append(entity_to_save)
     
 
     for relation_label, source_label, target_label, source_keyref, target_keyref, json_relations in relations_duplicated_tuples:
         for json_relation in json_relations:
             json_data['relations'].remove(json_relation)
         relation_to_save = None 
-        relation_to_save = ask_LLM_merge_duplicated_relations(json_relations.copy(), json_data["entities"], relation_label, source_label, target_label, source_keyref, target_keyref, text_ontology)       
-        json_data['relations'].add(relation_to_save)
+        relation_to_save = ask_LLM_merge_duplicated_relations(json_relations.copy(), json_data["entities"], relation_label, source_label, target_label, source_keyref, target_keyref, json_ontology) 
+        print("New relation created!")      
+        json_data['relations'].append(relation_to_save)
     return json_data
 
 
-def upload_data(category, jsonData, ontology, model=None):
+def upload_data(category, jsonData, ontology):
     """
     It uploads the given data to FalkorDB. It returns 'True' on success; 'False' on failure.
     """
     client = FalkorDB(**client_kwargs)
     graph = client.select_graph(category)
-    if model is None:
-        model = "openai/gpt-5-nano"
+
     
     print(f"{Fore.WHITE}Uploading the data...")
     hasErrors=False
