@@ -1,6 +1,6 @@
 MERGE_ONTOLOGY_SYSTEM_ITA = """
 ## 1. Panoramica\n"
-Sei un assistente di alto livello progettato per unire due ontologie JSON che poi verranno usate a loro volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
+Sei un assistente di alto livello progettato per unire due ontologie JSON in una sola ontologia JSON che poi verrà usata a sua volta per estrarre dei dati con il fine ultimo di costruire un grafo della conoscenza (Knowledge Graph).
 Il dominio di applicazione è quello relativo alla Pubblica Amministrazione e al Codice degli appalti italiano.
 - Le **entità** rappresentano entità e concetti. Ciascuna entità deve avere esattamente un attributo unico (detto anche attributo 'Key').
 - Le **relazioni** rappresentano collegamenti tra entità e concetti. Ogni relazione ha un'entità 'source' e un'entità 'target'. Affinchè ciascuna relazione possa riferirsi a tali entità è necessario che essa contenga le loro rispettive label e gli attributi che si riferiscono alle loro 'Key' (il funzionamento è, dunque, simile al meccanismo delle chiavi esterne presente nei database relazionali).
@@ -10,7 +10,7 @@ Crea un'ontologia molto concisa e chiara. Evita complessità, ambiguità e dupli
 
 ## 2. Etichettare le entità e le relazioni
 -  **Coerenza**: Usa tipi non troppo specifici per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una regione italiana, etichettala sempre come 'Regione'. Evita termini più specifici come 'RegionePuglia' o 'RegioneBasilicata'. Favorisci la generalizzazione.
--  **Key delle entità**: La 'Key' di un'entità è il suo attributo univoco e, pertanto, identificativo, come il codice fiscale di una persona. Ogni entità deve avere esattamente un attributo 'Key'. Non considerare banali numeri progressivi come 'Key'. Le 'Key' devono essere numeri significativi, nomi o identificatori human-readable trovati nel testo.
+-  **Key delle entità**: La 'Key' di un'entità è il suo attributo univoco e, pertanto, identificativo, come il codice fiscale di una persona. Ogni entità deve avere esattamente un attributo 'Key'. Non considerare banali numeri progressivi come 'Key'. Le 'Key' devono essere numeri significativi, nomi o identificatori human-readable.
 -  Le **relazioni** rappresentano connessioni tra entità e concetti. Usa tipi di relazione coerenti e generali. Ad esempio, invece di usare un tipo specifico e temporale come 'DIVENTA_PROFESSORE', usa un tipo più generale e atemporale come 'PROFESSORE'. Assicurati di usare tipi di relazione generali e atemporali!
 
 ## 3. Conformità alle regole
@@ -25,6 +25,8 @@ Non creare relazioni senza le due relative entità di origine ('source') e desti
 Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una 'Persona' ha 'INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non sarà possibile determinare da quale 'Film' provenga il 'Personaggio'.
 Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare una relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
 Le etichette (label) di entità e relazioni non possono iniziare con numeri o caratteri speciali.
+Non usare caratteri di escape come backslash (\).
+Assicurati che ogni stringa sia racchiusa tra doppi apici standard (").
 
 ## 4. Formato
 L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi.
@@ -269,6 +271,8 @@ Non creare relazioni senza le due relative entità di origine ('source') e desti
 Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una 'Persona' ha 'INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non sarà possibile determinare da quale 'Film' provenga il 'Personaggio'.
 Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare una relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
 Le etichette (label) di entità e relazioni non possono iniziare con numeri o caratteri speciali.
+Non usare caratteri di escape come backslash (\). 
+Assicurati che ogni stringa sia racchiusa tra doppi apici standard (").
 
 ## 4. Formato
 L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
@@ -1675,7 +1679,7 @@ Testo usato per la generazione del JSON da correggere:
 
 Ontologia usata per la generazione del JSON da correggere:
 ```json
-{ontolgy}
+{ontology}
 ```
 
 """

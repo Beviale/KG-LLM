@@ -507,7 +507,7 @@ def generate_ontology(category, model=None, dataItems=None):
                 else:
                     break
         merge_ontologies_chunk(category, text_filename)
-        print(f"{Fore.GREEN}Ontology created for the '{category}' category!")
+    print(f"{Fore.GREEN}Ontology created for the '{category}' category!")
 
 
 

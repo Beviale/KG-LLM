@@ -278,6 +278,7 @@ def verify_entity(json_entity, json_ontology: str, errors):
         for name in name_entity_attrs_required_schema:
             if name not in entity_attrs.keys():
                 errors = errors + f"The attribute '{name}' of the entity '{entity_label}' is required in the ontology but is missing in the JSON data - "
+    return errors
 
 
     
@@ -333,7 +334,7 @@ def verify_relation(relation, entities, json_ontology, errors):
                 errors = errors + f"The target entity of the relation '{relation_label}' does not have a label - "
 
     if source_label is None or target_label is None:
-        return
+        return errors
 
 
     relation_schema = get_relation_schema(relation_label, source_label, target_label, json_ontology)
@@ -422,7 +423,7 @@ def verify_relation(relation, entities, json_ontology, errors):
                         break
         if found==False:
             errors = errors + f"The target entity of the relation '{relation_label}' does not exist in the entity list - "
-
+    return errors
 
                             
 
@@ -489,7 +490,7 @@ def check_duplicated_relation(json_relations, json_ontology, errors):
             source_attrs = source.get("attributes")
             if source_attrs is not None:
                 if source_key_attrname in source_attrs:
-                    source_attrs[source_key_attrname] = source_attrs[source_key_attrname].replace(" ", "")
+                    source_attrs[source_key_attrname] = source_attrs[source_key_attrname].replace(" ", "").lower()
                 for key, value in source_attrs.items():
                     if key == source_key_attrname:
                         found_source_key = True
@@ -502,7 +503,7 @@ def check_duplicated_relation(json_relations, json_ontology, errors):
             target_attrs = target.get("attributes")
             if target_attrs is not None:
                 if target_key_attrname in target_attrs:
-                    target_attrs[target_key_attrname] = target_attrs[target_key_attrname].replace(" ", "")
+                    target_attrs[target_key_attrname] = target_attrs[target_key_attrname].replace(" ", "").lower()
                 for key, value in target_attrs.items():
                     if key == target_key_attrname:
                         found_target_key = True
@@ -516,6 +517,7 @@ def check_duplicated_relation(json_relations, json_ontology, errors):
     duplicated = set(x for x in relations_IDs if x in seen or seen.add(x))
     if len(duplicated)>0:
         errors = errors + f"The following relations are duplicated. '{list(duplicated)}' - "
+    return errors
 
 
 def get_dict_label_nameKeyAttribute(json_ontology):
@@ -551,13 +553,14 @@ def check_duplicated_entity(json_entities, json_ontology, errors):
             entity_attrs = entity.get("attributes", {})
             for attr_key, attr_value in entity_attrs.items():
                 if attr_key == value: # if it is the 'key' attribute
-                    entity_attrs[attr_key] = entity_attrs[attr_key].replace(" ", "")
+                    entity_attrs[attr_key] = entity_attrs[attr_key].replace(" ", "").lower()
                     IDs.append(entity_attrs[attr_key]) 
                     break
         seen = set()
         duplicated = set(x for x in IDs if x in seen or seen.add(x))
         if len(duplicated)>0:
             errors = errors + f"For the entity label '{key}' there are the following duplicates '{list(duplicated)}' - "
+    return errors
         
     
 
@@ -569,6 +572,9 @@ def get_json_data(text_json : str, ontology, json_ontology):
     If the JSON is valid, returns the JSON object.
     If the JSON is invalid, an exception will be thrown.
     """
+
+    if text_json is None:
+        raise Exception("Empty data.")
     json_object = json.loads(extract_json(text_json))
 
     errors = ""
@@ -863,7 +869,7 @@ def validate_single_merged_entity(text_entity: str, entity_label: str, key_attri
                     raise Exception(f"The entity created does not have the expected value for the unique attribute:'{key_attribute_value}' - ")
 
     errors = ""
-    verify_entity(json_entity, json_ontology, errors)
+    errors = verify_entity(json_entity, json_ontology, errors)
     if errors:
         errors = errors + "."
         raise Exception(errors)
@@ -914,7 +920,7 @@ def validate_single_merged_relation(text_relation, entities, relation_label, tar
         raise Exception(f"The target does not have the expected label '{target_label}'")
     
     errors = ""
-    verify_relation(json_relation, entities, json_ontology, errors)
+    errors = verify_relation(json_relation, entities, json_ontology, errors)
     if errors:
         errors = errors + "."
         raise Exception(errors)
