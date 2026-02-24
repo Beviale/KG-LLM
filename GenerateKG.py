@@ -346,7 +346,7 @@ def merge_ontologies_chunk(category, model=None):
 
 
     new_attr = {
-        "name": "riferimento_testuale",
+        "name": "snippet",
         "type": "string",
         "unique": False,
         "required": True
@@ -358,7 +358,7 @@ def merge_ontologies_chunk(category, model=None):
             attrs = []
             entity["attributes"] = attrs
         
-        exists = any(a.get("name") == "riferimento_testuale" for a in attrs)
+        exists = any(a.get("name") == "snippet" for a in attrs)
         if not exists:
             attrs.append(new_attr.copy())
 
@@ -368,7 +368,7 @@ def merge_ontologies_chunk(category, model=None):
             attrs = []
             relation["attributes"] = attrs
         
-        exists = any(a.get("name") == "riferimento_testuale" for a in attrs)
+        exists = any(a.get("name") == "snippet" for a in attrs)
         if not exists:
             attrs.append(new_attr.copy())
 
