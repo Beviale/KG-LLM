@@ -16,30 +16,7 @@
           "required": false
         },
         {
-          "name": "riferimento_testuale",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Platform",
-      "attributes": [
-        {
-          "name": "name",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "riferimento_testuale",
+          "name": "snippet",
           "type": "string",
           "unique": false,
           "required": true
@@ -50,7 +27,7 @@
       "label": "Portale",
       "attributes": [
         {
-          "name": "name",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -62,7 +39,7 @@
           "required": false
         },
         {
-          "name": "riferimento_testuale",
+          "name": "snippet",
           "type": "string",
           "unique": false,
           "required": true
@@ -70,10 +47,10 @@
       ]
     },
     {
-      "label": "RequisitiMinimi",
+      "label": "HelpDesk",
       "attributes": [
         {
-          "name": "titolo",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -85,20 +62,146 @@
           "required": false
         },
         {
-          "name": "min_internet_mbps",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "latenza_min_ms",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "browser_support",
+          "name": "snippet",
           "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "NotificaEmail",
+      "attributes": [
+        {
+          "name": "mittente_email",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "destinatari",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Ditta",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AlboFornitori",
+      "attributes": [
+        {
+          "name": "id_iscrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SistemaOperativo",
+      "attributes": [
+        {
+          "name": "nome_sistema",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ConnessioneInternet",
+      "attributes": [
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "velocita_minima_mbps",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Browser",
+      "attributes": [
+        {
+          "name": "nome_browser",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "supporto_html5_css3",
+          "type": "boolean",
           "unique": false,
           "required": false
         },
@@ -109,7 +212,25 @@
           "required": false
         },
         {
-          "name": "riferimento_testuale",
+          "name": "cookie_abilitati",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "popup_abilitati",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "disattivazione_toolbar",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
           "type": "string",
           "unique": false,
           "required": true
@@ -117,22 +238,22 @@
       ]
     },
     {
-      "label": "Email",
+      "label": "Documento",
       "attributes": [
         {
-          "name": "indirizzo_email",
+          "name": "hash_documento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "dominio",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "riferimento_testuale",
+          "name": "snippet",
           "type": "string",
           "unique": false,
           "required": true
@@ -140,45 +261,102 @@
       ]
     },
     {
-      "label": "DimensioneMassimaFile",
+      "label": "FirmaDigitale",
       "attributes": [
         {
-          "name": "dimensione_massima_mb",
+          "name": "tipologia_firma",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "codice_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "NominazioneFile",
+      "attributes": [
+        {
+          "name": "criterio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OrarioRiferimento",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DimensioneFile",
+      "attributes": [
+        {
+          "name": "valore_mbyte",
           "type": "number",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "riferimento_testuale",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Avvalimento",
-      "attributes": [
-        {
-          "name": "tipo_avvalimento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "riferimento_testuale",
+          "name": "snippet",
           "type": "string",
           "unique": false,
           "required": true
@@ -188,12 +366,12 @@
   ],
   "relations": [
     {
-      "label": "GESTISCE",
+      "label": "RICHIEDE",
       "source": {
-        "label": "Platform",
+        "label": "Portale",
         "attributes": [
           {
-            "name": "name",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -201,10 +379,10 @@
         ]
       },
       "target": {
-        "label": "Portale",
+        "label": "SistemaOperativo",
         "attributes": [
           {
-            "name": "name",
+            "name": "nome_sistema",
             "type": "string",
             "unique": true,
             "required": true
@@ -215,11 +393,11 @@
         {
           "name": "descrizione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         },
         {
-          "name": "riferimento_testuale",
+          "name": "snippet",
           "type": "string",
           "unique": false,
           "required": true
@@ -227,12 +405,12 @@
       ]
     },
     {
-      "label": "FORNISCE_RISPOSTE_A",
+      "label": "RICHIEDE",
       "source": {
-        "label": "FAQ",
+        "label": "Portale",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -240,10 +418,10 @@
         ]
       },
       "target": {
-        "label": "Portale",
+        "label": "ConnessioneInternet",
         "attributes": [
           {
-            "name": "name",
+            "name": "tipologia",
             "type": "string",
             "unique": true,
             "required": true
@@ -254,11 +432,11 @@
         {
           "name": "descrizione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         },
         {
-          "name": "riferimento_testuale",
+          "name": "snippet",
           "type": "string",
           "unique": false,
           "required": true
@@ -266,12 +444,12 @@
       ]
     },
     {
-      "label": "RICHIEDE_MINIMI",
+      "label": "RICHIEDE",
       "source": {
         "label": "Portale",
         "attributes": [
           {
-            "name": "name",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -279,10 +457,10 @@
         ]
       },
       "target": {
-        "label": "RequisitiMinimi",
+        "label": "Browser",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "nome_browser",
             "type": "string",
             "unique": true,
             "required": true
@@ -293,11 +471,11 @@
         {
           "name": "descrizione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         },
         {
-          "name": "riferimento_testuale",
+          "name": "snippet",
           "type": "string",
           "unique": false,
           "required": true
@@ -305,12 +483,12 @@
       ]
     },
     {
-      "label": "NOTIFICA_TRAMITE_EMAIL",
+      "label": "INVIA",
       "source": {
-        "label": "Email",
+        "label": "Portale",
         "attributes": [
           {
-            "name": "indirizzo_email",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -318,10 +496,10 @@
         ]
       },
       "target": {
-        "label": "Platform",
+        "label": "NotificaEmail",
         "attributes": [
           {
-            "name": "name",
+            "name": "mittente_email",
             "type": "string",
             "unique": true,
             "required": true
@@ -332,11 +510,128 @@
         {
           "name": "descrizione",
           "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ALLEGATO",
+      "source": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "codice_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "hash_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_allegato",
+          "type": "string",
           "required": true,
           "unique": false
         },
         {
-          "name": "riferimento_testuale",
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FIRMA",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "hash_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "FirmaDigitale",
+        "attributes": [
+          {
+            "name": "tipologia_firma",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ISCRITTO_IN_ALBO_FORNITORI",
+      "source": {
+        "label": "Ditta",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AlboFornitori",
+        "attributes": [
+          {
+            "name": "id_iscrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
           "type": "string",
           "unique": false,
           "required": true

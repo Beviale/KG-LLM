@@ -1,4 +1,5 @@
 import json
+import copy
 from graphrag_sdk import KnowledgeGraph, Ontology
 from graphrag_sdk.helpers import extract_json, map_dict_to_cypher_properties
 from colorama import init, Fore, Style
@@ -534,7 +535,7 @@ def get_dict_label_nameKeyAttribute(json_ontology):
             if attr.get("unique")==True:
                 label_name_key[entity_ontology_label] = attr.get("name")
                 break
-    label_name_key["Chunk"] == "Id"
+    label_name_key["TextChunk"] = "Id"
     return label_name_key
     
 
@@ -950,7 +951,7 @@ def add_riferimento_testuale_relation(data, chunk_id, json_ontolgogy):
     laben_nameKeyAttribute_dict = get_dict_label_nameKeyAttribute(json_ontolgogy)
     for entity in data["entities"]:
         entity_label = entity.get("label")
-        if entity_label == "Chunk":
+        if entity_label == "TextChunk":
             continue
         name_keyAttribute = laben_nameKeyAttribute_dict[entity_label]
         entity_id = entity["attributes"][name_keyAttribute]
@@ -965,9 +966,66 @@ def add_riferimento_testuale_relation(data, chunk_id, json_ontolgogy):
         new_relation["source"]["attributes"][name_keyAttribute] = entity_id
 
         new_relation["target"] = {}
-        new_relation["target"]["label"] = "Chunk"
+        new_relation["target"]["label"] = "TextChunk"
         new_relation["target"]["attributes"] = {}
         new_relation["target"]["attributes"]["Id"] = chunk_id
+        data["relations"].append(new_relation)
        
 
-        
+def get_json_ontology_with_ref(json_ontology, json_entities):
+    new_ontology = copy.deepcopy(json_ontology)
+
+    new_entity = {}
+    new_entity["label"] = "TextChunk"
+    id_attr = {
+        "name": "Id",
+        "type": "string",
+        "unique": True,
+        "required": True
+    }
+    text_attr = {
+        "name": "text",
+        "type": "string",
+        "unique": False,
+        "required": True
+    }
+    new_entity["attributes"] = []
+    new_entity["attributes"].append(id_attr)
+    new_entity["attributes"].append(text_attr)
+    new_ontology["entities"].append(new_entity)
+
+    target_attr = {
+        "name": "Id",
+        "type": "string",
+        "unique": True,
+        "required": True
+    }
+
+    label_nameKeyAttribute_dict = get_dict_label_nameKeyAttribute(json_ontology)
+    for entity in json_entities:
+        new_relation = {}
+        new_relation["label"] = "ESTRATTO_DA_TESTO"
+
+        entity_label = entity.get("label")
+
+        source_attr = {
+            "name": label_nameKeyAttribute_dict[entity_label],
+            "type": "string",
+            "unique": True,
+            "required": True
+        }
+
+
+        new_relation["source"] = {}
+        new_relation["source"]["label"] = entity_label
+        new_relation["source"]["attributes"] = []
+        new_relation["source"]["attributes"].append(source_attr)
+
+
+        new_relation["target"] = {}
+        new_relation["target"]["label"] = "TextChunk"
+        new_relation["target"]["attributes"] = []
+        new_relation["target"]["attributes"].append(target_attr)
+        new_ontology["relations"].append(new_relation)
+
+    return new_ontology

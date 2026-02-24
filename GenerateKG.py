@@ -16,7 +16,7 @@ import Prompt
 import os
 from falkordb import FalkorDB
 from graphrag_sdk.steps import extract_data_step
-import spacy
+import pysbd
 from colorama import init, Fore, Style
 from litellm import embedding
 import numpy as np
@@ -220,17 +220,14 @@ def process_response_ontology(category, index_chunk, response, text, model):
 
 
 
-def split_text_chunks(text: str, max_characters=4000):
+def split_text_chunks(text: str, max_characters=20000):
     """
     It splits the given text into text chunks considering the given maximum number of characters. 
     It returns the list of text chunks. 
     """
-    nlp = spacy.load("it_core_news_sm")
-    nlp.max_length = len(text)  
+    seg = pysbd.Segmenter(language="it", clean=True)
+    sentences = seg.segment(text)
 
-    doc = nlp(text)
-    sentences = [sent.text.strip() for sent in doc.sents]
-    sentences = [sentence for sentence in sentences if sentence]
     chunks = []
     chunk = []
     while(True):
@@ -252,7 +249,7 @@ def split_text_chunks(text: str, max_characters=4000):
             for chunk_rev in chunk_reverse:
                 index = index + 1
                 number_of_characters = number_of_characters + len(chunk_rev)
-                if (number_of_characters>20000):
+                if (number_of_characters>3000):
                     break
             sentences = sentences[len(chunk)-index:]
            
@@ -447,10 +444,8 @@ def generate_ontology(category, model=None, dataItems=None):
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
 
-        if len(text)>20000:
-            chunks.append(split_text_chunks(text))
-        else:
-            chunks.append(text)
+        chunks.append(split_text_chunks(text))
+       
 
     index_chunk = 0
     for chunk in chunks:
@@ -597,10 +592,8 @@ def generate_data(category: str, model=None, dataItems=None):
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
 
-        if len(text)>20000:
-            chunks.append(split_text_chunks(text))
-        else:
-            chunks.append(text)
+        chunks.append(split_text_chunks(text))
+     
 
     index_chunk = 0
     json_data_chunks = []
@@ -654,7 +647,9 @@ def generate_data(category: str, model=None, dataItems=None):
             else:
                 break
     aggregate_Json = aggregate_data_and_remove_duplicates(json_data_chunks, json_ontology, text_ontology)
-    upload_correctly = upload_data(category, aggregate_Json, ontology)
+    json_ontology_with_ref = Utils.get_json_ontology_with_ref(json_ontology, aggregate_Json["entities"])
+    ontology_with_ref = Ontology.from_json(json_ontology_with_ref)
+    upload_correctly = upload_data(category, aggregate_Json, ontology_with_ref)
     if upload_correctly == False:
         print(f"{Fore.RED}Upload completed with ERRORS for the '{category}' category!")
         return
