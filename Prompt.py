@@ -1224,7 +1224,7 @@ Ciascuna relazione ha un'entità source e un'entità target. Per fare riferiment
 Non includere spiegazioni o scuse nelle tue risposte, solo il JSON.
 Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
 Non inventare dati, usa solo ciò che viene riportato nel testo.
-Assicurati che il JSON prodotto contenga, per ogni entità e relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'riferimento_testuale'. Tale riferimento può essere eventualmente sintetizzato se troppo prolisso. Ricordati che il riferimento testuale deve essere una porzione di testo comunque di senso compiuto.
+Assicurati che il JSON prodotto contenga, per ogni entità e relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'riferimento_testuale'. Tale riferimento può essere eventualmente sintetizzato se troppo prolisso. Ricordati che il riferimento testuale deve essere una porzione di testo utile e comunque di senso compiuto.
 
 ## 3. Formattazione
 Usa virgolette doppie per tutti i valori stringa.

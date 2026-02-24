@@ -1,0 +1,132 @@
+{
+  "entities": [
+    {
+      "label": "FAQ",
+      "attributes": {
+        "sigla": "faq",
+        "riferimento_testuale": "Le Frequently Asked Questions, meglio conosciute con la sigla FAQ, sono letteralmente le domande poste frequentemente."
+      }
+    },
+    {
+      "label": "Platform",
+      "attributes": {
+        "name": "empulia",
+        "riferimento_testuale": "La piattaforma EmPULIA e usata per accedere e operare sulle gare telematiche."
+      }
+    },
+    {
+      "label": "Portale",
+      "attributes": {
+        "name": "portalegaretelematiche",
+        "riferimento_testuale": "Portale Gare Telematiche, utilizzato dalle procedure telematiche gestite da EmPULIA."
+      }
+    },
+    {
+      "label": "RequisitiMinimi",
+      "attributes": {
+        "titolo": "requisitiminimiperoperaresulportale",
+        "min_internet_mbps": 2,
+        "riferimento_testuale": "Per accedere alle funzionalita del Portale e partecipare alle gare telematiche e necessario utilizzare un Personal Computer con i seguenti requisiti minimi:"
+      }
+    },
+    {
+      "label": "Email",
+      "attributes": {
+        "indirizzo_email": "info.empulia@pec.rupar.puglia.it",
+        "riferimento_testuale": "L indirizzo info.empulia@pec.rupar.puglia.it viene usato per le comunicazioni del Portale."
+      }
+    },
+    {
+      "label": "DimensioneMassimaFile",
+      "attributes": {
+        "dimensione_massima_mb": "80",
+        "riferimento_testuale": "La dimensione massima di ciascun file inserito nel sistema deve essere inferiore a 80 MByte."
+      }
+    },
+    {
+      "label": "Avvalimento",
+      "attributes": {
+        "tipo_avvalimento": "istitutoavvalimento",
+        "riferimento_testuale": "L istituto dell avvalimento è citato nel testo in relazione all iscrizione all Albo fornitori."
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "GESTISCE",
+      "source": {
+        "label": "Platform",
+        "attributes": {
+          "name": "empulia"
+        }
+      },
+      "target": {
+        "label": "Portale",
+        "attributes": {
+          "name": "portalegaretelematiche"
+        }
+      },
+      "attributes": {
+        "descrizione": "La piattaforma gestisce l accesso e l uso del Portale Gare Telematiche",
+        "riferimento_testuale": "La piattaforma EmPULIA gestisce il Portale Gare Telematiche."
+      }
+    },
+    {
+      "label": "FORNISCE_RISPOSTE_A",
+      "source": {
+        "label": "FAQ",
+        "attributes": {
+          "sigla": "faq"
+        }
+      },
+      "target": {
+        "label": "Portale",
+        "attributes": {
+          "name": "portalegaretelematiche"
+        }
+      },
+      "attributes": {
+        "descrizione": "Le FAQ forniscono risposte agli utenti del Portale",
+        "riferimento_testuale": "Le Frequently Asked Questions, meglio conosciute con la sigla FAQ, forniscono risposte alle domande poste frequentemente agli utilizzatori del Portale."
+      }
+    },
+    {
+      "label": "RICHIEDE_MINIMI",
+      "source": {
+        "label": "Portale",
+        "attributes": {
+          "name": "portalegaretelematiche"
+        }
+      },
+      "target": {
+        "label": "RequisitiMinimi",
+        "attributes": {
+          "titolo": "requisitiminimiperoperaresulportale"
+        }
+      },
+      "attributes": {
+        "descrizione": "Collega il Portale ai Requisiti Minimi di sistema",
+        "riferimento_testuale": "Per accedere alle funzionalita del Portale e partecipare alle gare telematiche e necessario utilizzare un Personal Computer con i seguenti requisiti minimi:"
+      }
+    },
+    {
+      "label": "NOTIFICA_TRAMITE_EMAIL",
+      "source": {
+        "label": "Email",
+        "attributes": {
+          "indirizzo_email": "info.empulia@pec.rupar.puglia.it"
+        }
+      },
+      "target": {
+        "label": "Platform",
+        "attributes": {
+          "name": "empulia"
+        }
+      },
+      "attributes": {
+        "descrizione": "Notifiche inviate tramite posta certificata all indirizzo",
+        "riferimento_testuale": "Tutte le comunicazioni in partenza dal Portale Gare Telematiche vengono inviate dall indirizzo info.empulia@pec.rupar.puglia.it."
+      }
+    }
+  ]
+}

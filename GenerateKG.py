@@ -165,7 +165,7 @@ def preprocess_pdf(pdf_dict):
     return dataItems
 
 
-def process_response_ontology(text_filename, category, index_chunk, response, text, model):
+def process_response_ontology(category, index_chunk, response, text, model):
     """
     It processes the LLM response to create the ontology for a specific category (e.g., 'DisciplinaDiUtilizzo').
     Returns 'True' if the ontology has been processed and saved correctly; 'False' otherwise.
@@ -211,8 +211,8 @@ def process_response_ontology(text_filename, category, index_chunk, response, te
     
     current_ontology_ident = json.dumps(data, indent=2, ensure_ascii=False)
     if current_ontology_ident is not None:
-        print(f"Ontology '{text_filename}' with index chunk:'{index_chunk}' created successfully!")
-        ontology_file_name = f"Ontologies/{category}/{text_filename}_{index_chunk}_Ontology.json"
+        print(f"Ontology '{category}' with index chunk:'{index_chunk}' created successfully!")
+        ontology_file_name = f"Ontologies/{category}/{index_chunk}_Ontology.json"
         # Save the ontology to the disk as a json file.
         with open(ontology_file_name, "w", encoding="utf-8") as file:
             file.write(current_ontology_ident)
@@ -252,7 +252,7 @@ def split_text_chunks(text: str, max_characters=4000):
             for chunk_rev in chunk_reverse:
                 index = index + 1
                 number_of_characters = number_of_characters + len(chunk_rev)
-                if (number_of_characters>300):
+                if (number_of_characters>20000):
                     break
             sentences = sentences[len(chunk)-index:]
            
@@ -263,7 +263,7 @@ def split_text_chunks(text: str, max_characters=4000):
     return chunks
         
 
-def merge_ontologies_chunk(category, text_filename, model=None):
+def merge_ontologies_chunk(category, model=None):
     """
     It merges the ontologies created for each text chunk of a specific category (e.g. 'DisciplinaDiUtilizzo') into a single ontology file.
     Returns 'True' if the chunk ontologies have been merged and saved correctly; 'False' otherwise.
@@ -273,7 +273,7 @@ def merge_ontologies_chunk(category, text_filename, model=None):
     index = 1
     json_merge = []
     while(True):
-        file_path = Path(f"Ontologies/{category}/{text_filename}_{index}_Ontology.json")
+        file_path = Path(f"Ontologies/{category}/{index}_Ontology.json")
         if file_path.exists()==False:
             break
         
@@ -282,14 +282,6 @@ def merge_ontologies_chunk(category, text_filename, model=None):
 
         json_merge.append(json_item)
         index += 1
-    
-
-    if len(json_merge) <= 1:
-        file_path = Path(f"Ontologies/{category}/{text_filename}_0_Ontology.json")    
-        file_path_new = Path(f"Ontologies/{category}/{text_filename}_Ontology.json")    
-        if os.path.exists(file_path):
-            os.rename(file_path, file_path_new)
-        return    
 
     current_json_elements = json_merge[:]
     while len(current_json_elements) > 1:
@@ -383,15 +375,15 @@ def merge_ontologies_chunk(category, text_filename, model=None):
 
     current_ontology_ident = json.dumps(new_json, indent=2, ensure_ascii=False)
     if current_ontology_ident is not None:
-        print(f"Ontology '{text_filename}' created successfully!")
-        ontology_file_name = f"Ontologies/{category}/{text_filename}_Ontology.json"
+        print(f"Ontology for the '{category}' category created successfully!")
+        ontology_file_name = f"Ontologies/{category}/Ontology.json"
         with open(ontology_file_name, "w", encoding="utf-8") as file:
             file.write(current_ontology_ident)
     else:
         return False
 
     for i in range(index):
-        file_path = Path(f"Ontologies/{category}/{text_filename}_{i}_Ontology.json")    
+        file_path = Path(f"Ontologies/{category}/{i}_Ontology.json")    
         if os.path.exists(file_path):
             os.remove(file_path)
     return True
@@ -426,7 +418,7 @@ def split_codice_appalti(file_path, ontology=False):
 
 def generate_ontology(category, model=None, dataItems=None):
     """
-    It generates the ontology for each file of the given category (e.g. 'DiscplinaDiUtilizzo')
+    It generates the ontology for the given category (e.g. 'DiscplinaDiUtilizzo')
     """
     if dataItems is not None:
         all_text_paths = [item.text_path for item in dataItems]
@@ -437,81 +429,76 @@ def generate_ontology(category, model=None, dataItems=None):
     if model is None:
         model = "openai/gpt-5-nano"
 
+    ontology_file = Path(f"Ontologies/{category}/Ontology.json")
+    if ontology_file.exists():
+        print(f"{Fore.WHITE}The ontology '{ontology_file}' already exists!")
+        return
     print(f"{Fore.GREEN}--Generating the ontology for the '{category}' category")
-    count = 0
+    chunks = []
     for text_path in all_text_paths:
-        count = count + 1
-        text_filename = text_path.name.removesuffix(".txt")
-        #merge_ontologies_chunk(category, text_filename)
-
         if os.path.exists(text_path)==False:
             print(f"{Fore.RED} The .txt file '{text_path}' does not exist!")
             continue
 
+        if category == 'CodiceAppalti':
+            chunks = split_codice_appalti(text_path, ontology=True)
+            break
+        
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
 
-        print(f"--{Fore.WHITE}File path: '{text_path}', current state: {count}/{len(all_text_paths)}.")
-
-        file = Path(f"Ontologies/{category}/{text_filename}_Ontology.json")
-        if file.exists():
-           print(f"{Fore.WHITE}The ontology '{file}' already exists!")
-           continue
-
-        chunks = []
-        if category == 'CodiceAppalti':
-            chunks = split_codice_appalti(text_path, ontology=True)
+        if len(text)>20000:
+            chunks.append(split_text_chunks(text))
         else:
-            chunks = split_text_chunks(text)
+            chunks.append(text)
 
+    index_chunk = 0
+    for chunk in chunks:
+        index_chunk = index_chunk + 1
+        chunk_path = Path(f"Ontologies/{category}/{index_chunk}_Ontology.json")
+        if chunk_path.exists():
+            print(f"{Fore.WHITE}The chunk '{chunk_path}' has already been processed!")
+            continue
 
-        index_chunk = 0
-        for chunk in chunks:
-            index_chunk = index_chunk + 1
-            chunk_path = Path(f"Ontologies/{category}/{text_filename}_{index_chunk}_Ontology.json")
-            if chunk_path.exists():
-                print(f"{Fore.WHITE}The chunk {chunk_path} has already been processed!")
-                continue
+        print(f"--{Fore.WHITE}Processing chunk {index_chunk}/{len(chunks)}.")
+        textsToProcess = []
+        textsToAdd = []
+        textsToProcess.append(chunk)
+        while(True):             
+            for text in textsToProcess: 
+                print(f"{Fore.WHITE}Waiting the LLM response...")
+                try:     
+                    response = completion(
+                        model=model,
+                        messages=[
+                            {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
+                            {"role": "user",   "content": Prompt.CREATE_ONTOLOGY_PROMPT_ITA.format(text=text)}
+                        ]
+                    )                  
+                    if process_response_ontology(category, index_chunk, response, text, model)==False:
+                        return 
+                except ContextWindowExceededError as e:
+                    mid = len(text) // 2
+                    print(f"{Fore.WHITE}Halving the text size from '{len(text)}' to '{mid}'")
+                    part1 = text[:mid]
+                    part2 = text[mid:]
+                    textsToAdd.append(part1)
+                    textsToAdd.append(part2)
+                    continue
 
-            print(f"--{Fore.WHITE}Processing chunk {index_chunk}/{len(chunks)}.")
-            textsToProcess = []
-            textsToAdd = []
-            textsToProcess.append(chunk)
-            while(True):             
-                for text in textsToProcess: 
-                    print(f"{Fore.WHITE}Waiting the LLM response...")
-                    try:     
-                        response = completion(
-                            model=model,
-                            messages=[
-                                {"role": "system", "content": Prompt.CREATE_ONTOLOGY_SYSTEM_ITA},
-                                {"role": "user",   "content": Prompt.CREATE_ONTOLOGY_PROMPT_ITA.format(text=text)}
-                            ]
-                        )                  
-                        if process_response_ontology(text_filename, category, index_chunk, response, text, model)==False:
-                            return 
-                    except ContextWindowExceededError as e:
-                        mid = len(text) // 2
-                        print(f"{Fore.WHITE}Halving the text size from '{len(text)}' to '{mid}'")
-                        part1 = text[:mid]
-                        part2 = text[mid:]
-                        textsToAdd.append(part1)
-                        textsToAdd.append(part2)
-                        continue
-
-                if textsToAdd:
-                    textsToProcess.clear()
-                    for textToAdd in textsToAdd:
-                        textsToProcess.append(textToAdd)
-                    textsToAdd.clear()
-                else:
-                    break
-        merge_ontologies_chunk(category, text_filename)
+            if textsToAdd:
+                textsToProcess.clear()
+                for textToAdd in textsToAdd:
+                    textsToProcess.append(textToAdd)
+                textsToAdd.clear()
+            else:
+                break
+    merge_ontologies_chunk(category)
     print(f"{Fore.GREEN}Ontology created for the '{category}' category!")
 
 
 
-def process_reponse_data(text_filename, category, index_chunk, response, json_ontolgogy, text_ontology, ontology, text, model):
+def process_reponse_data(category, index_chunk, response, json_ontolgogy, text_ontology, ontology, text, model):
     """
     It processes the LLM response generated by the data-extraction prompt. It returns the JSON object containing entities, relations and attributes.
     """
@@ -549,8 +536,8 @@ def process_reponse_data(text_filename, category, index_chunk, response, json_on
    
     current_data_ident = json.dumps(data, indent=2, ensure_ascii=False)
     if current_data_ident is not None:
-        print(f"{Fore.WHITE}Data '{text_filename}' with index chunk '{index_chunk}' created successfully!")
-        data_file_name = f"JsonData/{category}/{text_filename}_{index_chunk}_Data.json"
+        print(f"{Fore.WHITE}Data for the category '{category}' with index chunk '{index_chunk}' created successfully!")
+        data_file_name = f"JsonData/{category}/{index_chunk}_Data.json"
         # Save the data to the disk as a json file.
         with open(data_file_name, "w", encoding="utf-8") as file:
             file.write(current_data_ident)
@@ -571,105 +558,98 @@ def generate_data(category: str, model=None, dataItems=None):
     if model is None:
         model = "openai/gpt-5-nano"
 
-    count = 0
 
     print(f"{Fore.GREEN}--Generating the data for the '{category}' category")
+    ontology_file = f"Ontologies/{category}/Ontology.json"
+    if os.path.exists(ontology_file)==False:
+        print(f"{Fore.RED}The ontology file '{ontology_file}' is missing!")
+        return
+    with open(ontology_file, "r", encoding="utf-8") as file:
+        text_ontology = file.read()
+    try:
+        json_ontology = json.loads(text_ontology)
+        text_ontology = json.dumps(json_ontology, ensure_ascii=False)
+        ontology = Ontology.from_json(json_ontology)
+    except Exception as e:
+        print(f"{Fore.RED}Failed to read the ontology '{ontology_file}', error: {e}")
+        return
+    
+    chunks = []
     for text_path in all_text_paths:
-        count = count + 1
         if os.path.exists(text_path)==False:
             print(f"{Fore.RED} The .txt file '{text_path}' does not exist!")
             continue
-
-        print(f"--{Fore.WHITE}File path: '{text_path}', current state: {count}/{len(all_text_paths)}.")
-
-        text_filename = text_path.name
-        text_filename = text_filename.removesuffix(".txt")
-        ontology_file = f"Ontologies/{category}/{text_filename}_Ontology.json"
-        if os.path.exists(ontology_file)==False:
-            print(f"{Fore.RED}The ontology file '{ontology_file}' is missing!")
-            continue
-
-        with open(ontology_file, "r", encoding="utf-8") as file:
-            text_ontology = file.read()
-        try:
-            json_ontology = json.loads(text_ontology)
-            text_ontology = json.dumps(json_ontology, ensure_ascii=False)
-            ontology = Ontology.from_json(json_ontology)
-        except Exception as e:
-            print(f"{Fore.RED}Failed to read the ontology '{ontology_file}', error: {e}")
-            continue
+       
+        if category == 'CodiceAppalti':
+            chunks = split_codice_appalti(text_path, ontology=True)
+            break
 
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
 
-        chunks = []
-        if category == 'CodiceAppalti':
-            chunks = split_codice_appalti(text)
+        if len(text)>20000:
+            chunks.append(split_text_chunks(text))
         else:
-            chunks = split_text_chunks(text)
+            chunks.append(text)
 
-        index_chunk = 0
-        json_data_chunks = []
-        for chunk in chunks:
-            index_chunk = index_chunk + 1
-            print(f"--{Fore.WHITE}Processing chunk {index_chunk}/{len(chunks)}.")
-            chunk_path = f"JsonData/{category}/{text_filename}_{index_chunk}_Data.json"
-            if os.path.exists(chunk_path):
-                with open(chunk_path, "r", encoding="utf-8") as file:
-                    load_data_chunk = json.load(file)
-                    json_data_chunks.append(load_data_chunk)
-                print("The chunk has already been processed!")
-                continue
+    index_chunk = 0
+    json_data_chunks = []
+    for chunk in chunks:
+        index_chunk = index_chunk + 1
+        print(f"--{Fore.WHITE}Processing chunk {index_chunk}/{len(chunks)}.")
+        chunk_path = f"JsonData/{category}/{index_chunk}_Data.json"
+        if os.path.exists(chunk_path):
+            with open(chunk_path, "r", encoding="utf-8") as file:
+                load_data_chunk = json.load(file)
+                json_data_chunks.append(load_data_chunk)
+            print("The chunk has already been processed!")
+            continue
 
-            textsToProcess = []
-            textsToAdd = []
-            textsToProcess.append(chunk)
-            limit_while_count = 0
-            while(True):
-                limit_while_count = limit_while_count + 1
-                if limit_while_count>LIMIT_WHILE_LLM:
-                    print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
-                    return
-                for text in textsToProcess: 
-                    print(f"{Fore.WHITE}Waiting the LLM response...")
-                    try:
-                        response = completion(
-                            model=model,
-                            messages=[
-                                {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-                                {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=text_ontology, text=chunk)}
-                            ]
-                        )
-                        json_data_chunk = process_reponse_data(text_filename, category, index_chunk, response, json_ontology, text_ontology, ontology, chunk, model)
-                        if json_data_chunk is not None:
-                            json_data_chunks.append(json_data_chunk)
-                    except ContextWindowExceededError as e:
-                        mid = len(text) // 2
-                        print(f"{Fore.WHITE}Halving the text size from '{len(text)}' to '{mid}'")
-                        part1 = text[:mid]
-                        part2 = text[mid:]
-                        textsToAdd.append(part1)
-                        textsToAdd.append(part2)
-                        continue
-                    
-                if textsToAdd:
-                    textsToProcess.clear()
-                    for textToAdd in textsToAdd:
-                        textsToProcess.append(textToAdd)
-                    textsToAdd.clear()
-                else:
-                    break
-        aggregate_Json = aggregate_data_and_remove_duplicates(json_data_chunks, json_ontology, text_ontology)
-        upload_correctly = upload_data(category, aggregate_Json, ontology)
-        if upload_correctly == False:
-            print(f"{Fore.RED}Upload completed with ERRORS for the index chunk {index_chunk}!")
-            return
-        else:
-            print(f"Upload completed successfully for the index chunk {index_chunk}!")
-
-    print(f"{Fore.GREEN}Upload completed successfully for the '{category}' category!")
-
-
+        textsToProcess = []
+        textsToAdd = []
+        textsToProcess.append(chunk)
+        limit_while_count = 0
+        while(True):
+            limit_while_count = limit_while_count + 1
+            if limit_while_count>LIMIT_WHILE_LLM:
+                print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
+                return
+            for text in textsToProcess: 
+                print(f"{Fore.WHITE}Waiting the LLM response...")
+                try:
+                    response = completion(
+                        model=model,
+                        messages=[
+                            {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
+                            {"role": "user",   "content": Prompt.EXTRACT_DATA_PROMPT_ITA.format(ontology=text_ontology, text=chunk)}
+                        ]
+                    )
+                    json_data_chunk = process_reponse_data(category, index_chunk, response, json_ontology, text_ontology, ontology, chunk, model)
+                    if json_data_chunk is not None:
+                        json_data_chunks.append(json_data_chunk)
+                except ContextWindowExceededError as e:
+                    mid = len(text) // 2
+                    print(f"{Fore.WHITE}Halving the text size from '{len(text)}' to '{mid}'")
+                    part1 = text[:mid]
+                    part2 = text[mid:]
+                    textsToAdd.append(part1)
+                    textsToAdd.append(part2)
+                    continue
+                
+            if textsToAdd:
+                textsToProcess.clear()
+                for textToAdd in textsToAdd:
+                    textsToProcess.append(textToAdd)
+                textsToAdd.clear()
+            else:
+                break
+    aggregate_Json = aggregate_data_and_remove_duplicates(json_data_chunks, json_ontology, text_ontology)
+    upload_correctly = upload_data(category, aggregate_Json, ontology)
+    if upload_correctly == False:
+        print(f"{Fore.RED}Upload completed with ERRORS for the '{category}' category!")
+        return
+    else:
+        print(f"{Fore.GREEN}Upload completed successfully for the '{category}' category!")
 
 
 

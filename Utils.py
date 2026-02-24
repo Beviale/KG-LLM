@@ -366,9 +366,10 @@ def verify_relation(relation, entities, json_ontology, errors):
         name_key_attr = get_unique_attribute_entity(source_label, json_ontology)
         source_keyref_value = None
         for key, value in source_attrs.items():
-            if key == name_key_attr:
-                source_keyref_value = value
-                break
+            if key == name_key_attr:             
+                source_attrs[key] = str(source_attrs[key]).replace(" ", "").lower()
+                source_keyref_value = source_attrs[key]
+                break 
         if source_keyref_value is None:
             errors = errors + f"The source entity of the relation '{relation_label}' does not have the keyref value - "
             break
@@ -404,7 +405,8 @@ def verify_relation(relation, entities, json_ontology, errors):
         target_keyref_value = None
         for key, value in target_attrs.items():
             if key == name_key_attr:
-                target_keyref_value = value
+                target_attrs[key] = str(target_attrs[key]).replace(" ", "").lower()
+                target_keyref_value = target_attrs[key]
                 break
         if target_keyref_value is None:
             errors = errors + f"The target entity of the relation '{relation_label}' does not have the keyref value - "
@@ -490,7 +492,7 @@ def check_duplicated_relation(json_relations, json_ontology, errors):
             source_attrs = source.get("attributes")
             if source_attrs is not None:
                 if source_key_attrname in source_attrs:
-                    source_attrs[source_key_attrname] = source_attrs[source_key_attrname].replace(" ", "").lower()
+                    source_attrs[source_key_attrname] = str(source_attrs[source_key_attrname]).replace(" ", "").lower()
                 for key, value in source_attrs.items():
                     if key == source_key_attrname:
                         found_source_key = True
@@ -503,7 +505,7 @@ def check_duplicated_relation(json_relations, json_ontology, errors):
             target_attrs = target.get("attributes")
             if target_attrs is not None:
                 if target_key_attrname in target_attrs:
-                    target_attrs[target_key_attrname] = target_attrs[target_key_attrname].replace(" ", "").lower()
+                    target_attrs[target_key_attrname] = str(target_attrs[target_key_attrname]).replace(" ", "").lower()
                 for key, value in target_attrs.items():
                     if key == target_key_attrname:
                         found_target_key = True
@@ -553,7 +555,7 @@ def check_duplicated_entity(json_entities, json_ontology, errors):
             entity_attrs = entity.get("attributes", {})
             for attr_key, attr_value in entity_attrs.items():
                 if attr_key == value: # if it is the 'key' attribute
-                    entity_attrs[attr_key] = entity_attrs[attr_key].replace(" ", "").lower()
+                    entity_attrs[attr_key] = str(entity_attrs[attr_key]).replace(" ", "").lower()
                     IDs.append(entity_attrs[attr_key]) 
                     break
         seen = set()

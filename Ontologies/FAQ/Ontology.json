@@ -1,0 +1,347 @@
+{
+  "entities": [
+    {
+      "label": "FAQ",
+      "attributes": [
+        {
+          "name": "sigla",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_testuale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Platform",
+      "attributes": [
+        {
+          "name": "name",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_testuale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Portale",
+      "attributes": [
+        {
+          "name": "name",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_testuale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RequisitiMinimi",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "min_internet_mbps",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "latenza_min_ms",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "browser_support",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "javascript_abilitato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_testuale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Email",
+      "attributes": [
+        {
+          "name": "indirizzo_email",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "dominio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_testuale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DimensioneMassimaFile",
+      "attributes": [
+        {
+          "name": "dimensione_massima_mb",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_testuale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Avvalimento",
+      "attributes": [
+        {
+          "name": "tipo_avvalimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_testuale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "GESTISCE",
+      "source": {
+        "label": "Platform",
+        "attributes": [
+          {
+            "name": "name",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "name",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "riferimento_testuale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FORNISCE_RISPOSTE_A",
+      "source": {
+        "label": "FAQ",
+        "attributes": [
+          {
+            "name": "sigla",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "name",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "riferimento_testuale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE_MINIMI",
+      "source": {
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "name",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RequisitiMinimi",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "riferimento_testuale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "NOTIFICA_TRAMITE_EMAIL",
+      "source": {
+        "label": "Email",
+        "attributes": [
+          {
+            "name": "indirizzo_email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Platform",
+        "attributes": [
+          {
+            "name": "name",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "riferimento_testuale",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ]
+}
