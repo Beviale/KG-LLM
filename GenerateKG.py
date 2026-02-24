@@ -533,7 +533,17 @@ def process_reponse_data(category, index_chunk, response, json_ontolgogy, text_o
             except Exception as e:
                 continue
 
-   
+    
+    id_chunk = f"chunk_{index_chunk}"           
+    data["entities"].append({
+        "label": "TextChunk",
+        "attributes": {
+            "Id" : id_chunk,
+            "text": text
+        }
+    })
+    Utils.add_riferimento_testuale_relation(data, id_chunk, json_ontolgogy)
+
     current_data_ident = json.dumps(data, indent=2, ensure_ascii=False)
     if current_data_ident is not None:
         print(f"{Fore.WHITE}Data for the category '{category}' with index chunk '{index_chunk}' created successfully!")

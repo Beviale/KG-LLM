@@ -534,6 +534,7 @@ def get_dict_label_nameKeyAttribute(json_ontology):
             if attr.get("unique")==True:
                 label_name_key[entity_ontology_label] = attr.get("name")
                 break
+    label_name_key["Chunk"] == "Id"
     return label_name_key
     
 
@@ -942,14 +943,31 @@ def validate_single_merged_relation(text_relation, entities, relation_label, tar
         raise Exception(errors)
     return json_relation
 
+def add_riferimento_testuale_relation(data, chunk_id, json_ontolgogy):
+    """
+        Add a relation "ESTRATTO_DA_TESTO" to each entity of the data. This relation tells that all the entities are extracted from the specified chunk_id.
+    """
+    laben_nameKeyAttribute_dict = get_dict_label_nameKeyAttribute(json_ontolgogy)
+    for entity in data["entities"]:
+        entity_label = entity.get("label")
+        if entity_label == "Chunk":
+            continue
+        name_keyAttribute = laben_nameKeyAttribute_dict[entity_label]
+        entity_id = entity["attributes"][name_keyAttribute]
 
+
+        new_relation = {}
+        new_relation["label"] = "ESTRATTO_DA_TESTO"
+
+        new_relation["source"] = {}
+        new_relation["source"]["label"] = entity_label
+        new_relation["source"]["attributes"] = {}
+        new_relation["source"]["attributes"][name_keyAttribute] = entity_id
+
+        new_relation["target"] = {}
+        new_relation["target"]["label"] = "Chunk"
+        new_relation["target"]["attributes"] = {}
+        new_relation["target"]["attributes"]["Id"] = chunk_id
+       
 
         
-
-
-
-
-            
-        
-
-                
