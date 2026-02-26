@@ -881,7 +881,7 @@ def validate_single_merged_entity(text_entity: str, entity_label: str, key_attri
     return json_entity
 
     
-def validate_single_merged_relation(text_relation, entities, relation_label, target_label, source_label, source_keyref, target_keyref, json_ontology):
+def validate_single_merged_relation(text_relation, entities, relation_label, source_label, target_label, source_keyref, target_keyref, json_ontology):
     """
     Checks if the JSON relation created by the LLM while merging a list of duplicated relations is valid or not.
     If it is valid, it returns the corresponding JSON object.
@@ -913,7 +913,7 @@ def validate_single_merged_relation(text_relation, entities, relation_label, tar
     if source_label_new is None:
         raise Exception("The source does not have a label'")
     if source_label_new != source_label:
-        raise Exception(f"The source does not have the exptected label'{source_label}'")
+        raise Exception(f"The source does not have the exptected label '{source_label}'")
 
     target = json_relation.get("target")
     if target is None:

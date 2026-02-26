@@ -396,7 +396,7 @@ def merge_ontologies_chunk(category, model=None):
 
         
 
-def split_codice_appalti(file_path, ontology=False):
+def split_codice_appalti(file_path):
     """
     It splits the given text (of the "CodiceAppalti" category) into text chunks considering the "Articoli". 
     It returns the list of text chunks. 
@@ -410,16 +410,11 @@ def split_codice_appalti(file_path, ontology=False):
             line_nfc = unicodedata.normalize('NFC', line)
             
             if pattern.match(line_nfc):
-                if(len(chunk)>200 or ontology==False):
+                if len(chunk) > 200:
                     chunks.append(chunk)
                 chunk = ""
             chunk = chunk + "\n" + line_nfc
-        if(len(chunk)>100 or ontology==False):
-            chunks.append(chunk)
     return chunks
-
-
-
 
 
 def generate_ontology(category, model=None, dataItems=None):
@@ -447,7 +442,7 @@ def generate_ontology(category, model=None, dataItems=None):
             continue
 
         if category == 'CodiceAppalti':
-            chunks = split_codice_appalti(text_path, ontology=True)
+            chunks = split_codice_appalti(text_path)
             break
         
         with open(text_path, "r", encoding="utf-8") as f:
@@ -595,7 +590,7 @@ def generate_data(category: str, model=None, dataItems=None):
             continue
        
         if category == 'CodiceAppalti':
-            chunks = split_codice_appalti(text_path, ontology=True)
+            chunks = split_codice_appalti(text_path)
             break
 
         with open(text_path, "r", encoding="utf-8") as f:
@@ -712,8 +707,7 @@ def ask_LLM_merge_duplicated_relations(duplicated_relations, entities, relation_
         model = "openai/gpt-5-nano"
 
     text_ontology_relation = None
-    relations = json.load(json_ontology["relations"])
-    for relation in relations:
+    for relation in json_ontology["relations"]:
         if relation.get("label") == relation_label:
             if relation.get("source").get("label") == source_label:
                 if relation.get("target").get("label") == target_label:

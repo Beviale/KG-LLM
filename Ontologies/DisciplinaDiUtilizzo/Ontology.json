@@ -10,13 +10,19 @@
           "required": true
         },
         {
-          "name": "versione_corrente",
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "data_approvazione",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "approvazione",
+          "name": "numero_determina",
           "type": "string",
           "unique": false,
           "required": false
@@ -30,22 +36,28 @@
       ]
     },
     {
-      "label": "Versione",
+      "label": "Piattaforma",
       "attributes": [
         {
-          "name": "numero_versione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "data_approvazione",
+          "name": "url",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "nota",
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "versione",
           "type": "string",
           "unique": false,
           "required": false
@@ -62,19 +74,37 @@
       "label": "Organizzazione",
       "attributes": [
         {
-          "name": "denominazione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "ruolo",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "pec",
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "legale_rappresentante",
           "type": "string",
           "unique": false,
           "required": false
@@ -91,13 +121,412 @@
       "label": "SoggettoAggregatore",
       "attributes": [
         {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sede",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "email",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome_utente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_utente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ChiaviAccesso",
+      "attributes": [
+        {
+          "name": "codice_di_accesso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "nome_utente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
           "name": "denominazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "designazione_rif",
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "GestoreSistema",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "responsabilita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RDA",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RDF",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AlboFornitori",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "regolamento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "GaraTelematica",
+      "attributes": [
+        {
+          "name": "rif_normativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AstaElettronica",
+      "attributes": [
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SistemaDinamicoDiAcquisizione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "rif_normativo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "normativa",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ConvenzioneQuadro",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OrdinativoFornitura",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "emittente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "UfficioProcurementAggregato",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "modulo_accesso",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PEC",
+      "attributes": [
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore_legale",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FirmaDigitale",
+      "attributes": [
+        {
+          "name": "ente_emittente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "normativa",
           "type": "string",
           "unique": false,
           "required": false
@@ -128,42 +557,7 @@
       ]
     },
     {
-      "label": "Piattaforma",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "versione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "url",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "sito_web",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Utente",
+      "label": "ResponsabileDelProcedimento",
       "attributes": [
         {
           "name": "identificativo",
@@ -172,367 +566,10 @@
           "required": true
         },
         {
-          "name": "identificatore",
+          "name": "ruolo",
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "tipologia",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "email",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Ente",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "obbligo_ricorso",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "requisiti_iscrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "GestoreSistema",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "responsabilita",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RDA",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "riferimento_normativo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RDF",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "responsabilita",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "ChiaviAccesso",
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "componenti",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "AlboFornitori",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "regolamento_applicabile",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "IndirizzoPEC",
-      "attributes": [
-        {
-          "name": "indirizzo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "FirmaDigitale",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "riferimento_normativo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "GaraTelematica",
-      "attributes": [
-        {
-          "name": "identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "orario_ufficiale",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "AstaElettronica",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "riferimento_normativo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "SistemaDinamicoDiAcquisizione",
-      "attributes": [
-        {
-          "name": "acronimo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "finalita",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "LeggeRegionale",
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "DecretoLegislativo",
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RegolamentoRegionale",
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
           "name": "snippet",
@@ -546,13 +583,19 @@
       "label": "OffertaTelematica",
       "attributes": [
         {
-          "name": "identificativo",
+          "name": "identificativo_offerta",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
           "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_ora_invio",
           "type": "string",
           "unique": false,
           "required": false
@@ -575,6 +618,12 @@
           "required": true
         },
         {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
           "name": "snippet",
           "type": "string",
           "unique": false,
@@ -586,54 +635,37 @@
       "label": "RegistrazioneDiSistema",
       "attributes": [
         {
+          "name": "id_registrazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "timestamp",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ManualeUtente",
+      "attributes": [
+        {
           "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
-        {
-          "name": "formato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "FileLog",
-      "attributes": [
-        {
-          "name": "nome_file",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "MarcaturaTemporale",
-      "attributes": [
         {
           "name": "tipo",
           "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "precisione",
-          "type": "string",
           "unique": false,
           "required": false
         },
@@ -646,92 +678,7 @@
       ]
     },
     {
-      "label": "ConvenzioneQuadro",
-      "attributes": [
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "OrdinativoDiFornitura",
-      "attributes": [
-        {
-          "name": "numero",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "ManualisticaUtente",
-      "attributes": [
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "IndirizzoEmail",
-      "attributes": [
-        {
-          "name": "indirizzo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Indirizzo",
-      "attributes": [
-        {
-          "name": "indirizzo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "HelpDesk",
+      "label": "ServizioAssistenza",
       "attributes": [
         {
           "name": "nome",
@@ -740,146 +687,16 @@
           "required": true
         },
         {
-          "name": "orari",
+          "name": "orario",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "snippet",
+          "name": "numero_verde",
           "type": "string",
           "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "NormaDlgs50_2016",
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "NormaDlgs50_2006",
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "NormaDlgs196_2003",
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "NormaDlgs82_2005",
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Legge241_1990",
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "LR15_2008",
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "TrattamentoDati",
-      "attributes": [
-        {
-          "name": "oggetto",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "ResponsabileDelProcedimento",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
+          "required": false
         },
         {
           "name": "snippet",
@@ -892,7 +709,7 @@
   ],
   "relations": [
     {
-      "label": "HA_VERSIONE",
+      "label": "APPROVATO_DA",
       "source": {
         "label": "Documento",
         "attributes": [
@@ -905,10 +722,10 @@
         ]
       },
       "target": {
-        "label": "Versione",
+        "label": "Organizzazione",
         "attributes": [
           {
-            "name": "numero_versione",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -923,58 +740,13 @@
           "unique": false
         },
         {
-          "name": "nota",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "APPROVATO_DA",
-      "source": {
-        "label": "Versione",
-        "attributes": [
-          {
-            "name": "numero_versione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Organizzazione",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo_atto",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
           "name": "numero_determina",
           "type": "string",
           "required": false,
           "unique": false
         },
         {
-          "name": "data",
+          "name": "versione",
           "type": "string",
           "required": false,
           "unique": false
@@ -988,137 +760,65 @@
       ]
     },
     {
-      "label": "DESIGNATO_DA",
+      "label": "DISCIPLINA_DI",
       "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ambito",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FORNITO_DA",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "SoggettoAggregatore",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Regione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "riferimento_normativo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "GESTISCE",
-      "source": {
-        "label": "SoggettoAggregatore",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ambito_servizio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZATA_DA",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Organizzazione",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZATA_DA",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Regione",
         "attributes": [
           {
             "name": "nome",
@@ -1144,58 +844,8 @@
       ]
     },
     {
-      "label": "FORNISCE_SERVIZIO_A",
+      "label": "GESTITO_DA",
       "source": {
-        "label": "SoggettoAggregatore",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Ente",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "servizio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "REGISTRAZIONE_SU",
-      "source": {
-        "label": "Ente",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "Piattaforma",
         "attributes": [
           {
@@ -1206,39 +856,11 @@
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "modalita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "TRASMETTE_CHIAVI",
-      "source": {
+      "target": {
         "label": "GestoreSistema",
         "attributes": [
           {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ChiaviAccesso",
-        "attributes": [
-          {
-            "name": "descrizione",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -1247,7 +869,7 @@
       },
       "attributes": [
         {
-          "name": "mezzo",
+          "name": "ambito_gestione",
           "type": "string",
           "required": false,
           "unique": false
@@ -1261,12 +883,12 @@
       ]
     },
     {
-      "label": "IDENTIFICA",
+      "label": "UTILIZZATO_DA",
       "source": {
-        "label": "ChiaviAccesso",
+        "label": "Piattaforma",
         "attributes": [
           {
-            "name": "descrizione",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -1275,6 +897,219 @@
       },
       "target": {
         "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "accesso_legittimo",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "REGISTRATO_A",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "registro_linee_guida",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "HA_CHIAVI_ACCESSO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ChiaviAccesso",
+        "attributes": [
+          {
+            "name": "codice_di_accesso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "composizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ISCRITTO_ALL_ALBO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AlboFornitori",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "classi_merceologiche",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "categorie_soa",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "iscrizione_gratuita",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "INVIA_COMUNICAZIONI",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "canale",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "efficacia_legale",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "HA_RDA",
+      "source": {
+        "label": "Organizzazione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RDA",
         "attributes": [
           {
             "name": "identificativo",
@@ -1286,7 +1121,85 @@
       },
       "attributes": [
         {
-          "name": "codice_accesso",
+          "name": "obbligo_nomina",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "HA_RDF",
+      "source": {
+        "label": "Organizzazione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RDF",
+        "attributes": [
+          {
+            "name": "identificativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "compiti",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ASSEGNA_CHIAVI",
+      "source": {
+        "label": "GestoreSistema",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ChiaviAccesso",
+        "attributes": [
+          {
+            "name": "codice_di_accesso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "metodo_trasmissione",
           "type": "string",
           "required": false,
           "unique": false
@@ -1305,7 +1218,7 @@
         "label": "AlboFornitori",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -1316,7 +1229,7 @@
         "label": "SoggettoAggregatore",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -1339,7 +1252,7 @@
       ]
     },
     {
-      "label": "INVIA_COMUNICAZIONI_VIA",
+      "label": "SUPPORTA_GARA",
       "source": {
         "label": "Piattaforma",
         "attributes": [
@@ -1352,7 +1265,247 @@
         ]
       },
       "target": {
-        "label": "IndirizzoPEC",
+        "label": "GaraTelematica",
+        "attributes": [
+          {
+            "name": "rif_normativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "principi",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SUPPORTA_ASTA",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AstaElettronica",
+        "attributes": [
+          {
+            "name": "riferimento_normativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "fase",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "IMPLEMENTA_SDA",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SistemaDinamicoDiAcquisizione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "funzionalita",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "conformita",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PUO_ACQUISTARE_DA",
+      "source": {
+        "label": "Organizzazione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ConvenzioneQuadro",
+        "attributes": [
+          {
+            "name": "identificativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "EMETTE_ORDINATIVO",
+      "source": {
+        "label": "RDA",
+        "attributes": [
+          {
+            "name": "identificativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OrdinativoFornitura",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "riferimento_convenzione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE_ABILITAZIONE_A",
+      "source": {
+        "label": "Organizzazione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SoggettoAggregatore",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modulo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "COMUNICA_VIA_PEC",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PEC",
         "attributes": [
           {
             "name": "indirizzo",
@@ -1364,126 +1517,48 @@
       },
       "attributes": [
         {
-          "name": "efficacia_legale",
+          "name": "nota",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE_FIRMA_DIGITALE",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "FirmaDigitale",
+        "attributes": [
+          {
+            "name": "ente_emittente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "obbligatoria",
           "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RIFERISCE_A",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "LeggeRegionale",
-        "attributes": [
-          {
-            "name": "riferimento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "articoli",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RIFERISCE_A",
-      "source": {
-        "label": "RDA",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "DecretoLegislativo",
-        "attributes": [
-          {
-            "name": "riferimento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "articoli",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "APPLICA_REGOLAMENTO",
-      "source": {
-        "label": "AlboFornitori",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RegolamentoRegionale",
-        "attributes": [
-          {
-            "name": "riferimento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "riferimento_articolo",
-          "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         },
         {
@@ -1508,46 +1583,7 @@
         ]
       },
       "target": {
-        "label": "Organizzazione",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "AGGREGATORE_DI",
-      "source": {
-        "label": "Organizzazione",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Regione",
+        "label": "SoggettoAggregatore",
         "attributes": [
           {
             "name": "nome",
@@ -1559,9 +1595,9 @@
       },
       "attributes": [
         {
-          "name": "funzione",
+          "name": "ruolo",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         },
         {
@@ -1575,10 +1611,10 @@
     {
       "label": "ADERISCE_A",
       "source": {
-        "label": "Ente",
+        "label": "Organizzazione",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -1598,7 +1634,7 @@
       },
       "attributes": [
         {
-          "name": "modalita",
+          "name": "data_adesione",
           "type": "string",
           "required": false,
           "unique": false
@@ -1612,12 +1648,12 @@
       ]
     },
     {
-      "label": "INDICE",
+      "label": "EMISSIONE_ORDINATIVO",
       "source": {
-        "label": "Ente",
+        "label": "Organizzazione",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -1625,46 +1661,7 @@
         ]
       },
       "target": {
-        "label": "GaraTelematica",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "atto",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "EMETTE_ORDINATIVO",
-      "source": {
-        "label": "ResponsabileDelProcedimento",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OrdinativoDiFornitura",
+        "label": "OrdinativoFornitura",
         "attributes": [
           {
             "name": "numero",
@@ -1676,9 +1673,9 @@
       },
       "attributes": [
         {
-          "name": "data_emissione",
+          "name": "responsabile",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         },
         {
@@ -1690,126 +1687,9 @@
       ]
     },
     {
-      "label": "SOSTITUISCE",
+      "label": "FORNISCE_CREDENZIALI",
       "source": {
-        "label": "OffertaTelematica",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OffertaTelematica",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_ora",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RIFIUTATA_PER_TERMINE",
-      "source": {
-        "label": "OffertaTelematica",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "GaraTelematica",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "stato",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "REGISTRA_PROVA_DI",
-      "source": {
-        "label": "RegistrazioneDiSistema",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "GaraTelematica",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "validita",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "ATTRIBUITA_A",
-      "source": {
-        "label": "RegistrazioneDiSistema",
+        "label": "SoggettoAggregatore",
         "attributes": [
           {
             "name": "nome",
@@ -1823,85 +1703,7 @@
         "label": "Utente",
         "attributes": [
           {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "metodo",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "MARCATURA_ESEGUITA_DA",
-      "source": {
-        "label": "MarcaturaTemporale",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SistemaInformatico",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "precisione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "PUO_RICHIEDERE_ABILITAZIONE",
-      "source": {
-        "label": "Ente",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Organizzazione",
-        "attributes": [
-          {
-            "name": "denominazione",
+            "name": "email",
             "type": "string",
             "unique": true,
             "required": true
@@ -1924,12 +1726,12 @@
       ]
     },
     {
-      "label": "RICEVE_CREDENZIALI",
+      "label": "INVIA_OFFERTA",
       "source": {
         "label": "Utente",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "email",
             "type": "string",
             "unique": true,
             "required": true
@@ -1937,10 +1739,10 @@
         ]
       },
       "target": {
-        "label": "IndirizzoEmail",
+        "label": "OffertaTelematica",
         "attributes": [
           {
-            "name": "indirizzo",
+            "name": "identificativo_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -1949,7 +1751,7 @@
       },
       "attributes": [
         {
-          "name": "tipo",
+          "name": "data_ora_invio",
           "type": "string",
           "required": true,
           "unique": false
@@ -1963,12 +1765,12 @@
       ]
     },
     {
-      "label": "CONTATTA",
+      "label": "RIFIUTATA_DA",
       "source": {
-        "label": "Utente",
+        "label": "Piattaforma",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -1976,10 +1778,10 @@
         ]
       },
       "target": {
-        "label": "IndirizzoPEC",
+        "label": "OffertaTelematica",
         "attributes": [
           {
-            "name": "indirizzo",
+            "name": "identificativo_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -1988,46 +1790,13 @@
       },
       "attributes": [
         {
-          "name": "mezzo",
+          "name": "motivo",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         },
         {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "FORNISCE_MANUALI",
-      "source": {
-        "label": "Organizzazione",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ManualisticaUtente",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "accesso",
+          "name": "stato",
           "type": "string",
           "required": true,
           "unique": false
@@ -2041,12 +1810,12 @@
       ]
     },
     {
-      "label": "UTILIZZA_SDA",
+      "label": "REGISTRA",
       "source": {
-        "label": "Ente",
+        "label": "RegistrazioneDiSistema",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "id_registrazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -2054,10 +1823,10 @@
         ]
       },
       "target": {
-        "label": "SistemaDinamicoDiAcquisizione",
+        "label": "OffertaTelematica",
         "attributes": [
           {
-            "name": "acronimo",
+            "name": "identificativo_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -2066,46 +1835,13 @@
       },
       "attributes": [
         {
-          "name": "facolta",
+          "name": "piena_prova",
           "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         },
         {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "TITOLARE_DEL_TRATTAMENTO",
-      "source": {
-        "label": "Organizzazione",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "TrattamentoDati",
-        "attributes": [
-          {
-            "name": "oggetto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo",
+          "name": "marcatura_temporale",
           "type": "string",
           "required": true,
           "unique": false
@@ -2119,9 +1855,9 @@
       ]
     },
     {
-      "label": "TITOLARE_DEL_TRATTAMENTO",
+      "label": "EFFETTUA_REGISTRAZIONE",
       "source": {
-        "label": "Regione",
+        "label": "SistemaInformatico",
         "attributes": [
           {
             "name": "nome",
@@ -2132,10 +1868,10 @@
         ]
       },
       "target": {
-        "label": "TrattamentoDati",
+        "label": "RegistrazioneDiSistema",
         "attributes": [
           {
-            "name": "oggetto",
+            "name": "id_registrazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -2144,8 +1880,8 @@
       },
       "attributes": [
         {
-          "name": "ruolo",
-          "type": "string",
+          "name": "archiviata_digitalmente",
+          "type": "boolean",
           "required": true,
           "unique": false
         },
@@ -2158,12 +1894,12 @@
       ]
     },
     {
-      "label": "HELP_DESK_ASSISTE",
+      "label": "VALUTA_O_CLASSIFICA",
       "source": {
-        "label": "HelpDesk",
+        "label": "AstaElettronica",
         "attributes": [
           {
-            "name": "nome",
+            "name": "riferimento_normativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -2171,10 +1907,10 @@
         ]
       },
       "target": {
-        "label": "Utente",
+        "label": "OffertaTelematica",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "identificativo_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -2183,7 +1919,7 @@
       },
       "attributes": [
         {
-          "name": "orari",
+          "name": "metodo",
           "type": "string",
           "required": true,
           "unique": false
@@ -2197,12 +1933,12 @@
       ]
     },
     {
-      "label": "SOSPENDE_ACCESSO",
+      "label": "DISPONIBILE_SU",
       "source": {
-        "label": "Organizzazione",
+        "label": "ManualeUtente",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -2222,7 +1958,7 @@
       },
       "attributes": [
         {
-          "name": "motivo",
+          "name": "accessibile_da",
           "type": "string",
           "required": true,
           "unique": false
@@ -2236,9 +1972,54 @@
       ]
     },
     {
-      "label": "ACCESSO_AL_REGISTRO",
+      "label": "FORNISCE_ASSISTENZA",
       "source": {
+        "label": "ServizioAssistenza",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "orario",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "canali",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE_DISABILITAZIONE",
+      "source": {
+        "label": "ResponsabileDelProcedimento",
         "attributes": [
           {
             "name": "identificativo",
@@ -2249,7 +2030,7 @@
         ]
       },
       "target": {
-        "label": "RegistrazioneDiSistema",
+        "label": "Piattaforma",
         "attributes": [
           {
             "name": "nome",
@@ -2264,6 +2045,90 @@
           "name": "modalita",
           "type": "string",
           "required": true,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ACCESSO_AGLI_ATTI",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RegistrazioneDiSistema",
+        "attributes": [
+          {
+            "name": "id_registrazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "form",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "normativa",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "MODIFICA_APPLICATA",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "required": false,
           "unique": false
         },
         {

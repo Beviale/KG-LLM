@@ -273,6 +273,7 @@ Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIE
 Le etichette (label) di entità e relazioni non possono iniziare con numeri o caratteri speciali.
 Non usare caratteri di escape come backslash (\). 
 Assicurati che ogni stringa sia racchiusa tra doppi apici standard (").
+Estrai ciascuna possibile entità o relazione atomica, non sintetizzare!
 
 ## 4. Formato
 L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
@@ -979,8 +980,8 @@ Non includere spiegazioni o scuse nelle tue risposte.
 Non rispondere a domande che chiedono qualcosa di diverso dalla fusione di relazioni duplicate. 
 Non inventare dati dal nulla ma basati su quelli forniti.
 Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
-Per la nuova relazione creata, l'attributo 'snippet' deve contenere tassativamente l'unione degli 'snippet' delle vecchie relazioni duplicate. Se il testo risultante dovesse risultare troppo prolisso o ripetitivo, puoi effettuare un riassunto ma senza modificarne troppo il significato semantico.
-La nuova relazione creata deve avere la stessa label e gli stessi attributi per le entità source e target delle relazioni duplicate date in input (ossia la relazione deve essere dello stesso tipo e riferirisi alle stesse entità source e target); ciò che può variare sono i valori degli attributi relativi strettamente alla relazione stessa, tra cui lo 'snippet' spiegato prima.
+Per la nuova relazione creata, l'attributo 'snippet' deve contenere tassativamente l'unione degli 'snippet' delle vecchie relazioni duplicate. Se il testo risultante dovesse risultare troppo prolisso o ripetitivo, puoi effettuare un riassunto ma senza modificarne troppo il significato semantico. Rircordati che, in qualunque caso, lo snippet deve avere senso compiuto.
+La nuova relazione creata deve avere la stessa label, source label e target label e gli stessi attributi per le entità source e target delle relazioni duplicate date in input (ossia la relazione deve essere dello stesso tipo e riferirisi alle stesse entità source e target); ciò che può variare sono i valori degli attributi relativi strettamente alla relazione stessa, tra cui lo 'snippet' spiegato prima.
 Rispetta rigorosamente l'ontologia fonita.
 
 ## 3. Formato
@@ -1148,7 +1149,7 @@ Non includere spiegazioni o scuse nelle tue risposte.
 Non rispondere a domande che chiedono qualcosa di diverso dalla fusione di entità duplicate. 
 Non inventare dati dal nulla ma basati su quelli forniti.
 Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
-Per la nuova entità creata, l'attributo 'snippet' deve contenere tassativamente l'unione degli 'snippet' delle vecchie entità duplicate. Se il testo risultante dovesse risultare troppo prolisso o ripetitivo, puoi effettuare un riassunto ma senza modificarne troppo il significato semantico. Rircordati che, in qualunque caso, il riferimento testuale deve avere senso compiuto.
+Per la nuova entità creata, l'attributo 'snippet' deve contenere tassativamente l'unione degli 'snippet' delle vecchie entità duplicate. Se il testo risultante dovesse risultare troppo prolisso o ripetitivo, puoi effettuare un riassunto ma senza modificarne troppo il significato semantico. Rircordati che, in qualunque caso, lo snippet deve avere senso compiuto.
 La nuova entità creata deve avere la stessa label e lo stesso valore per l'attributo univoco delle entità duplicate date in input; ciò che può variare sono i valori degli altri attributi oltre quello univoco, tra cui lo 'snippet' spiegato prima.
 Rispetta rigorosamente l'ontologia fonita.
 
@@ -1224,7 +1225,8 @@ Ciascuna relazione ha un'entità source e un'entità target. Per fare riferiment
 Non includere spiegazioni o scuse nelle tue risposte, solo il JSON.
 Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
 Non inventare dati, usa solo ciò che viene riportato nel testo.
-Assicurati che il JSON prodotto contenga, per ogni entità e relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'snippet'. Tale riferimento può essere eventualmente sintetizzato se troppo prolisso. Ricordati che il riferimento testuale deve essere una porzione di testo utile e comunque di senso compiuto.
+Assicurati che il JSON prodotto contenga, per ogni entità e relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'snippet'. Tale riferimento può essere eventualmente sintetizzato se troppo prolisso. Ricordati che lo snippet deve essere una porzione di testo utile e comunque di senso compiuto.
+Estrai ciascuna possibile entità o relazione atomica, non sintetizzare!
 
 ## 3. Formattazione
 Usa virgolette doppie per tutti i valori stringa.
