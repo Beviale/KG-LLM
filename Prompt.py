@@ -4,9 +4,9 @@ Sei un assistente di alto livello progettato per unire due ontologie JSON in una
 Il dominio di applicazione è quello relativo alla Pubblica Amministrazione e al Codice degli appalti italiano.
 - Le **entità** rappresentano entità e concetti. Ciascuna entità deve avere esattamente un attributo unico (detto anche attributo 'Key').
 - Le **relazioni** rappresentano collegamenti tra entità e concetti. Ogni relazione ha un'entità 'source' e un'entità 'target'. Affinchè ciascuna relazione possa riferirsi a tali entità è necessario che essa contenga le loro rispettive label e gli attributi che si riferiscono alle loro 'Key' (il funzionamento è, dunque, simile al meccanismo delle chiavi esterne presente nei database relazionali).
-L'obiettivo è ottenere semplicità e chiarezza nel grafo della conoscenza, rendendolo accessibile a un vasto pubblico. 
+L'obiettivo è ottenere soprattutto completezza e chiarezza nel grafo della conoscenza, rendendolo accessibile a un vasto pubblico. 
 Preferisci convertire le relazioni in entità quando possiedono attributi.
-Crea un'ontologia molto concisa e chiara. Evita complessità, ambiguità e duplicazioni non necessarie.
+Crea un'ontologia completa e chiara. Evita duplicazioni non necessarie.
 
 ## 2. Etichettare le entità e le relazioni
 -  **Coerenza**: Usa tipi non troppo specifici per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una regione italiana, etichettala sempre come 'Regione'. Evita termini più specifici come 'RegionePuglia' o 'RegioneBasilicata'. Favorisci la generalizzazione.
@@ -215,7 +215,7 @@ JSON Schema:
 }
 ```
 
-Eccoti un esempio completo di input-output:
+Eccoti un piccolo esempio di input-output:
 
 Date in input le seguenti due ontologie:
 a) Prima ontologia
@@ -246,13 +246,13 @@ Il dominio di applicazione è quello relativo alla Pubblica Amministrazione e al
 Cattura dal testo quante più informazioni possibili su entità, relazioni e attributi.
 - Le **entità** rappresentano entità e concetti. Ciascuna entità deve avere esattamente un attributo unico (detto anche attributo 'Key').
 - Le **relazioni** rappresentano collegamenti tra entità e concetti. Ogni relazione ha un'entità 'source' e un'entità 'target'. Affinchè ciascuna relazione possa riferirsi a tali entità è necessario che essa contenga le loro rispettive label e gli attributi che si riferiscono alle loro 'Key' (il funzionamento è, dunque, simile al meccanismo delle chiavi esterne presente nei database relazionali).
-L'obiettivo è ottenere semplicità e chiarezza nel grafo della conoscenza, rendendolo accessibile a un vasto pubblico.  
+L'obiettivo è ottenere soprattutto completezza e chiarezza nel grafo della conoscenza, rendendolo accessibile a un vasto pubblico.  
 Utilizza il campo 'attributes' per catturare informazioni aggiuntive sulle entità e sulle relazioni.  
 Aggiungi tutti gli attributi necessari per descrivere completamente entità e relazioni presenti nel testo.  
 Gli attributi devono essere estratti come entità o relazioni quando possibile. Ad esempio, quando si descrive un'entità 'Film', l'attributo 'regista' può essere estratto come un'entità 'Persona' e collegato all'entità 'Film' tramite una relazione etichettata 'DIRETTO_DA'.
 Allo stesso modo, quando si descrive un'entità 'Film', è possibile estrarre attributi come titolo, anno di uscita, genere e altro.
 Preferisci convertire le relazioni in entità quando possiedono attributi.
-Crea un'ontologia molto concisa e chiara. Evita complessità, ambiguità e duplicazioni non necessarie.
+Crea un'ontologia completa e chiara. Evita duplicazioni non necessarie.
 
 ## 2. Etichettare le entità e le relazioni
 -  **Coerenza**: Usa tipi non troppo specifici per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una regione italiana, etichettala sempre come 'Regione'. Evita termini più specifici come 'RegionePuglia' o 'RegioneBasilicata'. Favorisci la generalizzazione.
@@ -462,7 +462,7 @@ JSON Schema:
 }
 ```
 
-Eccoti un esempio completo di output che potresti restituirmi:
+Eccoti un piccolo esempio di output che potresti restituirmi:
 ```json
 {"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","required":true}]}]}
 ```
@@ -622,7 +622,7 @@ Seconda ontologia:
 """
 
 CREATE_ONTOLOGY_PROMPT_ITA="""
-Dato il seguente testo, crea l'ontologia che rappresenta le entità, le relazioni e gli attributi che si possono estrarre da esso.
+Dato il seguente testo, crea l'ontologia che rappresenta tutte le entità, le relazioni e gli attributi che si possono estrarre da esso.
 Tieni a mente che dallo stesso testo in futuro dovranno essere estratti i dati conformi all'ontologia che stai per creare.
 Estrai il maggior numero possibile di entità e relazioni per descrivere completamente i dati.
 Estrai il maggior numero possibile di attributi per descrivere pienamente le entità e le relazioni nel testo.

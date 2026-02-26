@@ -563,7 +563,7 @@ def check_duplicated_entity(json_entities, json_ontology, errors):
         seen = set()
         duplicated = set(x for x in IDs if x in seen or seen.add(x))
         if len(duplicated)>0:
-            errors = errors + f"For the entity label '{key}' there are the following duplicates '{list(duplicated)}' - "
+            errors = errors + f"For the entity label '{key}' with the Key attribute '{value}' there are the following duplicates '{list(duplicated)}' - "
     return errors
         
     
@@ -741,6 +741,7 @@ def get_duplicated_relations_as_tuples(json_relations, json_ontology):
             continue
         
         if relation_label is not None and source_label is not None and target_label is not None:
+            relation_ontology_schema = None
             for relation_ontology in json_ontology['relations']:
                 relation_label_ontology = relation_ontology.get("label")
                 source_ontology = relation_ontology.get("source")

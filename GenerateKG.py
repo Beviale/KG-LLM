@@ -220,11 +220,20 @@ def process_response_ontology(category, index_chunk, response, text, model):
 
 
 
-def split_text_chunks(text: str, max_characters=20000):
+def split_text_chunks(text: str, ontology=False):
     """
     It splits the given text into text chunks considering the given maximum number of characters. 
     It returns the list of text chunks. 
     """
+    if ontology==True:
+        max_characters=20000
+        back_characters = 3000
+    else:
+        max_characters=10000
+        back_characters = 1500
+
+
+
     seg = pysbd.Segmenter(language="it", clean=True)
     sentences = seg.segment(text)
 
@@ -249,7 +258,7 @@ def split_text_chunks(text: str, max_characters=20000):
             for chunk_rev in chunk_reverse:
                 index = index + 1
                 number_of_characters = number_of_characters + len(chunk_rev)
-                if (number_of_characters>3000):
+                if (number_of_characters>back_characters):
                     break
             sentences = sentences[len(chunk)-index:]
            
@@ -266,7 +275,7 @@ def merge_ontologies_chunk(category, model=None):
     Returns 'True' if the chunk ontologies have been merged and saved correctly; 'False' otherwise.
     """
     if model is None:
-        model = "openai/gpt-5-nano"
+        model = "openai/gpt-5-mini"
     index = 1
     json_merge = []
     while(True):
@@ -424,7 +433,7 @@ def generate_ontology(category, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-nano"
+        model = "openai/gpt-5-mini"
 
     ontology_file = Path(f"Ontologies/{category}/Ontology.json")
     if ontology_file.exists():
@@ -444,7 +453,7 @@ def generate_ontology(category, model=None, dataItems=None):
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
 
-        chunks.append(split_text_chunks(text))
+        chunks = split_text_chunks(text, True)
        
 
     index_chunk = 0
@@ -592,7 +601,7 @@ def generate_data(category: str, model=None, dataItems=None):
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
 
-        chunks.append(split_text_chunks(text))
+        chunks = split_text_chunks(text, False)
      
 
     index_chunk = 0
@@ -657,21 +666,29 @@ def generate_data(category: str, model=None, dataItems=None):
         print(f"{Fore.GREEN}Upload completed successfully for the '{category}' category!")
 
 
-
-def agglomerative_clustering(item_embedding_dict: dict, distance_threshold=0.5):
+def get_clusters(item_embedding_dict: dict, distance_threshold=0.5):
     """
     It performs the agglomerative clustering operation on the given items.
     
     :param item_embedding_dict: dictionary where each key is a generic item and the value si the corresponding embedding vector. 
     :param distance_threshold: the linkage distance threshold at or above which clusters will not be merged.
     """
-    #NOTA: IL RISCHIO è che agglomerative clustering sia troppo complesso a livello computazione (complessità n al quadrato), da valutare meglio utilizzo della ricerca con FAISS che consente una molto più veloce ricerca dei vettori vicini entro una certa soglia dato un vettore in input. Potrebbe essere davvero una valida alternativa qualora i dati dovessero essere numerosi. 
+
+    #clusterer = hdbscan.HDBSCAN()
+    clusterer.fit(item_embedding_dict)
+    #HDBSCAN(algorithm='best', alpha=1.0, approx_min_span_tree=True,
+    #gen_min_span_tree=False, leaf_size=40, memory=Memory(None),
+    #metric='euclidean', min_cluster_size=5, min_samples=None, p=None)
+
     items = list(item_embedding_dict.keys())
     # Convert the embeddings in a numpy matrix
     X = np.array(list(item_embedding_dict.values()))
     # Distance range values [0,2]
-    clustering = AgglomerativeClustering(n_clusters=None, metric="cosine", compute_full_tree=True, linkage="maximum", distance_threshold=distance_threshold)
-    labels = clustering.fit_predict(X)
+   # clusterer = hdbscan.HDBSCAN()
+    #clusterer.fit(item_embedding_dict)
+    #HDBSCAN(algorithm='best', alpha=1.0, approx_min_span_tree=True,
+    #gen_min_span_tree=False, leaf_size=40, memory=Memory(None),
+    #metric='euclidean', min_cluster_size=5, min_samples=None, p=None)    labels = clustering.fit_predict(X)
 
     clusters = dict()
     for item, label_cluster in zip(items, labels):
@@ -684,6 +701,8 @@ def agglomerative_clustering(item_embedding_dict: dict, distance_threshold=0.5):
     }
 
     return clusters
+
+
 
 def ask_LLM_merge_duplicated_relations(duplicated_relations, entities, relation_label, source_label, target_label, source_keyref, target_keyref, json_ontology, model=None):
     """
@@ -788,7 +807,7 @@ def ask_LLM_merge_duplicated_entities(duplicated_entities, entity_label, key_att
     return new_entity
 
 
-def refine_with_LLM(json_data, category, ontology):
+def refine_with_LLM(json_data, category, json_ontology):
     """
     It takes as input a JSON object containing entities, relations, and attributes. Using the embeddings, it finds similar nodes or edges that can be duplicates.
     The duplicates are removed and merged using LLM.
@@ -797,15 +816,48 @@ def refine_with_LLM(json_data, category, ontology):
     by_text_desciption_entity_dict = dict() # The key is the entity and the value is the 'text_description'
     by_text_desciption_relation_dict = dict() # The key is the relation and the value is the 'text_description'
 
+    label_nameKeyAttribute_dict = Utils.get_dict_label_nameKeyAttribute(json_ontology)
+
     for entity in json_data["entities"]:
+        entity_id = ""
         text_descritpion = ""
-        label = entity.get("label")
-        text_descritpion = f"label:'{label}'"
+        entity_label = entity.get("label")
+        text_descritpion = f"label:'{entity_label}"
         attrs = entity.get("attrs")
         if attrs is not None:  
             for key, value in attrs.items():
+                if key == label_nameKeyAttribute_dict[entity_label]:
+                    entity_id = value
                 text_descritpion = text_descritpion + f", '{key}':'{value}'"
         text_descritpion = text_descritpion + "."
+
+        for relation in json_data["relations"]:
+            if relation.get("source").get("label") != entity_label:
+                continue
+            if relation.get("source").get("label").get("attributes")[label_nameKeyAttribute_dict[entity_label]] != entity_id:
+                    continue
+            text_descritpion = text_descritpion + " It has the relation: "
+            label = relation.get("label")
+            text_descritpion = f" label:'{label}'"
+            source = relation.get("source")
+            source_label = source.get("label")
+            text_descritpion = text_descritpion + f", sourceLabel:'{source_label}'"
+            source_attrs = source.get("attributes")
+            if source_attrs is not None:
+                for key, value in source_attrs.items():
+                    text_descritpion = text_descritpion + f", sourceAttribute_{key}:'{value}'"
+            target = relation.get("target")
+            target_label = target.get("label")
+            text_descritpion = text_descritpion + f", targetLabel:'{target_label}'"
+            target_attrs = target.get("attributes")
+            if target_attrs is not None:
+                for key, value in target_attrs.items():
+                    text_descritpion = text_descritpion + f", targetAttribute_{key}:'{value}"
+            relation_attrs = relation.get("attrs")
+            if relation_attrs is not None:
+                for key, value in relation_attrs.items():
+                    text_descritpion = text_descritpion + f", relationAttribute_{key}:'{value}'"
+            text_descritpion = text_descritpion + "." 
         by_text_desciption_entity_dict[entity].append(text_descritpion)
         
 
@@ -843,10 +895,10 @@ def refine_with_LLM(json_data, category, ontology):
         )
         embedding = response_embedding["data"][0]["embedding"]
         by_text_description_embedding_entity_dict[entity] = embedding
-    entity_partitions = agglomerative_clustering(by_text_description_embedding_entity_dict)
+    entity_partitions = get_clusters(by_text_description_embedding_entity_dict)
 
 
-    by_text_description_embedding_relation_dict = dict() # The key is the relarion and the value is the embedding of the 'text description'
+    by_text_description_embedding_relation_dict = dict() # The key is the relation and the value is the embedding of the 'text description'
     for relation, text_descritpion in by_text_desciption_relation_dict():         
         response_embedding = embedding(
             model="text-embedding-3-small",
@@ -854,23 +906,20 @@ def refine_with_LLM(json_data, category, ontology):
         )
         embedding = response_embedding["data"][0]["embedding"]
         by_text_description_embedding_relation_dict[relation] = embedding
-    relation_partisions = agglomerative_clustering(by_text_description_embedding_relation_dict)
+    relation_partisions = get_clusters(by_text_description_embedding_relation_dict)
 
     for cluster_id, entities_in_partition in entity_partitions.itmes():
-        new_entities = ask_LLM_merge_similar_entities(entities_in_partition.copy(), ontology)
+        new_entities = ask_LLM_merge_similar_entities(entities_in_partition.copy(), json_ontology)
         ids_to_remove = {id(e) for e in entities_in_partition}
         json_data['entities'] = [in_json for in_json in json_data['entities'] if id(in_json) not in ids_to_remove]
         json_data['entities'].extend(new_entities)
 
 
     for cluster_id, relations_in_partition in relation_partisions.itmes():
-        new_relations = ask_LLM_merge_similar_relations(relations_in_partition.copy())
+        new_relations = ask_LLM_merge_similar_relations(relations_in_partition.copy(), json_ontology)
         ids_to_remove = {id(e) for e in relations_in_partition}
         json_data['relations'] = [in_json for in_json in json_data['relations'] if id(in_json) not in ids_to_remove]
         json_data['relations'].extend(new_relations)
-
-
-
 
 
 def aggregate_data_and_remove_duplicates(json_data_list : list, json_ontology, text_ontology: str):
@@ -957,7 +1006,8 @@ def create_dir():
     os.makedirs("Ontologies/DisciplinaDiUtilizzo",  exist_ok=True)    
     os.makedirs("Ontologies/Normativa",  exist_ok=True)    
     os.makedirs("Ontologies/FAQ",  exist_ok=True)    
-    os.makedirs("Ontologies/GuidePratiche",  exist_ok=True) 
+    os.makedirs("Ontologies/GuidePraticheOE",  exist_ok=True) 
+    os.makedirs("Ontologies/GuidePraticheSA",  exist_ok=True) 
     os.makedirs("Ontologies/CodiceAppalti",  exist_ok=True) 
 
 
@@ -965,14 +1015,16 @@ def create_dir():
     os.makedirs("JsonData/DisciplinaDiUtilizzo",  exist_ok=True)    
     os.makedirs("JsonData/Normativa",  exist_ok=True)    
     os.makedirs("JsonData/FAQ",  exist_ok=True)    
-    os.makedirs("JsonData/GuidePratiche",  exist_ok=True) 
+    os.makedirs("JsonData/GuidePraticheOE",  exist_ok=True) 
+    os.makedirs("JsonData/GuidePraticheSA",  exist_ok=True) 
     os.makedirs("JsonData/CodiceAppalti",  exist_ok=True) 
 
     os.makedirs("InputPDFtoText",  exist_ok=True)   
     os.makedirs("InputPDFtoText/DisciplinaDiUtilizzo",  exist_ok=True)    
     os.makedirs("InputPDFtoText/Normativa",  exist_ok=True)    
     os.makedirs("InputPDFtoText/FAQ",  exist_ok=True)    
-    os.makedirs("InputPDFtoText/GuidePratiche",  exist_ok=True) 
+    os.makedirs("InputPDFtoText/GuidePraticheOE",  exist_ok=True) 
+    os.makedirs("InputPDFtoText/GuidePraticheSA",  exist_ok=True) 
     os.makedirs("InputPDFtoText/CodiceAppalti",  exist_ok=True) 
 
 
@@ -980,17 +1032,23 @@ def create_dir():
 
 def main():
     create_dir()
-    pdf_dict = {} # The key is the category (DiscplinaDiUtilizzo, GuidePratiche,...) and the value is the list of associated .pdf files
+    pdf_dict = {} # The key is the category (DiscplinaDiUtilizzo, GuidePraticheOE,...) and the value is the list of associated .pdf files
 
     # DiscplinaDiUtilizzo
     dir_DisciplinaDiUtilizzo = Path("InputPDF/DisciplinaDiUtilizzo")
     pdf_paths_DisciplinaDiUtilizzo = list(dir_DisciplinaDiUtilizzo.rglob("*.pdf"))
     pdf_dict["DisciplinaDiUtilizzo"] = pdf_paths_DisciplinaDiUtilizzo
 
-    # GuidePratiche
-    dir_GuidePratiche = Path("InputPDF/GuidePratiche")
-    pdf_paths_GuidePratiche= list(dir_GuidePratiche.rglob("*.pdf"))
-    pdf_dict["GuidePratiche"] = pdf_paths_GuidePratiche
+    # GuidePraticheOE
+    dir_GuidePraticheOE = Path("InputPDF/GuidePraticheOE")
+    pdf_paths_GuidePraticheOE= list(dir_GuidePraticheOE.rglob("*.pdf"))
+    pdf_dict["GuidePraticheOE"] = pdf_paths_GuidePraticheOE
+
+    # GuidePraticheSA
+    dir_GuidePraticheSA = Path("InputPDF/GuidePraticheSA")
+    pdf_paths_GuidePraticheSA= list(dir_GuidePraticheSA.rglob("*.pdf"))
+    pdf_dict["GuidePraticheSA"] = pdf_paths_GuidePraticheSA
+
 
     # Normativa
     dir_Normativa = Path("InputPDF/Normativa")
@@ -1011,24 +1069,28 @@ def main():
         elif choice == 2:
             while(True):
                 print("1. DisciplinaDiUtilizzo")
-                print("2. GuidePratiche")
-                print("3. Normativa")
-                print("4. FAQ")
-                print("5. CodiceAppalti")
+                print("2. GuidePraticheOE")
+                print("3. GuidePraticheSA")
+                print("4. Normativa")
+                print("5. FAQ")
+                print("6. CodiceAppalti")
                 choice_cat = int(input("For which category do you want to generate the ontology? "))
                 if choice_cat == 1:
                     generate_ontology("DisciplinaDiUtilizzo")
                     break
                 elif choice_cat == 2:
-                    generate_ontology("GuidePratiche")
+                    generate_ontology("GuidePraticheOE")
                     break
-                elif choice_cat == 3:                    
+                elif choice_cat == 3:
+                    generate_ontology("GuidePraticheSA")
+                    break
+                elif choice_cat == 4:                    
                     generate_ontology("Normativa")
                     break
-                elif choice_cat == 4:
+                elif choice_cat == 5:
                     generate_ontology("FAQ")
                     break
-                elif choice_cat == 5:
+                elif choice_cat == 6:
                     generate_ontology("CodiceAppalti")
                     break
                 else:
@@ -1036,24 +1098,28 @@ def main():
         elif choice == 3:
             while(True):             
                 print("1. DisciplinaDiUtilizzo")
-                print("2. GuidePratiche")
-                print("3. Normativa")
-                print("4. FAQ")
-                print("5. CodiceAppalti")
+                print("2. GuidePraticheOE")
+                print("3. GuidePraticheSA")
+                print("4. Normativa")
+                print("5. FAQ")
+                print("6. CodiceAppalti")
                 choice_cat = int(input("For which category do you want to generate the data? "))
                 if choice_cat == 1:
                     generate_data("DisciplinaDiUtilizzo")
                     break
                 elif choice_cat == 2:
-                    generate_data("GuidePratiche")
+                    generate_data("GuidePraticheOE")
                     break
                 elif choice_cat == 3:
-                    generate_data("Normativa")
+                    generate_data("GuidePraticheSA")
                     break
                 elif choice_cat == 4:
-                    generate_data("FAQ")
+                    generate_data("Normativa")
                     break
                 elif choice_cat == 5:
+                    generate_data("FAQ")
+                    break
+                elif choice_cat == 6:
                     generate_data("CodiceAppalti")
                     break
                 else:
@@ -1063,24 +1129,28 @@ def main():
             # DEVO SEMPLICEMENTE FARE CLUSTERING, FAR DECIDERE A LLM COSA MERGIARE E FARE DIRETTAMENTE QUERY CHYPER PER CAMBIARE KG FINALE. 
             while(True):             
                 print("1. DisciplinaDiUtilizzo")
-                print("2. GuidePratiche")
-                print("3. Normativa")
-                print("4. FAQ")
-                print("5. CodiceAppalti")
+                print("2. GuidePraticheOE")
+                print("3. GuidePraticheSA")
+                print("4. Normativa")
+                print("5. FAQ")
+                print("6. CodiceAppalti")
                 choice_cat = int(input("For which category do you want to refine the KG? "))
                 if choice_cat == 1:
                     refine_with_LLM("DisciplinaDiUtilizzo")
                     break
                 elif choice_cat == 2:
-                    refine_with_LLM("GuidePratiche")
+                    refine_with_LLM("GuidePraticheOE")
                     break
                 elif choice_cat == 3:
-                    refine_with_LLM("Normativa")
+                    refine_with_LLM("GuidePraticheSA")
                     break
                 elif choice_cat == 4:
-                    refine_with_LLM("FAQ")
+                    refine_with_LLM("Normativa")
                     break
                 elif choice_cat == 5:
+                    refine_with_LLM("FAQ")
+                    break
+                elif choice_cat == 6:
                     refine_with_LLM("CodiceAppalti")
                     break
                 else:

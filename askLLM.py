@@ -128,10 +128,15 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
         kg=disciplina_utilizzo,
         introduction="Sono un agente esperto nel rispondere a domande relative alla disciplina di utilizzo della piattaforma EmPULIA. La disciplina di utilizzo spiega le modalità di fruizione dei servizi applicativi e delle funzionalità della piattaforma EmPULIA del soggetto aggregatore della Regione Puglia.",
     )
-    guide_pratiche_Agent = KGAgent(
-        agent_id="GuidePraticheAgent",
+    guide_praticheOE_Agent = KGAgent(
+        agent_id="GuidePraticheOEAgent",
         kg=guide_pratiche,
-        introduction="Sono un agente esperto nel rispondere a domande relative alle guide pratiche della piattaforma EmPULIA. Le guide pratiche sono dei manuali d'uso dettagliati e sempre aggiornati per facilitare - mediante l'utilizzo di percorsi guidati - tutte le operazioni effettuabili on line sulla piattaforma di E-Procurement EmPULIA.",
+        introduction="Sono un agente esperto nel rispondere a domande relative alle guide pratiche della piattaforma EmPULIA. Le guide pratiche sono dei manuali d'uso dettagliati e sempre aggiornati per facilitare - mediante l'utilizzo di percorsi guidati - tutte le operazioni effettuabili on line sulla piattaforma di E-Procurement EmPULIA. Posso rispondere soltanto a domande relative agli operatori economici",
+    )
+    guide_praticheSA_Agent = KGAgent(
+        agent_id="GuidePraticheSAAgent",
+        kg=guide_pratiche,
+        introduction="Sono un agente esperto nel rispondere a domande relative alle guide pratiche della piattaforma EmPULIA. Le guide pratiche sono dei manuali d'uso dettagliati e sempre aggiornati per facilitare - mediante l'utilizzo di percorsi guidati - tutte le operazioni effettuabili on line sulla piattaforma di E-Procurement EmPULIA. Posso rispondere soltanto a domande relative alle stazioni appaltanti.",
     )
     normativa_agent = KGAgent(
         agent_id="NormativaAgent",
@@ -155,7 +160,8 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
     # Register the agents that we created above.
     orchestrator.register_agent(codice_appalti_agent)
     orchestrator.register_agent(disciplina_utilizzo_agent)
-    orchestrator.register_agent(guide_pratiche_Agent)
+    orchestrator.register_agent(guide_praticheOE_Agent)
+    orchestrator.register_agent(guide_praticheSA_Agent)
     orchestrator.register_agent(normativa_agent)
     orchestrator.register_agent(faq_agent)
 
