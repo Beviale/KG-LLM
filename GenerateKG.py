@@ -428,7 +428,7 @@ def generate_ontology(category, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-mini"
+        model = "openai/gpt-5-nano"
 
     ontology_file = Path(f"Ontologies/{category}/Ontology.json")
     if ontology_file.exists():

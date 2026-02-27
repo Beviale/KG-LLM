@@ -273,7 +273,7 @@ Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIE
 Le etichette (label) di entità e relazioni non possono iniziare con numeri o caratteri speciali.
 Non usare caratteri di escape come backslash (\). 
 Assicurati che ogni stringa sia racchiusa tra doppi apici standard (").
-Estrai ciascuna possibile entità o relazione atomica, non sintetizzare!
+Favorendo la generalizzazione nella definizione dei tipi di entità e relazioni assicurati di coprire ciascuna possibile entità o relazione atomica presente nel testo, non sintetizzare! 
 
 ## 4. Formato
 L'ontologia deve essere in formato JSON e seguire lo schema fornito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
