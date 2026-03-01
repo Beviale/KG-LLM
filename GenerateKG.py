@@ -276,18 +276,33 @@ def merge_ontologies_chunk(category, model=None):
     """
     if model is None:
         model = "openai/gpt-5-mini"
-    index = 1
     json_merge = []
-    while(True):
-        file_path = Path(f"Ontologies/{category}/{index}_Ontology.json")
-        if file_path.exists()==False:
-            break
-        
-        with file_path.open("r", encoding="utf-8") as f:
-            json_item = json.load(f)
 
-        json_merge.append(json_item)
-        index += 1
+
+    next_level_index = 0
+    while(True):
+        next_level_index = next_level_index + 1
+        if os.path.exists(f"Ontologies/{category}/NextLevel_{next_level_index}") == False:
+            break
+    
+    if next_level_index > 1:
+        last_next_level_dir = Path(f"Ontologies/{category}/NextLevel_{next_level_index-1}")
+        for file_path in last_next_level_dir.iterdir():
+            with file_path.open("r", encoding="utf-8") as f:
+                json_item = json.load(f)
+            json_merge.append(json_item)
+    else:
+        index = 1
+        while(True):
+            file_path = Path(f"Ontologies/{category}/{index}_Ontology.json")
+            if file_path.exists()==False:
+                break
+            
+            with file_path.open("r", encoding="utf-8") as f:
+                json_item = json.load(f)
+
+            json_merge.append(json_item)
+            index += 1
 
     current_json_elements = json_merge[:]
     while len(current_json_elements) > 1:
@@ -348,6 +363,16 @@ def merge_ontologies_chunk(category, model=None):
             else:
                 next_level.append(current_json_elements[i])
         current_json_elements = next_level
+        dir_path_next_level = Path(f"Ontologies/{category}/NextLevel_{next_level_index}")
+        dir_path_next_level.mkdir(parents=True, exist_ok=True)
+        next_level_file_index = 0
+        for json_item in next_level:
+            next_level_file_index = next_level_file_index + 1
+            file_path_next_level = Path(f"Ontologies/{category}/NextLevel_{next_level_index}/{next_level_file_index}_Ontology.json")
+            with open(file_path_next_level, "w", encoding="utf-8") as f:
+                f.write(json.dumps(json_item, indent=2, ensure_ascii=False))
+        next_level_index = next_level_index + 1
+
     new_json = current_json_elements[0]
 
 
@@ -388,10 +413,14 @@ def merge_ontologies_chunk(category, model=None):
     else:
         return False
 
-    for i in range(index):
+    i = 0
+    while(True):
+        i = i + 1
         file_path = Path(f"Ontologies/{category}/{i}_Ontology.json")    
         if os.path.exists(file_path):
             os.remove(file_path)
+        else:
+            break
     return True
 
         
@@ -420,7 +449,8 @@ def split_codice_appalti(file_path):
 def generate_ontology(category, model=None, dataItems=None):
     """
     It generates the ontology for the given category (e.g. 'DiscplinaDiUtilizzo')
-    """
+    """    
+
     if dataItems is not None:
         all_text_paths = [item.text_path for item in dataItems]
     else:
@@ -428,7 +458,7 @@ def generate_ontology(category, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-nano"
+        model = "openai/gpt-5-mini"
 
     ontology_file = Path(f"Ontologies/{category}/Ontology.json")
     if ontology_file.exists():
@@ -448,7 +478,7 @@ def generate_ontology(category, model=None, dataItems=None):
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
 
-        chunks = split_text_chunks(text, True)
+        chunks.extend(split_text_chunks(text, True))
        
 
     index_chunk = 0
@@ -565,7 +595,7 @@ def generate_data(category: str, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-nano"
+        model = "openai/gpt-5-mini"
 
 
     print(f"{Fore.GREEN}--Generating the data for the '{category}' category")
@@ -596,7 +626,7 @@ def generate_data(category: str, model=None, dataItems=None):
         with open(text_path, "r", encoding="utf-8") as f:
             text = f.read()
 
-        chunks = split_text_chunks(text, False)
+        chunks.extend(split_text_chunks(text, False))
      
 
     index_chunk = 0
@@ -650,7 +680,14 @@ def generate_data(category: str, model=None, dataItems=None):
                 textsToAdd.clear()
             else:
                 break
-    aggregate_Json = aggregate_data_and_remove_duplicates(json_data_chunks, json_ontology, text_ontology)
+    data_file_name = f"JsonData/{category}/Data.json"
+    if os.path.exists(data_file_name):
+        with open(data_file_name, "r", encoding="utf-8") as file:
+            aggregate_Json = json.load(file)
+    else:
+        aggregate_Json = aggregate_data_and_remove_duplicates(json_data_chunks, json_ontology, text_ontology)
+        with open(data_file_name, "w", encoding="utf-8") as file:
+            file.write(json.dumps(aggregate_Json, indent=2, ensure_ascii=False))
     json_ontology_with_ref = Utils.get_json_ontology_with_ref(json_ontology, aggregate_Json["entities"])
     ontology_with_ref = Ontology.from_json(json_ontology_with_ref)
     upload_correctly = upload_data(category, aggregate_Json, ontology_with_ref)

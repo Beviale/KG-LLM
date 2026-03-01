@@ -1707,6 +1707,7 @@ Testo usato per la generazione dell'ontologia da correggere:
 FIX_JSON_PROMPT_ONTOLOGY_MERGE_ITA = """
 Data la seguente ontologia JSON che hai creato precedentemente dall'unione di due ontologie, correggi gli errori che sono stati riscontrati durante il suo parsing.
 Non modificare il significato semantico del JSON; devi solo modificare la sua struttura in modo tale da risolvere gli errori di parsing.
+Assicurati che le parentesi siano state inserite correttamente rispettando lo schema.
 Non includere alcuna introduzione o spiegazione nella risposta, solo il JSON.
 
 L'errore durante il parsing dell'ontologia da correggere è stato il seguente:
@@ -2205,4 +2206,39 @@ L'obiettivo è centralizzare la domanda, ottenere risparmi economici (economie d
 2) Gare telematiche: procedure di invio e ricezione delle offerte realizzate per via telematica e basate sull'uso di firma digitale e posta elettronica certificata, garantiscono pari opportunità agli operatori economici, snellendo e riducendo inoltre i tempi dell'iter procedimentale.
 3) Negozio elettronico: l'acquisto di beni e servizi in convenzione, mediante catalogo elettronico, favorisce la razionalizzazione, pianificazione e aggregazione della spesa, producendo significative economie di scala.
 4) Sistema dinamico di acquisizione: processo di acquisto interamente telematico per l'approvvigionamento di beni e servizi standardizzati, limitato nel tempo e aperto per tutta la sua durata agli operatori economici.
+"""
+
+
+LLM_AS_JUDGE_SYSTEM = """
+Sei un generatore di test che dovrà comportarsi seguendo la tecnica del LLM-as-a-judge.
+In particolare, il tuo compito sarà quello di formula una domanda dato un testo in input e successivamente valutare se la risposta fornita da un LLM sia corretta o meno.
+Dovrai fornire un feedback binario, quindi "Si" o "No" dove:
+  1) "Si" indica che la risposta è coerente con quanto riportato nel testo, non presenta errori e risponde a quanto richiesto nella domanda.
+  2) "No" se la risposta presenta informazioni errate, non presenti nel testo e non riguardanti strettamente la domanda posta.
+Il dominio è quello della Pubblica Amministrazione e del Codice degli Appalti italiano.
+
+# Regole
+1) Usa esclusivamente le informazioni basate sul testo dato in input.
+2) La verifica della risposta dovrà essere effettuata sulla base della domanda posta e sulla base del testo fornito. Non includere la tua conoscenza del dominio nella verifica della risposta.
+"""
+
+LLM_AS_JUDGE_QUESTION_TO_ASK = """
+Dato il seguente testo, formula una domanda legato ad esso.
+
+Text:
+{text}
+"""
+
+LLM_AS_JUDGE_EVALUATION = """
+Dato il seguente testo e la seguente coppia domanda-risposta, valuta se la risposta è corretta o meno.
+Restituisci soltanto "Si" oppure "No", non restituire altro testo!
+
+Text:
+{text}
+
+Domanda:
+{question}
+
+Risposta:
+{answer}
 """

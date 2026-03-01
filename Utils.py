@@ -119,6 +119,7 @@ def validate_generated_ontology(ontology_text: str):
             source_attrs = source.get("attributes")   
             if source_attrs is None:
                 errors = errors + f"The source '{source_label}' of the relation '{relation_label}' does not have any attributes - "
+                break
             count_unique_attr = 0
             for attr in source_attrs:
                 name_attr = attr.get("name")
@@ -163,9 +164,11 @@ def validate_generated_ontology(ontology_text: str):
                 break
             if target_label not in entity_labels_Keys.keys():
                 errors = errors + f"The target '{target_label}' of the relation '{relation_label}' does not exist in the entity list - "
+                break
             target_attrs = target.get("attributes")   
             if target_attrs is None:
                 errors = errors + f"The target '{target_label}' of the relation '{relation_label}' does not have any attributes - "
+                break
             count_unique_attr = 0
             for attr in target_attrs:
                 name_attr = attr.get("name")
@@ -368,7 +371,7 @@ def verify_relation(relation, entities, json_ontology, errors):
         source_keyref_value = None
         for key, value in source_attrs.items():
             if key == name_key_attr:             
-                source_attrs[key] = str(source_attrs[key]).replace(" ", "").lower()
+                #source_attrs[key] = str(source_attrs[key]).replace(" ", "").lower()
                 source_keyref_value = source_attrs[key]
                 break 
         if source_keyref_value is None:
@@ -376,14 +379,17 @@ def verify_relation(relation, entities, json_ontology, errors):
             break
         found=False
         for entity in entities:
-            entity_label = entity.get("label")
-            if entity_label is not None:
-                if entity_label == source_label:
-                    for key, value in entity.get("attributes").items():
-                        if key == name_key_attr:
-                            if value == source_keyref_value:
-                                found = True
-                                break
+            try:
+                entity_label = entity.get("label")
+                if entity_label is not None:
+                    if entity_label == source_label:
+                        for key, value in entity.get("attributes").items():
+                            if key == name_key_attr:
+                                if value == source_keyref_value:
+                                    found = True
+                                    break
+            except Exception as ex:
+                    print(entity)
                     if found:
                         break
         if found==False:
@@ -406,7 +412,7 @@ def verify_relation(relation, entities, json_ontology, errors):
         target_keyref_value = None
         for key, value in target_attrs.items():
             if key == name_key_attr:
-                target_attrs[key] = str(target_attrs[key]).replace(" ", "").lower()
+                #target_attrs[key] = str(target_attrs[key]).replace(" ", "").lower()
                 target_keyref_value = target_attrs[key]
                 break
         if target_keyref_value is None:
@@ -580,6 +586,7 @@ def get_json_data(text_json : str, ontology, json_ontology):
     if text_json is None:
         raise Exception("Empty data.")
     json_object = json.loads(extract_json(text_json))
+    json_object_copy = copy.deepcopy(json_object)
 
     errors = ""
 
@@ -669,7 +676,7 @@ def get_json_data(text_json : str, ontology, json_ontology):
         errors = errors + "."
         raise Exception(errors)
     else:
-        return json_object
+        return json_object_copy
                 
 
 

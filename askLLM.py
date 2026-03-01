@@ -169,21 +169,31 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
 
 
 def run_orchestrator(orchestrator, question):
-
     # Query the orchestrator.
     runner = orchestrator.ask(question)
-    print(runner.output)
+    return runner.output
 
-    
-def main():
+
+def ask(question, orchestrator=None):
+    if orchestrator is None:
+        orchestrator = initialize()
+        if orchestrator is None:
+            print("Orchestrator is None!")
+            return
+    return run_orchestrator(orchestrator, question)
+
+
+
+def initialize():
     translate_sdkPrompts_to_ITA()
     print(f"{Fore.GREEN}Loading the Knowledge Graphs and the agents...")
     orchestrator = istantiate_KG_and_Agents()
-    if orchestrator is None:
-        return
-    print(f"Question: ")
-    question = input("What do you want to do? ")
-    run_orchestrator(orchestrator, question)
+    return orchestrator
+
+    
+def main():
+    question = input("Question: ")
+    print("Answer: " + ask(question))
 
 
 if __name__ == "__main__":
