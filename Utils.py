@@ -312,7 +312,7 @@ def get_relation_schema(label, source_label, target_label, json_ontology):
     return relation_schema
 
 
-def verify_relation(relation, entities, json_ontology, errors):
+def verify_relation(relation, entities, json_ontology, errors, toLower=False):
     """
     Verifies that the input relation JSON object conforms to the required ontology structure for entity and relation extraction. 
     It returns the list of errors.
@@ -370,8 +370,9 @@ def verify_relation(relation, entities, json_ontology, errors):
         name_key_attr = get_unique_attribute_entity(source_label, json_ontology)
         source_keyref_value = None
         for key, value in source_attrs.items():
-            if key == name_key_attr:             
-                #source_attrs[key] = str(source_attrs[key]).replace(" ", "").lower()
+            if key == name_key_attr: 
+                if toLower:            
+                    source_attrs[key] = str(source_attrs[key]).replace(" ", "").lower()
                 source_keyref_value = source_attrs[key]
                 break 
         if source_keyref_value is None:
@@ -412,7 +413,8 @@ def verify_relation(relation, entities, json_ontology, errors):
         target_keyref_value = None
         for key, value in target_attrs.items():
             if key == name_key_attr:
-                #target_attrs[key] = str(target_attrs[key]).replace(" ", "").lower()
+                if toLower:
+                    target_attrs[key] = str(target_attrs[key]).replace(" ", "").lower()
                 target_keyref_value = target_attrs[key]
                 break
         if target_keyref_value is None:
@@ -639,7 +641,7 @@ def get_json_data(text_json : str, ontology, json_ontology):
             if len(relations) == 0:
                 errors = errors + f"Relation with label '{relation['label']}' not found in ontology - "
                 continue
-            errors = verify_relation(relation, json_object["entities"], json_ontology, errors)
+            errors = verify_relation(relation, json_object["entities"], json_ontology, errors, toLower=True)
             source_unique_attributes = (
                 relation["source"]["attributes"]
                 if "source" in relation and "attributes" in relation["source"]
