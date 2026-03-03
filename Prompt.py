@@ -22,8 +22,8 @@ Non puoi creare più di un'entità con la stessa label (sarebbero duplicate).
 Non puoi creare più relazioni che presentano congiuntamente le stesse label, source label e target label (sarebbero duplicate).
 Ogni entità deve avere esattamente un attributo univoco (cosiddetto attributo 'key').
 Non creare relazioni senza le due relative entità di origine ('source') e destinazione ('target'). Prima di creare una relazione che collega due entità, assicurati di aver creato le entità stesse!
-Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una 'Persona' ha 'INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non sarà possibile determinare da quale 'Film' provenga il 'Personaggio'.
-Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare una relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
+Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una 'PersonaFisica' ha ricoperto il ruolo di 'RUP' (Responsabile Unico del Progetto) in un 'Appalto', assicurati di collegare il ruolo di 'RUP' a quello specifico 'Appalto', altrimenti non sarà possibile determinare per quale appalto quella persona abbia assunto la responsabilità legale e gestionale.
+Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'AGGIUDICATARIO_DI' da un 'OperatoreEconomico' a un 'Appalto', non creare una relazione 'AGGIUDICATO_A' dall' 'Appalto' all' 'OperatoreEconomico'.
 Le etichette (label) di entità e relazioni non possono iniziare con numeri o caratteri speciali.
 Non usare caratteri di escape come backslash (\).
 Assicurati che ogni stringa sia racchiusa tra doppi apici standard (").
@@ -215,7 +215,7 @@ JSON Schema:
 }
 ```
 
-Eccoti un piccolo esempio di input-output:
+Eccoti un piccolo esempio di input-output ipotizzando di essere in un altro dominio (ovvero quello cinematografico):
 
 Date in input le seguenti due ontologie:
 a) Prima ontologia
@@ -249,8 +249,8 @@ Cattura dal testo quante più informazioni possibili su entità, relazioni e att
 L'obiettivo è ottenere soprattutto completezza e chiarezza nel grafo della conoscenza, rendendolo accessibile a un vasto pubblico.  
 Utilizza il campo 'attributes' per catturare informazioni aggiuntive sulle entità e sulle relazioni.  
 Aggiungi tutti gli attributi necessari per descrivere completamente entità e relazioni presenti nel testo.  
-Gli attributi devono essere estratti come entità o relazioni quando possibile. Ad esempio, quando si descrive un'entità 'Film', l'attributo 'regista' può essere estratto come un'entità 'Persona' e collegato all'entità 'Film' tramite una relazione etichettata 'DIRETTO_DA'.
-Allo stesso modo, quando si descrive un'entità 'Film', è possibile estrarre attributi come titolo, anno di uscita, genere e altro.
+Gli attributi devono essere estratti come entità o relazioni quando possibile. Ad esempio, quando si descrive l'entità 'Appalto', l'attributo 'aggiudicatario' non deve essere solo una stringa di testo, ma può essere estratto come un'entità 'OperatoreEconomico' e collegato all'entità 'Appalto' tramite una relazione etichettata 'AGGIUDICATO_A'
+Allo stesso modo, quando si descrive un'entità 'Appalto', è possibile estrarre attributi fondamentali come l'oggetto (il titolo della prestazione), l'anno di indizione (l'anno di pubblicazione del bando), il CPV (il genere o categoria merceologica) e altro ancora. 
 Preferisci convertire le relazioni in entità quando possiedono attributi.
 Crea un'ontologia completa e chiara. Evita duplicazioni non necessarie.
 
@@ -268,8 +268,8 @@ Non puoi creare più di un'entità con la stessa label (sarebbero duplicate).
 Non puoi creare più relazioni che presentano congiuntamente le stesse label, source label e target label (sarebbero duplicate).
 Ogni entità deve avere esattamente un attributo univoco (cosiddetto attributo 'key').
 Non creare relazioni senza le due relative entità di origine ('source') e destinazione ('target'). Prima di creare una relazione che collega due entità, assicurati di aver creato le entità stesse!
-Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una 'Persona' ha 'INTERPRETATO' un 'Personaggio' in un 'Film', assicurati di collegare il 'Personaggio' al 'Film', altrimenti non sarà possibile determinare da quale 'Film' provenga il 'Personaggio'.
-Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'POSSIEDE' da 'Persona' a 'Casa', non creare una relazione 'POSSEDUTA_DA' da 'Casa' a 'Persona'.
+Assicurati di collegare tutte le entità correlate nell'ontologia. Ad esempio, se una 'PersonaFisica' ha ricoperto il ruolo di 'RUP' (Responsabile Unico del Progetto) in un 'Appalto', assicurati di collegare il ruolo di 'RUP' a quello specifico 'Appalto', altrimenti non sarà possibile determinare per quale appalto quella persona abbia assunto la responsabilità legale e gestionale.
+Non creare relazioni inverse duplicate; ad esempio, se hai una relazione 'AGGIUDICATARIO_DI' da un 'OperatoreEconomico' a un 'Appalto', non creare una relazione 'AGGIUDICATO_A' dall' 'Appalto' all' 'OperatoreEconomico'.
 Le etichette (label) di entità e relazioni non possono iniziare con numeri o caratteri speciali.
 Non usare caratteri di escape come backslash (\). 
 Assicurati che ogni stringa sia racchiusa tra doppi apici standard (").
@@ -463,7 +463,7 @@ JSON Schema:
 }
 ```
 
-Eccoti un piccolo esempio di output che potresti restituirmi:
+Eccoti un piccolo esempio di output che potresti restituirmi ipotizzando di essere in un altro dominio (ovvero quello cinematografico):
 ```json
 {"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string","required":true}]}]}
 ```
@@ -1055,7 +1055,7 @@ Schema:
 }
 ```
 
-Eccoti un esempio di input-output corretto:
+Eccoti un esempio di input-output corretto ipotizzando di essere in un altro dominio (ovvero quello cinematografico):
 Lista in input contenente due relazioni duplicate:
 ```json{"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","snippet":"John Doe, un attore versatile e molto apprezzato, ha ottenuto un ampio riconoscimento per la sua interpretazione nel film Inception del 2010. Nel film ha interpretato Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}},
 {"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":{"nome":"John Doe"}},"target":{"label":"Film","attributes":{"titolo":"Inception"}},"attributes":{"ruolo":"Cobb","snippet": "John Doe, un attore versatile e molto apprezzato, ha preso parte al cast del film Inception del 2010, ottenendo ampio riconoscimento per la sua interpretazione di Dom Cobb, un personaggio complesso e guidato da forti emozioni, incaricato di navigare tra livelli multipli di mondi onirici."}}
@@ -1192,7 +1192,7 @@ Schema:
 }
 ```
 
-Eccoti un esempio di input-output corretto:
+Eccoti un esempio di input-output corretto ipotizzando di essere in un altro dominio (ovvero quello cinematografico):
 Lista in input contenente due entità duplicate:
 ```json
 {"entities":[{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"snippet":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"snippet":"Oggi, a 30 anni, John Doe può guardare con orgoglio al percorso iniziato durante i suoi studi in Ingegneria Informatica presso il Politecnico, dove ha gettato le basi della sua solida preparazione tecnica."}}]}
@@ -1225,7 +1225,7 @@ Ciascuna relazione ha un'entità source e un'entità target. Per fare riferiment
 Non includere spiegazioni o scuse nelle tue risposte, solo il JSON.
 Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
 Non inventare dati, usa solo ciò che viene riportato nel testo.
-Se devi rappresentare un'entità menzionata nel testo che risulta strutturalmente importante ma non è esplicitamente istanziata, puoi creare un'istanza fittizia a patto che ciò venga evidenziato nei valori dei suoi attributi. Ad esempio, se l'entità con label 'PubblicaAmministrazione' viene menzionata nel testo e risulta importante con molte relazioni correlate ad essa ma non viene istanziata, puoi creare un'entità 'PubblicaAmministrazione' che avrà come nome 'PubblicaAmministrazioneEsempio.'
+Se devi rappresentare un'entità menzionata nel testo che risulta strutturalmente importante ma non è esplicitamente istanziata, puoi creare una sua istanza fittizia. Ad esempio, se l'entità ontologica con label 'PubblicaAmministrazione' viene menzionata nel testo e risulta importante con molte relazioni correlate ad essa ma non viene istanziata con nessun nome proprio, puoi creare un'entità 'PubblicaAmministrazione' che avrà come nome semplicemente 'PubblicaAmministrazione.' Se crei un'istanza fittizia, assicurati di riutilizzare la stessa istanza per ogni menzione generica di quel concetto nel testo.
 Assicurati che il JSON prodotto contenga, per ogni entità e relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'snippet'. Tale riferimento può essere eventualmente sintetizzato se troppo prolisso. Ricordati che lo snippet deve essere una porzione di testo utile e comunque di senso compiuto.
 Estrai ciascuna possibile entità o relazione atomica, non sintetizzare!
 
@@ -1324,7 +1324,7 @@ JSON Schema:
 }
 ```
 
-Data la seguente ontologia:
+Data la seguente ontologia ipotizzando di essere in un altro dominio (ovvero quello cinematografico):
 ```json
 {"entities":[{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true},{"name":"età","type":"number","unique":false,"required":false},{"name":"snippet","type":"string","unique":false,"required":true}]},{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true},{"name":"anno_di_uscita","type":"number","unique":false,"required":false},{"name":"snippet","type":"string","unique":false,"required":true}]}],"relations":[{"label":"HA_RECITATO_IN","source":{"label":"Persona","attributes":[{"name":"nome","type":"string","unique":true,"required":true}]},"target":{"label":"Film","attributes":[{"name":"titolo","type":"string","unique":true,"required":true}]},"attributes":[{"name":"ruolo","type":"string", "unique":false,"required":false},{"name":"snippet","type":"string","unique":false,"required":true}]}]}
 ```
