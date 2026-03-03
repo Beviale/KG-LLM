@@ -118,6 +118,7 @@ def preprocess(text: str):
     # 6. We transform all the text in lowercase excpet for the acronyms
     word_pattern = re.compile(r'\b[\w]+\b')
     new_text =  word_pattern.sub(selective_lower, new_text)
+    new_text = re.sub(r'[ \t]+', ' ', new_text)
     return new_text
 
    
@@ -458,7 +459,7 @@ def generate_ontology(category, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-mini"
+        model = "openai/gpt-5-nano"
 
     ontology_file = Path(f"Ontologies/{category}/Ontology.json")
     if ontology_file.exists():

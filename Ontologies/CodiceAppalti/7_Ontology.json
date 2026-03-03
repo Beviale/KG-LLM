@@ -1,0 +1,401 @@
+{
+  "entities": [
+    {
+      "label": "PubblicaAmministrazione",
+      "attributes": [
+        {
+          "name": "codice_entita_pa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Contratto",
+      "attributes": [
+        {
+          "name": "id_contratto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "gratuito",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PrestazioneIntellettuale",
+      "attributes": [
+        {
+          "name": "id_prestazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Professionista",
+      "attributes": [
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "specializzazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EquoCompenso",
+      "attributes": [
+        {
+          "name": "id_equo_compenso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "articoli_riferiti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Donazione",
+      "attributes": [
+        {
+          "name": "id_donazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_dono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "obbligo_di_gara",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "forma",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione_donazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "conformita_codice_civile",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "revocazione",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "azione_di_riduzione",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Bene",
+      "attributes": [
+        {
+          "name": "id_bene",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "CONCLUDE_CONTRATTO",
+      "source": {
+        "label": "PubblicaAmministrazione",
+        "attributes": [
+          {
+            "name": "codice_entita_pa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "id_contratto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ESEGUI_PRESTAZIONE",
+      "source": {
+        "label": "Professionista",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PrestazioneIntellettuale",
+        "attributes": [
+          {
+            "name": "id_prestazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "gratuito",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "eccezioni",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPLICA_EQUO_COMPENSO",
+      "source": {
+        "label": "PubblicaAmministrazione",
+        "attributes": [
+          {
+            "name": "codice_entita_pa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "EquoCompenso",
+        "attributes": [
+          {
+            "name": "id_equo_compenso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "articoli_riferiti",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICEVE_DONAZIONE",
+      "source": {
+        "label": "PubblicaAmministrazione",
+        "attributes": [
+          {
+            "name": "codice_entita_pa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Donazione",
+        "attributes": [
+          {
+            "name": "id_donazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_dono",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "obbligo_di_gara",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "forma",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "descrizione_donazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "conformita_codice_civile",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DONAZIONE_CONSISTE_IN_BENE",
+      "source": {
+        "label": "Donazione",
+        "attributes": [
+          {
+            "name": "id_donazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bene",
+        "attributes": [
+          {
+            "name": "id_bene",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_bene",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DONAZIONE_CONSISTE_IN_PRESTAZIONE",
+      "source": {
+        "label": "Donazione",
+        "attributes": [
+          {
+            "name": "id_donazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PrestazioneIntellettuale",
+        "attributes": [
+          {
+            "name": "id_prestazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_prestazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

@@ -9,7 +9,7 @@ Preferisci convertire le relazioni in entità quando possiedono attributi.
 Crea un'ontologia completa e chiara. Evita duplicazioni non necessarie.
 
 ## 2. Etichettare le entità e le relazioni
--  **Coerenza**: Usa tipi non troppo specifici per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una regione italiana, etichettala sempre come 'Regione'. Evita termini più specifici come 'RegionePuglia' o 'RegioneBasilicata'. Favorisci la generalizzazione.
+-  **Coerenza**: Usa tipi non troppo specifici per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una regione italiana, etichettala sempre come 'Regione' evitando termini più specifici come 'RegionePuglia' o 'RegioneBasilicata'. O ancora, se trovi due entità 'Legge100_1998' e 'Legge30_2002' generalizzale con un'unica entità avente label 'Legge'. Favorisci la generalizzazione.
 -  **Key delle entità**: La 'Key' di un'entità è il suo attributo univoco e, pertanto, identificativo, come il codice fiscale di una persona. Ogni entità deve avere esattamente un attributo 'Key'. Non considerare banali numeri progressivi come 'Key'. Le 'Key' devono essere numeri significativi, nomi o identificatori human-readable.
 -  Le **relazioni** rappresentano connessioni tra entità e concetti. Usa tipi di relazione coerenti e generali. Ad esempio, invece di usare un tipo specifico e temporale come 'DIVENTA_PROFESSORE', usa un tipo più generale e atemporale come 'PROFESSORE'. Assicurati di usare tipi di relazione generali e atemporali!
 
@@ -255,7 +255,7 @@ Preferisci convertire le relazioni in entità quando possiedono attributi.
 Crea un'ontologia completa e chiara. Evita duplicazioni non necessarie.
 
 ## 2. Etichettare le entità e le relazioni
--  **Coerenza**: Usa tipi non troppo specifici per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una regione italiana, etichettala sempre come 'Regione'. Evita termini più specifici come 'RegionePuglia' o 'RegioneBasilicata'. Favorisci la generalizzazione.
+-  **Coerenza**: Usa tipi non troppo specifici per le etichette delle entità. Ad esempio, quando identifichi un'entità che rappresenta una regione italiana, etichettala sempre come 'Regione' evitando termini più specifici come 'RegionePuglia' o 'RegioneBasilicata'. O ancora, se trovi due entità 'Legge100_1998' e 'Legge30_2002' generalizzale con un'unica entità avente label 'Legge'. Favorisci la generalizzazione.
 -  **Key delle entità**: La 'Key' di un'entità è il suo attributo univoco e, pertanto, identificativo, come il codice fiscale di una persona. Ogni entità deve avere esattamente un attributo 'Key'. Non considerare banali numeri progressivi come 'Key'. Le 'Key' devono essere valori numerici significativi, nomi o identificatori human-readable trovati nel testo.
 -  Le **relazioni** rappresentano connessioni tra entità e concetti. Usa tipi di relazione coerenti e generali. Ad esempio, invece di usare un tipo specifico e temporale come 'DIVENTA_PROFESSORE', usa un tipo più generale e atemporale come 'PROFESSORE'. Assicurati di usare tipi di relazione generali e atemporali!
 
@@ -476,8 +476,8 @@ CREATE_ONTOLOGY_SYSTEM = """
 ## 1. Overview\n"
 You are a top-tier algorithm designed for extracting ontologies in structured formats to build a knowledge graph from raw texts.
 Capture as many entities, relationships, and attributes information from the text as possible. 
-- **Entities** represent entities and concepts. Must have at least one unique attribute.
-- **Relations** represent relationships between entities and concepts.
+- **entities** represent entities and concepts. Must have at least one unique attribute.
+- **relations** represent relationships between entities and concepts.
 The aim is to achieve simplicity and clarity in the knowledge graph, making it accessible for a vast audience.
 Use the `attributes` field to capture additional information about entities and relations. 
 Add as many attributes to entities and relations as necessary to fully describe the entities and relationships in the text.
@@ -488,7 +488,7 @@ Entity and relation labels cannot start with numbers or special characters.
 ## 2. Labeling Entities
 - **Consistency**: Ensure you use available types for entity labels. Ensure you use basic or elementary types for entity labels. For example, when you identify an entity representing a person, always label it as **'person'**. Avoid using more specific terms "like 'mathematician' or 'scientist'"
 - **Entity IDs**: Never utilize integers as entity IDs. Entity IDs should be names or human-readable identifiers found in the text.
-- **Relations** represent connections between entities or concepts. Ensure consistency and generality in relationship types when constructing knowledge graphs. Instead of using specific and momentary types such as 'BECAME_PROFESSOR', use more general and timeless relationship types like 'PROFESSOR'. Make sure to use general and timeless relationship types!
+- **relations** represent connections between entities or concepts. Ensure consistency and generality in relationship types when constructing knowledge graphs. Instead of using specific and momentary types such as 'BECAME_PROFESSOR', use more general and timeless relationship types like 'PROFESSOR'. Make sure to use general and timeless relationship types!
 
 ## 3. Coreference Resolution
 - **Maintain Entity Consistency**: When extracting entities, it's vital to ensure consistency. If an entity, such as "John Doe", is mentioned multiple times in the text but is referred to by different names or pronouns (e.g., "Joe", "he"), always use the most complete identifier for that entity throughout the knowledge graph. In this example, use "John Doe" as the entity ID. Remember, the knowledge graph should be coherent and easily understandable, so maintaining consistency in entity references is crucial.
@@ -1225,6 +1225,7 @@ Ciascuna relazione ha un'entità source e un'entità target. Per fare riferiment
 Non includere spiegazioni o scuse nelle tue risposte, solo il JSON.
 Non rispondere a domande che chiedono qualcosa di diverso dall'estrazione dei dati.
 Non inventare dati, usa solo ciò che viene riportato nel testo.
+Se devi rappresentare un'entità menzionata nel testo che risulta strutturalmente importante ma non è esplicitamente istanziata, puoi creare un'istanza fittizia a patto che ciò venga evidenziato nei valori dei suoi attributi. Ad esempio, se l'entità con label 'PubblicaAmministrazione' viene menzionata nel testo e risulta importante con molte relazioni correlate ad essa ma non viene istanziata, puoi creare un'entità 'PubblicaAmministrazione' che avrà come nome 'PubblicaAmministrazioneEsempio.'
 Assicurati che il JSON prodotto contenga, per ogni entità e relazione, il riferimento alla porzione di testo usata per la creazione di quella specifica entità o relazione. A tale scopo, usa l'attributo 'snippet'. Tale riferimento può essere eventualmente sintetizzato se troppo prolisso. Ricordati che lo snippet deve essere una porzione di testo utile e comunque di senso compiuto.
 Estrai ciascuna possibile entità o relazione atomica, non sintetizzare!
 

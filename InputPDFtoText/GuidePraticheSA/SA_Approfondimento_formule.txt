@@ -35,10 +35,10 @@ pag.3 manuale SA | approfondimento formule economiche vers.1.0
 1. INTRODUZIONE 
 per la predisposizione di una procedura di gara aggiudicata attraverso il criterio dell’offerta 
 economicamente più vantaggiosa sulla base del miglior rapporto qualità/prezzo, la piattaforma 
-empulia garantisce un set molto ampio di formule per la valutazione degli elementi economici  (di 
+empulia garantisce un set molto ampio di formule per la valutazione degli elementi economici (di 
 seguito semplicemente formula), in grado di soddisfare la grande maggioranza delle esigenze delle 
 stazioni appaltanti. 
-dal momento che la  scelta della formula assume un ruolo strategico  che ha impatti rilevanti sulla 
+dal momento che la scelta della formula assume un ruolo strategico che ha impatti rilevanti sulla 
 formulazione della graduatoria finale, si precisa da un lato la non tassatività di utilizzo delle formule 
 descritte nel presente documento, e dall’altro si ribadisce che l’onere e la responsabilità di scelta di 
 una determinata formula sono sempre in capo alla singola stazione appaltante. 
@@ -50,7 +50,7 @@ o massimo sconto
 o massimo sconto non lineare 
 o ribasso massimo 
 o ribasso massimo non lineare 
-o valore soglia dei ribassi   
+o valore soglia dei ribassi 
 o valore soglia dei ribassi condizionata 
 o valore soglia degli sconti 
 o valore soglia degli sconti condizionata 
@@ -60,23 +60,23 @@ o valore offerta / massimo valore offerta * punteggio
 o percentuale offerta / massima percentuale offerta * punteggio 
  
 • formule indipendenti: in cui il punteggio di ciascun concorrente dipende esclusivamente 
-dalla propria offerta economica ed è conoscibile a priori dal concorrente stesso  nel momento 
+dalla propria offerta economica ed è conoscibile a priori dal concorrente stesso nel momento 
 in cui definisce la propria offerta: 
 o esponenziale 
 qualora una SA intenda utilizzare una formula non ricompresa nelle opzioni sopra descritte, il sistema 
-offre l’opzione “ valutazione soggettiva” che, se selezionata, permette alla stazione appaltante di   
+offre l’opzione “ valutazione soggettiva” che, se selezionata, permette alla stazione appaltante di 
 manuale SA | approfondimento formule economiche 
 
 pag.4 manuale SA | approfondimento formule economiche vers.1.0 
  
  
 effettuare i calcoli relativi ai punteggi finali al di fuori dalla procedura telematica, riportandone 
-successivamente i risultati all’interno del sistema stesso.  
+successivamente i risultati all’interno del sistema stesso. 
  
 2. DETTAGLIO FORMULE ECONOMICHE 
 2.1. valore assoluto 
 solo per offerta economica espressa con prezzo: 
-P = pmax  * ( 
+P = pmax * ( 
 (vminoff
 voff
 ) 
@@ -87,96 +87,96 @@ vminoff corrisponde al valore minimo offerto
  
 DESCRZIONE FORMULA SU empulia: punteggio * ( minimo valore offerta / valore offerta ) 
  
-2.2. massimo sconto  
+2.2. massimo sconto 
 solo per offerta economica espressa in percentuale: 
  
-P = pmax  * ( 
+P = pmax * ( 
 roff
 rmaxoff
 ) 
  
 dove: 
 pmax corrisponde al punteggio massimo. 
-roff    sconto percentuale offerto 
-rmaxoff     sconto percentuale massimo offerto  
+roff sconto percentuale offerto 
+rmaxoff sconto percentuale massimo offerto 
  
 DESCRZIONE FORMULA SU empulia: punteggio * ( sconto offerto / sconto migliore ) 
-   
+ 
 manuale SA | approfondimento formule economiche 
 
 pag.5 manuale SA | approfondimento formule economiche vers.1.0 
  
  
-2.3. massimo sconto non lineare  
+2.3. massimo sconto non lineare 
 solo per offerta economica espressa in percentuale: 
-P = pmax  *  (
+P = pmax * (
 roff
 rmaxoff
 )α 
  
 dove: 
-α  può essere scelto nell’intervallo tra [0,1] 
-roff    corrisponde allo sconto offerto 
+α può essere scelto nell’intervallo tra [0,1] 
+roff corrisponde allo sconto offerto 
 rmaxoff corrisponde al massimo sconto offerto 
  
-DESCRZIONE FORMULA SU empulia: punteggio *  potenza (  sconto offerto / sconto migliore, alfa ) 
+DESCRZIONE FORMULA SU empulia: punteggio * potenza ( sconto offerto / sconto migliore, alfa ) 
  
  
-2.4. ribasso massimo  
+2.4. ribasso massimo 
 disponibile sia per offerta espressa in percentuale che come prezzo: 
-P = pmax  * ( 
+P = pmax * ( 
 roff
 rmaxoff
 ) 
 dove: 
 pmax corrisponde al punteggio massimo. 
-roff    corrisponde al ribasso offerto (inteso come differenza fra base d’asta e prezzo offerto) 
-rmaxoff    corrisponde al ribasso massimo offerto (inteso come differenza fra base d’asta e prezzo 
+roff corrisponde al ribasso offerto (inteso come differenza fra base d’asta e prezzo offerto) 
+rmaxoff corrisponde al ribasso massimo offerto (inteso come differenza fra base d’asta e prezzo 
 minimo offerto) 
  
 DESCRZIONE FORMULA SU empulia: punteggio * ( ribasso offerto / massimo ribasso offerto) 
  
-2.5. ribasso massimo non lineare  
+2.5. ribasso massimo non lineare 
 disponibile sia per offerta espressa in percentuale che come prezzo: 
-P = pmax  *  (
+P = pmax * (
 roff
 rmaxoff
-)α   
+)α 
 manuale SA | approfondimento formule economiche 
 
 pag.6 manuale SA | approfondimento formule economiche vers.1.0 
  
  
 dove: 
-α  può essere scelto nell’intervallo tra [0,1] 
-roff    corrisponde al ribasso offerto 
+α può essere scelto nell’intervallo tra [0,1] 
+roff corrisponde al ribasso offerto 
 rmaxoff corrisponde al massimo ribasso offerto 
  
 DESCRZIONE FORMULA SU empulia: punteggio * potenza ( ribasso offerto / massimo ribasso 
 offerto, alfa ) 
  
-2.6. valore soglia dei ribassi  
+2.6. valore soglia dei ribassi 
 disponibile sia per offerta espressa in percentuale che come prezzo: 
-SE [roff    ≤  asoglia]ALLORA P = pmax ∗ [ X ∗  roff
+SE [roff ≤ asoglia]ALLORA P = pmax ∗ [ X ∗ roff
 asoglia
- ]    
+ ] 
  
-SE roff    > asoglia     ALLORA P = pmax ∗ {X + (1 − X) ∗ [
-(roff −  asoglia )
-rmaxoff −   asoglia ]} 
+SE roff > asoglia ALLORA P = pmax ∗ {X + (1 − X) ∗ [
+(roff − asoglia )
+rmaxoff − asoglia ]} 
  
 dove: 
-X  può essere selezionato tra  {0,8; 0,85; 0,90} 
+X può essere selezionato tra {0,8; 0,85; 0,90} 
  pmax corrisponde al punteggio massimo. 
-roff    corrisponde al ribasso offerto 
+roff corrisponde al ribasso offerto 
 rmaxoff corrisponde al ribasso massimo offerto 
-asoglia    corrisponde alla media aritmetica dei ribassi sul prezzo delle offerte dei concorrenti 
+asoglia corrisponde alla media aritmetica dei ribassi sul prezzo delle offerte dei concorrenti 
  
 DESCRZIONE FORMULA SU empulia: punteggio * SE VERO CHE ribasso offerto <= media 
 ribassi offerti ALLORA coefficiente X * ribasso offerto / media ribassi offerti ALTRIMENTI 
 coefficiente X + ( 1 - coefficiente X ) * (( ribasso offerto-media ribassi offerti ) / ( massimo 
 ribasso offerto-media ribassi offerti ) ) 
-   
+ 
 manuale SA | approfondimento formule economiche 
 
 pag.7 manuale SA | approfondimento formule economiche vers.1.0 
@@ -188,46 +188,46 @@ per questa formula si possono presentare 3 diverse formulazione a seconda del:
 • numero di offerte presentate; 
 • valore se ribasso offerto. 
  
-SE [noff > 2.0]  E  (roff ≤  asoglia )]ALLORA P = pmax ∗  [ X ∗ roff
+SE [noff > 2.0] E (roff ≤ asoglia )]ALLORA P = pmax ∗ [ X ∗ roff
 asoglia
  ] 
-SE [noff > 2.0]  E  (roff >  asoglia )]ALLORA P = pmax ∗ {X + (1 − X) ∗ [
-(roff −  asoglia  )
-rmaxoff −   asoglia ]} 
-SE noff ≤ 2.0 ALLORA P =  pmax ∗  ( roff
+SE [noff > 2.0] E (roff > asoglia )]ALLORA P = pmax ∗ {X + (1 − X) ∗ [
+(roff − asoglia )
+rmaxoff − asoglia ]} 
+SE noff ≤ 2.0 ALLORA P = pmax ∗ ( roff
 rmaxoff
-)  
+) 
 dove: 
-X  può essere selezionato tra  {0,8; 0,85; 0,90} 
+X può essere selezionato tra {0,8; 0,85; 0,90} 
  pmax corrisponde al punteggio massimo. 
-roff    corrisponde al ribasso offerto 
+roff corrisponde al ribasso offerto 
 rmaxoff corrisponde al ribasso massimo offerto 
-asoglia    corrisponde alla media aritmetica dei ribassi sul prezzo delle offerte dei concorrenti 
+asoglia corrisponde alla media aritmetica dei ribassi sul prezzo delle offerte dei concorrenti 
 DESCRZIONE FORMULA SU empulia: punteggio * ( SE VERO CHE numero offerte > 2.0 
 ALLORA ( SE VERO CHE ribasso offerto <= media ribassi offerti ALLORA coefficiente X * 
 ribasso offerto / media ribassi offerti ALTRIMENTI coefficiente X + ( 1.0 - coefficiente X ) * (( 
 ribasso offerto-media ribassi offerti ) / ( massimo ribasso offerto-media ribassi offerti ) ) POI 
 ) ALTRIMENTI ( ribasso offerto / massimo ribasso offerto ) POI ) 
  
-2.8. valore soglia degli sconti  
+2.8. valore soglia degli sconti 
 disponibile sia per offerta espressa in percentuale che come prezzo: 
-E [roff    ≤  asoglia]ALLORA P = pmax ∗ [ X ∗  roff
+E [roff ≤ asoglia]ALLORA P = pmax ∗ [ X ∗ roff
 asoglia
- ]      
+ ] 
 manuale SA | approfondimento formule economiche 
 
 pag.8 manuale SA | approfondimento formule economiche vers.1.0 
 
-SE roff    > asoglia     ALLORA P = pmax ∗ {X + (1 − X) ∗ [
-(roff −  asoglia )
-rmaxoff −   asoglia ]} 
+SE roff > asoglia ALLORA P = pmax ∗ {X + (1 − X) ∗ [
+(roff − asoglia )
+rmaxoff − asoglia ]} 
  
 dove: 
-X  può essere selezionato tra  {0,8; 0,85; 0,90} 
+X può essere selezionato tra {0,8; 0,85; 0,90} 
  pmax corrisponde al punteggio massimo. 
-roff    corrisponde allo sconto percentuale offerto 
+roff corrisponde allo sconto percentuale offerto 
 rmaxoff corrisponde allo sconto percentuale massimo offerto 
-asoglia    corrisponde alla media aritmetica degli sconti percentuali dei concorrenti 
+asoglia corrisponde alla media aritmetica degli sconti percentuali dei concorrenti 
  
 DESCRZIONE FORMULA SU empulia: punteggio * SE VERO CHE sconto offerto <= media 
 sconti offerti ALLORA coefficiente X * sconto offerto / media sconti offerti ALTRIMENTI 
@@ -239,26 +239,26 @@ disponibile sia per offerta espressa in percentuale che come prezzo:
 per questa formula si possono presentare 3 diverse formulazione a seconda del: 
 • numero di offerte presentate; 
 • valore se sconto offerto. 
-SE [noff > 2.0]  E  (roff ≤  asoglia )]ALLORA P = pmax ∗  [ X ∗ roff
+SE [noff > 2.0] E (roff ≤ asoglia )]ALLORA P = pmax ∗ [ X ∗ roff
 asoglia
  ] 
-SE [noff > 2.0]  E  (roff >  asoglia )]ALLORA P = pmax ∗ {X + (1 − X) ∗ [
-(roff −  asoglia  )
-rmaxoff −   asoglia ]} 
-SE noff ≤ 2.0 ALLORA P =  pmax ∗  ( roff
+SE [noff > 2.0] E (roff > asoglia )]ALLORA P = pmax ∗ {X + (1 − X) ∗ [
+(roff − asoglia )
+rmaxoff − asoglia ]} 
+SE noff ≤ 2.0 ALLORA P = pmax ∗ ( roff
 rmaxoff
-)  
+) 
 dove: 
-X  può essere selezionato tra  {0,8; 0,85; 0,90}   
+X può essere selezionato tra {0,8; 0,85; 0,90} 
 manuale SA | approfondimento formule economiche 
 
 pag.9 manuale SA | approfondimento formule economiche vers.1.0 
  
  
  pmax corrisponde al punteggio massimo. 
-roff    corrisponde allo sconto offerto 
+roff corrisponde allo sconto offerto 
 rmaxoff corrisponde allo sconto massimo offerto 
-asoglia    corrisponde alla media aritmetica degli sconti sul prezzo delle offerte dei concorrenti 
+asoglia corrisponde alla media aritmetica degli sconti sul prezzo delle offerte dei concorrenti 
  
 DESCRZIONE FORMULA SU empulia: punteggio * ( SE VERO CHE numero offerte > 2.0 
 ALLORA ( SE VERO CHE sconto offerto <= media sconti offerti ALLORA coefficiente X * 
@@ -268,9 +268,9 @@ ALTRIMENTI ( sconto offerto / sconto migliore ) POI )
  
 2.10. massimo spread a scalino 
 disponibile sia per offerta espressa in percentuale che come prezzo: 
-SE [(vmax off −  voff) ∗ α ≥  pmax]   ALLORA P = 0   
+SE [(vmax off − voff) ∗ α ≥ pmax] ALLORA P = 0 
  
-SE [(vmax off −  voff) ∗ α <  pmax]     ALLORA P = pmax ∗ {1 − [(vmax off −  voff) ∗ (
+SE [(vmax off − voff) ∗ α < pmax] ALLORA P = pmax ∗ {1 − [(vmax off − voff) ∗ (
 α
 pmax
 )]} 
@@ -283,7 +283,7 @@ pmax corrisponde al punteggio massimo
  
 DESCRZIONE FORMULA SU empulia: punteggio * SE VERO CHE ( massimo valore offerta-offerta corrente ) * alfa >= punteggio ALLORA 0 ALTRIMENTI ( massimo valore offerta-offerta 
 corrente ) * ( alfa / punteggio ) POI 
-   
+ 
 manuale SA | approfondimento formule economiche 
 
 pag.10 manuale SA | approfondimento formule economiche vers.1.0 
@@ -291,9 +291,9 @@ pag.10 manuale SA | approfondimento formule economiche vers.1.0
  
 2.11. minimo spread a scalino 
 disponibile sia per offerta espressa in percentuale che come prezzo: 
-E [( voff −  vmin off) ∗ α ≥  pmax ]   ALLORA P = 0   
+E [( voff − vmin off) ∗ α ≥ pmax ] ALLORA P = 0 
  
-SE [( voff −  vmin off) ∗ α <  pmax]     ALLORA P = pmax ∗ {1 − [( voff − vmin off) ∗ (
+SE [( voff − vmin off) ∗ α < pmax] ALLORA P = pmax ∗ {1 − [( voff − vmin off) ∗ (
 α
 pmax
 )]} 
@@ -309,7 +309,7 @@ offerta ) * ( alfa / punteggio ) POI
  
 2.12. valore offerta / massimo valore offerta * punteggio 
 disponibile solo per concessioni (formula al rialzo): 
-P = pmax  * ( 
+P = pmax * ( 
 (voff
 vmaxoff
 ) 
@@ -319,7 +319,7 @@ voff corrisponde al valore offerto
 vmaxoff corrisponde al valore massimo offerto 
  
 DESCRZIONE FORMULA SU empulia: punteggio * ( valore offerta / massimo valore offerta ) 
-   
+ 
 manuale SA | approfondimento formule economiche 
 
 pag.11 manuale SA | approfondimento formule economiche vers.1.0 
@@ -328,33 +328,33 @@ pag.11 manuale SA | approfondimento formule economiche vers.1.0
 2.13. percentuale offerta / massima percentuale offerta * 
 punteggio 
 disponibile solo per concessioni (formula al rialzo): 
-P = pmax  * ( 
+P = pmax * ( 
 (voff
 vmaxoff
 ) 
 dove: 
 pmax corrisponde al punteggio massimo. 
-roff    percentuale offerto 
-rmaxoff     percentuale massima offerta  
+roff percentuale offerto 
+rmaxoff percentuale massima offerta 
  
 DESCRZIONE FORMULA SU empulia: punteggio * ( percentuale offerta / massima percentuale 
 offerta ) 
  
 2.14. esponenziale (3,4,5,6) 
 disponibile sia per offerta espressa in percentuale che come prezzo: 
-pmax  * (1- (
+pmax * (1- (
 voff
 VBA
 )α) 
  
 dove: 
-α  può essere scelto tra {3; 4; 5; 6}  
+α può essere scelto tra {3; 4; 5; 6} 
 pmax corrisponde al punteggio massimo. 
 voff corrisponde al valore offerto 
 VBA corrisponde al valore della base d’asta 
  
 DESCRZIONE FORMULA SU empulia: punteggio * ( 1 - potenza ( valore offerta / valore base 
-asta, α ) )   
+asta, α ) ) 
 manuale SA | approfondimento formule economiche 
 
 pag.12 manuale SA | approfondimento formule economiche vers.1.0 
@@ -363,9 +363,9 @@ pag.12 manuale SA | approfondimento formule economiche vers.1.0
 3. VALUTAZIONE SOGGETTIVA 
 attraverso l’utilizzo di questa opzione viene discrezionalmente inserito un valore dal sistema: la 
 piattaforma offre la possibilità di inserire un coefficiente (compreso nell’intervallo tra 0 e 1), 
-proporzionale al punteggio massimo, come punteggio finale.  
+proporzionale al punteggio massimo, come punteggio finale. 
 L’offerta economica viene caricata a sistema solo come allegato e il calcolo per il punteggio viene 
-effettuato dall’autorità competente extra piattaforma empulia.  
+effettuato dall’autorità competente extra piattaforma empulia. 
 ad esempio: 
 • si assegnano (extra piattaforma) 4 punteggi: 22,30; 32,57; 48,70; 50,00 su punteggio 
 massimo 50, 
