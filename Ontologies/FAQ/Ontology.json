@@ -1,16 +1,28 @@
 {
   "entities": [
     {
-      "label": "FAQ",
+      "label": "Portale",
       "attributes": [
         {
-          "name": "sigla",
+          "name": "nome_portale",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "url_portale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione_portale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "lingua_portale",
           "type": "string",
           "unique": false,
           "required": false
@@ -24,75 +36,29 @@
       ]
     },
     {
-      "label": "Piattaforma",
+      "label": "Ditta",
       "attributes": [
         {
-          "name": "nome",
+          "name": "ragione_sociale",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "url",
+          "name": "partita_iva",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "orario_riferimento_secondo",
+          "name": "indirizzo",
           "type": "string",
           "unique": false,
           "required": false
         },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "HelpDesk",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "orario",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "assistenza_fino_a_ore",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Utente",
-      "attributes": [
         {
           "name": "email",
           "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "deve_seguire_faq",
-          "type": "boolean",
           "unique": false,
           "required": false
         },
@@ -105,86 +71,28 @@
       ]
     },
     {
-      "label": "RequisitiDiSistema",
+      "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "nome",
+          "name": "codice_fiscale",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "sistema_operativo",
+          "name": "ragione_sociale",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "velocita_connessione_consigliata",
+          "name": "partita_iva",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "supporto_html5_css3",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Browser",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "javascript_abilitato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cookie_abilitati",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "ConnessioneInternet",
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "velocita_minima",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "latenza_raccomandata",
+          "name": "indirizzo",
           "type": "string",
           "unique": false,
           "required": false
@@ -198,207 +106,28 @@
       ]
     },
     {
-      "label": "RegolaFile",
+      "label": "Appalto",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "id_bando",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "dimensione_massima_mbyte",
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_indizione",
           "type": "number",
           "unique": false,
           "required": false
         },
         {
-          "name": "max_nome_caratteri",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "caratteri_non_amessi",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "FirmaDigitale",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "obbligatoria",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "riferimento_normativo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "ModalitaFirma",
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "estensione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "AlboFornitori",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "pagina_classi_soa",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Categoria",
-      "attributes": [
-        {
-          "name": "codice",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Impresa",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "certificazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Credenziali",
-      "attributes": [
-        {
-          "name": "codice_accesso",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "sistema",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "ProceduraDiGara",
-      "attributes": [
-        {
-          "name": "id",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato_offerta",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "orario_di_riferimento",
+          "name": "cpv",
           "type": "string",
           "unique": false,
           "required": false
@@ -415,13 +144,19 @@
       "label": "Offerta",
       "attributes": [
         {
-          "name": "codice_offerta",
+          "name": "id_offerta",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato",
+          "name": "stato_offerta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_offerta",
           "type": "string",
           "unique": false,
           "required": false
@@ -435,16 +170,28 @@
       ]
     },
     {
-      "label": "MessaggioSistema",
+      "label": "File",
       "attributes": [
         {
-          "name": "id",
+          "name": "nome_file",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "testo",
+          "name": "dimensione_byte",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_file",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione_file",
           "type": "string",
           "unique": false,
           "required": false
@@ -458,13 +205,240 @@
       ]
     },
     {
-      "label": "IndirizzoEmail",
+      "label": "FirmaDigitale",
       "attributes": [
         {
-          "name": "indirizzo",
+          "name": "tipologia_firma",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RequisitiMinimi",
+      "attributes": [
+        {
+          "name": "id_requisiti",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "sistema_operativo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "browser",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "versione_browser_minima",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "internet_minima_mbps",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "latenza_auspicabile_ms",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "javascript_abilitato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cookie_abilitati",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "popup_abilitati",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "toolbar_disattivata",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "antivirus_consigliato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "NotificaEmail",
+      "attributes": [
+        {
+          "name": "indirizzo_email",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ClasseSOA",
+      "attributes": [
+        {
+          "name": "codice_classe",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AlboMerceologico",
+      "attributes": [
+        {
+          "name": "codice_categoria",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiGara",
+      "attributes": [
+        {
+          "name": "id_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_procedura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_lotti",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "codice_accesso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia_utente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Credenziali",
+      "attributes": [
+        {
+          "name": "codice_accesso_inizio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "snippet",
@@ -477,12 +451,12 @@
   ],
   "relations": [
     {
-      "label": "DEFINISCE",
+      "label": "AGGIUDICATO_A",
       "source": {
-        "label": "FAQ",
+        "label": "Appalto",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "id_bando",
             "type": "string",
             "unique": true,
             "required": true
@@ -490,10 +464,10 @@
         ]
       },
       "target": {
-        "label": "RequisitiDiSistema",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "nome",
+            "name": "codice_fiscale",
             "type": "string",
             "unique": true,
             "required": true
@@ -502,7 +476,7 @@
       },
       "attributes": [
         {
-          "name": "ambito",
+          "name": "data_aggiudicazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -516,336 +490,51 @@
       ]
     },
     {
-      "label": "GESTISCE",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "HelpDesk",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "FORNISCE_ASSISTENZA",
-      "source": {
-        "label": "HelpDesk",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "email",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "orario_disponibilita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "tempi_massimi_relativi",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZA_INDIRIZZO",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "IndirizzoEmail",
-        "attributes": [
-          {
-            "name": "indirizzo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "scopo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RICHIEDE",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Browser",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "requisiti_minimi",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RICHIEDE_CONNESSIONE",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ConnessioneInternet",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "velocita_consigliata",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "DETERMINA",
-      "source": {
-        "label": "RequisitiDiSistema",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RegolaFile",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "dimensione_massima_mbyte",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "max_nome_caratteri",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "INVIA",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "email",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Offerta",
-        "attributes": [
-          {
-            "name": "codice_offerta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "modalita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "CONFERMA",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Offerta",
-        "attributes": [
-          {
-            "name": "codice_offerta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "messaggio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RIFERISCE_A",
+      "label": "OFFERTA_PRESENTATA_PER",
       "source": {
         "label": "Offerta",
         "attributes": [
           {
-            "name": "codice_offerta",
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_presentazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "snippet",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PARTECIPA_A",
+      "source": {
+        "label": "Ditta",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
             "type": "string",
             "unique": true,
             "required": true
@@ -856,7 +545,7 @@
         "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "id",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -865,7 +554,7 @@
       },
       "attributes": [
         {
-          "name": "stato",
+          "name": "ruolo_partecipante",
           "type": "string",
           "required": false,
           "unique": false
@@ -879,12 +568,12 @@
       ]
     },
     {
-      "label": "ISCRITTA_IN",
+      "label": "ISCRITTO_A_SOA",
       "source": {
-        "label": "Impresa",
+        "label": "Ditta",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "ragione_sociale",
             "type": "string",
             "unique": true,
             "required": true
@@ -892,10 +581,10 @@
         ]
       },
       "target": {
-        "label": "AlboFornitori",
+        "label": "ClasseSOA",
         "attributes": [
           {
-            "name": "nome",
+            "name": "codice_classe",
             "type": "string",
             "unique": true,
             "required": true
@@ -904,8 +593,8 @@
       },
       "attributes": [
         {
-          "name": "requisiti_verificati",
-          "type": "boolean",
+          "name": "stato_iscrizione",
+          "type": "string",
           "required": false,
           "unique": false
         },
@@ -918,12 +607,12 @@
       ]
     },
     {
-      "label": "APPARTIENE_A",
+      "label": "ISCRITTO_A_MERCEOLOGICO",
       "source": {
-        "label": "Categoria",
+        "label": "Ditta",
         "attributes": [
           {
-            "name": "codice",
+            "name": "ragione_sociale",
             "type": "string",
             "unique": true,
             "required": true
@@ -931,10 +620,10 @@
         ]
       },
       "target": {
-        "label": "AlboFornitori",
+        "label": "AlboMerceologico",
         "attributes": [
           {
-            "name": "nome",
+            "name": "codice_categoria",
             "type": "string",
             "unique": true,
             "required": true
@@ -943,7 +632,7 @@
       },
       "attributes": [
         {
-          "name": "ambito",
+          "name": "stato_iscrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -957,129 +646,12 @@
       ]
     },
     {
-      "label": "HA_CERTIFICAZIONE",
-      "source": {
-        "label": "Impresa",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Categoria",
-        "attributes": [
-          {
-            "name": "codice",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "automatico",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RICHIEDE",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "FirmaDigitale",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatoria",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "HA_MODALITA",
-      "source": {
-        "label": "FirmaDigitale",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ModalitaFirma",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "snippet",
-          "type": "string",
-          "unique": false,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "VALIDE_PER",
+      "label": "ACCESSO_PORTALE",
       "source": {
         "label": "Credenziali",
         "attributes": [
           {
-            "name": "codice_accesso",
+            "name": "codice_accesso_inizio",
             "type": "string",
             "unique": true,
             "required": true
@@ -1087,10 +659,10 @@
         ]
       },
       "target": {
-        "label": "Piattaforma",
+        "label": "Portale",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_portale",
             "type": "string",
             "unique": true,
             "required": true
@@ -1099,7 +671,7 @@
       },
       "attributes": [
         {
-          "name": "sistema_vecchio_o_nuovo",
+          "name": "data_login",
           "type": "string",
           "required": false,
           "unique": false
@@ -1113,12 +685,12 @@
       ]
     },
     {
-      "label": "PUBBLICA",
+      "label": "FIRMA_DIGITALE",
       "source": {
-        "label": "Piattaforma",
+        "label": "File",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_file",
             "type": "string",
             "unique": true,
             "required": true
@@ -1126,10 +698,10 @@
         ]
       },
       "target": {
-        "label": "MessaggioSistema",
+        "label": "FirmaDigitale",
         "attributes": [
           {
-            "name": "id",
+            "name": "tipologia_firma",
             "type": "string",
             "unique": true,
             "required": true
@@ -1138,7 +710,7 @@
       },
       "attributes": [
         {
-          "name": "pagina",
+          "name": "data_firma",
           "type": "string",
           "required": false,
           "unique": false

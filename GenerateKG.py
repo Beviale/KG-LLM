@@ -276,7 +276,7 @@ def merge_ontologies_chunk(category, model=None):
     Returns 'True' if the chunk ontologies have been merged and saved correctly; 'False' otherwise.
     """
     if model is None:
-        model = "openai/gpt-5-mini"
+        model = "openai/gpt-5-nano"
     json_merge = []
 
 
@@ -596,7 +596,7 @@ def generate_data(category: str, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-mini"
+        model = "openai/gpt-5-nano"
 
 
     print(f"{Fore.GREEN}--Generating the data for the '{category}' category")
