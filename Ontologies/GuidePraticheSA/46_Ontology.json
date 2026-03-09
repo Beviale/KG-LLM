@@ -4,7 +4,7 @@
       "label": "Contratto",
       "attributes": [
         {
-          "name": "oggetto",
+          "name": "registro_di_sistema",
           "type": "string",
           "unique": true,
           "required": true
@@ -16,13 +16,13 @@
           "required": false
         },
         {
-          "name": "registro_di_sistema",
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "stato",
+          "name": "titolo",
           "type": "string",
           "unique": false,
           "required": false
@@ -33,13 +33,19 @@
       "label": "Appalto",
       "attributes": [
         {
-          "name": "oggetto_appalto",
+          "name": "id_appalto_anac",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "gruppo_funzionale",
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_appalto",
           "type": "string",
           "unique": false,
           "required": false
@@ -49,60 +55,62 @@
           "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Scheda",
+      "attributes": [
+        {
+          "name": "codice_scheda",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "utente_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "esito",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "importo",
           "type": "number",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "SchedaCo2",
-      "attributes": [
-        {
-          "name": "tipo_scheda",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "stato_scheda",
+          "name": "data_inizio",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "SchedaCo1",
-      "attributes": [
-        {
-          "name": "tipo_scheda",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "stato_scheda",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "SchedaSc1",
-      "attributes": [
-        {
-          "name": "tipo_scheda",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato_scheda",
+          "name": "data_ultimazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -113,7 +121,7 @@
       "label": "Utente",
       "attributes": [
         {
-          "name": "utente",
+          "name": "username",
           "type": "string",
           "unique": true,
           "required": true
@@ -123,20 +131,32 @@
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "RUP",
+      "label": "Rup",
       "attributes": [
         {
-          "name": "ruolo",
+          "name": "id_rup",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "indirizzo_email",
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "email",
           "type": "string",
           "unique": false,
           "required": false
@@ -161,62 +181,7 @@
       ]
     },
     {
-      "label": "PCP",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "ANAC",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Toolbar",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Tab",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Pagina",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "TrasferimentoAffidamento",
+      "label": "Funzionalita",
       "attributes": [
         {
           "name": "nome",
@@ -225,7 +190,7 @@
           "required": true
         },
         {
-          "name": "note_intern",
+          "name": "percorso_menu",
           "type": "string",
           "unique": false,
           "required": false
@@ -233,13 +198,111 @@
       ]
     },
     {
-      "label": "FileXLS",
+      "label": "Pagina",
       "attributes": [
         {
-          "name": "formato",
+          "name": "nome_pagina",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Toolbar",
+      "attributes": [
+        {
+          "name": "nome_toolbar",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "pulsanti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Tab",
+      "attributes": [
+        {
+          "name": "nome_tab",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Trasferimento",
+      "attributes": [
+        {
+          "name": "id_trasferimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_trasferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "allegati",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "NotificaEmail",
+      "attributes": [
+        {
+          "name": "id_notifica",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "destinatario",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -247,210 +310,34 @@
       "label": "Allegato",
       "attributes": [
         {
-          "name": "nome_allegato",
+          "name": "nome_file",
           "type": "string",
           "unique": true,
           "required": true
-        }
-      ]
-    },
-    {
-      "label": "Figura",
-      "attributes": [
+        },
         {
-          "name": "numero_figura",
+          "name": "tipo",
           "type": "string",
-          "unique": true,
-          "required": true
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "APPALTO_CONTIENE_SCHEDA_CO2",
+      "label": "ELENCA",
       "source": {
-        "label": "Appalto",
+        "label": "Pagina",
         "attributes": [
           {
-            "name": "oggetto_appalto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SchedaCo2",
-        "attributes": [
-          {
-            "name": "tipo_scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "unica_per_appalto",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPALTO_CONTIENE_SCHEDA_SC1",
-      "source": {
-        "label": "Appalto",
-        "attributes": [
-          {
-            "name": "oggetto_appalto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SchedaSc1",
-        "attributes": [
-          {
-            "name": "tipo_scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "esclusa_per_sotto_5000",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTENTE_INVIA_SCHEDA_CO2",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "utente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SchedaCo2",
-        "attributes": [
-          {
-            "name": "tipo_scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_invio",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "esito",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SCHEDA_INVIATA_A_PCP",
-      "source": {
-        "label": "SchedaCo2",
-        "attributes": [
-          {
-            "name": "tipo_scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "esito",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INVIO_SCHEDA_CONTRATTO_SC1",
-      "source": {
-        "label": "Appalto",
-        "attributes": [
-          {
-            "name": "oggetto_appalto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SchedaSc1",
-        "attributes": [
-          {
-            "name": "tipo_scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "esito",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "consentito_su_importo",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONTRATTO_VISUALIZZA_DETTAGLIO",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "utente",
+            "name": "nome_pagina",
             "type": "string",
             "unique": true,
             "required": true
@@ -461,7 +348,7 @@
         "label": "Contratto",
         "attributes": [
           {
-            "name": "oggetto",
+            "name": "registro_di_sistema",
             "type": "string",
             "unique": true,
             "required": true
@@ -470,20 +357,137 @@
       },
       "attributes": [
         {
-          "name": "apribile",
-          "type": "boolean",
-          "required": true,
+          "name": "filtro_utilizzato",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "PAGINA_HA_TOOLBAR",
+      "label": "ELENCA",
       "source": {
         "label": "Pagina",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_pagina",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto_anac",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "filtro_utilizzato",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_SCHEDA",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto_anac",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "codice_scheda",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_scheda",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "univoca",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMPILATA_DA",
+      "source": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "codice_scheda",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_utente",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_compilazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "stato_compilazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_TOOLBAR",
+      "source": {
+        "label": "Pagina",
+        "attributes": [
+          {
+            "name": "nome_pagina",
             "type": "string",
             "unique": true,
             "required": true
@@ -494,7 +498,7 @@
         "label": "Toolbar",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_toolbar",
             "type": "string",
             "unique": true,
             "required": true
@@ -503,20 +507,20 @@
       },
       "attributes": [
         {
-          "name": "presente",
-          "type": "boolean",
-          "required": true,
+          "name": "voci_toolbar",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "PAGINA_HA_TAB",
+      "label": "HA_TAB",
       "source": {
         "label": "Pagina",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_pagina",
             "type": "string",
             "unique": true,
             "required": true
@@ -527,7 +531,7 @@
         "label": "Tab",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_tab",
             "type": "string",
             "unique": true,
             "required": true
@@ -536,46 +540,7 @@
       },
       "attributes": [
         {
-          "name": "ordinamento_abilitato",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RUP_INIZIA_TRASFERIMENTO",
-      "source": {
-        "label": "RUP",
-        "attributes": [
-          {
-            "name": "ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "TrasferimentoAffidamento",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "allegati_presenti",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "note_intern",
+          "name": "posizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -583,9 +548,9 @@
       ]
     },
     {
-      "label": "TRASFERIMENTO_ASSEGNA_A_RUP",
+      "label": "FA_PARTE_DI",
       "source": {
-        "label": "TrasferimentoAffidamento",
+        "label": "Funzionalita",
         "attributes": [
           {
             "name": "nome",
@@ -596,10 +561,10 @@
         ]
       },
       "target": {
-        "label": "RUP",
+        "label": "GruppoFunzionale",
         "attributes": [
           {
-            "name": "ruolo",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -608,26 +573,248 @@
       },
       "attributes": [
         {
-          "name": "stato",
+          "name": "percorso",
           "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "notifica_inviata",
-          "type": "boolean",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "RUP_PRENDE_IN_CARICO",
+      "label": "ACCESSO_A",
       "source": {
-        "label": "RUP",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "ruolo",
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "GruppoFunzionale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "permessi",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ESEGUE_TRASFERIMENTO",
+      "source": {
+        "label": "Rup",
+        "attributes": [
+          {
+            "name": "id_rup",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Trasferimento",
+        "attributes": [
+          {
+            "name": "id_trasferimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "note_interno",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "allegati_count",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIGUARDA",
+      "source": {
+        "label": "Trasferimento",
+        "attributes": [
+          {
+            "name": "id_trasferimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto_anac",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "nuovo_rup_id",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "stato_assegnazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "preso_in_carico",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVIA_NOTIFICA",
+      "source": {
+        "label": "Trasferimento",
+        "attributes": [
+          {
+            "name": "id_trasferimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "NotificaEmail",
+        "attributes": [
+          {
+            "name": "id_notifica",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "mittente",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONTiene_ALLEGATO",
+      "source": {
+        "label": "Trasferimento",
+        "attributes": [
+          {
+            "name": "id_trasferimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "obbligatorio",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DESTINATO_A",
+      "source": {
+        "label": "Trasferimento",
+        "attributes": [
+          {
+            "name": "id_trasferimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Rup",
+        "attributes": [
+          {
+            "name": "id_rup",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CAMBIA_STATO",
+      "source": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "codice_scheda",
             "type": "string",
             "unique": true,
             "required": true
@@ -638,7 +825,7 @@
         "label": "Contratto",
         "attributes": [
           {
-            "name": "oggetto",
+            "name": "registro_di_sistema",
             "type": "string",
             "unique": true,
             "required": true
@@ -647,20 +834,26 @@
       },
       "attributes": [
         {
-          "name": "esito_servizio_presa_carico",
+          "name": "nuovo_stato",
           "type": "string",
           "required": true,
+          "unique": false
+        },
+        {
+          "name": "azione",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "AUTORENDE_EXPORT_FILE",
+      "label": "IMPACTA_SU",
       "source": {
-        "label": "Tab",
+        "label": "Trasferimento",
         "attributes": [
           {
-            "name": "nome",
+            "name": "id_trasferimento",
             "type": "string",
             "unique": true,
             "required": true
@@ -668,10 +861,10 @@
         ]
       },
       "target": {
-        "label": "FileXLS",
+        "label": "Contratto",
         "attributes": [
           {
-            "name": "formato",
+            "name": "registro_di_sistema",
             "type": "string",
             "unique": true,
             "required": true
@@ -680,9 +873,9 @@
       },
       "attributes": [
         {
-          "name": "azione",
+          "name": "ambito_impatti",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]

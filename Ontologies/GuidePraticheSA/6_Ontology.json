@@ -1,6 +1,52 @@
 {
   "entities": [
     {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "abbreviazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "abbreviazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "Piattaforma",
       "attributes": [
         {
@@ -10,14 +56,8 @@
           "required": true
         },
         {
-          "name": "calcolo_automatico",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "gestisce_formule",
-          "type": "boolean",
+          "name": "funzione",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -39,37 +79,8 @@
           "required": false
         },
         {
-          "name": "confermato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Attributo",
-      "attributes": [
-        {
-          "name": "nome",
+          "name": "stato",
           "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "calcolato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "iva_esclusa",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -89,11 +100,17 @@
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "posizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "ColonnaCalcolata",
+      "label": "Attributo",
       "attributes": [
         {
           "name": "nome",
@@ -102,14 +119,20 @@
           "required": true
         },
         {
-          "name": "attributo_calcolato",
+          "name": "tipo_di_dato",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "tipo",
+          "name": "unita_misura",
           "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "obbligatorio",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -142,150 +165,19 @@
       "label": "Vincolo",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "espressione",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "contesto",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "verificato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Operando",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Operatore",
-      "attributes": [
-        {
-          "name": "simbolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "StazioneAppaltante",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ufficio",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ProdottoServizio",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "quantita",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "um",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Offerta",
-      "attributes": [
-        {
-          "name": "id_offerta",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "valore_offerto",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "prezzo",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Bando",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "fase",
           "type": "string",
           "unique": false,
           "required": false
@@ -306,6 +198,29 @@
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "posizione_ui",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Contesto",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -320,9 +235,26 @@
         },
         {
           "name": "numero",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "titolo",
           "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreAritmetico",
+      "attributes": [
+        {
+          "name": "simbolo",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
           "name": "descrizione",
@@ -335,42 +267,9 @@
   ],
   "relations": [
     {
-      "label": "ESEGUE_CALCOLO",
+      "label": "INSERISCE_VALORE",
       "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Formula",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_ATTRIBUTO",
-      "source": {
-        "label": "ModelloOfferta",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
             "name": "nome",
@@ -393,8 +292,80 @@
       },
       "attributes": [
         {
-          "name": "obbligatorio",
-          "type": "boolean",
+          "name": "importo_euro",
+          "type": "number",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "campo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RAPPORTA_A",
+      "source": {
+        "label": "Attributo",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Attributo",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "nota",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CALCOLA",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Tabella",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "metodo",
+          "type": "string",
           "required": false,
           "unique": false
         }
@@ -426,7 +397,7 @@
       },
       "attributes": [
         {
-          "name": "scopo",
+          "name": "sezione",
           "type": "string",
           "required": false,
           "unique": false
@@ -434,144 +405,12 @@
       ]
     },
     {
-      "label": "CONTIENTE_COLONNA",
+      "label": "HA_ATTRIBUTO",
       "source": {
         "label": "Tabella",
         "attributes": [
           {
             "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ColonnaCalcolata",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ordine",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CALCOLATA_DA",
-      "source": {
-        "label": "ColonnaCalcolata",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Formula",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "espressione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZA_OPERANDO",
-      "source": {
-        "label": "Formula",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Operando",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "posizione",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZA_OPERATORE",
-      "source": {
-        "label": "Formula",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Operatore",
-        "attributes": [
-          {
-            "name": "simbolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "posizione",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIGUARDA_ATTRIBUTO",
-      "source": {
-        "label": "Vincolo",
-        "attributes": [
-          {
-            "name": "descrizione",
             "type": "string",
             "unique": true,
             "required": true
@@ -591,7 +430,7 @@
       },
       "attributes": [
         {
-          "name": "operazione",
+          "name": "ruolo",
           "type": "string",
           "required": false,
           "unique": false
@@ -599,9 +438,9 @@
       ]
     },
     {
-      "label": "HA_VINCOLO",
+      "label": "DEFINISCE_FORMULA",
       "source": {
-        "label": "ModelloOfferta",
+        "label": "Tabella",
         "attributes": [
           {
             "name": "nome",
@@ -612,31 +451,97 @@
         ]
       },
       "target": {
+        "label": "Formula",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "campo_destinazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FORMULA_USA_OPERANDO",
+      "source": {
+        "label": "Formula",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Attributo",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "posizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FORMULA_USA_OPERATORE",
+      "source": {
+        "label": "Formula",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreAritmetico",
+        "attributes": [
+          {
+            "name": "simbolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ordine",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VINCOLO_APPLICATO_A",
+      "source": {
         "label": "Vincolo",
         "attributes": [
           {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "fase",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZA_MODELLO",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
             "name": "nome",
             "type": "string",
             "unique": true,
@@ -645,7 +550,7 @@
         ]
       },
       "target": {
-        "label": "ModelloOfferta",
+        "label": "Attributo",
         "attributes": [
           {
             "name": "nome",
@@ -657,83 +562,17 @@
       },
       "attributes": [
         {
-          "name": "contesto",
+          "name": "espressione",
           "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PRESENTA_OFFERTA",
-      "source": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Offerta",
-        "attributes": [
-          {
-            "name": "id_offerta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_presentazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INCLUDE_PRODOTTO",
-      "source": {
-        "label": "Offerta",
-        "attributes": [
-          {
-            "name": "id_offerta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ProdottoServizio",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "quantita",
-          "type": "number",
           "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "PUBBLICATO_DA",
+      "label": "VINCOLO_RICHIESTO_IN",
       "source": {
-        "label": "Bando",
+        "label": "Vincolo",
         "attributes": [
           {
             "name": "nome",
@@ -744,7 +583,7 @@
         ]
       },
       "target": {
-        "label": "StazioneAppaltante",
+        "label": "Contesto",
         "attributes": [
           {
             "name": "nome",
@@ -756,27 +595,16 @@
       },
       "attributes": [
         {
-          "name": "data_pubblicazione",
-          "type": "string",
-          "required": false,
+          "name": "verifica_richiesta",
+          "type": "boolean",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "CONFERMA_CON",
+      "label": "COMANDO_ESEGUE_SU",
       "source": {
-        "label": "ModelloOfferta",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "Comando",
         "attributes": [
           {
@@ -787,9 +615,20 @@
           }
         ]
       },
+      "target": {
+        "label": "ModelloOfferta",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "posizione_toolbar",
+          "name": "azione_descrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -797,7 +636,7 @@
       ]
     },
     {
-      "label": "RAPPRESENTA",
+      "label": "FIGURA_RAPPRESENTA",
       "source": {
         "label": "Figura",
         "attributes": [
@@ -822,7 +661,7 @@
       },
       "attributes": [
         {
-          "name": "riferimento",
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -830,9 +669,9 @@
       ]
     },
     {
-      "label": "CALCOLATO_DA",
+      "label": "VERIFICA_CON",
       "source": {
-        "label": "Attributo",
+        "label": "Formula",
         "attributes": [
           {
             "name": "nome",
@@ -843,7 +682,7 @@
         ]
       },
       "target": {
-        "label": "ColonnaCalcolata",
+        "label": "Comando",
         "attributes": [
           {
             "name": "nome",
@@ -855,9 +694,9 @@
       },
       "attributes": [
         {
-          "name": "formula_nome",
-          "type": "string",
-          "required": false,
+          "name": "esito",
+          "type": "boolean",
+          "required": true,
           "unique": false
         }
       ]

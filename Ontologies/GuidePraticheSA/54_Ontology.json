@@ -1,7 +1,7 @@
 {
   "entities": [
     {
-      "label": "Manuale",
+      "label": "Documento",
       "attributes": [
         {
           "name": "titolo",
@@ -16,24 +16,13 @@
           "required": false
         },
         {
-          "name": "data",
+          "name": "data_pubblicazione",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "Societa",
-      "attributes": [
-        {
-          "name": "ragione_sociale",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "note",
+          "name": "proprietario",
           "type": "string",
           "unique": false,
           "required": false
@@ -41,24 +30,7 @@
       ]
     },
     {
-      "label": "StazioneAppaltante",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "registro_di_sistema",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
+      "label": "Organizzazione",
       "attributes": [
         {
           "name": "denominazione",
@@ -67,21 +39,33 @@
           "required": true
         },
         {
-          "name": "registrato_in_piattaforma",
-          "type": "boolean",
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "ProceduraDiGara",
+      "label": "ProceduraGara",
       "attributes": [
         {
-          "name": "nome",
+          "name": "titolo_documento",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "data_indizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "oggetto",
@@ -90,13 +74,25 @@
           "required": false
         },
         {
-          "name": "data_creazione",
+          "name": "cig",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "tipo_documento",
+          "name": "cup",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo_appalto",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "criterio_aggiudicazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -106,51 +102,11 @@
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "importo_appalto",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
     {
-      "label": "FaseGara",
-      "attributes": [
-        {
-          "name": "nome_fase",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "StatoProcedura",
-      "attributes": [
-        {
-          "name": "nome_stato",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Persona",
+      "label": "Fase",
       "attributes": [
         {
           "name": "nome",
@@ -159,7 +115,53 @@
           "required": true
         },
         {
-          "name": "ruolo",
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "visibilita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PersonaFisica",
+      "attributes": [
+        {
+          "name": "nome_cognome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo_profilo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -170,7 +172,7 @@
       "label": "Sezione",
       "attributes": [
         {
-          "name": "nome_sezione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -190,22 +192,22 @@
       ]
     },
     {
-      "label": "Campo",
+      "label": "Importo",
       "attributes": [
         {
-          "name": "nome_campo",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "obbligatorio",
-          "type": "boolean",
+          "name": "valore",
+          "type": "number",
           "unique": false,
           "required": false
         },
         {
-          "name": "tipo",
+          "name": "valuta",
           "type": "string",
           "unique": false,
           "required": false
@@ -216,24 +218,7 @@
       "label": "CriterioAggiudicazione",
       "attributes": [
         {
-          "name": "nome_criterio",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "TipoAppalto",
-      "attributes": [
-        {
-          "name": "tipo",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -250,7 +235,7 @@
       "label": "TipoProcedura",
       "attributes": [
         {
-          "name": "tipo",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -264,10 +249,10 @@
       ]
     },
     {
-      "label": "DivisioneLotti",
+      "label": "TipoAppalto",
       "attributes": [
         {
-          "name": "tipo_divisione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -284,7 +269,7 @@
       "label": "Lotto",
       "attributes": [
         {
-          "name": "identificativo",
+          "name": "identificativo_lotto",
           "type": "string",
           "unique": true,
           "required": true
@@ -296,36 +281,7 @@
           "required": false
         },
         {
-          "name": "complesso",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Importo",
-      "attributes": [
-        {
-          "name": "importo_appalto_euro",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "importo_base_asta_euro",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "importo_opzioni_euro",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "oneri_sicurezza_no_ribasso_euro",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -336,7 +292,7 @@
       "label": "Conformita",
       "attributes": [
         {
-          "name": "modalita",
+          "name": "tipo",
           "type": "string",
           "unique": true,
           "required": true
@@ -353,7 +309,7 @@
       "label": "CriterioFormulazioneOfferta",
       "attributes": [
         {
-          "name": "modalita",
+          "name": "tipo",
           "type": "string",
           "unique": true,
           "required": true
@@ -367,16 +323,39 @@
       ]
     },
     {
-      "label": "Documento",
+      "label": "PianoPNRRPNC",
       "attributes": [
         {
-          "name": "titolo_documento",
+          "name": "codice_iniziativa",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato_pubblicazione",
+          "name": "attivato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StatoProcedura",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -386,9 +365,9 @@
   ],
   "relations": [
     {
-      "label": "PROPRIETA_DI",
+      "label": "DI_PROPRIETA_DI",
       "source": {
-        "label": "Manuale",
+        "label": "Documento",
         "attributes": [
           {
             "name": "titolo",
@@ -399,10 +378,10 @@
         ]
       },
       "target": {
-        "label": "Societa",
+        "label": "Organizzazione",
         "attributes": [
           {
-            "name": "ragione_sociale",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -411,7 +390,7 @@
       },
       "attributes": [
         {
-          "name": "diritti",
+          "name": "data_proprieta",
           "type": "string",
           "required": false,
           "unique": false
@@ -419,12 +398,12 @@
       ]
     },
     {
-      "label": "PUBBLICATA_DA",
+      "label": "PUBBLICA_PROCEDURA",
       "source": {
-        "label": "ProceduraDiGara",
+        "label": "Organizzazione",
         "attributes": [
           {
-            "name": "nome",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -432,10 +411,10 @@
         ]
       },
       "target": {
-        "label": "StazioneAppaltante",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "nome",
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -444,139 +423,7 @@
       },
       "attributes": [
         {
-          "name": "data_pubblicazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_FASE",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "FaseGara",
-        "attributes": [
-          {
-            "name": "nome_fase",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "fase_ordine",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_STATO",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "StatoProcedura",
-        "attributes": [
-          {
-            "name": "nome_stato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_aggiornamento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_RUP",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Persona",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "incarico",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMPRENDE_SEZIONE",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Sezione",
-        "attributes": [
-          {
-            "name": "nome_sezione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatoria",
+          "name": "ente_proponente",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -584,12 +431,12 @@
       ]
     },
     {
-      "label": "INCLUDE_CAMPO",
+      "label": "COMPRENDE_FASE",
       "source": {
-        "label": "Sezione",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "nome_sezione",
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -597,10 +444,10 @@
         ]
       },
       "target": {
-        "label": "Campo",
+        "label": "Fase",
         "attributes": [
           {
-            "name": "nome_campo",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -617,12 +464,111 @@
       ]
     },
     {
-      "label": "HA_IMPORTO",
+      "label": "HA_RUP",
       "source": {
-        "label": "ProceduraDiGara",
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PersonaFisica",
+        "attributes": [
+          {
+            "name": "nome_cognome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIVESTE",
+      "source": {
+        "label": "PersonaFisica",
+        "attributes": [
+          {
+            "name": "nome_cognome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ambito",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_SEZIONE",
+      "source": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Sezione",
         "attributes": [
           {
             "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "obbligatoria",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_IMPORTO",
+      "source": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -633,7 +579,7 @@
         "label": "Importo",
         "attributes": [
           {
-            "name": "importo_appalto_euro",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -642,40 +588,13 @@
       },
       "attributes": [
         {
-          "name": "calcolo",
-          "type": "string",
+          "name": "valore",
+          "type": "number",
           "required": false,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_DIVISIONE_LOTTI",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "DivisioneLotti",
-        "attributes": [
-          {
-            "name": "tipo_divisione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
+        },
         {
-          "name": "note",
+          "name": "valuta",
           "type": "string",
           "required": false,
           "unique": false
@@ -683,12 +602,12 @@
       ]
     },
     {
-      "label": "HA_CRITERIO_AGGIUDICAZIONE",
+      "label": "APPLICA_CRITERIO",
       "source": {
-        "label": "ProceduraDiGara",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "nome",
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -699,7 +618,7 @@
         "label": "CriterioAggiudicazione",
         "attributes": [
           {
-            "name": "nome_criterio",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -708,7 +627,7 @@
       },
       "attributes": [
         {
-          "name": "peso",
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -716,12 +635,37 @@
       ]
     },
     {
-      "label": "HA_TIPO_APPALTO",
+      "label": "HA_TIPO_PROCEDURA",
       "source": {
-        "label": "ProceduraDiGara",
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "TipoProcedura",
         "attributes": [
           {
             "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "HA_TIPO_APPALTO",
+      "source": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -732,62 +676,21 @@
         "label": "TipoAppalto",
         "attributes": [
           {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "note",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_TIPO_PROCEDURA",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
             "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
-      },
-      "target": {
-        "label": "TipoProcedura",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "note",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      }
     },
     {
-      "label": "COMPRENDE_LOTTO",
+      "label": "HA_LOTTO",
       "source": {
-        "label": "DivisioneLotti",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "tipo_divisione",
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -798,7 +701,7 @@
         "label": "Lotto",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "identificativo_lotto",
             "type": "string",
             "unique": true,
             "required": true
@@ -807,7 +710,7 @@
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "tipo_lotto",
           "type": "string",
           "required": false,
           "unique": false
@@ -815,111 +718,12 @@
       ]
     },
     {
-      "label": "RIFERISCE_A_MANUALE",
+      "label": "PREVEDE_CONFORMITA",
       "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Manuale",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_DOCUMENTO",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
+        "label": "ProceduraGara",
         "attributes": [
           {
             "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo_documento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIVOLTA_A",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "prerequisiti",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_CONFORMITA",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -930,40 +734,7 @@
         "label": "Conformita",
         "attributes": [
           {
-            "name": "modalita",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_CRITERIO_FORMULAZIONE",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CriterioFormulazioneOfferta",
-        "attributes": [
-          {
-            "name": "modalita",
+            "name": "tipo",
             "type": "string",
             "unique": true,
             "required": true
@@ -980,12 +751,12 @@
       ]
     },
     {
-      "label": "TIPO_DI_PROCEDURA",
+      "label": "HA_CRITERIO_FORMULAZIONE",
       "source": {
-        "label": "FaseGara",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "nome_fase",
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -993,7 +764,7 @@
         ]
       },
       "target": {
-        "label": "TipoProcedura",
+        "label": "CriterioFormulazioneOfferta",
         "attributes": [
           {
             "name": "tipo",
@@ -1006,6 +777,72 @@
       "attributes": [
         {
           "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COLLEGATO_A_PNRR_PNC",
+      "source": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PianoPNRRPNC",
+        "attributes": [
+          {
+            "name": "codice_iniziativa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "flag_attivazione",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_STATO",
+      "source": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StatoProcedura",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_aggiornamento",
           "type": "string",
           "required": false,
           "unique": false

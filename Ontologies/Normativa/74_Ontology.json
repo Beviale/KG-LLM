@@ -1,0 +1,453 @@
+{
+  "entities": [
+    {
+      "label": "CartaIdentitaElettronica",
+      "attributes": [
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "dati_identificativi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "dati_biometrics_inclusi",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "uso_per_pagamenti_informatici",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CartaNazionaleDeServizi",
+      "attributes": [
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "uso_per_pagamenti_informatici",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "emittente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GaranteProtezioneDatiPersonali",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ConferenzaUnificata",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Ministero",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ambito",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AgenziaPerLItaliaDigitale",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SistemaPubblicoConnettivita",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ReteInternazionaleDellePubblicheAmministrazioni",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DecretoLegislativo",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimenti_normativi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FormatoAperto",
+      "attributes": [
+        {
+          "name": "nome_formato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "caratteristiche",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProgrammaInformatico",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "licenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "EMESSO_DA",
+      "source": {
+        "label": "DecretoLegislativo",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ministero",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONSULTATO_GARANTE",
+      "source": {
+        "label": "DecretoLegislativo",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "GaranteProtezioneDatiPersonali",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INTESA_CONFERENZA_UNIFICATA",
+      "source": {
+        "label": "DecretoLegislativo",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ConferenzaUnificata",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROPOSTO_DA_MINISTERO",
+      "source": {
+        "label": "DecretoLegislativo",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ministero",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_AD_ARTICOLO",
+      "source": {
+        "label": "DecretoLegislativo",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_PER_PAGAMENTI_TELEMATICI",
+      "source": {
+        "label": "CartaNazionaleDeServizi",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AgenziaPerLItaliaDigitale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AUTENTICAZIONE_TELEMATICA",
+      "source": {
+        "label": "CartaIdentitaElettronica",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SistemaPubblicoConnettivita",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,439 @@
+{
+  "entities": [
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ContraenteGenerale",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "forma_giuridica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SocietaDiProgetto",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "forma_giuridica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "capitale_minimo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "oggetto_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_opera",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ImpresaAggiudicataria",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Monitoraggio",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Direttiva",
+      "attributes": [
+        {
+          "name": "codice_norma",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AntimafiaControlli",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FinanzaDiProgetto",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AliquotaForfettaria",
+      "attributes": [
+        {
+          "name": "valore",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CertificatoCollaudo",
+      "attributes": [
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CodiceCivile",
+      "attributes": [
+        {
+          "name": "testo_riferimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Garanzia",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SoggettoAggiudicatore",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "ImpresaAggiudicataria",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_aggiudicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "percentuale",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GESTITO_DA",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ContraenteGenerale",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita_esecuzione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "MONITORAGGIO_FINANZIARIO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Monitoraggio",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_flussi",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ACCORDO_SICUREZZA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ImpresaAggiudicataria",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VARIANTI_PROGETTUALI",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ContraenteGenerale",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_varianti",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DETRAZIONE_PAGAMENTI",
+      "source": {
+        "label": "SoggettoAggiudicatore",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ContraenteGenerale",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_detrazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GARANZIA_PRESTATA",
+      "source": {
+        "label": "SoggettoAggiudicatore",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Garanzia",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

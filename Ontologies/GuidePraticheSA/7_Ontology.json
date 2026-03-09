@@ -1,6 +1,29 @@
 {
   "entities": [
     {
+      "label": "Manuale",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "ConsultazionePreliminare",
       "attributes": [
         {
@@ -10,19 +33,13 @@
           "required": true
         },
         {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
           "name": "oggetto",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "identificativo_iniziativa",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_pubblicazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -34,26 +51,14 @@
           "required": false
         },
         {
-          "name": "data_invio",
+          "name": "data_creazione",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "classe_merceologica",
+          "name": "scadenza_rispondere_entro",
           "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "appalto_verde",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "appalto_sociale",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -63,19 +68,13 @@
       "label": "StazioneAppaltante",
       "attributes": [
         {
-          "name": "denominazione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "area_riservata",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "utente_collegato",
+          "name": "acronimo",
           "type": "string",
           "unique": false,
           "required": false
@@ -92,7 +91,7 @@
           "required": true
         },
         {
-          "name": "email",
+          "name": "ruolo",
           "type": "string",
           "unique": false,
           "required": false
@@ -100,7 +99,7 @@
       ]
     },
     {
-      "label": "Persona",
+      "label": "PersonaFisica",
       "attributes": [
         {
           "name": "nominativo",
@@ -111,52 +110,6 @@
         {
           "name": "ruolo",
           "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "email",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Piattaforma",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "versione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Sezione",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ordine",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "obbligatoria",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -178,20 +131,8 @@
           "required": false
         },
         {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "richiedi_firma",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "estensioni",
-          "type": "string",
+          "name": "numero_quesiti_ricevuti",
+          "type": "number",
           "unique": false,
           "required": false
         }
@@ -215,13 +156,48 @@
       ]
     },
     {
-      "label": "FileType",
+      "label": "RichiestaDocumentazione",
       "attributes": [
         {
-          "name": "estensione",
+          "name": "descrizione",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "obbligatoria",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "richiedi_firma",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "estensioni_ammesse",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Sezione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -229,7 +205,7 @@
       "label": "Termine",
       "attributes": [
         {
-          "name": "nome_termine",
+          "name": "tipo",
           "type": "string",
           "unique": true,
           "required": true
@@ -249,16 +225,22 @@
       ]
     },
     {
-      "label": "Stato",
+      "label": "Operazione",
       "attributes": [
         {
-          "name": "nome",
+          "name": "descrizione_operazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "autore",
           "type": "string",
           "unique": false,
           "required": false
@@ -266,45 +248,16 @@
       ]
     },
     {
-      "label": "Risposta",
+      "label": "Comunicazione",
       "attributes": [
         {
-          "name": "identificativo_risposta",
+          "name": "tipo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "data_invio",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "numero_documenti",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "numero_quesiti",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Ruolo",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
+          "name": "contenuto",
           "type": "string",
           "unique": false,
           "required": false
@@ -312,22 +265,22 @@
       ]
     },
     {
-      "label": "Cronologia",
+      "label": "Riferimento",
       "attributes": [
         {
-          "name": "id_cronologia",
+          "name": "identificativo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "note",
+          "name": "ruolo",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "allegati",
+          "name": "utente_nominativo",
           "type": "string",
           "unique": false,
           "required": false
@@ -337,12 +290,12 @@
   ],
   "relations": [
     {
-      "label": "CREA",
+      "label": "CREATA_DA",
       "source": {
-        "label": "StazioneAppaltante",
+        "label": "ConsultazionePreliminare",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -350,7 +303,7 @@
         ]
       },
       "target": {
-        "label": "ConsultazionePreliminare",
+        "label": "StazioneAppaltante",
         "attributes": [
           {
             "name": "nome",
@@ -364,13 +317,13 @@
         {
           "name": "data_creazione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "PUBBLICATA_SU",
+      "label": "INVIATA_IN_APPROVAZIONE_A",
       "source": {
         "label": "ConsultazionePreliminare",
         "attributes": [
@@ -383,10 +336,43 @@
         ]
       },
       "target": {
-        "label": "Piattaforma",
+        "label": "PersonaFisica",
+        "attributes": [
+          {
+            "name": "nominativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_invio",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPROVATA_DA",
+      "source": {
+        "label": "ConsultazionePreliminare",
         "attributes": [
           {
             "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PersonaFisica",
+        "attributes": [
+          {
+            "name": "nominativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -396,39 +382,6 @@
       "attributes": [
         {
           "name": "data_pubblicazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_STATO",
-      "source": {
-        "label": "ConsultazionePreliminare",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Stato",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_aggiornamento",
           "type": "string",
           "required": false,
           "unique": false
@@ -469,52 +422,8 @@
       ]
     },
     {
-      "label": "CONTIENE_DOCUMENTO",
+      "label": "CONTIENE_ATTO",
       "source": {
-        "label": "Sezione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "posizione",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ATTO_DI",
-      "source": {
-        "label": "Atto",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "ConsultazionePreliminare",
         "attributes": [
           {
@@ -525,18 +434,40 @@
           }
         ]
       },
+      "target": {
+        "label": "Atto",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "file_allegato",
-          "type": "boolean",
+          "name": "modalita_inserimento",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "RICHIESTO_IN",
+      "label": "HA_DOCUMENTO",
       "source": {
+        "label": "ConsultazionePreliminare",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "Documento",
         "attributes": [
           {
@@ -547,8 +478,19 @@
           }
         ]
       },
-      "target": {
-        "label": "Sezione",
+      "attributes": [
+        {
+          "name": "numero_documenti_ricevuti",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE_DOCUMENTAZIONE",
+      "source": {
+        "label": "ConsultazionePreliminare",
         "attributes": [
           {
             "name": "nome",
@@ -558,9 +500,20 @@
           }
         ]
       },
+      "target": {
+        "label": "RichiestaDocumentazione",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "obbligatorio",
+          "name": "obbligatoria",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -574,52 +527,8 @@
       ]
     },
     {
-      "label": "AMMETTE_ESTENSIONE",
+      "label": "HA_RIFERIMENTO",
       "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "FileType",
-        "attributes": [
-          {
-            "name": "estensione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "default",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RESPONSABILE",
-      "source": {
-        "label": "Persona",
-        "attributes": [
-          {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "ConsultazionePreliminare",
         "attributes": [
           {
@@ -630,33 +539,11 @@
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "tipo_responsabilità",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ASSEGNA_RUOLO",
-      "source": {
-        "label": "Persona",
-        "attributes": [
-          {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
       "target": {
-        "label": "ConsultazionePreliminare",
+        "label": "Riferimento",
         "attributes": [
           {
-            "name": "nome",
+            "name": "identificativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -673,52 +560,8 @@
       ]
     },
     {
-      "label": "PRESENTA",
+      "label": "HA_TERMINE",
       "source": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Risposta",
-        "attributes": [
-          {
-            "name": "identificativo_risposta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_invio",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RISPONDE_A",
-      "source": {
-        "label": "Risposta",
-        "attributes": [
-          {
-            "name": "identificativo_risposta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "ConsultazionePreliminare",
         "attributes": [
           {
@@ -729,9 +572,98 @@
           }
         ]
       },
+      "target": {
+        "label": "Termine",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "stato_risposta",
+          "name": "data",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "orario",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CRONOLOGIA",
+      "source": {
+        "label": "ConsultazionePreliminare",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Operazione",
+        "attributes": [
+          {
+            "name": "descrizione_operazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "autore",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICEVE_RISPOSTA_DA",
+      "source": {
+        "label": "ConsultazionePreliminare",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_risposta",
           "type": "string",
           "required": false,
           "unique": false
@@ -752,7 +684,7 @@
         ]
       },
       "target": {
-        "label": "Persona",
+        "label": "PersonaFisica",
         "attributes": [
           {
             "name": "nominativo",
@@ -764,7 +696,7 @@
       },
       "attributes": [
         {
-          "name": "canale",
+          "name": "modalita",
           "type": "string",
           "required": false,
           "unique": false
@@ -778,12 +710,12 @@
       ]
     },
     {
-      "label": "RELATIVO_A",
+      "label": "DESCRIVE",
       "source": {
-        "label": "Cronologia",
+        "label": "Manuale",
         "attributes": [
           {
-            "name": "id_cronologia",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -803,7 +735,7 @@
       },
       "attributes": [
         {
-          "name": "data_operazione",
+          "name": "versione",
           "type": "string",
           "required": false,
           "unique": false
@@ -811,12 +743,12 @@
       ]
     },
     {
-      "label": "GENERATO_DA",
+      "label": "HA_COMUNICAZIONE",
       "source": {
-        "label": "Documento",
+        "label": "ConsultazionePreliminare",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -824,10 +756,10 @@
         ]
       },
       "target": {
-        "label": "Piattaforma",
+        "label": "Comunicazione",
         "attributes": [
           {
-            "name": "nome",
+            "name": "tipo",
             "type": "string",
             "unique": true,
             "required": true
@@ -836,20 +768,20 @@
       },
       "attributes": [
         {
-          "name": "automatico",
-          "type": "boolean",
+          "name": "contenuto",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "ASSEGNA",
+      "label": "HA_RIFERIMENTO_UTENTE",
       "source": {
-        "label": "Sezione",
+        "label": "Riferimento",
         "attributes": [
           {
-            "name": "nome",
+            "name": "identificativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -857,7 +789,7 @@
         ]
       },
       "target": {
-        "label": "Persona",
+        "label": "PersonaFisica",
         "attributes": [
           {
             "name": "nominativo",
@@ -870,72 +802,6 @@
       "attributes": [
         {
           "name": "ruolo",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ELIMINA",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ConsultazionePreliminare",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "condizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ESPORTA_IN",
-      "source": {
-        "label": "ConsultazionePreliminare",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "formato",
           "type": "string",
           "required": true,
           "unique": false

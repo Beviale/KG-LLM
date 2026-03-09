@@ -1,0 +1,360 @@
+{
+  "entities": [
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_di_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "denominazione_stazione_appaltante",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Mandatario",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Mandante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "id_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ContrattoDiRete",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "anno_di_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Aggregazione",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ConsorzioStabile",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "riferimento_articolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "QualificazioneSOA",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "livello",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "RAPPRESENTA",
+      "source": {
+        "label": "Mandatario",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "esclusiva",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "ambito",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIUDICATO_DI",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_aggiudicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ADERENTE_A",
+      "source": {
+        "label": "Aggregazione",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ContrattoDiRete",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_adesione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EQUIPARATO_A",
+      "source": {
+        "label": "Aggregazione",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "QualificazioneSOA",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_equivalenza",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EQUIPARATO_A",
+      "source": {
+        "label": "ConsorzioStabile",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "QualificazioneSOA",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_equivalenza",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

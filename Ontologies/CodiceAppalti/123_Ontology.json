@@ -1,0 +1,240 @@
+{
+  "entities": [
+    {
+      "label": "Legge",
+      "attributes": [
+        {
+          "name": "numero_normativa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "articoli_inclusi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Direttiva",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Avviso",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraAppalto",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PeriodoTempo",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "durata_mesi",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "RIFERIMENTO_DIRETTIVA",
+      "source": {
+        "label": "Legge",
+        "attributes": [
+          {
+            "name": "numero_normativa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Direttiva",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "INDICA_ALLEGATO",
+      "source": {
+        "label": "Legge",
+        "attributes": [
+          {
+            "name": "numero_normativa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "id",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "PUBBLICAZIONE_AVVISO",
+      "source": {
+        "label": "Legge",
+        "attributes": [
+          {
+            "name": "numero_normativa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Avviso",
+        "attributes": [
+          {
+            "name": "id",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "APPLICAZIONE_PROCEDURA",
+      "source": {
+        "label": "Legge",
+        "attributes": [
+          {
+            "name": "numero_normativa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraAppalto",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

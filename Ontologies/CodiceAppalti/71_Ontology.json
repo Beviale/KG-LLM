@@ -1,0 +1,415 @@
+{
+  "entities": [
+    {
+      "label": "ProceduraCompetitivaConNegoziazione",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_appalto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termini_partecipazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termini_offerte_iniziali",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AvvisoDiIndizione",
+      "attributes": [
+        {
+          "name": "codice_avviso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "InvitoConfermareInteresse",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OggettoAppalto",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "categorie_oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RequisitiMinimi",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CriteriAggiudicazione",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PeriodoTemporale",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OffertaIniziale",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OffertaFinale",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "EMETTE_AVVISO_DI_GARA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AvvisoDiIndizione",
+        "attributes": [
+          {
+            "name": "codice_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "contenuto_riferimento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PARTECIPA_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraCompetitivaConNegoziazione",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_partecipazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVITATO_DA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "livello_invito",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DESCRIVE_OGGETTO_APPALTO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OggettoAppalto",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_oggetto",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDICA_CRITERI_DI_AGGIUDICAZIONE",
+      "source": {
+        "label": "OggettoAppalto",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CriteriAggiudicazione",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_criteri",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERISCE_REQUISITI_MINIMI",
+      "source": {
+        "label": "OggettoAppalto",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RequisitiMinimi",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_requisiti",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GESTISCE_TERMINE_COMPLESSO",
+      "source": {
+        "label": "ProceduraCompetitivaConNegoziazione",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PeriodoTemporale",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_termine",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EMETTE_INVITO_CONFERMARE_INTERESSE",
+      "source": {
+        "label": "AvvisoDiIndizione",
+        "attributes": [
+          {
+            "name": "codice_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "InvitoConfermareInteresse",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "riferimento_invio",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

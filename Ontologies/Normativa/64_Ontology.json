@@ -1,0 +1,368 @@
+{
+  "entities": [
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "id_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione_procedura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CondizioniPartecipazione",
+      "attributes": [
+        {
+          "name": "id_condizioni_partecipazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "laboratori_protetti",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione_condizioni",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Professione",
+      "attributes": [
+        {
+          "name": "nome_professione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AvvisoAggiudicazione",
+      "attributes": [
+        {
+          "name": "id_avviso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ente_aggiudicatore_nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ente_aggiudicatore_indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ente_aggiudicatore_codice_nuts",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ente_aggiudicatore_telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ente_aggiudicatore_fax",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ente_aggiudicatore_email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ente_agggiudicatore_sito_web",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "attivita_principale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_pubblicazione_ue",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_offerte_ricevute",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "nomi_e_indirizzi_operatori_economici",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "altre_informazioni",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ente",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero_di_identificazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_nuts",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fax",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sito_web",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "attivita_principale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contatti_email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contatti_telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "HA_CONDIZIONE_PARTECIPAZIONE",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CondizioniPartecipazione",
+        "attributes": [
+          {
+            "name": "id_condizioni_partecipazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "RISERVATO_A",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Professione",
+        "attributes": [
+          {
+            "name": "nome_professione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "EMESSO_DA",
+      "source": {
+        "label": "AvvisoAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ente",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    }
+  ]
+}

@@ -1,0 +1,441 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "id_stazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "id_operatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "id_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoDiGara",
+      "attributes": [
+        {
+          "name": "id_documento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "id_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Proroga",
+      "attributes": [
+        {
+          "name": "id_proroga",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "giorni_di_proroga",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SitoIstituzionale",
+      "attributes": [
+        {
+          "name": "url",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RichiestaInformazioni",
+      "attributes": [
+        {
+          "name": "id_richiesta_informazioni",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "FISSA_TERMINI_PER",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "id_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "termini_presentazione_domande_offerte",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROROGA_TERMINI",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Proroga",
+        "attributes": [
+          {
+            "name": "id_proroga",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "giorni_di_proroga",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIESTA_INFORMAZIONI",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DocumentoDiGara",
+        "attributes": [
+          {
+            "name": "id_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "giorni_prima_richiesta",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RITIRARE_OFFERTA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_aggiudicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICIZZA_PROROGA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "id_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SitoIstituzionale",
+        "attributes": [
+          {
+            "name": "url",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VISITA_DOCUMENTI_GARA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DocumentoDiGara",
+        "attributes": [
+          {
+            "name": "id_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PRESENTAZIONE_OFFERTA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@
       "label": "Sezione",
       "attributes": [
         {
-          "name": "nome",
+          "name": "nome_sezione",
           "type": "string",
           "unique": true,
           "required": true
@@ -14,6 +14,12 @@
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "editabile",
+          "type": "boolean",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -21,36 +27,37 @@
       "label": "Documento",
       "attributes": [
         {
-          "name": "titolo",
+          "name": "nome_documento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "richiedi_firma",
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "categoria",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "firma_digitale_required",
           "type": "boolean",
           "unique": false,
           "required": false
         },
         {
-          "name": "tipo_file_default",
+          "name": "tipo_file_allowed",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "DocumentoCategorizzato",
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "elenco",
+          "name": "metodo_caricamento",
           "type": "string",
           "unique": false,
           "required": false
@@ -61,7 +68,7 @@
       "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "denominazione",
+          "name": "identificativo_oe",
           "type": "string",
           "unique": true,
           "required": true
@@ -75,30 +82,48 @@
       ]
     },
     {
-      "label": "RUP",
+      "label": "ProceduraDiGara",
       "attributes": [
         {
-          "name": "nome",
+          "name": "id_gara",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "permessi",
+          "name": "tipo_procedura",
           "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "pubblicazione_richiesta",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "CategoriaMerceologica",
+      "label": "ModelloOfferta",
       "attributes": [
         {
-          "name": "codice_categoria",
+          "name": "nome_modello",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "standard",
+          "type": "boolean",
+          "unique": false,
+          "required": false
         },
         {
           "name": "descrizione",
@@ -126,7 +151,7 @@
       ]
     },
     {
-      "label": "LuogoIstat",
+      "label": "LuogoISTAT",
       "attributes": [
         {
           "name": "codice_istat",
@@ -164,7 +189,7 @@
           "required": false
         },
         {
-          "name": "estremi",
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
@@ -172,150 +197,17 @@
       ]
     },
     {
-      "label": "ProceduraGara",
+      "label": "RUP",
       "attributes": [
         {
-          "name": "id_procedura",
+          "name": "identificativo_rup",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo_procedura",
+          "name": "nome_rup",
           "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "importo",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "ambito",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ModelloOfferta",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "standard",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Prodotto",
-      "attributes": [
-        {
-          "name": "codice_prodotto",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "quantita",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "importo_base",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Lotto",
-      "attributes": [
-        {
-          "name": "numero_lotto",
-          "type": "number",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "importo_lotto",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "VoceLotto",
-      "attributes": [
-        {
-          "name": "id_voce",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "numero_voce",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "importo",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "AttributoProdotto",
-      "attributes": [
-        {
-          "name": "nome_attributo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "asterisco",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -331,7 +223,7 @@
           "required": true
         },
         {
-          "name": "obbligatorio",
+          "name": "strutturato",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -339,7 +231,139 @@
       ]
     },
     {
-      "label": "FileEstensione",
+      "label": "TabellaElencoDocumenti",
+      "attributes": [
+        {
+          "name": "id_tabella_documenti",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "num_righe",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "TabellaElencoProdotti",
+      "attributes": [
+        {
+          "name": "id_tabella_prodotti",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "modello_offerta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "num_righe",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RigaProdotto",
+      "attributes": [
+        {
+          "name": "numero_riga",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "quantita",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "esito_riga",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Lotto",
+      "attributes": [
+        {
+          "name": "numero_lotto",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "base_asta",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Voce",
+      "attributes": [
+        {
+          "name": "numero_voce",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "variante",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Variante",
+      "attributes": [
+        {
+          "name": "id_variante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EstensioneFile",
       "attributes": [
         {
           "name": "estensione",
@@ -359,13 +383,13 @@
       "label": "ANAC",
       "attributes": [
         {
-          "name": "nome",
+          "name": "nome_anac",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "ruolo",
+          "name": "ruolo_regolamentare",
           "type": "string",
           "unique": false,
           "required": false
@@ -373,67 +397,16 @@
       ]
     },
     {
-      "label": "CodiceRegionale",
+      "label": "PCP",
       "attributes": [
         {
-          "name": "codice",
+          "name": "nome_pcp",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Variante",
-      "attributes": [
-        {
-          "name": "numero_variante",
-          "type": "number",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "EsitoRiga",
-      "attributes": [
-        {
-          "name": "codice_esito",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "messaggio",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Busta",
-      "attributes": [
-        {
-          "name": "tipo_busta",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "consultabile",
+          "name": "interoperabilita",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -450,25 +423,14 @@
           "required": true
         },
         {
-          "name": "modalita",
-          "type": "string",
+          "name": "peso",
+          "type": "number",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "Punteggio",
-      "attributes": [
-        {
-          "name": "tipo_punteggio",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "valore",
-          "type": "number",
+          "name": "tipo",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -477,12 +439,78 @@
   ],
   "relations": [
     {
-      "label": "SEZIONE_CONTIENE_DOCUMENTO",
+      "label": "COMPRENDE",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Sezione",
+        "attributes": [
+          {
+            "name": "nome_sezione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_sezione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONTIENTE_DOCUMENTI",
       "source": {
         "label": "Sezione",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_sezione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "TabellaElencoDocumenti",
+        "attributes": [
+          {
+            "name": "id_tabella_documenti",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ordine",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INCLUDE_DOCUMENTO",
+      "source": {
+        "label": "TabellaElencoDocumenti",
+        "attributes": [
+          {
+            "name": "id_tabella_documenti",
             "type": "string",
             "unique": true,
             "required": true
@@ -493,7 +521,7 @@
         "label": "Documento",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "nome_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -502,7 +530,7 @@
       },
       "attributes": [
         {
-          "name": "ordine_posizione",
+          "name": "posizione",
           "type": "number",
           "required": false,
           "unique": false
@@ -522,12 +550,12 @@
       ]
     },
     {
-      "label": "DOCUMENTO_CATEGORIZZATO_RIFERISCE_A",
+      "label": "RIVOLTO_A",
       "source": {
-        "label": "DocumentoCategorizzato",
+        "label": "Documento",
         "attributes": [
           {
-            "name": "tipo",
+            "name": "nome_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -535,10 +563,82 @@
         ]
       },
       "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "identificativo_oe",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "accessibile_a",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CARICATO_IN",
+      "source": {
         "label": "Documento",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "nome_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "metodo_caricamento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "comando",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUO_MODIFICARE",
+      "source": {
+        "label": "RUP",
+        "attributes": [
+          {
+            "name": "identificativo_rup",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Sezione",
+        "attributes": [
+          {
+            "name": "nome_sezione",
             "type": "string",
             "unique": true,
             "required": true
@@ -555,123 +655,12 @@
       ]
     },
     {
-      "label": "PROCEDURA_HA_SEZIONE",
+      "label": "INDICA_CPV",
       "source": {
-        "label": "ProceduraGara",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "id_procedura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Sezione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "contesto",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PROCEDURA_UTILIZZA_MODELLO",
-      "source": {
-        "label": "ProceduraGara",
-        "attributes": [
-          {
-            "name": "id_procedura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ModelloOfferta",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "motivo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PROCEDURA_HA_PRODOTTO",
-      "source": {
-        "label": "ProceduraGara",
-        "attributes": [
-          {
-            "name": "id_procedura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Prodotto",
-        "attributes": [
-          {
-            "name": "codice_prodotto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "quantita",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "importo_base",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PRODOTTO_CLASSIFICATO_DA_CPV",
-      "source": {
-        "label": "Prodotto",
-        "attributes": [
-          {
-            "name": "codice_prodotto",
+            "name": "id_gara",
             "type": "string",
             "unique": true,
             "required": true
@@ -691,20 +680,20 @@
       },
       "attributes": [
         {
-          "name": "necessario_per_pcp",
+          "name": "obbligatorio",
           "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "SEZIONE_RICHIEDE_LUOGO_ISTAT",
+      "label": "INDICA_LUOGO_ISTAT",
       "source": {
-        "label": "Sezione",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "nome",
+            "name": "id_gara",
             "type": "string",
             "unique": true,
             "required": true
@@ -712,7 +701,7 @@
         ]
       },
       "target": {
-        "label": "LuogoIstat",
+        "label": "LuogoISTAT",
         "attributes": [
           {
             "name": "codice_istat",
@@ -726,18 +715,18 @@
         {
           "name": "obbligatorio",
           "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "PROCEDURA_PUBBLICATA_SU",
+      "label": "HA_PUBBLICAZIONE",
       "source": {
-        "label": "ProceduraGara",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "id_procedura",
+            "name": "id_gara",
             "type": "string",
             "unique": true,
             "required": true
@@ -763,13 +752,7 @@
           "unique": false
         },
         {
-          "name": "data_pubblicazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "estremi",
+          "name": "stato",
           "type": "string",
           "required": false,
           "unique": false
@@ -777,12 +760,12 @@
       ]
     },
     {
-      "label": "RUP_PUO_INTEGRARE_SEZIONE",
+      "label": "INTEROPERABILE_CON",
       "source": {
-        "label": "RUP",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "nome",
+            "name": "id_gara",
             "type": "string",
             "unique": true,
             "required": true
@@ -790,10 +773,10 @@
         ]
       },
       "target": {
-        "label": "Sezione",
+        "label": "PCP",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_pcp",
             "type": "string",
             "unique": true,
             "required": true
@@ -802,20 +785,20 @@
       },
       "attributes": [
         {
-          "name": "permesso_integrazione",
+          "name": "obbligatorio",
           "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "OPERATORE_PREDISPONE_BUSTA",
+      "label": "HA_TABELLA_PRODOTTI",
       "source": {
-        "label": "OperatoreEconomico",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "id_gara",
             "type": "string",
             "unique": true,
             "required": true
@@ -823,10 +806,10 @@
         ]
       },
       "target": {
-        "label": "Busta",
+        "label": "TabellaElencoProdotti",
         "attributes": [
           {
-            "name": "tipo_busta",
+            "name": "id_tabella_prodotti",
             "type": "string",
             "unique": true,
             "required": true
@@ -835,26 +818,20 @@
       },
       "attributes": [
         {
-          "name": "firmata",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "obbligatoria",
-          "type": "boolean",
+          "name": "modello_offerta",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "BUSTA_ASSOCIATA_PROCEDURA",
+      "label": "CONTIENTE_RIGA",
       "source": {
-        "label": "Busta",
+        "label": "TabellaElencoProdotti",
         "attributes": [
           {
-            "name": "tipo_busta",
+            "name": "id_tabella_prodotti",
             "type": "string",
             "unique": true,
             "required": true
@@ -862,11 +839,11 @@
         ]
       },
       "target": {
-        "label": "ProceduraGara",
+        "label": "RigaProdotto",
         "attributes": [
           {
-            "name": "id_procedura",
-            "type": "string",
+            "name": "numero_riga",
+            "type": "number",
             "unique": true,
             "required": true
           }
@@ -874,21 +851,21 @@
       },
       "attributes": [
         {
-          "name": "consultazione",
-          "type": "boolean",
+          "name": "esito_riga",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "PROCEDURA_HA_LOTTO",
+      "label": "RIFERITO_A_LOTTO",
       "source": {
-        "label": "ProceduraGara",
+        "label": "RigaProdotto",
         "attributes": [
           {
-            "name": "id_procedura",
-            "type": "string",
+            "name": "numero_riga",
+            "type": "number",
             "unique": true,
             "required": true
           }
@@ -907,15 +884,15 @@
       },
       "attributes": [
         {
-          "name": "multi_lotto",
-          "type": "boolean",
+          "name": "numero_voce",
+          "type": "number",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "LOTTO_CONTIENE_VOCE",
+      "label": "CONTIENTE_VOCE",
       "source": {
         "label": "Lotto",
         "attributes": [
@@ -928,11 +905,11 @@
         ]
       },
       "target": {
-        "label": "VoceLotto",
+        "label": "Voce",
         "attributes": [
           {
-            "name": "id_voce",
-            "type": "string",
+            "name": "numero_voce",
+            "type": "number",
             "unique": true,
             "required": true
           }
@@ -940,31 +917,31 @@
       },
       "attributes": [
         {
-          "name": "ordine",
+          "name": "numero_voce",
           "type": "number",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "VOCE_RIFERISCE_A_PRODOTTO",
+      "label": "HA_VARIANTE",
       "source": {
-        "label": "VoceLotto",
+        "label": "Voce",
         "attributes": [
           {
-            "name": "id_voce",
-            "type": "string",
+            "name": "numero_voce",
+            "type": "number",
             "unique": true,
             "required": true
           }
         ]
       },
       "target": {
-        "label": "Prodotto",
+        "label": "Variante",
         "attributes": [
           {
-            "name": "codice_prodotto",
+            "name": "id_variante",
             "type": "string",
             "unique": true,
             "required": true
@@ -972,18 +949,6 @@
         ]
       },
       "attributes": [
-        {
-          "name": "quantita",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "importo",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
         {
           "name": "numero_variante",
           "type": "number",
@@ -993,45 +958,12 @@
       ]
     },
     {
-      "label": "ANAC_RICHIEDE_ATTRIBUTO",
-      "source": {
-        "label": "ANAC",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "AttributoProdotto",
-        "attributes": [
-          {
-            "name": "nome_attributo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "richiesto_per_interoperabilita",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DOCUMENTO_AMMETTE_ESTENSIONE",
+      "label": "AMMETTE_ESTENSIONE",
       "source": {
         "label": "Documento",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "nome_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -1039,7 +971,7 @@
         ]
       },
       "target": {
-        "label": "FileEstensione",
+        "label": "EstensioneFile",
         "attributes": [
           {
             "name": "estensione",
@@ -1051,20 +983,20 @@
       },
       "attributes": [
         {
-          "name": "modificabile",
+          "name": "ammessa",
           "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "PROCEDURA_RICHIEDE_DGUE",
+      "label": "RICHIEDE_DGUE",
       "source": {
-        "label": "ProceduraGara",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "id_procedura",
+            "name": "id_gara",
             "type": "string",
             "unique": true,
             "required": true
@@ -1086,24 +1018,24 @@
         {
           "name": "obbligatorio",
           "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         },
         {
-          "name": "soglia_importo_eur",
-          "type": "number",
+          "name": "condizione",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "PRODOTTO_PUO_AVERE_CODICE_REGIONALE",
+      "label": "UTILIZZA_CRITERIO",
       "source": {
-        "label": "Prodotto",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "codice_prodotto",
+            "name": "id_gara",
             "type": "string",
             "unique": true,
             "required": true
@@ -1111,10 +1043,10 @@
         ]
       },
       "target": {
-        "label": "CodiceRegionale",
+        "label": "CriterioValutazione",
         "attributes": [
           {
-            "name": "codice",
+            "name": "nome_criterio",
             "type": "string",
             "unique": true,
             "required": true
@@ -1123,26 +1055,131 @@
       },
       "attributes": [
         {
-          "name": "associato_automaticamente",
+          "name": "punteggio",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "tipo_attribuzione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZATO_IN",
+      "source": {
+        "label": "ModelloOfferta",
+        "attributes": [
+          {
+            "name": "nome_modello",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "TabellaElencoProdotti",
+        "attributes": [
+          {
+            "name": "id_tabella_prodotti",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE_ATTRIBUTI_INTEROPERABILITA",
+      "source": {
+        "label": "ANAC",
+        "attributes": [
+          {
+            "name": "nome_anac",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "TabellaElencoProdotti",
+        "attributes": [
+          {
+            "name": "id_tabella_prodotti",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "elenco_attr",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VERIFICA_PUBBLICAZIONE",
+      "source": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome_pcp",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Pubblicazione",
+        "attributes": [
+          {
+            "name": "id_pubblicazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "automatica",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "manuale_verifica",
           "type": "boolean",
           "required": false,
           "unique": false
-        },
-        {
-          "name": "descrizione_codice_regionale",
-          "type": "string",
-          "required": false,
-          "unique": false
         }
       ]
     },
     {
-      "label": "CODICE_REGIONALE_RIMANDA_A_ESITO",
+      "label": "AMMETTE_UPLOAD",
       "source": {
-        "label": "CodiceRegionale",
+        "label": "TabellaElencoProdotti",
         "attributes": [
           {
-            "name": "codice",
+            "name": "id_tabella_prodotti",
             "type": "string",
             "unique": true,
             "required": true
@@ -1150,10 +1187,10 @@
         ]
       },
       "target": {
-        "label": "EsitoRiga",
+        "label": "EstensioneFile",
         "attributes": [
           {
-            "name": "codice_esito",
+            "name": "estensione",
             "type": "string",
             "unique": true,
             "required": true
@@ -1162,7 +1199,7 @@
       },
       "attributes": [
         {
-          "name": "messaggio",
+          "name": "metodo",
           "type": "string",
           "required": false,
           "unique": false
@@ -1170,12 +1207,12 @@
       ]
     },
     {
-      "label": "CRITERIO_APPLICA_A_PROCEDURA",
+      "label": "VERIFICA_COERENZA_CON_TESTATA",
       "source": {
-        "label": "CriterioValutazione",
+        "label": "TabellaElencoProdotti",
         "attributes": [
           {
-            "name": "nome_criterio",
+            "name": "id_tabella_prodotti",
             "type": "string",
             "unique": true,
             "required": true
@@ -1183,10 +1220,10 @@
         ]
       },
       "target": {
-        "label": "ProceduraGara",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "id_procedura",
+            "name": "id_gara",
             "type": "string",
             "unique": true,
             "required": true
@@ -1195,65 +1232,8 @@
       },
       "attributes": [
         {
-          "name": "punteggio_economico",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "punteggio_tecnico",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "modalita_attribuzione",
+          "name": "risultato",
           "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "soglia_minima_tecnica",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "riparametrazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PUNTEGGIO_ASSOCIATO_CRITERIO",
-      "source": {
-        "label": "Punteggio",
-        "attributes": [
-          {
-            "name": "tipo_punteggio",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CriterioValutazione",
-        "attributes": [
-          {
-            "name": "nome_criterio",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "valore",
-          "type": "number",
           "required": false,
           "unique": false
         }

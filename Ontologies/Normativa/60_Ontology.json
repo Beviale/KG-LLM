@@ -1,0 +1,291 @@
+{
+  "entities": [
+    {
+      "label": "CPVCodes",
+      "attributes": [
+        {
+          "name": "codes",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AllegatoIX",
+      "attributes": [
+        {
+          "name": "numero_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AllegatoX",
+      "attributes": [
+        {
+          "name": "numero_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AllegatoXI",
+      "attributes": [
+        {
+          "name": "numero_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AllegatoXII",
+      "attributes": [
+        {
+          "name": "numero_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AllegatoXIII",
+      "attributes": [
+        {
+          "name": "numero_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AllegatoXIV",
+      "attributes": [
+        {
+          "name": "numero_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AllegatoIV",
+      "attributes": [
+        {
+          "name": "numero_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AllegatoXVII",
+      "attributes": [
+        {
+          "name": "numero_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "CONTIENE_CPVCODI",
+      "source": {
+        "label": "AllegatoIX",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CPVCodes",
+        "attributes": [
+          {
+            "name": "codes",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_A",
+      "source": {
+        "label": "AllegatoIX",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AllegatoXIV",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_A",
+      "source": {
+        "label": "AllegatoIX",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AllegatoXVII",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_A",
+      "source": {
+        "label": "AllegatoIX",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AllegatoIV",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

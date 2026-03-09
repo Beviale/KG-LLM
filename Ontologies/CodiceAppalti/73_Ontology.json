@@ -1,0 +1,674 @@
+{
+  "entities": [
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_gara_innovazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimenti_normativi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "id_operatore_economico",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EsigenzaInnovativa",
+      "attributes": [
+        {
+          "name": "id_esigenza_innovativa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "BandoDiGara",
+      "attributes": [
+        {
+          "name": "id_bando_gara",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero_bando",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AvvisoDiIndizioneGara",
+      "attributes": [
+        {
+          "name": "id_avviso_indizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero_avviso",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DomandaDiPartecipazione",
+      "attributes": [
+        {
+          "name": "id_domanda_partecipazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_presentazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "id_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_di_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PartenariatoPerInnovazione",
+      "attributes": [
+        {
+          "name": "id_partenariato_innovazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "giorni_per_ricezione_domande",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "valore_stima_fase_minima",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "obiettivi_intermedi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "remunerazione_tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FasePartenariatoInnovazione",
+      "attributes": [
+        {
+          "name": "id_fase",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_fase",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "durata_fase",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProgettoRicercaInnovazione",
+      "attributes": [
+        {
+          "name": "id_progetto_ricerca",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SpecificheTecniche",
+      "attributes": [
+        {
+          "name": "id_specifiche_tecniche",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoDiGara",
+      "attributes": [
+        {
+          "name": "id_documento_gara",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "id_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fase_origine",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comunicazione",
+      "attributes": [
+        {
+          "name": "id_comunicazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDICA_ESIGENZA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "EsigenzaInnovativa",
+        "attributes": [
+          {
+            "name": "id_esigenza_innovativa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "FORMULA_DOMANDA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DomandaDiPartecipazione",
+        "attributes": [
+          {
+            "name": "id_domanda_partecipazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "RISPOSTA_A_BANDO",
+      "source": {
+        "label": "DomandaDiPartecipazione",
+        "attributes": [
+          {
+            "name": "id_domanda_partecipazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "BandoDiGara",
+        "attributes": [
+          {
+            "name": "id_bando_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "RISPOSTA_A_AVVISO",
+      "source": {
+        "label": "DomandaDiPartecipazione",
+        "attributes": [
+          {
+            "name": "id_domanda_partecipazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AvvisoDiIndizioneGara",
+        "attributes": [
+          {
+            "name": "id_avviso_indizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "INVITATO_DI",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "INSTAURO_PARTENARIATO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PartenariatoPerInnovazione",
+        "attributes": [
+          {
+            "name": "id_partenariato_innovazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "INCLUSIONE_OPERATORE",
+      "source": {
+        "label": "PartenariatoPerInnovazione",
+        "attributes": [
+          {
+            "name": "id_partenariato_innovazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "PARTECIPAZIONE_DI",
+      "source": {
+        "label": "PartenariatoPerInnovazione",
+        "attributes": [
+          {
+            "name": "id_partenariato_innovazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "AGGIUDICATO_DI",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "STRUTTURA_CON_FASI",
+      "source": {
+        "label": "PartenariatoPerInnovazione",
+        "attributes": [
+          {
+            "name": "id_partenariato_innovazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "FasePartenariatoInnovazione",
+        "attributes": [
+          {
+            "name": "id_fase",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "APPLICATE_SPECIFICHE",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SpecificheTecniche",
+        "attributes": [
+          {
+            "name": "id_specifiche_tecniche",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "INVITO_PARTECIPAZIONE",
+      "source": {
+        "label": "BandoDiGara",
+        "attributes": [
+          {
+            "name": "id_bando_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "INFORMARE_MODIFICHE",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "NEGOZIAZIONE",
+      "source": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    }
+  ]
+}

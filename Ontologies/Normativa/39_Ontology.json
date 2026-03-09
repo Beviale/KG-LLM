@@ -1,0 +1,477 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "testo_articolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteAggiudicatore",
+      "attributes": [
+        {
+          "name": "denominazione_ente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SistemaQualificazione",
+      "attributes": [
+        {
+          "name": "id_sistema_qualificazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Qualificazione",
+      "attributes": [
+        {
+          "name": "id_qualificazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Richiedente",
+      "attributes": [
+        {
+          "name": "codice_richiedente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "id_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CPV",
+      "attributes": [
+        {
+          "name": "codice_cpv",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "id_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Bando",
+      "attributes": [
+        {
+          "name": "id_bando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Gara",
+      "attributes": [
+        {
+          "name": "id_gara",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "id_documento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DichiarazioneSostitutiva",
+      "attributes": [
+        {
+          "name": "id_dichiarazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CriterioQualificazione",
+      "attributes": [
+        {
+          "name": "id_criterio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Procedura",
+      "attributes": [
+        {
+          "name": "id_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "INFORMA_RICHIEDENTE_DI_QUALIFICAZIONE",
+      "source": {
+        "label": "EnteAggiudicatore",
+        "attributes": [
+          {
+            "name": "denominazione_ente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Richiedente",
+        "attributes": [
+          {
+            "name": "codice_richiedente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "ISTITUISCE_SISTEMA_DI_QUALIFICAZIONE",
+      "source": {
+        "label": "EnteAggiudicatore",
+        "attributes": [
+          {
+            "name": "denominazione_ente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SistemaQualificazione",
+        "attributes": [
+          {
+            "name": "id_sistema_qualificazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "QUALIFICA_OPERATORE_ECONOMICO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Qualificazione",
+        "attributes": [
+          {
+            "name": "id_qualificazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "CPV_ASSOCIATO_A_APPALTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CPV",
+        "attributes": [
+          {
+            "name": "codice_cpv",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "ASSOCIATO_BANDO_A_GARA",
+      "source": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "id_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "id_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "RICHIESTA_DOCUMENTI",
+      "source": {
+        "label": "Richiedente",
+        "attributes": [
+          {
+            "name": "codice_richiedente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "id_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "PRESENTA_AUTOCERTIFICAZIONI",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "id_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "PRESENTA_DICHIARAZIONE_SOSTITUTIVA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DichiarazioneSostitutiva",
+        "attributes": [
+          {
+            "name": "id_dichiarazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "RIFERIMENTO_AD_ARTICOLO_QUALIFICAZIONE",
+      "source": {
+        "label": "Qualificazione",
+        "attributes": [
+          {
+            "name": "id_qualificazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "RIFERIMENTO_AD_ARTICOLO_CRITERIO",
+      "source": {
+        "label": "CriterioQualificazione",
+        "attributes": [
+          {
+            "name": "id_criterio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "ASSOCIAZIONE_PROCEDURA_A_GARA",
+      "source": {
+        "label": "Procedura",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "id_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,578 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteConcedente",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "InvestitoreIstituzionale",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Proposta",
+      "attributes": [
+        {
+          "name": "codice_proposta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProgettoDiFattibilita",
+      "attributes": [
+        {
+          "name": "id_progetto_fattibilita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PianoEconomicoFinanziario",
+      "attributes": [
+        {
+          "name": "id_piano_economico_finanziario",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Convenzione",
+      "attributes": [
+        {
+          "name": "id_convenzione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "id_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Gara",
+      "attributes": [
+        {
+          "name": "id_gara",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "id_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Cauzione",
+      "attributes": [
+        {
+          "name": "id_cauzione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Penale",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Avviso",
+      "attributes": [
+        {
+          "name": "id_avviso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SezioneAmministrazioneTrasparente",
+      "attributes": [
+        {
+          "name": "nome_sezione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Bando",
+      "attributes": [
+        {
+          "name": "id_bando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Subappalto",
+      "attributes": [
+        {
+          "name": "id_subappalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CameraDiCommercio",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "PROMUOVE_PROPOSTA",
+      "source": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Proposta",
+        "attributes": [
+          {
+            "name": "codice_proposta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "PRESENTA_PROPOSTA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Proposta",
+        "attributes": [
+          {
+            "name": "codice_proposta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "CONTIENE_PROGETTO",
+      "source": {
+        "label": "Proposta",
+        "attributes": [
+          {
+            "name": "codice_proposta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProgettoDiFattibilita",
+        "attributes": [
+          {
+            "name": "id_progetto_fattibilita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "CONTIENE_PIANO_ECONOMICO_FINANZIARIO",
+      "source": {
+        "label": "Proposta",
+        "attributes": [
+          {
+            "name": "codice_proposta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PianoEconomicoFinanziario",
+        "attributes": [
+          {
+            "name": "id_piano_economico_finanziario",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "CONTIENE_CONVENZIONE",
+      "source": {
+        "label": "Proposta",
+        "attributes": [
+          {
+            "name": "codice_proposta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Convenzione",
+        "attributes": [
+          {
+            "name": "id_convenzione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "PARTECIPA_GARA",
+      "source": {
+        "label": "InvestitoreIstituzionale",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "id_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "PARTECIPA_GARA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "id_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "OFFERTA_PRESENTATA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "GARANZIA_ASSOCIATA",
+      "source": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Cauzione",
+        "attributes": [
+          {
+            "name": "id_cauzione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "AVVISO_EMESSO",
+      "source": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Avviso",
+        "attributes": [
+          {
+            "name": "id_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "PUBBLICAZIONE_NELLA_SEZIONE_TRASPARENZA",
+      "source": {
+        "label": "Avviso",
+        "attributes": [
+          {
+            "name": "id_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SezioneAmministrazioneTrasparente",
+        "attributes": [
+          {
+            "name": "nome_sezione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "RIFERITO_AL_BANDO",
+      "source": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "id_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "id_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    }
+  ]
+}

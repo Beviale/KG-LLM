@@ -1,0 +1,290 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Parte",
+      "attributes": [
+        {
+          "name": "numero_parte",
+          "type": "number",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiAggiudicazione",
+      "attributes": [
+        {
+          "name": "id_procedura",
+          "type": "number",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "EnteConcedente",
+      "attributes": [
+        {
+          "name": "denominazione_ente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ContrattoDiConcessione",
+      "attributes": [
+        {
+          "name": "numero_concessione",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Codice",
+      "attributes": [
+        {
+          "name": "codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DecretoLegislativo",
+      "attributes": [
+        {
+          "name": "numero_decreto",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ServiziEconomiciInteresseGenerale",
+      "attributes": [
+        {
+          "name": "ambito",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Concessione",
+      "attributes": [
+        {
+          "name": "numero_concessione",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "NormeSpecialiDiSettore",
+      "attributes": [
+        {
+          "name": "id_norma",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "DISCIPLINA",
+      "source": {
+        "label": "Parte",
+        "attributes": [
+          {
+            "name": "numero_parte",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "GENERATA_DA",
+      "source": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "denominazione_ente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "APPLICA_A",
+      "source": {
+        "label": "Codice",
+        "attributes": [
+          {
+            "name": "codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Parte",
+        "attributes": [
+          {
+            "name": "numero_parte",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "APPLICA_A",
+      "source": {
+        "label": "DecretoLegislativo",
+        "attributes": [
+          {
+            "name": "numero_decreto",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Parte",
+        "attributes": [
+          {
+            "name": "numero_parte",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "APPARTIENE_A",
+      "source": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Parte",
+        "attributes": [
+          {
+            "name": "numero_parte",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "CLASSIFICATA_IN",
+      "source": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "numero_concessione",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ServiziEconomiciInteresseGenerale",
+        "attributes": [
+          {
+            "name": "ambito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    }
+  ]
+}

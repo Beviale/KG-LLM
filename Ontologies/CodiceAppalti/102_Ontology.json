@@ -1,0 +1,215 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "codice_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RapportoDiProva",
+      "attributes": [
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CertificazioneQualita",
+      "attributes": [
+        {
+          "name": "tipologia_certificazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "MezzoDiProva",
+      "attributes": [
+        {
+          "name": "tipologia_mezzo_prova",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RegistroOnlineCertificati",
+      "attributes": [
+        {
+          "name": "nome_registro",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CostoDelCicloDiVita",
+      "attributes": [
+        {
+          "name": "descrizione_costo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "DISCIPLINATO_DA",
+      "source": {
+        "label": "RapportoDiProva",
+        "attributes": [
+          {
+            "name": "tipologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "codice_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISCIPLINATO_DA",
+      "source": {
+        "label": "CertificazioneQualita",
+        "attributes": [
+          {
+            "name": "tipologia_certificazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "codice_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISCIPLINATO_DA",
+      "source": {
+        "label": "MezzoDiProva",
+        "attributes": [
+          {
+            "name": "tipologia_mezzo_prova",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "codice_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISCIPLINATO_DA",
+      "source": {
+        "label": "CostoDelCicloDiVita",
+        "attributes": [
+          {
+            "name": "descrizione_costo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "codice_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

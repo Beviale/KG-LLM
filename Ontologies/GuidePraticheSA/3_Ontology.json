@@ -16,7 +16,36 @@
           "required": false
         },
         {
-          "name": "data_versione",
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "proprietario",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Societa",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "forma_giuridica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "nota",
           "type": "string",
           "unique": false,
           "required": false
@@ -47,68 +76,17 @@
       ]
     },
     {
-      "label": "Organizzazione",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Normativa",
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "articoli_riferimento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Articolo",
-      "attributes": [
-        {
-          "name": "numero",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "testo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
       "label": "Gara",
       "attributes": [
         {
-          "name": "codice_gara",
+          "name": "identificativo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "titolo",
-          "type": "string",
+          "name": "calcolo_anomalia",
+          "type": "boolean",
           "unique": false,
           "required": false
         },
@@ -117,44 +95,23 @@
           "type": "number",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "TipoGara",
-      "attributes": [
+        },
         {
-          "name": "nome",
+          "name": "opzione_offerte_anomale",
           "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Ambito",
-      "attributes": [
+          "unique": false,
+          "required": false
+        },
         {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
+          "name": "sconto_riferimento_inserito",
+          "type": "boolean",
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "CriterioAggiudicazione",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Metodo",
+      "label": "MetodoDiCalcolo",
       "attributes": [
         {
           "name": "nome",
@@ -169,6 +126,23 @@
           "required": false
         },
         {
+          "name": "disponibile_per_sorteggio",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ambito",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
           "name": "descrizione",
           "type": "string",
           "unique": false,
@@ -177,28 +151,16 @@
       ]
     },
     {
-      "label": "CalcoloAnomalia",
+      "label": "CriterioAggiudicazione",
       "attributes": [
         {
-          "name": "configurazione",
+          "name": "codice",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "abilitato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "opzione_offerte_anomale",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "sconto_di_riferimento",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -221,21 +183,27 @@
           "required": false
         },
         {
-          "name": "scarto_aritmetico",
-          "type": "number",
+          "name": "stato_offerta",
+          "type": "string",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "StatoOfferta",
+      "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "nome",
+          "name": "ragione_sociale",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "escluso",
+          "type": "boolean",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -243,7 +211,7 @@
       "label": "Commissione",
       "attributes": [
         {
-          "name": "id_commissione",
+          "name": "identificativo",
           "type": "string",
           "unique": true,
           "required": true
@@ -257,24 +225,7 @@
       ]
     },
     {
-      "label": "Utente",
-      "attributes": [
-        {
-          "name": "username",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ParametroCalcolo",
+      "label": "CriterioAnomalia",
       "attributes": [
         {
           "name": "nome",
@@ -283,60 +234,49 @@
           "required": true
         },
         {
-          "name": "valore",
+          "name": "modalita_pt",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "precisione_decimali",
+          "name": "modalita_pe",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "metodo_di_calcolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RegolaCalcolo",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "decimal_precision",
           "type": "number",
           "unique": false,
           "required": false
         },
         {
-          "name": "criterio_arrotondamento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Figura",
-      "attributes": [
-        {
-          "name": "id_figura",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CriteriAnomalia",
-      "attributes": [
-        {
-          "name": "id",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "modalita_PT",
+          "name": "arrotondamento",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "modalita_PE",
-          "type": "string",
+          "name": "blocco_unitario",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -345,7 +285,7 @@
   ],
   "relations": [
     {
-      "label": "PROPRIETA_DI",
+      "label": "DI_PROPRIETA_DI",
       "source": {
         "label": "Documento",
         "attributes": [
@@ -358,10 +298,10 @@
         ]
       },
       "target": {
-        "label": "Organizzazione",
+        "label": "Societa",
         "attributes": [
           {
-            "name": "nome",
+            "name": "ragione_sociale",
             "type": "string",
             "unique": true,
             "required": true
@@ -370,40 +310,7 @@
       },
       "attributes": [
         {
-          "name": "data_proprieta",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ADEGUATO_A",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Normativa",
-        "attributes": [
-          {
-            "name": "riferimento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "articoli_coinvolti",
+          "name": "restrizioni_divulgazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -424,10 +331,10 @@
         ]
       },
       "target": {
-        "label": "CalcoloAnomalia",
+        "label": "Gara",
         "attributes": [
           {
-            "name": "configurazione",
+            "name": "identificativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -436,20 +343,20 @@
       },
       "attributes": [
         {
-          "name": "metodo_default",
-          "type": "string",
-          "required": false,
+          "name": "gestisce_calcolo_anomalia",
+          "type": "boolean",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_CONFIGURAZIONE",
+      "label": "HA_AMBITO",
       "source": {
         "label": "Gara",
         "attributes": [
           {
-            "name": "codice_gara",
+            "name": "identificativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -457,10 +364,62 @@
         ]
       },
       "target": {
-        "label": "CalcoloAnomalia",
+        "label": "Ambito",
         "attributes": [
           {
-            "name": "configurazione",
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "HA_CRITERIO_AGGIUDICAZIONE",
+      "source": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "identificativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CriterioAggiudicazione",
+        "attributes": [
+          {
+            "name": "codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "UTILIZZA_METODO",
+      "source": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "identificativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "MetodoDiCalcolo",
+        "attributes": [
+          {
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -469,26 +428,59 @@
       },
       "attributes": [
         {
-          "name": "opzione_offerte_anomale",
+          "name": "modalita_scelta",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PREVEDE_ESCLUSIONE_AUTOMATICA",
+      "source": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "identificativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "condizione_numero_offerte",
           "type": "string",
           "required": true,
           "unique": false
         },
         {
-          "name": "calcolo_abilitato",
+          "name": "applicabile",
           "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "UTILIZZA_METODO",
+      "label": "PRESENTA_OFFERTA",
       "source": {
-        "label": "CalcoloAnomalia",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "configurazione",
+            "name": "ragione_sociale",
             "type": "string",
             "unique": true,
             "required": true
@@ -496,34 +488,6 @@
         ]
       },
       "target": {
-        "label": "Metodo",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "sorteggio",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "sconto_obbligatorio",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPARTIENE_A",
-      "source": {
         "label": "Offerta",
         "attributes": [
           {
@@ -534,60 +498,10 @@
           }
         ]
       },
-      "target": {
-        "label": "Gara",
-        "attributes": [
-          {
-            "name": "codice_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
       "attributes": [
         {
-          "name": "ammessa",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_STATO",
-      "source": {
-        "label": "Offerta",
-        "attributes": [
-          {
-            "name": "id_offerta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "StatoOfferta",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_assegnazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "assegnato_da",
-          "type": "string",
+          "name": "ribasso",
+          "type": "number",
           "required": false,
           "unique": false
         }
@@ -599,7 +513,7 @@
         "label": "Commissione",
         "attributes": [
           {
-            "name": "id_commissione",
+            "name": "identificativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -625,20 +539,53 @@
           "unique": false
         },
         {
-          "name": "puo_modificare",
+          "name": "modalita",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ADOTTA_REGOLA",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RegolaCalcolo",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "registra_informazioni_intermedie",
           "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_TIPO_GARA",
+      "label": "HA_CRITERIO_ANOMALIA",
       "source": {
         "label": "Gara",
         "attributes": [
           {
-            "name": "codice_gara",
+            "name": "identificativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -646,85 +593,7 @@
         ]
       },
       "target": {
-        "label": "TipoGara",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "HA_AMBITO",
-      "source": {
-        "label": "Gara",
-        "attributes": [
-          {
-            "name": "codice_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Ambito",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "HA_CRITERIO",
-      "source": {
-        "label": "Gara",
-        "attributes": [
-          {
-            "name": "codice_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CriterioAggiudicazione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "DEFINISCE_PARAMETRO",
-      "source": {
-        "label": "CalcoloAnomalia",
-        "attributes": [
-          {
-            "name": "configurazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ParametroCalcolo",
+        "label": "CriterioAnomalia",
         "attributes": [
           {
             "name": "nome",
@@ -736,108 +605,9 @@
       },
       "attributes": [
         {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CITA_FIGURA",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Figura",
-        "attributes": [
-          {
-            "name": "id_figura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "pagina",
+          "name": "opzione_calcolo",
           "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_CRITERI_ANOMALIA",
-      "source": {
-        "label": "Gara",
-        "attributes": [
-          {
-            "name": "codice_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CriteriAnomalia",
-        "attributes": [
-          {
-            "name": "id",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "parametri_impostati",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPLICA_NORMATIVA",
-      "source": {
-        "label": "Gara",
-        "attributes": [
-          {
-            "name": "codice_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Normativa",
-        "attributes": [
-          {
-            "name": "riferimento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "articoli_applicati",
-          "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]

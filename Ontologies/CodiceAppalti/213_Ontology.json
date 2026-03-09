@@ -1,0 +1,114 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CollegioConsultivoTecnico",
+      "attributes": [
+        {
+          "name": "denominazione_collegio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Contratto",
+      "attributes": [
+        {
+          "name": "identificatore_contratto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_di_sottoscrizione_atto_coll",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_di_sottoscrizione_regolare_esecuzione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riserve_presenti",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "note_riserve",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "SCIOGLIMENTO",
+      "source": {
+        "label": "CollegioConsultivoTecnico",
+        "attributes": [
+          {
+            "name": "denominazione_collegio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "identificatore_contratto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita_scioglimento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_di_scioglimento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "causa_scioglimento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "pronuncia_in_caso",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

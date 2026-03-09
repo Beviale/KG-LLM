@@ -1,0 +1,353 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SettoreOrdinario",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "id_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipologia_appalto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AssociazioneStazioniAppaltanti",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StrumentoGiuridico",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OrganizzazioneInternazionale",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "IstituzioneFinanziariaInternazionale",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DisposizioneLegislativa",
+      "attributes": [
+        {
+          "name": "riferimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AssociazioneStazioniAppaltanti",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "APPALTO_RIFERITO_A_ARTICOLO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "APPALTO_RIFERITO_AD_DISPOSIZIONE",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DisposizioneLegislativa",
+        "attributes": [
+          {
+            "name": "riferimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "UTILIZZA_STRUMENTO_GIURIDICO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StrumentoGiuridico",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "UTILIZZA_ORGANIZZAZIONE_INTERNAZIONALE",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OrganizzazioneInternazionale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "UTILIZZA_ISTITUZIONE_FINANZIARIA_INTERNAZIONALE",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "IstituzioneFinanziariaInternazionale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "RIFERIMENTO_SETTORI_ORDINARI",
+      "source": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SettoreOrdinario",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    }
+  ]
+}

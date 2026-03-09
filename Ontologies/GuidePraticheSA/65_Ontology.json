@@ -10,7 +10,7 @@
           "required": true
         },
         {
-          "name": "nome",
+          "name": "ragione_sociale",
           "type": "string",
           "unique": false,
           "required": false
@@ -20,16 +20,33 @@
           "type": "boolean",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Idea",
+      "attributes": [
+        {
+          "name": "progressivo_risposta",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
-          "name": "ruolo",
+          "name": "titolo_idea",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "dati_anagrafici_compilati_automaticamente",
-          "type": "boolean",
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "punteggio_tecnico",
+          "type": "number",
           "unique": false,
           "required": false
         }
@@ -49,26 +66,14 @@
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "punteggio_tecnico",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "tipo_offerta",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
     {
-      "label": "Idea",
+      "label": "ProceduraDiAggiudicazione",
       "attributes": [
         {
-          "name": "progressivo_risposta",
+          "name": "titolo_procedura",
           "type": "string",
           "unique": true,
           "required": true
@@ -80,54 +85,8 @@
           "required": false
         },
         {
-          "name": "punteggio_tecnico",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "RTI",
-      "attributes": [
-        {
-          "name": "codice_fiscale_mandataria",
+          "name": "tipo",
           "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tabella_rti_presente",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "info_mandataria_compilate_automaticamente",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Procedura",
-      "attributes": [
-        {
-          "name": "procedura_di_aggiudicazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "multilotto",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -143,10 +102,77 @@
           "required": true
         },
         {
-          "name": "posizione_toolbar",
+          "name": "posizione",
           "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Toolbar",
+      "attributes": [
+        {
+          "name": "nome_toolbar",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "posizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Sezione",
+      "attributes": [
+        {
+          "name": "nome_sezione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Manuale",
+      "attributes": [
+        {
+          "name": "titolo_manuale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Empulia",
+      "attributes": [
+        {
+          "name": "nome_piattaforma",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Commissione",
+      "attributes": [
+        {
+          "name": "nome_commissione",
+          "type": "string",
+          "unique": true,
+          "required": true
         }
       ]
     },
@@ -160,190 +186,13 @@
           "required": true
         },
         {
-          "name": "descrizione_breve",
+          "name": "tipo_documento",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "stato_documento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Allegato",
-      "attributes": [
-        {
-          "name": "descrizione_allegato",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome_file",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Nota",
-      "attributes": [
-        {
-          "name": "testo_nota",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "autore_nota",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ValutazioneTecnica",
-      "attributes": [
-        {
-          "name": "nome_valutazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "punteggio_unico",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "soglia_minima_applicata",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ValutazioneAmministrativa",
-      "attributes": [
-        {
-          "name": "nome_valutazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "conclusa",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Stato",
-      "attributes": [
-        {
-          "name": "nome_stato",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione_stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Cronologia",
-      "attributes": [
-        {
-          "name": "sezione_cronologia",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "numero_eventi",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Evento",
-      "attributes": [
-        {
-          "name": "data",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipologia_azione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "utente",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "note",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Commissione",
-      "attributes": [
-        {
-          "name": "nome_commissione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "componenti",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "SedutaVirtuale",
-      "attributes": [
-        {
-          "name": "nome_seduta",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "anonimato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "visibilita_partecipanti",
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
@@ -364,10 +213,49 @@
           "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Stato",
+      "attributes": [
+        {
+          "name": "nome_stato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "nome_file",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
-          "name": "inclusione_ausiliarie",
-          "type": "boolean",
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SedutaVirtuale",
+      "attributes": [
+        {
+          "name": "nome_seduta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "visibilita",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -375,6 +263,72 @@
     }
   ],
   "relations": [
+    {
+      "label": "POSIZIONATO_IN",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Toolbar",
+        "attributes": [
+          {
+            "name": "nome_toolbar",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "posizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGISCE_SU",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Sezione",
+        "attributes": [
+          {
+            "name": "nome_sezione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
     {
       "label": "PARTECIPA_A",
       "source": {
@@ -405,50 +359,11 @@
           "type": "string",
           "required": true,
           "unique": false
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "required": false,
-          "unique": false
         }
       ]
     },
     {
-      "label": "PARTECIPA_IN",
-      "source": {
-        "label": "Offerta",
-        "attributes": [
-          {
-            "name": "progressivo_offerta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "procedura_di_aggiudicazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_partecipazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMPONENTE_RTI",
+      "label": "ASSUME_RUOLO_IN",
       "source": {
         "label": "OperatoreEconomico",
         "attributes": [
@@ -461,10 +376,10 @@
         ]
       },
       "target": {
-        "label": "RTI",
+        "label": "Offerta",
         "attributes": [
           {
-            "name": "codice_fiscale_mandataria",
+            "name": "progressivo_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -477,22 +392,16 @@
           "type": "string",
           "required": true,
           "unique": false
-        },
-        {
-          "name": "codice_fiscale_mandante",
-          "type": "string",
-          "required": false,
-          "unique": false
         }
       ]
     },
     {
-      "label": "ESEGUI_SU",
+      "label": "REGISTRATO_IN",
       "source": {
-        "label": "Comando",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "nome_comando",
+            "name": "codice_fiscale",
             "type": "string",
             "unique": true,
             "required": true
@@ -500,10 +409,10 @@
         ]
       },
       "target": {
-        "label": "Procedura",
+        "label": "Empulia",
         "attributes": [
           {
-            "name": "procedura_di_aggiudicazione",
+            "name": "nome_piattaforma",
             "type": "string",
             "unique": true,
             "required": true
@@ -512,21 +421,153 @@
       },
       "attributes": [
         {
-          "name": "posizione_toolbar",
+          "name": "registrazione",
           "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "area_schermata",
-          "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "CREA_DOCUMENTO",
+      "label": "AUTOCOMPILA_DATI",
+      "source": {
+        "label": "Empulia",
+        "attributes": [
+          {
+            "name": "nome_piattaforma",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "autocompila",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_STATO",
+      "source": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "progressivo_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Stato",
+        "attributes": [
+          {
+            "name": "nome_stato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_assegnazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_STATO",
+      "source": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "titolo_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Stato",
+        "attributes": [
+          {
+            "name": "nome_stato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_assegnazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VALUTATA_DA",
+      "source": {
+        "label": "Idea",
+        "attributes": [
+          {
+            "name": "progressivo_risposta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "nome_commissione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "punteggio_tecnico",
+          "type": "number",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "esito",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CREA",
       "source": {
         "label": "Comando",
         "attributes": [
@@ -555,359 +596,11 @@
           "type": "string",
           "required": true,
           "unique": false
-        },
-        {
-          "name": "personalizzabile",
-          "type": "boolean",
-          "required": false,
-          "unique": false
         }
       ]
     },
     {
-      "label": "ALLEGATO_A",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "procedura_di_aggiudicazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatorio_per_comunicazione",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALLEGATO_DI",
-      "source": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "descrizione_allegato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_caricamento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_NOTA",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Nota",
-        "attributes": [
-          {
-            "name": "testo_nota",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "posizione_note",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONTIENTE_EVENTO",
-      "source": {
-        "label": "Cronologia",
-        "attributes": [
-          {
-            "name": "sezione_cronologia",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Evento",
-        "attributes": [
-          {
-            "name": "data",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ordine_cronologico",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIGUARDA",
-      "source": {
-        "label": "Evento",
-        "attributes": [
-          {
-            "name": "data",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "procedura_di_aggiudicazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipologia_azione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "utente_esecutore",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_STATO",
-      "source": {
-        "label": "Offerta",
-        "attributes": [
-          {
-            "name": "progressivo_offerta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Stato",
-        "attributes": [
-          {
-            "name": "nome_stato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_aggiornamento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_STATO",
-      "source": {
-        "label": "Idea",
-        "attributes": [
-          {
-            "name": "progressivo_risposta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Stato",
-        "attributes": [
-          {
-            "name": "nome_stato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "motivazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_STATO",
-      "source": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "procedura_di_aggiudicazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Stato",
-        "attributes": [
-          {
-            "name": "nome_stato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_transizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ESEGUE_VALUTAZIONE",
-      "source": {
-        "label": "Commissione",
-        "attributes": [
-          {
-            "name": "nome_commissione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ValutazioneTecnica",
-        "attributes": [
-          {
-            "name": "nome_valutazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "fase",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ASSEGNA_PUNTEGGIO",
-      "source": {
-        "label": "ValutazioneTecnica",
-        "attributes": [
-          {
-            "name": "nome_valutazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Idea",
-        "attributes": [
-          {
-            "name": "progressivo_risposta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "punteggio",
-          "type": "number",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "soglia_superata",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ESPORTA_REPORT",
+      "label": "GENERA_REPORT",
       "source": {
         "label": "Comando",
         "attributes": [
@@ -936,18 +629,122 @@
           "type": "string",
           "required": true,
           "unique": false
-        },
+        }
+      ]
+    },
+    {
+      "label": "ESPORTA_CRONOLOGIA",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Sezione",
+        "attributes": [
+          {
+            "name": "nome_sezione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
         {
-          "name": "inclusione_ausiliarie",
-          "type": "boolean",
-          "required": false,
+          "name": "formato",
+          "type": "string",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "ASSOCIATA_A",
+      "label": "CONTIENTE_ALLEGATO",
       "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CREA_INVITI",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "titolo_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ATTIVA_SEDUTA_VIRTUALE",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "SedutaVirtuale",
         "attributes": [
           {
@@ -958,11 +755,33 @@
           }
         ]
       },
-      "target": {
-        "label": "Procedura",
+      "attributes": [
+        {
+          "name": "visibilita",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVIA_COMUNICAZIONE",
+      "source": {
+        "label": "Comando",
         "attributes": [
           {
-            "name": "procedura_di_aggiudicazione",
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -971,81 +790,15 @@
       },
       "attributes": [
         {
-          "name": "anonimato_garantito",
-          "type": "boolean",
-          "required": false,
+          "name": "destinatari",
+          "type": "string",
+          "required": true,
           "unique": false
         },
         {
-          "name": "visibilita_ridotta",
+          "name": "condizionata",
           "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PRENDI_IN_CARICO",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome_comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "inibizione_lavorazione",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SALVA_DOCUMENTO",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome_comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "consente_continuare_preparazione",
-          "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]

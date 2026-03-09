@@ -1,0 +1,308 @@
+{
+  "entities": [
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione_operatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "organico_medio_annuo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_dirigenti",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteAggiudicatore",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_di_identificazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "posta_elettronica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sito_internet",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CPVCode",
+      "attributes": [
+        {
+          "name": "codice_cpv",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "NUTSCode",
+      "attributes": [
+        {
+          "name": "codice_nuts",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_area",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Equipaggiamento",
+      "attributes": [
+        {
+          "name": "descrizione_equipaggiamento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProceduraAggiudicazione",
+      "attributes": [
+        {
+          "name": "descrizione_concorso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_di_aggiudicazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPALTO_CON_CPVCODE",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CPVCode",
+        "attributes": [
+          {
+            "name": "codice_cpv",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_cpv",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPALTO_NUTS",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "NUTSCode",
+        "attributes": [
+          {
+            "name": "codice_nuts",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_area_nuts",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISPONE_DI_EQUIPAGGIAMENTO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Equipaggiamento",
+        "attributes": [
+          {
+            "name": "descrizione_equipaggiamento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "quantita",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SUBAPPALTARE_DI_APPALTO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "percentuale_subappalto",
+          "type": "number",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "porzione_di_appalto",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

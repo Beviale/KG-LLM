@@ -16,13 +16,7 @@
           "required": false
         },
         {
-          "name": "data",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "proprietario",
+          "name": "data_pubblicazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -30,16 +24,16 @@
       ]
     },
     {
-      "label": "Piattaforma",
+      "label": "Societa",
       "attributes": [
         {
-          "name": "nome",
+          "name": "ragione_sociale",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "versione",
+          "name": "forma_giuridica",
           "type": "string",
           "unique": false,
           "required": false
@@ -47,39 +41,16 @@
       ]
     },
     {
-      "label": "Ente",
+      "label": "Portale",
       "attributes": [
         {
-          "name": "nome",
+          "name": "nome_portale",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "anagrafica_censimento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Struttura",
-      "attributes": [
-        {
-          "name": "nome_struttura",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "livello",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -140,6 +111,29 @@
       ]
     },
     {
+      "label": "Ente",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "pec",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "abilitato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "Account",
       "attributes": [
         {
@@ -161,7 +155,24 @@
           "required": false
         },
         {
-          "name": "stato_attivazione",
+          "name": "attivo",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Profilo",
+      "attributes": [
+        {
+          "name": "nome_profilo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -184,7 +195,7 @@
           "required": false
         },
         {
-          "name": "funzionalita",
+          "name": "permessi",
           "type": "string",
           "unique": false,
           "required": false
@@ -192,33 +203,27 @@
       ]
     },
     {
-      "label": "Documento",
+      "label": "Struttura",
       "attributes": [
         {
-          "name": "nome_documento",
+          "name": "nome_struttura",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "formato",
+          "name": "livello",
           "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "IndirizzoEmail",
+      "label": "Email",
       "attributes": [
         {
-          "name": "email",
+          "name": "indirizzo",
           "type": "string",
           "unique": true,
           "required": true
@@ -226,6 +231,52 @@
         {
           "name": "tipo",
           "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Storico",
+      "attributes": [
+        {
+          "name": "riferimento_protocollo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_modifica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "autore",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoPdf",
+      "attributes": [
+        {
+          "name": "nome_file",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato_firmato",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -241,14 +292,14 @@
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "categoria",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "descrizione",
-          "type": "string",
+          "name": "obbligatoria",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -257,12 +308,12 @@
   ],
   "relations": [
     {
-      "label": "REGISTRATO_SU",
+      "label": "APPARTIENE_A",
       "source": {
-        "label": "Utente",
+        "label": "Manuale",
         "attributes": [
           {
-            "name": "codice_fiscale",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -270,30 +321,43 @@
         ]
       },
       "target": {
-        "label": "Piattaforma",
+        "label": "Societa",
         "attributes": [
           {
-            "name": "nome",
+            "name": "ragione_sociale",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "data_registrazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "stato_profilazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      "attributes": []
+    },
+    {
+      "label": "DESCRIVE",
+      "source": {
+        "label": "Manuale",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Portale",
+        "attributes": [
+          {
+            "name": "nome_portale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
     },
     {
       "label": "HA_ACCOUNT",
@@ -321,15 +385,15 @@
       },
       "attributes": [
         {
-          "name": "data_generazione",
+          "name": "data_registrazione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "GENERATO_DA",
+      "label": "ASSOCIATO_A",
       "source": {
         "label": "Account",
         "attributes": [
@@ -342,10 +406,10 @@
         ]
       },
       "target": {
-        "label": "Piattaforma",
+        "label": "Ente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -354,7 +418,7 @@
       },
       "attributes": [
         {
-          "name": "metodo",
+          "name": "data_associazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -378,7 +442,7 @@
         "label": "Ente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -395,12 +459,78 @@
       ]
     },
     {
-      "label": "ENTE_HA_STRUTTURA",
+      "label": "HA_PROFILO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Profilo",
+        "attributes": [
+          {
+            "name": "nome_profilo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_abilitazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMPRENDE_RUOLO",
+      "source": {
+        "label": "Profilo",
+        "attributes": [
+          {
+            "name": "nome_profilo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome_ruolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "prevalente",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_STRUTTURA",
       "source": {
         "label": "Ente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -428,7 +558,7 @@
       ]
     },
     {
-      "label": "UTENTE_HA_RUOLO",
+      "label": "HA_EMAIL",
       "source": {
         "label": "Utente",
         "attributes": [
@@ -441,121 +571,10 @@
         ]
       },
       "target": {
-        "label": "Ruolo",
+        "label": "Email",
         "attributes": [
           {
-            "name": "nome_ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_assegnazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "ruolo_prevalente",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RUOLO_RICHIEDE_DOCUMENTO",
-      "source": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome_ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "nome_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "note",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INVIA_COMUNICAZIONE",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "IndirizzoEmail",
-        "attributes": [
-          {
-            "name": "email",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo_email",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ENTE_HA_EMAIL",
-      "source": {
-        "label": "Ente",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "IndirizzoEmail",
-        "attributes": [
-          {
-            "name": "email",
+            "name": "indirizzo",
             "type": "string",
             "unique": true,
             "required": true
@@ -572,12 +591,12 @@
       ]
     },
     {
-      "label": "MODIFICA_ANAGRAFICA",
+      "label": "INVIA_CREDENZIALI_A",
       "source": {
-        "label": "Utente",
+        "label": "Account",
         "attributes": [
           {
-            "name": "codice_fiscale",
+            "name": "codice_accesso",
             "type": "string",
             "unique": true,
             "required": true
@@ -585,10 +604,10 @@
         ]
       },
       "target": {
-        "label": "Ente",
+        "label": "Email",
         "attributes": [
           {
-            "name": "nome",
+            "name": "indirizzo",
             "type": "string",
             "unique": true,
             "required": true
@@ -597,15 +616,15 @@
       },
       "attributes": [
         {
-          "name": "richiede_approvazione",
-          "type": "boolean",
+          "name": "tipo_email",
+          "type": "string",
           "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "CESSAZIONE_UTENTE",
+      "label": "HA_STORICO",
       "source": {
         "label": "Utente",
         "attributes": [
@@ -618,10 +637,76 @@
         ]
       },
       "target": {
-        "label": "Piattaforma",
+        "label": "Storico",
         "attributes": [
           {
-            "name": "nome",
+            "name": "riferimento_protocollo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE_ALLEGATO",
+      "source": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome_ruolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DocumentoPdf",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_allegato",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CESSAZIONE_DI",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Storico",
+        "attributes": [
+          {
+            "name": "riferimento_protocollo",
             "type": "string",
             "unique": true,
             "required": true
@@ -632,13 +717,79 @@
         {
           "name": "data_cessazione",
           "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_APPROVATORE",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "UTENTE_HA_ATTIVITA",
+      "label": "NOTIFICA",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "evento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_ATTIVITA",
       "source": {
         "label": "Utente",
         "attributes": [
@@ -664,39 +815,6 @@
       "attributes": [
         {
           "name": "stato",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "MANUALE_DESCRIVE",
-      "source": {
-        "label": "Manuale",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "sezione",
           "type": "string",
           "required": false,
           "unique": false

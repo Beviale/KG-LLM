@@ -1,0 +1,228 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Servizio",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Parte",
+      "attributes": [
+        {
+          "name": "numero_parte",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Direttiva",
+      "attributes": [
+        {
+          "name": "codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Istituzione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Concessione",
+      "attributes": [
+        {
+          "name": "numero_concessione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "articoli_di_riferimento",
+          "type": "string",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Titolo",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Libro",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Aggiudicazione",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "ESCLUSO_DA_AMBITO_DI_APPLICAZIONE",
+      "source": {
+        "label": "Servizio",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Parte",
+        "attributes": [
+          {
+            "name": "numero_parte",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_AD_ARTICOLI_DIRETTIVA",
+      "source": {
+        "label": "Direttiva",
+        "attributes": [
+          {
+            "name": "codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "numero_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          },
+          {
+            "name": "articoli_di_riferimento",
+            "type": "string",
+            "unique": false,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "articoli_di_riferimento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPLICANO_PRINCIPI_TITOLO",
+      "source": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "numero_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          },
+          {
+            "name": "articoli_di_riferimento",
+            "type": "string",
+            "unique": false,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Titolo",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

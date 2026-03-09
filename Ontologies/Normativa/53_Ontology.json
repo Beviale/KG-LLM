@@ -1,0 +1,480 @@
+{
+  "entities": [
+    {
+      "label": "Arbitrato",
+      "attributes": [
+        {
+          "name": "id_arbitrato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CameraArbitrale",
+      "attributes": [
+        {
+          "name": "id_camera_arbitrale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CollegioArbitrale",
+      "attributes": [
+        {
+          "name": "id_collegio_arbitrale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero_membri",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sede",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Autorita",
+      "attributes": [
+        {
+          "name": "sigla_autorita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "codice_stazione_appaltante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "codice_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "procedura_con_bando",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "clausola_compromissoria_presente",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sede_collegio_arbitrale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ControversiaArbitrato",
+      "attributes": [
+        {
+          "name": "id_controversia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ParereANAC",
+      "attributes": [
+        {
+          "name": "id_parere",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "vincolante",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "LodoArbitrale",
+      "attributes": [
+        {
+          "name": "codice_lodo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "valore_controversia",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "deposito_camera_arbitrale",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PubblicaAmministrazione",
+      "attributes": [
+        {
+          "name": "codice_pa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Privato",
+      "attributes": [
+        {
+          "name": "codice_privato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDICA_BANDO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "codice_stazione_appaltante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "codice_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "NOMINA_COLLEGIO_ARBITRALE",
+      "source": {
+        "label": "CameraArbitrale",
+        "attributes": [
+          {
+            "name": "id_camera_arbitrale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CollegioArbitrale",
+        "attributes": [
+          {
+            "name": "id_collegio_arbitrale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_nomina",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EMISSO_PARERE",
+      "source": {
+        "label": "Autorita",
+        "attributes": [
+          {
+            "name": "sigla_autorita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ParereANAC",
+        "attributes": [
+          {
+            "name": "id_parere",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "contenuto",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DEPOSITO_LODO_CAMERA_ARBITRALE",
+      "source": {
+        "label": "CameraArbitrale",
+        "attributes": [
+          {
+            "name": "id_camera_arbitrale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "LodoArbitrale",
+        "attributes": [
+          {
+            "name": "codice_lodo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RISOLVE_CONTROVERSIA",
+      "source": {
+        "label": "LodoArbitrale",
+        "attributes": [
+          {
+            "name": "codice_lodo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ControversiaArbitrato",
+        "attributes": [
+          {
+            "name": "id_controversia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVOLVE_APPALTO",
+      "source": {
+        "label": "ControversiaArbitrato",
+        "attributes": [
+          {
+            "name": "id_controversia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "codice_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

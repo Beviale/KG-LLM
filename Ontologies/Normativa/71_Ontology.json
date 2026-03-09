@@ -1,0 +1,404 @@
+{
+  "entities": [
+    {
+      "label": "Amministrazione",
+      "attributes": [
+        {
+          "name": "codice_amministrazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FascicoloInformatico",
+      "attributes": [
+        {
+          "name": "codice_fascicolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "parti_partecipanti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "codice_documento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Legge",
+      "attributes": [
+        {
+          "name": "codice_legge",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ConferenzaServizi",
+      "attributes": [
+        {
+          "name": "codice_conferenza_servizi",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PostaElettronicaCertificata",
+      "attributes": [
+        {
+          "name": "codice_pec",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Digitpa",
+      "attributes": [
+        {
+          "name": "codice_digitpa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AgenziaDigitale",
+      "attributes": [
+        {
+          "name": "codice_agenzia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "codice_operatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comunicazione",
+      "attributes": [
+        {
+          "name": "codice_comunicazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "mittente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "destinatario",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "mezzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "GESTITO_DA",
+      "source": {
+        "label": "FascicoloInformatico",
+        "attributes": [
+          {
+            "name": "codice_fascicolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Amministrazione",
+        "attributes": [
+          {
+            "name": "codice_amministrazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONTIENE_DOCUMENTO",
+      "source": {
+        "label": "FascicoloInformatico",
+        "attributes": [
+          {
+            "name": "codice_fascicolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "codice_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "posizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVOLGE",
+      "source": {
+        "label": "ConferenzaServizi",
+        "attributes": [
+          {
+            "name": "codice_conferenza_servizi",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Amministrazione",
+        "attributes": [
+          {
+            "name": "codice_amministrazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_conferenza",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COLLEGATO_A_LEGGE",
+      "source": {
+        "label": "FascicoloInformatico",
+        "attributes": [
+          {
+            "name": "codice_fascicolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Legge",
+        "attributes": [
+          {
+            "name": "codice_legge",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROMUOVE",
+      "source": {
+        "label": "AgenziaDigitale",
+        "attributes": [
+          {
+            "name": "codice_agenzia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Legge",
+        "attributes": [
+          {
+            "name": "codice_legge",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_politiche",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_PEC",
+      "source": {
+        "label": "Comunicazione",
+        "attributes": [
+          {
+            "name": "codice_comunicazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PostaElettronicaCertificata",
+        "attributes": [
+          {
+            "name": "codice_pec",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "mezzo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

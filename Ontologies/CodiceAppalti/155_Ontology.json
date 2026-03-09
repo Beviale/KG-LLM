@@ -1,0 +1,253 @@
+{
+  "entities": [
+    {
+      "label": "DocumentoDiGara",
+      "attributes": [
+        {
+          "name": "link_documenti_gara",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_inizio_disponibilita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "gratuito",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "illimitato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "accesso_diretto",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "collegamento_documenti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Avviso",
+      "attributes": [
+        {
+          "name": "link_ipertestuale_avviso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione_avviso",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "InvitoConfermareInteresse",
+      "attributes": [
+        {
+          "name": "link_ipertestuale_invito",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_invio_invito",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SistemaDiQualificazione",
+      "attributes": [
+        {
+          "name": "descrizione_sistema_qualificazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_mezzo_indizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "accesso_rapido",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PeriodoTermineOfferte",
+      "attributes": [
+        {
+          "name": "giorni_termine_offerte",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_termine",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDICA_LINK_DOCUMENTI_AVVISO",
+      "source": {
+        "label": "Avviso",
+        "attributes": [
+          {
+            "name": "link_ipertestuale_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DocumentoDiGara",
+        "attributes": [
+          {
+            "name": "link_documenti_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_collegamento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDICA_LINK_DOCUMENTI_INVITO",
+      "source": {
+        "label": "InvitoConfermareInteresse",
+        "attributes": [
+          {
+            "name": "link_ipertestuale_invito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DocumentoDiGara",
+        "attributes": [
+          {
+            "name": "link_documenti_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_collegamento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDICA_SISTEMA_DIQUALIFICAZIONE",
+      "source": {
+        "label": "Avviso",
+        "attributes": [
+          {
+            "name": "link_ipertestuale_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SistemaDiQualificazione",
+        "attributes": [
+          {
+            "name": "descrizione_sistema_qualificazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_collegamento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "TERMINE_OFFERTA",
+      "source": {
+        "label": "DocumentoDiGara",
+        "attributes": [
+          {
+            "name": "link_documenti_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PeriodoTermineOfferte",
+        "attributes": [
+          {
+            "name": "giorni_termine_offerte",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "giorni_di_proroga",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

@@ -4,19 +4,13 @@
       "label": "Utente",
       "attributes": [
         {
-          "name": "email",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "username",
+          "name": "email",
           "type": "string",
           "unique": false,
           "required": false
@@ -39,13 +33,7 @@
           "required": true
         },
         {
-          "name": "indirizzo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "pec",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
@@ -57,6 +45,57 @@
       "attributes": [
         {
           "name": "nome_profilo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Piattaforma",
+      "attributes": [
+        {
+          "name": "nome_piattaforma",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GruppoFunzionale",
+      "attributes": [
+        {
+          "name": "nome_gruppo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "posizione_area",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Cartella",
+      "attributes": [
+        {
+          "name": "nome_cartella",
           "type": "string",
           "unique": true,
           "required": true
@@ -103,13 +142,7 @@
           "required": false
         },
         {
-          "name": "fascicolo_di_sistema",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "stato",
+          "name": "compilatore",
           "type": "string",
           "unique": false,
           "required": false
@@ -120,31 +153,13 @@
       "label": "Questionario",
       "attributes": [
         {
-          "name": "titolo_documento",
+          "name": "id_questionario",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "data_invio",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "richiede_firma",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_firma",
+          "name": "titolo",
           "type": "string",
           "unique": false,
           "required": false
@@ -155,7 +170,7 @@
       "label": "SubQuestionario",
       "attributes": [
         {
-          "name": "titolo_documento",
+          "name": "id_sub_questionario",
           "type": "string",
           "unique": true,
           "required": true
@@ -171,12 +186,6 @@
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "data_invio",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
@@ -184,7 +193,7 @@
       "label": "Prodotto",
       "attributes": [
         {
-          "name": "nome_prodotto",
+          "name": "codice_prodotto",
           "type": "string",
           "unique": true,
           "required": true
@@ -202,7 +211,7 @@
           "required": false
         },
         {
-          "name": "esito_riga",
+          "name": "unita_misura",
           "type": "string",
           "unique": false,
           "required": false
@@ -210,22 +219,22 @@
       ]
     },
     {
-      "label": "Comunicazione",
+      "label": "Documento",
       "attributes": [
         {
-          "name": "oggetto",
+          "name": "nome_file",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "contenuto",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "data_invio",
+          "name": "data_creazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -233,16 +242,16 @@
       ]
     },
     {
-      "label": "StatoDocumento",
+      "label": "Allegato",
       "attributes": [
         {
-          "name": "nome",
+          "name": "id_allegato",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "nome_file",
           "type": "string",
           "unique": false,
           "required": false
@@ -259,6 +268,23 @@
           "required": true
         },
         {
+          "name": "posizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StatoDocumento",
+      "attributes": [
+        {
+          "name": "nome_stato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
           "name": "descrizione",
           "type": "string",
           "unique": false,
@@ -267,22 +293,56 @@
       ]
     },
     {
-      "label": "RisultatoIndagine",
+      "label": "Notifica",
       "attributes": [
         {
-          "name": "titolo_documento",
+          "name": "id_notifica",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "registro_di_sistema",
+          "name": "canale",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "data_invio",
+          "name": "testo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Figura",
+      "attributes": [
+        {
+          "name": "numero_figura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "didascalia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "nome_ruolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "acronimo",
           "type": "string",
           "unique": false,
           "required": false
@@ -292,12 +352,45 @@
   ],
   "relations": [
     {
+      "label": "APPARTIENE_A",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ente",
+        "attributes": [
+          {
+            "name": "nome_ente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_interno",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
       "label": "HA_PROFILO",
       "source": {
         "label": "Utente",
         "attributes": [
           {
-            "name": "email",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -317,40 +410,7 @@
       },
       "attributes": [
         {
-          "name": "assegnato",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPARTIENE_A",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "email",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Ente",
-        "attributes": [
-          {
-            "name": "nome_ente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo",
+          "name": "data_assegnazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -358,7 +418,7 @@
       ]
     },
     {
-      "label": "DESTINATARIO",
+      "label": "UTILIZZA",
       "source": {
         "label": "Ente",
         "attributes": [
@@ -371,10 +431,10 @@
         ]
       },
       "target": {
-        "label": "RichiestaFabbisogni",
+        "label": "Piattaforma",
         "attributes": [
           {
-            "name": "registro_di_sistema",
+            "name": "nome_piattaforma",
             "type": "string",
             "unique": true,
             "required": true
@@ -383,7 +443,7 @@
       },
       "attributes": [
         {
-          "name": "data_ricezione",
+          "name": "data_attivazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -391,12 +451,12 @@
       ]
     },
     {
-      "label": "PRENDE_IN_CARICO",
+      "label": "HA_GRUPPO_FUNZIONALE",
       "source": {
-        "label": "Utente",
+        "label": "Ente",
         "attributes": [
           {
-            "name": "email",
+            "name": "nome_ente",
             "type": "string",
             "unique": true,
             "required": true
@@ -404,10 +464,10 @@
         ]
       },
       "target": {
-        "label": "RichiestaFabbisogni",
+        "label": "GruppoFunzionale",
         "attributes": [
           {
-            "name": "registro_di_sistema",
+            "name": "nome_gruppo",
             "type": "string",
             "unique": true,
             "required": true
@@ -416,7 +476,7 @@
       },
       "attributes": [
         {
-          "name": "data_presa_in_carico",
+          "name": "posizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -424,12 +484,12 @@
       ]
     },
     {
-      "label": "RILASCIA",
+      "label": "POSIZIONATO_IN",
       "source": {
-        "label": "Utente",
+        "label": "RichiestaFabbisogni",
         "attributes": [
           {
-            "name": "email",
+            "name": "registro_di_sistema",
             "type": "string",
             "unique": true,
             "required": true
@@ -437,6 +497,28 @@
         ]
       },
       "target": {
+        "label": "Cartella",
+        "attributes": [
+          {
+            "name": "nome_cartella",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_spostamento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GENERA_QUESTIONARIO",
+      "source": {
         "label": "RichiestaFabbisogni",
         "attributes": [
           {
@@ -447,9 +529,20 @@
           }
         ]
       },
+      "target": {
+        "label": "Questionario",
+        "attributes": [
+          {
+            "name": "id_questionario",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "data_rilascio",
+          "name": "data_generazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -457,12 +550,12 @@
       ]
     },
     {
-      "label": "CONTIENE_PRODOTTO",
+      "label": "CONTIENTE_PRODOTTO",
       "source": {
-        "label": "RichiestaFabbisogni",
+        "label": "Questionario",
         "attributes": [
           {
-            "name": "registro_di_sistema",
+            "name": "id_questionario",
             "type": "string",
             "unique": true,
             "required": true
@@ -473,7 +566,7 @@
         "label": "Prodotto",
         "attributes": [
           {
-            "name": "nome_prodotto",
+            "name": "codice_prodotto",
             "type": "string",
             "unique": true,
             "required": true
@@ -481,12 +574,6 @@
         ]
       },
       "attributes": [
-        {
-          "name": "riga",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
         {
           "name": "quantita_richiesta",
           "type": "number",
@@ -496,78 +583,12 @@
       ]
     },
     {
-      "label": "RELATIVO_A",
+      "label": "COMPILATO_DA",
       "source": {
         "label": "Questionario",
         "attributes": [
           {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RichiestaFabbisogni",
-        "attributes": [
-          {
-            "name": "registro_di_sistema",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_creazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INVIA",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "email",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Questionario",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_invio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ASSEGNATO_A",
-      "source": {
-        "label": "SubQuestionario",
-        "attributes": [
-          {
-            "name": "titolo_documento",
+            "name": "id_questionario",
             "type": "string",
             "unique": true,
             "required": true
@@ -578,79 +599,7 @@
         "label": "Utente",
         "attributes": [
           {
-            "name": "email",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_scadenza",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "MONITORA",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "email",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SubQuestionario",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo_referente",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMPILA",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "email",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SubQuestionario",
-        "attributes": [
-          {
-            "name": "titolo_documento",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -667,7 +616,277 @@
       ]
     },
     {
-      "label": "ESEGUE_SU",
+      "label": "DELEGATO_A",
+      "source": {
+        "label": "SubQuestionario",
+        "attributes": [
+          {
+            "name": "id_sub_questionario",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_invio",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROROGA_SUBQUESTIONARI",
+      "source": {
+        "label": "RichiestaFabbisogni",
+        "attributes": [
+          {
+            "name": "registro_di_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SubQuestionario",
+        "attributes": [
+          {
+            "name": "id_sub_questionario",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_nuova_scadenza",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "motivazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_ALLEGATO",
+      "source": {
+        "label": "RichiestaFabbisogni",
+        "attributes": [
+          {
+            "name": "registro_di_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_allegato",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONTIENTE_ALLEGATO",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "id_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_allegato",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_ESITO",
+      "source": {
+        "label": "Prodotto",
+        "attributes": [
+          {
+            "name": "codice_prodotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StatoDocumento",
+        "attributes": [
+          {
+            "name": "nome_stato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "esito_riga",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_STATO",
+      "source": {
+        "label": "RichiestaFabbisogni",
+        "attributes": [
+          {
+            "name": "registro_di_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StatoDocumento",
+        "attributes": [
+          {
+            "name": "nome_stato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_aggiornamento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE_FIRMA",
+      "source": {
+        "label": "Questionario",
+        "attributes": [
+          {
+            "name": "id_questionario",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "richiede_firma",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICEVE",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Notifica",
+        "attributes": [
+          {
+            "name": "id_notifica",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "canale",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGISCE_SU",
       "source": {
         "label": "Comando",
         "attributes": [
@@ -692,7 +911,7 @@
       },
       "attributes": [
         {
-          "name": "effetto",
+          "name": "contesto",
           "type": "string",
           "required": false,
           "unique": false
@@ -700,12 +919,12 @@
       ]
     },
     {
-      "label": "RIFERISCE_A",
+      "label": "RAPPRESENTA",
       "source": {
-        "label": "Comunicazione",
+        "label": "Figura",
         "attributes": [
           {
-            "name": "oggetto",
+            "name": "numero_figura",
             "type": "string",
             "unique": true,
             "required": true
@@ -725,13 +944,7 @@
       },
       "attributes": [
         {
-          "name": "data_invio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "visibile_a_profilo",
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -739,12 +952,12 @@
       ]
     },
     {
-      "label": "PUBBLICA",
+      "label": "RUOLO_ASSEGNATO_A",
       "source": {
-        "label": "RisultatoIndagine",
+        "label": "Ruolo",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "nome_ruolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -752,10 +965,10 @@
         ]
       },
       "target": {
-        "label": "RichiestaFabbisogni",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "registro_di_sistema",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -764,7 +977,7 @@
       },
       "attributes": [
         {
-          "name": "data_pubblicazione",
+          "name": "assegnato_da",
           "type": "string",
           "required": false,
           "unique": false

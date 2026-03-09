@@ -4,38 +4,20 @@
       "label": "ResponsabileUnicoDelProgetto",
       "attributes": [
         {
-          "name": "nominativo",
+          "name": "denominazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "unita_organizzativa_di_appartenenza",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "nominato_da_dipendente_tempo_determinato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "in_servizio_presso_unità_titolare_potere_di_spesa",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "requisiti_allegato_I_2",
+          "name": "competenze_professionali",
           "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "ufficio_rup_obbligatorio",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -49,6 +31,12 @@
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -60,71 +48,37 @@
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "Appalto",
+      "label": "Dipendente",
       "attributes": [
         {
-          "name": "oggetto",
+          "name": "codice_fiscale",
           "type": "string",
           "unique": true,
           "required": true
         },
-        {
-          "name": "anno_di_indizione",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cpv",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Allegato",
-      "attributes": [
         {
           "name": "nome",
           "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "DocumentoDiIndizione",
+      "label": "AllegatoI2",
       "attributes": [
         {
-          "name": "nome_documento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo_documento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ModelloOrganizzativo",
-      "attributes": [
-        {
-          "name": "nome_modello",
+          "name": "codice_allegato",
           "type": "string",
           "unique": true,
           "required": true
@@ -132,108 +86,6 @@
         {
           "name": "descrizione",
           "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CentraleDiCommittenza",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "AggregazioneStazioniAppaltanti",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "StrutturaDiSupportoRUP",
-      "attributes": [
-        {
-          "name": "nome_struttura",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "UnitaOrganizzativa",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ContraenteGenerale",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "RisorsaFinanziaria",
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "percentuale",
-          "type": "number",
           "unique": false,
           "required": false
         }
@@ -243,13 +95,58 @@
       "label": "ProceduraDiAppalto",
       "attributes": [
         {
-          "name": "tipo_procedura",
+          "name": "denominazione_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "BandoDiGara",
+      "attributes": [
+        {
+          "name": "titolo_bando",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "anno_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AvvisoDiIndizione",
+      "attributes": [
+        {
+          "name": "titolo_avviso_indizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "anno_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "InvitoAPresentareOfferta",
+      "attributes": [
+        {
+          "name": "titolo_invito",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nota",
           "type": "string",
           "unique": false,
           "required": false
@@ -257,26 +154,181 @@
       ]
     },
     {
-      "label": "PianoDiFormazione",
+      "label": "ProvvedimentoDiAffidamentoDiretto",
       "attributes": [
         {
-          "name": "nome_piano",
+          "name": "numero_provvedimento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "data_provvedimento",
           "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "identificativo_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_di_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CPV",
+      "attributes": [
+        {
+          "name": "codice_cpv",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CentraleDiCommittenza",
+      "attributes": [
+        {
+          "name": "denominazione_centrale_committenza",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AggregazioneStazioniAppaltanti",
+      "attributes": [
+        {
+          "name": "denominazione_aggregazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ModelloOrganizzativo",
+      "attributes": [
+        {
+          "name": "denominazione_modello",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ResponsabileDiProcedimento",
+      "attributes": [
+        {
+          "name": "denominazione_responsabile_procedimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "UnitàOrganizzativaTitolareDelPotereDiSpesa",
+      "attributes": [
+        {
+          "name": "denominazione_unità_titolare_potere_di_spesa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "StrutturaDiSupportoAlRUP",
+      "attributes": [
+        {
+          "name": "denominazione_struttura_supp_rup",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "UfficioRUP",
+      "attributes": [
+        {
+          "name": "denominazione_ufficio_rup",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PianoFormazione",
+      "attributes": [
+        {
+          "name": "titolo_piano_formazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProgrammaAcquistiEServizi",
+      "attributes": [
+        {
+          "name": "titolo_programma_acquisti",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProgrammaLavoriPubblici",
+      "attributes": [
+        {
+          "name": "titolo_programma_lavori",
+          "type": "string",
+          "unique": true,
+          "required": true
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "NOMINATO_RUP_DA_STAZIONE_APPALTANTE",
+      "label": "NOMINATO_DI",
       "source": {
         "label": "StazioneAppaltante",
         "attributes": [
@@ -292,7 +344,7 @@
         "label": "ResponsabileUnicoDelProgetto",
         "attributes": [
           {
-            "name": "nominativo",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -301,15 +353,15 @@
       },
       "attributes": [
         {
-          "name": "ambito_nomina",
+          "name": "fasi_di_competenze",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "NOMINATO_RUP_DA_ENTE_CONCEDENTE",
+      "label": "NOMINATO_DI",
       "source": {
         "label": "EnteConcedente",
         "attributes": [
@@ -325,54 +377,6 @@
         "label": "ResponsabileUnicoDelProgetto",
         "attributes": [
           {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "INDICATO_NEL_DOCUMENTO_DI_INDIZIONE",
-      "source": {
-        "label": "DocumentoDiIndizione",
-        "attributes": [
-          {
-            "name": "nome_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ResponsabileUnicoDelProgetto",
-        "attributes": [
-          {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione_documento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DESIGNA_RUP_CENTRALE_DI_COMMITTENZA",
-      "source": {
-        "label": "CentraleDiCommittenza",
-        "attributes": [
-          {
             "name": "denominazione",
             "type": "string",
             "unique": true,
@@ -380,129 +384,19 @@
           }
         ]
       },
-      "target": {
-        "label": "ResponsabileUnicoDelProgetto",
-        "attributes": [
-          {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
       "attributes": [
         {
-          "name": "ambito_competenze",
+          "name": "fasi_di_competenze",
           "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DESIGNA_RUP_AGGREGAZIONE_STAZIONI",
-      "source": {
-        "label": "AggregazioneStazioniAppaltanti",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ResponsabileUnicoDelProgetto",
-        "attributes": [
-          {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ambito_competenze",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ISTITUISCE_STRUTTURA_DI_SUPPORTO_RUP",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "StrutturaDiSupportoRUP",
-        "attributes": [
-          {
-            "name": "nome_struttura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DESTINA_RISORSE_A_RUP",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ResponsabileUnicoDelProgetto",
-        "attributes": [
-          {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "percentuale",
-          "type": "number",
           "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "ADOTTA_PIANO_DI_FORMAZIONE",
+      "label": "INDICATO_NEL_BANDO",
       "source": {
-        "label": "StazioneAppaltante",
+        "label": "ResponsabileUnicoDelProgetto",
         "attributes": [
           {
             "name": "denominazione",
@@ -513,10 +407,10 @@
         ]
       },
       "target": {
-        "label": "PianoDiFormazione",
+        "label": "BandoDiGara",
         "attributes": [
           {
-            "name": "nome_piano",
+            "name": "titolo_bando",
             "type": "string",
             "unique": true,
             "required": true
@@ -525,20 +419,119 @@
       },
       "attributes": [
         {
-          "name": "periodo_formazione",
+          "name": "documento_di_indicazione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "GESTISCE_PROCEDURE_DI_ACQUISIZIONE",
+      "label": "INDICATO_NEL_AVVISO",
       "source": {
-        "label": "UnitaOrganizzativa",
+        "label": "ResponsabileUnicoDelProgetto",
         "attributes": [
           {
-            "name": "nome",
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AvvisoDiIndizione",
+        "attributes": [
+          {
+            "name": "titolo_avviso_indizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "documento_di_indicazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDICATO_NEL_INVITO",
+      "source": {
+        "label": "ResponsabileUnicoDelProgetto",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "InvitoAPresentareOfferta",
+        "attributes": [
+          {
+            "name": "titolo_invito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "documento_di_indicazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICOPRE_RUP",
+      "source": {
+        "label": "Dipendente",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ResponsabileUnicoDelProgetto",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ru_p",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GESTISCE_PER_PROCEDURA",
+      "source": {
+        "label": "ResponsabileUnicoDelProgetto",
+        "attributes": [
+          {
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -549,7 +542,7 @@
         "label": "ProceduraDiAppalto",
         "attributes": [
           {
-            "name": "tipo_procedura",
+            "name": "denominazione_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -558,17 +551,17 @@
       },
       "attributes": [
         {
-          "name": "descrizione_fase",
+          "name": "fasi_di_gestione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "VIETA_ASSEGNARE_RUP_CONTRAENTE_GENERALE",
+      "label": "GESTISCE",
       "source": {
-        "label": "ContraenteGenerale",
+        "label": "ResponsabileUnicoDelProgetto",
         "attributes": [
           {
             "name": "denominazione",
@@ -579,10 +572,10 @@
         ]
       },
       "target": {
-        "label": "ResponsabileUnicoDelProgetto",
+        "label": "Appalto",
         "attributes": [
           {
-            "name": "nominativo",
+            "name": "identificativo_appalto",
             "type": "string",
             "unique": true,
             "required": true
@@ -591,20 +584,20 @@
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "ambito_di_gestione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "SOSTITUISCE_RUP",
+      "label": "NOMINATO_PER_SOGGETTI",
       "source": {
-        "label": "UnitaOrganizzativa",
+        "label": "UnitàOrganizzativaTitolareDelPotereDiSpesa",
         "attributes": [
           {
-            "name": "nome",
+            "name": "denominazione_unità_titolare_potere_di_spesa",
             "type": "string",
             "unique": true,
             "required": true
@@ -615,7 +608,7 @@
         "label": "ResponsabileUnicoDelProgetto",
         "attributes": [
           {
-            "name": "nominativo",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -624,9 +617,141 @@
       },
       "attributes": [
         {
-          "name": "condizioni",
+          "name": "relazione",
           "type": "string",
-          "required": false,
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PREVEDERE_RIPARO",
+      "source": {
+        "label": "ModelloOrganizzativo",
+        "attributes": [
+          {
+            "name": "denominazione_modello",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ResponsabileDiProcedimento",
+        "attributes": [
+          {
+            "name": "denominazione_responsabile_procedimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "scopo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AFFIDAMENTO_DIRETTO",
+      "source": {
+        "label": "ProvvedimentoDiAffidamentoDiretto",
+        "attributes": [
+          {
+            "name": "numero_provvedimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "identificativo_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_di_affidamento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "REQUISTI_RUP_ALLEGATO_I2",
+      "source": {
+        "label": "AllegatoI2",
+        "attributes": [
+          {
+            "name": "codice_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ResponsabileUnicoDelProgetto",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_requisiti",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASSOCIA_CPVA_APPALTO",
+      "source": {
+        "label": "CPV",
+        "attributes": [
+          {
+            "name": "codice_cpv",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "identificativo_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_associazione",
+          "type": "string",
+          "required": true,
           "unique": false
         }
       ]

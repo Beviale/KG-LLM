@@ -1,0 +1,504 @@
+{
+  "entities": [
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Contratto",
+      "attributes": [
+        {
+          "name": "identificativo_contratto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo_contratto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "importo_euro",
+          "type": "number",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "anno_di_indizione",
+          "type": "number",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ResponsabileUnicoProcedimento",
+      "attributes": [
+        {
+          "name": "ruP_id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DirettoreEsecuzione",
+      "attributes": [
+        {
+          "name": "id_direttore_esecuzione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DirettoreDeiLavori",
+      "attributes": [
+        {
+          "name": "id_direttore_lavori",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CoordinatoreSicurezza",
+      "attributes": [
+        {
+          "name": "id_coordinatore_sicurezza",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DirettoreOperativo",
+      "attributes": [
+        {
+          "name": "id_direttore_operativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "IspettoreDiCantiere",
+      "attributes": [
+        {
+          "name": "id_ispettore_di_cantiere",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Collaudatore",
+      "attributes": [
+        {
+          "name": "id_collaudatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "VerificatoreConformita",
+      "attributes": [
+        {
+          "name": "id_verificatore_conformita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AllegatoI9",
+      "attributes": [
+        {
+          "name": "numero_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AllegatoII14",
+      "attributes": [
+        {
+          "name": "numero_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "DIREZIONE_ESECUZIONE",
+      "source": {
+        "label": "ResponsabileUnicoProcedimento",
+        "attributes": [
+          {
+            "name": "ruP_id",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "identificativo_contratto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "fase",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA",
+      "source": {
+        "label": "ResponsabileUnicoProcedimento",
+        "attributes": [
+          {
+            "name": "ruP_id",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DirettoreEsecuzione",
+        "attributes": [
+          {
+            "name": "id_direttore_esecuzione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA",
+      "source": {
+        "label": "ResponsabileUnicoProcedimento",
+        "attributes": [
+          {
+            "name": "ruP_id",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DirettoreDeiLavori",
+        "attributes": [
+          {
+            "name": "id_direttore_lavori",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA",
+      "source": {
+        "label": "ResponsabileUnicoProcedimento",
+        "attributes": [
+          {
+            "name": "ruP_id",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CoordinatoreSicurezza",
+        "attributes": [
+          {
+            "name": "id_coordinatore_sicurezza",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA",
+      "source": {
+        "label": "ResponsabileUnicoProcedimento",
+        "attributes": [
+          {
+            "name": "ruP_id",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Collaudatore",
+        "attributes": [
+          {
+            "name": "id_collaudatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA",
+      "source": {
+        "label": "ResponsabileUnicoProcedimento",
+        "attributes": [
+          {
+            "name": "ruP_id",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "VerificatoreConformita",
+        "attributes": [
+          {
+            "name": "id_verificatore_conformita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERIMENTO_ALLEGATO",
+      "source": {
+        "label": "DirettoreDeiLavori",
+        "attributes": [
+          {
+            "name": "id_direttore_lavori",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AllegatoI9",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERIMENTO_ALLEGATO",
+      "source": {
+        "label": "DirettoreDeiLavori",
+        "attributes": [
+          {
+            "name": "id_direttore_lavori",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AllegatoII14",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DESIGNA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DirettoreOperativo",
+        "attributes": [
+          {
+            "name": "id_direttore_operativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "condizioni_designazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDICA_CONTRATTI_DI_PARTICOLARE_IMPORTANZA",
+      "source": {
+        "label": "AllegatoII14",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "identificativo_contratto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

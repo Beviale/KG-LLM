@@ -1,0 +1,314 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProceduraNegoziataSenzaBando",
+      "attributes": [
+        {
+          "name": "descrizione_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "EnteConcedente",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "tipo_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Bando",
+      "attributes": [
+        {
+          "name": "codice_bando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Mercato",
+      "attributes": [
+        {
+          "name": "denominazione_mercato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ConcorsodiProgettazione",
+      "attributes": [
+        {
+          "name": "id_concorso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CasoEccezione",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "tipo_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_agg",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONSULTAZIONE_DI_MERCATO",
+      "source": {
+        "label": "ProceduraNegoziataSenzaBando",
+        "attributes": [
+          {
+            "name": "descrizione_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Mercato",
+        "attributes": [
+          {
+            "name": "denominazione_mercato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_consultazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RISPETTA_PRINCIPI",
+      "source": {
+        "label": "ProceduraNegoziataSenzaBando",
+        "attributes": [
+          {
+            "name": "descrizione_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_principi",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDIZIONE_GARA",
+      "source": {
+        "label": "ProceduraNegoziataSenzaBando",
+        "attributes": [
+          {
+            "name": "descrizione_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "codice_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DESTINATO_A",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "tipo_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_destinazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONCORSO_DI_PROGETTAZIONE",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "tipo_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ConcorsodiProgettazione",
+        "attributes": [
+          {
+            "name": "id_concorso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "oggetto_concorso",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

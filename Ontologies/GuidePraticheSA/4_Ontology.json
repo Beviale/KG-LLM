@@ -10,13 +10,36 @@
           "required": true
         },
         {
-          "name": "versione",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "formato",
+          "name": "standard_europeo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "elettronico",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "sede",
           "type": "string",
           "unique": false,
           "required": false
@@ -33,24 +56,7 @@
           "required": true
         },
         {
-          "name": "abbreviazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "StazioneAppaltante",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "codice_univoco",
+          "name": "partita_iva",
           "type": "string",
           "unique": false,
           "required": false
@@ -78,13 +84,13 @@
       "label": "ProceduraDiGara",
       "attributes": [
         {
-          "name": "titolo",
+          "name": "id_procedura",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo_procedura",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
@@ -95,13 +101,19 @@
       "label": "Bando",
       "attributes": [
         {
-          "name": "titolo",
+          "name": "id_bando",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "identificativo",
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione_breve",
           "type": "string",
           "unique": false,
           "required": false
@@ -116,6 +128,12 @@
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "ambito",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -140,7 +158,13 @@
           "required": true
         },
         {
-          "name": "obbligatorio",
+          "name": "indice",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "obbligatorio_di_default",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -155,6 +179,12 @@
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "indice",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -196,24 +226,7 @@
           "required": true
         },
         {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Lotto",
-      "attributes": [
-        {
-          "name": "numero_lotto",
-          "type": "number",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "oggetto",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -238,10 +251,27 @@
       ]
     },
     {
+      "label": "Lotto",
+      "attributes": [
+        {
+          "name": "id_lotto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "Documento",
       "attributes": [
         {
-          "name": "nome_documento",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -255,27 +285,10 @@
       ]
     },
     {
-      "label": "Figura",
+      "label": "RegolaTecnica",
       "attributes": [
-        {
-          "name": "identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
         {
           "name": "titolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "RegoleTecnicheAGID",
-      "attributes": [
-        {
-          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -289,7 +302,7 @@
       ]
     },
     {
-      "label": "CodiceDeiContratti",
+      "label": "Legge",
       "attributes": [
         {
           "name": "riferimento",
@@ -299,6 +312,40 @@
         },
         {
           "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Manuale",
+      "attributes": [
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Figura",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
           "type": "string",
           "unique": false,
           "required": false
@@ -323,16 +370,33 @@
       ]
     },
     {
-      "label": "Manuale",
+      "label": "Autorita",
       "attributes": [
         {
-          "name": "titolo",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "versione",
+          "name": "sigla",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Aggregazione",
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -342,7 +406,139 @@
   ],
   "relations": [
     {
-      "label": "RICHIESTO_DA",
+      "label": "CONFIGURA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sezione_configurazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ATTIVA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DGUE",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE",
+      "source": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "id_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DGUE",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "documentazione_amministrativa",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "OSPITA",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DGUE",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ambiente",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMPILATO_DA",
       "source": {
         "label": "DGUE",
         "attributes": [
@@ -355,7 +551,7 @@
         ]
       },
       "target": {
-        "label": "StazioneAppaltante",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
             "name": "denominazione",
@@ -367,15 +563,15 @@
       },
       "attributes": [
         {
-          "name": "ambito",
-          "type": "string",
-          "required": false,
+          "name": "firmato_digitalmente",
+          "type": "boolean",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "PREDISPOSTO_SU",
+      "label": "CONFORME_A",
       "source": {
         "label": "DGUE",
         "attributes": [
@@ -388,40 +584,7 @@
         ]
       },
       "target": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "attivabile",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "GESTISCE",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ProceduraDiGara",
+        "label": "RegolaTecnica",
         "attributes": [
           {
             "name": "titolo",
@@ -433,40 +596,7 @@
       },
       "attributes": [
         {
-          "name": "configurazione_disponibile",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ASSOCIATO_A",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "fase",
+          "name": "riferimento",
           "type": "string",
           "required": false,
           "unique": false
@@ -474,9 +604,9 @@
       ]
     },
     {
-      "label": "HA_LOTTO",
+      "label": "PUBBLICATA_DA",
       "source": {
-        "label": "ProceduraDiGara",
+        "label": "RegolaTecnica",
         "attributes": [
           {
             "name": "titolo",
@@ -487,11 +617,11 @@
         ]
       },
       "target": {
-        "label": "Lotto",
+        "label": "Autorita",
         "attributes": [
           {
-            "name": "numero_lotto",
-            "type": "number",
+            "name": "nome",
+            "type": "string",
             "unique": true,
             "required": true
           }
@@ -499,20 +629,20 @@
       },
       "attributes": [
         {
-          "name": "massimo_lotti",
-          "type": "number",
-          "required": false,
+          "name": "data_pubblicazione",
+          "type": "string",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_CPV",
+      "label": "RICHIEDE",
       "source": {
-        "label": "ProceduraDiGara",
+        "label": "Legge",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "riferimento",
             "type": "string",
             "unique": true,
             "required": true
@@ -520,28 +650,6 @@
         ]
       },
       "target": {
-        "label": "CPV",
-        "attributes": [
-          {
-            "name": "codice_cpv",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "principale",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMPOSTO_DA",
-      "source": {
         "label": "DGUE",
         "attributes": [
           {
@@ -552,7 +660,18 @@
           }
         ]
       },
-      "target": {
+      "attributes": [
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INCLUSO_IN",
+      "source": {
         "label": "Modulo",
         "attributes": [
           {
@@ -563,17 +682,34 @@
           }
         ]
       },
+      "target": {
+        "label": "DGUE",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "numero_moduli",
-          "type": "number",
+          "name": "obbligatorio",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "selezionabile",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "COMPOSTO_DA",
+      "label": "CONTENUTO_IN",
       "source": {
         "label": "Modulo",
         "attributes": [
@@ -598,15 +734,15 @@
       },
       "attributes": [
         {
-          "name": "ordine",
-          "type": "number",
+          "name": "indice",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "COMPOSTO_DA",
+      "label": "CONTENUTO_IN",
       "source": {
         "label": "Sezione",
         "attributes": [
@@ -631,7 +767,79 @@
       },
       "attributes": [
         {
-          "name": "ordine",
+          "name": "indice",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASSOCIATO_A",
+      "source": {
+        "label": "CPV",
+        "attributes": [
+          {
+            "name": "codice_cpv",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "id_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "rilevanza",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PREVEDE",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "id_lotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "massimo_numero_lotti",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "massimo_numero_lotti_aggiudicabili",
           "type": "number",
           "required": false,
           "unique": false
@@ -639,8 +847,52 @@
       ]
     },
     {
-      "label": "RICHIEDE_COMPILAZIONE",
+      "label": "APPLICA_A",
       "source": {
+        "label": "RequisitoMinimo",
+        "attributes": [
+          {
+            "name": "id_requisito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "id_lotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "id_lotto",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIESTO_DA",
+      "source": {
+        "label": "RequisitoMinimo",
+        "attributes": [
+          {
+            "name": "id_requisito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "Modulo",
         "attributes": [
           {
@@ -651,11 +903,33 @@
           }
         ]
       },
-      "target": {
-        "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ordine",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DEFINISCE",
+      "source": {
+        "label": "CriterioDiSelezione",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Modulo",
+        "attributes": [
+          {
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -664,9 +938,9 @@
       },
       "attributes": [
         {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": true,
+          "name": "tipo",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]
@@ -697,20 +971,20 @@
       },
       "attributes": [
         {
-          "name": "ruolo_principale",
-          "type": "boolean",
-          "required": false,
+          "name": "ruolo_specifico",
+          "type": "string",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "SPECIALIZZATO_PER",
+      "label": "APPARTIENE_A",
       "source": {
-        "label": "DGUE",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "nome",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -718,10 +992,10 @@
         ]
       },
       "target": {
-        "label": "Ruolo",
+        "label": "Aggregazione",
         "attributes": [
           {
-            "name": "nome",
+            "name": "tipo",
             "type": "string",
             "unique": true,
             "required": true
@@ -730,40 +1004,7 @@
       },
       "attributes": [
         {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_REQUISITO",
-      "source": {
-        "label": "Modulo",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RequisitoMinimo",
-        "attributes": [
-          {
-            "name": "id_requisito",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "identificatore_chunk",
+          "name": "ruolo_nel_raggruppamento",
           "type": "string",
           "required": false,
           "unique": false
@@ -771,42 +1012,9 @@
       ]
     },
     {
-      "label": "APPLICA_A",
+      "label": "ESPORTABILE_IN",
       "source": {
-        "label": "RequisitoMinimo",
-        "attributes": [
-          {
-            "name": "id_requisito",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Lotto",
-        "attributes": [
-          {
-            "name": "numero_lotto",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "applicabile_per_lotto",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "GENERA",
-      "source": {
-        "label": "Piattaforma",
+        "label": "DGUE",
         "attributes": [
           {
             "name": "nome",
@@ -820,7 +1028,7 @@
         "label": "Documento",
         "attributes": [
           {
-            "name": "nome_documento",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -831,117 +1039,18 @@
         {
           "name": "formato",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "ALLEGATO_A",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "nome_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "esempio",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONFORME_A",
-      "source": {
-        "label": "DGUE",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RegoleTecnicheAGID",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_riferimento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICHIESTO_DAL",
-      "source": {
-        "label": "DGUE",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CodiceDeiContratti",
-        "attributes": [
-          {
-            "name": "riferimento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "articolo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONTIENTE",
+      "label": "GUIDA_PER",
       "source": {
         "label": "Manuale",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "versione",
             "type": "string",
             "unique": true,
             "required": true
@@ -949,32 +1058,32 @@
         ]
       },
       "target": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "lingua",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INCLUSA_IN",
+      "source": {
         "label": "Figura",
         "attributes": [
           {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "numero_figure",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DESCRIVE",
-      "source": {
-        "label": "Manuale",
-        "attributes": [
-          {
-            "name": "titolo",
+            "name": "numero",
             "type": "string",
             "unique": true,
             "required": true
@@ -982,10 +1091,10 @@
         ]
       },
       "target": {
-        "label": "DGUE",
+        "label": "Manuale",
         "attributes": [
           {
-            "name": "nome",
+            "name": "versione",
             "type": "string",
             "unique": true,
             "required": true
@@ -994,7 +1103,7 @@
       },
       "attributes": [
         {
-          "name": "versione_manuale",
+          "name": "pagina",
           "type": "string",
           "required": false,
           "unique": false
@@ -1002,78 +1111,12 @@
       ]
     },
     {
-      "label": "HA_CRITERIO",
+      "label": "SUPPORTA",
       "source": {
-        "label": "Modulo",
+        "label": "Piattaforma",
         "attributes": [
           {
             "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CriterioDiSelezione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "minimo",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALIMENTA",
-      "source": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "AlboFornitori",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "abilita_albo",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERISCE_A",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "nome_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -1093,9 +1136,9 @@
       },
       "attributes": [
         {
-          "name": "incluso_nel_sda",
+          "name": "abilitata",
           "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]

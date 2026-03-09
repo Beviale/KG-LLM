@@ -1,0 +1,317 @@
+{
+  "entities": [
+    {
+      "label": "DisposizioneLegale",
+      "attributes": [
+        {
+          "name": "norma_codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "articoli_presenti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione_generale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimenti_normativi_internazionali",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "aggiornamenti_normativi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contenuto_testuale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OrganizzazioneInternazionale",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OrganizzazioneInternazionaleFinanziamento",
+      "attributes": [
+        {
+          "name": "tipologia_finanziamento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "percentuale_massima",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AutoritaControllo",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiAffidamento",
+      "attributes": [
+        {
+          "name": "tipologia_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AppaltoPubblico",
+      "attributes": [
+        {
+          "name": "descrizione_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ambito_appalto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto_prestazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "procedura_riferita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Concessione",
+      "attributes": [
+        {
+          "name": "descrizione_concessione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ambito_concessione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipologia_concessione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "CONTROLLA_PREVENTIVO",
+      "source": {
+        "label": "AutoritaControllo",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DisposizioneLegale",
+        "attributes": [
+          {
+            "name": "norma_codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "campo_controllo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "periodo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_A",
+      "source": {
+        "label": "DisposizioneLegale",
+        "attributes": [
+          {
+            "name": "norma_codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OrganizzazioneInternazionale",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FINANZIATO_DA",
+      "source": {
+        "label": "DisposizioneLegale",
+        "attributes": [
+          {
+            "name": "norma_codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OrganizzazioneInternazionaleFinanziamento",
+        "attributes": [
+          {
+            "name": "tipologia_finanziamento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "percentuale_massima",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPLICAZIONE_PROCEDURA",
+      "source": {
+        "label": "DisposizioneLegale",
+        "attributes": [
+          {
+            "name": "norma_codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiAffidamento",
+        "attributes": [
+          {
+            "name": "tipologia_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

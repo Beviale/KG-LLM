@@ -1,0 +1,503 @@
+{
+  "entities": [
+    {
+      "label": "EntePubblico",
+      "attributes": [
+        {
+          "name": "acronimo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Albo",
+      "attributes": [
+        {
+          "name": "nome_albo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Commissione",
+      "attributes": [
+        {
+          "name": "codice_commissione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "id_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Procedura",
+      "attributes": [
+        {
+          "name": "id_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Legge",
+      "attributes": [
+        {
+          "name": "numero_legge",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DecretoLegislativo",
+      "attributes": [
+        {
+          "name": "numero_decreto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DirettivaUE",
+      "attributes": [
+        {
+          "name": "numero_direttiva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DipendentePubblico",
+      "attributes": [
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "TariffaIscrizioneAlbo",
+      "attributes": [
+        {
+          "name": "descrizione_tariffa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "importo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "TariffaCompensoCommissari",
+      "attributes": [
+        {
+          "name": "descrizione_tariffa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "importo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "partita_iva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GESTITO_DA",
+      "source": {
+        "label": "Albo",
+        "attributes": [
+          {
+            "name": "nome_albo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "EntePubblico",
+        "attributes": [
+          {
+            "name": "acronimo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_di_gestione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_A_ARTICOLO",
+      "source": {
+        "label": "Legge",
+        "attributes": [
+          {
+            "name": "numero_legge",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "comma_rif",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERIMENTO_DIRETTIVA",
+      "source": {
+        "label": "Legge",
+        "attributes": [
+          {
+            "name": "numero_legge",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DirettivaUE",
+        "attributes": [
+          {
+            "name": "numero_direttiva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ISCRITTO_AD_ALBO_GRATUITA",
+      "source": {
+        "label": "DipendentePubblico",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Albo",
+        "attributes": [
+          {
+            "name": "nome_albo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "gratuita",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "STABILISCE_TARIFFE_ALBO",
+      "source": {
+        "label": "Legge",
+        "attributes": [
+          {
+            "name": "numero_legge",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "TariffaIscrizioneAlbo",
+        "attributes": [
+          {
+            "name": "descrizione_tariffa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "STABILISCE_COMPENSO_COMMISSARI",
+      "source": {
+        "label": "Legge",
+        "attributes": [
+          {
+            "name": "numero_legge",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "TariffaCompensoCommissari",
+        "attributes": [
+          {
+            "name": "descrizione_tariffa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICONVOCA_COMMISSIONE",
+      "source": {
+        "label": "Procedura",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "codice_commissione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "stesso_commissario",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

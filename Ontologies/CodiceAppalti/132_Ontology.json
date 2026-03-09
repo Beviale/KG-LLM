@@ -1,0 +1,249 @@
+{
+  "entities": [
+    {
+      "label": "Codice",
+      "attributes": [
+        {
+          "name": "numero_codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_codice",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "oggetto_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "parti_separabili",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_parti",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "regime_appalto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_normativo_appalto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Concessione",
+      "attributes": [
+        {
+          "name": "oggetto_concessione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "parti_separabili",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_parti",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_normativo_concessione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "regime_concessione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Trattato",
+      "attributes": [
+        {
+          "name": "numero_trattato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome_trattato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DecretoLegislativo",
+      "attributes": [
+        {
+          "name": "numero_decreto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "anno_decreto",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione_decreto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_stazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "DISCIPLINATO_DA",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Trattato",
+        "attributes": [
+          {
+            "name": "numero_trattato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ragione_disciplina",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISCIPLINATO_DA",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DecretoLegislativo",
+        "attributes": [
+          {
+            "name": "numero_decreto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ragione_disciplina",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIENTRA_NEL_CODICE",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Codice",
+        "attributes": [
+          {
+            "name": "numero_codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

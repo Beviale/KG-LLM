@@ -1,0 +1,580 @@
+{
+  "entities": [
+    {
+      "label": "Anpr",
+      "attributes": [
+        {
+          "name": "nome_sistema",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ana",
+      "attributes": [
+        {
+          "name": "nome_sistema",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comune",
+      "attributes": [
+        {
+          "name": "codice_comune",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "provincia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Anagrafe",
+      "attributes": [
+        {
+          "name": "tipologia_anagrafe",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SoggettoAventiDiritto",
+      "attributes": [
+        {
+          "name": "tipologia_soggetto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CartaIdentitaElettronica",
+      "attributes": [
+        {
+          "name": "numero_carta_id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CartaNazionaleDeServizi",
+      "attributes": [
+        {
+          "name": "numero_cns",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Spid",
+      "attributes": [
+        {
+          "name": "identita_digitale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "BDNCP",
+      "attributes": [
+        {
+          "name": "codice_bdnp",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Istat",
+      "attributes": [
+        {
+          "name": "codice_istat",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AgenziaItaliaDigitale",
+      "attributes": [
+        {
+          "name": "codice_aid",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "GazzettaUfficiale",
+      "attributes": [
+        {
+          "name": "numero_gazzetta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Legge",
+      "attributes": [
+        {
+          "name": "numero_legge",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DecretoLegislativo",
+      "attributes": [
+        {
+          "name": "numero_decreto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AutoritaVigilanzaContrattiPubblici",
+      "attributes": [
+        {
+          "name": "codice_avcp",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PubblicheAmministrazioni",
+      "attributes": [
+        {
+          "name": "codice_pa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ServiziInRete",
+      "attributes": [
+        {
+          "name": "codice_servizio_rete",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "SOSTITUISCE",
+      "source": {
+        "label": "Anpr",
+        "attributes": [
+          {
+            "name": "nome_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Anagrafe",
+        "attributes": [
+          {
+            "name": "tipologia_anagrafe",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ACQUISISCE_DATI_TELEMATICI",
+      "source": {
+        "label": "Anpr",
+        "attributes": [
+          {
+            "name": "nome_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comune",
+        "attributes": [
+          {
+            "name": "codice_comune",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FORNISCE_DATI_A",
+      "source": {
+        "label": "Anpr",
+        "attributes": [
+          {
+            "name": "nome_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comune",
+        "attributes": [
+          {
+            "name": "codice_comune",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INTEROPERABILE_CON",
+      "source": {
+        "label": "Ana",
+        "attributes": [
+          {
+            "name": "nome_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "BDNCP",
+        "attributes": [
+          {
+            "name": "codice_bdnp",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INTEROPERABILE_CON",
+      "source": {
+        "label": "Ana",
+        "attributes": [
+          {
+            "name": "nome_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Istat",
+        "attributes": [
+          {
+            "name": "codice_istat",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASSICURA_ACCESSO_A",
+      "source": {
+        "label": "Ana",
+        "attributes": [
+          {
+            "name": "nome_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PubblicheAmministrazioni",
+        "attributes": [
+          {
+            "name": "codice_pa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EROGAZIONE_SERVIZI",
+      "source": {
+        "label": "Anpr",
+        "attributes": [
+          {
+            "name": "nome_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AgenziaItaliaDigitale",
+        "attributes": [
+          {
+            "name": "codice_aid",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GESTITO_DA",
+      "source": {
+        "label": "BDNCP",
+        "attributes": [
+          {
+            "name": "codice_bdnp",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AutoritaVigilanzaContrattiPubblici",
+        "attributes": [
+          {
+            "name": "codice_avcp",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RILASCIATA_DA",
+      "source": {
+        "label": "Comune",
+        "attributes": [
+          {
+            "name": "codice_comune",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CartaIdentitaElettronica",
+        "attributes": [
+          {
+            "name": "numero_carta_id",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EMESSA_CARTA_NAZIONALE_DEI_SERVIZI",
+      "source": {
+        "label": "Comune",
+        "attributes": [
+          {
+            "name": "codice_comune",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CartaNazionaleDeServizi",
+        "attributes": [
+          {
+            "name": "numero_cns",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ACCESSO_MEDIANTE_SPID",
+      "source": {
+        "label": "Spid",
+        "attributes": [
+          {
+            "name": "identita_digitale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PubblicheAmministrazioni",
+        "attributes": [
+          {
+            "name": "codice_pa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

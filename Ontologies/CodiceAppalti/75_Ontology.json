@@ -1,0 +1,281 @@
+{
+  "entities": [
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione_stazione_appaltante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiGara",
+      "attributes": [
+        {
+          "name": "codice_procedura_di_gara",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione_operatore_economico",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AutoritaIndipendente",
+      "attributes": [
+        {
+          "name": "denominazione_autorita_indipendente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Esperto",
+      "attributes": [
+        {
+          "name": "denominazione_esperto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SoggettoIdoneo",
+      "attributes": [
+        {
+          "name": "codice_soggetto_idoneo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ConsultazionePreliminareDiMercato",
+      "attributes": [
+        {
+          "name": "codice_consultazione_preliminare_di_mercato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "CONSULTAZIONE_PRELIMINARE",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione_appaltante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "codice_procedura_di_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "oggetto",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INFORMA_OPERATORI_ECONOMICI",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione_appaltante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "oggetto",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FORNITO_DA",
+      "source": {
+        "label": "Esperto",
+        "attributes": [
+          {
+            "name": "denominazione_esperto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ConsultazionePreliminareDiMercato",
+        "attributes": [
+          {
+            "name": "codice_consultazione_preliminare_di_mercato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_contenuto",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FORNITO_DA",
+      "source": {
+        "label": "AutoritaIndipendente",
+        "attributes": [
+          {
+            "name": "denominazione_autorita_indipendente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ConsultazionePreliminareDiMercato",
+        "attributes": [
+          {
+            "name": "codice_consultazione_preliminare_di_mercato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_contenuto",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FORNITO_DA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ConsultazionePreliminareDiMercato",
+        "attributes": [
+          {
+            "name": "codice_consultazione_preliminare_di_mercato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_contenuto",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FORNITO_DA",
+      "source": {
+        "label": "SoggettoIdoneo",
+        "attributes": [
+          {
+            "name": "codice_soggetto_idoneo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ConsultazionePreliminareDiMercato",
+        "attributes": [
+          {
+            "name": "codice_consultazione_preliminare_di_mercato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_contenuto",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

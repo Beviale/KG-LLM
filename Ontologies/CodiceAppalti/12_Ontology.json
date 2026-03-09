@@ -1,19 +1,13 @@
 {
   "entities": [
     {
-      "label": "Codice",
+      "label": "Articolo",
       "attributes": [
         {
-          "name": "codice",
-          "type": "string",
+          "name": "numero_articolo",
+          "type": "number",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
@@ -21,22 +15,10 @@
       "label": "Appalto",
       "attributes": [
         {
-          "name": "oggetto",
+          "name": "identificatore",
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "anno_di_indizione",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cpv",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
@@ -44,30 +26,7 @@
       "label": "Concessione",
       "attributes": [
         {
-          "name": "oggetto",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "anno_di_indizione",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cpv",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Contratto",
-      "attributes": [
-        {
-          "name": "tipologia",
+          "name": "identificatore",
           "type": "string",
           "unique": true,
           "required": true
@@ -75,10 +34,10 @@
       ]
     },
     {
-      "label": "AllegatoI1",
+      "label": "SocietaAPartecipazionePubblica",
       "attributes": [
         {
-          "name": "numero_allegato",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -86,10 +45,10 @@
       ]
     },
     {
-      "label": "AllegatoI12",
+      "label": "ContrattoTipo",
       "attributes": [
         {
-          "name": "numero_allegato",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -100,35 +59,19 @@
       "label": "Legge",
       "attributes": [
         {
-          "name": "numeri_legge",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Anac",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Regolamento",
-      "attributes": [
-        {
-          "name": "titolo",
-          "type": "string",
+          "name": "numero",
+          "type": "number",
           "unique": true,
           "required": true
         },
         {
-          "name": "articolo",
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "titolo",
           "type": "string",
           "unique": false,
           "required": false
@@ -136,10 +79,56 @@
       ]
     },
     {
-      "label": "Procedura",
+      "label": "DecretoLegislativo",
       "attributes": [
         {
-          "name": "descrizione_procedura",
+          "name": "numero",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DecretoPresidenteDellaRepubblica",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "TestoUnicoEdilizia",
+      "attributes": [
+        {
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -147,10 +136,32 @@
       ]
     },
     {
-      "label": "Ministero",
+      "label": "Allegato",
       "attributes": [
         {
-          "name": "denominazione",
+          "name": "identificatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "MinisteroAffariEsteriCooperazioneInternazionale",
+      "attributes": [
+        {
+          "name": "sigla",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AutoritaNazionaleAnticorruzione",
+      "attributes": [
+        {
+          "name": "sigla",
           "type": "string",
           "unique": true,
           "required": true
@@ -161,7 +172,7 @@
       "label": "UnioneEuropea",
       "attributes": [
         {
-          "name": "denominazione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -172,7 +183,7 @@
       "label": "OrganizzazioniInternazionali",
       "attributes": [
         {
-          "name": "denominazione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -180,10 +191,10 @@
       ]
     },
     {
-      "label": "OperatoreEconomico",
+      "label": "ProceduraDiSceltaContraente",
       "attributes": [
         {
-          "name": "denominazione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -191,10 +202,10 @@
       ]
     },
     {
-      "label": "TitoloAbilitativo",
+      "label": "Regolamento",
       "attributes": [
         {
-          "name": "tipologia",
+          "name": "identificatore",
           "type": "string",
           "unique": true,
           "required": true
@@ -202,7 +213,7 @@
       ]
     },
     {
-      "label": "LavoriPubblici",
+      "label": "Urbanizzazione",
       "attributes": [
         {
           "name": "descrizione",
@@ -216,7 +227,7 @@
       "label": "PermessoDiCostruire",
       "attributes": [
         {
-          "name": "tipologia",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -224,7 +235,7 @@
       ]
     },
     {
-      "label": "OpereUrbanizzazione",
+      "label": "AggiudicazioneLavoriPubblici",
       "attributes": [
         {
           "name": "descrizione",
@@ -239,11 +250,11 @@
     {
       "label": "APPLIES_TO",
       "source": {
-        "label": "Codice",
+        "label": "Articolo",
         "attributes": [
           {
-            "name": "codice",
-            "type": "string",
+            "name": "numero_articolo",
+            "type": "number",
             "unique": true,
             "required": true
           }
@@ -253,73 +264,7 @@
         "label": "Appalto",
         "attributes": [
           {
-            "name": "oggetto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ambito",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPLIES_TO",
-      "source": {
-        "label": "Codice",
-        "attributes": [
-          {
-            "name": "codice",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Concessione",
-        "attributes": [
-          {
-            "name": "oggetto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ambito",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "NON_APPLIES_TO",
-      "source": {
-        "label": "Codice",
-        "attributes": [
-          {
-            "name": "codice",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Contratto",
-        "attributes": [
-          {
-            "name": "tipologia",
+            "name": "identificatore",
             "type": "string",
             "unique": true,
             "required": true
@@ -330,18 +275,117 @@
         {
           "name": "descrizione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "REGOLA_PROCEDURA",
+      "label": "APPLIES_TO",
+      "source": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "identificatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "NOT_APPLICABLE_TO",
+      "source": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ContrattoTipo",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "NOT_APPLICABLE_TO",
+      "source": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SocietaAPartecipazionePubblica",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISCIPLINA_REGOLAMENTO",
       "source": {
         "label": "Regolamento",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "identificatore",
             "type": "string",
             "unique": true,
             "required": true
@@ -349,10 +393,10 @@
         ]
       },
       "target": {
-        "label": "Procedura",
+        "label": "ProceduraDiSceltaContraente",
         "attributes": [
           {
-            "name": "descrizione_procedura",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -361,20 +405,20 @@
       },
       "attributes": [
         {
-          "name": "ambito",
+          "name": "descrizione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "CONSULTA_ANAC",
+      "label": "CONSULTATO_DA",
       "source": {
         "label": "Regolamento",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "identificatore",
             "type": "string",
             "unique": true,
             "required": true
@@ -382,10 +426,10 @@
         ]
       },
       "target": {
-        "label": "Anac",
+        "label": "AutoritaNazionaleAnticorruzione",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "sigla",
             "type": "string",
             "unique": true,
             "required": true
@@ -394,20 +438,20 @@
       },
       "attributes": [
         {
-          "name": "ambito_consultazione",
+          "name": "descrizione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "ESECUZIONE_ALL_ESTERO",
+      "label": "RIFERIMENTO_LEGGE",
       "source": {
-        "label": "Procedura",
+        "label": "Regolamento",
         "attributes": [
           {
-            "name": "descrizione_procedura",
+            "name": "identificatore",
             "type": "string",
             "unique": true,
             "required": true
@@ -415,65 +459,32 @@
         ]
       },
       "target": {
-        "label": "Appalto",
-        "attributes": [
-          {
-            "name": "oggetto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ambito",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "AGGIUDICATO_DI",
-      "source": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Appalto",
-        "attributes": [
-          {
-            "name": "oggetto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "in_via_diretta_esecuzione",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DEFINISCE_ALLEGATO",
-      "source": {
         "label": "Legge",
         "attributes": [
           {
-            "name": "numeri_legge",
+            "name": "numero",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DEFINIZIONE_IN_ALLEGATO",
+      "source": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "identificatore",
             "type": "string",
             "unique": true,
             "required": true
@@ -481,10 +492,43 @@
         ]
       },
       "target": {
-        "label": "AllegatoI1",
+        "label": "Articolo",
         "attributes": [
           {
-            "name": "numero_allegato",
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "AggiudicazioneLavoriPubblici",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PermessoDiCostruire",
+        "attributes": [
+          {
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -493,20 +537,20 @@
       },
       "attributes": [
         {
-          "name": "contenuti",
+          "name": "descrizione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "DESCRIVE_ALLEGATO",
+      "label": "AGGIUDICATO_A",
       "source": {
-        "label": "Legge",
+        "label": "AggiudicazioneLavoriPubblici",
         "attributes": [
           {
-            "name": "numeri_legge",
+            "name": "descrizione",
             "type": "string",
             "unique": true,
             "required": true
@@ -514,73 +558,7 @@
         ]
       },
       "target": {
-        "label": "AllegatoI12",
-        "attributes": [
-          {
-            "name": "numero_allegato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "contenuti",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICHIEDE_TITOLI_ABILITATIVI",
-      "source": {
-        "label": "Appalto",
-        "attributes": [
-          {
-            "name": "oggetto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "TitoloAbilitativo",
-        "attributes": [
-          {
-            "name": "tipologia",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ambito",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DESCRIVE_OPERE_DI_URBANIZZAZIONE",
-      "source": {
-        "label": "AllegatoI12",
-        "attributes": [
-          {
-            "name": "numero_allegato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OpereUrbanizzazione",
+        "label": "Urbanizzazione",
         "attributes": [
           {
             "name": "descrizione",
@@ -592,20 +570,20 @@
       },
       "attributes": [
         {
-          "name": "modalita",
+          "name": "descrizione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "AFFIDAMENTO_OPERE_DI_URBANIZZAZIONE",
+      "label": "MODALITA_AFFIDAMENTO_ALLEGATO",
       "source": {
-        "label": "Appalto",
+        "label": "Allegato",
         "attributes": [
           {
-            "name": "oggetto",
+            "name": "identificatore",
             "type": "string",
             "unique": true,
             "required": true
@@ -613,10 +591,10 @@
         ]
       },
       "target": {
-        "label": "OperatoreEconomico",
+        "label": "Urbanizzazione",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "descrizione",
             "type": "string",
             "unique": true,
             "required": true
@@ -625,9 +603,9 @@
       },
       "attributes": [
         {
-          "name": "in_via_diretta",
-          "type": "boolean",
-          "required": false,
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
           "unique": false
         }
       ]

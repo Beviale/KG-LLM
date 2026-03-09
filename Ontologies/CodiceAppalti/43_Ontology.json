@@ -1,0 +1,399 @@
+{
+  "entities": [
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione_oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fase_appalto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteAppaltante",
+      "attributes": [
+        {
+          "name": "id_appaltante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipologia_ente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteConcedente",
+      "attributes": [
+        {
+          "name": "id_ente_concedente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProgettoFattibilitaTecnicoEconomica",
+      "attributes": [
+        {
+          "name": "id_progetto_fatt_te",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato_approvazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProgettoEsecutivo",
+      "attributes": [
+        {
+          "name": "id_progetto_esecutivo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "riferimento_articolo_42",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato_esame",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Progettista",
+      "attributes": [
+        {
+          "name": "id_progettista",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "qualificato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "uso_modellazione",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione_professione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "id_operatore_economico",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "id_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_offerta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "corrispettivo_progettazione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "corrispettivo_esecuzione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ribasso_asta",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indicazione_progettista_in_offerta",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CriterioValutazione",
+      "attributes": [
+        {
+          "name": "id_criterio_valutazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_valutazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoFiscale",
+      "attributes": [
+        {
+          "name": "id_documento_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "HA_BASE_DI_PROGETTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProgettoFattibilitaTecnicoEconomica",
+        "attributes": [
+          {
+            "name": "id_progetto_fatt_te",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "HA_PROGETTO_ESECUTIVO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProgettoEsecutivo",
+        "attributes": [
+          {
+            "name": "id_progetto_esecutivo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "INDICA_PROGETTISTA_NELL_OFFERTA",
+      "source": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Progettista",
+        "attributes": [
+          {
+            "name": "id_progettista",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "indicazione_progettista_in_offerta",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PAGA_A_PROGETTISTA",
+      "source": {
+        "label": "EnteAppaltante",
+        "attributes": [
+          {
+            "name": "id_appaltante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Progettista",
+        "attributes": [
+          {
+            "name": "id_progettista",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo_onere_progettazione",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "metodo_pagamento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_DOCUMENTI_FISCALI",
+      "source": {
+        "label": "Progettista",
+        "attributes": [
+          {
+            "name": "id_progettista",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DocumentoFiscale",
+        "attributes": [
+          {
+            "name": "id_documento_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_documento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

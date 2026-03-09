@@ -1,0 +1,359 @@
+{
+  "entities": [
+    {
+      "label": "Medicinale",
+      "attributes": [
+        {
+          "name": "nome_medicinale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "categoria_terapeutica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DispositivoNormativo",
+      "attributes": [
+        {
+          "name": "rif_normativa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_dispositivo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AziendaSanitaria",
+      "attributes": [
+        {
+          "name": "codice_azienda_sanitaria",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Farmacia",
+      "attributes": [
+        {
+          "name": "codice_farmacia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fatturato_annuo_ssn",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ricetta",
+      "attributes": [
+        {
+          "name": "numero_ricetta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "pezzi_per_ricetta",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "periodo_terapia_giorni",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StrutturaSanitaria",
+      "attributes": [
+        {
+          "name": "codice_struttura_sanitaria",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ConvenzioneRegionale",
+      "attributes": [
+        {
+          "name": "codice_convenzione_regionale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "EROGATO_DA",
+      "source": {
+        "label": "AziendaSanitaria",
+        "attributes": [
+          {
+            "name": "codice_azienda_sanitaria",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Medicinale",
+        "attributes": [
+          {
+            "name": "nome_medicinale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_A_MEDICINALE",
+      "source": {
+        "label": "DispositivoNormativo",
+        "attributes": [
+          {
+            "name": "rif_normativa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Medicinale",
+        "attributes": [
+          {
+            "name": "nome_medicinale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_riferimento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "LIMITA_PEZZI_PER_RICETTA",
+      "source": {
+        "label": "DispositivoNormativo",
+        "attributes": [
+          {
+            "name": "rif_normativa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ricetta",
+        "attributes": [
+          {
+            "name": "numero_ricetta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "pezzi_per_ricetta",
+          "type": "number",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "giorni_terapia_massimi",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EROGATO_TRAMITE_FARMACIA",
+      "source": {
+        "label": "Farmacia",
+        "attributes": [
+          {
+            "name": "codice_farmacia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Medicinale",
+        "attributes": [
+          {
+            "name": "nome_medicinale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FORNITO_DA_STRUTTURA_SANITARIA",
+      "source": {
+        "label": "StrutturaSanitaria",
+        "attributes": [
+          {
+            "name": "codice_struttura_sanitaria",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Medicinale",
+        "attributes": [
+          {
+            "name": "nome_medicinale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_fornitura",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VINCOLATO_CONVENZIONE_REGIONALE",
+      "source": {
+        "label": "DispositivoNormativo",
+        "attributes": [
+          {
+            "name": "rif_normativa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ConvenzioneRegionale",
+        "attributes": [
+          {
+            "name": "codice_convenzione_regionale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,52 +1,29 @@
 {
   "entities": [
     {
-      "label": "Piattaforma",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "versione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "note",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
       "label": "Utente",
       "attributes": [
         {
-          "name": "nome_utente",
+          "name": "email",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "email",
+          "name": "nome_utente",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "stato_profilazione",
+          "name": "nome",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "password",
-          "type": "string",
+          "name": "profilato",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -62,7 +39,7 @@
           "required": true
         },
         {
-          "name": "codice_identificativo",
+          "name": "tipologia",
           "type": "string",
           "unique": false,
           "required": false
@@ -70,33 +47,16 @@
       ]
     },
     {
-      "label": "Struttura",
+      "label": "Piattaforma",
       "attributes": [
         {
-          "name": "nome_struttura",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "obbligatoria",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Ruolo",
-      "attributes": [
-        {
-          "name": "nome_ruolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
+          "name": "versione",
           "type": "string",
           "unique": false,
           "required": false
@@ -104,28 +64,28 @@
       ]
     },
     {
-      "label": "Documento",
+      "label": "Credenziali",
       "attributes": [
         {
-          "name": "titolo",
+          "name": "codice_di_accesso",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "formato",
+          "name": "nome_utente",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "firmato",
-          "type": "boolean",
+          "name": "password",
+          "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "tipo",
+          "name": "valide_solo_per",
           "type": "string",
           "unique": false,
           "required": false
@@ -142,7 +102,7 @@
           "required": true
         },
         {
-          "name": "bloccante",
+          "name": "attivita_bloccante",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -150,6 +110,75 @@
         {
           "name": "descrizione",
           "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "nome_ruolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "richiede_approvatore",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "richiede_pdf",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "richiede_atto_nomina",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "identificativo_documento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "firmato_digitalmente",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Struttura",
+      "attributes": [
+        {
+          "name": "nome_struttura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "richiesta_obbligatoria_per_enti",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -173,7 +202,18 @@
       ]
     },
     {
-      "label": "Risorsa",
+      "label": "Sito",
+      "attributes": [
+        {
+          "name": "url",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Manuale",
       "attributes": [
         {
           "name": "titolo",
@@ -182,13 +222,7 @@
           "required": true
         },
         {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "link",
+          "name": "sezione",
           "type": "string",
           "unique": false,
           "required": false
@@ -196,22 +230,33 @@
       ]
     },
     {
-      "label": "Credenziali",
+      "label": "EventoFormativo",
       "attributes": [
         {
-          "name": "codice_accesso",
+          "name": "titolo_evento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "nome_utente",
+          "name": "modalita",
           "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Profilazione",
+      "attributes": [
+        {
+          "name": "id_profilazione",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
-          "name": "canale_notifica",
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
@@ -223,131 +268,6 @@
     {
       "label": "MIGRATO_A",
       "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "nome_utente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "metodo_migrazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICEVE_CREDENZIALI",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "nome_utente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Credenziali",
-        "attributes": [
-          {
-            "name": "codice_accesso",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "canale_notifica",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CREDENZIALI_VALIDE_PER",
-      "source": {
-        "label": "Credenziali",
-        "attributes": [
-          {
-            "name": "codice_accesso",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "validita",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPARTIENE_A",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "nome_utente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "UTILIZZA",
-      "source": {
         "label": "StazioneAppaltante",
         "attributes": [
           {
@@ -371,20 +291,131 @@
       },
       "attributes": [
         {
-          "name": "modalita_accesso",
+          "name": "versione",
           "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTENZA_MIGRATA_A",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ricevuta_via_email",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "POSSIEDE_CREDENZIALI",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Credenziali",
+        "attributes": [
+          {
+            "name": "codice_di_accesso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "valide_solo_per",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "ricevute_via_email",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_ATTIVITA",
+      "label": "EFFETTUA_ACCESSO_A",
       "source": {
         "label": "Utente",
         "attributes": [
           {
-            "name": "nome_utente",
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_piattaforma",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "accesso_abilitato",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE_CAMBIO_PASSWORD",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
             "type": "string",
             "unique": true,
             "required": true
@@ -402,140 +433,54 @@
           }
         ]
       },
-      "attributes": []
-    },
-    {
-      "label": "HA_RUOLO",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "nome_utente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome_ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
       "attributes": [
         {
-          "name": "prevalente",
+          "name": "attivita_bloccante",
           "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICHIEDE_APPROVATORE",
-      "source": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome_ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "nome_utente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICHIEDE_DOCUMENTO",
-      "source": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome_ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "GENERA_DOCUMENTO",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "nome_utente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
           "required": true,
           "unique": false
         },
         {
-          "name": "firmato_digitalmente",
+          "name": "criteri_sicurezza",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "MODIFICA_RUOLO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome_ruolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "selezionato",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "ruolo_prevalente_indicato",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -543,12 +488,51 @@
       ]
     },
     {
-      "label": "ALLEGA_DOCUMENTO",
+      "label": "HA_APPROVATORE",
       "source": {
         "label": "Utente",
         "attributes": [
           {
-            "name": "nome_utente",
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "obbligatorio",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "condizione_ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DEVE_GENERARE_PDF",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
             "type": "string",
             "unique": true,
             "required": true
@@ -559,7 +543,7 @@
         "label": "Documento",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "identificativo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -568,7 +552,19 @@
       },
       "attributes": [
         {
-          "name": "stato_allegato",
+          "name": "firma_digitale_required",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "allega_pdf_firmato_required",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "condizione_ruolo",
           "type": "string",
           "required": true,
           "unique": false
@@ -576,12 +572,45 @@
       ]
     },
     {
-      "label": "HA_STRUTTURA",
+      "label": "HA_ATTO_NOMINA",
       "source": {
         "label": "Utente",
         "attributes": [
           {
-            "name": "nome_utente",
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "identificativo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "obbligatorio_condizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPARTIENE_A",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
             "type": "string",
             "unique": true,
             "required": true
@@ -601,7 +630,7 @@
       },
       "attributes": [
         {
-          "name": "richiesto_per_alcuni_enti",
+          "name": "richiesto_solo_per_cert_enti",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -609,12 +638,12 @@
       ]
     },
     {
-      "label": "ABILITATO_A",
+      "label": "ABILITATO_A_GRUPPO",
       "source": {
         "label": "Utente",
         "attributes": [
           {
-            "name": "nome_utente",
+            "name": "email",
             "type": "string",
             "unique": true,
             "required": true
@@ -634,7 +663,7 @@
       },
       "attributes": [
         {
-          "name": "base_ruolo",
+          "name": "abilitazione_in_base_al_ruolo",
           "type": "string",
           "required": false,
           "unique": false
@@ -642,12 +671,12 @@
       ]
     },
     {
-      "label": "PUBBLICA_RISORSA",
+      "label": "CONSULTA_RISORSA",
       "source": {
-        "label": "Piattaforma",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "email",
             "type": "string",
             "unique": true,
             "required": true
@@ -655,7 +684,29 @@
         ]
       },
       "target": {
-        "label": "Risorsa",
+        "label": "Sito",
+        "attributes": [
+          {
+            "name": "url",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "pagina_risorsa",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICATO_SU",
+      "source": {
+        "label": "Manuale",
         "attributes": [
           {
             "name": "titolo",
@@ -665,9 +716,92 @@
           }
         ]
       },
+      "target": {
+        "label": "Sito",
+        "attributes": [
+          {
+            "name": "url",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
           "name": "sezione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EVENTO_PUBBLICATO_SU",
+      "source": {
+        "label": "EventoFormativo",
+        "attributes": [
+          {
+            "name": "titolo_evento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Sito",
+        "attributes": [
+          {
+            "name": "url",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMPLETA_PROFILAZIONE",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Profilazione",
+        "attributes": [
+          {
+            "name": "id_profilazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "stato_finale",
           "type": "string",
           "required": false,
           "unique": false

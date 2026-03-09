@@ -1,6 +1,40 @@
 {
   "entities": [
     {
+      "label": "PCP",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Servizio",
+      "attributes": [
+        {
+          "name": "nome_servizio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "asincrono",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "ProceduraDiGara",
       "attributes": [
         {
@@ -16,7 +50,7 @@
           "required": false
         },
         {
-          "name": "pubblicato",
+          "name": "pubblicazione_guue",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -33,94 +67,7 @@
           "required": true
         },
         {
-          "name": "tipologia",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Chiamata",
-      "attributes": [
-        {
-          "name": "tipo_operazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato_richiesta",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_ora_richiesta",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_ora_esecuzione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "anteprima_messaggio_errore",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "tipologia_scheda_trasmessa",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "asincrono",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PCP",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "organizzazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "FileJSON",
-      "attributes": [
-        {
-          "name": "nome_file",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "formato",
+          "name": "posizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -131,7 +78,7 @@
       "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "codice_fiscale",
+          "name": "partita_iva",
           "type": "string",
           "unique": true,
           "required": true
@@ -143,13 +90,7 @@
           "required": false
         },
         {
-          "name": "partita_iva",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "registro_di_sistema",
+          "name": "codice_fiscale",
           "type": "string",
           "unique": false,
           "required": false
@@ -160,99 +101,19 @@
       "label": "Offerta",
       "attributes": [
         {
-          "name": "data_invio",
+          "name": "id_offerta",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato_offerta",
+          "name": "data_invio",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
           "name": "lotti_offerti",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Lotto",
-      "attributes": [
-        {
-          "name": "numero_lotto",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "numero_partecipanti",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Comando",
-      "attributes": [
-        {
-          "name": "nome_comando",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "asincrono",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Sezione",
-      "attributes": [
-        {
-          "name": "nome_sezione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "vuota_in_fase_indizione",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Allegato",
-      "attributes": [
-        {
-          "name": "nome_allegato",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo_allegato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_caricamento",
           "type": "string",
           "unique": false,
           "required": false
@@ -269,19 +130,13 @@
           "required": true
         },
         {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_creazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
           "name": "tipo_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
@@ -289,10 +144,44 @@
       ]
     },
     {
-      "label": "RUP",
+      "label": "Sezione",
       "attributes": [
         {
-          "name": "ruolo",
+          "name": "nome_sezione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ToolbarCommand",
+      "attributes": [
+        {
+          "name": "nome_comando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "funzionalita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "nome_ruolo",
           "type": "string",
           "unique": true,
           "required": true
@@ -306,18 +195,47 @@
       ]
     },
     {
-      "label": "PuntoIstruttore",
+      "label": "File",
       "attributes": [
         {
-          "name": "ruolo",
+          "name": "nome_file",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "formato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anteprima_errore",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "Cronologia",
+      "label": "Lotto",
+      "attributes": [
+        {
+          "name": "id_lotto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero_partecipanti",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "HelpDesk",
       "attributes": [
         {
           "name": "nome",
@@ -326,7 +244,24 @@
           "required": true
         },
         {
-          "name": "ordine_cronologico",
+          "name": "contatto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Nota",
+      "attributes": [
+        {
+          "name": "testo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "allegati",
           "type": "string",
           "unique": false,
           "required": false
@@ -336,19 +271,8 @@
   ],
   "relations": [
     {
-      "label": "CHIAMATA_A_PCP",
+      "label": "ERROGA_SERVIZIO",
       "source": {
-        "label": "Chiamata",
-        "attributes": [
-          {
-            "name": "tipo_operazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "PCP",
         "attributes": [
           {
@@ -359,15 +283,26 @@
           }
         ]
       },
+      "target": {
+        "label": "Servizio",
+        "attributes": [
+          {
+            "name": "nome_servizio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "esito",
-          "type": "string",
-          "required": true,
+          "name": "asincrono",
+          "type": "boolean",
+          "required": false,
           "unique": false
         },
         {
-          "name": "data_ora_verifica",
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -375,12 +310,12 @@
       ]
     },
     {
-      "label": "CHIAMATA_CONTIENE_FILE",
+      "label": "AVVIA_CHIAMATA_A",
       "source": {
-        "label": "Chiamata",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "tipo_operazione",
+            "name": "idappalto_anac",
             "type": "string",
             "unique": true,
             "required": true
@@ -388,7 +323,46 @@
         ]
       },
       "target": {
-        "label": "FileJSON",
+        "label": "Servizio",
+        "attributes": [
+          {
+            "name": "nome_servizio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_ora_richiesta",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "tipo_operazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_REQUEST",
+      "source": {
+        "label": "Servizio",
+        "attributes": [
+          {
+            "name": "nome_servizio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "File",
         "attributes": [
           {
             "name": "nome_file",
@@ -400,15 +374,60 @@
       },
       "attributes": [
         {
-          "name": "ruolo_file",
+          "name": "colonna",
           "type": "string",
           "required": true,
+          "unique": false
+        },
+        {
+          "name": "formato",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "PROCEDURA_HA_CIG",
+      "label": "HA_RESPONSE",
+      "source": {
+        "label": "Servizio",
+        "attributes": [
+          {
+            "name": "nome_servizio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "File",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "colonna",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "formato",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CIG",
       "source": {
         "label": "ProceduraDiGara",
         "attributes": [
@@ -441,12 +460,117 @@
       ]
     },
     {
-      "label": "PROCEDURA_HA_DOCUMENTO",
+      "label": "ESEGUITO_DA",
+      "source": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome_ruolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "idappalto_anac",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "autenticazione_obbligatoria",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "azione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMANDO_OPERAZIONE",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Servizio",
+        "attributes": [
+          {
+            "name": "nome_servizio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "condizione_attivazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SEZIONE_DI",
       "source": {
         "label": "ProceduraDiGara",
         "attributes": [
           {
             "name": "idappalto_anac",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Sezione",
+        "attributes": [
+          {
+            "name": "nome_sezione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ordine",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONTIENE_DOCUMENTO",
+      "source": {
+        "label": "Sezione",
+        "attributes": [
+          {
+            "name": "nome_sezione",
             "type": "string",
             "unique": true,
             "required": true
@@ -466,13 +590,7 @@
       },
       "attributes": [
         {
-          "name": "stato_documento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "data_visualizzazione",
+          "name": "data_creazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -480,19 +598,8 @@
       ]
     },
     {
-      "label": "PROCEDURA_HA_SEZIONE",
+      "label": "CONTIENE_OFFERTA",
       "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "idappalto_anac",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "Sezione",
         "attributes": [
           {
@@ -503,26 +610,11 @@
           }
         ]
       },
-      "attributes": []
-    },
-    {
-      "label": "OFFERTA_INVIATA_DA",
-      "source": {
+      "target": {
         "label": "Offerta",
         "attributes": [
           {
-            "name": "data_invio",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "codice_fiscale",
+            "name": "id_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -531,7 +623,7 @@
       },
       "attributes": [
         {
-          "name": "metodo_invio",
+          "name": "data_visualizzazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -539,12 +631,45 @@
       ]
     },
     {
-      "label": "OFFERTA_RIGUARDA_LOTTO",
+      "label": "INVIATO_DA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "partita_iva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_invio",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "OFFERTA_PER_LOTTO",
       "source": {
         "label": "Offerta",
         "attributes": [
           {
-            "name": "data_invio",
+            "name": "id_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -555,7 +680,7 @@
         "label": "Lotto",
         "attributes": [
           {
-            "name": "numero_lotto",
+            "name": "id_lotto",
             "type": "string",
             "unique": true,
             "required": true
@@ -572,12 +697,12 @@
       ]
     },
     {
-      "label": "COMANDO_CHIAMA_PCP",
+      "label": "PARTECIPA_A",
       "source": {
-        "label": "Comando",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "nome_comando",
+            "name": "partita_iva",
             "type": "string",
             "unique": true,
             "required": true
@@ -585,10 +710,10 @@
         ]
       },
       "target": {
-        "label": "PCP",
+        "label": "Lotto",
         "attributes": [
           {
-            "name": "nome",
+            "name": "id_lotto",
             "type": "string",
             "unique": true,
             "required": true
@@ -597,50 +722,17 @@
       },
       "attributes": [
         {
-          "name": "servizio_pcp",
+          "name": "status",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "RUP_EFFETTUA_COMANDO",
+      "label": "RICEVE_SUPPORTO",
       "source": {
-        "label": "RUP",
-        "attributes": [
-          {
-            "name": "ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome_comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_ora_esecuzione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CRONOLOGIA_REGISTRA_CHIAMATA",
-      "source": {
-        "label": "Cronologia",
+        "label": "HelpDesk",
         "attributes": [
           {
             "name": "nome",
@@ -651,10 +743,10 @@
         ]
       },
       "target": {
-        "label": "Chiamata",
+        "label": "File",
         "attributes": [
           {
-            "name": "tipo_operazione",
+            "name": "nome_file",
             "type": "string",
             "unique": true,
             "required": true
@@ -663,20 +755,20 @@
       },
       "attributes": [
         {
-          "name": "posizione_cronologica",
-          "type": "number",
-          "required": true,
+          "name": "richiesta_documenti",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "ALLEGATO_IN_PROCEDURA",
+      "label": "FILE_RIFERITO_A",
       "source": {
-        "label": "Allegato",
+        "label": "File",
         "attributes": [
           {
-            "name": "nome_allegato",
+            "name": "nome_file",
             "type": "string",
             "unique": true,
             "required": true
@@ -696,23 +788,17 @@
       },
       "attributes": [
         {
-          "name": "tipo_allegato",
+          "name": "colonna",
           "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "data_caricamento",
-          "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "COMANDO_USATO_PER_PUBBLICAZIONE",
+      "label": "LISTA_FORNITORI_EXPORT",
       "source": {
-        "label": "Comando",
+        "label": "ToolbarCommand",
         "attributes": [
           {
             "name": "nome_comando",
@@ -723,10 +809,10 @@
         ]
       },
       "target": {
-        "label": "ProceduraDiGara",
+        "label": "File",
         "attributes": [
           {
-            "name": "idappalto_anac",
+            "name": "nome_file",
             "type": "string",
             "unique": true,
             "required": true
@@ -735,20 +821,20 @@
       },
       "attributes": [
         {
-          "name": "condizione_disponibilita",
+          "name": "formato",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "SEZIONE_GESTISCE_DESTINATARI",
+      "label": "IMPORTA_SELEZIONE",
       "source": {
-        "label": "Sezione",
+        "label": "ToolbarCommand",
         "attributes": [
           {
-            "name": "nome_sezione",
+            "name": "nome_comando",
             "type": "string",
             "unique": true,
             "required": true
@@ -759,7 +845,7 @@
         "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "codice_fiscale",
+            "name": "partita_iva",
             "type": "string",
             "unique": true,
             "required": true
@@ -768,8 +854,41 @@
       },
       "attributes": [
         {
-          "name": "criterio_selezione",
+          "name": "metodo_importazione",
           "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SORTEGGIO_SELEZIONE",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "partita_iva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "numero_fornitori",
+          "type": "number",
           "required": false,
           "unique": false
         }

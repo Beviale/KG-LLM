@@ -1,6 +1,35 @@
 {
   "entities": [
     {
+      "label": "Bando",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato_procedura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termini_presentazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "notifiche",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "Documento",
       "attributes": [
         {
@@ -10,10 +39,16 @@
           "required": true
         },
         {
-          "name": "tipo_documento",
+          "name": "tipo",
           "type": "string",
           "unique": false,
-          "required": true
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "registro_di_sistema",
@@ -40,25 +75,7 @@
           "required": false
         },
         {
-          "name": "stato_documento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_seduta",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "testo_comunicazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "motivazione",
+          "name": "compilatore",
           "type": "string",
           "unique": false,
           "required": false
@@ -69,19 +86,13 @@
       "label": "ProceduraDiGara",
       "attributes": [
         {
-          "name": "titolo_bando",
+          "name": "id_procedura",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato_procedura",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "termini_presentazione",
+          "name": "tipo_procedura",
           "type": "string",
           "unique": false,
           "required": false
@@ -101,23 +112,6 @@
       ]
     },
     {
-      "label": "Utente",
-      "attributes": [
-        {
-          "name": "username",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
       "label": "OperatoreEconomico",
       "attributes": [
         {
@@ -125,12 +119,6 @@
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "offerta_salvata",
-          "type": "boolean",
-          "unique": false,
-          "required": false
         },
         {
           "name": "email",
@@ -141,13 +129,19 @@
       ]
     },
     {
-      "label": "RUP",
+      "label": "PersonaFisica",
       "attributes": [
         {
-          "name": "nome_rup",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "email",
@@ -161,7 +155,7 @@
       "label": "Allegato",
       "attributes": [
         {
-          "name": "descrizione_allegato",
+          "name": "descrizione",
           "type": "string",
           "unique": true,
           "required": true
@@ -173,13 +167,13 @@
           "required": false
         },
         {
-          "name": "tipo_allegato",
+          "name": "tipo_file",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "firmato_digitalmente",
+          "name": "obbligatorio",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -200,6 +194,29 @@
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "visibilita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Toolbar",
+      "attributes": [
+        {
+          "name": "nome_toolbar",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "posizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -207,15 +224,38 @@
       "label": "StatoDocumento",
       "attributes": [
         {
-          "name": "nome_stato",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "SistemaEsterno",
+      "label": "StatoProcedura",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Sistema",
       "attributes": [
         {
           "name": "nome_sistema",
@@ -224,7 +264,7 @@
           "required": true
         },
         {
-          "name": "tipo_notifica",
+          "name": "ente",
           "type": "string",
           "unique": false,
           "required": false
@@ -234,7 +274,7 @@
   ],
   "relations": [
     {
-      "label": "RIFERISCE_A",
+      "label": "DOCUMENTO_RIGUARDA",
       "source": {
         "label": "Documento",
         "attributes": [
@@ -247,32 +287,25 @@
         ]
       },
       "target": {
-        "label": "ProceduraDiGara",
+        "label": "Bando",
         "attributes": [
           {
-            "name": "titolo_bando",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "tipo_documento",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
+      "attributes": []
     },
     {
-      "label": "CREATO_DA",
+      "label": "HA_CREATO",
       "source": {
-        "label": "Documento",
+        "label": "PersonaFisica",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -280,10 +313,10 @@
         ]
       },
       "target": {
-        "label": "Utente",
+        "label": "Documento",
         "attributes": [
           {
-            "name": "username",
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -294,13 +327,13 @@
         {
           "name": "data_creazione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "CONTIENE_ALLEGATO",
+      "label": "DOCUMENTO_HA_ALLEGATO",
       "source": {
         "label": "Documento",
         "attributes": [
@@ -316,7 +349,7 @@
         "label": "Allegato",
         "attributes": [
           {
-            "name": "descrizione_allegato",
+            "name": "descrizione",
             "type": "string",
             "unique": true,
             "required": true
@@ -325,21 +358,81 @@
       },
       "attributes": [
         {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "posizione",
+          "name": "ruolo_allegato",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "TRASMETTE_A",
+      "label": "COMANDO_PRESENTE_IN",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Toolbar",
+        "attributes": [
+          {
+            "name": "nome_toolbar",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "posizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMANDO_AGISCE_SU",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DOCUMENTO_TRASMETTE_A",
       "source": {
         "label": "Documento",
         "attributes": [
@@ -352,7 +445,7 @@
         ]
       },
       "target": {
-        "label": "SistemaEsterno",
+        "label": "Sistema",
         "attributes": [
           {
             "name": "nome_sistema",
@@ -364,21 +457,80 @@
       },
       "attributes": [
         {
-          "name": "tipo_messaggio",
-          "type": "string",
-          "required": true,
+          "name": "scheda_pcp_inviata",
+          "type": "boolean",
+          "required": false,
           "unique": false
         },
         {
-          "name": "in_caso_sopra_soglia",
+          "name": "change_notice_inviata",
           "type": "boolean",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_STATO",
+      "label": "PROCEDURA_VIETA_INVIO",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROCEDURA_HA_STATO",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StatoProcedura",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "DOCUMENTO_HA_STATO",
       "source": {
         "label": "Documento",
         "attributes": [
@@ -394,33 +546,7 @@
         "label": "StatoDocumento",
         "attributes": [
           {
-            "name": "nome_stato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "RICHIEDE_COMANDO",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome_comando",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -429,27 +555,16 @@
       },
       "attributes": [
         {
-          "name": "posizione",
+          "name": "data_cambio",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "NOTIFICA_A",
+      "label": "RIAMMESSO_IN",
       "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "OperatoreEconomico",
         "attributes": [
           {
@@ -460,90 +575,7 @@
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "modalita",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_RUP",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "titolo_bando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
       "target": {
-        "label": "RUP",
-        "attributes": [
-          {
-            "name": "nome_rup",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "disponibile_fino_aggiudicazione",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONSENTE_INVIO",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "titolo_bando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "ragione_sociale",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "consentito",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "condizione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIAMMETTE",
-      "source": {
         "label": "Documento",
         "attributes": [
           {
@@ -554,33 +586,22 @@
           }
         ]
       },
-      "target": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "ragione_sociale",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
       "attributes": [
         {
-          "name": "necessita_firma_digitale",
-          "type": "boolean",
+          "name": "motivazione",
+          "type": "string",
           "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "CAMBIA_FASE",
+      "label": "SOSTITUISCE_IN",
       "source": {
-        "label": "Documento",
+        "label": "PersonaFisica",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -591,7 +612,7 @@
         "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "titolo_bando",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -600,15 +621,9 @@
       },
       "attributes": [
         {
-          "name": "fase_precedente",
+          "name": "data_sostituzione",
           "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "fase_successiva",
-          "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]

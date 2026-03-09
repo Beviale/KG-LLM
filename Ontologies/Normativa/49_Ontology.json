@@ -1,0 +1,721 @@
+{
+  "entities": [
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "oggetto_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "anno_di_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "capitolato_prestazionale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ruolo_potenziale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProgettoDefinitivo",
+      "attributes": [
+        {
+          "name": "descrizione_progetto_definitivo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "approvato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProgettoEsecutivo",
+      "attributes": [
+        {
+          "name": "descrizione_progetto_esecutivo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "approvato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Variante",
+      "attributes": [
+        {
+          "name": "descrizione_variante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CapitolatoPrestazionale",
+      "attributes": [
+        {
+          "name": "descrizione_capitolato_prestazionale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AmministrazioneAggiudicatrice",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "TerzaAutoritaCompetente",
+      "attributes": [
+        {
+          "name": "denominazione_autorita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "EnteFinanziatore",
+      "attributes": [
+        {
+          "name": "denominazione_entita_finanziatrice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ConsorzioDelComprensorio",
+      "attributes": [
+        {
+          "name": "denominazione_consorzio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Fideiussione",
+      "attributes": [
+        {
+          "name": "numero_fideiussione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CauzioneDefinitiva",
+      "attributes": [
+        {
+          "name": "numero_cauzione_definitiva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SocietaPubblicaDiProgetto",
+      "attributes": [
+        {
+          "name": "denominazione_spp",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AccordoDiProgramma",
+      "attributes": [
+        {
+          "name": "denominazione_acordo_programma",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SocietaInHouse",
+      "attributes": [
+        {
+          "name": "denominazione_societa_in_house",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AutoritaEspropriante",
+      "attributes": [
+        {
+          "name": "denominazione_autorita_espropriante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione_stazione_appaltante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Immobile",
+      "attributes": [
+        {
+          "name": "descrizione_immobile",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AreaVerdePubblico",
+      "attributes": [
+        {
+          "name": "descrizione_area_verde",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PianoEconomicoFinanziario",
+      "attributes": [
+        {
+          "name": "descrizione_piano_economico_finanziario",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "AGGIUDICATO_DI",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_di_assegnazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "REDATTO_DA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProgettoDefinitivo",
+        "attributes": [
+          {
+            "name": "descrizione_progetto_definitivo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "REDATTO_DA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProgettoEsecutivo",
+        "attributes": [
+          {
+            "name": "descrizione_progetto_esecutivo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "HA_PROGETTO_DEFINITIVO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProgettoDefinitivo",
+        "attributes": [
+          {
+            "name": "descrizione_progetto_definitivo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "HA_PROGETTO_ESECUTIVO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProgettoEsecutivo",
+        "attributes": [
+          {
+            "name": "descrizione_progetto_esecutivo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "INCLUDE_VARIANTE",
+      "source": {
+        "label": "ProgettoDefinitivo",
+        "attributes": [
+          {
+            "name": "descrizione_progetto_definitivo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Variante",
+        "attributes": [
+          {
+            "name": "descrizione_variante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "ATTRIBUITO_AFFIDATARIO_RUOLO_ESPROPRIANTE",
+      "source": {
+        "label": "AmministrazioneAggiudicatrice",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "autorita_espropriante",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "TRANSFERIMENTO_PROPRIETA_IMMOBILE_AFFIDATARIO",
+      "source": {
+        "label": "AmministrazioneAggiudicatrice",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "immobile_descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GARANZIA_FIDEIUSSORIA_ASSOCIATA_A",
+      "source": {
+        "label": "Fideiussione",
+        "attributes": [
+          {
+            "name": "numero_fideiussione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_fideiussione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GARANZIONE_CAUZIONE_ASSOCIATA_A",
+      "source": {
+        "label": "CauzioneDefinitiva",
+        "attributes": [
+          {
+            "name": "numero_cauzione_definitiva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_cauzione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AFFIDAMENTO_IN_HOUSE",
+      "source": {
+        "label": "AmministrazioneAggiudicatrice",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SocietaInHouse",
+        "attributes": [
+          {
+            "name": "denominazione_societa_in_house",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_in_house",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICAZIONE_ATTI",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione_appaltante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AmministrazioneAggiudicatrice",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "open_data_formato",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ISTITUZIONE_SOCIETA_PUBBLICA_DI_PROGETTO",
+      "source": {
+        "label": "AmministrazioneAggiudicatrice",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SocietaPubblicaDiProgetto",
+        "attributes": [
+          {
+            "name": "denominazione_spp",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ACCORDO_DI_PROGRAMMA",
+      "source": {
+        "label": "AccordoDiProgramma",
+        "attributes": [
+          {
+            "name": "denominazione_acordo_programma",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SocietaPubblicaDiProgetto",
+        "attributes": [
+          {
+            "name": "denominazione_spp",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_stipula",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INCLUDE_VARIANTE_DI_PROGETTO",
+      "source": {
+        "label": "ProgettoDefinitivo",
+        "attributes": [
+          {
+            "name": "descrizione_progetto_definitivo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Variante",
+        "attributes": [
+          {
+            "name": "descrizione_variante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    }
+  ]
+}

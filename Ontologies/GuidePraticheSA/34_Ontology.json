@@ -14,12 +14,6 @@
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "manuale",
-          "type": "boolean",
-          "unique": false,
-          "required": false
         }
       ]
     },
@@ -39,24 +33,7 @@
           "required": false
         },
         {
-          "name": "automatico",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CanalePubblicazione",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ambito",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -73,7 +50,7 @@
           "required": true
         },
         {
-          "name": "versione",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -81,7 +58,46 @@
       ]
     },
     {
-      "label": "Procedura",
+      "label": "PubblicazioneCanale",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ambito",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Cig",
+      "attributes": [
+        {
+          "name": "codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Documento",
       "attributes": [
         {
           "name": "titolo",
@@ -96,7 +112,7 @@
           "required": false
         },
         {
-          "name": "tipo_pubblicita",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
@@ -117,88 +133,9 @@
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "CIG",
-      "attributes": [
-        {
-          "name": "cig",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "CronologiaPCP",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Utente",
-      "attributes": [
-        {
-          "name": "username",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "email",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "profilo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Profilo",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Documento",
-      "attributes": [
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "fase",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "stato",
+          "name": "data_pubblicazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -209,7 +146,7 @@
       "label": "Comunicazione",
       "attributes": [
         {
-          "name": "titolo",
+          "name": "titolo_documento",
           "type": "string",
           "unique": true,
           "required": true
@@ -230,6 +167,12 @@
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "ha_presentato_offerta",
+          "type": "boolean",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -251,10 +194,82 @@
       ]
     },
     {
-      "label": "SchedaPCP",
+      "label": "StatoSchedaPCP",
       "attributes": [
         {
-          "name": "id_scheda",
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CronologiaPCP",
+      "attributes": [
+        {
+          "name": "id_cronologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Menu",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Toolbar",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Funzione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Notifica",
+      "attributes": [
+        {
+          "name": "canale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "medio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Gara",
+      "attributes": [
+        {
+          "name": "id_procedura",
           "type": "string",
           "unique": true,
           "required": true
@@ -266,56 +281,11 @@
           "required": false
         }
       ]
-    },
-    {
-      "label": "ANAC",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Avviso",
-      "attributes": [
-        {
-          "name": "estremi",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "livello",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Stato",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
     }
   ],
   "relations": [
     {
-      "label": "AVVIA_SERVIZIO",
+      "label": "AVVIA",
       "source": {
         "label": "Comando",
         "attributes": [
@@ -340,21 +310,114 @@
       },
       "attributes": [
         {
-          "name": "asincrono",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "descrizione",
+          "name": "pubblicazione_destinazione",
           "type": "string",
-          "required": false,
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "TRACCIA_NELLA_CRONOLOGIA",
+      "source": {
+        "label": "Servizio",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CronologiaPCP",
+        "attributes": [
+          {
+            "name": "id_cronologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "esito",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VERIFICA_ESITO",
+      "source": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CronologiaPCP",
+        "attributes": [
+          {
+            "name": "id_cronologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
       "label": "PUBBLICA_SU",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PubblicazioneCanale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "livello",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "IMPORTA",
       "source": {
         "label": "Comando",
         "attributes": [
@@ -367,7 +430,79 @@
         ]
       },
       "target": {
-        "label": "CanalePubblicazione",
+        "label": "Cig",
+        "attributes": [
+          {
+            "name": "codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "automatico",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "tentativi_max",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASSOCIATO_A",
+      "source": {
+        "label": "Cig",
+        "attributes": [
+          {
+            "name": "codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "fase",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISPONIBILE_IN",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Menu",
         "attributes": [
           {
             "name": "nome",
@@ -379,13 +514,40 @@
       },
       "attributes": [
         {
-          "name": "ambito",
+          "name": "posizione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
-        },
+        }
+      ]
+    },
+    {
+      "label": "CONTIENTE",
+      "source": {
+        "label": "Menu",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
         {
-          "name": "esito",
+          "name": "visibilita",
           "type": "string",
           "required": false,
           "unique": false
@@ -393,7 +555,7 @@
       ]
     },
     {
-      "label": "INVIA_SU_PIATTAFORMA",
+      "label": "INVIA_A",
       "source": {
         "label": "Comando",
         "attributes": [
@@ -418,48 +580,15 @@
       },
       "attributes": [
         {
-          "name": "ambito_pubblicazione",
+          "name": "azione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "ASSOCIATO_A",
-      "source": {
-        "label": "CIG",
-        "attributes": [
-          {
-            "name": "cig",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatoria_guue",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TRACCIA_IN_CRONOLOGIA",
+      "label": "CAMBIA_STATO",
       "source": {
         "label": "Comando",
         "attributes": [
@@ -472,10 +601,76 @@
         ]
       },
       "target": {
-        "label": "CronologiaPCP",
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "nuovo_stato",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "TRASMETTE_PER_APPROVAZIONE",
+      "source": {
+        "label": "Comando",
         "attributes": [
           {
             "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "destinatario_ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPROVA",
+      "source": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -486,256 +681,7 @@
         {
           "name": "esito",
           "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "data",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "VERIFICA_ESITO",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CronologiaPCP",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "azione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RECUPERA_CIG",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CIG",
-        "attributes": [
-          {
-            "name": "cig",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "automatico",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "max_tentativi",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SCHEDULA_ESITO_OPERAZIONE",
-      "source": {
-        "label": "Servizio",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CronologiaPCP",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "schedulazione_automatica",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONSULTA_AVVISO",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Avviso",
-        "attributes": [
-          {
-            "name": "estremi",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "automatico",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TRASMETTE_IN_APPROVAZIONE_A",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo_origine",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "ruolo_destinatario",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICEVE_NOTIFICA",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "canale",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPROVA",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "effetto",
-          "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
@@ -743,10 +689,10 @@
     {
       "label": "NON_APPROVA",
       "source": {
-        "label": "Utente",
+        "label": "Ruolo",
         "attributes": [
           {
-            "name": "username",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -754,10 +700,10 @@
         ]
       },
       "target": {
-        "label": "Documento",
+        "label": "Gara",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -776,10 +722,10 @@
     {
       "label": "RIFIUTA_E_PROSEGUI",
       "source": {
-        "label": "Utente",
+        "label": "Ruolo",
         "attributes": [
           {
-            "name": "username",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -787,10 +733,10 @@
         ]
       },
       "target": {
-        "label": "Documento",
+        "label": "Gara",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -799,20 +745,53 @@
       },
       "attributes": [
         {
-          "name": "azione_successiva",
+          "name": "azione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "DESTINA_A_OPERATORE",
+      "label": "INVIA_COMUNICAZIONE",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comunicazione",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "destinatari",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMUNICAZIONE_A_OPERATORE",
       "source": {
         "label": "Comunicazione",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -832,27 +811,15 @@
       },
       "attributes": [
         {
-          "name": "fase",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "richiesta_risposta",
+          "name": "incluso",
           "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "rispondere_entro",
-          "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "ALLEGATO_A",
+      "label": "ALLEGA",
       "source": {
         "label": "Allegato",
         "attributes": [
@@ -868,7 +835,7 @@
         "label": "Comunicazione",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -879,15 +846,15 @@
         {
           "name": "descrizione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "COMUNICA_A_ANAC",
+      "label": "COMUNICA_A_PCP",
       "source": {
-        "label": "Comando",
+        "label": "Funzione",
         "attributes": [
           {
             "name": "nome",
@@ -898,7 +865,7 @@
         ]
       },
       "target": {
-        "label": "ANAC",
+        "label": "Servizio",
         "attributes": [
           {
             "name": "nome",
@@ -910,17 +877,17 @@
       },
       "attributes": [
         {
-          "name": "tipo_operazione",
+          "name": "destinatario",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "MODIFICA_DOCUMENTO",
+      "label": "SOSPENDE_PRESENTAZIONE",
       "source": {
-        "label": "Comando",
+        "label": "Funzione",
         "attributes": [
           {
             "name": "nome",
@@ -931,10 +898,10 @@
         ]
       },
       "target": {
-        "label": "Documento",
+        "label": "Gara",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -943,7 +910,7 @@
       },
       "attributes": [
         {
-          "name": "azione",
+          "name": "motivo",
           "type": "string",
           "required": false,
           "unique": false
@@ -951,9 +918,9 @@
       ]
     },
     {
-      "label": "REVOCA_LOTTO",
+      "label": "REVOCA",
       "source": {
-        "label": "Comando",
+        "label": "Funzione",
         "attributes": [
           {
             "name": "nome",
@@ -964,10 +931,10 @@
         ]
       },
       "target": {
-        "label": "Bando",
+        "label": "Gara",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -976,106 +943,13 @@
       },
       "attributes": [
         {
-          "name": "lotto",
+          "name": "lotti_selezionati",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SOSTITUISCE_RUP",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
+        },
         {
-          "name": "condizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ASSOCIA_SCHEDA_PCP",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SchedaPCP",
-        "attributes": [
-          {
-            "name": "id_scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "stato",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PUBBLICA_RETTIFICA_SU",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SchedaPCP",
-        "attributes": [
-          {
-            "name": "id_scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "pubblicazione",
+          "name": "motivazione",
           "type": "string",
           "required": false,
           "unique": false

@@ -1,0 +1,531 @@
+{
+  "entities": [
+    {
+      "label": "AmministrazionePubblica",
+      "attributes": [
+        {
+          "name": "codice_amministrazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AutoritaAmministrativaIndipendente",
+      "attributes": [
+        {
+          "name": "codice_autorita_indipendente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DigitPa",
+      "attributes": [
+        {
+          "name": "codice_digitpa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Spc",
+      "attributes": [
+        {
+          "name": "codice_spc",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ReteInternazionalePA",
+      "attributes": [
+        {
+          "name": "codice_rete_internazionale_pa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "InfrastruttureCondivise",
+      "attributes": [
+        {
+          "name": "codice_infrastrutture_condivise",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "periodo_sostenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ContrattoQuadro",
+      "attributes": [
+        {
+          "name": "id_contratto_quadro",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero_contratto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DecretoLegislativo",
+      "attributes": [
+        {
+          "name": "codice_decreto_legislativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Legge4001988",
+      "attributes": [
+        {
+          "name": "numero_legge",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "anno",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Regolamento",
+      "attributes": [
+        {
+          "name": "id_regolamento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PresidenzaDelConsiglioDeiMinistri",
+      "attributes": [
+        {
+          "name": "codice_presidenza_consiglio_ministri",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ConferenzaUnificata",
+      "attributes": [
+        {
+          "name": "codice_conferenza_unificata",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "MinisteroInnovazioneTecnologie",
+      "attributes": [
+        {
+          "name": "codice_min_innovazione_tecnologie",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "MinisteroFunzionePubblica",
+      "attributes": [
+        {
+          "name": "codice_min_function_pubblica",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "ADERISCE_A",
+      "source": {
+        "label": "AmministrazionePubblica",
+        "attributes": [
+          {
+            "name": "codice_amministrazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ReteInternazionalePA",
+        "attributes": [
+          {
+            "name": "codice_rete_internazionale_pa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_aderenza",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GESTISCE",
+      "source": {
+        "label": "DigitPa",
+        "attributes": [
+          {
+            "name": "codice_digitpa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ReteInternazionalePA",
+        "attributes": [
+          {
+            "name": "codice_rete_internazionale_pa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SOSTIENE_COSTI",
+      "source": {
+        "label": "DigitPa",
+        "attributes": [
+          {
+            "name": "codice_digitpa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "InfrastruttureCondivise",
+        "attributes": [
+          {
+            "name": "codice_infrastrutture_condivise",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "periodo_sostenuto",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "costo_stimato",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GESTISCE_CONTRATTO_QUADRO",
+      "source": {
+        "label": "DigitPa",
+        "attributes": [
+          {
+            "name": "codice_digitpa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ContrattoQuadro",
+        "attributes": [
+          {
+            "name": "id_contratto_quadro",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "oggetto",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "DecretoLegislativo",
+        "attributes": [
+          {
+            "name": "codice_decreto_legislativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ADOTTA_REGOLAMENTO",
+      "source": {
+        "label": "PresidenzaDelConsiglioDeiMinistri",
+        "attributes": [
+          {
+            "name": "codice_presidenza_consiglio_ministri",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Regolamento",
+        "attributes": [
+          {
+            "name": "id_regolamento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INTESA_CONFERENZA_UNIFICATA",
+      "source": {
+        "label": "ConferenzaUnificata",
+        "attributes": [
+          {
+            "name": "codice_conferenza_unificata",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "MinisteroInnovazioneTecnologie",
+        "attributes": [
+          {
+            "name": "codice_min_innovazione_tecnologie",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_intesa",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INTESA_CONFERENZA_UNIFICATA",
+      "source": {
+        "label": "ConferenzaUnificata",
+        "attributes": [
+          {
+            "name": "codice_conferenza_unificata",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "MinisteroFunzionePubblica",
+        "attributes": [
+          {
+            "name": "codice_min_function_pubblica",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_intesa",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,22 +1,22 @@
 {
   "entities": [
     {
-      "label": "OrganizzazionePubblica",
+      "label": "Articolo",
       "attributes": [
         {
-          "name": "denominazione",
-          "type": "string",
+          "name": "numero_articolo",
+          "type": "number",
           "unique": true,
           "required": true
         },
         {
-          "name": "modalita_di_esecuzione",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "descrizione",
+          "name": "titolo",
           "type": "string",
           "unique": false,
           "required": false
@@ -31,12 +31,6 @@
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
@@ -48,35 +42,28 @@
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
     {
-      "label": "Societa",
+      "label": "SocietaInHouse",
       "attributes": [
         {
-          "name": "ragione_sociale",
+          "name": "denominazione",
           "type": "string",
           "unique": true,
           "required": true
-        },
+        }
+      ]
+    },
+    {
+      "label": "ConsipSpa",
+      "attributes": [
         {
-          "name": "descrizione",
+          "name": "denominazione",
           "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "ambito_di_attivita",
-          "type": "string",
-          "unique": false,
-          "required": false
+          "unique": true,
+          "required": true
         }
       ]
     },
@@ -84,16 +71,50 @@
       "label": "CentraleDiCommittenza",
       "attributes": [
         {
-          "name": "nome",
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "id_appalto",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "oggetto_prestazione",
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "anno_di_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
         }
       ]
     },
@@ -102,7 +123,7 @@
       "attributes": [
         {
           "name": "numero_decreto",
-          "type": "string",
+          "type": "number",
           "unique": true,
           "required": true
         },
@@ -110,13 +131,13 @@
           "name": "data_emissione",
           "type": "string",
           "unique": false,
-          "required": true
+          "required": false
         },
         {
-          "name": "titolo",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
-          "required": true
+          "required": false
         }
       ]
     },
@@ -130,125 +151,17 @@
           "required": true
         },
         {
-          "name": "contenuto",
-          "type": "string",
-          "unique": false,
-          "required": true
-        },
-        {
-          "name": "vantaggi_descrizione",
+          "name": "motivazione",
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "metodologia_valutazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "oggetto_affidamento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OggettoAffidamento",
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipologia",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "NormativaCodiceAppalti",
-      "attributes": [
-        {
-          "name": "codice_di_riferimento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "UnioneEuropea",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "riferimenti",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "StandardDiRiferimento",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Esternalita",
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Obiettivo",
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "AFFIDA_DIRETTAMENTE_A",
+      "label": "AFFIDATO_A",
       "source": {
         "label": "StazioneAppaltante",
         "attributes": [
@@ -261,10 +174,10 @@
         ]
       },
       "target": {
-        "label": "Societa",
+        "label": "SocietaInHouse",
         "attributes": [
           {
-            "name": "ragione_sociale",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -273,7 +186,7 @@
       },
       "attributes": [
         {
-          "name": "oggetto_affidamento",
+          "name": "tipologia_prestazione",
           "type": "string",
           "required": true,
           "unique": false
@@ -281,7 +194,40 @@
       ]
     },
     {
-      "label": "EMANA",
+      "label": "AFFIDATO_A",
+      "source": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SocietaInHouse",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_prestazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EMESSO_PROVVEDIMENTO",
       "source": {
         "label": "StazioneAppaltante",
         "attributes": [
@@ -308,62 +254,95 @@
         {
           "name": "contenuto",
           "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EMESSO_PROVVEDIMENTO",
+      "source": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProvvedimentoMotivato",
+        "attributes": [
+          {
+            "name": "id_provvedimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "contenuto",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "oggetto_prestazione",
+          "type": "string",
           "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "DESCRIVE",
+      "label": "DISCIPLINA_DA",
       "source": {
-        "label": "ProvvedimentoMotivato",
-        "attributes": [
-          {
-            "name": "id_provvedimento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OggettoAffidamento",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "collegamento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERISCE_A",
-      "source": {
-        "label": "OrganizzazionePubblica",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "DecretoLegislativo",
         "attributes": [
           {
             "name": "numero_decreto",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
             "type": "string",
             "unique": true,
             "required": true
@@ -374,106 +353,7 @@
         {
           "name": "descrizione",
           "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERIMENTO_NORMATIVO",
-      "source": {
-        "label": "OrganizzazionePubblica",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "NormativaCodiceAppalti",
-        "attributes": [
-          {
-            "name": "codice_di_riferimento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZA_STANDARD_DI_RIFERIMENTO",
-      "source": {
-        "label": "OrganizzazionePubblica",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "StandardDiRiferimento",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERIMENTO_ESTERNALITA",
-      "source": {
-        "label": "ProvvedimentoMotivato",
-        "attributes": [
-          {
-            "name": "id_provvedimento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Esternalita",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione_esternalita",
-          "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]

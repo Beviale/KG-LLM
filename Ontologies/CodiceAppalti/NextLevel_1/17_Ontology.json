@@ -1,0 +1,141 @@
+{
+  "entities": [
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteConcedente",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CatalogoElettronico",
+      "attributes": [
+        {
+          "name": "nome_catalogo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "formato_catalogo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "dispositivo_elettronico_utilizzato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "modalita_tecniche_catalogo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "specifiche_tecniche_catalogo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiAppalto",
+      "attributes": [
+        {
+          "name": "nome_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "numero_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "CHIEDE_CATALOGO_ELETTRONICO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "identificativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CatalogoElettronico",
+        "attributes": [
+          {
+            "name": "nome_catalogo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

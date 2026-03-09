@@ -1,0 +1,636 @@
+{
+  "entities": [
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "identificativo_operatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Aggiudicatore",
+      "attributes": [
+        {
+          "name": "identificativo_aggiudicatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "id_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_di_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProgettoRicercaInnovazione",
+      "attributes": [
+        {
+          "name": "id_progetto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PartenariatoInnovazione",
+      "attributes": [
+        {
+          "name": "id_partenariato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "durata",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "valore_fasi",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "grado_innovazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DirittiDiProprietàIntellettuale",
+      "attributes": [
+        {
+          "name": "id_dpi",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "regime_applicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AvvisoPreinformazione",
+      "attributes": [
+        {
+          "name": "id_avviso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "BandoDiGara",
+      "attributes": [
+        {
+          "name": "id_bando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_indizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ConsultazionePreliminareDiMercato",
+      "attributes": [
+        {
+          "name": "id_consultazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "finalita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SpecificheTecniche",
+      "attributes": [
+        {
+          "name": "id_specifiche",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "trasferimento_diritti_di_proprieta_intellettuale",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Etichettatura",
+      "attributes": [
+        {
+          "name": "id_etichettatura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "UnioneEuropea",
+      "attributes": [
+        {
+          "name": "codice_UE",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Regione",
+      "attributes": [
+        {
+          "name": "nome_regione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CodiceDeiContrattiPubblici",
+      "attributes": [
+        {
+          "name": "id_codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DocumentoTecnico",
+      "attributes": [
+        {
+          "name": "id_documento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "INVITATO_DA",
+      "source": {
+        "label": "Aggiudicatore",
+        "attributes": [
+          {
+            "name": "identificativo_aggiudicatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "identificativo_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "identificativo_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "REGIME_PROPRIETA_INTELLETTUALE",
+      "source": {
+        "label": "Aggiudicatore",
+        "attributes": [
+          {
+            "name": "identificativo_aggiudicatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DirittiDiProprietàIntellettuale",
+        "attributes": [
+          {
+            "name": "id_dpi",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RISERVATO_A",
+      "source": {
+        "label": "PartenariatoInnovazione",
+        "attributes": [
+          {
+            "name": "id_partenariato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "identificativo_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GESTISCE_PROGETTO",
+      "source": {
+        "label": "PartenariatoInnovazione",
+        "attributes": [
+          {
+            "name": "id_partenariato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProgettoRicercaInnovazione",
+        "attributes": [
+          {
+            "name": "id_progetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPALTO_SPECIFICHE_TECNICHE",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SpecificheTecniche",
+        "attributes": [
+          {
+            "name": "id_specifiche",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPALTO_TRASFERIMENTO_DIRITTI",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DirittiDiProprietàIntellettuale",
+        "attributes": [
+          {
+            "name": "id_dpi",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "trasferimento",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICAZIONE_BANDO_EU",
+      "source": {
+        "label": "BandoDiGara",
+        "attributes": [
+          {
+            "name": "id_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "UnioneEuropea",
+        "attributes": [
+          {
+            "name": "codice_UE",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_pubblicazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EFFETTUA_CONSULTAZIONE",
+      "source": {
+        "label": "Aggiudicatore",
+        "attributes": [
+          {
+            "name": "identificativo_aggiudicatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ConsultazionePreliminareDiMercato",
+        "attributes": [
+          {
+            "name": "id_consultazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "scopo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVOLVE_CONFERME_PARTECIPAZIONE",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "identificativo_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Aggiudicatore",
+        "attributes": [
+          {
+            "name": "identificativo_aggiudicatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PARTENARIATO_RESPONSABILITA_CONDIVISIONE",
+      "source": {
+        "label": "PartenariatoInnovazione",
+        "attributes": [
+          {
+            "name": "id_partenariato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "identificativo_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,690 @@
+{
+  "entities": [
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "numero_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_prestazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Normativa",
+      "attributes": [
+        {
+          "name": "url_normattiva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Cauzione",
+      "attributes": [
+        {
+          "name": "id_cauzione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "importo_massimo_garantito",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GaranziaProvvisoria",
+      "attributes": [
+        {
+          "name": "id_garanzia_provvisoria",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "periodo_validita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GaranziaFideiussoria",
+      "attributes": [
+        {
+          "name": "id_garanzia_fideiussoria",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "rinuncia_prev_escussione",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GaranziaBuonAdempimento",
+      "attributes": [
+        {
+          "name": "id_garanzia_buon_adempimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "percentuale",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GaranziaRisoluzione",
+      "attributes": [
+        {
+          "name": "id_garanzia_risoluzione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "percentuale",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo_massimo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PolizzaAssicurativa",
+      "attributes": [
+        {
+          "name": "id_polizza_assicurativa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "premio",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "massimale",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "periodo_validita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "responsabilita_civile",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PolizzaIndennitariaDecennale",
+      "attributes": [
+        {
+          "name": "id_polizza_indennitaria_decennale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "importo_indennizzo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CertificatoCollaudoProvvisorio",
+      "attributes": [
+        {
+          "name": "id_certificato_collaudo_provvisorio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CertificatoRegolareEsecuzione",
+      "attributes": [
+        {
+          "name": "id_certificato_regolare_esecuzione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Subappalto",
+      "attributes": [
+        {
+          "name": "id_subappalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "percentuale_subappalto",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ContrattoCollettivoNazionale",
+      "attributes": [
+        {
+          "name": "id_ccnl",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_CAUZIONE",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Cauzione",
+        "attributes": [
+          {
+            "name": "id_cauzione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "importo_massimo_garantito",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GARANZIA_PROVVISORIA_DI_APPALTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "GaranziaProvvisoria",
+        "attributes": [
+          {
+            "name": "id_garanzia_provvisoria",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GARANZIA_RISOLUZIONE",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "GaranziaRisoluzione",
+        "attributes": [
+          {
+            "name": "id_garanzia_risoluzione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "percentuale",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "importo_massimo",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GARANZIA_BUON_ADEMPIMENTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "GaranziaBuonAdempimento",
+        "attributes": [
+          {
+            "name": "id_garanzia_buon_adempimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "percentuale",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "POLIZZA_ASSICURATIVA_APPALTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PolizzaAssicurativa",
+        "attributes": [
+          {
+            "name": "id_polizza_assicurativa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "periodo_validita",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "massimale",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "premio",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "responsabilita_civile",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "POLIZZA_INDENNITARIA_DECENNALE",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PolizzaIndennitariaDecennale",
+        "attributes": [
+          {
+            "name": "id_polizza_indennitaria_decennale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo_indennizzo",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CERTIFICATO_COLLAUDO_PROVVISORIO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CertificatoCollaudoProvvisorio",
+        "attributes": [
+          {
+            "name": "id_certificato_collaudo_provvisorio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CERTIFICATO_REGOLARE_ESECUZIONE",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CertificatoRegolareEsecuzione",
+        "attributes": [
+          {
+            "name": "id_certificato_regolare_esecuzione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SUBAPPALTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Subappalto",
+        "attributes": [
+          {
+            "name": "id_subappalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "percentuale_subappalto",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "REFERENZIA_NORMATIVA",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Normativa",
+        "attributes": [
+          {
+            "name": "url_normattiva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

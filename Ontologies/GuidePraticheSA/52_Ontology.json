@@ -4,7 +4,7 @@
       "label": "Documento",
       "attributes": [
         {
-          "name": "titolo_documento",
+          "name": "id_documento",
           "type": "string",
           "unique": true,
           "required": true
@@ -16,25 +16,25 @@
           "required": false
         },
         {
-          "name": "data_creazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "in_lavorazione",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "compilatore",
+          "name": "titolo_documento",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
           "name": "descrizione_breve",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_documento",
           "type": "string",
           "unique": false,
           "required": false
@@ -45,28 +45,10 @@
       "label": "ProceduraDiAggiudicazione",
       "attributes": [
         {
-          "name": "oggetto_bando",
+          "name": "id_procedura",
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "stato_riepilogo_finale",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "tipo_procedura",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "accordo_di_servizio",
-          "type": "boolean",
-          "unique": false,
-          "required": false
         },
         {
           "name": "registro_di_sistema",
@@ -75,24 +57,19 @@
           "required": false
         },
         {
-          "name": "data_scadenza",
+          "name": "oggetto_bando",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "SezioneDocumenti",
-      "attributes": [
-        {
-          "name": "nome_sezione",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "descrizione",
+          "name": "data_indizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
@@ -113,10 +90,27 @@
           "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Campo",
+      "attributes": [
+        {
+          "name": "nome_campo",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
-          "name": "attivato",
+          "name": "editabile",
           "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "valore_default",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -126,33 +120,16 @@
       "label": "Utente",
       "attributes": [
         {
-          "name": "identificativo_utente",
+          "name": "id_utente",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "ruolo",
+          "name": "nome",
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "abilitato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "RUP",
-      "attributes": [
-        {
-          "name": "nominativo",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
           "name": "ruolo",
@@ -166,7 +143,7 @@
       "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "denominazione",
+          "name": "ragione_sociale",
           "type": "string",
           "unique": true,
           "required": true
@@ -178,8 +155,151 @@
           "required": false
         },
         {
-          "name": "escluso",
+          "name": "stato_partecipazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Lotto",
+      "attributes": [
+        {
+          "name": "id_lotto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Commissione",
+      "attributes": [
+        {
+          "name": "id_commissione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nominativi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StatoProcedura",
+      "attributes": [
+        {
+          "name": "nome_stato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comunicazione",
+      "attributes": [
+        {
+          "name": "id_comunicazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "condizionata",
           "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Contratto",
+      "attributes": [
+        {
+          "name": "id_contratto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stipulato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_stipula",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AccordoDiServizio",
+      "attributes": [
+        {
+          "name": "id_accordo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "impostato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ente",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo_ente",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -189,7 +309,7 @@
       "label": "Allegato",
       "attributes": [
         {
-          "name": "nome_allegato",
+          "name": "id_allegato",
           "type": "string",
           "unique": true,
           "required": true
@@ -212,13 +332,13 @@
       "label": "Nota",
       "attributes": [
         {
-          "name": "testo_note",
+          "name": "id_nota",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "data_inserimento",
+          "name": "testo",
           "type": "string",
           "unique": false,
           "required": false
@@ -226,22 +346,16 @@
       ]
     },
     {
-      "label": "Comunicazione",
+      "label": "Parametro",
       "attributes": [
         {
-          "name": "tipo_comunicazione",
+          "name": "nome_parametro",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "condizionata",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "destinatari_default",
+          "name": "valore",
           "type": "string",
           "unique": false,
           "required": false
@@ -249,16 +363,16 @@
       ]
     },
     {
-      "label": "DeterminaDiAggiudicazione",
+      "label": "Esito",
       "attributes": [
         {
-          "name": "numero_determina",
+          "name": "nome_esito",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "file",
+          "name": "riferimento_normativo",
           "type": "string",
           "unique": false,
           "required": false
@@ -266,16 +380,22 @@
       ]
     },
     {
-      "label": "Lotto",
+      "label": "ValutazioneAmministrativa",
       "attributes": [
         {
-          "name": "identificativo_lotto",
+          "name": "id_valutazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato",
+          "name": "stato_valutazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_valutazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -283,16 +403,22 @@
       ]
     },
     {
-      "label": "BustaAmministrativa",
+      "label": "RipristinoFase",
       "attributes": [
         {
-          "name": "identificativo_busta",
+          "name": "id_ripristino",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "esito",
+          "name": "tipo_fase",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "motivazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -300,45 +426,22 @@
       ]
     },
     {
-      "label": "Contratto",
+      "label": "DocumentoTrasferimentoPDA",
       "attributes": [
         {
-          "name": "id_contratto",
+          "name": "id_documento_trasferimento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "registro_di_sistema",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "stipulato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "AccordoDiServizio",
-      "attributes": [
-        {
-          "name": "accordo_di_servizio",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ente_erogatore",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "ente_richiedente",
+          "name": "data",
           "type": "string",
           "unique": false,
           "required": false
@@ -348,56 +451,23 @@
   ],
   "relations": [
     {
-      "label": "APPARTIENE_A_SEZIONE",
+      "label": "HA_DOCUMENTO",
       "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SezioneDocumenti",
-        "attributes": [
-          {
-            "name": "nome_sezione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_inserimento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERITO_A_PROCEDURA",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "ProceduraDiAggiudicazione",
         "attributes": [
           {
-            "name": "oggetto_bando",
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -406,7 +476,7 @@
       },
       "attributes": [
         {
-          "name": "ruolo_documento",
+          "name": "sezione",
           "type": "string",
           "required": false,
           "unique": false
@@ -414,7 +484,7 @@
       ]
     },
     {
-      "label": "ESEGUE_SU",
+      "label": "ESEGUI_COMANDO_SU_DOCUMENTO",
       "source": {
         "label": "Comando",
         "attributes": [
@@ -430,7 +500,73 @@
         "label": "Documento",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "id_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "esito_azione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_COMANDO",
+      "source": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "posizione_toolbar",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ATTIVA_CAMPO_DA_COMANDO",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Campo",
+        "attributes": [
+          {
+            "name": "nome_campo",
             "type": "string",
             "unique": true,
             "required": true
@@ -441,18 +577,18 @@
         {
           "name": "azione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "ESEGUE_COMANDO",
+      "label": "HA_CAMPO_NEL_DOCUMENTO",
       "source": {
-        "label": "Utente",
+        "label": "Documento",
         "attributes": [
           {
-            "name": "identificativo_utente",
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -460,10 +596,10 @@
         ]
       },
       "target": {
-        "label": "Comando",
+        "label": "Campo",
         "attributes": [
           {
-            "name": "nome_comando",
+            "name": "nome_campo",
             "type": "string",
             "unique": true,
             "required": true
@@ -472,8 +608,8 @@
       },
       "attributes": [
         {
-          "name": "data_esecuzione",
-          "type": "string",
+          "name": "editabile",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
@@ -485,7 +621,7 @@
         "label": "Documento",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -496,7 +632,7 @@
         "label": "Allegato",
         "attributes": [
           {
-            "name": "nome_allegato",
+            "name": "id_allegato",
             "type": "string",
             "unique": true,
             "required": true
@@ -505,8 +641,8 @@
       },
       "attributes": [
         {
-          "name": "ordine",
-          "type": "number",
+          "name": "obbligatorio",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
@@ -518,7 +654,7 @@
         "label": "Documento",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -529,7 +665,7 @@
         "label": "Nota",
         "attributes": [
           {
-            "name": "testo_note",
+            "name": "id_nota",
             "type": "string",
             "unique": true,
             "required": true
@@ -546,12 +682,117 @@
       ]
     },
     {
-      "label": "HA_LOTTO",
+      "label": "HA_RUP",
       "source": {
         "label": "ProceduraDiAggiudicazione",
         "attributes": [
           {
-            "name": "oggetto_bando",
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "id_utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_nomina",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_ENTE",
+      "source": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ente",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_ente",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIUDICATARIO_DI",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_aggiudicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_assegnazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_A_LOTTO",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -562,7 +803,7 @@
         "label": "Lotto",
         "attributes": [
           {
-            "name": "identificativo_lotto",
+            "name": "id_lotto",
             "type": "string",
             "unique": true,
             "required": true
@@ -571,145 +812,7 @@
       },
       "attributes": [
         {
-          "name": "numero_lotto",
-          "type": "number",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "AGGIUDICATO_A",
-      "source": {
-        "label": "Lotto",
-        "attributes": [
-          {
-            "name": "identificativo_lotto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "stato_aggiudicazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INVIATA_A",
-      "source": {
-        "label": "Comunicazione",
-        "attributes": [
-          {
-            "name": "tipo_comunicazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "destinatario_default",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALLEGA_DETERMINA",
-      "source": {
-        "label": "Comunicazione",
-        "attributes": [
-          {
-            "name": "tipo_comunicazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "DeterminaDiAggiudicazione",
-        "attributes": [
-          {
-            "name": "numero_determina",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CHIUSA_DA",
-      "source": {
-        "label": "ProceduraDiAggiudicazione",
-        "attributes": [
-          {
-            "name": "oggetto_bando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RUP",
-        "attributes": [
-          {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_chiusura",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "motivo",
+          "name": "nota",
           "type": "string",
           "required": false,
           "unique": false
@@ -717,12 +820,12 @@
       ]
     },
     {
-      "label": "TRASFERISCE_PDA",
+      "label": "HA_STATO",
       "source": {
-        "label": "RUP",
+        "label": "ProceduraDiAggiudicazione",
         "attributes": [
           {
-            "name": "nominativo",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -730,10 +833,10 @@
         ]
       },
       "target": {
-        "label": "ProceduraDiAggiudicazione",
+        "label": "StatoProcedura",
         "attributes": [
           {
-            "name": "oggetto_bando",
+            "name": "nome_stato",
             "type": "string",
             "unique": true,
             "required": true
@@ -742,13 +845,7 @@
       },
       "attributes": [
         {
-          "name": "data_trasferimento",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "motivazione",
+          "name": "data_aggiornamento",
           "type": "string",
           "required": false,
           "unique": false
@@ -756,12 +853,45 @@
       ]
     },
     {
-      "label": "ESCLUSO_DA",
+      "label": "HA_COMUNICAZIONE",
       "source": {
-        "label": "OperatoreEconomico",
+        "label": "ProceduraDiAggiudicazione",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comunicazione",
+        "attributes": [
+          {
+            "name": "id_comunicazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "destinatari",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMUNICAZIONE_DI_AGGIUDICAZIONE",
+      "source": {
+        "label": "Comunicazione",
+        "attributes": [
+          {
+            "name": "id_comunicazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -772,7 +902,7 @@
         "label": "ProceduraDiAggiudicazione",
         "attributes": [
           {
-            "name": "oggetto_bando",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -781,16 +911,60 @@
       },
       "attributes": [
         {
-          "name": "motivo_esclusione",
-          "type": "string",
-          "required": true,
+          "name": "condizionata",
+          "type": "boolean",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "STIPULA_CON",
+      "label": "INVIA_COMUNICAZIONE",
       "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "id_utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comunicazione",
+        "attributes": [
+          {
+            "name": "id_comunicazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_invio",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CONTRATTO",
+      "source": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "Contratto",
         "attributes": [
           {
@@ -801,11 +975,33 @@
           }
         ]
       },
-      "target": {
-        "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "necessario_per_chiusura",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ACCORDO_CHIUSURA_PROCEDURA",
+      "source": {
+        "label": "AccordoDiServizio",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "id_accordo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -814,20 +1010,125 @@
       },
       "attributes": [
         {
-          "name": "data_stipula",
-          "type": "string",
-          "required": true,
+          "name": "chiusura_automatica",
+          "type": "boolean",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_DOCUMENTO_CHIUSURA",
+      "label": "TRASFERISCI_PDA",
       "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "id_utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "ProceduraDiAggiudicazione",
         "attributes": [
           {
-            "name": "oggetto_bando",
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_transferimento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GENERA_DOCUMENTO_TRASFERIMENTO",
+      "source": {
+        "label": "DocumentoTrasferimentoPDA",
+        "attributes": [
+          {
+            "name": "id_documento_trasferimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "registro_di_sistema",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIPRISTINA_FASE",
+      "source": {
+        "label": "RipristinoFase",
+        "attributes": [
+          {
+            "name": "id_ripristino",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ValutazioneAmministrativa",
+        "attributes": [
+          {
+            "name": "id_valutazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIPRISTINO_GENERA_DOCUMENTO",
+      "source": {
+        "label": "RipristinoFase",
+        "attributes": [
+          {
+            "name": "id_ripristino",
             "type": "string",
             "unique": true,
             "required": true
@@ -838,7 +1139,7 @@
         "label": "Documento",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -847,7 +1148,178 @@
       },
       "attributes": [
         {
-          "name": "tipo",
+          "name": "tipo_documento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_PARAMETRO",
+      "source": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Parametro",
+        "attributes": [
+          {
+            "name": "nome_parametro",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "valore",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASSEGNA_ESITO",
+      "source": {
+        "label": "ValutazioneAmministrativa",
+        "attributes": [
+          {
+            "name": "id_valutazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Esito",
+        "attributes": [
+          {
+            "name": "nome_esito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ESEGUE_APERTURA_BUSTE",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "id_utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_buste",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_COMMISSIONE",
+      "source": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "id_commissione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "nominata",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "MODIFICA_PARTECIPANTI",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "campi_aggiornati",
           "type": "string",
           "required": false,
           "unique": false

@@ -1,0 +1,329 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CollegioConsultivoTecnico",
+      "attributes": [
+        {
+          "name": "sigla",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CodiceProceduraCivile",
+      "attributes": [
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperaPubblica",
+      "attributes": [
+        {
+          "name": "descrizione_opera",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ContrattoConcessionePPP",
+      "attributes": [
+        {
+          "name": "tipo_contratto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Determinazione",
+      "attributes": [
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DannoErariale",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Responsabilita",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Inadempimento",
+      "attributes": [
+        {
+          "name": "identificativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "MediazioneConciliazione",
+      "attributes": [
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CondottaDolosa",
+      "attributes": [
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "FORMA_COSTITUZIONE_COLLEGIO",
+      "source": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CollegioConsultivoTecnico",
+        "attributes": [
+          {
+            "name": "sigla",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita_costituzione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "OBBLIGO_COSTITUIRE_COLLEGIO_PER_OPERA",
+      "source": {
+        "label": "OperaPubblica",
+        "attributes": [
+          {
+            "name": "descrizione_opera",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CollegioConsultivoTecnico",
+        "attributes": [
+          {
+            "name": "sigla",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita_obbligo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EMETTE_DETERMINAZIONE",
+      "source": {
+        "label": "CollegioConsultivoTecnico",
+        "attributes": [
+          {
+            "name": "sigla",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Determinazione",
+        "attributes": [
+          {
+            "name": "tipologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ATTIVITA_DI_MEDIAZIONE_CONCILIAZIONE",
+      "source": {
+        "label": "Determinazione",
+        "attributes": [
+          {
+            "name": "tipologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "MediazioneConciliazione",
+        "attributes": [
+          {
+            "name": "tipologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "INFLUENZA_RESPONSABILITA",
+      "source": {
+        "label": "Determinazione",
+        "attributes": [
+          {
+            "name": "tipologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DannoErariale",
+        "attributes": [
+          {
+            "name": "identificativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ESCLUSIONE_RESPONSABILITA",
+      "source": {
+        "label": "Determinazione",
+        "attributes": [
+          {
+            "name": "tipologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DannoErariale",
+        "attributes": [
+          {
+            "name": "identificativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "effetto",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

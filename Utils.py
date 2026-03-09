@@ -270,6 +270,9 @@ def verify_entity(json_entity, json_ontology: str, errors):
 
     entity_label = json_entity['label']
     entity_schema = get_entity_schema(entity_label, json_ontology)
+    if entity_schema is None:
+        errors = errors + f"The entity {entity_label} does not exist in the ontology - "
+        return
     entity_attrs_schema = entity_schema.get("attributes")
     name_entity_attrs_schema = [item['name'] for item in entity_attrs_schema if 'name' in item]
 
@@ -335,13 +338,16 @@ def verify_relation(relation, entities, json_ontology, errors, toLower=False):
     else:
         target_label = target.get("label")
         if target_label is None:
-                errors = errors + f"The target entity of the relation '{relation_label}' does not have a label - "
+            errors = errors + f"The target entity of the relation '{relation_label}' does not have a label - "
 
     if source_label is None or target_label is None:
         return errors
 
 
     relation_schema = get_relation_schema(relation_label, source_label, target_label, json_ontology)
+    if relation_schema is None:
+        errors = errors + f"The relation {relation_label} does not exist in the ontology - "
+        return
     relation_attrs_schema = relation_schema.get("attributes")
     name_relation_attrs_schema = [item['name'] for item in relation_attrs_schema if 'name' in item]
 
@@ -449,21 +455,21 @@ def check_duplicated_relation(json_relations, json_ontology, errors):
         relation_label = relation.get("label")
         if relation_label is None:
            continue
-        id = f"relation_label:'{relation_label}',"
+        id = f"relation_label:'{relation_label}', "
         source = relation.get("source")
         if source is None:
             continue
         source_label = source.get("label")
         if source_label is None:
             continue
-        id = id + f"source_label:'{source_label}',"
+        id = id + f"source_label:'{source_label}', "
         target = relation.get("target")
         if target is None:
             continue
         target_label = target.get("label")
         if target_label is None:
             continue
-        id = id + f"target_label:'{target_label}',"
+        id = id + f"target_label:'{target_label}', "
         
         if relation_label is not None and source_label is not None and target_label is not None:
             for relation_ontology in json_ontology['relations']:
@@ -505,7 +511,7 @@ def check_duplicated_relation(json_relations, json_ontology, errors):
                 for key, value in source_attrs.items():
                     if key == source_key_attrname:
                         found_source_key = True
-                        id = id + f"source_keyref_value:'{value}',"
+                        id = id + f"source_keyref_value:'{value}', "
                         break
             if found_source_key==False:
                 continue
@@ -527,7 +533,7 @@ def check_duplicated_relation(json_relations, json_ontology, errors):
     seen = set()
     duplicated = set(x for x in relations_IDs if x in seen or seen.add(x))
     if len(duplicated)>0:
-        errors = errors + f"The following relations are duplicated. '{list(duplicated)}' - "
+        errors = errors + f"The following relations are duplicated: '{list(duplicated)}' - "
     return errors
 
 

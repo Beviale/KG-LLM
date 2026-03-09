@@ -16,13 +16,13 @@
           "required": false
         },
         {
-          "name": "stato",
+          "name": "stato_documento",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "data_creazione",
+          "name": "versione",
           "type": "string",
           "unique": false,
           "required": false
@@ -37,12 +37,6 @@
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
         },
         {
           "name": "stato",
@@ -74,25 +68,36 @@
           "required": false
         },
         {
-          "name": "ruolo_aziendale",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
           "name": "email",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "registrato",
-          "type": "boolean",
+          "name": "ruolo_aziendale",
+          "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "pec",
+          "name": "registrato_al_sistema",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -109,12 +114,6 @@
           "required": true
         },
         {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
           "name": "data_creazione",
           "type": "string",
           "unique": false,
@@ -127,7 +126,19 @@
           "required": false
         },
         {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
           "name": "registro_di_sistema",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
@@ -144,19 +155,7 @@
           "required": true
         },
         {
-          "name": "icona",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
           "name": "posizione_toolbar",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "azione",
           "type": "string",
           "unique": false,
           "required": false
@@ -164,33 +163,27 @@
       ]
     },
     {
-      "label": "Manuale",
+      "label": "ListaUtentiCoinvolti",
       "attributes": [
         {
-          "name": "titolo",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "versione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "pagina",
-          "type": "number",
+          "name": "colonna_registra_present",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "Paragrafo",
+      "label": "NotificaEmail",
       "attributes": [
         {
-          "name": "titolo",
+          "name": "tipo",
           "type": "string",
           "unique": true,
           "required": true
@@ -202,50 +195,16 @@
           "required": false
         }
       ]
-    },
-    {
-      "label": "Figura",
-      "attributes": [
-        {
-          "name": "numero",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Storico",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "vuoto",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
     }
   ],
   "relations": [
     {
-      "label": "HA_MEMBRO",
+      "label": "MEMBRO_DI",
       "source": {
-        "label": "Commissione",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "codice_fiscale",
             "type": "string",
             "unique": true,
             "required": true
@@ -253,10 +212,10 @@
         ]
       },
       "target": {
-        "label": "Utente",
+        "label": "Commissione",
         "attributes": [
           {
-            "name": "codice_fiscale",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -275,11 +234,17 @@
           "type": "string",
           "required": false,
           "unique": false
+        },
+        {
+          "name": "azione",
+          "type": "string",
+          "required": false,
+          "unique": false
         }
       ]
     },
     {
-      "label": "COPIATA_DA_SEGGIO",
+      "label": "ASSOCIATA_A_SEGGIO",
       "source": {
         "label": "Commissione",
         "attributes": [
@@ -304,7 +269,7 @@
       },
       "attributes": [
         {
-          "name": "modalita",
+          "name": "data_associazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -312,7 +277,7 @@
       ]
     },
     {
-      "label": "COPIATA_DA_COMMISSIONE",
+      "label": "COPIA_DA",
       "source": {
         "label": "Commissione",
         "attributes": [
@@ -337,87 +302,54 @@
       },
       "attributes": [
         {
-          "name": "modalita",
+          "name": "origine",
           "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALLEGA_AL_DOCUMENTO",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "codice_fiscale",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo_allegato",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "REGISTRA",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "codice_fiscale",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "crea_utente",
-          "type": "boolean",
           "required": true,
           "unique": false
         },
         {
-          "name": "invia_notifica_pec",
-          "type": "boolean",
+          "name": "comando_utilizzato",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "ELIMINA",
+      "label": "COMANDO_AGISCE_SU",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMANDO_AGISCE_SU",
       "source": {
         "label": "Comando",
         "attributes": [
@@ -442,40 +374,7 @@
       },
       "attributes": [
         {
-          "name": "icona",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONFERMA_COMMISSIONE",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Commissione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "nuovo_stato",
+          "name": "azione",
           "type": "string",
           "required": true,
           "unique": false
@@ -483,7 +382,7 @@
       ]
     },
     {
-      "label": "MODIFICA_COMMISSIONE",
+      "label": "COMANDO_AGISCE_SU",
       "source": {
         "label": "Comando",
         "attributes": [
@@ -496,7 +395,7 @@
         ]
       },
       "target": {
-        "label": "Commissione",
+        "label": "ListaUtentiCoinvolti",
         "attributes": [
           {
             "name": "nome",
@@ -508,153 +407,15 @@
       },
       "attributes": [
         {
-          "name": "precedente_stato",
+          "name": "azione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "DOCUMENTO_NOMINA_RELATIVO_A",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Commissione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "registro",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "data_creazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "MANUALE_CONTIENE_PARAGRAFO",
-      "source": {
-        "label": "Manuale",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Paragrafo",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "pagina",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "FIGURA_DESCRIVE",
-      "source": {
-        "label": "Figura",
-        "attributes": [
-          {
-            "name": "numero",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "riferimento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "STORICO_RIGUARDA",
-      "source": {
-        "label": "Storico",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Commissione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "vuoto",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "VISUALIZZA_DOCUMENTO",
+      "label": "COMANDO_AGISCE_SU",
       "source": {
         "label": "Comando",
         "attributes": [
@@ -682,6 +443,156 @@
           "name": "azione",
           "type": "string",
           "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DOCUMENTO_ASSOCIATO_A_COMMISSIONE",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_documento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "registro_di_sistema",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CARICA_CURRICULUM",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "colonna",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROVOCA_NOTIFICA",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "NotificaEmail",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "indirizzo_pec_destinatario",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "incluso_credenziali",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "MODIFICA",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "stato_precedente",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "stato_nuovo",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]

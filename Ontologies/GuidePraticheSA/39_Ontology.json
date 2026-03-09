@@ -16,14 +16,8 @@
           "required": false
         },
         {
-          "name": "data_versione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "proprietario",
-          "type": "string",
+          "name": "pagina",
+          "type": "number",
           "unique": false,
           "required": false
         }
@@ -33,13 +27,13 @@
       "label": "Societa",
       "attributes": [
         {
-          "name": "nome",
+          "name": "ragione_sociale",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "forma_giuridica",
+          "name": "proprietario",
           "type": "string",
           "unique": false,
           "required": false
@@ -60,16 +54,66 @@
           "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
-          "name": "interoperabilita",
+          "name": "identificativo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PubblicaAmministrazione",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "registrato_in_piattaforma",
           "type": "boolean",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "PersonaFisica",
+      "attributes": [
+        {
+          "name": "nome_cognome",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
-          "name": "once_only",
-          "type": "boolean",
+          "name": "ruolo",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -85,112 +129,32 @@
           "required": true
         },
         {
-          "name": "tipo_gara",
+          "name": "tipo_procedura",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "affidamento_in_house",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "criterio_formulazione_offerta",
-          "type": "string",
+          "name": "importo_base_asta",
+          "type": "number",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "StazioneAppaltante",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PubblicaAmministrazione",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "registrato_in_piattaforma",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "RUP",
-      "attributes": [
-        {
-          "name": "identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "autenticato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PCP",
+      "label": "PiattaformaContrattiPubblici",
       "attributes": [
         {
           "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "piattaforma",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
     {
-      "label": "ANAC",
+      "label": "Autorita",
       "attributes": [
         {
           "name": "nome",
@@ -204,7 +168,7 @@
       "label": "CIG",
       "attributes": [
         {
-          "name": "codice",
+          "name": "cig",
           "type": "string",
           "unique": true,
           "required": true
@@ -221,7 +185,7 @@
       "label": "CUP",
       "attributes": [
         {
-          "name": "codice",
+          "name": "cup",
           "type": "string",
           "unique": true,
           "required": true
@@ -229,16 +193,67 @@
       ]
     },
     {
-      "label": "Sezione",
+      "label": "Prodotto",
       "attributes": [
         {
-          "name": "nome",
+          "name": "codice_prodotto",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
           "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Lotto",
+      "attributes": [
+        {
+          "name": "numero_lotto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CPV",
+      "attributes": [
+        {
+          "name": "codice_cpv",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "IstatLuogo",
+      "attributes": [
+        {
+          "name": "codice_istat",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -255,7 +270,7 @@
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "tipo_documento",
           "type": "string",
           "unique": false,
           "required": false
@@ -263,79 +278,44 @@
       ]
     },
     {
-      "label": "CPV",
+      "label": "ModelloOfferta",
       "attributes": [
         {
-          "name": "codice",
+          "name": "nome_modello",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
-          "type": "string",
+          "name": "standard",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "LuogoISTAT",
+      "label": "Sezione",
       "attributes": [
         {
-          "name": "codice",
+          "name": "nome_sezione",
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
     {
-      "label": "Prodotto",
+      "label": "Termine",
       "attributes": [
         {
-          "name": "identificativo",
+          "name": "tipo_termine",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "ambito",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "quantita",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Lotto",
-      "attributes": [
-        {
-          "name": "identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
+          "name": "data",
           "type": "string",
           "unique": false,
           "required": false
@@ -346,7 +326,7 @@
       "label": "Importo",
       "attributes": [
         {
-          "name": "id_importo",
+          "name": "tipo_importo",
           "type": "string",
           "unique": true,
           "required": true
@@ -356,53 +336,13 @@
           "type": "number",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "valuta",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Wizard",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CriterioAggiudicazione",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "DI_PROPRIETA_DI",
+      "label": "DOCUMENTO_DI_PROPRIETA_DI",
       "source": {
         "label": "Documento",
         "attributes": [
@@ -418,7 +358,7 @@
         "label": "Societa",
         "attributes": [
           {
-            "name": "nome",
+            "name": "ragione_sociale",
             "type": "string",
             "unique": true,
             "required": true
@@ -427,15 +367,21 @@
       },
       "attributes": [
         {
-          "name": "restrizione_divulgazione",
-          "type": "boolean",
+          "name": "versione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "pagina",
+          "type": "number",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "GESTISCE",
+      "label": "PIATTAFORMA_GESTISCE_AFFIDAMENTO",
       "source": {
         "label": "Piattaforma",
         "attributes": [
@@ -460,20 +406,20 @@
       },
       "attributes": [
         {
-          "name": "funzione",
+          "name": "modalita_gestione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "PUBBLICA",
+      "label": "STAZIONEAPPALTANTE_PUBBLICA",
       "source": {
         "label": "StazioneAppaltante",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -493,7 +439,7 @@
       },
       "attributes": [
         {
-          "name": "modalita_pubblicazione",
+          "name": "data_pubblicazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -501,12 +447,45 @@
       ]
     },
     {
-      "label": "PARTECIPA_A",
+      "label": "PERSONA_RESPONSABILE_DI",
+      "source": {
+        "label": "PersonaFisica",
+        "attributes": [
+          {
+            "name": "nome_cognome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AffidamentoDiretto",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "OPERATOREINVIA_RISPOSTA_AFFIDAMENTO",
       "source": {
         "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -526,26 +505,26 @@
       },
       "attributes": [
         {
-          "name": "ha_risposto",
-          "type": "boolean",
-          "required": false,
+          "name": "modalita_risposta",
+          "type": "string",
+          "required": true,
           "unique": false
         },
         {
-          "name": "registrato",
-          "type": "boolean",
+          "name": "offerta_valore",
+          "type": "number",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "RICHIEDE",
+      "label": "AFFIDAMENTO_RICHIEDE_CIG",
       "source": {
-        "label": "RUP",
+        "label": "AffidamentoDiretto",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -556,7 +535,7 @@
         "label": "CIG",
         "attributes": [
           {
-            "name": "codice",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -565,38 +544,11 @@
       },
       "attributes": [
         {
-          "name": "modalita",
+          "name": "modalita_richiesta",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "EMETTE",
-      "source": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CIG",
-        "attributes": [
-          {
-            "name": "codice",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
+        },
         {
           "name": "esito",
           "type": "string",
@@ -606,9 +558,9 @@
       ]
     },
     {
-      "label": "GESTISCE",
+      "label": "AUTORITA_EMETTE_CIG",
       "source": {
-        "label": "ANAC",
+        "label": "Autorita",
         "attributes": [
           {
             "name": "nome",
@@ -619,10 +571,10 @@
         ]
       },
       "target": {
-        "label": "PCP",
+        "label": "CIG",
         "attributes": [
           {
-            "name": "nome",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -631,7 +583,7 @@
       },
       "attributes": [
         {
-          "name": "ambito_gestione",
+          "name": "data_emissione",
           "type": "string",
           "required": false,
           "unique": false
@@ -639,7 +591,7 @@
       ]
     },
     {
-      "label": "HA_CUP",
+      "label": "AFFIDAMENTO_HA_CUP",
       "source": {
         "label": "AffidamentoDiretto",
         "attributes": [
@@ -655,17 +607,24 @@
         "label": "CUP",
         "attributes": [
           {
-            "name": "codice",
+            "name": "cup",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "obbligatorio_per_pcp",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
     },
     {
-      "label": "HA_CIG",
+      "label": "AFFIDAMENTO_CONTIENE_LOTTO",
       "source": {
         "label": "AffidamentoDiretto",
         "attributes": [
@@ -678,10 +637,10 @@
         ]
       },
       "target": {
-        "label": "CIG",
+        "label": "Lotto",
         "attributes": [
           {
-            "name": "codice",
+            "name": "numero_lotto",
             "type": "string",
             "unique": true,
             "required": true
@@ -690,15 +649,15 @@
       },
       "attributes": [
         {
-          "name": "data_richiesta",
-          "type": "string",
+          "name": "lotto_obbligatorio",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_PRODOTTO",
+      "label": "AFFIDAMENTO_CONTIENE_PRODOTTO",
       "source": {
         "label": "AffidamentoDiretto",
         "attributes": [
@@ -714,7 +673,7 @@
         "label": "Prodotto",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "codice_prodotto",
             "type": "string",
             "unique": true,
             "required": true
@@ -731,71 +690,12 @@
       ]
     },
     {
-      "label": "HA_LOTTO",
+      "label": "PRODOTTO_CLASSIFICATO_DA_CPV",
       "source": {
-        "label": "AffidamentoDiretto",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Lotto",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "INCLUDE",
-      "source": {
-        "label": "Lotto",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "Prodotto",
         "attributes": [
           {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ordine",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TRASMETTE",
-      "source": {
-        "label": "AffidamentoDiretto",
-        "attributes": [
-          {
-            "name": "titolo_documento",
+            "name": "codice_prodotto",
             "type": "string",
             "unique": true,
             "required": true
@@ -803,10 +703,10 @@
         ]
       },
       "target": {
-        "label": "PCP",
+        "label": "CPV",
         "attributes": [
           {
-            "name": "nome",
+            "name": "codice_cpv",
             "type": "string",
             "unique": true,
             "required": true
@@ -815,7 +715,40 @@
       },
       "attributes": [
         {
-          "name": "tipo_scheda",
+          "name": "obbligatorio_per_interoperabilita",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PRODOTTO_LOCALIZZATO_IN",
+      "source": {
+        "label": "Prodotto",
+        "attributes": [
+          {
+            "name": "codice_prodotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "IstatLuogo",
+        "attributes": [
+          {
+            "name": "codice_istat",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_localizzazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -823,7 +756,7 @@
       ]
     },
     {
-      "label": "INTERAGISCE_CON",
+      "label": "PIATTAFORMA_INTERAGISCE_CON_PCP",
       "source": {
         "label": "Piattaforma",
         "attributes": [
@@ -836,7 +769,7 @@
         ]
       },
       "target": {
-        "label": "PCP",
+        "label": "PiattaformaContrattiPubblici",
         "attributes": [
           {
             "name": "nome",
@@ -848,20 +781,20 @@
       },
       "attributes": [
         {
-          "name": "modalita_chiamata",
+          "name": "modalita_interoperabilita",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "AUTENTICATO_IN",
+      "label": "STAZIONEAPPALTANTE_ASSEGNA_RUP",
       "source": {
-        "label": "RUP",
+        "label": "StazioneAppaltante",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -869,25 +802,32 @@
         ]
       },
       "target": {
-        "label": "Piattaforma",
+        "label": "PersonaFisica",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_cognome",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "ruolo_assegnato",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
     },
     {
-      "label": "HA_ATTO",
+      "label": "PIATTAFORMA_CARICA_ATTO",
       "source": {
-        "label": "AffidamentoDiretto",
+        "label": "Piattaforma",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -907,92 +847,7 @@
       },
       "attributes": [
         {
-          "name": "ordine",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CODIFICATO_DA",
-      "source": {
-        "label": "Prodotto",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CPV",
-        "attributes": [
-          {
-            "name": "codice",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "HA_LUOGO",
-      "source": {
-        "label": "Prodotto",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "LuogoISTAT",
-        "attributes": [
-          {
-            "name": "codice",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "HA_IMPORTO",
-      "source": {
-        "label": "AffidamentoDiretto",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Importo",
-        "attributes": [
-          {
-            "name": "id_importo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo",
+          "name": "tipo_caricamento",
           "type": "string",
           "required": false,
           "unique": false
@@ -1000,7 +855,7 @@
       ]
     },
     {
-      "label": "COMPRENDE_SEZIONE",
+      "label": "DOCUMENTO_COMPRENDE_SEZIONE",
       "source": {
         "label": "Documento",
         "attributes": [
@@ -1016,7 +871,7 @@
         "label": "Sezione",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_sezione",
             "type": "string",
             "unique": true,
             "required": true
@@ -1033,12 +888,12 @@
       ]
     },
     {
-      "label": "OFFRE",
+      "label": "SEZIONE_INCLUDE_ATTO",
       "source": {
-        "label": "Piattaforma",
+        "label": "Sezione",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_sezione",
             "type": "string",
             "unique": true,
             "required": true
@@ -1046,54 +901,6 @@
         ]
       },
       "target": {
-        "label": "Wizard",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "REGISTRATO_IN",
-      "source": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_registrazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALLEGATO_A",
-      "source": {
         "label": "Atto",
         "attributes": [
           {
@@ -1104,21 +911,17 @@
           }
         ]
       },
-      "target": {
-        "label": "AffidamentoDiretto",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "ruolo_documento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
     },
     {
-      "label": "HA_CRITERIO",
+      "label": "AFFIDAMENTO_USA_MODELLO",
       "source": {
         "label": "AffidamentoDiretto",
         "attributes": [
@@ -1131,17 +934,90 @@
         ]
       },
       "target": {
-        "label": "CriterioAggiudicazione",
+        "label": "ModelloOfferta",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_modello",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "modello_personalizzato",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AFFIDAMENTO_HA_TERMINE",
+      "source": {
+        "label": "AffidamentoDiretto",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Termine",
+        "attributes": [
+          {
+            "name": "tipo_termine",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_limite",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AFFIDAMENTO_COMPORTA_IMPORTO",
+      "source": {
+        "label": "AffidamentoDiretto",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Importo",
+        "attributes": [
+          {
+            "name": "tipo_importo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "valore_calcolato",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
     }
   ]
 }

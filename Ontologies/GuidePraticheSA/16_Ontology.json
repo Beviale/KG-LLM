@@ -4,10 +4,16 @@
       "label": "AffidamentoDiretto",
       "attributes": [
         {
-          "name": "ad",
+          "name": "titolo",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "cup",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "importo_affidamento",
@@ -16,30 +22,13 @@
           "required": false
         },
         {
-          "name": "stato_trasmissione",
+          "name": "cig",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "accesso_abilitato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "AccordoQuadro",
-      "attributes": [
-        {
-          "name": "accordo_quadro",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
@@ -47,16 +36,16 @@
       ]
     },
     {
-      "label": "Aggiudicatario",
+      "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "aggiudicatario",
+          "name": "denominazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "accesso_piattaforma",
+          "name": "puo_visualizzare_allegati",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -64,112 +53,17 @@
       ]
     },
     {
-      "label": "RUP",
+      "label": "PersonaFisica",
       "attributes": [
         {
-          "name": "rup",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "email",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CIG",
-      "attributes": [
-        {
-          "name": "codice_cig",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo_cig",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CUP",
-      "attributes": [
-        {
-          "name": "codice_cup",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "SchedaPCP",
-      "attributes": [
-        {
-          "name": "tipo_scheda",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "trasmessa",
+          "name": "ha_effettuato_accesso_autenticazione_forte",
           "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "MenuGestionePCP",
-      "attributes": [
-        {
-          "name": "menu_gestione_pcp",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "PCP",
-      "attributes": [
-        {
-          "name": "pcp",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "SezioneAllegati",
-      "attributes": [
-        {
-          "name": "sezione_allegati",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "AreaQuadroEconomico",
-      "attributes": [
-        {
-          "name": "area_quadro_economico",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "dati_importi_tracciati_anac",
-          "type": "string",
           "unique": false,
           "required": false
         }
@@ -185,18 +79,24 @@
           "required": true
         },
         {
-          "name": "visualizzazione",
-          "type": "string",
+          "name": "disponibile_aggiudicatario",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "puo_essere_firmato",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "Sistema",
+      "label": "PCP",
       "attributes": [
         {
-          "name": "sistema",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -204,16 +104,49 @@
       ]
     },
     {
-      "label": "MetodoAutenticazione",
+      "label": "ANAC",
       "attributes": [
         {
-          "name": "metodo",
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "MenuGestionePCP",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Comando",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Scheda",
+      "attributes": [
+        {
+          "name": "tipo_scheda",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "esempi",
+          "name": "stato_trasmissione",
           "type": "string",
           "unique": false,
           "required": false
@@ -221,13 +154,19 @@
       ]
     },
     {
-      "label": "PuntoIstruttore",
+      "label": "NotificaEmail",
       "attributes": [
         {
-          "name": "punto_istruttore",
+          "name": "tipo",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "canale",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -235,10 +174,16 @@
       "label": "CronologiaPCP",
       "attributes": [
         {
-          "name": "cronologia_pcp",
+          "name": "id_cronologia",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -259,7 +204,7 @@
         },
         {
           "name": "pagina",
-          "type": "string",
+          "type": "number",
           "unique": false,
           "required": false
         }
@@ -269,13 +214,13 @@
       "label": "Figura",
       "attributes": [
         {
-          "name": "figura",
+          "name": "numero",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "titolo_figura",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -283,25 +228,31 @@
       ]
     },
     {
-      "label": "Toolbar",
+      "label": "Piattaforma",
       "attributes": [
         {
-          "name": "toolbar",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "autenticazione_necessaria",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "INVIA_NOTIFICA_A",
+      "label": "HA_AGGIUDICATARIO",
       "source": {
-        "label": "Sistema",
+        "label": "AffidamentoDiretto",
         "attributes": [
           {
-            "name": "sistema",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -309,10 +260,10 @@
         ]
       },
       "target": {
-        "label": "RUP",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "rup",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -321,7 +272,7 @@
       },
       "attributes": [
         {
-          "name": "canale",
+          "name": "ruolo",
           "type": "string",
           "required": true,
           "unique": false
@@ -329,45 +280,12 @@
       ]
     },
     {
-      "label": "INVIA_NOTIFICA_A",
+      "label": "RESPONSABILE_DI",
       "source": {
-        "label": "Sistema",
+        "label": "PersonaFisica",
         "attributes": [
           {
-            "name": "sistema",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Aggiudicatario",
-        "attributes": [
-          {
-            "name": "aggiudicatario",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "canale",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_ACCESSO_A",
-      "source": {
-        "label": "Aggiudicatario",
-        "attributes": [
-          {
-            "name": "aggiudicatario",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -378,7 +296,7 @@
         "label": "AffidamentoDiretto",
         "attributes": [
           {
-            "name": "ad",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -387,284 +305,26 @@
       },
       "attributes": [
         {
-          "name": "modalita_visualizzazione",
-          "type": "string",
+          "name": "richiede_accesso_forte",
+          "type": "boolean",
           "required": true,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_ACCESSO_A",
-      "source": {
-        "label": "RUP",
-        "attributes": [
-          {
-            "name": "rup",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "AffidamentoDiretto",
-        "attributes": [
-          {
-            "name": "ad",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
+        },
         {
-          "name": "modalita",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICHIEDI_CIG",
-      "source": {
-        "label": "MenuGestionePCP",
-        "attributes": [
-          {
-            "name": "menu_gestione_pcp",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "pcp",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "azione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ATTIVA_INTEROPERABILITA_CON",
-      "source": {
-        "label": "MenuGestionePCP",
-        "attributes": [
-          {
-            "name": "menu_gestione_pcp",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "pcp",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "finalita",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TRASMETTE_SCHEDA",
-      "source": {
-        "label": "AffidamentoDiretto",
-        "attributes": [
-          {
-            "name": "ad",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SchedaPCP",
-        "attributes": [
-          {
-            "name": "tipo_scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "risultato_tramissione",
-          "type": "string",
+          "name": "ultimo_accesso_giorni",
+          "type": "number",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "INVIA_MODIFICA",
+      "label": "HA_ALLEGATO",
       "source": {
-        "label": "MenuGestionePCP",
-        "attributes": [
-          {
-            "name": "menu_gestione_pcp",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SchedaPCP",
-        "attributes": [
-          {
-            "name": "tipo_scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "comando",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "MODIFICA_CUP_E_IMPORTO",
-      "source": {
-        "label": "MenuGestionePCP",
-        "attributes": [
-          {
-            "name": "menu_gestione_pcp",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "AffidamentoDiretto",
         "attributes": [
           {
-            "name": "ad",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "campi_editabili",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ANNULLA_AFFIDAMENTO",
-      "source": {
-        "label": "MenuGestionePCP",
-        "attributes": [
-          {
-            "name": "menu_gestione_pcp",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SchedaPCP",
-        "attributes": [
-          {
-            "name": "tipo_scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "condizione_trasmissibile",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_AUTENTICATO_CON",
-      "source": {
-        "label": "RUP",
-        "attributes": [
-          {
-            "name": "rup",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "MetodoAutenticazione",
-        "attributes": [
-          {
-            "name": "metodo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ultimo_accesso_giorni",
-          "type": "number",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALLEGA_DOCUMENTO",
-      "source": {
-        "label": "SezioneAllegati",
-        "attributes": [
-          {
-            "name": "sezione_allegati",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -684,13 +344,46 @@
       },
       "attributes": [
         {
-          "name": "resa_disponibile_all_aggiudicatario",
-          "type": "boolean",
+          "name": "visibilita",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_ACCESSO_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AffidamentoDiretto",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita",
+          "type": "string",
           "required": true,
           "unique": false
         },
         {
-          "name": "consentito_risposta",
+          "name": "richiede_autenticazione",
           "type": "boolean",
           "required": true,
           "unique": false
@@ -698,9 +391,270 @@
       ]
     },
     {
-      "label": "CONTIENTE_FIGURA",
+      "label": "RICHIEDE_CIG",
       "source": {
-        "label": "Manuale",
+        "label": "MenuGestionePCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "attiva_interoperabilita",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "tempo_attesa_minuti",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVIA_MODIFICA",
+      "source": {
+        "label": "MenuGestionePCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "trasmette_scheda",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "MODIFICA_CUP_O_IMPORTO",
+      "source": {
+        "label": "MenuGestionePCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AffidamentoDiretto",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "puo_modificare_cup",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "puo_modificare_importo",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ANNULLA_AFFIDAMENTO",
+      "source": {
+        "label": "MenuGestionePCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "funzione_disattivata_fino_all_acquisizione_cig",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "richiede_precedente_richiesta_cig",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "condizione_scheda_co1_non_trasmessa",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVIA_NOTIFICA",
+      "source": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "NotificaEmail",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "canale",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "evento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "NOTIFICA_A_PERSONA",
+      "source": {
+        "label": "NotificaEmail",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PersonaFisica",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "destinatario",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "NOTIFICA_A_OPERATORE",
+      "source": {
+        "label": "NotificaEmail",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "destinatario",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CRONOLOGIA",
+      "source": {
+        "label": "AffidamentoDiretto",
         "attributes": [
           {
             "name": "titolo",
@@ -711,10 +665,115 @@
         ]
       },
       "target": {
+        "label": "CronologiaPCP",
+        "attributes": [
+          {
+            "name": "id_cronologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sezione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_COMANDO",
+      "source": {
+        "label": "MenuGestionePCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "posizione_toolbar",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "TRASMETTE_SCHEDA",
+      "source": {
+        "label": "MenuGestionePCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "tipo_scheda",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "trasmissibile_solo_dopo_richiesta_cig",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "scheda_associazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FIGURA_PRESENTA_IN",
+      "source": {
         "label": "Figura",
         "attributes": [
           {
-            "name": "figura",
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Manuale",
+        "attributes": [
+          {
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -724,25 +783,19 @@
       "attributes": [
         {
           "name": "pagina",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "nota",
-          "type": "string",
+          "type": "number",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_SEZIONE",
+      "label": "PRESENTE_SU_PIATTAFORMA",
       "source": {
         "label": "AffidamentoDiretto",
         "attributes": [
           {
-            "name": "ad",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -750,10 +803,10 @@
         ]
       },
       "target": {
-        "label": "AreaQuadroEconomico",
+        "label": "Piattaforma",
         "attributes": [
           {
-            "name": "area_quadro_economico",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -762,74 +815,8 @@
       },
       "attributes": [
         {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_SEZIONE_ALLEGATI",
-      "source": {
-        "label": "AffidamentoDiretto",
-        "attributes": [
-          {
-            "name": "ad",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SezioneAllegati",
-        "attributes": [
-          {
-            "name": "sezione_allegati",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "posizione_pagina",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "GENERA_CIG",
-      "source": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "pcp",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CIG",
-        "attributes": [
-          {
-            "name": "codice_cig",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
+          "name": "accesso_previo_autenticazione",
+          "type": "boolean",
           "required": true,
           "unique": false
         }

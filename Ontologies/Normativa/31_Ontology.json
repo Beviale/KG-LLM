@@ -1,0 +1,519 @@
+{
+  "entities": [
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "oggetto_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero_gara",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "procedura_tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraGara",
+      "attributes": [
+        {
+          "name": "id_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "bandi_pubblicati",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AvvisoAggiudicazione",
+      "attributes": [
+        {
+          "name": "id_avviso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "modalita_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DecretoLegislativo",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Legge",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AggiornamentoNormativo",
+      "attributes": [
+        {
+          "name": "aggiornamento_id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CostoDelCicloDiVita",
+      "attributes": [
+        {
+          "name": "codice_ciclo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "metodo_valutazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EsternalitaAmbientale",
+      "attributes": [
+        {
+          "name": "codice_esternalita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "MetodoValutazioneCosti",
+      "attributes": [
+        {
+          "name": "codice_metodo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CabinaDiRegia",
+      "attributes": [
+        {
+          "name": "id_cabina",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo_offerta",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "ribasso_percentuale_offerta",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "congruita",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_aggiudicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERIMENTO_NORMATIVO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DecretoLegislativo",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "articolo_riferimento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICAZIONE_BANDO_AVVISO",
+      "source": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AvvisoAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "modalita_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RELAZIONE_CABINA_REGIA",
+      "source": {
+        "label": "AvvisoAggiudicazione",
+        "attributes": [
+          {
+            "name": "id_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CabinaDiRegia",
+        "attributes": [
+          {
+            "name": "id_cabina",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "nota",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_condivisione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASSOCIA_COSTI_CICLO_DI_VITA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CostoDelCicloDiVita",
+        "attributes": [
+          {
+            "name": "codice_ciclo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "metodo_di_calcolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASSOCIA_ESTERNALITA_AMBIENTALE",
+      "source": {
+        "label": "CostoDelCicloDiVita",
+        "attributes": [
+          {
+            "name": "codice_ciclo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "EsternalitaAmbientale",
+        "attributes": [
+          {
+            "name": "codice_esternalita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "valore_monetario",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DEFINISCE_METODO_VALUTAZIONE",
+      "source": {
+        "label": "MetodoValutazioneCosti",
+        "attributes": [
+          {
+            "name": "codice_metodo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CostoDelCicloDiVita",
+        "attributes": [
+          {
+            "name": "codice_ciclo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

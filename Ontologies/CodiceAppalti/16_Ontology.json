@@ -1,44 +1,27 @@
 {
   "entities": [
     {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "StazioneAppaltante",
       "attributes": [
         {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "indirizzo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "EnteConcedente",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "indirizzo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Atto",
-      "attributes": [
-        {
-          "name": "numero_atto",
+          "name": "id_stazione_appaltante",
           "type": "string",
           "unique": true,
           "required": true
@@ -52,10 +35,27 @@
       ]
     },
     {
-      "label": "Allegato",
+      "label": "EnteConcedente",
       "attributes": [
         {
-          "name": "codice_allegato",
+          "name": "id_ente_concedente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiAffidamento",
+      "attributes": [
+        {
+          "name": "id_procedura",
           "type": "string",
           "unique": true,
           "required": true
@@ -72,13 +72,19 @@
       "label": "DocumentoInizialeDiGara",
       "attributes": [
         {
-          "name": "descrizione_documento",
+          "name": "id_documento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "note",
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "pubblicazione_data",
           "type": "string",
           "unique": false,
           "required": false
@@ -89,30 +95,7 @@
       "label": "BandoDiGara",
       "attributes": [
         {
-          "name": "codice_bando",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "anno",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "InvitoAOffrire",
-      "attributes": [
-        {
-          "name": "codice_invito",
+          "name": "id_bando",
           "type": "string",
           "unique": true,
           "required": true
@@ -120,52 +103,6 @@
         {
           "name": "descrizione",
           "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "partita_iva",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "indirizzo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Appalto",
-      "attributes": [
-        {
-          "name": "oggetto",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "importo",
-          "type": "number",
           "unique": false,
           "required": false
         }
@@ -181,14 +118,8 @@
           "required": true
         },
         {
-          "name": "valore_offerta",
+          "name": "periodo_di_validita_offerta_giorni",
           "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_presentazione",
-          "type": "string",
           "unique": false,
           "required": false
         }
@@ -204,8 +135,14 @@
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "stato",
           "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "periodo_di_validita_offerta_giorni",
+          "type": "number",
           "unique": false,
           "required": false
         }
@@ -221,30 +158,7 @@
           "required": true
         },
         {
-          "name": "oggetto",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "EsecuzioneContratto",
-      "attributes": [
-        {
-          "name": "id_esecuzione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "data_inizio",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "motivazione",
+          "name": "riferimento_articolo",
           "type": "string",
           "unique": false,
           "required": false
@@ -267,44 +181,16 @@
           "required": false
         }
       ]
-    },
-    {
-      "label": "ProceduraDiAffidamento",
-      "attributes": [
-        {
-          "name": "codice_procedura",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OrganoValutazione",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
     }
   ],
   "relations": [
     {
-      "label": "DECIDE_DI_CONTRARRE",
+      "label": "DECISIONE_DI_CONTRARRE_ADOTTATA",
       "source": {
         "label": "StazioneAppaltante",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "id_stazione_appaltante",
             "type": "string",
             "unique": true,
             "required": true
@@ -312,49 +198,10 @@
         ]
       },
       "target": {
-        "label": "Atto",
+        "label": "ProceduraDiAffidamento",
         "attributes": [
           {
-            "name": "numero_atto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "oggetto_decisione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "data_decisione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INDIVIDUA_ELEMENTI_CONTRATTO",
-      "source": {
-        "label": "Atto",
-        "attributes": [
-          {
-            "name": "numero_atto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Appalto",
-        "attributes": [
-          {
-            "name": "oggetto",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -369,19 +216,13 @@
           "unique": false
         },
         {
-          "name": "importo",
-          "type": "number",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "contraente_denominazione",
+          "name": "criteri_di_selezione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         },
         {
-          "name": "ragioni_scelta",
+          "name": "atto_di_contrarre",
           "type": "string",
           "required": false,
           "unique": false
@@ -389,12 +230,12 @@
       ]
     },
     {
-      "label": "PUBBLICAZIONE_DOCUMENTI_GARA",
+      "label": "PUBBLICAZIONE_DOCUMENTI_INIZIALI",
       "source": {
         "label": "StazioneAppaltante",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "id_stazione_appaltante",
             "type": "string",
             "unique": true,
             "required": true
@@ -405,7 +246,7 @@
         "label": "DocumentoInizialeDiGara",
         "attributes": [
           {
-            "name": "descrizione_documento",
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -414,52 +255,7 @@
       },
       "attributes": [
         {
-          "name": "descrizione_documento",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "data_pubblicazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TERMINE_TRA_APPROVAZIONE_E_BANDO",
-      "source": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "codice_allegato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "BandoDiGara",
-        "attributes": [
-          {
-            "name": "codice_bando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "termine_massimo",
-          "type": "number",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "unità_termine",
+          "name": "termine_pubblicazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -469,10 +265,10 @@
     {
       "label": "PUBBLICAZIONE_BANDO_O_INVITO",
       "source": {
-        "label": "StazioneAppaltante",
+        "label": "ProceduraDiAffidamento",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -483,7 +279,7 @@
         "label": "BandoDiGara",
         "attributes": [
           {
-            "name": "codice_bando",
+            "name": "id_bando",
             "type": "string",
             "unique": true,
             "required": true
@@ -492,7 +288,7 @@
       },
       "attributes": [
         {
-          "name": "data_pubblicazione",
+          "name": "termine_massimo",
           "type": "string",
           "required": false,
           "unique": false
@@ -500,12 +296,12 @@
       ]
     },
     {
-      "label": "INVIO_INVITI_A_OFFERIRE",
+      "label": "VALIDITA_OFFERTA",
       "source": {
-        "label": "StazioneAppaltante",
+        "label": "Offerta",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "id_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -513,10 +309,10 @@
         ]
       },
       "target": {
-        "label": "InvitoAOffrire",
+        "label": "ProceduraDiAffidamento",
         "attributes": [
           {
-            "name": "codice_invito",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -525,20 +321,20 @@
       },
       "attributes": [
         {
-          "name": "data_invio",
-          "type": "string",
+          "name": "periodo_di_validita_offerta_giorni",
+          "type": "number",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "PRESENTATA_OFFERTA",
+      "label": "AGGIUDICAZIONE",
       "source": {
-        "label": "OperatoreEconomico",
+        "label": "Aggiudicazione",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "id_aggiudicazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -558,83 +354,20 @@
       },
       "attributes": [
         {
-          "name": "id_offerta",
-          "type": "string",
+          "name": "non_anomala",
+          "type": "boolean",
           "required": true,
-          "unique": false
-        },
-        {
-          "name": "appalto_oggetto",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "valore_offerta",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "data_presentazione",
-          "type": "string",
-          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "AGGIUDICATO_A",
+      "label": "CONTRATTO_STIPULATO",
       "source": {
-        "label": "OperatoreEconomico",
+        "label": "Aggiudicazione",
         "attributes": [
           {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Appalto",
-        "attributes": [
-          {
-            "name": "oggetto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "id_aggiudicazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "data_aggiudicazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "criteri_di_aggiudicazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "STIPULAZIONE_CONTRATTO",
-      "source": {
-        "label": "Appalto",
-        "attributes": [
-          {
-            "name": "oggetto",
+            "name": "id_aggiudicazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -656,50 +389,11 @@
         {
           "name": "riferimento_articolo",
           "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "data_stipula",
-          "type": "string",
           "required": false,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INIZIA_ESECUZIONE",
-      "source": {
-        "label": "Contratto",
-        "attributes": [
-          {
-            "name": "id_contratto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "EsecuzioneContratto",
-        "attributes": [
-          {
-            "name": "id_esecuzione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_inizio",
-          "type": "string",
-          "required": true,
-          "unique": false
         },
         {
-          "name": "motivazione_urgente",
+          "name": "stato_efficacia",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -707,7 +401,7 @@
       ]
     },
     {
-      "label": "CONTENZIOSO_IMPACTS_PROCURA",
+      "label": "PENDENZA_CONTENZIOSO",
       "source": {
         "label": "Contenzioso",
         "attributes": [
@@ -723,7 +417,7 @@
         "label": "ProceduraDiAffidamento",
         "attributes": [
           {
-            "name": "codice_procedura",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -732,13 +426,7 @@
       },
       "attributes": [
         {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "impatto_sospensione",
+          "name": "sospensione_per_contenzioso",
           "type": "boolean",
           "required": false,
           "unique": false

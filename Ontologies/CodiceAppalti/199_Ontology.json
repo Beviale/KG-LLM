@@ -1,0 +1,817 @@
+{
+  "entities": [
+    {
+      "label": "Norma",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "EnteConcedente",
+      "attributes": [
+        {
+          "name": "id_ente_concedente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Bando",
+      "attributes": [
+        {
+          "name": "id_bando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_bando",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_min_concorrenti",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_max_concorrenti",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Gara",
+      "attributes": [
+        {
+          "name": "id_gara",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_gara",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "id_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_prestazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "id_operatore_economico",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RaggruppamentoTemporaneo",
+      "attributes": [
+        {
+          "name": "id_raggruppamento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_raggruppamento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Consorzio",
+      "attributes": [
+        {
+          "name": "id_consorzio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Associazione",
+      "attributes": [
+        {
+          "name": "id_associazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ImpreseCollegate",
+      "attributes": [
+        {
+          "name": "id_imprese_collegate",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RequisitoProfessionale",
+      "attributes": [
+        {
+          "name": "id_requisito_professionale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RequisitoFinanziario",
+      "attributes": [
+        {
+          "name": "id_requisito_finanziario",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RisorseFinanziarie",
+      "attributes": [
+        {
+          "name": "id_risorse_finanziare",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "provenienza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Prefinanziamento",
+      "attributes": [
+        {
+          "name": "id_prefinanziamento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "importo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Varianti",
+      "attributes": [
+        {
+          "name": "id_variante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore_tecnico",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "valore_estetico",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "LibroII",
+      "attributes": [
+        {
+          "name": "id_libro2",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "LibroIII",
+      "attributes": [
+        {
+          "name": "id_libro3",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SettoreSpeciale",
+      "attributes": [
+        {
+          "name": "id_settore_speciale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SistemaQualificazione",
+      "attributes": [
+        {
+          "name": "id_sistema_qualificazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ContraenteGenerale",
+      "attributes": [
+        {
+          "name": "id_contraente_generale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "INVITARE_OPERATORI_ECONOMICI",
+      "source": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "id_ente_concedente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "criteri_selezione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "bando_riferimento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo_offerta",
+          "type": "number",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_aggiudicazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "criterio_di_aggiudicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "POSSESSO_REQUISITI_PROFESSIONALI",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RequisitoProfessionale",
+        "attributes": [
+          {
+            "name": "id_requisito_professionale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "POSSESSO_REQUISITI_FINANZIARI",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RequisitoFinanziario",
+        "attributes": [
+          {
+            "name": "id_requisito_finanziario",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISPONIBILE_RISORSE_FINANZIARIE",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "id_operatore_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RisorseFinanziarie",
+        "attributes": [
+          {
+            "name": "id_risorse_finanziare",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo_proposto",
+          "type": "number",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "proporzione_operazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "NON_CONCORRE_CON_IMPRESE_COLLEGATE",
+      "source": {
+        "label": "ImpreseCollegate",
+        "attributes": [
+          {
+            "name": "id_imprese_collegate",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "id_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PARTECIPA_IN_ASSOCIAZIONE",
+      "source": {
+        "label": "ContraenteGenerale",
+        "attributes": [
+          {
+            "name": "id_contraente_generale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Associazione",
+        "attributes": [
+          {
+            "name": "id_associazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PARTECIPA_IN_CONSORZIO",
+      "source": {
+        "label": "ContraenteGenerale",
+        "attributes": [
+          {
+            "name": "id_contraente_generale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Consorzio",
+        "attributes": [
+          {
+            "name": "id_consorzio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PARTECIPA_NEL_RAGGRUPPAMENTO_TEMPORANEO",
+      "source": {
+        "label": "ContraenteGenerale",
+        "attributes": [
+          {
+            "name": "id_contraente_generale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RaggruppamentoTemporaneo",
+        "attributes": [
+          {
+            "name": "id_raggruppamento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISCIPLINATI_DA_LIBRO_III",
+      "source": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "id_ente_concedente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "LibroIII",
+        "attributes": [
+          {
+            "name": "id_libro3",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISCIPLINATI_DA_LIBRO_II",
+      "source": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "id_ente_concedente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "LibroII",
+        "attributes": [
+          {
+            "name": "id_libro2",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISCIPLINATI_DA_SETTORI_SPECIALI",
+      "source": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "id_ente_concedente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SettoreSpeciale",
+        "attributes": [
+          {
+            "name": "id_settore_speciale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PARTECIPA_AL_SISTEMA_DI_QUALIFICAZIONE",
+      "source": {
+        "label": "ContraenteGenerale",
+        "attributes": [
+          {
+            "name": "id_contraente_generale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SistemaQualificazione",
+        "attributes": [
+          {
+            "name": "id_sistema_qualificazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

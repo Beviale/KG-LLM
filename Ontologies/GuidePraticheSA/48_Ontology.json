@@ -1,10 +1,10 @@
 {
   "entities": [
     {
-      "label": "DocumentoEsito",
+      "label": "Esito",
       "attributes": [
         {
-          "name": "nome",
+          "name": "nome_esito",
           "type": "string",
           "unique": true,
           "required": true
@@ -18,62 +18,16 @@
       ]
     },
     {
-      "label": "Comando",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ambito",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Offerta",
-      "attributes": [
-        {
-          "name": "registro",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "fornitore",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_ora_ricezione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
       "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "ragione_sociale",
+          "name": "codice_fiscale",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "codice_fiscale",
+          "name": "ragione_sociale",
           "type": "string",
           "unique": false,
           "required": false
@@ -87,22 +41,28 @@
       ]
     },
     {
-      "label": "Lotto",
+      "label": "Offerta",
       "attributes": [
         {
-          "name": "numero_lotto",
+          "name": "registro_di_sistema_offerta",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "cig",
+          "name": "data_ora_ricezione",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "descrizione",
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "motivazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -110,16 +70,62 @@
       ]
     },
     {
-      "label": "EsitoValutazione",
+      "label": "Lotto",
       "attributes": [
         {
-          "name": "nome",
+          "name": "cig",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
+          "name": "numero_del_lotto",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
           "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_offerte",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraGara",
+      "attributes": [
+        {
+          "name": "tipo_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Valutazione",
+      "attributes": [
+        {
+          "name": "nome_valutazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "fase",
           "type": "string",
           "unique": false,
           "required": false
@@ -130,19 +136,13 @@
       "label": "Documento",
       "attributes": [
         {
-          "name": "nome",
+          "name": "nome_documento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "esito_firma",
+          "name": "conformita",
           "type": "string",
           "unique": false,
           "required": false
@@ -150,16 +150,16 @@
       ]
     },
     {
-      "label": "FormaPartecipazione",
+      "label": "Comando",
       "attributes": [
         {
-          "name": "tipo",
+          "name": "nome_comando",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "mandataria_codice_fiscale",
+          "name": "posizione_toolbar",
           "type": "string",
           "unique": false,
           "required": false
@@ -170,20 +170,71 @@
       "label": "Comunicazione",
       "attributes": [
         {
-          "name": "tipo",
+          "name": "tipo_comunicazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "contenuto",
-          "type": "string",
+          "name": "massiva",
+          "type": "boolean",
           "unique": false,
           "required": false
         },
         {
-          "name": "invio_massivo",
-          "type": "boolean",
+          "name": "testo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Commissione",
+      "attributes": [
+        {
+          "name": "commissione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "presidente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "nome_ruolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RTI",
+      "attributes": [
+        {
+          "name": "mandataria_codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "mandataria_ragione_sociale",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -193,13 +244,47 @@
       "label": "Verbale",
       "attributes": [
         {
-          "name": "tipo",
+          "name": "tipo_verbale",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "formato",
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "nome_file",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "firma_digitale_valida",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Campionatura",
+      "attributes": [
+        {
+          "name": "tipo_campionatura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_ricezione",
           "type": "string",
           "unique": false,
           "required": false
@@ -209,12 +294,45 @@
   ],
   "relations": [
     {
+      "label": "HA_ESITO",
+      "source": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "registro_di_sistema_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Esito",
+        "attributes": [
+          {
+            "name": "nome_esito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
       "label": "PRESENTATA_DA",
       "source": {
         "label": "Offerta",
         "attributes": [
           {
-            "name": "registro",
+            "name": "registro_di_sistema_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -225,7 +343,7 @@
         "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "ragione_sociale",
+            "name": "codice_fiscale",
             "type": "string",
             "unique": true,
             "required": true
@@ -234,7 +352,7 @@
       },
       "attributes": [
         {
-          "name": "data_ora_ricezione",
+          "name": "forma_partecipazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -247,7 +365,7 @@
         "label": "Offerta",
         "attributes": [
           {
-            "name": "registro",
+            "name": "registro_di_sistema_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -258,7 +376,7 @@
         "label": "Lotto",
         "attributes": [
           {
-            "name": "numero_lotto",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -267,7 +385,40 @@
       },
       "attributes": [
         {
-          "name": "cig",
+          "name": "numero_del_lotto",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPARTIENE_A",
+      "source": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "tipo_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -275,12 +426,12 @@
       ]
     },
     {
-      "label": "HA_DOCUMENTO",
+      "label": "SOTTOPOSTA_A",
       "source": {
         "label": "Offerta",
         "attributes": [
           {
-            "name": "registro",
+            "name": "registro_di_sistema_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -288,10 +439,10 @@
         ]
       },
       "target": {
-        "label": "Documento",
+        "label": "Valutazione",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_valutazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -300,7 +451,7 @@
       },
       "attributes": [
         {
-          "name": "categoria",
+          "name": "fase",
           "type": "string",
           "required": false,
           "unique": false
@@ -308,12 +459,12 @@
       ]
     },
     {
-      "label": "HA_VALUTAZIONE_DOCUMENTO",
+      "label": "VALUTA_DOCUMENTO",
       "source": {
         "label": "Documento",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -321,10 +472,10 @@
         ]
       },
       "target": {
-        "label": "DocumentoEsito",
+        "label": "Esito",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_esito",
             "type": "string",
             "unique": true,
             "required": true
@@ -333,7 +484,7 @@
       },
       "attributes": [
         {
-          "name": "motivazione",
+          "name": "commento",
           "type": "string",
           "required": false,
           "unique": false
@@ -341,23 +492,23 @@
       ]
     },
     {
-      "label": "HA_ESITO",
+      "label": "RIFERITO_A",
       "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "nome_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "Offerta",
         "attributes": [
           {
-            "name": "registro",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "EsitoValutazione",
-        "attributes": [
-          {
-            "name": "nome",
+            "name": "registro_di_sistema_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -366,7 +517,7 @@
       },
       "attributes": [
         {
-          "name": "motivazione",
+          "name": "campo_commenti",
           "type": "string",
           "required": false,
           "unique": false
@@ -374,12 +525,12 @@
       ]
     },
     {
-      "label": "ESEGUE_SU",
+      "label": "COMANDO_AGISCE_SU",
       "source": {
         "label": "Comando",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_comando",
             "type": "string",
             "unique": true,
             "required": true
@@ -390,7 +541,7 @@
         "label": "Offerta",
         "attributes": [
           {
-            "name": "registro",
+            "name": "registro_di_sistema_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -399,7 +550,7 @@
       },
       "attributes": [
         {
-          "name": "toolbar_posizione",
+          "name": "azione",
           "type": "string",
           "required": false,
           "unique": false
@@ -407,12 +558,12 @@
       ]
     },
     {
-      "label": "PARTECIPA_IN",
+      "label": "INVIA_A",
       "source": {
-        "label": "OperatoreEconomico",
+        "label": "Comunicazione",
         "attributes": [
           {
-            "name": "ragione_sociale",
+            "name": "tipo_comunicazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -420,10 +571,49 @@
         ]
       },
       "target": {
-        "label": "Offerta",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "registro",
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "massiva",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "testo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_MANDATARIA",
+      "source": {
+        "label": "RTI",
+        "attributes": [
+          {
+            "name": "mandataria_codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
             "type": "string",
             "unique": true,
             "required": true
@@ -440,23 +630,23 @@
       ]
     },
     {
-      "label": "COMUNICAZIONE_A",
+      "label": "PARTECIPA_IN_RTI",
       "source": {
-        "label": "Comunicazione",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "ragione_sociale",
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RTI",
+        "attributes": [
+          {
+            "name": "mandataria_codice_fiscale",
             "type": "string",
             "unique": true,
             "required": true
@@ -465,26 +655,20 @@
       },
       "attributes": [
         {
-          "name": "modalita_invio",
+          "name": "ruolo",
           "type": "string",
           "required": false,
           "unique": false
-        },
-        {
-          "name": "invio_massivo",
-          "type": "boolean",
-          "required": false,
-          "unique": false
         }
       ]
     },
     {
-      "label": "CREA_VERBALE",
+      "label": "VERBALE_DI",
       "source": {
-        "label": "Comando",
+        "label": "Verbale",
         "attributes": [
           {
-            "name": "nome",
+            "name": "tipo_verbale",
             "type": "string",
             "unique": true,
             "required": true
@@ -492,10 +676,10 @@
         ]
       },
       "target": {
-        "label": "Verbale",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "tipo",
+            "name": "tipo_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -504,20 +688,20 @@
       },
       "attributes": [
         {
-          "name": "automatico",
-          "type": "boolean",
-          "required": false,
+          "name": "tipo_verbale",
+          "type": "string",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "SEGNALA_RICEZIONE_CAMPIONI",
+      "label": "RICEZIONE_CAMPIONI",
       "source": {
-        "label": "Lotto",
+        "label": "Offerta",
         "attributes": [
           {
-            "name": "numero_lotto",
+            "name": "registro_di_sistema_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -525,10 +709,10 @@
         ]
       },
       "target": {
-        "label": "Offerta",
+        "label": "Lotto",
         "attributes": [
           {
-            "name": "registro",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -545,12 +729,78 @@
       ]
     },
     {
-      "label": "ESTRAE_AUSILIARIE_REPORT",
+      "label": "COMPOSIZIONE_COMMISSIONE",
+      "source": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "commissione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome_ruolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMANDO_GENERA_VERBALE",
       "source": {
         "label": "Comando",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Verbale",
+        "attributes": [
+          {
+            "name": "tipo_verbale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "automatico",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ALLEGATO_DI",
+      "source": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
             "type": "string",
             "unique": true,
             "required": true
@@ -561,7 +811,7 @@
         "label": "Offerta",
         "attributes": [
           {
-            "name": "registro",
+            "name": "registro_di_sistema_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -570,9 +820,9 @@
       },
       "attributes": [
         {
-          "name": "formato",
-          "type": "string",
-          "required": true,
+          "name": "firma_digitale_valida",
+          "type": "boolean",
+          "required": false,
           "unique": false
         }
       ]

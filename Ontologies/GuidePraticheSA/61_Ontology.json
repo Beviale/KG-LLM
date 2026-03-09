@@ -1,39 +1,16 @@
 {
   "entities": [
     {
-      "label": "Documento",
+      "label": "Organizzazione",
       "attributes": [
         {
-          "name": "titolo",
+          "name": "denominazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "versione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_versione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Societa",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo",
+          "name": "forma_giuridica",
           "type": "string",
           "unique": false,
           "required": false
@@ -50,7 +27,59 @@
           "required": true
         },
         {
-          "name": "funzione",
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "schedulazione_consulta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "proprietario",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_identificativo",
           "type": "string",
           "unique": false,
           "required": false
@@ -65,59 +94,9 @@
           "type": "string",
           "unique": true,
           "required": true
-        }
-      ]
-    },
-    {
-      "label": "StazioneAppaltante",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PubblicaAmministrazione",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "ResponsabileUnicoProgetto",
-      "attributes": [
-        {
-          "name": "abbreviazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ruolo",
+          "name": "acronimo",
           "type": "string",
           "unique": false,
           "required": false
@@ -128,10 +107,16 @@
       "label": "Procedura",
       "attributes": [
         {
-          "name": "tipo",
+          "name": "tipologia",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "sopra_soglia",
+          "type": "boolean",
+          "unique": false,
+          "required": false
         },
         {
           "name": "stato",
@@ -145,13 +130,13 @@
       "label": "Lotto",
       "attributes": [
         {
-          "name": "identificativo",
+          "name": "identificativo_lotto",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato",
+          "name": "stato_lotto",
           "type": "string",
           "unique": false,
           "required": false
@@ -159,7 +144,64 @@
       ]
     },
     {
-      "label": "Scheda",
+      "label": "SchedaPCP",
+      "attributes": [
+        {
+          "name": "tipo_scheda",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato_scheda",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "pubblicata",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comunicazione",
+      "attributes": [
+        {
+          "name": "tipo_comunicazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "nome_ruolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CIG",
       "attributes": [
         {
           "name": "codice",
@@ -168,12 +210,6 @@
           "required": true
         },
         {
-          "name": "tipo_scheda",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
           "name": "stato",
           "type": "string",
           "unique": false,
@@ -182,16 +218,16 @@
       ]
     },
     {
-      "label": "Comando",
+      "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "nome",
+          "name": "denominazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "menu_path",
+          "name": "ruolo",
           "type": "string",
           "unique": false,
           "required": false
@@ -199,32 +235,10 @@
       ]
     },
     {
-      "label": "Sezione",
+      "label": "Funzionalita",
       "attributes": [
         {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "StatoScheda",
-      "attributes": [
-        {
-          "name": "valore",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Servizio",
-      "attributes": [
-        {
-          "name": "nome",
+          "name": "nome_funzionalita",
           "type": "string",
           "unique": true,
           "required": true
@@ -240,12 +254,12 @@
   ],
   "relations": [
     {
-      "label": "DI_PROPRIETA_DI",
+      "label": "TRASMETTE_A",
       "source": {
-        "label": "Documento",
+        "label": "StazioneAppaltante",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -253,7 +267,7 @@
         ]
       },
       "target": {
-        "label": "Societa",
+        "label": "Autorita",
         "attributes": [
           {
             "name": "nome",
@@ -265,7 +279,7 @@
       },
       "attributes": [
         {
-          "name": "restrizione_divulgazione",
+          "name": "canale",
           "type": "string",
           "required": true,
           "unique": false
@@ -273,8 +287,19 @@
       ]
     },
     {
-      "label": "GESTITO_DA",
+      "label": "TRASMETTE_VIA",
       "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "Piattaforma",
         "attributes": [
           {
@@ -285,21 +310,17 @@
           }
         ]
       },
-      "target": {
-        "label": "Societa",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
     },
     {
-      "label": "TRASMETTE_A",
+      "label": "INVIA_SCHEDA",
       "source": {
         "label": "Piattaforma",
         "attributes": [
@@ -324,32 +345,26 @@
       },
       "attributes": [
         {
-          "name": "oggetto",
+          "name": "tipo_scheda",
           "type": "string",
           "required": true,
           "unique": false
         },
         {
-          "name": "modalita",
+          "name": "frequenza_consulta",
           "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "irrevocabile",
-          "type": "boolean",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "UTILIZZA",
+      "label": "PUBBLICA_AVVISO",
       "source": {
         "label": "StazioneAppaltante",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -357,10 +372,10 @@
         ]
       },
       "target": {
-        "label": "Piattaforma",
+        "label": "SchedaPCP",
         "attributes": [
           {
-            "name": "nome",
+            "name": "tipo_scheda",
             "type": "string",
             "unique": true,
             "required": true
@@ -369,20 +384,20 @@
       },
       "attributes": [
         {
-          "name": "finalita",
-          "type": "string",
+          "name": "irreversibile",
+          "type": "boolean",
           "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "COMPOSTA_DA",
+      "label": "INCLUDE_LOTTO",
       "source": {
-        "label": "Procedura",
+        "label": "SchedaPCP",
         "attributes": [
           {
-            "name": "tipo",
+            "name": "tipo_scheda",
             "type": "string",
             "unique": true,
             "required": true
@@ -393,7 +408,7 @@
         "label": "Lotto",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "identificativo_lotto",
             "type": "string",
             "unique": true,
             "required": true
@@ -402,7 +417,40 @@
       },
       "attributes": [
         {
-          "name": "quantita_lotti",
+          "name": "incluso",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMPRENDE",
+      "source": {
+        "label": "Procedura",
+        "attributes": [
+          {
+            "name": "tipologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "identificativo_lotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "numero_lotti",
           "type": "number",
           "required": false,
           "unique": false
@@ -410,12 +458,45 @@
       ]
     },
     {
-      "label": "CORRISPONDE_A",
+      "label": "HA_CIG",
       "source": {
-        "label": "Scheda",
+        "label": "Procedura",
+        "attributes": [
+          {
+            "name": "tipologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CIG",
         "attributes": [
           {
             "name": "codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERISCE_A",
+      "source": {
+        "label": "Comunicazione",
+        "attributes": [
+          {
+            "name": "tipo_comunicazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -426,7 +507,7 @@
         "label": "Procedura",
         "attributes": [
           {
-            "name": "tipo",
+            "name": "tipologia",
             "type": "string",
             "unique": true,
             "required": true
@@ -435,9 +516,9 @@
       },
       "attributes": [
         {
-          "name": "coerenza",
+          "name": "data",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
@@ -445,10 +526,10 @@
     {
       "label": "RESPONSABILE_DI",
       "source": {
-        "label": "ResponsabileUnicoProgetto",
+        "label": "Ruolo",
         "attributes": [
           {
-            "name": "abbreviazione",
+            "name": "nome_ruolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -459,7 +540,7 @@
         "label": "Procedura",
         "attributes": [
           {
-            "name": "tipo",
+            "name": "tipologia",
             "type": "string",
             "unique": true,
             "required": true
@@ -468,7 +549,7 @@
       },
       "attributes": [
         {
-          "name": "obbligatoria",
+          "name": "assegnato",
           "type": "boolean",
           "required": true,
           "unique": false
@@ -476,12 +557,12 @@
       ]
     },
     {
-      "label": "DISPONIBILE_IN",
+      "label": "REVOGA_PROCEDURA",
       "source": {
-        "label": "Comando",
+        "label": "Ruolo",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_ruolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -489,6 +570,94 @@
         ]
       },
       "target": {
+        "label": "Procedura",
+        "attributes": [
+          {
+            "name": "tipologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_revoca",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "REVOGA_LOTTO",
+      "source": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome_ruolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "identificativo_lotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_revoca",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_FUNZIONALITA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Funzionalita",
+        "attributes": [
+          {
+            "name": "nome_funzionalita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "abilitata",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GENERA_DOCUMENTO",
+      "source": {
         "label": "Piattaforma",
         "attributes": [
           {
@@ -499,9 +668,20 @@
           }
         ]
       },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "accesso",
+          "name": "azione",
           "type": "string",
           "required": true,
           "unique": false
@@ -509,12 +689,12 @@
       ]
     },
     {
-      "label": "INNESCA_TRASMISSIONE",
+      "label": "PROPRIETA_DI",
       "source": {
-        "label": "Comando",
+        "label": "Documento",
         "attributes": [
           {
-            "name": "nome",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -522,10 +702,10 @@
         ]
       },
       "target": {
-        "label": "Scheda",
+        "label": "Organizzazione",
         "attributes": [
           {
-            "name": "codice",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -534,86 +714,20 @@
       },
       "attributes": [
         {
-          "name": "reversibile",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONTIENE",
-      "source": {
-        "label": "Sezione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Scheda",
-        "attributes": [
-          {
-            "name": "codice",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "posizione_tabella",
+          "name": "proprietario",
           "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SCHEDULA",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Servizio",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "intervallo_ore",
-          "type": "number",
           "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_STATO",
+      "label": "AGGIUDICATARIO_DI",
       "source": {
-        "label": "Scheda",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "codice",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -621,10 +735,10 @@
         ]
       },
       "target": {
-        "label": "StatoScheda",
+        "label": "SchedaPCP",
         "attributes": [
           {
-            "name": "valore",
+            "name": "tipo_scheda",
             "type": "string",
             "unique": true,
             "required": true
@@ -633,7 +747,7 @@
       },
       "attributes": [
         {
-          "name": "data_stato",
+          "name": "valore_aggiudicazione",
           "type": "string",
           "required": false,
           "unique": false

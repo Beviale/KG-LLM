@@ -1,16 +1,16 @@
 {
   "entities": [
     {
-      "label": "Procedura",
+      "label": "ProceduraDiGara",
       "attributes": [
         {
-          "name": "titolo_documento",
+          "name": "cup",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo_gara",
+          "name": "titolo_documento",
           "type": "string",
           "unique": false,
           "required": false
@@ -22,13 +22,31 @@
           "required": false
         },
         {
+          "name": "cig",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_gara",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
           "name": "iva",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "numero_massimo_lotti_offerti",
+          "name": "id_appalto_anac",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo",
           "type": "number",
           "unique": false,
           "required": false
@@ -36,33 +54,10 @@
       ]
     },
     {
-      "label": "Intestazione",
+      "label": "Sezione",
       "attributes": [
         {
-          "name": "scheda_pcp",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato_pcp",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "fascicolo_sistema",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "StatoPCP",
-      "attributes": [
-        {
-          "name": "stato",
+          "name": "nome_sezione",
           "type": "string",
           "unique": true,
           "required": true
@@ -76,28 +71,16 @@
       ]
     },
     {
-      "label": "Testata",
+      "label": "Piattaforma",
       "attributes": [
         {
-          "name": "oggetto",
+          "name": "nome_piattaforma",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "atto_di_indizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_indizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cup",
+          "name": "versione",
           "type": "string",
           "unique": false,
           "required": false
@@ -105,16 +88,16 @@
       ]
     },
     {
-      "label": "EnteProponente",
+      "label": "PCP",
       "attributes": [
         {
-          "name": "ente_proponente",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "rup_proponente",
+          "name": "regole_tecniche",
           "type": "string",
           "unique": false,
           "required": false
@@ -122,16 +105,68 @@
       ]
     },
     {
-      "label": "EnteAppaltante",
+      "label": "SchedaPCP",
       "attributes": [
         {
-          "name": "ente_appaltante",
+          "name": "codice_scheda",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "rup_appaltante",
+          "name": "tipologia_procedura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "settore",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "regime",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo_riferimento",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StatoPCP",
+      "attributes": [
+        {
+          "name": "stato_pcp",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ente",
+      "attributes": [
+        {
+          "name": "nome_ente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_ente",
           "type": "string",
           "unique": false,
           "required": false
@@ -148,7 +183,7 @@
           "required": true
         },
         {
-          "name": "autenticazione_forte",
+          "name": "autenticato",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -156,67 +191,16 @@
       ]
     },
     {
-      "label": "SchedaPCP",
+      "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "codice_scheda",
+          "name": "identificativo_oe",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione_scheda",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CIG",
-      "attributes": [
-        {
-          "name": "cig",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato_cig",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CUP",
-      "attributes": [
-        {
-          "name": "cup",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "note",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CPV",
-      "attributes": [
-        {
-          "name": "codice_cpv",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione_cpv",
+          "name": "ragione_sociale",
           "type": "string",
           "unique": false,
           "required": false
@@ -239,7 +223,7 @@
           "required": false
         },
         {
-          "name": "categoria_documento",
+          "name": "categoria",
           "type": "string",
           "unique": false,
           "required": false
@@ -247,16 +231,73 @@
       ]
     },
     {
-      "label": "Importo",
+      "label": "CPV",
       "attributes": [
         {
-          "name": "importo",
-          "type": "number",
+          "name": "codice_cpv",
+          "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "soglia",
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "LuogoIstat",
+      "attributes": [
+        {
+          "name": "codice_istat",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Termine",
+      "attributes": [
+        {
+          "name": "tipo_termine",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CriterioAnomalia",
+      "attributes": [
+        {
+          "name": "criterio_anomalia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "calcolo_anomalia",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "metodo_di_calcolo",
           "type": "string",
           "unique": false,
           "required": false
@@ -273,99 +314,14 @@
           "required": true
         },
         {
-          "name": "valore_parametro",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Termini",
-      "attributes": [
-        {
-          "name": "termine_presentazione_risposte",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "termine_richiesta_quesiti",
+          "name": "valore",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "termine_risposta_quesiti",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Seduta",
-      "attributes": [
-        {
-          "name": "tipo_seduta",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione_seduta",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CriteriAnomalia",
-      "attributes": [
-        {
-          "name": "calcolo_anomalia",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "sconto_di_riferimento",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "MetodoDiCalcolo",
-      "attributes": [
-        {
-          "name": "metodo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "riferimento_allegato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OffertaAnomala",
-      "attributes": [
-        {
-          "name": "azione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione_azione",
-          "type": "string",
+          "name": "modificabile",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -375,30 +331,30 @@
       "label": "Lotto",
       "attributes": [
         {
-          "name": "numero_lotto",
-          "type": "number",
+          "name": "identificativo_lotto",
+          "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "specializzazione_parametri",
-          "type": "string",
+          "name": "importo_lotto",
+          "type": "number",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "Interoperabilita",
+      "label": "TED",
       "attributes": [
         {
-          "name": "id_appalto_anac",
+          "name": "identificativo_ted",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato_integrazione",
+          "name": "identificativo_ted_field",
           "type": "string",
           "unique": false,
           "required": false
@@ -406,7 +362,7 @@
       ]
     },
     {
-      "label": "InformazioniPNRRPNC",
+      "label": "PnrPnc",
       "attributes": [
         {
           "name": "tipo_piano",
@@ -419,18 +375,30 @@
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "quote",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "misure_premiali",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "HA_INTESTAZIONE",
+      "label": "HA_SEZIONE",
       "source": {
-        "label": "Procedura",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "cup",
             "type": "string",
             "unique": true,
             "required": true
@@ -438,10 +406,76 @@
         ]
       },
       "target": {
-        "label": "Intestazione",
+        "label": "Sezione",
         "attributes": [
           {
-            "name": "scheda_pcp",
+            "name": "nome_sezione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ordine",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICATA_SU",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "cup",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome_piattaforma",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INTEROPERA_CON",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "cup",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -458,144 +492,12 @@
       ]
     },
     {
-      "label": "HA_TESTATA",
-      "source": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Testata",
-        "attributes": [
-          {
-            "name": "oggetto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "precompilati_da_wizard",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_ENTE_PROPONENTE",
-      "source": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "EnteProponente",
-        "attributes": [
-          {
-            "name": "ente_proponente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "scopo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_ENTE_APPALTANTE",
-      "source": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "EnteAppaltante",
-        "attributes": [
-          {
-            "name": "ente_appaltante",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INDICA_RUP",
-      "source": {
-        "label": "EnteAppaltante",
-        "attributes": [
-          {
-            "name": "ente_appaltante",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RUP",
-        "attributes": [
-          {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "deve_autenticarsi",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
       "label": "HA_SCHEDA_PCP",
       "source": {
-        "label": "Intestazione",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "scheda_pcp",
+            "name": "cup",
             "type": "string",
             "unique": true,
             "required": true
@@ -615,7 +517,7 @@
       },
       "attributes": [
         {
-          "name": "combinazione_tipologia_settore_regime_importo",
+          "name": "codice_trasmissione",
           "type": "string",
           "required": false,
           "unique": false
@@ -625,10 +527,10 @@
     {
       "label": "HA_STATO_PCP",
       "source": {
-        "label": "Intestazione",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "scheda_pcp",
+            "name": "cup",
             "type": "string",
             "unique": true,
             "required": true
@@ -639,7 +541,7 @@
         "label": "StatoPCP",
         "attributes": [
           {
-            "name": "stato",
+            "name": "stato_pcp",
             "type": "string",
             "unique": true,
             "required": true
@@ -648,7 +550,7 @@
       },
       "attributes": [
         {
-          "name": "impatto_sui_comandi",
+          "name": "data_aggiornamento",
           "type": "string",
           "required": false,
           "unique": false
@@ -656,12 +558,12 @@
       ]
     },
     {
-      "label": "PROCEDURA_HAS_CIG",
+      "label": "PUBBLICA",
       "source": {
-        "label": "Procedura",
+        "label": "Ente",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "nome_ente",
             "type": "string",
             "unique": true,
             "required": true
@@ -669,40 +571,7 @@
         ]
       },
       "target": {
-        "label": "CIG",
-        "attributes": [
-          {
-            "name": "cig",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "editable",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PROCEDURA_HAS_CUP",
-      "source": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CUP",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
             "name": "cup",
@@ -714,7 +583,79 @@
       },
       "attributes": [
         {
-          "name": "presente_in_testata",
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ENTE_HA_RUP",
+      "source": {
+        "label": "Ente",
+        "attributes": [
+          {
+            "name": "nome_ente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RUP",
+        "attributes": [
+          {
+            "name": "nominativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROCEDURA_HA_RUP",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "cup",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RUP",
+        "attributes": [
+          {
+            "name": "nominativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_rup",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "deve_autenticarsi",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -722,12 +663,45 @@
       ]
     },
     {
-      "label": "PROCEDURA_RICHIEDE_CPV",
+      "label": "RUP_AUTENTICATO_SU",
       "source": {
-        "label": "Procedura",
+        "label": "RUP",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "nominativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome_piattaforma",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "autenticazione_forte",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROCEDURA_HA_CPV",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "cup",
             "type": "string",
             "unique": true,
             "required": true
@@ -747,20 +721,53 @@
       },
       "attributes": [
         {
-          "name": "obbligatorio_per_dialogo_pcp",
+          "name": "obbligatorio",
           "type": "boolean",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "PROCEDURA_INCLUDES_DOCUMENTO",
+      "label": "PROCEDURA_HA_LUOGO",
       "source": {
-        "label": "Procedura",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "cup",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "LuogoIstat",
+        "attributes": [
+          {
+            "name": "codice_istat",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_localizzazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROCEDURA_HA_DOCUMENTO",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "cup",
             "type": "string",
             "unique": true,
             "required": true
@@ -780,26 +787,26 @@
       },
       "attributes": [
         {
-          "name": "ordine_visualizzazione",
-          "type": "number",
+          "name": "obbligatorio",
+          "type": "boolean",
           "required": false,
           "unique": false
         },
         {
-          "name": "modalita_caricamento",
-          "type": "string",
+          "name": "ordine",
+          "type": "number",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "PROCEDURA_HA_IMPORTO",
+      "label": "PROCEDURA_HA_TERMINE",
       "source": {
-        "label": "Procedura",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "cup",
             "type": "string",
             "unique": true,
             "required": true
@@ -807,11 +814,11 @@
         ]
       },
       "target": {
-        "label": "Importo",
+        "label": "Termine",
         "attributes": [
           {
-            "name": "importo",
-            "type": "number",
+            "name": "tipo_termine",
+            "type": "string",
             "unique": true,
             "required": true
           }
@@ -819,20 +826,59 @@
       },
       "attributes": [
         {
-          "name": "editabile_in_testata",
+          "name": "data",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROCEDURA_HA_CRITERIO_ANOMALIA",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "cup",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CriterioAnomalia",
+        "attributes": [
+          {
+            "name": "criterio_anomalia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "calcolo_anomalia",
           "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "metodo",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "TESTATA_HA_PARAMETRO",
+      "label": "PROCEDURA_HA_PARAMETRO",
       "source": {
-        "label": "Testata",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "oggetto",
+            "name": "cup",
             "type": "string",
             "unique": true,
             "required": true
@@ -852,174 +898,9 @@
       },
       "attributes": [
         {
-          "name": "modificabile_in_testata",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TESTATA_HA_TERMI",
-      "source": {
-        "label": "Testata",
-        "attributes": [
-          {
-            "name": "oggetto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Termini",
-        "attributes": [
-          {
-            "name": "termine_presentazione_risposte",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "verifica_sequenza_date",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TERMINI_PREVEDE_SEDUTA",
-      "source": {
-        "label": "Termini",
-        "attributes": [
-          {
-            "name": "termine_presentazione_risposte",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Seduta",
-        "attributes": [
-          {
-            "name": "tipo_seduta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipologia_possibile",
+          "name": "valore",
           "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TESTATA_HA_CRITERI_ANOMALIA",
-      "source": {
-        "label": "Testata",
-        "attributes": [
-          {
-            "name": "oggetto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CriteriAnomalia",
-        "attributes": [
-          {
-            "name": "calcolo_anomalia",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "abilitato",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CRITERI_USA_METODO",
-      "source": {
-        "label": "CriteriAnomalia",
-        "attributes": [
-          {
-            "name": "calcolo_anomalia",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "MetodoDiCalcolo",
-        "attributes": [
-          {
-            "name": "metodo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "condizione_di_utilizzo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CRITERI_DETERMINA_OFFERTA_ANOMALA",
-      "source": {
-        "label": "CriteriAnomalia",
-        "attributes": [
-          {
-            "name": "calcolo_anomalia",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OffertaAnomala",
-        "attributes": [
-          {
-            "name": "azione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "note_operativa",
-          "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
@@ -1027,10 +908,10 @@
     {
       "label": "PROCEDURA_HA_LOTTO",
       "source": {
-        "label": "Procedura",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "cup",
             "type": "string",
             "unique": true,
             "required": true
@@ -1041,8 +922,8 @@
         "label": "Lotto",
         "attributes": [
           {
-            "name": "numero_lotto",
-            "type": "number",
+            "name": "identificativo_lotto",
+            "type": "string",
             "unique": true,
             "required": true
           }
@@ -1058,12 +939,12 @@
       ]
     },
     {
-      "label": "PROCEDURA_HA_INTEROPERABILITA",
+      "label": "PROCEDURA_INVIATA_A_TED",
       "source": {
-        "label": "Procedura",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "cup",
             "type": "string",
             "unique": true,
             "required": true
@@ -1071,10 +952,10 @@
         ]
       },
       "target": {
-        "label": "Interoperabilita",
+        "label": "TED",
         "attributes": [
           {
-            "name": "id_appalto_anac",
+            "name": "identificativo_ted",
             "type": "string",
             "unique": true,
             "required": true
@@ -1083,7 +964,7 @@
       },
       "attributes": [
         {
-          "name": "aree_di_interscambio",
+          "name": "identificativo_ted_field",
           "type": "string",
           "required": false,
           "unique": false
@@ -1091,12 +972,12 @@
       ]
     },
     {
-      "label": "RUP_AUTENTICATO_IN_INTEROPERABILITA",
+      "label": "PROCEDURA_HA_PNRR_PNC",
       "source": {
-        "label": "RUP",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "nominativo",
+            "name": "cup",
             "type": "string",
             "unique": true,
             "required": true
@@ -1104,29 +985,7 @@
         ]
       },
       "target": {
-        "label": "Interoperabilita",
-        "attributes": [
-          {
-            "name": "id_appalto_anac",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "autenticazione_forte_richiesta",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INFORMAZIONIPNRRPNC_RIGUARDA",
-      "source": {
-        "label": "InformazioniPNRRPNC",
+        "label": "PnrPnc",
         "attributes": [
           {
             "name": "tipo_piano",
@@ -1136,20 +995,15 @@
           }
         ]
       },
-      "target": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
       "attributes": [
         {
-          "name": "validazioni_per_pnrp_pnc",
+          "name": "attivato",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "motivazione",
           "type": "string",
           "required": false,
           "unique": false

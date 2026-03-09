@@ -1,0 +1,521 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo_articolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contenuti_articolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProgettoFattibilitaTecnicoEconomica",
+      "attributes": [
+        {
+          "name": "nome_progetto_ft",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_progetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contenuti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "uso_metodi_gestione_informatica",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "lotti_suddivisone_possibile",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "barriere_architettoniche_rispetto",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "vincoli",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sostenibilita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProgettoEsecutivo",
+      "attributes": [
+        {
+          "name": "nome_progetto_es",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contenuto_definizione_elementi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "piano_manutenzione",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "coerenza_con_progetto_ft",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_realizzazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "numero_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_allegato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoIndirizzoProgettazione",
+      "attributes": [
+        {
+          "name": "id_documento_indirizzo_progettazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "responsabile_progettazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Rup",
+      "attributes": [
+        {
+          "name": "id_ru_p",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome_ru_p",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ente_responsabile",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CapitolatoInformativo",
+      "attributes": [
+        {
+          "name": "id_capitolato_informativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "responsabile_progettazione_capitolato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contenuti_capitolato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimenti_progetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CoordinatoreFlussiInformativi",
+      "attributes": [
+        {
+          "name": "id_coordinatore_flussi",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome_coordinatore",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_articolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "capitolato_associato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Normativa",
+      "attributes": [
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo_normativa",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Vincolo",
+      "attributes": [
+        {
+          "name": "tipologia_vincolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_vincolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimenti_normativi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "DEFINISCE_CONTENUTI_PROGETTO_FATTIBILITA",
+      "source": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProgettoFattibilitaTecnicoEconomica",
+        "attributes": [
+          {
+            "name": "nome_progetto_ft",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "contenuti_minimi",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDICA_REQUISITI_DOCUMENTO_INDIRIZZO_PROGETTAZIONE",
+      "source": {
+        "label": "Rup",
+        "attributes": [
+          {
+            "name": "id_ru_p",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DocumentoIndirizzoProgettazione",
+        "attributes": [
+          {
+            "name": "id_documento_indirizzo_progettazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "requisiti_documento_indirizzo_progettazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_A_NORMATIVA",
+      "source": {
+        "label": "Normativa",
+        "attributes": [
+          {
+            "name": "riferimento_normativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_riferimento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CAPITOLATO_INFORMATICO_PER_PROGETTO",
+      "source": {
+        "label": "ProgettoFattibilitaTecnicoEconomica",
+        "attributes": [
+          {
+            "name": "nome_progetto_ft",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CapitolatoInformativo",
+        "attributes": [
+          {
+            "name": "id_capitolato_informativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_capitolato_informativo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASSOCIA_VINCOLO_A_PROGETTO",
+      "source": {
+        "label": "ProgettoFattibilitaTecnicoEconomica",
+        "attributes": [
+          {
+            "name": "nome_progetto_ft",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Vincolo",
+        "attributes": [
+          {
+            "name": "tipologia_vincolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipi_vincolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COERENZA_ENTRE_PROGETTI",
+      "source": {
+        "label": "ProgettoEsecutivo",
+        "attributes": [
+          {
+            "name": "nome_progetto_es",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProgettoFattibilitaTecnicoEconomica",
+        "attributes": [
+          {
+            "name": "nome_progetto_ft",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_coerenza",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_A_ALLEGATO_I7_E_UlTERIORI",
+      "source": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DocumentoIndirizzoProgettazione",
+        "attributes": [
+          {
+            "name": "id_documento_indirizzo_progettazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_riferimento_allegato",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

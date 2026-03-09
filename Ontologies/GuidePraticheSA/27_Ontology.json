@@ -1,144 +1,6 @@
 {
   "entities": [
     {
-      "label": "Procedura",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "tipo_procedura",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "visualizza_notifiche",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Sezione",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "inizialmente_vuota",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Documento",
-      "attributes": [
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "anonimato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "versione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "RUP",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "autenticazione_forte_richiesta",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "autenticato_ultimi_30_giorni",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PI",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
       "label": "Piattaforma",
       "attributes": [
         {
@@ -156,7 +18,7 @@
       ]
     },
     {
-      "label": "PCP",
+      "label": "ANAC",
       "attributes": [
         {
           "name": "nome",
@@ -173,10 +35,10 @@
       ]
     },
     {
-      "label": "Servizio",
+      "label": "ServizioPCP",
       "attributes": [
         {
-          "name": "nome",
+          "name": "nome_servizio",
           "type": "string",
           "unique": true,
           "required": true
@@ -186,10 +48,21 @@
           "type": "boolean",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comando",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
-          "name": "tentativi_max",
-          "type": "number",
+          "name": "disponibile_menu",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -210,7 +83,7 @@
       "label": "IdAppalto",
       "attributes": [
         {
-          "name": "idappalto",
+          "name": "idappalto_anac",
           "type": "string",
           "unique": true,
           "required": true
@@ -229,10 +102,124 @@
       ]
     },
     {
-      "label": "File",
+      "label": "Procedura",
+      "attributes": [
+        {
+          "name": "numero_protocollo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato_pcp",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Sezione",
       "attributes": [
         {
           "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "vuota_in_indizione",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anonimato_oscurato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anonimato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "id_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_presentazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "necessita_auth",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "File",
+      "attributes": [
+        {
+          "name": "nome_file",
           "type": "string",
           "unique": true,
           "required": true
@@ -249,13 +236,13 @@
       "label": "Concorso",
       "attributes": [
         {
-          "name": "titolo",
+          "name": "titolo_concorso",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "fase",
+          "name": "tipo_procedura",
           "type": "string",
           "unique": false,
           "required": false
@@ -265,56 +252,21 @@
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "data_avvio_seconda_fase",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
     {
-      "label": "BustaDocumentazione",
+      "label": "Fase",
       "attributes": [
         {
-          "name": "nome",
-          "type": "string",
+          "name": "numero",
+          "type": "number",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "descrizione",
           "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "richiede_firma_digitale",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "BustaDocumentazioneTecnica",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -336,13 +288,7 @@
           "required": false
         },
         {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "punteggio_tipo",
+          "name": "modalita_attribuzione",
           "type": "string",
           "unique": false,
           "required": false
@@ -352,16 +298,38 @@
           "type": "number",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "BustaDocumentazione",
+      "attributes": [
+        {
+          "name": "tipo_busta",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
-          "name": "riparametrazione",
-          "type": "string",
+          "name": "accesso_anonimo",
+          "type": "boolean",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Atto",
+      "attributes": [
+        {
+          "name": "nome_atto",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
-          "name": "criterio_riparametrazione",
-          "type": "string",
+          "name": "pubblicabile_seconda_fase",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -371,24 +339,13 @@
       "label": "Commissione",
       "attributes": [
         {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Utente",
-      "attributes": [
-        {
-          "name": "username",
+          "name": "id_commissione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "ruolo",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
@@ -398,12 +355,12 @@
   ],
   "relations": [
     {
-      "label": "HA_SEZIONE",
+      "label": "PROCEDURA_CONTIENE_SEZIONE",
       "source": {
         "label": "Procedura",
         "attributes": [
           {
-            "name": "nome",
+            "name": "numero_protocollo",
             "type": "string",
             "unique": true,
             "required": true
@@ -423,8 +380,8 @@
       },
       "attributes": [
         {
-          "name": "fase",
-          "type": "string",
+          "name": "fase_indizione",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
@@ -456,13 +413,7 @@
       },
       "attributes": [
         {
-          "name": "visibilita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "inizialmente_vuota",
+          "name": "popolazione_automatica",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -470,7 +421,7 @@
       ]
     },
     {
-      "label": "DOCUMENTO_CARICATO_DA",
+      "label": "DOCUMENTO_RIGUARDA_PROCEDURA",
       "source": {
         "label": "Documento",
         "attributes": [
@@ -483,6 +434,61 @@
         ]
       },
       "target": {
+        "label": "Procedura",
+        "attributes": [
+          {
+            "name": "numero_protocollo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PIATTAFORMA_ALIMENTA_SEZIONE",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Sezione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "OPERATORE_PRESENTA_OFFERTA",
+      "source": {
         "label": "OperatoreEconomico",
         "attributes": [
           {
@@ -493,25 +499,69 @@
           }
         ]
       },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "data",
+          "name": "ruolo",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         },
         {
           "name": "anonimato",
           "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "OFFERTA_PARTECIPA_A",
+      "source": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Concorso",
+        "attributes": [
+          {
+            "name": "titolo_concorso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "idea_progetto",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "INVIA_CHIAMATA",
+      "label": "RUOLO_ESTRAE_PARTECIPANTI",
       "source": {
-        "label": "Piattaforma",
+        "label": "Ruolo",
         "attributes": [
           {
             "name": "nome",
@@ -522,10 +572,10 @@
         ]
       },
       "target": {
-        "label": "Servizio",
+        "label": "File",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_file",
             "type": "string",
             "unique": true,
             "required": true
@@ -534,23 +584,23 @@
       },
       "attributes": [
         {
-          "name": "esito",
+          "name": "formato",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         },
         {
-          "name": "data",
-          "type": "string",
-          "required": false,
+          "name": "contiene_ruoli",
+          "type": "boolean",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "SERVIZIO_CHIAMA_PCP",
+      "label": "COMANDO_INVOCA_SERVIZIO",
       "source": {
-        "label": "Servizio",
+        "label": "Comando",
         "attributes": [
           {
             "name": "nome",
@@ -561,10 +611,10 @@
         ]
       },
       "target": {
-        "label": "PCP",
+        "label": "ServizioPCP",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_servizio",
             "type": "string",
             "unique": true,
             "required": true
@@ -572,12 +622,6 @@
         ]
       },
       "attributes": [
-        {
-          "name": "esito",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
         {
           "name": "asincrono",
           "type": "boolean",
@@ -587,12 +631,12 @@
       ]
     },
     {
-      "label": "SERVIZIO_PRODUCE_IDAPPALTO",
+      "label": "SERVIZIO_RESTITUISCE_IDAPPALTO",
       "source": {
-        "label": "Servizio",
+        "label": "ServizioPCP",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_servizio",
             "type": "string",
             "unique": true,
             "required": true
@@ -603,7 +647,7 @@
         "label": "IdAppalto",
         "attributes": [
           {
-            "name": "idappalto",
+            "name": "idappalto_anac",
             "type": "string",
             "unique": true,
             "required": true
@@ -612,20 +656,20 @@
       },
       "attributes": [
         {
-          "name": "condizione",
+          "name": "esito",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "SERVIZIO_RECUPERA_CIG",
+      "label": "SERVIZIO_POPOLA_CIG",
       "source": {
-        "label": "Servizio",
+        "label": "ServizioPCP",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_servizio",
             "type": "string",
             "unique": true,
             "required": true
@@ -645,7 +689,7 @@
       },
       "attributes": [
         {
-          "name": "tentativi",
+          "name": "tentativi_massimi",
           "type": "number",
           "required": false,
           "unique": false
@@ -653,84 +697,12 @@
       ]
     },
     {
-      "label": "PCP_TRACCIA_NELLA_CRONOLOGIA",
+      "label": "COMANDO_BLOCCA_MODIFICHE_SU_PROCEDURA",
       "source": {
-        "label": "PCP",
+        "label": "Comando",
         "attributes": [
           {
             "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CronologiaPCP",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "operazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "esito",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PIATTAFORMA_TRACCIA_CRONOLOGIA",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CronologiaPCP",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "evento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CIG_ASSOCIATO_A_PROCEDURA",
-      "source": {
-        "label": "CIG",
-        "attributes": [
-          {
-            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -741,7 +713,7 @@
         "label": "Procedura",
         "attributes": [
           {
-            "name": "nome",
+            "name": "numero_protocollo",
             "type": "string",
             "unique": true,
             "required": true
@@ -750,59 +722,20 @@
       },
       "attributes": [
         {
-          "name": "posizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RUP_DEVE_AUTENTICARE",
-      "source": {
-        "label": "RUP",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "metodo",
-          "type": "string",
+          "name": "blocca_parametri",
+          "type": "boolean",
           "required": true,
           "unique": false
-        },
-        {
-          "name": "entro_giorni",
-          "type": "number",
-          "required": false,
-          "unique": false
         }
       ]
     },
     {
-      "label": "CONCORSO_IMPORTA_PARAMETRI_DA",
+      "label": "CONCORSO_HA_FASE",
       "source": {
         "label": "Concorso",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "titolo_concorso",
             "type": "string",
             "unique": true,
             "required": true
@@ -810,11 +743,11 @@
         ]
       },
       "target": {
-        "label": "Concorso",
+        "label": "Fase",
         "attributes": [
           {
-            "name": "titolo",
-            "type": "string",
+            "name": "numero",
+            "type": "number",
             "unique": true,
             "required": true
           }
@@ -822,32 +755,32 @@
       },
       "attributes": [
         {
-          "name": "ambito_importazione",
-          "type": "string",
-          "required": false,
+          "name": "fase_obbligatoria",
+          "type": "boolean",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "CONCORSO_HA_BUSTA_DOCUMENTAZIONE",
+      "label": "FASE_IMPORTA_DA_FASE",
       "source": {
-        "label": "Concorso",
+        "label": "Fase",
         "attributes": [
           {
-            "name": "titolo",
-            "type": "string",
+            "name": "numero",
+            "type": "number",
             "unique": true,
             "required": true
           }
         ]
       },
       "target": {
-        "label": "BustaDocumentazione",
+        "label": "Fase",
         "attributes": [
           {
-            "name": "nome",
-            "type": "string",
+            "name": "numero",
+            "type": "number",
             "unique": true,
             "required": true
           }
@@ -855,42 +788,9 @@
       },
       "attributes": [
         {
-          "name": "fase",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONCORSO_HA_BUSTA_DOCUMENTAZIONE_TECNICA",
-      "source": {
-        "label": "Concorso",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "BustaDocumentazioneTecnica",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "fase",
-          "type": "string",
-          "required": false,
+          "name": "importa_attivita_precedente",
+          "type": "boolean",
+          "required": true,
           "unique": false
         }
       ]
@@ -901,7 +801,7 @@
         "label": "Concorso",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "titolo_concorso",
             "type": "string",
             "unique": true,
             "required": true
@@ -921,7 +821,7 @@
       },
       "attributes": [
         {
-          "name": "peso",
+          "name": "peso_totale",
           "type": "number",
           "required": false,
           "unique": false
@@ -929,123 +829,12 @@
       ]
     },
     {
-      "label": "OE_PARTECIPA_A",
+      "label": "BUSTA_RICHIEDE_DOCUMENTO",
       "source": {
-        "label": "OperatoreEconomico",
+        "label": "BustaDocumentazione",
         "attributes": [
           {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Concorso",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "data_presentazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ESTRAE_PARTECIPANTI",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "File",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "formato",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTENTE_ESTRAE_FILE",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "File",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "comando",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMMISSIONE_ACCESSO_DOCUMENTI",
-      "source": {
-        "label": "Commissione",
-        "attributes": [
-          {
-            "name": "nome",
+            "name": "tipo_busta",
             "type": "string",
             "unique": true,
             "required": true
@@ -1065,7 +854,13 @@
       },
       "attributes": [
         {
-          "name": "puo_visualizzare",
+          "name": "obbligatorio",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "firma_digitale_richiesta",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -1073,7 +868,40 @@
       ]
     },
     {
-      "label": "DOCUMENTO_ASSOCIATO_CONCORSO",
+      "label": "COMMISSIONE_NOMINA_PRESIDENTE",
+      "source": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "id_commissione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_specifico",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DOCUMENTO_ASSOCIATO_A_PROTOCOLLO",
       "source": {
         "label": "Documento",
         "attributes": [
@@ -1086,10 +914,10 @@
         ]
       },
       "target": {
-        "label": "Concorso",
+        "label": "Procedura",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "numero_protocollo",
             "type": "string",
             "unique": true,
             "required": true
@@ -1098,8 +926,47 @@
       },
       "attributes": [
         {
-          "name": "sezione",
+          "name": "numero_protocollo_documento",
           "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SEZIONE_VISUALIZZA_RISPOSTE",
+      "source": {
+        "label": "Sezione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "visualizza_notifiche",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "disponibile_post_scadenza",
+          "type": "boolean",
           "required": false,
           "unique": false
         }

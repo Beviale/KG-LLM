@@ -1,0 +1,700 @@
+{
+  "entities": [
+    {
+      "label": "DibattitoPubblico",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "termine_osservazioni_giorni",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termine_conclusione_giorni",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione_stazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "EnteConcedente",
+      "attributes": [
+        {
+          "name": "denominazione_ente_concedente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "id_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RelazioneIniziale",
+      "attributes": [
+        {
+          "name": "id_relazione_iniziale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProgettoIntervento",
+      "attributes": [
+        {
+          "name": "descrizione_progetto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AnalisiFattibilita",
+      "attributes": [
+        {
+          "name": "descrizione_analisi",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Osservazione",
+      "attributes": [
+        {
+          "name": "id_osservazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PortatoreDiInteresse",
+      "attributes": [
+        {
+          "name": "denominazione_portatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ResponsabileDibattitoPubblico",
+      "attributes": [
+        {
+          "name": "id_responsabile",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EsitoDibattito",
+      "attributes": [
+        {
+          "name": "id_esito",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RelazioneConclusiva",
+      "attributes": [
+        {
+          "name": "id_relazione_conclusiva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PropostaIntervento",
+      "attributes": [
+        {
+          "name": "id_proposta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_proposta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DisposizioniDiLegge",
+      "attributes": [
+        {
+          "name": "id_disposizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PNRR",
+      "attributes": [
+        {
+          "name": "codice_pnrr",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PNC",
+      "attributes": [
+        {
+          "name": "codice_pnc",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AllegatoI6",
+      "attributes": [
+        {
+          "name": "id_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDICE_DIBATTITO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DibattitoPubblico",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDICE_DIBATTITO",
+      "source": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "denominazione_ente_concedente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DibattitoPubblico",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISCIPLINA_ALLEGATO_I6",
+      "source": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "id_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DibattitoPubblico",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_disciplina",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICAZIONE_RELAZIONE_INIZIALE",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RelazioneIniziale",
+        "attributes": [
+          {
+            "name": "id_relazione_iniziale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICAZIONE_RELAZIONE_INIZIALE",
+      "source": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "denominazione_ente_concedente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RelazioneIniziale",
+        "attributes": [
+          {
+            "name": "id_relazione_iniziale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "OSSERVAZIONI_PRESENTATE",
+      "source": {
+        "label": "PortatoreDiInteresse",
+        "attributes": [
+          {
+            "name": "denominazione_portatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Osservazione",
+        "attributes": [
+          {
+            "name": "id_osservazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "contenuto_osservazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "termine_presentazione_giorni",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROPOSTE_PRESENTATE",
+      "source": {
+        "label": "PortatoreDiInteresse",
+        "attributes": [
+          {
+            "name": "denominazione_portatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PropostaIntervento",
+        "attributes": [
+          {
+            "name": "id_proposta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_proposta",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_presentazione_giorni",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "REDAZIONE_REL_CONCLUSIVA",
+      "source": {
+        "label": "ResponsabileDibattitoPubblico",
+        "attributes": [
+          {
+            "name": "id_responsabile",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RelazioneConclusiva",
+        "attributes": [
+          {
+            "name": "id_relazione_conclusiva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICAZIONE_RELAZIONE_CONCLUSIVA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RelazioneConclusiva",
+        "attributes": [
+          {
+            "name": "id_relazione_conclusiva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VALUTA_ESITI",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "EsitoDibattito",
+        "attributes": [
+          {
+            "name": "id_esito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_valutazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_A_DISPOSIZIONI_LEGGE",
+      "source": {
+        "label": "PNRR",
+        "attributes": [
+          {
+            "name": "codice_pnrr",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DibattitoPubblico",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_rapporto",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITO_A_DISPOSIZIONI_LEGGE",
+      "source": {
+        "label": "PNC",
+        "attributes": [
+          {
+            "name": "codice_pnc",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DibattitoPubblico",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_rapporto",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIGUARDA_DIBATTITO",
+      "source": {
+        "label": "DisposizioniDiLegge",
+        "attributes": [
+          {
+            "name": "id_disposizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DibattitoPubblico",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "riferimento_legge",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,44 +1,10 @@
 {
   "entities": [
     {
-      "label": "StazioneAppaltante",
+      "label": "ProceduraDiGara",
       "attributes": [
         {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ragione_sociale",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ProceduraDiAggiudicazione",
-      "attributes": [
-        {
-          "name": "nome_procedura",
+          "name": "codice_procedura",
           "type": "string",
           "unique": true,
           "required": true
@@ -50,8 +16,49 @@
           "required": false
         },
         {
-          "name": "versione",
+          "name": "tipo_aggiudicazione",
           "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "multi_lotto",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stazione_appaltante",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "valore_offerta",
+          "type": "number",
           "unique": false,
           "required": false
         }
@@ -61,7 +68,7 @@
       "label": "Offerta",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "id_offerta",
           "type": "string",
           "unique": true,
           "required": true
@@ -93,41 +100,6 @@
       ]
     },
     {
-      "label": "OffertaMigliorativa",
-      "attributes": [
-        {
-          "name": "richiesta_offerta_migliorativa",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "richiesta_risposta",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "rispondere_entro",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "stato_comunicazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "nuovo_valore_economico",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
       "label": "Documento",
       "attributes": [
         {
@@ -143,7 +115,7 @@
           "required": false
         },
         {
-          "name": "visibile",
+          "name": "visibile_in_chiaro",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -151,12 +123,6 @@
         {
           "name": "oscurato",
           "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "versione_condivisa",
-          "type": "string",
           "unique": false,
           "required": false
         }
@@ -184,13 +150,7 @@
           "required": false
         },
         {
-          "name": "richiesta_risposta",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "rispondere_entro",
+          "name": "motivazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -201,7 +161,7 @@
       "label": "Allegato",
       "attributes": [
         {
-          "name": "nome_allegato",
+          "name": "nome_file",
           "type": "string",
           "unique": true,
           "required": true
@@ -213,36 +173,7 @@
           "required": false
         },
         {
-          "name": "file_nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "caricato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "SchedaPCP",
-      "attributes": [
-        {
-          "name": "id_scheda_pcp",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato_scheda",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "ultima_trasmissione",
+          "name": "percorso",
           "type": "string",
           "unique": false,
           "required": false
@@ -265,30 +196,30 @@
           "required": false
         },
         {
-          "name": "multi_lotto",
-          "type": "boolean",
+          "name": "importo",
+          "type": "number",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "Sorteggio",
+      "label": "Graduatoria",
       "attributes": [
         {
-          "name": "tipo_sorteggio",
+          "name": "id_graduatoria",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "metodo",
+          "name": "data_generazione",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "esito",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
@@ -311,6 +242,12 @@
           "required": false
         },
         {
+          "name": "soglia",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
           "name": "motivazione",
           "type": "string",
           "unique": false,
@@ -319,56 +256,45 @@
       ]
     },
     {
-      "label": "Convenzione",
+      "label": "Sorteggio",
       "attributes": [
         {
-          "name": "id_convenzione",
+          "name": "id_sorteggio",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "importo_assegnato",
+          "name": "metodo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OffertaMigliorativa",
+      "attributes": [
+        {
+          "name": "id_offerta_migliorativa",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore_nuovo",
           "type": "number",
           "unique": false,
           "required": false
         },
         {
-          "name": "tipo_aggiudicazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Cronologia",
-      "attributes": [
-        {
-          "name": "id_cronologia",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "esportabile_xlsx",
+          "name": "richiesta_risposta",
           "type": "boolean",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "SezioneDocumenti",
-      "attributes": [
-        {
-          "name": "nome_sezione",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "disponibilita",
+          "name": "rispondere_entro",
           "type": "string",
           "unique": false,
           "required": false
@@ -376,16 +302,22 @@
       ]
     },
     {
-      "label": "NoteSection",
+      "label": "SchedaPCP",
       "attributes": [
         {
-          "name": "id_note",
+          "name": "id_scheda_pcp",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "testo",
+          "name": "stato_scheda",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
@@ -408,55 +340,85 @@
           "required": false
         }
       ]
+    },
+    {
+      "label": "Cronologia",
+      "attributes": [
+        {
+          "name": "id_cronologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "azione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Sezione",
+      "attributes": [
+        {
+          "name": "nome_sezione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comando",
+      "attributes": [
+        {
+          "name": "nome_comando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "posizione_toolbar",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "icona",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
     }
   ],
   "relations": [
     {
-      "label": "SA_DEFINISCE_VISIBILITA",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "nome_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "numero_primi_classificati",
-          "type": "number",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "ambito_visibilita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "OE_HA_OFFERTA",
+      "label": "HA_PRESENTATO",
       "source": {
         "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "ragione_sociale",
             "type": "string",
             "unique": true,
             "required": true
@@ -467,7 +429,7 @@
         "label": "Offerta",
         "attributes": [
           {
-            "name": "descrizione",
+            "name": "id_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -476,52 +438,7 @@
       },
       "attributes": [
         {
-          "name": "valore_offerto",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "punteggio_economico",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "rank",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "OFFERTA_ASSOCIATA_A_LOTTO",
-      "source": {
-        "label": "Offerta",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Lotto",
-        "attributes": [
-          {
-            "name": "codice_lotto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "lotto_associazione",
+          "name": "data_presentazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -529,12 +446,45 @@
       ]
     },
     {
-      "label": "OFFERTA_HA_DOCUMENTO",
+      "label": "PARTECIPA_A",
       "source": {
         "label": "Offerta",
         "attributes": [
           {
-            "name": "descrizione",
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "lotto_codice",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_DOCUMENTO",
+      "source": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -554,45 +504,22 @@
       },
       "attributes": [
         {
-          "name": "busta",
+          "name": "tipo_busta",
           "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "visibile",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "oscurato",
-          "type": "boolean",
           "required": true,
           "unique": false
         },
         {
           "name": "obbligatorio",
           "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "SA_CARICA_DOCUMENTO",
+      "label": "DOCUMENTO_CONDIVISO_CON",
       "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "Documento",
         "attributes": [
           {
@@ -603,23 +530,34 @@
           }
         ]
       },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "richiede_oscuramento_preventivo",
-          "type": "boolean",
+          "name": "visibilita",
+          "type": "string",
           "required": true,
           "unique": false
         },
         {
-          "name": "modalita_caricamento",
-          "type": "string",
-          "required": false,
+          "name": "condiviso_con_primi_cinque",
+          "type": "boolean",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "COMUNICAZIONE_INOLTRA_A",
+      "label": "INVIA_COMUNICAZIONE",
       "source": {
         "label": "Comunicazione",
         "attributes": [
@@ -635,103 +573,7 @@
         "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "richiesta_risposta",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "rispondere_entro",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "OFFERTA_MIGLIORATIVA_RICHIESTA_A",
-      "source": {
-        "label": "OffertaMigliorativa",
-        "attributes": [
-          {
-            "name": "richiesta_offerta_migliorativa",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "richiesta_risposta",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "rispondere_entro",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "stato_comunicazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SA_INVIA_OFFERTA_MIGLIORATIVA",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OffertaMigliorativa",
-        "attributes": [
-          {
-            "name": "richiesta_offerta_migliorativa",
+            "name": "ragione_sociale",
             "type": "string",
             "unique": true,
             "required": true
@@ -744,16 +586,55 @@
           "type": "string",
           "required": false,
           "unique": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "required": true,
+          "unique": false
         }
       ]
     },
     {
-      "label": "OE_INVIA_RISPOSTA",
+      "label": "RIGUARDA",
       "source": {
-        "label": "OperatoreEconomico",
+        "label": "Comunicazione",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "id_comunicazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "riferimento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ALLEGATO_DI",
+      "source": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
             "type": "string",
             "unique": true,
             "required": true
@@ -773,13 +654,40 @@
       },
       "attributes": [
         {
-          "name": "risposta_inviata",
-          "type": "boolean",
+          "name": "descrizione",
+          "type": "string",
           "required": true,
           "unique": false
-        },
+        }
+      ]
+    },
+    {
+      "label": "ALLEGATO_DOCUMENTO",
+      "source": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "nome_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
         {
-          "name": "data_risposta",
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -787,12 +695,78 @@
       ]
     },
     {
-      "label": "SORTEGGIO_DETERMINA_CLASSIFICA",
+      "label": "APPARTIENE_A",
       "source": {
-        "label": "Sorteggio",
+        "label": "Lotto",
         "attributes": [
           {
-            "name": "tipo_sorteggio",
+            "name": "codice_lotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "numero_lotto",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONTIENE_GRADUATORIA",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Graduatoria",
+        "attributes": [
+          {
+            "name": "id_graduatoria",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIUDICA",
+      "source": {
+        "label": "Graduatoria",
+        "attributes": [
+          {
+            "name": "id_graduatoria",
             "type": "string",
             "unique": true,
             "required": true
@@ -803,7 +777,7 @@
         "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "ragione_sociale",
             "type": "string",
             "unique": true,
             "required": true
@@ -812,21 +786,60 @@
       },
       "attributes": [
         {
-          "name": "posizione",
+          "name": "rank",
           "type": "number",
           "required": true,
           "unique": false
         },
         {
-          "name": "metodo",
-          "type": "string",
-          "required": true,
+          "name": "importo_aggiudicato",
+          "type": "number",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "VERIFICA_ANOMALIA_VALUTA_OFFERTA",
+      "label": "ASSEGNA_QUOTA",
+      "source": {
+        "label": "Graduatoria",
+        "attributes": [
+          {
+            "name": "id_graduatoria",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "quota_percentuale",
+          "type": "number",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "importo_massimo_spendibile",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPLICA_VERIFICA",
       "source": {
         "label": "VerificaAnomalia",
         "attributes": [
@@ -842,7 +855,7 @@
         "label": "Offerta",
         "attributes": [
           {
-            "name": "descrizione",
+            "name": "id_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -871,12 +884,12 @@
       ]
     },
     {
-      "label": "VERIFICA_ANOMALIA_APPLICA_A_OE",
+      "label": "RICHIESTA_OFFERTA_MIGLIORATIVA",
       "source": {
-        "label": "VerificaAnomalia",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "id_verifica",
+            "name": "codice_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -884,32 +897,38 @@
         ]
       },
       "target": {
+        "label": "OffertaMigliorativa",
+        "attributes": [
+          {
+            "name": "id_offerta_migliorativa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "richiesta_risposta",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "rispondere_entro",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PRESENTA_OFFERTA_MIGLIORATIVA",
+      "source": {
         "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "stato_lotto",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONVENZIONE_ASSEGNA_QUOTE",
-      "source": {
-        "label": "Convenzione",
-        "attributes": [
-          {
-            "name": "id_convenzione",
+            "name": "ragione_sociale",
             "type": "string",
             "unique": true,
             "required": true
@@ -917,10 +936,10 @@
         ]
       },
       "target": {
-        "label": "OperatoreEconomico",
+        "label": "OffertaMigliorativa",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "id_offerta_migliorativa",
             "type": "string",
             "unique": true,
             "required": true
@@ -929,118 +948,52 @@
       },
       "attributes": [
         {
-          "name": "percentuale",
+          "name": "data_risposta",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "valore",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SORTEGGIA",
+      "source": {
+        "label": "Sorteggio",
+        "attributes": [
+          {
+            "name": "id_sorteggio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "posizione",
           "type": "number",
           "required": true,
           "unique": false
         },
         {
-          "name": "valore_offerta",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PROCEDURA_HA_LOTTO",
-      "source": {
-        "label": "ProceduraDiAggiudicazione",
-        "attributes": [
-          {
-            "name": "nome_procedura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Lotto",
-        "attributes": [
-          {
-            "name": "codice_lotto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "numero_lotti",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PROCEDURA_HA_CONVENZIONE",
-      "source": {
-        "label": "ProceduraDiAggiudicazione",
-        "attributes": [
-          {
-            "name": "nome_procedura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Convenzione",
-        "attributes": [
-          {
-            "name": "id_convenzione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALLEGATO_ASSOCIATO_A_DOCUMENTO",
-      "source": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "nome_allegato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "nome_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "file_nome",
+          "name": "metodo",
           "type": "string",
           "required": true,
           "unique": false
@@ -1048,46 +1001,7 @@
       ]
     },
     {
-      "label": "SCHEDA_PCP_RELAZIONATA_A_PROCEDURA",
-      "source": {
-        "label": "SchedaPCP",
-        "attributes": [
-          {
-            "name": "id_scheda_pcp",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ProceduraDiAggiudicazione",
-        "attributes": [
-          {
-            "name": "nome_procedura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "stato",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "data_trasmissione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CRONOLOGIA_REGISTRA_AZIONE",
+      "label": "REGISTRA_OPERAZIONE",
       "source": {
         "label": "Cronologia",
         "attributes": [
@@ -1132,9 +1046,42 @@
       ]
     },
     {
-      "label": "SEZIONE_DOCUMENTI_CONTIENE_DOCUMENTO",
+      "label": "MONITORA_SCHEDA_PCP",
       "source": {
-        "label": "SezioneDocumenti",
+        "label": "SchedaPCP",
+        "attributes": [
+          {
+            "name": "id_scheda_pcp",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "stato_scheda",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONTIENE_DOCUMENTO",
+      "source": {
+        "label": "Sezione",
         "attributes": [
           {
             "name": "nome_sezione",
@@ -1157,13 +1104,7 @@
       },
       "attributes": [
         {
-          "name": "stato",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "eliminabile",
+          "name": "visibile",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -1171,12 +1112,12 @@
       ]
     },
     {
-      "label": "NOTESECTION_ASSOCIATA_A_PROCEDURA",
+      "label": "ESEGUI_COMMAND",
       "source": {
-        "label": "NoteSection",
+        "label": "Comando",
         "attributes": [
           {
-            "name": "id_note",
+            "name": "nome_comando",
             "type": "string",
             "unique": true,
             "required": true
@@ -1184,10 +1125,10 @@
         ]
       },
       "target": {
-        "label": "ProceduraDiAggiudicazione",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "nome_procedura",
+            "name": "codice_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -1196,7 +1137,7 @@
       },
       "attributes": [
         {
-          "name": "testo",
+          "name": "esito",
           "type": "string",
           "required": false,
           "unique": false
@@ -1204,12 +1145,12 @@
       ]
     },
     {
-      "label": "SA_APPLICA_DECADENZA",
+      "label": "COMANDO_SU_OFFERTA",
       "source": {
-        "label": "StazioneAppaltante",
+        "label": "Comando",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "nome_comando",
             "type": "string",
             "unique": true,
             "required": true
@@ -1217,10 +1158,10 @@
         ]
       },
       "target": {
-        "label": "OperatoreEconomico",
+        "label": "Offerta",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "id_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -1230,57 +1171,6 @@
       "attributes": [
         {
           "name": "effetto",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "motivazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "allegato_incluso",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SEZIONE_DOCUMENTI_CONTIENE_ALLEGATO",
-      "source": {
-        "label": "SezioneDocumenti",
-        "attributes": [
-          {
-            "name": "nome_sezione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "nome_allegato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "posizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false

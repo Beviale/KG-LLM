@@ -4,7 +4,7 @@
       "label": "Sezione",
       "attributes": [
         {
-          "name": "nome_sezione",
+          "name": "titolo",
           "type": "string",
           "unique": true,
           "required": true
@@ -21,14 +21,20 @@
       "label": "ProceduraDiGara",
       "attributes": [
         {
-          "name": "nome_procedura",
+          "name": "titolo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato",
+          "name": "fase",
           "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "pubblicato",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -38,13 +44,13 @@
       "label": "Documento",
       "attributes": [
         {
-          "name": "nome_documento",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo_documento",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
@@ -61,13 +67,13 @@
       "label": "Allegato",
       "attributes": [
         {
-          "name": "nome_allegato",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo_allegato",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
@@ -104,6 +110,23 @@
       ]
     },
     {
+      "label": "Domanda",
+      "attributes": [
+        {
+          "name": "id_domanda",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "Offerta",
       "attributes": [
         {
@@ -121,10 +144,27 @@
       ]
     },
     {
-      "label": "RuoloUtente",
+      "label": "Utente",
       "attributes": [
         {
-          "name": "nome_ruolo",
+          "name": "username",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -138,16 +178,16 @@
       ]
     },
     {
-      "label": "Tabella",
+      "label": "FlussoDiApprovazione",
       "attributes": [
         {
-          "name": "nome_tabella",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "funzione",
+          "name": "regole",
           "type": "string",
           "unique": false,
           "required": false
@@ -158,13 +198,19 @@
       "label": "Manuale",
       "attributes": [
         {
-          "name": "titolo_manuale",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
           "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "pagina",
           "type": "string",
           "unique": false,
           "required": false
@@ -175,7 +221,7 @@
       "label": "Figura",
       "attributes": [
         {
-          "name": "numero_figura",
+          "name": "numero",
           "type": "string",
           "unique": true,
           "required": true
@@ -187,49 +233,33 @@
           "required": false
         }
       ]
+    },
+    {
+      "label": "Bando",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "riferimento_procedura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
     }
   ],
   "relations": [
     {
-      "label": "SEZIONE_DI",
+      "label": "CONTIENE_DOCUMENTO",
       "source": {
         "label": "Sezione",
         "attributes": [
           {
-            "name": "nome_sezione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome_procedura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "fase",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONTIENTE_DOCUMENTO",
-      "source": {
-        "label": "Sezione",
-        "attributes": [
-          {
-            "name": "nome_sezione",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -240,7 +270,7 @@
         "label": "Documento",
         "attributes": [
           {
-            "name": "nome_documento",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -250,124 +280,19 @@
       "attributes": [
         {
           "name": "modalita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONTIENTE_ALLEGATO",
-      "source": {
-        "label": "Sezione",
-        "attributes": [
-          {
-            "name": "nome_sezione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "nome_allegato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "motivazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONTIENTE_TABELLA",
-      "source": {
-        "label": "Sezione",
-        "attributes": [
-          {
-            "name": "nome_sezione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Tabella",
-        "attributes": [
-          {
-            "name": "nome_tabella",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo_tabella",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALIMENTATA_DA",
-      "source": {
-        "label": "Tabella",
-        "attributes": [
-          {
-            "name": "nome_tabella",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome_procedura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "condizione_di_attivazione",
           "type": "string",
           "required": true,
           "unique": false
-        },
-        {
-          "name": "modalita",
-          "type": "string",
-          "required": false,
-          "unique": false
         }
       ]
     },
     {
-      "label": "CREATO_PER",
+      "label": "ALIMENTA",
       "source": {
-        "label": "Documento",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "nome_documento",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -375,10 +300,10 @@
         ]
       },
       "target": {
-        "label": "ProceduraDiGara",
+        "label": "Sezione",
         "attributes": [
           {
-            "name": "nome_procedura",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -387,53 +312,20 @@
       },
       "attributes": [
         {
-          "name": "tipo_creazione",
+          "name": "evento",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "ALLEGATO_RELATIVO_A",
-      "source": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "nome_allegato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome_procedura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo_evento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "MOSTRA",
+      "label": "CONTIENE_DOMANDA",
       "source": {
         "label": "Sezione",
         "attributes": [
           {
-            "name": "nome_sezione",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -441,10 +333,10 @@
         ]
       },
       "target": {
-        "label": "Offerta",
+        "label": "Domanda",
         "attributes": [
           {
-            "name": "id_offerta",
+            "name": "id_domanda",
             "type": "string",
             "unique": true,
             "required": true
@@ -453,48 +345,15 @@
       },
       "attributes": [
         {
-          "name": "campi_visualizzati",
+          "name": "stato_popolamento",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "PARTECIPA_A",
-      "source": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "ragione_sociale",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "nome_procedura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "modalita_partecipazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_INVIATO",
+      "label": "HA_PRESENTATO",
       "source": {
         "label": "OperatoreEconomico",
         "attributes": [
@@ -519,7 +378,7 @@
       },
       "attributes": [
         {
-          "name": "data_invio",
+          "name": "data_di_invio",
           "type": "string",
           "required": true,
           "unique": false
@@ -527,12 +386,12 @@
       ]
     },
     {
-      "label": "RIGUARDA",
+      "label": "DOMANDA_INVIATA_DA",
       "source": {
-        "label": "Offerta",
+        "label": "Domanda",
         "attributes": [
           {
-            "name": "id_offerta",
+            "name": "id_domanda",
             "type": "string",
             "unique": true,
             "required": true
@@ -540,10 +399,10 @@
         ]
       },
       "target": {
-        "label": "ProceduraDiGara",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "nome_procedura",
+            "name": "ragione_sociale",
             "type": "string",
             "unique": true,
             "required": true
@@ -552,9 +411,75 @@
       },
       "attributes": [
         {
-          "name": "stato_offerta",
+          "name": "data_di_invio",
           "type": "string",
-          "required": false,
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONTIENE_ALLEGATO",
+      "source": {
+        "label": "Sezione",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_ALLEGATO",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "required": true,
           "unique": false
         }
       ]
@@ -562,10 +487,10 @@
     {
       "label": "PUBBLICA",
       "source": {
-        "label": "RuoloUtente",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome_ruolo",
+            "name": "username",
             "type": "string",
             "unique": true,
             "required": true
@@ -576,7 +501,7 @@
         "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "nome_procedura",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -591,7 +516,7 @@
           "unique": false
         },
         {
-          "name": "esito",
+          "name": "visibilita",
           "type": "string",
           "required": false,
           "unique": false
@@ -601,10 +526,10 @@
     {
       "label": "TRASMETTE_A",
       "source": {
-        "label": "RuoloUtente",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome_ruolo",
+            "name": "username",
             "type": "string",
             "unique": true,
             "required": true
@@ -612,10 +537,10 @@
         ]
       },
       "target": {
-        "label": "RuoloUtente",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome_ruolo",
+            "name": "username",
             "type": "string",
             "unique": true,
             "required": true
@@ -632,12 +557,12 @@
       ]
     },
     {
-      "label": "PUO_VISUALIZZARE",
+      "label": "APPROVA",
       "source": {
-        "label": "RuoloUtente",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome_ruolo",
+            "name": "username",
             "type": "string",
             "unique": true,
             "required": true
@@ -645,10 +570,10 @@
         ]
       },
       "target": {
-        "label": "Documento",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "nome_documento",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -657,20 +582,152 @@
       },
       "attributes": [
         {
-          "name": "modalita",
+          "name": "azione",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "RAPPRESENTA",
+      "label": "RESPINGE",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFIUTA",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "MODIFICA",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INCLUDE_FIGURA",
+      "source": {
+        "label": "Manuale",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Figura",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "pagina",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ILLUSTRA_SEZIONE",
       "source": {
         "label": "Figura",
         "attributes": [
           {
-            "name": "numero_figura",
+            "name": "numero",
             "type": "string",
             "unique": true,
             "required": true
@@ -681,7 +738,7 @@
         "label": "Sezione",
         "attributes": [
           {
-            "name": "nome_sezione",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -690,9 +747,9 @@
       },
       "attributes": [
         {
-          "name": "nota",
+          "name": "didascalia",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]

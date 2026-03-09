@@ -1,0 +1,592 @@
+{
+  "entities": [
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "numero_di_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "codici_cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_nuts",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "lingua_richiesta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termine_ricezione_domande_partecipazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termine_spedizione_invitare_offerte",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "condizioni_particolari_di_finanziamento_pagamento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "informazioni_su_operatore_economico_requisiti_minimi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "criteri_aggiudicazione_articolo_95",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteAggiudicatore",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero_identificazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_organizzazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CPVCode",
+      "attributes": [
+        {
+          "name": "codice_cpv",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "NUTSCode",
+      "attributes": [
+        {
+          "name": "codice_nuts",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_nuts",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Avviso",
+      "attributes": [
+        {
+          "name": "numero_avviso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "lingua",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimenti_gazzetta_eu",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo_di_riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Bando",
+      "attributes": [
+        {
+          "name": "numero_bando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_bando",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "GazzettaUfficiale",
+      "attributes": [
+        {
+          "name": "riferimento_pubblicazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "lingua",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProfiloCommittente",
+      "attributes": [
+        {
+          "name": "denominazione_profilo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OrganoCompetenteRicorso",
+      "attributes": [
+        {
+          "name": "denominazione_org_ricorso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_di_telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fax",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SistemaQualificazione",
+      "attributes": [
+        {
+          "name": "nome_sistema",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "periodo_validita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "formale_da_espletare",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Lingua",
+      "attributes": [
+        {
+          "name": "codice_lingua",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "PUBBLICA_AVVISO",
+      "source": {
+        "label": "EnteAggiudicatore",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Avviso",
+        "attributes": [
+          {
+            "name": "numero_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "lingua",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICA_BANDO",
+      "source": {
+        "label": "EnteAggiudicatore",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "numero_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_di_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_aggiudicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "valore_offerta",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CPVCODICI",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_di_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CPVCode",
+        "attributes": [
+          {
+            "name": "codice_cpv",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "HA_NUTS",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_di_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "NUTSCode",
+        "attributes": [
+          {
+            "name": "codice_nuts",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "PUBBLICATO_NEL_PROFILO_COMMITTENTE",
+      "source": {
+        "label": "Avviso",
+        "attributes": [
+          {
+            "name": "numero_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProfiloCommittente",
+        "attributes": [
+          {
+            "name": "denominazione_profilo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "ORGANO_COMPETENTE_RICORSO",
+      "source": {
+        "label": "Avviso",
+        "attributes": [
+          {
+            "name": "numero_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OrganoCompetenteRicorso",
+        "attributes": [
+          {
+            "name": "denominazione_org_ricorso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "termini_proposizione_ricorsi",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICAZIONE_GU_EU",
+      "source": {
+        "label": "Avviso",
+        "attributes": [
+          {
+            "name": "numero_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "GazzettaUfficiale",
+        "attributes": [
+          {
+            "name": "riferimento_pubblicazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "INFORMAZIONI_SISTEMA_DIQUALIFICAZIONE",
+      "source": {
+        "label": "Avviso",
+        "attributes": [
+          {
+            "name": "numero_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SistemaQualificazione",
+        "attributes": [
+          {
+            "name": "nome_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    }
+  ]
+}

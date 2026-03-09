@@ -1,16 +1,28 @@
 {
   "entities": [
     {
-      "label": "Articolo",
+      "label": "Appalto",
       "attributes": [
         {
-          "name": "numero_articolo",
+          "name": "id_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_di_indizione",
           "type": "number",
-          "unique": true,
-          "required": true
+          "unique": false,
+          "required": false
         },
         {
-          "name": "descrizione_articolo",
+          "name": "cpv",
           "type": "string",
           "unique": false,
           "required": false
@@ -18,74 +30,30 @@
       ]
     },
     {
-      "label": "Norma",
+      "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "riferimento_normativo",
+          "name": "partita_iva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CauseEsclusione",
+      "attributes": [
+        {
+          "name": "id_causa",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione_normativa",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "CausaDiEsclusione",
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RequisitoEconomicoFinanziario",
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RequisitoTecnicoProfessionale",
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "StazioneAppaltante",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "EnteConcedente",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
         }
       ]
     },
@@ -93,318 +61,179 @@
       "label": "Bando",
       "attributes": [
         {
-          "name": "identificativo_bando",
+          "name": "id_bando",
           "type": "string",
           "unique": true,
           "required": true
-        }
-      ]
-    },
-    {
-      "label": "LetteraDiInvito",
-      "attributes": [
-        {
-          "name": "identificativo_lettera_invito",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "ContrattoPubblico",
-      "attributes": [
-        {
-          "name": "oggetto_contratto",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Documento",
-      "attributes": [
-        {
-          "name": "tipo_documento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Impresa",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Mercato",
-      "attributes": [
-        {
-          "name": "descrizione_mercato",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "EconomiaDiScala",
-      "attributes": [
+        },
         {
           "name": "descrizione",
           "type": "string",
-          "unique": true,
-          "required": true
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "InteressiPubblici",
+      "label": "LetteraInvito",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "id_lettera_invito",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "AccessoMercato",
+      "label": "StazioneAppaltante",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "codice_stazione_appaltante",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteConcedente",
+      "attributes": [
+        {
+          "name": "codice_ente_concedente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Requisito",
+      "attributes": [
+        {
+          "name": "id_requisito",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia_requisito",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PMI",
+      "attributes": [
+        {
+          "name": "codice_pmi",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "RIFERISCE_A",
+      "label": "ESCLUSO_PER_CAUSA",
       "source": {
-        "label": "Articolo",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "numero_articolo",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Norma",
-        "attributes": [
-          {
-            "name": "riferimento_normativo",
+            "name": "partita_iva",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": []
+      "target": {
+        "label": "CauseEsclusione",
+        "attributes": [
+          {
+            "name": "id_causa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
     },
     {
-      "label": "PREVEDE_CAUSA_DI_ESCLUSIONE",
+      "label": "AGGIUDICATO_A",
       "source": {
-        "label": "Articolo",
+        "label": "Appalto",
         "attributes": [
           {
-            "name": "numero_articolo",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CausaDiEsclusione",
-        "attributes": [
-          {
-            "name": "descrizione",
+            "name": "id_appalto",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": []
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "partita_iva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_aggiudicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
     },
     {
-      "label": "INTRODUCE_REQUISITO",
+      "label": "INCLUSO_IN_BANDO",
       "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RequisitoEconomicoFinanziario",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "INTRODUCE_REQUISITO",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RequisitoTecnicoProfessionale",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "FAVORISCE_ACCESSO_MERCATO",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Mercato",
-        "attributes": [
-          {
-            "name": "descrizione_mercato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "REALIZZA_ECONOMIE_DI_SCALA",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "EconomiaDiScala",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "PROMUOVE_ACCESSO_IMPRESA",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Impresa",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "RIFERISCE_DOCUMENTO_BANDO",
-      "source": {
-        "label": "Norma",
-        "attributes": [
-          {
-            "name": "riferimento_normativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "Bando",
         "attributes": [
           {
-            "name": "identificativo_bando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "RIFERISCE_DOCUMENTO_LETTERA_INVITO",
-      "source": {
-        "label": "Norma",
-        "attributes": [
-          {
-            "name": "riferimento_normativo",
+            "name": "id_bando",
             "type": "string",
             "unique": true,
             "required": true
@@ -412,17 +241,129 @@
         ]
       },
       "target": {
-        "label": "LetteraDiInvito",
+        "label": "CauseEsclusione",
         "attributes": [
           {
-            "name": "identificativo_lettera_invito",
+            "name": "id_causa",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INCLUSO_IN_LETTERA_INVITO",
+      "source": {
+        "label": "LetteraInvito",
+        "attributes": [
+          {
+            "name": "id_lettera_invito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CauseEsclusione",
+        "attributes": [
+          {
+            "name": "id_causa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INTRODUCE_REQUISITO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "codice_stazione_appaltante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Requisito",
+        "attributes": [
+          {
+            "name": "id_requisito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          },
+          {
+            "name": "tipologia_requisito",
+            "type": "string",
+            "unique": false,
+            "required": false
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROMUOVE_CRESCITA_DI",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "codice_stazione_appaltante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PMI",
+        "attributes": [
+          {
+            "name": "codice_pmi",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
     }
   ]
 }

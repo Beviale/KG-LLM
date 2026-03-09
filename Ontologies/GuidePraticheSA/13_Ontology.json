@@ -4,20 +4,14 @@
       "label": "OrdinativoDiFornitura",
       "attributes": [
         {
-          "name": "titolo_ordinativo",
+          "name": "id_ordinativo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato",
+          "name": "titolo_ordinativo",
           "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "totale_ordinativo",
-          "type": "number",
           "unique": false,
           "required": false
         },
@@ -34,20 +28,14 @@
           "required": false
         },
         {
-          "name": "integrativo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "registro_di_sistema",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "numero_articoli",
+          "name": "totale_ordinativo",
           "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "registro_sistema",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -57,36 +45,36 @@
       "label": "Convenzione",
       "attributes": [
         {
-          "name": "numero_convenzione_completa",
+          "name": "numero_convenzione",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "data_inizio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_scadenza",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "residuo_complessivo",
           "type": "number",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "totale_spendibile",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "ente_emittente",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
     {
-      "label": "Cig",
+      "label": "CIG",
       "attributes": [
         {
-          "name": "codice_cig",
+          "name": "cig",
           "type": "string",
           "unique": true,
           "required": true
@@ -98,35 +86,24 @@
           "required": false
         },
         {
-          "name": "importo",
-          "type": "number",
+          "name": "stato_cig",
+          "type": "string",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "Cup",
+      "label": "CUP",
       "attributes": [
         {
-          "name": "codice_cup",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Punto",
-      "attributes": [
-        {
-          "name": "tipo_punto",
+          "name": "cup",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "ruolo",
+          "name": "note",
           "type": "string",
           "unique": false,
           "required": false
@@ -134,7 +111,7 @@
       ]
     },
     {
-      "label": "Autorita",
+      "label": "PCP",
       "attributes": [
         {
           "name": "nome",
@@ -143,7 +120,81 @@
           "required": true
         },
         {
-          "name": "sito_web",
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "username",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "profilato_anac",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "sigla_ruolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_ente",
           "type": "string",
           "unique": false,
           "required": false
@@ -154,14 +205,31 @@
       "label": "Scheda",
       "attributes": [
         {
-          "name": "tipo_scheda",
+          "name": "codice_scheda",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato",
+          "name": "descrizione_scheda",
           "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Servizio",
+      "attributes": [
+        {
+          "name": "nome_servizio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "asincrono",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -171,13 +239,13 @@
       "label": "Articolo",
       "attributes": [
         {
-          "name": "descrizione_articolo",
+          "name": "codice_articolo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "codice_listino",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -191,10 +259,33 @@
       ]
     },
     {
+      "label": "Indirizzo",
+      "attributes": [
+        {
+          "name": "id_indirizzo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "localita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "Allegato",
       "attributes": [
         {
-          "name": "nome_file",
+          "name": "id_allegato",
           "type": "string",
           "unique": true,
           "required": true
@@ -217,13 +308,13 @@
       "label": "CronologiaPCP",
       "attributes": [
         {
-          "name": "nome",
+          "name": "id_cronologia",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "posizione_documento",
+          "name": "contenuto",
           "type": "string",
           "unique": false,
           "required": false
@@ -231,7 +322,58 @@
       ]
     },
     {
-      "label": "Comando",
+      "label": "CentroDiCosto",
+      "attributes": [
+        {
+          "name": "codice_cdc",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoPDF",
+      "attributes": [
+        {
+          "name": "nome_file",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "firmato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StatoDocumento",
+      "attributes": [
+        {
+          "name": "codice_stato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ListaComandi",
       "attributes": [
         {
           "name": "nome_comando",
@@ -246,66 +388,16 @@
           "required": false
         }
       ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato_accettazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
     }
   ],
   "relations": [
-    {
-      "label": "HA_CIG",
-      "source": {
-        "label": "OrdinativoDiFornitura",
-        "attributes": [
-          {
-            "name": "titolo_ordinativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Cig",
-        "attributes": [
-          {
-            "name": "codice_cig",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "is_cig_master",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
     {
       "label": "APPARTIENE_A",
       "source": {
         "label": "OrdinativoDiFornitura",
         "attributes": [
           {
-            "name": "titolo_ordinativo",
+            "name": "id_ordinativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -316,7 +408,7 @@
         "label": "Convenzione",
         "attributes": [
           {
-            "name": "numero_convenzione_completa",
+            "name": "numero_convenzione",
             "type": "string",
             "unique": true,
             "required": true
@@ -325,7 +417,310 @@
       },
       "attributes": [
         {
-          "name": "lotto",
+          "name": "data_riferimento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CIG",
+      "source": {
+        "label": "OrdinativoDiFornitura",
+        "attributes": [
+          {
+            "name": "id_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CIG",
+        "attributes": [
+          {
+            "name": "cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "derivato",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CUP",
+      "source": {
+        "label": "OrdinativoDiFornitura",
+        "attributes": [
+          {
+            "name": "id_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CUP",
+        "attributes": [
+          {
+            "name": "cup",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modificabile",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CREATO_DA",
+      "source": {
+        "label": "OrdinativoDiFornitura",
+        "attributes": [
+          {
+            "name": "id_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_utente",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_RUOLO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "sigla_ruolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "predefinito",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ABILITATO_INTEROPERABILITA",
+      "source": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "sigla_ruolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "condizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_SERVIZIO",
+      "source": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Servizio",
+        "attributes": [
+          {
+            "name": "nome_servizio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sequenza",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "TRASMETTE_SCHEDA",
+      "source": {
+        "label": "Servizio",
+        "attributes": [
+          {
+            "name": "nome_servizio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "codice_scheda",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ACCETTA_ORDINATIVO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OrdinativoDiFornitura",
+        "attributes": [
+          {
+            "name": "id_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_accettazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVIA_A_OPERATORE",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_invio",
           "type": "string",
           "required": false,
           "unique": false
@@ -338,7 +733,7 @@
         "label": "OrdinativoDiFornitura",
         "attributes": [
           {
-            "name": "titolo_ordinativo",
+            "name": "id_ordinativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -349,7 +744,7 @@
         "label": "Articolo",
         "attributes": [
           {
-            "name": "descrizione_articolo",
+            "name": "codice_articolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -377,7 +772,7 @@
         "label": "OrdinativoDiFornitura",
         "attributes": [
           {
-            "name": "titolo_ordinativo",
+            "name": "id_ordinativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -388,7 +783,7 @@
         "label": "Allegato",
         "attributes": [
           {
-            "name": "nome_file",
+            "name": "id_allegato",
             "type": "string",
             "unique": true,
             "required": true
@@ -403,7 +798,7 @@
           "unique": false
         },
         {
-          "name": "descrizione",
+          "name": "descrizione_allegato",
           "type": "string",
           "required": false,
           "unique": false
@@ -411,12 +806,12 @@
       ]
     },
     {
-      "label": "INVIA_A",
+      "label": "CONTROLLA_CRONOLOGIA",
       "source": {
-        "label": "OrdinativoDiFornitura",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "titolo_ordinativo",
+            "name": "username",
             "type": "string",
             "unique": true,
             "required": true
@@ -424,154 +819,10 @@
         ]
       },
       "target": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_invio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "esito",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ESEGUE",
-      "source": {
-        "label": "Punto",
-        "attributes": [
-          {
-            "name": "tipo_punto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome_comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "richiede_profilazione_rup",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TRASMETTE_SCHEDA",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome_comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Scheda",
-        "attributes": [
-          {
-            "name": "tipo_scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "servizi",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "modalita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TRASMESSA_A",
-      "source": {
-        "label": "Scheda",
-        "attributes": [
-          {
-            "name": "tipo_scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Autorita",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "servizio_utilizzato",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "REGISTRA_CRONOLOGIA",
-      "source": {
         "label": "CronologiaPCP",
         "attributes": [
           {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Scheda",
-        "attributes": [
-          {
-            "name": "tipo_scheda",
+            "name": "id_cronologia",
             "type": "string",
             "unique": true,
             "required": true
@@ -579,6 +830,144 @@
         ]
       },
       "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SELEZIONA_CENTRO_DI_COSTO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CentroDiCosto",
+        "attributes": [
+          {
+            "name": "codice_cdc",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "selezionato",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_INDIRIZZO",
+      "source": {
+        "label": "OrdinativoDiFornitura",
+        "attributes": [
+          {
+            "name": "id_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Indirizzo",
+        "attributes": [
+          {
+            "name": "id_indirizzo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_indirizzo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_STATO",
+      "source": {
+        "label": "OrdinativoDiFornitura",
+        "attributes": [
+          {
+            "name": "id_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StatoDocumento",
+        "attributes": [
+          {
+            "name": "codice_stato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_aggiornamento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ESEGUE_COMANDO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ListaComandi",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "eseguito_in",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
         {
           "name": "esito",
           "type": "string",
@@ -588,12 +977,12 @@
       ]
     },
     {
-      "label": "MODIFICA_CUP_O_IMPORTO",
+      "label": "GENERA_PDF",
       "source": {
-        "label": "Comando",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome_comando",
+            "name": "username",
             "type": "string",
             "unique": true,
             "required": true
@@ -601,10 +990,10 @@
         ]
       },
       "target": {
-        "label": "Cup",
+        "label": "DocumentoPDF",
         "attributes": [
           {
-            "name": "codice_cup",
+            "name": "nome_file",
             "type": "string",
             "unique": true,
             "required": true
@@ -613,75 +1002,9 @@
       },
       "attributes": [
         {
-          "name": "tipo_modifica",
+          "name": "data_generazione",
           "type": "string",
           "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "VERIFICA_RESIDUO",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome_comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Convenzione",
-        "attributes": [
-          {
-            "name": "numero_convenzione_completa",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "residuo_aggiornato",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPLICA_STATO",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome_comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OrdinativoDiFornitura",
-        "attributes": [
-          {
-            "name": "titolo_ordinativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "nuovo_stato",
-          "type": "string",
-          "required": true,
           "unique": false
         }
       ]

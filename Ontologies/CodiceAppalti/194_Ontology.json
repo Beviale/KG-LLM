@@ -1,0 +1,356 @@
+{
+  "entities": [
+    {
+      "label": "Contratto",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_contratto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipo_contratto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "durata_contratto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "criteri_prestazione_energetica_stabiliti_contrattualmente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "quantificabili_in_relazione_ai_consumi",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione_operatore",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteConcedente",
+      "attributes": [
+        {
+          "name": "denominazione_ente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia_ente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PiattaformaInformatica",
+      "attributes": [
+        {
+          "name": "nome_piattaforma",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "scopo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "NormaAttestazioneEnergetica",
+      "attributes": [
+        {
+          "name": "codice_norma",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_norma",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "MisuraMiglioramentoEnergetica",
+      "attributes": [
+        {
+          "name": "codice_misura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_misura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "metrica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ConsumoEnergetico",
+      "attributes": [
+        {
+          "name": "periodo_monitoraggio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore_consumi",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "unità_di_misura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "EROGATO_A",
+      "source": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "partita_iva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo_stimato",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "periodo_riferimento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "criterio_di_calcolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_PIATTAFORMA",
+      "source": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PiattaformaInformatica",
+        "attributes": [
+          {
+            "name": "nome_piattaforma",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "funzione_principale",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "MONITORATO_DEI_CONSUMI",
+      "source": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ConsumoEnergetico",
+        "attributes": [
+          {
+            "name": "periodo_monitoraggio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "periodo_monitoraggio",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "metodo_verifica",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "MONITORATO_MISURA",
+      "source": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "MisuraMiglioramentoEnergetica",
+        "attributes": [
+          {
+            "name": "codice_misura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "durata_monitoraggio",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "metodi_verifica",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CALCOLATA_SECONDO",
+      "source": {
+        "label": "MisuraMiglioramentoEnergetica",
+        "attributes": [
+          {
+            "name": "codice_misura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "NormaAttestazioneEnergetica",
+        "attributes": [
+          {
+            "name": "codice_norma",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "descrizione_metodo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

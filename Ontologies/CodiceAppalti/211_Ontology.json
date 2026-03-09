@@ -1,0 +1,90 @@
+{
+  "entities": [
+    {
+      "label": "CollegioConsultivoTecnico",
+      "attributes": [
+        {
+          "name": "identificatore_collegio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DispositivoLegale",
+      "attributes": [
+        {
+          "name": "riferimento_norma",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_norma",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "LodoContrattuale",
+      "attributes": [
+        {
+          "name": "tipo_lodo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_lodo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "NATURA_DETERMINAZIONE",
+      "source": {
+        "label": "CollegioConsultivoTecnico",
+        "attributes": [
+          {
+            "name": "identificatore_collegio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DispositivoLegale",
+        "attributes": [
+          {
+            "name": "riferimento_norma",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

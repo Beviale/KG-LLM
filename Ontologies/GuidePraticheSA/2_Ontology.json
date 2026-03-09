@@ -1,29 +1,6 @@
 {
   "entities": [
     {
-      "label": "Documento",
-      "attributes": [
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "versione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
       "label": "Piattaforma",
       "attributes": [
         {
@@ -33,7 +10,7 @@
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "funzionalita",
           "type": "string",
           "unique": false,
           "required": false
@@ -41,33 +18,22 @@
       ]
     },
     {
-      "label": "StazioneAppaltante",
+      "label": "Manuale",
       "attributes": [
         {
-          "name": "nome",
+          "name": "versione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "onere_responsabilita",
+          "name": "titolo",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "ProceduraGara",
-      "attributes": [
-        {
-          "name": "criterio",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "modalita_aggiudicazione",
+          "name": "data_pubblicazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -78,7 +44,7 @@
       "label": "Formula",
       "attributes": [
         {
-          "name": "nome_formula",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -90,7 +56,7 @@
           "required": false
         },
         {
-          "name": "tipo_offerta",
+          "name": "disponibilita",
           "type": "string",
           "unique": false,
           "required": false
@@ -108,13 +74,7 @@
           "required": false
         },
         {
-          "name": "disponibilita",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "coefficiente_X_options",
+          "name": "tipo_offerta",
           "type": "string",
           "unique": false,
           "required": false
@@ -125,19 +85,25 @@
       "label": "Parametro",
       "attributes": [
         {
-          "name": "nome_parametro",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "valore_intervallo",
+          "name": "intervallo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "valori_possibili",
           "type": "string",
           "unique": false,
           "required": false
@@ -161,47 +127,7 @@
         },
         {
           "name": "valore",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ValutazioneSoggettiva",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "coefficiente",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "modalita",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CategoriaFormula",
-      "attributes": [
-        {
-          "name": "categoria",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
+          "type": "number",
           "unique": false,
           "required": false
         }
@@ -226,7 +152,7 @@
         "label": "Formula",
         "attributes": [
           {
-            "name": "nome_formula",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -235,11 +161,38 @@
       },
       "attributes": [
         {
-          "name": "versione_documento",
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false
-        },
+        }
+      ]
+    },
+    {
+      "label": "MANUALE_DESCRIVE_FORMULA",
+      "source": {
+        "label": "Manuale",
+        "attributes": [
+          {
+            "name": "versione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Formula",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
         {
           "name": "pagina_riferimento",
           "type": "string",
@@ -249,9 +202,42 @@
       ]
     },
     {
-      "label": "SELEZIONA_FORMULA",
+      "label": "MANUALE_PUBBLICATO_SU",
       "source": {
-        "label": "StazioneAppaltante",
+        "label": "Manuale",
+        "attributes": [
+          {
+            "name": "versione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FORMULA_USA_PARAMETRO",
+      "source": {
+        "label": "Formula",
         "attributes": [
           {
             "name": "nome",
@@ -262,43 +248,10 @@
         ]
       },
       "target": {
-        "label": "Formula",
-        "attributes": [
-          {
-            "name": "nome_formula",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "onere_responsabilita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_PARAMETRO",
-      "source": {
-        "label": "Formula",
-        "attributes": [
-          {
-            "name": "nome_formula",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "Parametro",
         "attributes": [
           {
-            "name": "nome_parametro",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -307,26 +260,20 @@
       },
       "attributes": [
         {
-          "name": "ruolo_parametro",
+          "name": "ruolo",
           "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "APPLICA_A_OFFERTA",
+      "label": "FORMULA_APPLICABILE_A_OFFERTA",
       "source": {
         "label": "Formula",
         "attributes": [
           {
-            "name": "nome_formula",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -346,184 +293,7 @@
       },
       "attributes": [
         {
-          "name": "punteggio_calcolato",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "condizioni_applicazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PROCEDURA_USA_FORMULA",
-      "source": {
-        "label": "ProceduraGara",
-        "attributes": [
-          {
-            "name": "criterio",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Formula",
-        "attributes": [
-          {
-            "name": "nome_formula",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "criterio_valutazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPARTIENE_A_CATEGORIA",
-      "source": {
-        "label": "Formula",
-        "attributes": [
-          {
-            "name": "nome_formula",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CategoriaFormula",
-        "attributes": [
-          {
-            "name": "categoria",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "motivo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SUPPORTA_VALUTAZIONE_SOGGETTIVA",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ValutazioneSoggettiva",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "coefficiente_intervallo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "modalita_inserimento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZA_VALUTAZIONE_SOGGETTIVA",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ValutazioneSoggettiva",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "punteggio_extra_piattaforma",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DESCRIVE_FORMULA",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Formula",
-        "attributes": [
-          {
-            "name": "nome_formula",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "pagina",
+          "name": "condizione",
           "type": "string",
           "required": false,
           "unique": false

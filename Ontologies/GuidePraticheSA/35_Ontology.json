@@ -4,10 +4,16 @@
       "label": "Bando",
       "attributes": [
         {
-          "name": "titolo_gara",
+          "name": "cig",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "titolo_gara",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "stato",
@@ -16,24 +22,13 @@
           "required": false
         },
         {
-          "name": "cig",
+          "name": "data_pubblicazione",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "Procedura",
-      "attributes": [
-        {
-          "name": "identificativo_iniziativa",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "fascicolo_di_sistema",
+          "name": "data_scadenza",
           "type": "string",
           "unique": false,
           "required": false
@@ -44,10 +39,28 @@
       "label": "Documento",
       "attributes": [
         {
-          "name": "registro_di_sistema",
+          "name": "id_documento",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "tipo_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_protocollo",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "protocollo",
@@ -56,13 +69,7 @@
           "required": false
         },
         {
-          "name": "data",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "stato",
+          "name": "registro_sistema",
           "type": "string",
           "unique": false,
           "required": false
@@ -73,30 +80,30 @@
       "label": "Allegato",
       "attributes": [
         {
-          "name": "nome_allegato",
+          "name": "nome_file",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "obbligatorio",
-          "type": "boolean",
+          "name": "tipo_allegato",
+          "type": "string",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "RUP",
+      "label": "Utente",
       "attributes": [
         {
-          "name": "identificativo_rup",
+          "name": "username",
           "type": "string",
           "unique": true,
           "required": true
@@ -106,26 +113,9 @@
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "RevocaLotti",
-      "attributes": [
-        {
-          "name": "id_revoca_lotti",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "motivo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "stato",
+          "name": "nome_completo",
           "type": "string",
           "unique": false,
           "required": false
@@ -133,22 +123,45 @@
       ]
     },
     {
-      "label": "Revoca",
+      "label": "RUP",
       "attributes": [
         {
-          "name": "id_revoca",
+          "name": "id_rup",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "motivo",
+          "name": "nome",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "data_seduta",
+          "name": "puo_approvare",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "identificativo_operatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato_offerta",
           "type": "string",
           "unique": false,
           "required": false
@@ -156,33 +169,22 @@
       ]
     },
     {
-      "label": "Proroga",
+      "label": "Lotto",
       "attributes": [
         {
-          "name": "id_proroga",
+          "name": "id_lotto",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "motivazione",
+          "name": "numero_lotto",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "Rettifica",
-      "attributes": [
-        {
-          "name": "id_rettifica",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "motivazione",
+          "name": "stato_lotto",
           "type": "string",
           "unique": false,
           "required": false
@@ -193,7 +195,7 @@
       "label": "FascicoloDiGara",
       "attributes": [
         {
-          "name": "fascicolo_di_sistema",
+          "name": "id_fascicolo",
           "type": "string",
           "unique": true,
           "required": true
@@ -209,6 +211,18 @@
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "tempo_elaborazione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stima_tempo_residuo",
+          "type": "number",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -216,10 +230,16 @@
       "label": "Commissione",
       "attributes": [
         {
-          "name": "tipo_commissione",
+          "name": "id_commissione",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "presidente",
@@ -233,44 +253,22 @@
       "label": "Avviso",
       "attributes": [
         {
-          "name": "testo_avviso",
+          "name": "id_avviso",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato",
+          "name": "testo",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "Quesito",
-      "attributes": [
-        {
-          "name": "testo_quesito",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "termine_invio",
+          "name": "stato_avviso",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "EsitoPubblicazione",
-      "attributes": [
-        {
-          "name": "tipo_esito",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
           "name": "data_pubblicazione",
@@ -281,33 +279,57 @@
       ]
     },
     {
-      "label": "ToolbarCommand",
+      "label": "Quesito",
       "attributes": [
         {
-          "name": "nome_comando",
+          "name": "id_quesito",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "testo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "mittente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_presentazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EsitoPubblicazione",
+      "attributes": [
+        {
+          "name": "id_esito",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "email",
+          "name": "data_pubblicazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -315,33 +337,45 @@
       ]
     },
     {
-      "label": "ANAC",
+      "label": "Manuale",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "pagina",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OrganismoPubblico",
       "attributes": [
         {
           "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
-        }
-      ]
-    },
-    {
-      "label": "SostituzioneRUP",
-      "attributes": [
-        {
-          "name": "id_sostituzione",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "nuovo_rup_proponente",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "nuovo_rup_appaltante",
+          "name": "canale_notifica",
           "type": "string",
           "unique": false,
           "required": false
@@ -351,45 +385,12 @@
   ],
   "relations": [
     {
-      "label": "GESTITO_DA",
-      "source": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RUP",
-        "attributes": [
-          {
-            "name": "identificativo_rup",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
       "label": "HA_DOCUMENTO",
       "source": {
         "label": "Bando",
         "attributes": [
           {
-            "name": "titolo_gara",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -400,7 +401,7 @@
         "label": "Documento",
         "attributes": [
           {
-            "name": "registro_di_sistema",
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -409,13 +410,13 @@
       },
       "attributes": [
         {
-          "name": "data_protocollazione",
+          "name": "data_creazione",
           "type": "string",
           "required": false,
           "unique": false
         },
         {
-          "name": "tipo_documento",
+          "name": "note",
           "type": "string",
           "required": false,
           "unique": false
@@ -423,12 +424,12 @@
       ]
     },
     {
-      "label": "HA_ALLEGATO",
+      "label": "DOCUMENTO_HA_ALLEGATO",
       "source": {
         "label": "Documento",
         "attributes": [
           {
-            "name": "registro_di_sistema",
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -439,7 +440,7 @@
         "label": "Allegato",
         "attributes": [
           {
-            "name": "nome_allegato",
+            "name": "nome_file",
             "type": "string",
             "unique": true,
             "required": true
@@ -452,16 +453,22 @@
           "type": "boolean",
           "required": true,
           "unique": false
+        },
+        {
+          "name": "motivazione",
+          "type": "string",
+          "required": false,
+          "unique": false
         }
       ]
     },
     {
-      "label": "TRASMETTE_A",
+      "label": "DOCUMENTO_INVIATO_A",
       "source": {
         "label": "Documento",
         "attributes": [
           {
-            "name": "registro_di_sistema",
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -469,7 +476,7 @@
         ]
       },
       "target": {
-        "label": "ANAC",
+        "label": "OrganismoPubblico",
         "attributes": [
           {
             "name": "nome",
@@ -481,13 +488,19 @@
       },
       "attributes": [
         {
-          "name": "destinazione",
+          "name": "data_invio",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         },
         {
-          "name": "canale_pubblicazione",
+          "name": "canale_notifica",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "destinazione_pubblicazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -495,12 +508,12 @@
       ]
     },
     {
-      "label": "REVOCARE_LOTTI",
+      "label": "BANDO_HA_LOTTO",
       "source": {
         "label": "Bando",
         "attributes": [
           {
-            "name": "titolo_gara",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -508,10 +521,43 @@
         ]
       },
       "target": {
-        "label": "RevocaLotti",
+        "label": "Lotto",
         "attributes": [
           {
-            "name": "id_revoca_lotti",
+            "name": "id_lotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "numero_lotto",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "REVOCATO_DA",
+      "source": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "id_lotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -526,7 +572,7 @@
           "unique": false
         },
         {
-          "name": "data_seduta",
+          "name": "data_revoca",
           "type": "string",
           "required": false,
           "unique": false
@@ -534,162 +580,12 @@
       ]
     },
     {
-      "label": "APPROVA",
-      "source": {
-        "label": "RUP",
-        "attributes": [
-          {
-            "name": "identificativo_rup",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RevocaLotti",
-        "attributes": [
-          {
-            "name": "id_revoca_lotti",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "esito",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "REVOCARE",
-      "source": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Revoca",
-        "attributes": [
-          {
-            "name": "id_revoca",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "motivazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "canale_notifica",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPLICA_A",
-      "source": {
-        "label": "Proroga",
-        "attributes": [
-          {
-            "name": "id_proroga",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "nuova_data_termine_quesiti",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "nuova_data_prima_seduta",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "motivazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPLICA_A",
-      "source": {
-        "label": "Rettifica",
-        "attributes": [
-          {
-            "name": "id_rettifica",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "note",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_COMANDO",
+      "label": "RICHIEDE_APPROVAZIONE_A",
       "source": {
         "label": "Documento",
         "attributes": [
           {
-            "name": "registro_di_sistema",
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -697,10 +593,82 @@
         ]
       },
       "target": {
-        "label": "ToolbarCommand",
+        "label": "RUP",
         "attributes": [
           {
-            "name": "nome_comando",
+            "name": "id_rup",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "necessaria_approvazione",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_richiesta",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RUP_RESPONSABILE_DI",
+      "source": {
+        "label": "RUP",
+        "attributes": [
+          {
+            "name": "id_rup",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTENTE_HA_CREATO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -711,18 +679,24 @@
         {
           "name": "azione",
           "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_azione",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "ESPORTA",
+      "label": "RIFERITO_A",
       "source": {
-        "label": "RUP",
+        "label": "FascicoloDiGara",
         "attributes": [
           {
-            "name": "identificativo_rup",
+            "name": "id_fascicolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -730,10 +704,10 @@
         ]
       },
       "target": {
-        "label": "FascicoloDiGara",
+        "label": "Bando",
         "attributes": [
           {
-            "name": "fascicolo_di_sistema",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -746,9 +720,69 @@
           "type": "number",
           "required": false,
           "unique": false
-        },
+        }
+      ]
+    },
+    {
+      "label": "CREATA_PER",
+      "source": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "id_commissione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
         {
-          "name": "stima_tempo_residuo",
+          "name": "obbligatorio_presidente",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICATO_SU",
+      "source": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OrganismoPubblico",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "livello",
           "type": "string",
           "required": false,
           "unique": false
@@ -756,12 +790,129 @@
       ]
     },
     {
-      "label": "HA_FASCICOLO",
+      "label": "AVVISO_RELATIVO_A",
       "source": {
+        "label": "Avviso",
+        "attributes": [
+          {
+            "name": "id_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "Bando",
         "attributes": [
           {
-            "name": "titolo_gara",
+            "name": "cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "stato",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "QUESITO_RIFERITO_A",
+      "source": {
+        "label": "Quesito",
+        "attributes": [
+          {
+            "name": "id_quesito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "risposta",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_presentazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ESITO_RIFERITO_A",
+      "source": {
+        "label": "EsitoPubblicazione",
+        "attributes": [
+          {
+            "name": "id_esito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_documento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIESTA_EXPORT_FASCICOLO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
             "type": "string",
             "unique": true,
             "required": true
@@ -772,7 +923,7 @@
         "label": "FascicoloDiGara",
         "attributes": [
           {
-            "name": "fascicolo_di_sistema",
+            "name": "id_fascicolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -781,185 +932,14 @@
       },
       "attributes": [
         {
-          "name": "tempo_elaborazione",
+          "name": "stato_elaborazione",
           "type": "string",
           "required": false,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CREA",
-      "source": {
-        "label": "RUP",
-        "attributes": [
-          {
-            "name": "identificativo_rup",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Commissione",
-        "attributes": [
-          {
-            "name": "tipo_commissione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
+        },
         {
-          "name": "numero_membri",
+          "name": "percentuale_avanzamento",
           "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "presidente",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PUBBLICA",
-      "source": {
-        "label": "EsitoPubblicazione",
-        "attributes": [
-          {
-            "name": "tipo_esito",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_pubblicazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_QUESITO",
-      "source": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Quesito",
-        "attributes": [
-          {
-            "name": "testo_quesito",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "stato",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "termine_invio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INVIA",
-      "source": {
-        "label": "Avviso",
-        "attributes": [
-          {
-            "name": "testo_avviso",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "modalita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INVALIDA",
-      "source": {
-        "label": "Revoca",
-        "attributes": [
-          {
-            "name": "id_revoca",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "effetto",
-          "type": "string",
           "required": false,
           "unique": false
         }
@@ -968,10 +948,10 @@
     {
       "label": "SOSTITUISCE",
       "source": {
-        "label": "SostituzioneRUP",
+        "label": "Documento",
         "attributes": [
           {
-            "name": "id_sostituzione",
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -982,7 +962,7 @@
         "label": "RUP",
         "attributes": [
           {
-            "name": "identificativo_rup",
+            "name": "id_rup",
             "type": "string",
             "unique": true,
             "required": true
@@ -990,41 +970,14 @@
         ]
       },
       "attributes": [
+        {
+          "name": "nuovo_rup",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
         {
           "name": "note",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_AVVISO",
-      "source": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Avviso",
-        "attributes": [
-          {
-            "name": "testo_avviso",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "stato",
           "type": "string",
           "required": false,
           "unique": false

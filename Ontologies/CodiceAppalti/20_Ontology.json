@@ -1,17 +1,52 @@
 {
   "entities": [
     {
-      "label": "CicloDiVita",
+      "label": "CicloDiVitaDigitaleContrattiPubblici",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "articolo_di_riferimento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "fasi_del_ciclo",
+          "name": "fasi",
           "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "riferimenti_normativi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CodiceDellAmministrazioneDigitale",
+      "attributes": [
+        {
+          "name": "identificatore_normativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo_normativo",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "numero_normativo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_normativo",
+          "type": "number",
           "unique": false,
           "required": false
         }
@@ -21,16 +56,22 @@
       "label": "DecretoLegislativo",
       "attributes": [
         {
-          "name": "numero",
+          "name": "identificatore_normativo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "data_emissione",
-          "type": "string",
+          "name": "numero",
+          "type": "number",
           "unique": false,
-          "required": false
+          "required": true
+        },
+        {
+          "name": "anno",
+          "type": "number",
+          "unique": false,
+          "required": true
         },
         {
           "name": "titolo",
@@ -44,16 +85,22 @@
       "label": "Legge",
       "attributes": [
         {
-          "name": "numero",
+          "name": "identificatore_normativo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "data_emissione",
-          "type": "string",
+          "name": "numero",
+          "type": "number",
           "unique": false,
-          "required": false
+          "required": true
+        },
+        {
+          "name": "anno",
+          "type": "number",
+          "unique": false,
+          "required": true
         },
         {
           "name": "titolo",
@@ -64,10 +111,10 @@
       ]
     },
     {
-      "label": "Articolo",
+      "label": "Piattaforma",
       "attributes": [
         {
-          "name": "numero_articolo",
+          "name": "identificatore_piattaforma",
           "type": "string",
           "unique": true,
           "required": true
@@ -79,28 +126,56 @@
           "required": false
         }
       ]
+    },
+    {
+      "label": "ServizioDigitale",
+      "attributes": [
+        {
+          "name": "identificatore_servizio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        }
+      ]
     }
   ],
   "relations": [
     {
-      "label": "DESCRIVE",
+      "label": "RIFERIMENTO_NORMATIVO",
       "source": {
+        "label": "CicloDiVitaDigitaleContrattiPubblici",
+        "attributes": [
+          {
+            "name": "articolo_di_riferimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "Articolo",
         "attributes": [
           {
             "name": "numero_articolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CicloDiVita",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
+            "type": "number",
             "unique": true,
             "required": true
           }
@@ -108,7 +183,7 @@
       },
       "attributes": [
         {
-          "name": "descrizione_relazione",
+          "name": "note",
           "type": "string",
           "required": false,
           "unique": false
@@ -116,12 +191,12 @@
       ]
     },
     {
-      "label": "RISPETTA_DISPOSIZIONI_DI_DECRETO_LEGISLATIVO_82_2005",
+      "label": "INTEROPERABILITA",
       "source": {
-        "label": "CicloDiVita",
+        "label": "Piattaforma",
         "attributes": [
           {
-            "name": "descrizione",
+            "name": "identificatore_piattaforma",
             "type": "string",
             "unique": true,
             "required": true
@@ -129,10 +204,10 @@
         ]
       },
       "target": {
-        "label": "DecretoLegislativo",
+        "label": "ServizioDigitale",
         "attributes": [
           {
-            "name": "numero",
+            "name": "identificatore_servizio",
             "type": "string",
             "unique": true,
             "required": true
@@ -141,40 +216,7 @@
       },
       "attributes": [
         {
-          "name": "descrizione_relazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RISPETTA_DISPOSIZIONI_DI_LEGGE_136_2010",
-      "source": {
-        "label": "CicloDiVita",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Legge",
-        "attributes": [
-          {
-            "name": "numero",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione_relazione",
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false

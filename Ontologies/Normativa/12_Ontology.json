@@ -1,0 +1,287 @@
+{
+  "entities": [
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "oggetto_appalto",
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        {
+          "name": "parti_distinte",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "Contratto",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "required": true,
+          "unique": true
+        }
+      ]
+    },
+    {
+      "label": "AmministrazioneAggiudicatrice",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "required": true,
+          "unique": true
+        }
+      ]
+    },
+    {
+      "label": "EnteAggiudicatore",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "required": true,
+          "unique": true
+        }
+      ]
+    },
+    {
+      "label": "Rup",
+      "attributes": [
+        {
+          "name": "codice",
+          "type": "string",
+          "required": true,
+          "unique": true
+        }
+      ]
+    },
+    {
+      "label": "MinisteroInfrastruttureETrasporti",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "required": true,
+          "unique": true
+        }
+      ]
+    },
+    {
+      "label": "Anac",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "required": true,
+          "unique": true
+        }
+      ]
+    },
+    {
+      "label": "AmbitoDiApplicazione",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": true
+        }
+      ]
+    },
+    {
+      "label": "RegimeGiuridico",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RESPONSABILE_UNICO_DEL_PROCESSO",
+      "source": {
+        "label": "Rup",
+        "attributes": [
+          {
+            "name": "codice",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "REGIME_GIURIDICO_APPALTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RegimeGiuridico",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_regime",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AMBITO_DI_APPLICAZIONE",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AmbitoDiApplicazione",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ambito_descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPALTO_TIPO_CONTRATTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_contratto",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

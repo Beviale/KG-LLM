@@ -1,0 +1,453 @@
+{
+  "entities": [
+    {
+      "label": "Procedura",
+      "attributes": [
+        {
+          "name": "articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termine_domande_partecipazione_giorni",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termine_offerte_giorni",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termine_offerte_da_invito_giorni",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "parte",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sezione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AvvisoIndizioneGara",
+      "attributes": [
+        {
+          "name": "codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Gara",
+      "attributes": [
+        {
+          "name": "codice_gara",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "BandoDiGara",
+      "attributes": [
+        {
+          "name": "codice_bando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "contenuto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DomandaDiPartecipazione",
+      "attributes": [
+        {
+          "name": "codice_domanda_partecipazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "dati_richiesti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_presentazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "codice_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_offerta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_presentazione_offerta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "partita_IVA",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione_stazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_stazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDIZIONE_DI_GARA",
+      "source": {
+        "label": "AvvisoIndizioneGara",
+        "attributes": [
+          {
+            "name": "codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "codice_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "PARTECIPAZIONE_PRESENTATA_PER_GARA",
+      "source": {
+        "label": "DomandaDiPartecipazione",
+        "attributes": [
+          {
+            "name": "codice_domanda_partecipazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "codice_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "INVITATO_A",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "PRESENTATA_DA",
+      "source": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "codice_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "RISPONDE_A",
+      "source": {
+        "label": "DomandaDiPartecipazione",
+        "attributes": [
+          {
+            "name": "codice_domanda_partecipazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AvvisoIndizioneGara",
+        "attributes": [
+          {
+            "name": "codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "OFFERTA_PRESENTATA_PER_GARA",
+      "source": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "codice_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Gara",
+        "attributes": [
+          {
+            "name": "codice_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "URGENZA_DOMANDE_PARTECIPAZIONE",
+      "source": {
+        "label": "Procedura",
+        "attributes": [
+          {
+            "name": "articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DomandaDiPartecipazione",
+        "attributes": [
+          {
+            "name": "codice_domanda_partecipazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "min_days",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "URGENZA_OFFERTE",
+      "source": {
+        "label": "Procedura",
+        "attributes": [
+          {
+            "name": "articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "codice_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "min_days",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

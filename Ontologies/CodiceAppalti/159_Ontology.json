@@ -1,0 +1,227 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "riferimento_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Sezione",
+      "attributes": [
+        {
+          "name": "riferimento_sezione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "BandoDiGara",
+      "attributes": [
+        {
+          "name": "tipologia_bando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AvvisoAggiudicazione",
+      "attributes": [
+        {
+          "name": "codice_avviso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiIndizione",
+      "attributes": [
+        {
+          "name": "tipologia_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ServiziDiRicercaESviluppo",
+      "attributes": [
+        {
+          "name": "tipo_servizi",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RiferimentoLegislativo",
+      "attributes": [
+        {
+          "name": "codice_riferimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDIZIA_GARA",
+      "source": {
+        "label": "BandoDiGara",
+        "attributes": [
+          {
+            "name": "tipologia_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiIndizione",
+        "attributes": [
+          {
+            "name": "tipologia_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "CONTENUTO_DI_ALLEGATO",
+      "source": {
+        "label": "AvvisoAggiudicazione",
+        "attributes": [
+          {
+            "name": "codice_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "riferimento_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "RIFERITO_A",
+      "source": {
+        "label": "Articolo",
+        "attributes": [
+          {
+            "name": "numero_articolo",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RiferimentoLegislativo",
+        "attributes": [
+          {
+            "name": "codice_riferimento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_riferimento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERIMENTO_A_SEZIONE",
+      "source": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "riferimento_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Sezione",
+        "attributes": [
+          {
+            "name": "riferimento_sezione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "INDICA_TIPO_SERVIZI",
+      "source": {
+        "label": "ProceduraDiIndizione",
+        "attributes": [
+          {
+            "name": "tipologia_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ServiziDiRicercaESviluppo",
+        "attributes": [
+          {
+            "name": "tipo_servizi",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    }
+  ]
+}

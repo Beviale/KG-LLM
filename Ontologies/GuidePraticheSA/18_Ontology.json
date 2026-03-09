@@ -1,6 +1,75 @@
 {
   "entities": [
     {
+      "label": "Documento",
+      "attributes": [
+        {
+          "name": "id_documento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "download_disponibile",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "TipoDocumento",
+      "attributes": [
+        {
+          "name": "codice_documento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteCertificante",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ente_tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "OperatoreEconomico",
       "attributes": [
         {
@@ -22,13 +91,7 @@
           "required": false
         },
         {
-          "name": "codice_catasto_stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "matricola_oe",
+          "name": "codice_forma_giuridica",
           "type": "string",
           "unique": false,
           "required": false
@@ -36,7 +99,7 @@
       ]
     },
     {
-      "label": "Persona",
+      "label": "PersonaFisica",
       "attributes": [
         {
           "name": "codice_fiscale",
@@ -63,76 +126,13 @@
           "required": false
         },
         {
-          "name": "data_di_nascita",
+          "name": "data_nascita",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "luogo_di_nascita",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Documento",
-      "attributes": [
-        {
-          "name": "id_documento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "codice_documento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "download_disponibile",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "TipoDocumento",
-      "attributes": [
-        {
-          "name": "codice_documento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "EnteCertificante",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "codice",
+          "name": "luogo_nascita",
           "type": "string",
           "unique": false,
           "required": false
@@ -143,7 +143,7 @@
       "label": "StatoDocumento",
       "attributes": [
         {
-          "name": "nome",
+          "name": "stato_nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -157,23 +157,17 @@
       ]
     },
     {
-      "label": "Richiesta",
+      "label": "FascicoloVirtuale",
       "attributes": [
         {
-          "name": "id_richiesta",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "data_richiesta",
+          "name": "versione",
           "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "anno_richiesta",
-          "type": "number",
           "unique": false,
           "required": false
         }
@@ -181,45 +175,6 @@
     }
   ],
   "relations": [
-    {
-      "label": "HA_DOCUMENTO",
-      "source": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "partita_iva",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "id_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "stato_documento",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "id_documento_esterno",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
     {
       "label": "DOCUMENTO_DI_TIPO",
       "source": {
@@ -246,7 +201,7 @@
       },
       "attributes": [
         {
-          "name": "descrizione_tipo",
+          "name": "note",
           "type": "string",
           "required": false,
           "unique": false
@@ -254,7 +209,73 @@
       ]
     },
     {
-      "label": "TIPO_CERTIFICATO_DA",
+      "label": "DOCUMENTO_RELATIVO_A_OPERATORE",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "id_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "partita_iva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "associato_a_persona_giuridica",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DOCUMENTO_RELATIVO_A_PERSONA",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "id_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PersonaFisica",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "richiedibile_per_persona",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "TIPO_DOCUMENTO_EMESSO_DA",
       "source": {
         "label": "TipoDocumento",
         "attributes": [
@@ -279,7 +300,7 @@
       },
       "attributes": [
         {
-          "name": "note",
+          "name": "note_emissione",
           "type": "string",
           "required": false,
           "unique": false
@@ -287,40 +308,7 @@
       ]
     },
     {
-      "label": "RIGUARDA_PERSONA",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "id_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Persona",
-        "attributes": [
-          {
-            "name": "codice_fiscale",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_STATO",
+      "label": "DOCUMENTO_HA_STATO",
       "source": {
         "label": "Documento",
         "attributes": [
@@ -336,7 +324,7 @@
         "label": "StatoDocumento",
         "attributes": [
           {
-            "name": "nome",
+            "name": "stato_nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -353,12 +341,12 @@
       ]
     },
     {
-      "label": "RICHIESTA_DI_DOCUMENTO",
+      "label": "OPERATORE_PUO_CARICARE_DOCUMENTO",
       "source": {
-        "label": "Richiesta",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "id_richiesta",
+            "name": "partita_iva",
             "type": "string",
             "unique": true,
             "required": true
@@ -366,10 +354,10 @@
         ]
       },
       "target": {
-        "label": "Documento",
+        "label": "FascicoloVirtuale",
         "attributes": [
           {
-            "name": "id_documento",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -378,13 +366,13 @@
       },
       "attributes": [
         {
-          "name": "stato_richiesta",
-          "type": "string",
-          "required": false,
+          "name": "puo_caricare",
+          "type": "boolean",
+          "required": true,
           "unique": false
         },
         {
-          "name": "motivo",
+          "name": "modalita",
           "type": "string",
           "required": false,
           "unique": false
@@ -392,12 +380,12 @@
       ]
     },
     {
-      "label": "RICHIESTA_EFFETTUATA_DA",
+      "label": "TIPO_DOCUMENTO_RICHIEDIBILE_PER_PERSONA",
       "source": {
-        "label": "Richiesta",
+        "label": "TipoDocumento",
         "attributes": [
           {
-            "name": "id_richiesta",
+            "name": "codice_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -405,7 +393,7 @@
         ]
       },
       "target": {
-        "label": "Persona",
+        "label": "PersonaFisica",
         "attributes": [
           {
             "name": "codice_fiscale",
@@ -417,40 +405,13 @@
       },
       "attributes": [
         {
-          "name": "ruolo_richiedente",
-          "type": "string",
-          "required": false,
+          "name": "richiedibile",
+          "type": "boolean",
+          "required": true,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICHIESTA_RIFERITA_A_OPERATORE",
-      "source": {
-        "label": "Richiesta",
-        "attributes": [
-          {
-            "name": "id_richiesta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "partita_iva",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
+        },
         {
-          "name": "matricola_oe",
+          "name": "note",
           "type": "string",
           "required": false,
           "unique": false

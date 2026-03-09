@@ -1,27 +1,10 @@
 {
   "entities": [
     {
-      "label": "Sezione",
+      "label": "Consultazione",
       "attributes": [
         {
-          "name": "nome_sezione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ConsultazionePreliminare",
-      "attributes": [
-        {
-          "name": "titolo",
+          "name": "oggetto",
           "type": "string",
           "unique": true,
           "required": true
@@ -39,25 +22,41 @@
           "required": false
         },
         {
-          "name": "data_scadenza",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "fascicolo_di_sistema",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "registro_di_sistema",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
           "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Sezione",
+      "attributes": [
+        {
+          "name": "nome_sezione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "username",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "email",
           "type": "string",
           "unique": false,
           "required": false
@@ -82,97 +81,22 @@
       ]
     },
     {
-      "label": "Comando",
-      "attributes": [
-        {
-          "name": "nome_comando",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "posizione_toolbar",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
       "label": "Documento",
       "attributes": [
         {
-          "name": "nome_documento",
+          "name": "titolo_documento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo_documento",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
           "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "contiene_allegati",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Risposta",
-      "attributes": [
-        {
-          "name": "identificativo_risposta",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_invio",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "numero_documenti_allegati",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "identificativo_operatore",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ruolo_operatore",
           "type": "string",
           "unique": false,
           "required": false
@@ -183,16 +107,10 @@
       "label": "Comunicazione",
       "attributes": [
         {
-          "name": "tipo_comunicazione",
+          "name": "titolo_comunicazione",
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "richiesta_risposta",
-          "type": "boolean",
-          "unique": false,
-          "required": false
         },
         {
           "name": "testo",
@@ -201,8 +119,8 @@
           "required": false
         },
         {
-          "name": "data_termine_risposta",
-          "type": "string",
+          "name": "richiesta_risposta",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -212,7 +130,7 @@
       "label": "Allegato",
       "attributes": [
         {
-          "name": "nome_allegato",
+          "name": "nome_file",
           "type": "string",
           "unique": true,
           "required": true
@@ -224,24 +142,7 @@
           "required": false
         },
         {
-          "name": "file_caricato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Tabella",
-      "attributes": [
-        {
-          "name": "nome_tabella",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
+          "name": "formato",
           "type": "string",
           "unique": false,
           "required": false
@@ -249,16 +150,113 @@
       ]
     },
     {
-      "label": "Funzione",
+      "label": "Risposta",
       "attributes": [
         {
-          "name": "nome_funzione",
+          "name": "id_risposta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "BustaDocumentazione",
+      "attributes": [
+        {
+          "name": "id_busta",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
           "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "id_operatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Cronologia",
+      "attributes": [
+        {
+          "name": "id_cronologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Funzionalita",
+      "attributes": [
+        {
+          "name": "nome_funzionalita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FascicoloDiSistema",
+      "attributes": [
+        {
+          "name": "fascicolo_id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "registro_id",
           "type": "string",
           "unique": false,
           "required": false
@@ -269,30 +267,19 @@
       "label": "Notifica",
       "attributes": [
         {
-          "name": "tipo_notifica",
+          "name": "id_notifica",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "canale",
+          "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "FaseDocumento",
-      "attributes": [
-        {
-          "name": "fase",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "descrizione",
+          "name": "destinatario",
           "type": "string",
           "unique": false,
           "required": false
@@ -302,7 +289,7 @@
   ],
   "relations": [
     {
-      "label": "PARTE_DI",
+      "label": "APPARTIENE_A",
       "source": {
         "label": "Sezione",
         "attributes": [
@@ -315,10 +302,10 @@
         ]
       },
       "target": {
-        "label": "ConsultazionePreliminare",
+        "label": "Consultazione",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "oggetto",
             "type": "string",
             "unique": true,
             "required": true
@@ -328,12 +315,12 @@
       "attributes": []
     },
     {
-      "label": "CONTIENE_DOCUMENTO",
+      "label": "CONSULTAZIONE_HA_DOCUMENTO",
       "source": {
-        "label": "ConsultazionePreliminare",
+        "label": "Consultazione",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "oggetto",
             "type": "string",
             "unique": true,
             "required": true
@@ -344,22 +331,35 @@
         "label": "Documento",
         "attributes": [
           {
-            "name": "nome_documento",
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "autore",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
     },
     {
-      "label": "CONTIENE_RISPOSTA",
+      "label": "CONSULTAZIONE_HA_RISPOSTA",
       "source": {
-        "label": "ConsultazionePreliminare",
+        "label": "Consultazione",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "oggetto",
             "type": "string",
             "unique": true,
             "required": true
@@ -370,33 +370,7 @@
         "label": "Risposta",
         "attributes": [
           {
-            "name": "identificativo_risposta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "HA_INVIATO",
-      "source": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "identificativo_operatore",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Risposta",
-        "attributes": [
-          {
-            "name": "identificativo_risposta",
+            "name": "id_risposta",
             "type": "string",
             "unique": true,
             "required": true
@@ -407,18 +381,18 @@
         {
           "name": "data_invio",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "COLLEGATO_A",
+      "label": "OPERATORE_HA_PRESENTATO",
       "source": {
-        "label": "Documento",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "nome_documento",
+            "name": "id_operatore",
             "type": "string",
             "unique": true,
             "required": true
@@ -426,10 +400,43 @@
         ]
       },
       "target": {
-        "label": "Sezione",
+        "label": "Risposta",
         "attributes": [
           {
-            "name": "nome_sezione",
+            "name": "id_risposta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_invio",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTENTE_RICOPRE_RUOLO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome_ruolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -439,12 +446,12 @@
       "attributes": []
     },
     {
-      "label": "ESEGUE_SU",
+      "label": "UTENTE_ESEGUE_OPERAZIONE",
       "source": {
-        "label": "Comando",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome_comando",
+            "name": "username",
             "type": "string",
             "unique": true,
             "required": true
@@ -452,10 +459,10 @@
         ]
       },
       "target": {
-        "label": "ConsultazionePreliminare",
+        "label": "Cronologia",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "id_cronologia",
             "type": "string",
             "unique": true,
             "required": true
@@ -464,20 +471,26 @@
       },
       "attributes": [
         {
-          "name": "azione",
+          "name": "operazione",
           "type": "string",
           "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_operazione",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "PUO_PUBBLICARE",
+      "label": "CRONOLOGIA_RIGUARDA",
       "source": {
-        "label": "Ruolo",
+        "label": "Cronologia",
         "attributes": [
           {
-            "name": "nome_ruolo",
+            "name": "id_cronologia",
             "type": "string",
             "unique": true,
             "required": true
@@ -485,10 +498,10 @@
         ]
       },
       "target": {
-        "label": "ConsultazionePreliminare",
+        "label": "Consultazione",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "oggetto",
             "type": "string",
             "unique": true,
             "required": true
@@ -498,12 +511,12 @@
       "attributes": []
     },
     {
-      "label": "INOLTRA_A",
+      "label": "CONSULTAZIONE_HA_COMUNICAZIONE",
       "source": {
-        "label": "Ruolo",
+        "label": "Consultazione",
         "attributes": [
           {
-            "name": "nome_ruolo",
+            "name": "oggetto",
             "type": "string",
             "unique": true,
             "required": true
@@ -511,10 +524,10 @@
         ]
       },
       "target": {
-        "label": "Ruolo",
+        "label": "Comunicazione",
         "attributes": [
           {
-            "name": "nome_ruolo",
+            "name": "titolo_comunicazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -523,20 +536,20 @@
       },
       "attributes": [
         {
-          "name": "azione",
+          "name": "data_invio",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "RIVOLTA_A",
+      "label": "COMUNICAZIONE_INVIATA_A",
       "source": {
         "label": "Comunicazione",
         "attributes": [
           {
-            "name": "tipo_comunicazione",
+            "name": "titolo_comunicazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -547,7 +560,7 @@
         "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "identificativo_operatore",
+            "name": "id_operatore",
             "type": "string",
             "unique": true,
             "required": true
@@ -558,44 +571,24 @@
         {
           "name": "richiesta_risposta",
           "type": "boolean",
-          "required": true,
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "rispondere_entro",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "COLLEGA_A_DOCUMENTO",
+      "label": "COMUNICAZIONE_ALLEGATA_CON",
       "source": {
         "label": "Comunicazione",
         "attributes": [
           {
-            "name": "tipo_comunicazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "nome_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "AGGIUNGE_ALLEGATO",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome_comando",
+            "name": "titolo_comunicazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -606,111 +599,7 @@
         "label": "Allegato",
         "attributes": [
           {
-            "name": "nome_allegato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "CONTIENTE_ALLEGATO",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "nome_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "nome_allegato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "PRESENTA",
-      "source": {
-        "label": "Sezione",
-        "attributes": [
-          {
-            "name": "nome_sezione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Tabella",
-        "attributes": [
-          {
-            "name": "nome_tabella",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "APPLICABILE_A",
-      "source": {
-        "label": "Funzione",
-        "attributes": [
-          {
-            "name": "nome_funzione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ConsultazionePreliminare",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "INFORMA",
-      "source": {
-        "label": "Notifica",
-        "attributes": [
-          {
-            "name": "tipo_notifica",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome_ruolo",
+            "name": "nome_file",
             "type": "string",
             "unique": true,
             "required": true
@@ -719,20 +608,20 @@
       },
       "attributes": [
         {
-          "name": "canale",
+          "name": "descrizione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "DEFINISCE_FASE",
+      "label": "BUSTA_CONTIENE_ALLEGATO",
       "source": {
-        "label": "FaseDocumento",
+        "label": "BustaDocumentazione",
         "attributes": [
           {
-            "name": "fase",
+            "name": "id_busta",
             "type": "string",
             "unique": true,
             "required": true
@@ -740,10 +629,43 @@
         ]
       },
       "target": {
-        "label": "ConsultazionePreliminare",
+        "label": "Allegato",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "obbligatorio",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RISPOSTA_HA_BUSTA",
+      "source": {
+        "label": "Risposta",
+        "attributes": [
+          {
+            "name": "id_risposta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "BustaDocumentazione",
+        "attributes": [
+          {
+            "name": "id_busta",
             "type": "string",
             "unique": true,
             "required": true
@@ -751,6 +673,117 @@
         ]
       },
       "attributes": []
+    },
+    {
+      "label": "CONSULTAZIONE_APPLICA_FUNZIONALITA",
+      "source": {
+        "label": "Consultazione",
+        "attributes": [
+          {
+            "name": "oggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Funzionalita",
+        "attributes": [
+          {
+            "name": "nome_funzionalita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_applicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONSULTAZIONE_HA_FASCICOLO",
+      "source": {
+        "label": "Consultazione",
+        "attributes": [
+          {
+            "name": "oggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "FascicoloDiSistema",
+        "attributes": [
+          {
+            "name": "fascicolo_id",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "registro_di_sistema",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "NOTIFICA_RIVOLTA_A",
+      "source": {
+        "label": "Notifica",
+        "attributes": [
+          {
+            "name": "id_notifica",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "mezzo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "oggetto_notifica",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
     }
   ]
 }

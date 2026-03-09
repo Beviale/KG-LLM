@@ -27,19 +27,13 @@
       "label": "Societa",
       "attributes": [
         {
-          "name": "nome",
+          "name": "denominazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "partita_iva",
+          "name": "forma_giuridica",
           "type": "string",
           "unique": false,
           "required": false
@@ -64,6 +58,57 @@
       ]
     },
     {
+      "label": "Ente",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
+      "attributes": [
+        {
+          "name": "sigla",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AccordoQuadro",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "Convenzione",
       "attributes": [
         {
@@ -77,20 +122,14 @@
           "type": "number",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "data_scadenza",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
     {
-      "label": "AccordoQuadro",
+      "label": "Lotto",
       "attributes": [
         {
-          "name": "identificativo",
+          "name": "codice_lotto",
           "type": "string",
           "unique": true,
           "required": true
@@ -98,94 +137,6 @@
         {
           "name": "descrizione",
           "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OrdinativoDiFornitura",
-      "attributes": [
-        {
-          "name": "identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_emissione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_scadenza",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "totale",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "totale_con_iva",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cig_derivato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cig_master",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cup",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Carrello",
-      "attributes": [
-        {
-          "name": "identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "numero_articoli",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "totale",
-          "type": "number",
           "unique": false,
           "required": false
         }
@@ -211,15 +162,43 @@
           "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Carrello",
+      "attributes": [
+        {
+          "name": "id_carrello",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
-          "name": "aic",
+          "name": "numero_articoli",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OrdinativoDiFornitura",
+      "attributes": [
+        {
+          "name": "id_ordinativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_ordinativo",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "atc",
+          "name": "data_emissione",
           "type": "string",
           "unique": false,
           "required": false
@@ -227,90 +206,16 @@
       ]
     },
     {
-      "label": "Fornitore",
+      "label": "CIG",
       "attributes": [
         {
-          "name": "nome",
+          "name": "codice_cig",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "codice_fornitore",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Ente",
-      "attributes": [
-        {
-          "name": "codice_ente",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Utente",
-      "attributes": [
-        {
-          "name": "username",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "email",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Ruolo",
-      "attributes": [
-        {
-          "name": "nome_ruolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PuntoOrdinante",
-      "attributes": [
-        {
-          "name": "identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
+          "name": "modalita_inserimento",
           "type": "string",
           "unique": false,
           "required": false
@@ -335,16 +240,16 @@
       ]
     },
     {
-      "label": "SchedaPCP",
+      "label": "Utente",
       "attributes": [
         {
-          "name": "tipo",
+          "name": "username",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato",
+          "name": "nominativo",
           "type": "string",
           "unique": false,
           "required": false
@@ -352,7 +257,24 @@
       ]
     },
     {
-      "label": "DocumentoAllegato",
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale_o_partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
       "attributes": [
         {
           "name": "nome_file",
@@ -369,16 +291,67 @@
       ]
     },
     {
-      "label": "AffidamentoDiretto",
+      "label": "CentroDiCosto",
       "attributes": [
         {
-          "name": "identificativo",
+          "name": "codice",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
           "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Indirizzo",
+      "attributes": [
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Stato",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ANAC",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "servizio_registrazione_profilazione_url",
           "type": "string",
           "unique": false,
           "required": false
@@ -404,6 +377,28 @@
         "label": "Societa",
         "attributes": [
           {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "pagina",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GESTITA_DA",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
             "name": "nome",
             "type": "string",
             "unique": true,
@@ -411,10 +406,28 @@
           }
         ]
       },
-      "attributes": []
+      "target": {
+        "label": "Societa",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "nota",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
     },
     {
-      "label": "PIATTAFORMA_GESTISCE_CONVENZIONE",
+      "label": "GESTISCE_CONVENZIONE",
       "source": {
         "label": "Piattaforma",
         "attributes": [
@@ -447,7 +460,73 @@
       ]
     },
     {
-      "label": "CONVENZIONE_GESTITA_DA",
+      "label": "ATTIVATO_SU",
+      "source": {
+        "label": "AccordoQuadro",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_attivazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GESTITO_DA",
+      "source": {
+        "label": "AccordoQuadro",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Societa",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "soggetto_aggregatore",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_LOTTO",
       "source": {
         "label": "Convenzione",
         "attributes": [
@@ -460,10 +539,10 @@
         ]
       },
       "target": {
-        "label": "Societa",
+        "label": "Lotto",
         "attributes": [
           {
-            "name": "nome",
+            "name": "codice_lotto",
             "type": "string",
             "unique": true,
             "required": true
@@ -472,86 +551,20 @@
       },
       "attributes": [
         {
-          "name": "ruolo_gestore",
-          "type": "string",
+          "name": "selezionabile_multiplo",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "CREATO_DA",
+      "label": "INCLUDE_PRODOTTO",
       "source": {
-        "label": "OrdinativoDiFornitura",
+        "label": "Lotto",
         "attributes": [
           {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_creazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONFIGURA",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OrdinativoDiFornitura",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_operazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONTENUTO_DI_CARRELLO",
-      "source": {
-        "label": "Carrello",
-        "attributes": [
-          {
-            "name": "identificativo",
+            "name": "codice_lotto",
             "type": "string",
             "unique": true,
             "required": true
@@ -571,15 +584,48 @@
       },
       "attributes": [
         {
+          "name": "disponibilita",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIUNTO_A",
+      "source": {
+        "label": "ProdottoServizio",
+        "attributes": [
+          {
+            "name": "codice_articolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Carrello",
+        "attributes": [
+          {
+            "name": "id_carrello",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
           "name": "quantita",
           "type": "number",
-          "required": true,
+          "required": false,
           "unique": false
         },
         {
           "name": "importo",
           "type": "number",
-          "required": true,
+          "required": false,
           "unique": false
         },
         {
@@ -591,56 +637,23 @@
       ]
     },
     {
-      "label": "AGGIUNGE_AL_CARRELLO",
+      "label": "APPARTIENE_A",
       "source": {
+        "label": "Carrello",
+        "attributes": [
+          {
+            "name": "id_carrello",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "Utente",
         "attributes": [
           {
             "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Carrello",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_operazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CREA_ORDINATIVO_DA",
-      "source": {
-        "label": "Carrello",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OrdinativoDiFornitura",
-        "attributes": [
-          {
-            "name": "identificativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -651,18 +664,18 @@
         {
           "name": "data_creazione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "RIFERITO_A",
+      "label": "GENERA",
       "source": {
-        "label": "OrdinativoDiFornitura",
+        "label": "Carrello",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "id_carrello",
             "type": "string",
             "unique": true,
             "required": true
@@ -670,10 +683,10 @@
         ]
       },
       "target": {
-        "label": "Convenzione",
+        "label": "OrdinativoDiFornitura",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "id_ordinativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -682,7 +695,7 @@
       },
       "attributes": [
         {
-          "name": "tipo_convenzione",
+          "name": "azione",
           "type": "string",
           "required": false,
           "unique": false
@@ -690,12 +703,12 @@
       ]
     },
     {
-      "label": "INVIATO_A_FORNITORE",
+      "label": "FORNITO_DA",
       "source": {
         "label": "OrdinativoDiFornitura",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "id_ordinativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -703,10 +716,10 @@
         ]
       },
       "target": {
-        "label": "Fornitore",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "nome",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -715,20 +728,20 @@
       },
       "attributes": [
         {
-          "name": "data_invio",
-          "type": "string",
+          "name": "importo_totale",
+          "type": "number",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "INVIATO_A_PO",
+      "label": "HA_CIG",
       "source": {
         "label": "OrdinativoDiFornitura",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "id_ordinativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -736,10 +749,10 @@
         ]
       },
       "target": {
-        "label": "PuntoOrdinante",
+        "label": "CIG",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "codice_cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -748,7 +761,7 @@
       },
       "attributes": [
         {
-          "name": "data_invio",
+          "name": "modalita_inserimento",
           "type": "string",
           "required": false,
           "unique": false
@@ -756,52 +769,8 @@
       ]
     },
     {
-      "label": "APPROVATO_DA",
+      "label": "RILASCIA",
       "source": {
-        "label": "OrdinativoDiFornitura",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PuntoOrdinante",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_approvazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICHIEDE_CIG_A",
-      "source": {
-        "label": "PuntoOrdinante",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "PCP",
         "attributes": [
           {
@@ -812,9 +781,20 @@
           }
         ]
       },
+      "target": {
+        "label": "CIG",
+        "attributes": [
+          {
+            "name": "codice_cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "data_richiesta",
+          "name": "tipo_rilascio",
           "type": "string",
           "required": false,
           "unique": false
@@ -822,139 +802,7 @@
       ]
     },
     {
-      "label": "ASSOCIATO_A_SCHEDA",
-      "source": {
-        "label": "OrdinativoDiFornitura",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SchedaPCP",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "stato_scheda",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_ALLEGATO",
-      "source": {
-        "label": "OrdinativoDiFornitura",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "DocumentoAllegato",
-        "attributes": [
-          {
-            "name": "nome_file",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "OFFRE",
-      "source": {
-        "label": "Fornitore",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ProdottoServizio",
-        "attributes": [
-          {
-            "name": "codice_articolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "prezzo",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTENTE_APPARTIENE_A",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Ente",
-        "attributes": [
-          {
-            "name": "codice_ente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_assegnazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTENTE_HA_RUOLO",
+      "label": "HA_RUOLO",
       "source": {
         "label": "Utente",
         "attributes": [
@@ -970,7 +818,7 @@
         "label": "Ruolo",
         "attributes": [
           {
-            "name": "nome_ruolo",
+            "name": "sigla",
             "type": "string",
             "unique": true,
             "required": true
@@ -979,114 +827,15 @@
       },
       "attributes": [
         {
-          "name": "data_assegnazione",
-          "type": "string",
+          "name": "profilato",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "CONVENZIONE_ASSOCIATA_AD",
-      "source": {
-        "label": "Convenzione",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "AccordoQuadro",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "relazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZA_AFFIDAMENTO_DIRETTO",
-      "source": {
-        "label": "OrdinativoDiFornitura",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "AffidamentoDiretto",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "modalita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PIATTAFORMA_INTERAGISCE_CON",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "canale",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SELEZIONA_PUNTO_ORDINANTE",
+      "label": "PROFILATO_SU_ANAC",
       "source": {
         "label": "Utente",
         "attributes": [
@@ -1099,10 +848,10 @@
         ]
       },
       "target": {
-        "label": "PuntoOrdinante",
+        "label": "ANAC",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -1111,7 +860,7 @@
       },
       "attributes": [
         {
-          "name": "comando",
+          "name": "ruolo_anac",
           "type": "string",
           "required": false,
           "unique": false
@@ -1119,12 +868,12 @@
       ]
     },
     {
-      "label": "HA_PRODOTTO_IN_ORDINATIVO",
+      "label": "HA_ALLEGATO",
       "source": {
-        "label": "ProdottoServizio",
+        "label": "OrdinativoDiFornitura",
         "attributes": [
           {
-            "name": "codice_articolo",
+            "name": "id_ordinativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -1132,7 +881,101 @@
         ]
       },
       "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "obbligatorio",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CENTRO_DI_COSTO",
+      "source": {
         "label": "OrdinativoDiFornitura",
+        "attributes": [
+          {
+            "name": "id_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CentroDiCosto",
+        "attributes": [
+          {
+            "name": "codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "selezionato",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DESTINATO_A",
+      "source": {
+        "label": "OrdinativoDiFornitura",
+        "attributes": [
+          {
+            "name": "id_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Indirizzo",
+        "attributes": [
+          {
+            "name": "indirizzo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_destinazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CIG_MASTER",
+      "source": {
+        "label": "Convenzione",
         "attributes": [
           {
             "name": "identificativo",
@@ -1142,17 +985,88 @@
           }
         ]
       },
+      "target": {
+        "label": "CIG",
+        "attributes": [
+          {
+            "name": "codice_cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "quantita",
-          "type": "number",
-          "required": true,
+          "name": "selezionato",
+          "type": "boolean",
+          "required": false,
           "unique": false
-        },
+        }
+      ]
+    },
+    {
+      "label": "HA_STATO",
+      "source": {
+        "label": "OrdinativoDiFornitura",
+        "attributes": [
+          {
+            "name": "id_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Stato",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
         {
-          "name": "importo",
-          "type": "number",
-          "required": true,
+          "name": "data_aggiornamento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PARTECIPA_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AccordoQuadro",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita_partecipazione",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]

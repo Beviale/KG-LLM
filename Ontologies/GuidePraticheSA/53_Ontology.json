@@ -4,65 +4,19 @@
       "label": "ProceduraDiGara",
       "attributes": [
         {
-          "name": "identificativo",
+          "name": "id_procedura",
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
         },
         {
           "name": "tipo",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "ProceduraDiAggiudicazione",
-      "attributes": [
-        {
-          "name": "id_procedura_di_aggiudicazione",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "chiusa",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "modalita_chiusura",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "RegolaChiusura",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "periodo_giorni",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "condizione",
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
@@ -79,7 +33,30 @@
           "required": true
         },
         {
-          "name": "stato",
+          "name": "tipo_avviso",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_ultimo_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Invito",
+      "attributes": [
+        {
+          "name": "id_invito",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato_invito",
           "type": "string",
           "unique": false,
           "required": false
@@ -96,8 +73,8 @@
           "required": true
         },
         {
-          "name": "contiene_documenti",
-          "type": "boolean",
+          "name": "descrizione",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -113,13 +90,110 @@
           "required": true
         },
         {
-          "name": "nome_documento",
+          "name": "tipo_documento",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
           "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comunicazione",
+      "attributes": [
+        {
+          "name": "id_comunicazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_comunicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Contratto",
+      "attributes": [
+        {
+          "name": "id_contratto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Convenzione",
+      "attributes": [
+        {
+          "name": "id_convenzione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RegolaChiusura",
+      "attributes": [
+        {
+          "name": "id_regola",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "termini_giorni",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "condizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "TipoProcedura",
+      "attributes": [
+        {
+          "name": "nome_tipo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -140,26 +214,20 @@
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
     {
-      "label": "Invito",
+      "label": "Comando",
       "attributes": [
         {
-          "name": "id_invito",
+          "name": "nome_comando",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "stato",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -167,22 +235,16 @@
       ]
     },
     {
-      "label": "CondizioneGaraDeserta",
+      "label": "PiattaformaPCP",
       "attributes": [
         {
-          "name": "nome",
+          "name": "nome_piattaforma",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "termine_giorni",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "modalita_comunicazione",
+          "name": "versione",
           "type": "string",
           "unique": false,
           "required": false
@@ -190,24 +252,18 @@
       ]
     },
     {
-      "label": "ComandoModificaPartecipanti",
+      "label": "ANAC",
       "attributes": [
         {
           "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "toolbar_posizione",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
     {
-      "label": "ManualeSA",
+      "label": "Manuale",
       "attributes": [
         {
           "name": "titolo",
@@ -223,91 +279,6 @@
         },
         {
           "name": "pagina",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Figura",
-      "attributes": [
-        {
-          "name": "numero",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ANAC",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PCP",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PAD",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Lotto",
-      "attributes": [
-        {
-          "name": "identificativo_lotto",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "numero",
           "type": "number",
           "unique": false,
           "required": false
@@ -315,27 +286,10 @@
       ]
     },
     {
-      "label": "RTI",
+      "label": "Sezione",
       "attributes": [
         {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "StrutturaPartecipante",
-      "attributes": [
-        {
-          "name": "tipo",
+          "name": "nome_sezione",
           "type": "string",
           "unique": true,
           "required": true
@@ -366,17 +320,17 @@
       ]
     },
     {
-      "label": "SchedaS2",
+      "label": "Figura",
       "attributes": [
         {
-          "name": "id_scheda_s2",
+          "name": "id_figura",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "inviata",
-          "type": "boolean",
+          "name": "descrizione",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -385,12 +339,12 @@
   ],
   "relations": [
     {
-      "label": "CHIUSURA_SECONDO",
+      "label": "CHIUSURA_SE_RISPETTO_A",
       "source": {
-        "label": "ProceduraDiAggiudicazione",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "id_procedura_di_aggiudicazione",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -401,7 +355,7 @@
         "label": "RegolaChiusura",
         "attributes": [
           {
-            "name": "nome",
+            "name": "id_regola",
             "type": "string",
             "unique": true,
             "required": true
@@ -410,152 +364,21 @@
       },
       "attributes": [
         {
-          "name": "riferimento_data",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "soglia_giorni",
+          "name": "giorni",
           "type": "number",
           "required": true,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_AVVISO",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Avviso",
-        "attributes": [
-          {
-            "name": "id_avviso",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_FASCICOLO",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Fascicolo",
-        "attributes": [
-          {
-            "name": "id_fascicolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "CONTIENTE_DOCUMENTO",
-      "source": {
-        "label": "Fascicolo",
-        "attributes": [
-          {
-            "name": "id_fascicolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "id_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_invio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ULTIMO_DOCUMENTO",
-      "source": {
-        "label": "Fascicolo",
-        "attributes": [
-          {
-            "name": "id_fascicolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "id_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "is_ultima",
-          "type": "boolean",
-          "required": true,
-          "unique": false
         },
         {
-          "name": "data_invio",
+          "name": "condizione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "CREA_INVITO",
+      "label": "AVVISO_HA_INVITO",
       "source": {
         "label": "Avviso",
         "attributes": [
@@ -584,16 +407,22 @@
           "type": "string",
           "required": false,
           "unique": false
+        },
+        {
+          "name": "invito_creato",
+          "type": "boolean",
+          "required": false,
+          "unique": false
         }
       ]
     },
     {
-      "label": "SEGUE_REGOLA_CHIUSURA",
+      "label": "FASCICOLO_CONTIENE_DOCUMENTO",
       "source": {
-        "label": "Invito",
+        "label": "Fascicolo",
         "attributes": [
           {
-            "name": "id_invito",
+            "name": "id_fascicolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -601,17 +430,63 @@
         ]
       },
       "target": {
-        "label": "RegolaChiusura",
+        "label": "Documento",
         "attributes": [
           {
-            "name": "nome",
+            "name": "id_documento",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "ultimo_documento",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_ultimo_invio",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMUNICAZIONE_RIFERISCE_DOCUMENTO",
+      "source": {
+        "label": "Comunicazione",
+        "attributes": [
+          {
+            "name": "id_comunicazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "id_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_documento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
     },
     {
       "label": "PARTECIPA_A",
@@ -630,7 +505,7 @@
         "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -645,7 +520,19 @@
           "unique": false
         },
         {
-          "name": "stato_partecipazione",
+          "name": "struttura_attuale",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "nuova_struttura",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "motivazione_modifica",
           "type": "string",
           "required": false,
           "unique": false
@@ -653,12 +540,45 @@
       ]
     },
     {
-      "label": "MODIFICA_PARTECIPANTE",
+      "label": "PROCEDURA_INCLUDE_COMANDO",
       "source": {
-        "label": "ProceduraDiAggiudicazione",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "id_procedura_di_aggiudicazione",
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "posizione_toolbar",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMANDO_MODIFICA_OPERATORE",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
             "type": "string",
             "unique": true,
             "required": true
@@ -678,32 +598,32 @@
       },
       "attributes": [
         {
-          "name": "motivazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "data_invio",
+          "name": "azione",
           "type": "string",
           "required": false,
           "unique": false
         },
         {
-          "name": "allegato_id",
+          "name": "codice_fiscale_oe_collegato",
           "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "conferma_richiesta",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "TRASMETTE",
+      "label": "AVVISO_TRASMESSO_A_PCP",
       "source": {
-        "label": "ProceduraDiAggiudicazione",
+        "label": "Avviso",
         "attributes": [
           {
-            "name": "id_procedura_di_aggiudicazione",
+            "name": "id_avviso",
             "type": "string",
             "unique": true,
             "required": true
@@ -711,10 +631,10 @@
         ]
       },
       "target": {
-        "label": "PCP",
+        "label": "PiattaformaPCP",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "nome_piattaforma",
             "type": "string",
             "unique": true,
             "required": true
@@ -723,13 +643,13 @@
       },
       "attributes": [
         {
-          "name": "lotti",
-          "type": "string",
+          "name": "per_lotti",
+          "type": "boolean",
           "required": false,
           "unique": false
         },
         {
-          "name": "tipo_avviso",
+          "name": "modalita_invio",
           "type": "string",
           "required": false,
           "unique": false
@@ -737,78 +657,12 @@
       ]
     },
     {
-      "label": "CONTIENTE_FIGURA",
+      "label": "PIATTAFORMA_PUBBLICA_PER_ANAC",
       "source": {
-        "label": "ManualeSA",
+        "label": "PiattaformaPCP",
         "attributes": [
           {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Figura",
-        "attributes": [
-          {
-            "name": "numero",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "pagina_riferimento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_LOTTO",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Lotto",
-        "attributes": [
-          {
-            "name": "identificativo_lotto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "numero_lotto",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INVIA_A",
-      "source": {
-        "label": "ProceduraDiAggiudicazione",
-        "attributes": [
-          {
-            "name": "id_procedura_di_aggiudicazione",
+            "name": "nome_piattaforma",
             "type": "string",
             "unique": true,
             "required": true
@@ -819,7 +673,7 @@
         "label": "ANAC",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -828,7 +682,7 @@
       },
       "attributes": [
         {
-          "name": "modalita",
+          "name": "canale",
           "type": "string",
           "required": false,
           "unique": false
@@ -836,49 +690,23 @@
       ]
     },
     {
-      "label": "ESEGUITA_DA",
+      "label": "MANUALE_RIFERITO_A_PROCEDURA",
       "source": {
+        "label": "Manuale",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PAD",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "UTILIZZA",
-      "source": {
-        "label": "ProceduraDiAggiudicazione",
-        "attributes": [
-          {
-            "name": "id_procedura_di_aggiudicazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ComandoModificaPartecipanti",
-        "attributes": [
-          {
-            "name": "nome",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -887,53 +715,26 @@
       },
       "attributes": [
         {
-          "name": "disponibile_fino",
+          "name": "versione",
           "type": "string",
           "required": false,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "AVVISO_CHIUSO_SE",
-      "source": {
-        "label": "Avviso",
-        "attributes": [
-          {
-            "name": "id_avviso",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RegolaChiusura",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
+        },
         {
-          "name": "soglia_giorni",
+          "name": "pagina_riferimento",
           "type": "number",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "TRASMETTE_AVVISO",
+      "label": "SEZIONE_RIFERITA_A_PROCEDURA",
       "source": {
-        "label": "Avviso",
+        "label": "Sezione",
         "attributes": [
           {
-            "name": "id_avviso",
+            "name": "nome_sezione",
             "type": "string",
             "unique": true,
             "required": true
@@ -941,10 +742,10 @@
         ]
       },
       "target": {
-        "label": "PCP",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -953,7 +754,7 @@
       },
       "attributes": [
         {
-          "name": "lotti",
+          "name": "ruolo_sezione",
           "type": "string",
           "required": false,
           "unique": false
@@ -961,19 +762,8 @@
       ]
     },
     {
-      "label": "ALLEGATO_ASSOCIATO",
+      "label": "ALLEGATO_ASSOCIATO_COMANDO",
       "source": {
-        "label": "ProceduraDiAggiudicazione",
-        "attributes": [
-          {
-            "name": "id_procedura_di_aggiudicazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "Allegato",
         "attributes": [
           {
@@ -984,9 +774,20 @@
           }
         ]
       },
+      "target": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "tipo_allegato",
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -994,12 +795,12 @@
       ]
     },
     {
-      "label": "SCHEDA_S2_INVIATA_A",
+      "label": "FIGURA_ASSOCIATA_MANUALE",
       "source": {
-        "label": "SchedaS2",
+        "label": "Figura",
         "attributes": [
           {
-            "name": "id_scheda_s2",
+            "name": "id_figura",
             "type": "string",
             "unique": true,
             "required": true
@@ -1007,10 +808,10 @@
         ]
       },
       "target": {
-        "label": "PCP",
+        "label": "Manuale",
         "attributes": [
           {
-            "name": "sigla",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -1019,7 +820,46 @@
       },
       "attributes": [
         {
-          "name": "data_invio",
+          "name": "numero_figura",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "didascalia",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "TIPO_PROCEDURA_ASSOCIATA_A",
+      "source": {
+        "label": "TipoProcedura",
+        "attributes": [
+          {
+            "name": "nome_tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "fase",
           "type": "string",
           "required": false,
           "unique": false

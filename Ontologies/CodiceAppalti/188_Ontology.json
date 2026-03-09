@@ -1,0 +1,400 @@
+{
+  "entities": [
+    {
+      "label": "SocietaDiScopo",
+      "attributes": [
+        {
+          "name": "identificatore_societa_scopo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "forma_giuridica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "capitale_sociale_minimo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "BandoDiGara",
+      "attributes": [
+        {
+          "name": "numero_bando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "soglia_affidamenti",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Concessione",
+      "attributes": [
+        {
+          "name": "identificatore_concessione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_concessione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "prezzo_corso_opera",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_concessione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FinanzaDiProgetto",
+      "attributes": [
+        {
+          "name": "identificatore_finanza_progetto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_operatore",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CertificatoDiCollaudo",
+      "attributes": [
+        {
+          "name": "numero_certificato_collaudo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Garanzia",
+      "attributes": [
+        {
+          "name": "identificatore_garanzia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_garanzia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_scadenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteConcedente",
+      "attributes": [
+        {
+          "name": "denominazione_ente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_ente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ContrattoDiConcessione",
+      "attributes": [
+        {
+          "name": "numero_contratto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_concessione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SchemaConvenzione",
+      "attributes": [
+        {
+          "name": "identificatore_schema",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_schema",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "identificatore_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "ASSEGNA_A",
+      "source": {
+        "label": "BandoDiGara",
+        "attributes": [
+          {
+            "name": "numero_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SocietaDiScopo",
+        "attributes": [
+          {
+            "name": "identificatore_societa_scopo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "PARTECIPA_A_CAPITALE_SOCIALE",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SocietaDiScopo",
+        "attributes": [
+          {
+            "name": "identificatore_societa_scopo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "quota_partecipazione",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SOSTITUISCE_CONCESSIONE",
+      "source": {
+        "label": "SocietaDiScopo",
+        "attributes": [
+          {
+            "name": "identificatore_societa_scopo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "identificatore_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "FORNISCE_GARANZIE",
+      "source": {
+        "label": "SocietaDiScopo",
+        "attributes": [
+          {
+            "name": "identificatore_societa_scopo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Garanzia",
+        "attributes": [
+          {
+            "name": "identificatore_garanzia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "CESSAZIONE_GARANZIA_COLLAUDO",
+      "source": {
+        "label": "Garanzia",
+        "attributes": [
+          {
+            "name": "identificatore_garanzia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CertificatoDiCollaudo",
+        "attributes": [
+          {
+            "name": "numero_certificato_collaudo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "ALLEGA_CONVENZIONE",
+      "source": {
+        "label": "SchemaConvenzione",
+        "attributes": [
+          {
+            "name": "identificatore_schema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "BandoDiGara",
+        "attributes": [
+          {
+            "name": "numero_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "CONCEDE_CONCESSIONE",
+      "source": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "denominazione_ente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "identificatore_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    }
+  ]
+}

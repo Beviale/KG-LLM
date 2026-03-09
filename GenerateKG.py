@@ -25,7 +25,7 @@ import numpy as np
 
 init(autoreset=True)
 
-LIMIT_WHILE_LLM = 10 # Indicates the maximum number of times the script can repeat the same question to the LLM.
+LIMIT_WHILE_LLM = 50 # Indicates the maximum number of times the script can repeat the same question to the LLM.
 
 
 load_dotenv()
@@ -285,13 +285,38 @@ def merge_ontologies_chunk(category, model=None):
         next_level_index = next_level_index + 1
         if os.path.exists(f"Ontologies/{category}/NextLevel_{next_level_index}") == False:
             break
-    
+
+    numberOfIterationsToSkip = 0
     if next_level_index > 1:
-        last_next_level_dir = Path(f"Ontologies/{category}/NextLevel_{next_level_index-1}")
-        for file_path in last_next_level_dir.iterdir():
-            with file_path.open("r", encoding="utf-8") as f:
-                json_item = json.load(f)
-            json_merge.append(json_item)
+        last_next_level_dir = Path(f"Ontologies/{category}/NextLevel_{next_level_index-1}")       
+        last_last_next_level_dir = Path(f"Ontologies/{category}/NextLevel_{next_level_index-2}")       
+        if os.path.exists(f"Ontologies/{category}/NextLevel_{next_level_index-1}/final.txt") == False:
+            next_level_index = next_level_index - 1
+            if os.path.exists(last_last_next_level_dir):
+                for file_path in last_last_next_level_dir.iterdir():
+                    with file_path.open("r", encoding="utf-8") as f:
+                        json_item = json.load(f)
+                    json_merge.append(json_item)
+            else:
+                index = 1
+                while(True):
+                    file_path = Path(f"Ontologies/{category}/{index}_Ontology.json")
+                    if file_path.exists()==False:
+                        break
+                    
+                    with file_path.open("r", encoding="utf-8") as f:
+                        json_item = json.load(f)
+
+                    json_merge.append(json_item)
+                    index += 1
+
+            for file_path in last_next_level_dir.iterdir():
+                numberOfIterationsToSkip = numberOfIterationsToSkip + 1
+        else:
+            for file_path in last_next_level_dir.iterdir():
+                with file_path.open("r", encoding="utf-8") as f:
+                    json_item = json.load(f)
+                json_merge.append(json_item)
     else:
         index = 1
         while(True):
@@ -308,7 +333,14 @@ def merge_ontologies_chunk(category, model=None):
     current_json_elements = json_merge[:]
     while len(current_json_elements) > 1:
         next_level = []
+        dir_path_next_level = Path(f"Ontologies/{category}/NextLevel_{next_level_index}")
+        dir_path_next_level.mkdir(parents=True, exist_ok=True) 
+        index_merge_process = 0
         for i in range(0, len(current_json_elements), 2):
+            index_merge_process = index_merge_process + 1
+            if numberOfIterationsToSkip >= index_merge_process:
+                continue
+            numberOfIterationsToSkip = 0
             if i + 1 < len(current_json_elements):
                 first_ontology = json.dumps(current_json_elements[i], ensure_ascii=False)
                 second_ontology = json.dumps(current_json_elements[i+1], ensure_ascii=False)
@@ -360,18 +392,25 @@ def merge_ontologies_chunk(category, model=None):
                         except Exception as e:
                             print(f"{Fore.RED}Exception throws: {str(e)}")
                             continue
-                next_level.append(new_json)
+                next_level.append(new_json)                
             else:
                 next_level.append(current_json_elements[i])
-        current_json_elements = next_level
-        dir_path_next_level = Path(f"Ontologies/{category}/NextLevel_{next_level_index}")
-        dir_path_next_level.mkdir(parents=True, exist_ok=True)
-        next_level_file_index = 0
-        for json_item in next_level:
-            next_level_file_index = next_level_file_index + 1
+                
+            next_level_file_index = 0
+            while(True):
+                next_level_file_index = next_level_file_index + 1
+                if os.path.exists(f"Ontologies/{category}/NextLevel_{next_level_index}/{next_level_file_index}_Ontology.json") == False:
+                    break
+            json_item = next_level[-1]
             file_path_next_level = Path(f"Ontologies/{category}/NextLevel_{next_level_index}/{next_level_file_index}_Ontology.json")
             with open(file_path_next_level, "w", encoding="utf-8") as f:
                 f.write(json.dumps(json_item, indent=2, ensure_ascii=False))
+
+                
+        current_json_elements = next_level  
+        end_next_level_file = Path(f"Ontologies/{category}/NextLevel_{next_level_index}/final.txt")
+        with open(end_next_level_file, "w", encoding="utf-8") as f:
+            f.write("END")
         next_level_index = next_level_index + 1
 
     new_json = current_json_elements[0]
@@ -596,7 +635,7 @@ def generate_data(category: str, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-nano"
+        model = "openai/gpt-5-mini"
 
 
     print(f"{Fore.GREEN}--Generating the data for the '{category}' category")

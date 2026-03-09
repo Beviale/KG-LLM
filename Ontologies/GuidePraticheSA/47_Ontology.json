@@ -1,10 +1,10 @@
 {
   "entities": [
     {
-      "label": "Manuale",
+      "label": "Documento",
       "attributes": [
         {
-          "name": "titolo",
+          "name": "nome_documento",
           "type": "string",
           "unique": true,
           "required": true
@@ -16,7 +16,7 @@
           "required": false
         },
         {
-          "name": "data",
+          "name": "data_versione",
           "type": "string",
           "unique": false,
           "required": false
@@ -41,69 +41,6 @@
         {
           "name": "forma_giuridica",
           "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "StazioneAppaltante",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "acronimo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PubblicaAmministrazione",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "acronimo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "ragione_sociale",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "forma_associazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "avvalimento",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "rti",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -145,6 +82,57 @@
       ]
     },
     {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "sigla",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PubblicaAmministrazione",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "avvalimento",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_partecipazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "Commissione",
       "attributes": [
         {
@@ -154,7 +142,13 @@
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "membri",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tabelle_degli_atti",
           "type": "string",
           "unique": false,
           "required": false
@@ -162,42 +156,19 @@
       ]
     },
     {
-      "label": "Utente",
-      "attributes": [
-        {
-          "name": "username",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "in_carico",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "RUP",
+      "label": "PersonaFisica",
       "attributes": [
         {
           "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "ruolo",
@@ -208,36 +179,7 @@
       ]
     },
     {
-      "label": "Offerta",
-      "attributes": [
-        {
-          "name": "registro_di_sistema",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "data_ricezione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "posizione_in_graduatoria",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Busta",
+      "label": "BustaDocumentazione",
       "attributes": [
         {
           "name": "tipo",
@@ -246,14 +188,14 @@
           "required": true
         },
         {
-          "name": "stato_compilazione",
+          "name": "stato_busta",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "esito_verifica_informazioni",
-          "type": "string",
+          "name": "bollino_compilazione",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -275,7 +217,7 @@
           "required": false
         },
         {
-          "name": "valutazione_documento",
+          "name": "esito_verifica",
           "type": "string",
           "unique": false,
           "required": false
@@ -283,10 +225,10 @@
       ]
     },
     {
-      "label": "Seduta",
+      "label": "SedutaDiGara",
       "attributes": [
         {
-          "name": "id_seduta",
+          "name": "identificativo",
           "type": "string",
           "unique": true,
           "required": true
@@ -296,21 +238,10 @@
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "Verbale",
-      "attributes": [
-        {
-          "name": "id_verbale",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "stato",
-          "type": "string",
+          "name": "verbale_disponibile",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -320,7 +251,7 @@
       "label": "Lotto",
       "attributes": [
         {
-          "name": "identificativo_lotto",
+          "name": "numero_lotto",
           "type": "string",
           "unique": true,
           "required": true
@@ -330,83 +261,49 @@
           "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "registro_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
-          "name": "esito",
+          "name": "data_ricezione",
           "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "posizionamento",
+          "type": "number",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "Valutazione",
+      "label": "FaseValutazione",
       "attributes": [
         {
-          "name": "id_valutazione",
+          "name": "nome_fase",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Esito",
-      "attributes": [
-        {
-          "name": "tipo_esito",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "motivazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Piattaforma",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ente_gestore",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "DGUE",
-      "attributes": [
-        {
-          "name": "codice_dgue",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo_documento",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -416,12 +313,12 @@
   ],
   "relations": [
     {
-      "label": "PROPRIETA_DI",
+      "label": "APPARTIENE_A",
       "source": {
-        "label": "Manuale",
+        "label": "Documento",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "nome_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -441,7 +338,7 @@
       },
       "attributes": [
         {
-          "name": "diritti",
+          "name": "nota",
           "type": "string",
           "required": false,
           "unique": false
@@ -449,7 +346,7 @@
       ]
     },
     {
-      "label": "RIFERITA_A",
+      "label": "EMESSA_DA",
       "source": {
         "label": "ProceduraDiAggiudicazione",
         "attributes": [
@@ -465,7 +362,7 @@
         "label": "StazioneAppaltante",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "sigla",
             "type": "string",
             "unique": true,
             "required": true
@@ -474,7 +371,7 @@
       },
       "attributes": [
         {
-          "name": "ruolo_responsabile",
+          "name": "data_creazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -482,7 +379,33 @@
       ]
     },
     {
-      "label": "GESTITA_DA",
+      "label": "IS_A",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "sigla",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PubblicaAmministrazione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "HA_COMMISSIONE",
       "source": {
         "label": "ProceduraDiAggiudicazione",
         "attributes": [
@@ -495,10 +418,10 @@
         ]
       },
       "target": {
-        "label": "RUP",
+        "label": "Commissione",
         "attributes": [
           {
-            "name": "nome",
+            "name": "tipo",
             "type": "string",
             "unique": true,
             "required": true
@@ -507,13 +430,7 @@
       },
       "attributes": [
         {
-          "name": "data_inizio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "data_fine",
+          "name": "note",
           "type": "string",
           "required": false,
           "unique": false
@@ -521,7 +438,7 @@
       ]
     },
     {
-      "label": "COMPOSTA_DA",
+      "label": "HA_MEMBRO",
       "source": {
         "label": "Commissione",
         "attributes": [
@@ -534,10 +451,10 @@
         ]
       },
       "target": {
-        "label": "Utente",
+        "label": "PersonaFisica",
         "attributes": [
           {
-            "name": "username",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -554,12 +471,12 @@
       ]
     },
     {
-      "label": "PARTECIPA_A",
+      "label": "RUP_DI",
       "source": {
-        "label": "OperatoreEconomico",
+        "label": "PersonaFisica",
         "attributes": [
           {
-            "name": "ragione_sociale",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -579,20 +496,8 @@
       },
       "attributes": [
         {
-          "name": "modalita_partecipazione",
+          "name": "data_nomina",
           "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "avvalimento",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "rti",
-          "type": "boolean",
           "required": false,
           "unique": false
         }
@@ -601,50 +506,6 @@
     {
       "label": "HA_OFFERTA",
       "source": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "ragione_sociale",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Offerta",
-        "attributes": [
-          {
-            "name": "registro_di_sistema",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "numero_offerta",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONTENUTA_IN",
-      "source": {
-        "label": "Offerta",
-        "attributes": [
-          {
-            "name": "registro_di_sistema",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "ProceduraDiAggiudicazione",
         "attributes": [
           {
@@ -655,22 +516,33 @@
           }
         ]
       },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "registro_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "data_presentazione",
-          "type": "string",
+          "name": "numero_offerte_riepilogo",
+          "type": "number",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "COMPRENDE_BUSTA",
+      "label": "PROPOSTA_DA",
       "source": {
         "label": "Offerta",
         "attributes": [
           {
-            "name": "registro_di_sistema",
+            "name": "registro_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -678,7 +550,40 @@
         ]
       },
       "target": {
-        "label": "Busta",
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_partecipazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONTIENE_BUSTA",
+      "source": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "registro_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "BustaDocumentazione",
         "attributes": [
           {
             "name": "tipo",
@@ -690,17 +595,17 @@
       },
       "attributes": [
         {
-          "name": "tipo_busta",
-          "type": "string",
-          "required": true,
+          "name": "ordine_apertura",
+          "type": "number",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "CONTiene_ALLEGATO",
+      "label": "HA_ALLEGATO",
       "source": {
-        "label": "Busta",
+        "label": "BustaDocumentazione",
         "attributes": [
           {
             "name": "tipo",
@@ -723,8 +628,8 @@
       },
       "attributes": [
         {
-          "name": "ordine",
-          "type": "number",
+          "name": "esito_valutazione",
+          "type": "string",
           "required": false,
           "unique": false
         }
@@ -744,10 +649,10 @@
         ]
       },
       "target": {
-        "label": "Seduta",
+        "label": "SedutaDiGara",
         "attributes": [
           {
-            "name": "id_seduta",
+            "name": "identificativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -756,7 +661,7 @@
       },
       "attributes": [
         {
-          "name": "numero",
+          "name": "numero_seduta",
           "type": "number",
           "required": false,
           "unique": false
@@ -764,12 +669,12 @@
       ]
     },
     {
-      "label": "SEDUTA_PRODUCE",
+      "label": "HA_VERBALE",
       "source": {
-        "label": "Seduta",
+        "label": "SedutaDiGara",
         "attributes": [
           {
-            "name": "id_seduta",
+            "name": "identificativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -777,10 +682,10 @@
         ]
       },
       "target": {
-        "label": "Verbale",
+        "label": "Documento",
         "attributes": [
           {
-            "name": "id_verbale",
+            "name": "nome_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -789,7 +694,7 @@
       },
       "attributes": [
         {
-          "name": "stato",
+          "name": "tipo_verbale",
           "type": "string",
           "required": false,
           "unique": false
@@ -797,117 +702,12 @@
       ]
     },
     {
-      "label": "HA_VALUTAZIONE",
+      "label": "HA_LOTTO",
       "source": {
         "label": "ProceduraDiAggiudicazione",
         "attributes": [
           {
             "name": "pda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Valutazione",
-        "attributes": [
-          {
-            "name": "id_valutazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "fase",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "VALUTATA_DA",
-      "source": {
-        "label": "Valutazione",
-        "attributes": [
-          {
-            "name": "id_valutazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_ESITO",
-      "source": {
-        "label": "Valutazione",
-        "attributes": [
-          {
-            "name": "id_valutazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Esito",
-        "attributes": [
-          {
-            "name": "tipo_esito",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "motivazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ESITO_PER_LOTTO",
-      "source": {
-        "label": "Offerta",
-        "attributes": [
-          {
-            "name": "registro_di_sistema",
             "type": "string",
             "unique": true,
             "required": true
@@ -918,7 +718,33 @@
         "label": "Lotto",
         "attributes": [
           {
-            "name": "identificativo_lotto",
+            "name": "numero_lotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "OFFERTA_PER_LOTTO",
+      "source": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "registro_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "numero_lotto",
             "type": "string",
             "unique": true,
             "required": true
@@ -927,7 +753,7 @@
       },
       "attributes": [
         {
-          "name": "esito_tipo",
+          "name": "esito",
           "type": "string",
           "required": true,
           "unique": false
@@ -935,13 +761,13 @@
         {
           "name": "motivazione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "PUBBLICATA_SU",
+      "label": "HA_FASE",
       "source": {
         "label": "ProceduraDiAggiudicazione",
         "attributes": [
@@ -954,7 +780,29 @@
         ]
       },
       "target": {
-        "label": "Piattaforma",
+        "label": "FaseValutazione",
+        "attributes": [
+          {
+            "name": "nome_fase",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ordine",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ESEGUE_VALUTAZIONE",
+      "source": {
+        "label": "PersonaFisica",
         "attributes": [
           {
             "name": "nome",
@@ -964,9 +812,20 @@
           }
         ]
       },
+      "target": {
+        "label": "FaseValutazione",
+        "attributes": [
+          {
+            "name": "nome_fase",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "azione",
+          "name": "ruolo_valutatore",
           "type": "string",
           "required": false,
           "unique": false
@@ -974,12 +833,12 @@
       ]
     },
     {
-      "label": "HA_DGUE",
+      "label": "ASSEGNA_PUNTEGGIO",
       "source": {
-        "label": "OperatoreEconomico",
+        "label": "PersonaFisica",
         "attributes": [
           {
-            "name": "ragione_sociale",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -987,10 +846,10 @@
         ]
       },
       "target": {
-        "label": "DGUE",
+        "label": "Offerta",
         "attributes": [
           {
-            "name": "codice_dgue",
+            "name": "registro_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -999,41 +858,41 @@
       },
       "attributes": [
         {
-          "name": "presente",
+          "name": "punteggio",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AUTORIZZATO_A_SCARICARE_ALLEGATI",
+      "source": {
+        "label": "PersonaFisica",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "registro_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "autorizzazione",
           "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALLEGATO_FIRMATO_DA",
-      "source": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "nome_file",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "stato_firma",
-          "type": "string",
           "required": true,
           "unique": false
         }

@@ -1,46 +1,6 @@
 {
   "entities": [
     {
-      "label": "Principio",
-      "attributes": [
-        {
-          "name": "numero_articolo",
-          "type": "number",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "DisposizioneNormativa",
-      "attributes": [
-        {
-          "name": "riferimento_normativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "data_emanazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "titolo_normativo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
       "label": "Articolo",
       "attributes": [
         {
@@ -50,7 +10,13 @@
           "required": true
         },
         {
-          "name": "titolo_articolo",
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -58,16 +24,28 @@
       ]
     },
     {
-      "label": "ContrattoPubblico",
+      "label": "DecretoLegislativo",
       "attributes": [
         {
-          "name": "identificativo_contratto_pubblico",
-          "type": "string",
+          "name": "numero_decreto",
+          "type": "number",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipologia_contratto",
+          "name": "data_emissione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimento_articoli",
           "type": "string",
           "unique": false,
           "required": false
@@ -75,16 +53,22 @@
       ]
     },
     {
-      "label": "Regione",
+      "label": "RiferimentoNormativo",
       "attributes": [
         {
-          "name": "nome_regione",
-          "type": "string",
+          "name": "numero_articolo_riferimento",
+          "type": "number",
           "unique": true,
           "required": true
         },
         {
-          "name": "codice_regionale",
+          "name": "tipo_riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -92,16 +76,16 @@
       ]
     },
     {
-      "label": "ProvinciaAutonoma",
+      "label": "Principio",
       "attributes": [
         {
-          "name": "nome_provincia_autonoma",
+          "name": "nome_principio",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "codice_provincia",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -111,23 +95,23 @@
   ],
   "relations": [
     {
-      "label": "INDICA_ARTICOLO_RIFERIMENTO",
+      "label": "INDICA_RIFERIMENTO_ARTICOLO",
       "source": {
-        "label": "DisposizioneNormativa",
+        "label": "Articolo",
         "attributes": [
           {
-            "name": "riferimento_normativo",
-            "type": "string",
+            "name": "numero_articolo",
+            "type": "number",
             "unique": true,
             "required": true
           }
         ]
       },
       "target": {
-        "label": "Articolo",
+        "label": "RiferimentoNormativo",
         "attributes": [
           {
-            "name": "numero_articolo",
+            "name": "numero_articolo_riferimento",
             "type": "number",
             "unique": true,
             "required": true
@@ -144,24 +128,24 @@
       ]
     },
     {
-      "label": "ASSICURA_TRANSPARENZA",
+      "label": "PUBBLICAZIONE_SECONDO_DECRETO",
       "source": {
-        "label": "Regione",
+        "label": "Articolo",
         "attributes": [
           {
-            "name": "nome_regione",
-            "type": "string",
+            "name": "numero_articolo",
+            "type": "number",
             "unique": true,
             "required": true
           }
         ]
       },
       "target": {
-        "label": "ContrattoPubblico",
+        "label": "DecretoLegislativo",
         "attributes": [
           {
-            "name": "identificativo_contratto_pubblico",
-            "type": "string",
+            "name": "numero_decreto",
+            "type": "number",
             "unique": true,
             "required": true
           }
@@ -177,57 +161,24 @@
       ]
     },
     {
-      "label": "ASSICURA_TRANSPARENZA",
+      "label": "APPLICA_PRINCIPIO",
       "source": {
-        "label": "ProvinciaAutonoma",
+        "label": "Articolo",
         "attributes": [
           {
-            "name": "nome_provincia_autonoma",
-            "type": "string",
+            "name": "numero_articolo",
+            "type": "number",
             "unique": true,
             "required": true
           }
         ]
       },
       "target": {
-        "label": "ContrattoPubblico",
-        "attributes": [
-          {
-            "name": "identificativo_contratto_pubblico",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERIMENTO_AD_ARTICOLO",
-      "source": {
         "label": "Principio",
         "attributes": [
           {
-            "name": "numero_articolo",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Articolo",
-        "attributes": [
-          {
-            "name": "numero_articolo",
-            "type": "number",
+            "name": "nome_principio",
+            "type": "string",
             "unique": true,
             "required": true
           }

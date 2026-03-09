@@ -1,0 +1,264 @@
+{
+  "entities": [
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiAffidamento",
+      "attributes": [
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "anno_di_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RaggruppamentoOperatoriEconomici",
+      "attributes": [
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "GEIE",
+      "attributes": [
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ConsorzioStabile",
+      "attributes": [
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ConsorzioOrdinarioConcorrenti",
+      "attributes": [
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "RaggruppamentoTemporaneoConcorrenti",
+      "attributes": [
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "AssociazioneTemporanea",
+      "attributes": [
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ContrattoDiRete",
+      "attributes": [
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PersonaFisica",
+      "attributes": [
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "PARTECIPA_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "definizione",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiAffidamento",
+        "attributes": [
+          {
+            "name": "definizione",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "definizione",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "definizione",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "IMPOSTA_FORMA_GIURIDICA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "definizione",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RaggruppamentoOperatoriEconomici",
+        "attributes": [
+          {
+            "name": "definizione",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "INDICA_QUALIFICHE_PERS_FISICHE",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "definizione",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PersonaFisica",
+        "attributes": [
+          {
+            "name": "definizione",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      }
+    }
+  ]
+}

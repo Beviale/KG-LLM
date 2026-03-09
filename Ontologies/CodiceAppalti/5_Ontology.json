@@ -4,7 +4,7 @@
       "label": "PubblicaAmministrazione",
       "attributes": [
         {
-          "name": "denominazione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -35,22 +35,22 @@
       ]
     },
     {
-      "label": "DecretoLegislativo",
+      "label": "CodiceDelTerzoSettore",
       "attributes": [
         {
           "name": "numero",
-          "type": "string",
+          "type": "number",
           "unique": true,
           "required": true
         },
         {
-          "name": "data_emissione",
+          "name": "nome",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "titolo_originale",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -58,7 +58,82 @@
       ]
     },
     {
-      "label": "CodiceDelTerzoSettore",
+      "label": "DecretoLegislativo",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Titolo",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ModelloOrganizzativo",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "rapporti_sinallagmatici",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FinalitaSociale",
       "attributes": [
         {
           "name": "nome",
@@ -75,41 +150,7 @@
       ]
     },
     {
-      "label": "Titolo",
-      "attributes": [
-        {
-          "name": "numero",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Articolo",
-      "attributes": [
-        {
-          "name": "numero",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Istituto",
+      "label": "Principio",
       "attributes": [
         {
           "name": "nome",
@@ -128,12 +169,45 @@
   ],
   "relations": [
     {
+      "label": "ADOTTA",
+      "source": {
+        "label": "PubblicaAmministrazione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ModelloOrganizzativo",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
       "label": "COLLABORA_CON",
       "source": {
         "label": "PubblicaAmministrazione",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -153,7 +227,31 @@
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "tipologia_collaborazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "pari_trattamento",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "effettivo",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "trasparente",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "risultato",
           "type": "string",
           "required": false,
           "unique": false
@@ -161,13 +259,46 @@
       ]
     },
     {
-      "label": "CONTENUTO_NEL_DECRETO",
+      "label": "FONTE_NORMATIVA_DI",
       "source": {
+        "label": "CodiceDelTerzoSettore",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "DecretoLegislativo",
         "attributes": [
           {
-            "name": "numero",
+            "name": "nome",
             "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PARTE_DI",
+      "source": {
+        "label": "Titolo",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "number",
             "unique": true,
             "required": true
           }
@@ -175,6 +306,39 @@
       },
       "target": {
         "label": "CodiceDelTerzoSettore",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "titolo_di_riferimento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PERSEGUE",
+      "source": {
+        "label": "TerzoSettore",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "FinalitaSociale",
         "attributes": [
           {
             "name": "nome",
@@ -186,71 +350,11 @@
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "persegue_finalita",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPARTIENE_A",
-      "source": {
-        "label": "Titolo",
-        "attributes": [
-          {
-            "name": "numero",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CodiceDelTerzoSettore",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DISCIPLINATO_DA",
-      "source": {
-        "label": "Titolo",
-        "attributes": [
-          {
-            "name": "numero",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Istituto",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
+        },
         {
           "name": "descrizione",
           "type": "string",

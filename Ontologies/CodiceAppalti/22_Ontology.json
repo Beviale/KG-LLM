@@ -1,7 +1,7 @@
 {
   "entities": [
     {
-      "label": "Agenzia",
+      "label": "AgenziaANAC",
       "attributes": [
         {
           "name": "nome",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "label": "BancaDati",
+      "label": "AgenziaAGID",
       "attributes": [
         {
           "name": "nome",
@@ -23,18 +23,7 @@
       ]
     },
     {
-      "label": "Normativa",
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "CodiceAmministrazioneDigitale",
+      "label": "BancaDatiNazionaleContrattiPubblici",
       "attributes": [
         {
           "name": "nome",
@@ -45,7 +34,29 @@
       ]
     },
     {
-      "label": "PiattaformaApprovvigionamentoDigitale",
+      "label": "CodiceDellAmministrazioneDigitale",
+      "attributes": [
+        {
+          "name": "codice",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DecretoLegislativo",
+      "attributes": [
+        {
+          "name": "numero",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "PiattaformaDigitaleNazionaleDati",
       "attributes": [
         {
           "name": "nome",
@@ -67,10 +78,71 @@
       ]
     },
     {
-      "label": "PiattaformaDigitaleNazionaleDati",
+      "label": "PiattaformeTelematiche",
       "attributes": [
         {
           "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "EnteConcedente",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "id_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_prestazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "Provvedimento",
+      "attributes": [
+        {
+          "name": "numero",
           "type": "string",
           "unique": true,
           "required": true
@@ -89,77 +161,55 @@
       ]
     },
     {
-      "label": "StazioniAppaltanti",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "EntiConcedenti",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "SoggettiCoinvolti",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Articolo",
-      "attributes": [
-        {
-          "name": "numero",
-          "type": "number",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "FinanziamentiInvestimentiPubblici",
+      "label": "Interoperabilita",
       "attributes": [
         {
           "name": "descrizione",
           "type": "string",
-          "unique": true,
-          "required": true
+          "required": true,
+          "unique": true
         }
       ]
     },
     {
-      "label": "AGID",
+      "label": "ObbligoTrasparenza",
       "attributes": [
         {
-          "name": "nome",
+          "name": "descrizione",
           "type": "string",
-          "unique": true,
-          "required": true
+          "required": true,
+          "unique": true
+        }
+      ]
+    },
+    {
+      "label": "SegnalazioneAGID",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "unique": true
+        }
+      ]
+    },
+    {
+      "label": "CicloDiVitaContrattiPubblici",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": true
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "TITOLARE_DI",
+      "label": "TITOLARITA_DI",
       "source": {
-        "label": "Agenzia",
+        "label": "AgenziaANAC",
         "attributes": [
           {
             "name": "nome",
@@ -170,7 +220,7 @@
         ]
       },
       "target": {
-        "label": "BancaDati",
+        "label": "BancaDatiNazionaleContrattiPubblici",
         "attributes": [
           {
             "name": "nome",
@@ -182,9 +232,42 @@
       },
       "attributes": [
         {
-          "name": "note",
+          "name": "ruolo",
           "type": "string",
-          "required": false,
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDIVIDUA_PROVVEDIMENTO",
+      "source": {
+        "label": "AgenziaANAC",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Provvedimento",
+        "attributes": [
+          {
+            "name": "numero",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
           "unique": false
         }
       ]
@@ -192,7 +275,7 @@
     {
       "label": "INTEROPERABILE_CON",
       "source": {
-        "label": "BancaDati",
+        "label": "BancaDatiNazionaleContrattiPubblici",
         "attributes": [
           {
             "name": "nome",
@@ -203,7 +286,7 @@
         ]
       },
       "target": {
-        "label": "PiattaformaApprovvigionamentoDigitale",
+        "label": "PiattaformeTelematiche",
         "attributes": [
           {
             "name": "nome",
@@ -213,12 +296,19 @@
           }
         ]
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
     },
     {
       "label": "INTEROPERABILE_CON",
       "source": {
-        "label": "BancaDati",
+        "label": "BancaDatiNazionaleContrattiPubblici",
         "attributes": [
           {
             "name": "nome",
@@ -239,12 +329,52 @@
           }
         ]
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
     },
     {
       "label": "INTEROPERABILE_CON",
       "source": {
-        "label": "BancaDati",
+        "label": "BancaDatiNazionaleContrattiPubblici",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PiattaformaUnicaTrasparenza",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ACCREDITATO_SU",
+      "source": {
+        "label": "StazioneAppaltante",
         "attributes": [
           {
             "name": "nome",
@@ -265,45 +395,19 @@
           }
         ]
       },
-      "attributes": []
-    },
-    {
-      "label": "RISPETTA_DISPOSIZIONI_DI",
-      "source": {
-        "label": "Agenzia",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Normativa",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
       "attributes": [
         {
-          "name": "ambito",
+          "name": "scopo",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "INDIVIDUA_INFO",
+      "label": "ACCREDITATO_SU",
       "source": {
-        "label": "Agenzia",
+        "label": "EnteConcedente",
         "attributes": [
           {
             "name": "nome",
@@ -314,142 +418,10 @@
         ]
       },
       "target": {
-        "label": "StazioniAppaltanti",
+        "label": "PiattaformaDigitaleNazionaleDati",
         "attributes": [
           {
             "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ambito",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INDIVIDUA_INFO",
-      "source": {
-        "label": "Agenzia",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "EntiConcedenti",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ambito",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SEGNALA_A",
-      "source": {
-        "label": "StazioniAppaltanti",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "AGID",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "note",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SEGNALA_A",
-      "source": {
-        "label": "Agenzia",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "AGID",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "note",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZA_PER",
-      "source": {
-        "label": "Normativa",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "FinanziamentiInvestimentiPubblici",
-        "attributes": [
-          {
-            "name": "descrizione",
             "type": "string",
             "unique": true,
             "required": true
@@ -460,7 +432,106 @@
         {
           "name": "scopo",
           "type": "string",
-          "required": false,
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INTEGRA_CON",
+      "source": {
+        "label": "PiattaformaDigitaleNazionaleDati",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PiattaformaUnicaTrasparenza",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDIVIDUA_OBBLIGHI_INFORMATIVI",
+      "source": {
+        "label": "AgenziaANAC",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SEGNALAZIONE_AGID",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SegnalazioneAGID",
+        "attributes": [
+          {
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "unique": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
           "unique": false
         }
       ]

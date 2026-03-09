@@ -10,7 +10,7 @@
           "required": true
         },
         {
-          "name": "oggetto",
+          "name": "registro_quesito",
           "type": "string",
           "unique": false,
           "required": false
@@ -28,8 +28,14 @@
           "required": false
         },
         {
-          "name": "registro_di_sistema",
-          "type": "string",
+          "name": "pubblicato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "evaso",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -45,13 +51,13 @@
           "required": true
         },
         {
-          "name": "cig",
+          "name": "registro_bando",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "registro_bando",
+          "name": "CIG",
           "type": "string",
           "unique": false,
           "required": false
@@ -68,13 +74,13 @@
       "label": "Utente",
       "attributes": [
         {
-          "name": "email_utente",
+          "name": "username",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "nome_utente",
+          "name": "email",
           "type": "string",
           "unique": false,
           "required": false
@@ -105,39 +111,22 @@
       ]
     },
     {
-      "label": "Documento",
+      "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "id_documento",
+          "name": "denominazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo_documento",
+          "name": "id_operatore",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "stato_documento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Sezione",
-      "attributes": [
-        {
-          "name": "nome_sezione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione_sezione",
+          "name": "email_operatore",
           "type": "string",
           "unique": false,
           "required": false
@@ -154,7 +143,36 @@
           "required": true
         },
         {
-          "name": "posizione_toolbar",
+          "name": "descrizione_comando",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Notifica",
+      "attributes": [
+        {
+          "name": "id_notifica",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "destinatario",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato_messaggio",
           "type": "string",
           "unique": false,
           "required": false
@@ -196,22 +214,22 @@
       ]
     },
     {
-      "label": "NotificaEmail",
+      "label": "Documento",
       "attributes": [
         {
-          "name": "id_notifica",
+          "name": "tipo_documento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "destinatario",
+          "name": "stato_documento",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "stato_messaggio",
+          "name": "titolo_documento",
           "type": "string",
           "unique": false,
           "required": false
@@ -236,16 +254,39 @@
       ]
     },
     {
-      "label": "Figura",
+      "label": "ProceduraGara",
       "attributes": [
         {
-          "name": "numero_figura",
+          "name": "id_procedura",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione_figura",
+          "name": "titolo_procedura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fase_procedura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FascicoloGara",
+      "attributes": [
+        {
+          "name": "id_fascicolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato_avanzamento",
           "type": "string",
           "unique": false,
           "required": false
@@ -280,13 +321,361 @@
       },
       "attributes": [
         {
-          "name": "registro_questione",
+          "name": "sezione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "IN_CARICO_A",
+      "source": {
+        "label": "Quesito",
+        "attributes": [
+          {
+            "name": "id_quesito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_assegnazione",
           "type": "string",
           "required": false,
           "unique": false
         },
         {
-          "name": "registro_di_sistema",
+          "name": "ruolo_in_carico",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_RUOLO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome_ruolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "assegnazione_principale",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ESEGUE_COMANDO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_esecuzione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "oggetto_destinazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMANDO_APPLICATO_A",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Quesito",
+        "attributes": [
+          {
+            "name": "id_quesito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "effetto_stato",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "messaggio_informazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "GENERA_NOTIFICA",
+      "source": {
+        "label": "Quesito",
+        "attributes": [
+          {
+            "name": "id_quesito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Notifica",
+        "attributes": [
+          {
+            "name": "id_notifica",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "NOTIFICA_A",
+      "source": {
+        "label": "Notifica",
+        "attributes": [
+          {
+            "name": "id_notifica",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "canale",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "inviata",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FUNZIONALITA_APPARTIENE_A",
+      "source": {
+        "label": "Funzionalita",
+        "attributes": [
+          {
+            "name": "nome_funzione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "GruppoFunzionale",
+        "attributes": [
+          {
+            "name": "nome_gruppo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "abilitata",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "BANDO_REL_PROCEDURA",
+      "source": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "titolo_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "relazione_tipo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DOCUMENTO_CORRISPONDE_A",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "tipo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "titolo_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_associazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FASCICOLO_DI_BANDO",
+      "source": {
+        "label": "FascicoloGara",
+        "attributes": [
+          {
+            "name": "id_fascicolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "titolo_bando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "stato_verifica",
           "type": "string",
           "required": false,
           "unique": false
@@ -319,415 +708,7 @@
       },
       "attributes": [
         {
-          "name": "data_ultima_modifica",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICHIAMATO_DA",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "id_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo_bando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo_documento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INVIATO_DA",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "email_utente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Quesito",
-        "attributes": [
-          {
-            "name": "id_quesito",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo_mittente",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "data_invio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICOPRE",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "email_utente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome_ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "assegnazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PUO_ACCEDERE_A",
-      "source": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome_ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Funzionalita",
-        "attributes": [
-          {
-            "name": "nome_funzione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "condizione_accesso",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONTENUTA_IN",
-      "source": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo_bando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Sezione",
-        "attributes": [
-          {
-            "name": "nome_sezione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "visibilita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "VISIBILE_IN",
-      "source": {
-        "label": "Quesito",
-        "attributes": [
-          {
-            "name": "id_quesito",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Sezione",
-        "attributes": [
-          {
-            "name": "nome_sezione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_visualizzazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMANDO_APPARTIENE_A_FUNZIONALITA",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome_comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Funzionalita",
-        "attributes": [
-          {
-            "name": "nome_funzione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "posizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMANDO_AGISCE_SU",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome_comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "id_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "effetto",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "NOTIFICA_INVIA_A",
-      "source": {
-        "label": "NotificaEmail",
-        "attributes": [
-          {
-            "name": "id_notifica",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "email_utente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_invio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "motivo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "GRUPPO_CONTIENE_FUNZIONALITA",
-      "source": {
-        "label": "GruppoFunzionale",
-        "attributes": [
-          {
-            "name": "nome_gruppo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Funzionalita",
-        "attributes": [
-          {
-            "name": "nome_funzione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ordine_visualizzazione",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "FIGURA_ASSOCIATA_A",
-      "source": {
-        "label": "Figura",
-        "attributes": [
-          {
-            "name": "numero_figura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "id_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "pagina",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "BANDO_PRESENTA_FIGURA",
-      "source": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "titolo_bando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Figura",
-        "attributes": [
-          {
-            "name": "numero_figura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "riferimento_pagina_manual",
+          "name": "data_cambio",
           "type": "string",
           "required": false,
           "unique": false

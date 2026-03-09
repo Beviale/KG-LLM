@@ -1,37 +1,47 @@
 {
   "entities": [
     {
-      "label": "ContrattoCollettivo",
+      "label": "DispositivoLegale",
       "attributes": [
         {
-          "name": "contratto_collettivo_id",
+          "name": "numero_articolo",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ContrattoCollettivoNazionaleTerritoriale",
+      "attributes": [
+        {
+          "name": "descrizione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "ambito",
+          "name": "ambito_di_applicazione",
           "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "settore",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "zona",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoDiGara",
+      "attributes": [
         {
           "name": "descrizione",
           "type": "string",
-          "required": false,
-          "unique": false
+          "unique": true,
+          "required": true
         }
       ]
     },
@@ -39,22 +49,16 @@
       "label": "StazioneAppaltante",
       "attributes": [
         {
-          "name": "codice_stazione_appaltante",
+          "name": "denominazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "ragione_sociale",
+          "name": "codice_fiscale",
           "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "ambito",
-          "type": "string",
-          "required": false,
-          "unique": false
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -62,16 +66,33 @@
       "label": "EnteConcedente",
       "attributes": [
         {
-          "name": "codice_ente_concedente",
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "oggetto_appalto",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "ragione_sociale",
+          "name": "anno_di_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cpv",
           "type": "string",
-          "required": false,
-          "unique": false
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -79,172 +100,42 @@
       "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "codice_operatore_economico",
+          "name": "denominazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "ragione_sociale",
+          "name": "partita_iva",
           "type": "string",
-          "required": false,
-          "unique": false
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "DocumentoUnicoDiRegolaritaContributiva",
+      "label": "DURC",
       "attributes": [
-        {
-          "name": "durc_id",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
         {
           "name": "numero_durc",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "Allegato",
-      "attributes": [
-        {
-          "name": "allegato_id",
-          "type": "string",
+          "type": "number",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "Prestazione",
-      "attributes": [
-        {
-          "name": "prestazione_id",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CategoriaAttivita",
-      "attributes": [
-        {
-          "name": "categoria_attivita_id",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "Zona",
-      "attributes": [
-        {
-          "name": "zona_id",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "Settore",
-      "attributes": [
-        {
-          "name": "settore_id",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "LavoratoreSubappalto",
-      "attributes": [
-        {
-          "name": "lavoratore_subappalto_id",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipologia",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "Lavoratore",
-      "attributes": [
-        {
-          "name": "lavoratore_id",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CassaEdile",
-      "attributes": [
-        {
-          "name": "cassa_edile_id",
-          "type": "string",
-          "unique": true,
+          "name": "valido",
+          "type": "boolean",
+          "unique": false,
           "required": true
         }
       ]
     },
     {
-      "label": "CertificatoDiPagamento",
+      "label": "Ritenuta",
       "attributes": [
         {
-          "name": "certificato_pagamento_id",
-          "type": "string",
+          "name": "percentuale",
+          "type": "number",
           "unique": true,
           "required": true
         }
@@ -254,7 +145,7 @@
       "label": "CertificatoDiCollaudo",
       "attributes": [
         {
-          "name": "certificato_collaudo_id",
+          "name": "numero_certificato",
           "type": "string",
           "unique": true,
           "required": true
@@ -262,32 +153,10 @@
       ]
     },
     {
-      "label": "LiquidazioneFinale",
+      "label": "CategoriaOmogeneaAttivita",
       "attributes": [
         {
-          "name": "liquidazione_finale_id",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Subappaltatore",
-      "attributes": [
-        {
-          "name": "subappaltatore_id",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "VerificaDiConformita",
-      "attributes": [
-        {
-          "name": "verifica_conformita_id",
+          "name": "descrizione",
           "type": "string",
           "unique": true,
           "required": true
@@ -297,12 +166,112 @@
   ],
   "relations": [
     {
-      "label": "APPLICA_CONTRATTO_COLLETTIVO",
+      "label": "INDICA_CCNL_APPLICABILE",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ContrattoCollettivoNazionaleTerritoriale",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "INDICA_CCNL_APPLICABILE",
+      "source": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ContrattoCollettivoNazionaleTerritoriale",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "INDICA_CCNL_APPLICABILE",
+      "source": {
+        "label": "DocumentoDiGara",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ContrattoCollettivoNazionaleTerritoriale",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "APPLICA_CCNL",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ContrattoCollettivoNazionaleTerritoriale",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "AGGIUDICATO_DI",
       "source": {
         "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "codice_operatore_economico",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -310,65 +279,24 @@
         ]
       },
       "target": {
-        "label": "ContrattoCollettivo",
+        "label": "Appalto",
         "attributes": [
           {
-            "name": "contratto_collettivo_id",
+            "name": "oggetto_appalto",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
-      },
-      "attributes": [
-        {
-          "name": "impegno",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
+      }
     },
     {
-      "label": "INDICA_CONTRATTO_COLLETTIVO_APPLICABILE",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "codice_stazione_appaltante",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ContrattoCollettivo",
-        "attributes": [
-          {
-            "name": "contratto_collettivo_id",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "riferimento_allegato",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DICHIARAZIONE_ADOTTARE_CONTRATTO",
+      "label": "INDICA_CCNL_NELLE_OFFERTA",
       "source": {
         "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "codice_operatore_economico",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -376,32 +304,24 @@
         ]
       },
       "target": {
-        "label": "ContrattoCollettivo",
+        "label": "ContrattoCollettivoNazionaleTerritoriale",
         "attributes": [
           {
-            "name": "contratto_collettivo_id",
+            "name": "descrizione",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
-      },
-      "attributes": [
-        {
-          "name": "tipo_dichiarazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
+      }
     },
     {
-      "label": "ACQUISIZIONE_DICHIARAZIONE",
+      "label": "VERIFICA_DURC",
       "source": {
         "label": "StazioneAppaltante",
         "attributes": [
           {
-            "name": "codice_stazione_appaltante",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -409,65 +329,24 @@
         ]
       },
       "target": {
-        "label": "OperatoreEconomico",
+        "label": "DURC",
         "attributes": [
           {
-            "name": "codice_operatore_economico",
-            "type": "string",
+            "name": "numero_durc",
+            "type": "number",
             "unique": true,
             "required": true
           }
         ]
-      },
-      "attributes": [
-        {
-          "name": "dichiarazione_documento",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
+      }
     },
     {
-      "label": "DICHIARAZIONE_EQUIVALENZA_TUTELE",
-      "source": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "codice_operatore_economico",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ContrattoCollettivo",
-        "attributes": [
-          {
-            "name": "contratto_collettivo_id",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipologia_equivalenza",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "GARANTISCE_TUTELE",
+      "label": "GESTISCE_RITENUTE",
       "source": {
         "label": "StazioneAppaltante",
         "attributes": [
           {
-            "name": "codice_stazione_appaltante",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -475,32 +354,24 @@
         ]
       },
       "target": {
-        "label": "LavoratoreSubappalto",
+        "label": "Ritenuta",
         "attributes": [
           {
-            "name": "lavoratore_subappalto_id",
-            "type": "string",
+            "name": "percentuale",
+            "type": "number",
             "unique": true,
             "required": true
           }
         ]
-      },
-      "attributes": [
-        {
-          "name": "tutele_garantite",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
+      }
     },
     {
-      "label": "PAGA_RETRIBUZIONI_ARRETRATE_A_LAVORATORE",
+      "label": "APPROVA_CERTIFICATO_COLLAUDO",
       "source": {
         "label": "StazioneAppaltante",
         "attributes": [
           {
-            "name": "codice_stazione_appaltante",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -508,168 +379,16 @@
         ]
       },
       "target": {
-        "label": "Lavoratore",
+        "label": "CertificatoDiCollaudo",
         "attributes": [
           {
-            "name": "lavoratore_id",
+            "name": "numero_certificato",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
-      },
-      "attributes": [
-        {
-          "name": "importo_arretrato",
-          "type": "number",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "data_pagamento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PAGA_RETRIBUZIONI_ARRETRATE_A_LAVORATORE_SUBAPPALTO",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "codice_stazione_appaltante",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "LavoratoreSubappalto",
-        "attributes": [
-          {
-            "name": "lavoratore_subappalto_id",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "importo_arretrato",
-          "type": "number",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "data_pagamento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DETRAZIONE_RITENUTA_CERTIFICATO_PAGAMENTO",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "codice_stazione_appaltante",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CertificatoDiPagamento",
-        "attributes": [
-          {
-            "name": "certificato_pagamento_id",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "percentuale",
-          "type": "number",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DETRAZIONE_RITENUTA_CASSA_EDILE",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "codice_stazione_appaltante",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CassaEdile",
-        "attributes": [
-          {
-            "name": "cassa_edile_id",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "percentuale",
-          "type": "number",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INDICA_DURC_PRESENTE",
-      "source": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "codice_operatore_economico",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "DocumentoUnicoDiRegolaritaContributiva",
-        "attributes": [
-          {
-            "name": "durc_id",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "durc_presentato",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
+      }
     }
   ]
 }

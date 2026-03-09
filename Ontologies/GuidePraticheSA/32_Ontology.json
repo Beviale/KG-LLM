@@ -10,7 +10,19 @@
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "criterio_aggiudicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "modalita_attribuzione_punteggio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "note",
           "type": "string",
           "unique": false,
           "required": false
@@ -24,7 +36,7 @@
       ]
     },
     {
-      "label": "Sezione",
+      "label": "BustaTecnica",
       "attributes": [
         {
           "name": "nome",
@@ -33,47 +45,13 @@
           "required": true
         },
         {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Lotto",
-      "attributes": [
-        {
-          "name": "codice_lotto",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "BustaTecnica",
-      "attributes": [
-        {
-          "name": "id_busta_tecnica",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "anteprima_pdf",
-          "type": "string",
+          "name": "has_tabella",
+          "type": "boolean",
           "unique": false,
           "required": false
         },
         {
-          "name": "presente",
+          "name": "richiede_valutazione_tecnica",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -84,56 +62,39 @@
       "label": "BustaEconomica",
       "attributes": [
         {
-          "name": "id_busta_economica",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "anteprima_pdf",
-          "type": "string",
+          "name": "genera_pdf",
+          "type": "boolean",
           "unique": false,
           "required": false
         },
         {
-          "name": "genera_modello_comando",
-          "type": "string",
+          "name": "anteprima_allegabile",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "CriterioValutazione",
+      "label": "CriterioDiValutazione",
       "attributes": [
         {
-          "name": "codice_criterio",
+          "name": "descrizione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "peso",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "punteggio_massimo",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CriterioTecnico",
-      "attributes": [
-        {
-          "name": "codice_criterio_tecnico",
+          "name": "tipo",
           "type": "string",
-          "unique": true,
-          "required": true
+          "unique": false,
+          "required": false
         },
         {
           "name": "punteggio_massimo",
@@ -148,7 +109,36 @@
           "required": false
         },
         {
-          "name": "modalita_calcolo",
+          "name": "peso",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CriterioTecnico",
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valutazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "attributo_interesse",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "modalita_calcolo_oggettivo",
           "type": "string",
           "unique": false,
           "required": false
@@ -165,19 +155,19 @@
       "label": "CriterioEconomico",
       "attributes": [
         {
-          "name": "codice_criterio_economico",
+          "name": "descrizione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "punteggio_massimo",
-          "type": "number",
+          "name": "base_di_confronto",
+          "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "base_di_confronto",
+          "name": "formulazione_valore_offerto",
           "type": "string",
           "unique": false,
           "required": false
@@ -189,7 +179,13 @@
           "required": false
         },
         {
-          "name": "coefficiente",
+          "name": "coefficiente_alfa",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "coefficiente_x",
           "type": "number",
           "unique": false,
           "required": false
@@ -200,7 +196,7 @@
       "label": "Riparametrazione",
       "attributes": [
         {
-          "name": "tipo_riparametrazione",
+          "name": "tipo",
           "type": "string",
           "unique": true,
           "required": true
@@ -214,33 +210,22 @@
       ]
     },
     {
-      "label": "ModalitaAttribuzione",
+      "label": "ModalitaAttribuzionePunteggio",
       "attributes": [
         {
-          "name": "tipo_modalita",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
-          "type": "string",
+          "name": "range_min",
+          "type": "number",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "Formula",
-      "attributes": [
-        {
-          "name": "nome_formula",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "parametro_alpha",
+          "name": "range_max",
           "type": "number",
           "unique": false,
           "required": false
@@ -248,17 +233,29 @@
       ]
     },
     {
-      "label": "Attributo",
+      "label": "Lotto",
       "attributes": [
         {
-          "name": "nome_attributo",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "ordine",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "criterio_valutazione",
           "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "necessita_personalizzazione",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -284,20 +281,26 @@
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "profilo",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "Ruolo",
+      "label": "RuoloUtente",
       "attributes": [
         {
-          "name": "nome_ruolo",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "permessi",
           "type": "string",
           "unique": false,
           "required": false
@@ -308,14 +311,37 @@
       "label": "Commissione",
       "attributes": [
         {
-          "name": "nome_commissione",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "responsabilita",
           "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PCP",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "interoperabilita_servizi",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "log_chiamate",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -325,7 +351,7 @@
       "label": "ChiamataPCP",
       "attributes": [
         {
-          "name": "id_chiamata",
+          "name": "identificativo",
           "type": "string",
           "unique": true,
           "required": true
@@ -343,7 +369,13 @@
           "required": false
         },
         {
-          "name": "data_ora",
+          "name": "data_ora_richiesta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_ora_esecuzione",
           "type": "string",
           "unique": false,
           "required": false
@@ -369,10 +401,10 @@
       ]
     },
     {
-      "label": "CronologiaPCP",
+      "label": "Cronologia",
       "attributes": [
         {
-          "name": "id_cronologia",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -389,13 +421,13 @@
       "label": "Documento",
       "attributes": [
         {
-          "name": "nome_documento",
+          "name": "titolo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "tipo_documento",
           "type": "string",
           "unique": false,
           "required": false
@@ -405,6 +437,12 @@
           "type": "string",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "allegato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -412,7 +450,7 @@
       "label": "Allegato",
       "attributes": [
         {
-          "name": "nome_allegato",
+          "name": "nome_file",
           "type": "string",
           "unique": true,
           "required": true
@@ -424,99 +462,16 @@
           "required": false
         }
       ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "identificativo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
     }
   ],
   "relations": [
     {
-      "label": "CONTIENTE_SEZIONE",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Sezione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "visibilita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_LOTTO",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Lotto",
-        "attributes": [
-          {
-            "name": "codice_lotto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ordine",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
       "label": "HA_BUSTA_TECNICA",
       "source": {
-        "label": "Lotto",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "codice_lotto",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -527,7 +482,7 @@
         "label": "BustaTecnica",
         "attributes": [
           {
-            "name": "id_busta_tecnica",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -546,10 +501,10 @@
     {
       "label": "HA_BUSTA_ECONOMICA",
       "source": {
-        "label": "Lotto",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "codice_lotto",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -560,7 +515,7 @@
         "label": "BustaEconomica",
         "attributes": [
           {
-            "name": "id_busta_economica",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -573,42 +528,9 @@
           "type": "boolean",
           "required": false,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONTIENE_CRITERIO_TECNICO",
-      "source": {
-        "label": "BustaTecnica",
-        "attributes": [
-          {
-            "name": "id_busta_tecnica",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CriterioTecnico",
-        "attributes": [
-          {
-            "name": "codice_criterio_tecnico",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "criterio_soggettivo",
-          "type": "boolean",
-          "required": false,
-          "unique": false
         },
         {
-          "name": "criterio_oggettivo",
+          "name": "genera_pdf",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -616,205 +538,7 @@
       ]
     },
     {
-      "label": "CONTIENE_CRITERIO_ECONOMICO",
-      "source": {
-        "label": "BustaEconomica",
-        "attributes": [
-          {
-            "name": "id_busta_economica",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CriterioEconomico",
-        "attributes": [
-          {
-            "name": "codice_criterio_economico",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "base_confronto",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPLICA_RIPARAMETRAZIONE",
-      "source": {
-        "label": "BustaEconomica",
-        "attributes": [
-          {
-            "name": "id_busta_economica",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Riparametrazione",
-        "attributes": [
-          {
-            "name": "tipo_riparametrazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ambito",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZA_MODALITA",
-      "source": {
-        "label": "CriterioValutazione",
-        "attributes": [
-          {
-            "name": "codice_criterio",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ModalitaAttribuzione",
-        "attributes": [
-          {
-            "name": "tipo_modalita",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "peso",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "UTILIZZA_FORMULA",
-      "source": {
-        "label": "CriterioEconomico",
-        "attributes": [
-          {
-            "name": "codice_criterio_economico",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Formula",
-        "attributes": [
-          {
-            "name": "nome_formula",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "richiede_alpha",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "USA_ATTRIBUTO",
-      "source": {
-        "label": "CriterioEconomico",
-        "attributes": [
-          {
-            "name": "codice_criterio_economico",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Attributo",
-        "attributes": [
-          {
-            "name": "nome_attributo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo_attributo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "VALUTATO_DA",
-      "source": {
-        "label": "CriterioTecnico",
-        "attributes": [
-          {
-            "name": "codice_criterio_tecnico",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Commissione",
-        "attributes": [
-          {
-            "name": "nome_commissione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "modalita_valutazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_RIFERIMENTO",
+      "label": "HA_CRITERIO",
       "source": {
         "label": "ProceduraDiGara",
         "attributes": [
@@ -827,10 +551,238 @@
         ]
       },
       "target": {
+        "label": "CriterioDiValutazione",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "peso",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "applicabile_a",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CRITERIO_TECNICO",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CriterioTecnico",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "peso",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "soglia_minima",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "modalita_valutazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CRITERIO_ECONOMICO",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CriterioEconomico",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "peso",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "base_di_confronto",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "LOTTO_APPARTIENE_A",
+      "source": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ordine",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "personalizzato",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "LOTTO_HA_BUSTA_TECNICA",
+      "source": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "BustaTecnica",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "presente",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "LOTTO_HA_BUSTA_ECONOMICA",
+      "source": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "BustaEconomica",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "presente",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTENTE_HA_RUOLO",
+      "source": {
         "label": "Utente",
         "attributes": [
           {
             "name": "nominativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RuoloUtente",
+        "attributes": [
+          {
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -847,7 +799,7 @@
       ]
     },
     {
-      "label": "ASSEGNA_RUOLO",
+      "label": "UTENTE_IMPIEGATO_IN",
       "source": {
         "label": "Utente",
         "attributes": [
@@ -860,10 +812,10 @@
         ]
       },
       "target": {
-        "label": "Ruolo",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "nome_ruolo",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -872,20 +824,26 @@
       },
       "attributes": [
         {
-          "name": "ambito",
+          "name": "permesso_visualizzazione",
           "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "permesso_gestione_quesiti",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "RIGUARDA",
+      "label": "REFERENTE_UTENTE_PUO_MODIFICARE",
       "source": {
-        "label": "Documento",
+        "label": "RuoloUtente",
         "attributes": [
           {
-            "name": "nome_documento",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -905,20 +863,20 @@
       },
       "attributes": [
         {
-          "name": "fase",
-          "type": "string",
+          "name": "permesso_modifica_modello_gara",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "CONTINE_ALLEGATO",
+      "label": "COMMISSIONE_VALUTA",
       "source": {
-        "label": "Documento",
+        "label": "Commissione",
         "attributes": [
           {
-            "name": "nome_documento",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -926,10 +884,10 @@
         ]
       },
       "target": {
-        "label": "Allegato",
+        "label": "CriterioTecnico",
         "attributes": [
           {
-            "name": "nome_allegato",
+            "name": "descrizione",
             "type": "string",
             "unique": true,
             "required": true
@@ -938,7 +896,7 @@
       },
       "attributes": [
         {
-          "name": "obbligatorio",
+          "name": "valutazione_soggettiva",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -946,12 +904,12 @@
       ]
     },
     {
-      "label": "APPARTIENE_CRONOLOGIA",
+      "label": "PROCEDURA_INTERAGISCE_CON_PCP",
       "source": {
-        "label": "ChiamataPCP",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "id_chiamata",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -959,10 +917,43 @@
         ]
       },
       "target": {
-        "label": "CronologiaPCP",
+        "label": "PCP",
         "attributes": [
           {
-            "name": "id_cronologia",
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PCP_REGISTRA_CHIAMATA",
+      "source": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ChiamataPCP",
+        "attributes": [
+          {
+            "name": "identificativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -975,18 +966,23 @@
           "type": "string",
           "required": false,
           "unique": false
-        },
-        {
-          "name": "note",
-          "type": "string",
-          "required": false,
-          "unique": false
         }
       ]
     },
     {
-      "label": "HA_CRONOLOGIA_PCP",
+      "label": "CHIAMATA_RIGUARDA_PROCEDURA",
       "source": {
+        "label": "ChiamataPCP",
+        "attributes": [
+          {
+            "name": "identificativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "ProceduraDiGara",
         "attributes": [
           {
@@ -997,20 +993,15 @@
           }
         ]
       },
-      "target": {
-        "label": "CronologiaPCP",
-        "attributes": [
-          {
-            "name": "id_cronologia",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
       "attributes": [
         {
-          "name": "stato_integrazione",
+          "name": "tipo_operazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "stato",
           "type": "string",
           "required": false,
           "unique": false
@@ -1018,12 +1009,12 @@
       ]
     },
     {
-      "label": "GENERA_PDF",
+      "label": "CRONOLOGIA_RIFERISCE_A",
       "source": {
-        "label": "BustaEconomica",
+        "label": "Cronologia",
         "attributes": [
           {
-            "name": "id_busta_economica",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -1031,10 +1022,10 @@
         ]
       },
       "target": {
-        "label": "Documento",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "nome_documento",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -1043,20 +1034,20 @@
       },
       "attributes": [
         {
-          "name": "anteprima_generata",
-          "type": "boolean",
-          "required": true,
+          "name": "note",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_SOGGLIA",
+      "label": "DOCUMENTO_RELATIVO_A",
       "source": {
-        "label": "CriterioTecnico",
+        "label": "Documento",
         "attributes": [
           {
-            "name": "codice_criterio_tecnico",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -1064,10 +1055,10 @@
         ]
       },
       "target": {
-        "label": "CriterioValutazione",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "codice_criterio",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -1076,8 +1067,119 @@
       },
       "attributes": [
         {
-          "name": "valore_soglia",
+          "name": "data_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DOCUMENTO_HA_ALLEGATO",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "presente",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CRITERIO_APPLICATO_A_LOTTO",
+      "source": {
+        "label": "CriterioDiValutazione",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "applicabile",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "peso",
           "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIPARAMETRAZIONE_APPLICA_A",
+      "source": {
+        "label": "Riparametrazione",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CriterioDiValutazione",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ambito",
+          "type": "string",
           "required": false,
           "unique": false
         }

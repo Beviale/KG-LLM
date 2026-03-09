@@ -1,0 +1,639 @@
+{
+  "entities": [
+    {
+      "label": "Attivita",
+      "attributes": [
+        {
+          "name": "attivita_concorrenza",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_attivita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimenti_articolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "territorio_riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "criteri_concorrenza_utilizzati",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Mercato",
+      "attributes": [
+        {
+          "name": "mercato_liberamente_accessibile",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_mercato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "caratteristiche_prodotti_servizi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "disponibilita_concorrenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Territorio",
+      "attributes": [
+        {
+          "name": "territorio_nazionale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_territorio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "condizioni_concorrenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CommissioneEuropea",
+      "attributes": [
+        {
+          "name": "nome_entita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_competenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ambito_competenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Direttiva",
+      "attributes": [
+        {
+          "name": "codice_directiva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "titolo_directiva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "codice_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_allegato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "id_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_appalto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ConcorsoProgettazione",
+      "attributes": [
+        {
+          "name": "id_concorso_progettazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_concorso",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "periodo_riferimento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Concessione",
+      "attributes": [
+        {
+          "name": "tipo_concessione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_concessione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AutoritaIndipendente",
+      "attributes": [
+        {
+          "name": "nome_autorita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo_competente",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "nome_stazione_appaltante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_stazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProdottoServizio",
+      "attributes": [
+        {
+          "name": "caratteristiche_prodotti_servizi",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_prodotti_servizi",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "ESPOSTA_ALLA_CONCORRENZA",
+      "source": {
+        "label": "Attivita",
+        "attributes": [
+          {
+            "name": "attivita_concorrenza",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Mercato",
+        "attributes": [
+          {
+            "name": "mercato_liberamente_accessibile",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "LIMITATA_A_TERRITORIO",
+      "source": {
+        "label": "Attivita",
+        "attributes": [
+          {
+            "name": "attivita_concorrenza",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Territorio",
+        "attributes": [
+          {
+            "name": "territorio_nazionale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VALUTATA_DA_COMMISSIONE_EUROPEA",
+      "source": {
+        "label": "Attivita",
+        "attributes": [
+          {
+            "name": "attivita_concorrenza",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CommissioneEuropea",
+        "attributes": [
+          {
+            "name": "nome_entita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "criteri_utilizzati",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "scopo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDICATO_NELLE_ALLEGATO_DI_DIRECTIVA",
+      "source": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "codice_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Direttiva",
+        "attributes": [
+          {
+            "name": "codice_directiva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "nota_allegato",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIESTA_DI_DISAPPLICAZIONE",
+      "source": {
+        "label": "AutoritaIndipendente",
+        "attributes": [
+          {
+            "name": "nome_autorita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CommissioneEuropea",
+        "attributes": [
+          {
+            "name": "nome_entita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "oggetto_richiesta",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "STABILISCE_NON_APPLICABILITA_APPALTO",
+      "source": {
+        "label": "CommissioneEuropea",
+        "attributes": [
+          {
+            "name": "nome_entita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "id_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ambito",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "STABILISCE_NON_APPLICABILITA_CONCORSO",
+      "source": {
+        "label": "CommissioneEuropea",
+        "attributes": [
+          {
+            "name": "nome_entita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ConcorsoProgettazione",
+        "attributes": [
+          {
+            "name": "id_concorso_progettazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ambito",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIESTA_COMMISSIONE_EUROPEA_PER_APPLICABILITA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "nome_stazione_appaltante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CommissioneEuropea",
+        "attributes": [
+          {
+            "name": "nome_entita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "oggetto_richiesta",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMUNICAZIONE_AUTORITA_EUROPEA",
+      "source": {
+        "label": "AutoritaIndipendente",
+        "attributes": [
+          {
+            "name": "nome_autorita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CommissioneEuropea",
+        "attributes": [
+          {
+            "name": "nome_entita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "oggetto_comunicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DESCRIZIONE_PRODOTTO_SERVIZIO_COLLEGAMENTO",
+      "source": {
+        "label": "ProdottoServizio",
+        "attributes": [
+          {
+            "name": "caratteristiche_prodotti_servizi",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Attivita",
+        "attributes": [
+          {
+            "name": "attivita_concorrenza",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COLLEGAMENTO_MERCATO_TERRITORIO",
+      "source": {
+        "label": "Mercato",
+        "attributes": [
+          {
+            "name": "mercato_liberamente_accessibile",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Territorio",
+        "attributes": [
+          {
+            "name": "territorio_nazionale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,36 @@
 {
   "entities": [
     {
-      "label": "RUP",
+      "label": "ProceduraDiGara",
+      "attributes": [
+        {
+          "name": "identificativo_TED",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "visualizza_notifiche",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "attribuzione_automatica_CIG",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anonimato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Ruolo",
       "attributes": [
         {
           "name": "nome",
@@ -10,25 +39,31 @@
           "required": true
         },
         {
-          "name": "puo_estrarre_elenco",
-          "type": "boolean",
+          "name": "descrizione",
+          "type": "string",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "ResponsabileProcedimento",
+      "label": "Utente",
       "attributes": [
         {
-          "name": "sigla",
+          "name": "nominativo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "puo_estrarre_elenco",
-          "type": "boolean",
+          "name": "profilo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ente",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -38,47 +73,13 @@
       "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "nominativo",
+          "name": "denominazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "anonimato_richiesto",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Partecipante",
-      "attributes": [
-        {
-          "name": "identificativo_partecipante",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ElencoPartecipanti",
-      "attributes": [
-        {
-          "name": "id_elenco",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "formato_file",
+          "name": "ruolo_nel_gruppo",
           "type": "string",
           "unique": false,
           "required": false
@@ -89,30 +90,13 @@
       "label": "CommissioneGiudicatrice",
       "attributes": [
         {
-          "name": "denominazione",
+          "name": "nome_commissione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "possibile_segnalazione_incompatibilita",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CommissioneMembro",
-      "attributes": [
-        {
-          "name": "nominativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "incompatibilita_segnalate",
+          "name": "numero_componenti",
           "type": "number",
           "unique": false,
           "required": false
@@ -120,16 +104,74 @@
       ]
     },
     {
-      "label": "ProceduraDiGara",
+      "label": "Documento",
       "attributes": [
         {
-          "name": "identificativo",
+          "name": "nome_documento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "visualizza_notifiche",
+          "name": "tipo_file",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "obbligatorio",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "richiede_firma",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "categoria",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Sezione",
+      "attributes": [
+        {
+          "name": "nome_sezione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "BustaDocumentazione",
+      "attributes": [
+        {
+          "name": "tipo_busta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "permette_firma",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "documentazione_etichettabile_obbligatoria",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -137,84 +179,16 @@
       ]
     },
     {
-      "label": "Piattaforma",
+      "label": "BustaTecnica",
       "attributes": [
         {
-          "name": "nome",
+          "name": "tipo_busta",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "versione_manualesa",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PCP",
-      "attributes": [
-        {
-          "name": "acronimo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "endpoint_interoperabilita",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ANAC",
-      "attributes": [
-        {
-          "name": "acronimo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "richiede_parametri",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "TED",
-      "attributes": [
-        {
-          "name": "acronimo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "identificativo_ted",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "DGUE",
-      "attributes": [
-        {
-          "name": "codice",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "obbligatorio_strutturato",
+          "name": "anonimato_autorizzato",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -239,16 +213,16 @@
       ]
     },
     {
-      "label": "ISTAT",
+      "label": "LuogoIstat",
       "attributes": [
         {
-          "name": "codice",
+          "name": "codice_istat",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "livello",
+          "name": "nome_localita",
           "type": "string",
           "unique": false,
           "required": false
@@ -256,86 +230,17 @@
       ]
     },
     {
-      "label": "CIG",
+      "label": "DGUE",
       "attributes": [
         {
-          "name": "codice",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "attribuzione_automatica",
+          "name": "strutturato",
           "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Documento",
-      "attributes": [
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo_file",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "richiedi_firma",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "categorizzato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "DocumentoCategorizzato",
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "esempi",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "File",
-      "attributes": [
-        {
-          "name": "nome_file",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "formato",
-          "type": "string",
           "unique": false,
           "required": false
         }
@@ -345,14 +250,14 @@
       "label": "Premio",
       "attributes": [
         {
-          "name": "identificativo_premio",
+          "name": "id_premio",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
           "name": "importo",
-          "type": "string",
+          "type": "number",
           "unique": false,
           "required": false
         }
@@ -362,7 +267,7 @@
       "label": "CriterioValutazione",
       "attributes": [
         {
-          "name": "nome",
+          "name": "descrizione",
           "type": "string",
           "unique": true,
           "required": true
@@ -378,37 +283,50 @@
           "type": "number",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "CronologiaPCPEntry",
+      "label": "ChiamataPCP",
       "attributes": [
         {
-          "name": "id_chiamata",
+          "name": "data_ora",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "tipo_operazione",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "CronologiaEntry",
-      "attributes": [
-        {
-          "name": "id_operazione",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "autore",
+          "name": "request_filename",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "response_filename",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anteprima_errore",
           "type": "string",
           "unique": false,
           "required": false
@@ -416,10 +334,50 @@
       ]
     },
     {
-      "label": "Sezione",
+      "label": "EstrazionePartecipanti",
       "attributes": [
         {
-          "name": "nome",
+          "name": "nome_operazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "abilitata",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "file_generato_tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "nome_file",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_modifica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Cronologia",
+      "attributes": [
+        {
+          "name": "id_cronologia",
           "type": "string",
           "unique": true,
           "required": true
@@ -431,209 +389,13 @@
           "required": false
         }
       ]
-    },
-    {
-      "label": "BustaDocumentazione",
-      "attributes": [
-        {
-          "name": "nome_busta",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "BustaDocumentazioneTecnica",
-      "attributes": [
-        {
-          "name": "nome_busta_tecnica",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "anonimato_autori",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Tabella",
-      "attributes": [
-        {
-          "name": "id_tabella",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "righe",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Manuale",
-      "attributes": [
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "versione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Funzionalita",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "attiva",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
     }
   ],
   "relations": [
     {
-      "label": "PUO_ESTRARE",
+      "label": "RESPONSABILE_DI",
       "source": {
-        "label": "RUP",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ElencoPartecipanti",
-        "attributes": [
-          {
-            "name": "id_elenco",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "condizione_avvio",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "scopo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PUO_ESTRARE",
-      "source": {
-        "label": "ResponsabileProcedimento",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ElencoPartecipanti",
-        "attributes": [
-          {
-            "name": "id_elenco",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "condizione_avvio",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CONDIVISO_CON",
-      "source": {
-        "label": "ElencoPartecipanti",
-        "attributes": [
-          {
-            "name": "id_elenco",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CommissioneGiudicatrice",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "momento_condivisione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "scopo",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SEGNALA_INCOMPATIBILITA",
-      "source": {
-        "label": "CommissioneMembro",
+        "label": "Utente",
         "attributes": [
           {
             "name": "nominativo",
@@ -644,10 +406,10 @@
         ]
       },
       "target": {
-        "label": "Partecipante",
+        "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "identificativo_partecipante",
+            "name": "identificativo_TED",
             "type": "string",
             "unique": true,
             "required": true
@@ -656,26 +418,53 @@
       },
       "attributes": [
         {
-          "name": "motivazione",
+          "name": "ruolo",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
-        },
+        }
+      ]
+    },
+    {
+      "label": "HA_RUOLO_IN",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "nominativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
         {
-          "name": "richiede_sostituzione",
-          "type": "boolean",
+          "name": "assegnata_a_procedura",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "CONFIGURA",
+      "label": "PARTECIPA_A",
       "source": {
-        "label": "Piattaforma",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "nome",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -686,7 +475,7 @@
         "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "identificativo_TED",
             "type": "string",
             "unique": true,
             "required": true
@@ -695,13 +484,46 @@
       },
       "attributes": [
         {
-          "name": "modalita_configurazione",
+          "name": "ruolo_gruppo",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         },
         {
-          "name": "manuale_riferimento",
+          "name": "anonimato",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_COMPONENTE",
+      "source": {
+        "label": "CommissioneGiudicatrice",
+        "attributes": [
+          {
+            "name": "nome_commissione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "nominativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_component",
           "type": "string",
           "required": false,
           "unique": false
@@ -709,12 +531,51 @@
       ]
     },
     {
-      "label": "HA_SEZIONE",
+      "label": "HA_DOCUMENTO",
       "source": {
         "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "identificativo_TED",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "nome_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "metodo_caricamento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "posizione_tabella",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DOCUMENTO_IN_SEZIONE",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "nome_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -725,7 +586,7 @@
         "label": "Sezione",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_sezione",
             "type": "string",
             "unique": true,
             "required": true
@@ -742,12 +603,12 @@
       ]
     },
     {
-      "label": "CONTIENTE",
+      "label": "RICHIEDE_DOCUMENTO",
       "source": {
-        "label": "Sezione",
+        "label": "BustaDocumentazione",
         "attributes": [
           {
-            "name": "nome",
+            "name": "tipo_busta",
             "type": "string",
             "unique": true,
             "required": true
@@ -758,7 +619,7 @@
         "label": "Documento",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "nome_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -767,40 +628,13 @@
       },
       "attributes": [
         {
-          "name": "visibilita",
-          "type": "string",
-          "required": false,
+          "name": "obbligatorio",
+          "type": "boolean",
+          "required": true,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TIPO_DI",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "DocumentoCategorizzato",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
+        },
         {
-          "name": "preconfigurato",
+          "name": "richiedi_firma",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -808,12 +642,12 @@
       ]
     },
     {
-      "label": "CARICATO_DA",
+      "label": "RICHIEDE_DOCUMENTAZIONE_TECNICA",
       "source": {
-        "label": "OperatoreEconomico",
+        "label": "BustaTecnica",
         "attributes": [
           {
-            "name": "nominativo",
+            "name": "tipo_busta",
             "type": "string",
             "unique": true,
             "required": true
@@ -824,7 +658,7 @@
         "label": "Documento",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "nome_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -833,70 +667,149 @@
       },
       "attributes": [
         {
-          "name": "modalita_upload",
-          "type": "string",
+          "name": "obbligatorio",
+          "type": "boolean",
           "required": true,
           "unique": false
-        },
-        {
-          "name": "data_ora",
-          "type": "string",
-          "required": false,
-          "unique": false
         }
       ]
     },
     {
-      "label": "HA_FILE",
+      "label": "HA_PREMIO",
       "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "File",
-        "attributes": [
-          {
-            "name": "nome_file",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "azione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INTERAGISCE_CON",
-      "source": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "acronimo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "identificativo_TED",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Premio",
+        "attributes": [
+          {
+            "name": "id_premio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_CPV",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "identificativo_TED",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CPV",
+        "attributes": [
+          {
+            "name": "codice",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "UTILIZZA_ISTAT",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "identificativo_TED",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "LuogoIstat",
+        "attributes": [
+          {
+            "name": "codice_istat",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "HA_CRITERIO",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "identificativo_TED",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CriterioValutazione",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "punteggio_assegnato",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CHIAMATA",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "identificativo_TED",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ChiamataPCP",
+        "attributes": [
+          {
+            "name": "data_ora",
             "type": "string",
             "unique": true,
             "required": true
@@ -907,17 +820,23 @@
         {
           "name": "tipo_operazione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         },
         {
           "name": "stato",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         },
         {
-          "name": "data_ora",
+          "name": "request_filename",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "response_filename",
           "type": "string",
           "required": false,
           "unique": false
@@ -931,189 +850,12 @@
       ]
     },
     {
-      "label": "TRASMETTE_A",
+      "label": "ESTRAE_PARTECIPANTI_DI",
       "source": {
-        "label": "PCP",
+        "label": "EstrazionePartecipanti",
         "attributes": [
           {
-            "name": "acronimo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "TED",
-        "attributes": [
-          {
-            "name": "acronimo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "identificativo_scheda",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICHIEDE_PARAMETRI",
-      "source": {
-        "label": "ANAC",
-        "attributes": [
-          {
-            "name": "acronimo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Sezione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "parametri_specifici",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PREVEDE_PREMIO",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Premio",
-        "attributes": [
-          {
-            "name": "identificativo_premio",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "somma_dei_premi_condizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMPRENDE_CRITERIO",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CriterioValutazione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "modalita_attribuzione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "riparametrazione_applicata",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "REGISTRA_CHIAMATA",
-      "source": {
-        "label": "CronologiaPCPEntry",
-        "attributes": [
-          {
-            "name": "id_chiamata",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "acronimo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "request_file",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "response_file",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIGUARDA",
-      "source": {
-        "label": "CronologiaEntry",
-        "attributes": [
-          {
-            "name": "id_operazione",
+            "name": "nome_operazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -1124,7 +866,7 @@
         "label": "ProceduraDiGara",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "identificativo_TED",
             "type": "string",
             "unique": true,
             "required": true
@@ -1133,81 +875,120 @@
       },
       "attributes": [
         {
-          "name": "tipo_operazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "note_approvatore",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMPONE",
-      "source": {
-        "label": "BustaDocumentazione",
-        "attributes": [
-          {
-            "name": "nome_busta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatorieta",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMPONE",
-      "source": {
-        "label": "BustaDocumentazioneTecnica",
-        "attributes": [
-          {
-            "name": "nome_busta_tecnica",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "firma_digitale_consentita",
+          "name": "abilitata",
           "type": "boolean",
           "required": true,
+          "unique": false
+        },
+        {
+          "name": "file_generato_tipo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "eseguibile_da",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_ALLEGATO",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "identificativo_TED",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_modifica",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CRONOLOGIA",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "identificativo_TED",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Cronologia",
+        "attributes": [
+          {
+            "name": "id_cronologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_UTENTE_RIFERIMENTO",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "identificativo_TED",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "nominativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]

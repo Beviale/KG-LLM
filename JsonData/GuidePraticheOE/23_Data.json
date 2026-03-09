@@ -1,0 +1,988 @@
+{
+  "entities": [
+    {
+      "label": "Ordinativo",
+      "attributes": {
+        "id_odf": "OrdinativoDiFornitura",
+        "snippet": "un ordinativo di fornitura può presentare il seguente stato: • inviato: se è stato inviato all'operatore economico per l'accettazione/rifiuto; • accettato: se è stato inviato all'operatore economico ed accettato da quest'ultimo; • rifiutato: se è stato inviato all'operatore economico e rifiutato da quest'ultimo; • annullato: se è stato inviato all'operatore economico e successivamente annullato dall'ente."
+      }
+    },
+    {
+      "label": "Stato",
+      "attributes": {
+        "nome": "inviato",
+        "snippet": "inviato: se è stato inviato all'operatore economico per l'accettazione/rifiuto."
+      }
+    },
+    {
+      "label": "Stato",
+      "attributes": {
+        "nome": "accettato",
+        "snippet": "accettato: se è stato inviato all'operatore economico ed accettato da quest'ultimo."
+      }
+    },
+    {
+      "label": "Stato",
+      "attributes": {
+        "nome": "rifiutato",
+        "snippet": "rifiutato: se è stato inviato all'operatore economico e rifiutato da quest'ultimo."
+      }
+    },
+    {
+      "label": "Stato",
+      "attributes": {
+        "nome": "annullato",
+        "snippet": "annullato: se è stato inviato all'operatore economico e successivamente annullato dall'ente."
+      }
+    },
+    {
+      "label": "Documento",
+      "attributes": {
+        "id_documento": "OrdinativoDiFornituraDoc",
+        "snippet": "in cima al documento che verrà mostrato, è predisposta una toolbar per la gestione dello stesso con i seguenti comandi (abilitati coerentemente con lo stato del documento)."
+      }
+    },
+    {
+      "label": "Toolbar",
+      "attributes": {
+        "nome": "ToolbarOrdinativo",
+        "snippet": "toolbar in cima al documento predisposta per la gestione dell'ordinativo di fornitura con i comandi elencati."
+      }
+    },
+    {
+      "label": "ToolbarCommand",
+      "attributes": {
+        "nome": "accetta",
+        "snippet": "accetta: per accettare l’ordinativo di fornitura inviato dall’ente acquirente."
+      }
+    },
+    {
+      "label": "ToolbarCommand",
+      "attributes": {
+        "nome": "rifiuta",
+        "snippet": "rifiuta: per respingere, in caso di anomalia, l’ordinativo di fornitura."
+      }
+    },
+    {
+      "label": "ToolbarCommand",
+      "attributes": {
+        "nome": "prendi in carico",
+        "snippet": "prendi in carico: per prendere in carico il documento qualora sia stato rilasciato."
+      }
+    },
+    {
+      "label": "ToolbarCommand",
+      "attributes": {
+        "nome": "rilascia",
+        "snippet": "rilascia: per rilasciare il documento e renderlo disponibile per la lavorazione ad altri utenti abilitati alla lavorazione."
+      }
+    },
+    {
+      "label": "ToolbarCommand",
+      "attributes": {
+        "nome": "assegna a",
+        "snippet": "assegna a: per assegnare la lavorazione del documento ad un altro utente abilitato alla lavorazione."
+      }
+    },
+    {
+      "label": "ToolbarCommand",
+      "attributes": {
+        "nome": "stampa",
+        "snippet": "stampa: per stampare l’intero ordinativo di fornitura."
+      }
+    },
+    {
+      "label": "ToolbarCommand",
+      "attributes": {
+        "nome": "esporta in excel",
+        "snippet": "esporta in excel: per esportare in formato excel l’ordinativo di fornitura."
+      }
+    },
+    {
+      "label": "ToolbarCommand",
+      "attributes": {
+        "nome": "chiudi",
+        "snippet": "chiudi: per tornare alla schermata precedente."
+      }
+    },
+    {
+      "label": "Utente",
+      "attributes": {
+        "email": "compilatore@azienda.it",
+        "snippet": "il nominativo del compilatore del documento verrà compilato in automatico dal sistema a seguito della presa in carico."
+      }
+    },
+    {
+      "label": "ListaAttivita",
+      "attributes": {
+        "nome_lista_attivita": "lista attività",
+        "snippet": "verrà visualizzata nella tabella nominata lista attività l'attività comunicazione annullamento ordinativo."
+      }
+    },
+    {
+      "label": "Cronologia",
+      "attributes": {
+        "id_cronologia": "CronologiaOrdinativoDiFornitura",
+        "snippet": "nella tabella cronologia è possibile visualizzare lo storico delle operazioni effettuate dagli utenti relativamente all’ordinativo di fornitura; verrà mostrata la data, l'utente che l’ha effettuata con il relativo ruolo e lo stato, nonché eventuali note inserite."
+      }
+    },
+    {
+      "label": "GruppoFunzionale",
+      "attributes": {
+        "nome": "Comunicazioni",
+        "snippet": "gruppo funzionale comunicazioni, contenente la sezione ricevute in cui sono visibili le comunicazioni come l'annullamento ordinativo."
+      }
+    },
+    {
+      "label": "Sezione",
+      "attributes": {
+        "nome": "ricevute",
+        "snippet": "specifica sezione ricevute del gruppo funzionale comunicazioni dove vengono mostrate le comunicazioni ricevute."
+      }
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": {
+        "partita_iva": "OperatoreEconomico",
+        "snippet": "operatore economico destinatario dell'ordinativo di fornitura che può accettare, rifiutare o prendere visione delle comunicazioni."
+      }
+    },
+    {
+      "label": "NotificaEmail",
+      "attributes": {
+        "tipo_notifica": "NotificaAccettazioneOrdinativo",
+        "snippet": "il compilatore dell'ordinativo riceverà un'e-mail di notifica dell'avvenuta accettazione."
+      }
+    },
+    {
+      "label": "Comunicazione",
+      "attributes": {
+        "titolo_documento": "comunicazione annullamento ordinativo",
+        "snippet": "attività comunicazione annullamento ordinativo mostrata nella lista attività o nella sezione ricevute; contiene motivazione di annullamento ed eventuali allegati inseriti dall'ente."
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_23",
+        "text": "FIGURA 23 - ORDINATIVI DI FORNITURA manuale OE | gestione convenzioni e ordinativi di fornitura pag.21 manuale OE | gestione convenzioni e ordinativi di fornitura vers.2.0 è inoltre possibile ordinare i dati per ognuno dei campi sopra elencati eccetto per la colonna integrativo. nello specifico, un ordinativo di fornitura può presentare il seguente stato: • inviato: se è stato inviato all'operatore economico per l'accettazione/rifiuto; • accettato: se è stato inviato all'operatore economico ed accettato da quest'ultimo; • rifiutato: se è stato inviato all'operatore economico e rifiutato da quest'ultimo; • annullato: se è stato inviato all'operatore economico e successivamente annullato dall'ente. per accettare/rifiutare un ordinativo di fornitura, cliccare sull'icona dell'ordinativo il cui stato risulta essere inviato. in cima al documento che verrà mostrato, è predisposta una toolbar per la gestione dello stesso con i seguenti comandi (abilitati coerentemente con lo stato del documento): • accetta: per accettare l’ordinativo di fornitura inviato dall’ente acquirente; • rifiuta: per respingere, in caso di anomalia, l’ordinativo di fornitura; • prendi in carico: per prendere in carico il documento qualora sia stato rilasciato; • rilascia: per rilasciare il documento e renderlo disponibile per la lavorazione ad altri utenti abilitati alla lavorazione; • assegna a: per assegnare la lavorazione del documento ad un altro utente abilitato alla lavorazione; • stampa: per stampare l’intero ordinativo di fornitura; • esporta in excel: per esportare in formato excel l’ordinativo di fornitura; • chiudi: per tornare alla schermata precedente. manuale OE | gestione convenzioni e ordinativi di fornitura pag.22 manuale OE | gestione convenzioni e ordinativi di fornitura vers.2.0 FIGURA 25 - ORDINATIVO DI FORNITURA-DETTAGLIO qualora non vi abbia provveduto automaticamente la piattaforma, cliccare sul comando prendi in carico posizionato nella toolbar in alto nella schermata, per bloccarne la lavorazione da parte di altri utenti abilitati. A seguito della presa in carico, il nominativo del compilatore del documento verrà compilato in automatico dal sistema. il pulsante rilascia consente all’utente che ha in carico il documento di lasciare la lavorazione dello stesso ad altri colleghi profilati in piattaforma, che potranno a loro volta cliccare su prendi in carico. assegna a consente invece di individuare esattamente l’utente dell’azienda a cui assegnare la presa in carico del documento. in fondo alla schermata verrà mostrata la tabella con l'evidenza degli articoli oggetto dell'ordinativo di fornitura e, al di sotto della tabella, eventuali note inserite dall'ente. manuale OE | gestione convenzioni e ordinativi di fornitura pag.23 manuale OE | gestione convenzioni e ordinativi di fornitura vers.2.0 FIGURA 26 - TABELLA ORDINATIVO per inserire eventuali note da inoltrare all'ente contestualmente all'approvazione/rifiuto dell'ordinativo, posizionarsi nel campo note accetta/rifiuto e digitare il testo. L’inserimento delle note è richiesto obbligatoriamente in caso di rifiuto dell'ordinativo. nella tabella cronologia invece è possibile visualizzare lo storico delle operazioni effettuate dagli utenti dell’amminsitrazione e dell’operatore economico, relativamente all’ordinativo di fornitura. nel dettaglio verrà mostrata la data nella quale l’operazione è stata approvata, l’utente che l’ha effettuata con il relativo ruolo e lo stato, nonché eventuali note inserite. 6.1 accettazione, rifiuto, annullamento di un odf di seguito il riepilogo delle azioni di accettazione/rifiuto di un ordinativo di fornitura, ordinativo integrativo e riduzione di un ordinativo da parte dell’operatore economico. per accettare l'ordinativo di fornitura inviato dall'ente acquirente, cliccare sul comando accetta posizionato nella toolbar in alto nella schermata. FIGURA 27 - ACCETTA ORDINATIVO manuale OE | gestione convenzioni e ordinativi di fornitura pag.24 manuale OE | gestione convenzioni e ordinativi di fornitura vers.2.0 il compilatore dell'ordinativo riceverà un'e-mail di notifica dell'avvenuta accettazione e potrà visualizzare le eventuali note inserite dall’operatore economico. lo stato del documento cambierà da inviato ad accettato. per respingere l'ordinativo di fornitura inviato dall'ente acquirente, cliccare sul comando rifiuta posizionato nella toolbar in alto nella schermata. FIGURA 28 - RIFIUTA ORDINATIVO il compilatore dell'ordinativo riceverà un'e-mail di notifica del rifiuto e potrà visualizzare le note inserite dall’operatore economico e procedere alla compilazione di un nuovo ordinativo. in questo caso, il totale dell’ordinativo verrà messo nuovamente a disposizione all’interno dei relativi lotti della convezione. lo stato del documento cambierà da inviato a rifiutato. nel caso in cui l'ente annulli un ordinativo di fornitura, l’utente dell’operatore economico riceverà un'e-mail di notifica e potrà visualizzare la comunicazione secondo due modalità: a) dalla lista attività mostrata una volta effettuato l’accesso alla propria area riservata; FIGURA 29 - ANNULLAMENTO-LISTA attività b) dalla specifica sezione ricevute del gruppo funzionale comunicazioni. manuale OE | gestione convenzioni e ordinativi di fornitura pag.25 manuale OE | gestione convenzioni e ordinativi di fornitura vers.2.0 a) nel primo caso, al primo accesso alla propria area riservata, verrà visualizzata nella tabella nominata lista attività l'attività comunicazione annullamento ordinativo. cliccare su oggetto della stessa. b) nel secondo caso, cliccare sul gruppo funzionale comunicazioni e successivamente sulla voce ricevute. verrà mostrata una schermata con una tabella che riporta tutte le comunicazioni ricevute. cliccare sul comando vedi in corrispondenza della comunicazione annullamento ordinativo. FIGURA 30 - COMUNICAZIONI RICEVUTE in entrambi i casi verrà mostrata la schermata di dettaglio, nella quale verrà riportata la motivazione di annullamento ed eventuali allegati inseriti dall'ente. FIGURA 31 - DETTAGLIO DELL'ANNULLAMENTO manuale OE | gestione convenzioni e ordinativi di fornitura pag.26 manuale OE | gestione convenzioni e ordinativi di fornitura vers.2.0 7. INDICE DELE FIGURE le immagini sono puramente indicative e possono subire variazioni. figura 1 - negozio elettronico-convenzioni figura 2 - convenzione figura 3 - lista documenti figura 4 - cronologia figura 5 - convenzione confermata figura 6 - nota | rifiuta convenzione figura 7 - rinnovi ed estensioni figura 8 - gestione rinnovi/estensioni figura 9 - listini figura 10 - gestione listini figura 11 - listino convenzioni-dettaglio figura 12 - cronologia figura 13 - compilazione elenco prodotti formato excel figura 14 - presenza anomalie figura 15 - sezione note | rifiuto figura 16 - monitoraggio convenzioni figura 17 - gestione monitoraggio convenzioni figura 18 - convenzione completa figura 19- convenzione completa-prodotti figura 20 - ripartizioni per lotto figura 21 - lista documenti figura 22 - lista attività figura 23 - ordinativi di fornitura figura 24 - elenco ordinativi figura 25 - ordinativo di fornitura-dettaglio manuale OE | gestione convenzioni e ordinativi di fornitura pag.27 manuale OE | gestione convenzioni e ordinativi di fornitura vers.2.0 figura 26 - tabella ordinativo figura 27 - accetta ordinativo figura 28 - rifiuta ordinativo figura 29 - annullamento-lista attività figura 30 - comunicazioni ricevute figura 31 - dettaglio dell'annullamento"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "HA_STATO_ORDINATIVO",
+      "source": {
+        "label": "Ordinativo",
+        "attributes": {
+          "id_odf": "OrdinativoDiFornitura"
+        }
+      },
+      "target": {
+        "label": "Stato",
+        "attributes": {
+          "nome": "inviato"
+        }
+      },
+      "attributes": {
+        "snippet": "inviato: se è stato inviato all'operatore economico per l'accettazione/rifiuto."
+      }
+    },
+    {
+      "label": "HA_STATO_ORDINATIVO",
+      "source": {
+        "label": "Ordinativo",
+        "attributes": {
+          "id_odf": "OrdinativoDiFornitura"
+        }
+      },
+      "target": {
+        "label": "Stato",
+        "attributes": {
+          "nome": "accettato"
+        }
+      },
+      "attributes": {
+        "snippet": "accettato: se è stato inviato all'operatore economico ed accettato da quest'ultimo."
+      }
+    },
+    {
+      "label": "HA_STATO_ORDINATIVO",
+      "source": {
+        "label": "Ordinativo",
+        "attributes": {
+          "id_odf": "OrdinativoDiFornitura"
+        }
+      },
+      "target": {
+        "label": "Stato",
+        "attributes": {
+          "nome": "rifiutato"
+        }
+      },
+      "attributes": {
+        "snippet": "rifiutato: se è stato inviato all'operatore economico e rifiutato da quest'ultimo."
+      }
+    },
+    {
+      "label": "HA_STATO_ORDINATIVO",
+      "source": {
+        "label": "Ordinativo",
+        "attributes": {
+          "id_odf": "OrdinativoDiFornitura"
+        }
+      },
+      "target": {
+        "label": "Stato",
+        "attributes": {
+          "nome": "annullato"
+        }
+      },
+      "attributes": {
+        "snippet": "annullato: se è stato inviato all'operatore economico e successivamente annullato dall'ente."
+      }
+    },
+    {
+      "label": "HA_TOOLBAR",
+      "source": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "OrdinativoDiFornituraDoc"
+        }
+      },
+      "target": {
+        "label": "Toolbar",
+        "attributes": {
+          "nome": "ToolbarOrdinativo"
+        }
+      },
+      "attributes": {
+        "snippet": "in cima al documento che verrà mostrato, è predisposta una toolbar per la gestione dello stesso."
+      }
+    },
+    {
+      "label": "HA_COMANDO",
+      "source": {
+        "label": "Toolbar",
+        "attributes": {
+          "nome": "ToolbarOrdinativo"
+        }
+      },
+      "target": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "accetta"
+        }
+      },
+      "attributes": {
+        "snippet": "comando accetta presente nella toolbar del documento."
+      }
+    },
+    {
+      "label": "HA_COMANDO",
+      "source": {
+        "label": "Toolbar",
+        "attributes": {
+          "nome": "ToolbarOrdinativo"
+        }
+      },
+      "target": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "rifiuta"
+        }
+      },
+      "attributes": {
+        "snippet": "comando rifiuta presente nella toolbar del documento."
+      }
+    },
+    {
+      "label": "HA_COMANDO",
+      "source": {
+        "label": "Toolbar",
+        "attributes": {
+          "nome": "ToolbarOrdinativo"
+        }
+      },
+      "target": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "prendi in carico"
+        }
+      },
+      "attributes": {
+        "snippet": "comando prendi in carico presente nella toolbar del documento."
+      }
+    },
+    {
+      "label": "HA_COMANDO",
+      "source": {
+        "label": "Toolbar",
+        "attributes": {
+          "nome": "ToolbarOrdinativo"
+        }
+      },
+      "target": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "rilascia"
+        }
+      },
+      "attributes": {
+        "snippet": "comando rilascia presente nella toolbar del documento."
+      }
+    },
+    {
+      "label": "HA_COMANDO",
+      "source": {
+        "label": "Toolbar",
+        "attributes": {
+          "nome": "ToolbarOrdinativo"
+        }
+      },
+      "target": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "assegna a"
+        }
+      },
+      "attributes": {
+        "snippet": "comando assegna a presente nella toolbar del documento."
+      }
+    },
+    {
+      "label": "HA_COMANDO",
+      "source": {
+        "label": "Toolbar",
+        "attributes": {
+          "nome": "ToolbarOrdinativo"
+        }
+      },
+      "target": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "stampa"
+        }
+      },
+      "attributes": {
+        "snippet": "comando stampa presente nella toolbar del documento."
+      }
+    },
+    {
+      "label": "HA_COMANDO",
+      "source": {
+        "label": "Toolbar",
+        "attributes": {
+          "nome": "ToolbarOrdinativo"
+        }
+      },
+      "target": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "esporta in excel"
+        }
+      },
+      "attributes": {
+        "snippet": "comando esporta in excel presente nella toolbar del documento."
+      }
+    },
+    {
+      "label": "HA_COMANDO",
+      "source": {
+        "label": "Toolbar",
+        "attributes": {
+          "nome": "ToolbarOrdinativo"
+        }
+      },
+      "target": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "chiudi"
+        }
+      },
+      "attributes": {
+        "snippet": "comando chiudi presente nella toolbar del documento."
+      }
+    },
+    {
+      "label": "COMANDO_PER_DOCUMENTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "accetta"
+        }
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "OrdinativoDiFornituraDoc"
+        }
+      },
+      "attributes": {
+        "snippet": "cliccare sul comando accetta posizionato nella toolbar in alto nella schermata per accettare l'ordinativo di fornitura inviato dall'ente acquirente."
+      }
+    },
+    {
+      "label": "COMANDO_PER_DOCUMENTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "rifiuta"
+        }
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "OrdinativoDiFornituraDoc"
+        }
+      },
+      "attributes": {
+        "snippet": "cliccare sul comando rifiuta posizionato nella toolbar in alto nella schermata per respingere l'ordinativo di fornitura."
+      }
+    },
+    {
+      "label": "COMANDO_PER_DOCUMENTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "prendi in carico"
+        }
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "OrdinativoDiFornituraDoc"
+        }
+      },
+      "attributes": {
+        "snippet": "cliccare sul comando prendi in carico posizionato nella toolbar in alto nella schermata per bloccarne la lavorazione da parte di altri utenti abilitati."
+      }
+    },
+    {
+      "label": "COMANDO_PER_DOCUMENTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "rilascia"
+        }
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "OrdinativoDiFornituraDoc"
+        }
+      },
+      "attributes": {
+        "snippet": "il pulsante rilascia consente all’utente che ha in carico il documento di lasciare la lavorazione dello stesso ad altri colleghi profilati in piattaforma."
+      }
+    },
+    {
+      "label": "COMANDO_PER_DOCUMENTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "assegna a"
+        }
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "OrdinativoDiFornituraDoc"
+        }
+      },
+      "attributes": {
+        "snippet": "assegna a consente di individuare esattamente l'utente dell'azienda a cui assegnare la presa in carico del documento."
+      }
+    },
+    {
+      "label": "COMANDO_PER_DOCUMENTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "stampa"
+        }
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "OrdinativoDiFornituraDoc"
+        }
+      },
+      "attributes": {
+        "snippet": "stampa: per stampare l’intero ordinativo di fornitura."
+      }
+    },
+    {
+      "label": "COMANDO_PER_DOCUMENTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "esporta in excel"
+        }
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "OrdinativoDiFornituraDoc"
+        }
+      },
+      "attributes": {
+        "snippet": "esporta in excel: per esportare in formato excel l’ordinativo di fornitura."
+      }
+    },
+    {
+      "label": "COMANDO_PER_DOCUMENTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "chiudi"
+        }
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "OrdinativoDiFornituraDoc"
+        }
+      },
+      "attributes": {
+        "snippet": "chiudi: per tornare alla schermata precedente."
+      }
+    },
+    {
+      "label": "ASSEGNA_A",
+      "source": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "OrdinativoDiFornituraDoc"
+        }
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": {
+          "email": "compilatore@azienda.it"
+        }
+      },
+      "attributes": {
+        "comando": "assegna a",
+        "snippet": "assegna a consente di individuare esattamente l'utente dell'azienda a cui assegnare la presa in carico del documento."
+      }
+    },
+    {
+      "label": "LISTA_ATTIVITA_CONTIENE",
+      "source": {
+        "label": "ListaAttivita",
+        "attributes": {
+          "nome_lista_attivita": "lista attività"
+        }
+      },
+      "target": {
+        "label": "Ordinativo",
+        "attributes": {
+          "id_odf": "OrdinativoDiFornitura"
+        }
+      },
+      "attributes": {
+        "snippet": "verrà visualizzata nella tabella nominata lista attività l'attività comunicazione annullamento ordinativo."
+      }
+    },
+    {
+      "label": "CRONOLOGIA_REGISTRA",
+      "source": {
+        "label": "Cronologia",
+        "attributes": {
+          "id_cronologia": "CronologiaOrdinativoDiFornitura"
+        }
+      },
+      "target": {
+        "label": "Ordinativo",
+        "attributes": {
+          "id_odf": "OrdinativoDiFornitura"
+        }
+      },
+      "attributes": {
+        "snippet": "nella tabella cronologia è possibile visualizzare lo storico delle operazioni effettuate dagli utenti relativamente all'ordinativo di fornitura."
+      }
+    },
+    {
+      "label": "NOTIFICA_INVIATA_A",
+      "source": {
+        "label": "NotificaEmail",
+        "attributes": {
+          "tipo_notifica": "NotificaAccettazioneOrdinativo"
+        }
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": {
+          "partita_iva": "OperatoreEconomico"
+        }
+      },
+      "attributes": {
+        "snippet": "il compilatore dell'ordinativo riceverà un'e-mail di notifica dell'avvenuta accettazione."
+      }
+    },
+    {
+      "label": "COMUNICAZIONE_RELATIVA_A",
+      "source": {
+        "label": "Comunicazione",
+        "attributes": {
+          "titolo_documento": "comunicazione annullamento ordinativo"
+        }
+      },
+      "target": {
+        "label": "Ordinativo",
+        "attributes": {
+          "id_odf": "OrdinativoDiFornitura"
+        }
+      },
+      "attributes": {
+        "snippet": "attività comunicazione annullamento ordinativo mostrata nella lista attività o nella sezione ricevute; contiene motivazione di annullamento ed eventuali allegati inseriti dall'ente."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Ordinativo",
+        "attributes": {
+          "id_odf": "OrdinativoDiFornitura"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Stato",
+        "attributes": {
+          "nome": "inviato"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Stato",
+        "attributes": {
+          "nome": "accettato"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Stato",
+        "attributes": {
+          "nome": "rifiutato"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Stato",
+        "attributes": {
+          "nome": "annullato"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "OrdinativoDiFornituraDoc"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Toolbar",
+        "attributes": {
+          "nome": "ToolbarOrdinativo"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "accetta"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "rifiuta"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "prendi in carico"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "rilascia"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "assegna a"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "stampa"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "esporta in excel"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "ToolbarCommand",
+        "attributes": {
+          "nome": "chiudi"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Utente",
+        "attributes": {
+          "email": "compilatore@azienda.it"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "ListaAttivita",
+        "attributes": {
+          "nome_lista_attivita": "lista attività"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Cronologia",
+        "attributes": {
+          "id_cronologia": "CronologiaOrdinativoDiFornitura"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "GruppoFunzionale",
+        "attributes": {
+          "nome": "Comunicazioni"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Sezione",
+        "attributes": {
+          "nome": "ricevute"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": {
+          "partita_iva": "OperatoreEconomico"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "NotificaEmail",
+        "attributes": {
+          "tipo_notifica": "NotificaAccettazioneOrdinativo"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Comunicazione",
+        "attributes": {
+          "titolo_documento": "comunicazione annullamento ordinativo"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_23"
+        }
+      }
+    }
+  ]
+}

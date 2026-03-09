@@ -1,0 +1,398 @@
+{
+  "entities": [
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "numero_gara",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "oggetto_prestazione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "tipologia_appalto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo_euro",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno_di_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ImpresaAusiliaria",
+      "attributes": [
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "codice_stazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ContrattoAvvalimento",
+      "attributes": [
+        {
+          "name": "numero_contratto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "articolo_riferimento",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "forma_conclusione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto_contratto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "dato_inizio_durata",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CertificazioneSOA",
+      "attributes": [
+        {
+          "name": "numero_certificazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ente_rilasciante",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_rilascio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoDomandaPartecipazione",
+      "attributes": [
+        {
+          "name": "numero_protocollo_documento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_presentazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "partita_iva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_aggiudicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "importo_offerta",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AVVALIMENTO_USATO_PER_APPALTO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "partita_iva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "oggetto_avvalimento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "risorse_disponibili",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "uso_nel_procedura",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FORNITO_DALLA_IMPRESA_AUSILIARIA_A_APPALTO",
+      "source": {
+        "label": "ImpresaAusiliaria",
+        "attributes": [
+          {
+            "name": "partita_iva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_risorse",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "descrizione_risorse",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "quantita_risorse",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CERTIFICAZIONE_PRESENTATA",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "partita_iva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CertificazioneSOA",
+        "attributes": [
+          {
+            "name": "numero_certificazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_presentazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "modalita_presentazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VERIFICA_REQUISITI",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "codice_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ImpresaAusiliaria",
+        "attributes": [
+          {
+            "name": "partita_iva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "requisiti_verificati",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "modalita_verifica",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "esito_verifica",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

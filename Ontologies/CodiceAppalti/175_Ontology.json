@@ -1,0 +1,322 @@
+{
+  "entities": [
+    {
+      "label": "Articolo180",
+      "attributes": [
+        {
+          "name": "articolo_id",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Concessione",
+      "attributes": [
+        {
+          "name": "codice_concessione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Lavoro",
+      "attributes": [
+        {
+          "name": "codice_lavoro",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Servizio",
+      "attributes": [
+        {
+          "name": "codice_servizio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Fornitura",
+      "attributes": [
+        {
+          "name": "codice_fornitura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "BeneImmobile",
+      "attributes": [
+        {
+          "name": "codice_bene_immobile",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Direttiva",
+      "attributes": [
+        {
+          "name": "codice_direttiva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Allegato",
+      "attributes": [
+        {
+          "name": "numero_allegato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DisciplinaAppalti",
+      "attributes": [
+        {
+          "name": "codice_disciplina_appalti",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "OGGETTO_CONCESSIONE_LAVORI",
+      "source": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "codice_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Lavoro",
+        "attributes": [
+          {
+            "name": "codice_lavoro",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "valore_stimato",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "OGGETTO_CONCESSIONE_SERVIZI",
+      "source": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "codice_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Servizio",
+        "attributes": [
+          {
+            "name": "codice_servizio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "valore_stimato",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "OGGETTO_CONCESSIONE_FORNITURE",
+      "source": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "codice_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Fornitura",
+        "attributes": [
+          {
+            "name": "codice_fornitura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "valore_stimato",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISCIPLINA_APPLICATA_APPALTI",
+      "source": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "codice_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DisciplinaAppalti",
+        "attributes": [
+          {
+            "name": "codice_disciplina_appalti",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERIMENTO_DIRETTIVA",
+      "source": {
+        "label": "Articolo180",
+        "attributes": [
+          {
+            "name": "articolo_id",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Direttiva",
+        "attributes": [
+          {
+            "name": "codice_direttiva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "RIFERIMENTO_ALLEGATO_DIRETTIVA",
+      "source": {
+        "label": "Direttiva",
+        "attributes": [
+          {
+            "name": "codice_direttiva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "numero_allegato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "ELEMENTI_CONCESSIONE_IMMOBILI",
+      "source": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "codice_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "BeneImmobile",
+        "attributes": [
+          {
+            "name": "codice_bene_immobile",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipologia_elemento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

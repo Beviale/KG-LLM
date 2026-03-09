@@ -1,0 +1,587 @@
+{
+  "entities": [
+    {
+      "label": "BandoDiConcessione",
+      "attributes": [
+        {
+          "name": "bando_di_concessione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_concessione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "criteri_di_aggiudicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "condizioni_partecipazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tempi_realizzazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Concessione",
+      "attributes": [
+        {
+          "name": "oggetto_concessione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_generale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_concessione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione_stazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "id_offerta",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contenuto_offerta",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "impegno_esclusione",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Candidato",
+      "attributes": [
+        {
+          "name": "id_candidato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia_candidatura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "partita_iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CapacitaTecnica",
+      "attributes": [
+        {
+          "name": "descrizione_capacita_tecnica",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CapacitaFinanziaria",
+      "attributes": [
+        {
+          "name": "descrizione_capacita_finanziaria",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Soggetto",
+      "attributes": [
+        {
+          "name": "id_soggetto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "SubAppalto",
+      "attributes": [
+        {
+          "name": "id_subappalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Negoziazione",
+      "attributes": [
+        {
+          "name": "id_negoziazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Certificazione",
+      "attributes": [
+        {
+          "name": "tipo_certificazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CriterioAggiudicazione",
+      "attributes": [
+        {
+          "name": "criterio_di_aggiudicazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "DESCRIVE_CONCESSIONE",
+      "source": {
+        "label": "BandoDiConcessione",
+        "attributes": [
+          {
+            "name": "bando_di_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "oggetto_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_concessione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VINCOLA_OFFERTA",
+      "source": {
+        "label": "BandoDiConcessione",
+        "attributes": [
+          {
+            "name": "bando_di_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Offerta",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "pena_di_esclusione",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "impegno_esclusivo_presente",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DESCRIVE_CRITERI_AGGIUDICAZIONE",
+      "source": {
+        "label": "BandoDiConcessione",
+        "attributes": [
+          {
+            "name": "bando_di_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CriterioAggiudicazione",
+        "attributes": [
+          {
+            "name": "criterio_di_aggiudicazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_criteri",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "LIMITA_CANDIDATI",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Candidato",
+        "attributes": [
+          {
+            "name": "id_candidato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "numero_massimo_candidati",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "criteri_oggettivi",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INFORMA_PARTECIPANTI",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Candidato",
+        "attributes": [
+          {
+            "name": "id_candidato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita_procedura",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "termine_indicativo_presentazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VERIFICA_CAPACITA_TECHNICA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CapacitaTecnica",
+        "attributes": [
+          {
+            "name": "descrizione_capacita_tecnica",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "parametri_verifica",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "certificazioni_richieste",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VERIFICA_CAPACITA_FINANZIARIA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CapacitaFinanziaria",
+        "attributes": [
+          {
+            "name": "descrizione_capacita_finanziaria",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "criteri_verifica_capacita_finanziaria",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AFFIDA_CAPACITA_AD_ALTRI_SOGGETTI",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Soggetto",
+        "attributes": [
+          {
+            "name": "id_soggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INDICA_SUBAPPALTATORI",
+      "source": {
+        "label": "Concessione",
+        "attributes": [
+          {
+            "name": "oggetto_concessione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SubAppalto",
+        "attributes": [
+          {
+            "name": "id_subappalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "condizioni_indicazione_subappaltatori",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "numero_subappaltatori",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONDURRE_NEGOZIAZIONI",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Negoziazione",
+        "attributes": [
+          {
+            "name": "id_negoziazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "oggetto_negoziazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

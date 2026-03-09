@@ -20,36 +20,6 @@
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "importo_appalto",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "scadenza",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "numero_offerte",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "numero_quesiti",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "utente_in_carico",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
@@ -63,19 +33,13 @@
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "tipo_concorso",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "fase",
+          "name": "modalita_fase",
           "type": "string",
           "unique": false,
           "required": false
@@ -86,59 +50,7 @@
       "label": "Commissione",
       "attributes": [
         {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
           "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "note",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Persona",
-      "attributes": [
-        {
-          "name": "nominativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "username",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "email",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Ruolo",
-      "attributes": [
-        {
-          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
@@ -152,16 +64,22 @@
       ]
     },
     {
-      "label": "OperatoreEconomico",
+      "label": "Utente",
       "attributes": [
         {
-          "name": "ragione_sociale",
+          "name": "utente",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "partita_iva",
+          "name": "nome_completo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ruolo",
           "type": "string",
           "unique": false,
           "required": false
@@ -178,13 +96,7 @@
           "required": true
         },
         {
-          "name": "registro_offerta",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_ora_ricezione",
+          "name": "registro_di_sistema_offerta",
           "type": "string",
           "unique": false,
           "required": false
@@ -196,53 +108,41 @@
           "required": false
         },
         {
-          "name": "punteggio_tecnico",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "busta_tecnica_aperta",
-          "type": "boolean",
+          "name": "data_ora_ricezione",
+          "type": "string",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "CriterioValutazione",
+      "label": "SchedaValutazione",
       "attributes": [
         {
-          "name": "nome_criterio",
+          "name": "scheda_valutazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "peso",
-          "type": "number",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "soglia_minima",
-          "type": "number",
+          "name": "data_compilazione",
+          "type": "string",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "Esito",
+      "label": "SedutaDiGara",
       "attributes": [
         {
-          "name": "nome",
+          "name": "data_ora",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
@@ -253,42 +153,19 @@
       "label": "Documento",
       "attributes": [
         {
-          "name": "titolo_documento",
+          "name": "titolo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "tipo_documento",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "allegato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Allegato",
-      "attributes": [
-        {
-          "name": "nome_file",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "dimensione",
+          "name": "sezione",
           "type": "string",
           "unique": false,
           "required": false
@@ -296,7 +173,7 @@
       ]
     },
     {
-      "label": "Verbale",
+      "label": "DichiarazioneNonIncompatibilita",
       "attributes": [
         {
           "name": "titolo",
@@ -305,14 +182,8 @@
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "data_allegato",
           "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "creato_automaticamente",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -346,7 +217,7 @@
       },
       "attributes": [
         {
-          "name": "oggetto",
+          "name": "sezione_riferimento",
           "type": "string",
           "required": false,
           "unique": false
@@ -354,12 +225,12 @@
       ]
     },
     {
-      "label": "HA_COMMISSIONE",
+      "label": "CONCORSO_HA_COMMISSIONE",
       "source": {
-        "label": "ProceduraDiAggiudicazione",
+        "label": "Concorso",
         "attributes": [
           {
-            "name": "registro_di_sistema",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -370,7 +241,40 @@
         "label": "Commissione",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "obbligatoria",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMMISSIONE_HA_MEMBRO",
+      "source": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -381,90 +285,24 @@
         {
           "name": "ruolo",
           "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMPOSTA_DA",
-      "source": {
-        "label": "Commissione",
-        "attributes": [
-          {
-            "name": "denominazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Persona",
-        "attributes": [
-          {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo_in_commissione",
-          "type": "string",
           "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_RUOLO",
-      "source": {
-        "label": "Persona",
-        "attributes": [
-          {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_inizio",
-          "type": "string",
-          "required": false,
           "unique": false
         },
         {
-          "name": "data_fine",
-          "type": "string",
+          "name": "presidente_soggetto_valutatore",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_PRESENTATO",
+      "label": "UTENTE_ALLEGA_DICHIARAZIONE",
       "source": {
-        "label": "OperatoreEconomico",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "ragione_sociale",
+            "name": "utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -472,139 +310,7 @@
         ]
       },
       "target": {
-        "label": "Risposta",
-        "attributes": [
-          {
-            "name": "progressivo_risposta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_ora_presentazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPARTIENE_A",
-      "source": {
-        "label": "Risposta",
-        "attributes": [
-          {
-            "name": "progressivo_risposta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ProceduraDiAggiudicazione",
-        "attributes": [
-          {
-            "name": "registro_di_sistema",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "fase",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_ALLEGATO",
-      "source": {
-        "label": "Risposta",
-        "attributes": [
-          {
-            "name": "progressivo_risposta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "nome_file",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_DOCUMENTO",
-      "source": {
-        "label": "ProceduraDiAggiudicazione",
-        "attributes": [
-          {
-            "name": "registro_di_sistema",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "scopo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_VERBALE",
-      "source": {
-        "label": "ProceduraDiAggiudicazione",
-        "attributes": [
-          {
-            "name": "registro_di_sistema",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Verbale",
+        "label": "DichiarazioneNonIncompatibilita",
         "attributes": [
           {
             "name": "titolo",
@@ -616,26 +322,20 @@
       },
       "attributes": [
         {
-          "name": "allegabile_a_seduta",
+          "name": "obbligatoria",
           "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "creato_automaticamente",
-          "type": "boolean",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "VALUTATO_DA",
+      "label": "CONCORSO_HA_RISPOSTA",
       "source": {
-        "label": "Persona",
+        "label": "Concorso",
         "attributes": [
           {
-            "name": "nominativo",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -647,6 +347,51 @@
         "attributes": [
           {
             "name": "progressivo_risposta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_ora_ricezione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "numero_offerte_ricevute",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RISPOSTA_VALUTATA_MEDIANTE",
+      "source": {
+        "label": "Risposta",
+        "attributes": [
+          {
+            "name": "progressivo_risposta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SchedaValutazione",
+        "attributes": [
+          {
+            "name": "scheda_valutazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -661,83 +406,26 @@
           "unique": false
         },
         {
-          "name": "motivazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "confermato",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "data_valutazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_GIUDIZIO",
-      "source": {
-        "label": "Risposta",
-        "attributes": [
-          {
-            "name": "progressivo_risposta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CriterioValutazione",
-        "attributes": [
-          {
-            "name": "nome_criterio",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "giudizio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "punteggio",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "coefficiente",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
           "name": "punteggio_riparametrato",
           "type": "number",
           "required": false,
           "unique": false
+        },
+        {
+          "name": "esito",
+          "type": "string",
+          "required": false,
+          "unique": false
         }
       ]
     },
     {
-      "label": "HA_ESITO",
+      "label": "COMMISSIONE_VALUTA",
       "source": {
-        "label": "Risposta",
+        "label": "Commissione",
         "attributes": [
           {
-            "name": "progressivo_risposta",
+            "name": "tipo",
             "type": "string",
             "unique": true,
             "required": true
@@ -745,7 +433,7 @@
         ]
       },
       "target": {
-        "label": "Esito",
+        "label": "Concorso",
         "attributes": [
           {
             "name": "nome",
@@ -757,13 +445,7 @@
       },
       "attributes": [
         {
-          "name": "data",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "motivo",
+          "name": "ambito",
           "type": "string",
           "required": false,
           "unique": false
@@ -771,12 +453,12 @@
       ]
     },
     {
-      "label": "DOCUMENTO_ALLEGATO",
+      "label": "SEDUTA_DI_GARA_RIGUARDA",
       "source": {
-        "label": "Documento",
+        "label": "SedutaDiGara",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "data_ora",
             "type": "string",
             "unique": true,
             "required": true
@@ -784,10 +466,10 @@
         ]
       },
       "target": {
-        "label": "Allegato",
+        "label": "ProceduraDiAggiudicazione",
         "attributes": [
           {
-            "name": "nome_file",
+            "name": "registro_di_sistema",
             "type": "string",
             "unique": true,
             "required": true
@@ -796,8 +478,146 @@
       },
       "attributes": [
         {
-          "name": "note",
+          "name": "verbali_presenti",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SEDUTA_PRODUCE_DOCUMENTO",
+      "source": {
+        "label": "SedutaDiGara",
+        "attributes": [
+          {
+            "name": "data_ora",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_verbale",
           "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PDA_CONTIENE_DOCUMENTO",
+      "source": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "registro_di_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sezione_documento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTENTE_HA_ACCESSO_A_PDA",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiAggiudicazione",
+        "attributes": [
+          {
+            "name": "registro_di_sistema",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_accesso",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RISPOSTA_HA_ALLEGATO",
+      "source": {
+        "label": "Risposta",
+        "attributes": [
+          {
+            "name": "progressivo_risposta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "nome_file",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "zip_collegato",
+          "type": "boolean",
           "required": false,
           "unique": false
         }

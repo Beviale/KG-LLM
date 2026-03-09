@@ -1,7 +1,7 @@
 {
   "entities": [
     {
-      "label": "StazioniAppaltanti",
+      "label": "StazioneAppaltante",
       "attributes": [
         {
           "name": "denominazione",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "label": "EntiConcedenti",
+      "label": "EnteConcedente",
       "attributes": [
         {
           "name": "denominazione",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "label": "OperatoriEconomici",
+      "label": "OperatoreEconomico",
       "attributes": [
         {
           "name": "denominazione",
@@ -34,90 +34,7 @@
       ]
     },
     {
-      "label": "Articolo",
-      "attributes": [
-        {
-          "name": "numero_articolo",
-          "type": "number",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "titolo_articolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Codice",
-      "attributes": [
-        {
-          "name": "codice_identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "PrincipioConcorrenza",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "PrincipioImparzialita",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "PrincipioNonDiscriminazione",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "PrincipioPubblicita",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "PrincipioTrasparenza",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "PrincipioProporzionalita",
+      "label": "Principio",
       "attributes": [
         {
           "name": "nome",
@@ -130,9 +47,9 @@
   ],
   "relations": [
     {
-      "label": "FAVORISCE_ACCESSO_MERCATO",
+      "label": "FAVORISCE_ACCESSO_AL_MERCATO",
       "source": {
-        "label": "StazioniAppaltanti",
+        "label": "StazioneAppaltante",
         "attributes": [
           {
             "name": "denominazione",
@@ -143,7 +60,7 @@
         ]
       },
       "target": {
-        "label": "OperatoriEconomici",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
             "name": "denominazione",
@@ -155,13 +72,7 @@
       },
       "attributes": [
         {
-          "name": "modalita_indicate_dal_codice",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "principi_rispettati",
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -169,20 +80,53 @@
       ]
     },
     {
-      "label": "RICONOSCE_PRINCIPIO",
+      "label": "FAVORISCE_ACCESSO_AL_MERCATO",
       "source": {
-        "label": "Articolo",
+        "label": "EnteConcedente",
         "attributes": [
           {
-            "name": "numero_articolo",
-            "type": "number",
+            "name": "denominazione",
+            "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
       "target": {
-        "label": "PrincipioConcorrenza",
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RISPETTA_PRINCIPIO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Principio",
         "attributes": [
           {
             "name": "nome",
@@ -191,23 +135,31 @@
             "required": true
           }
         ]
-      }
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
     },
     {
-      "label": "RICONOSCE_PRINCIPIO",
+      "label": "RISPETTA_PRINCIPIO",
       "source": {
-        "label": "Articolo",
+        "label": "EnteConcedente",
         "attributes": [
           {
-            "name": "numero_articolo",
-            "type": "number",
+            "name": "denominazione",
+            "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
       "target": {
-        "label": "PrincipioImparzialita",
+        "label": "Principio",
         "attributes": [
           {
             "name": "nome",
@@ -216,133 +168,15 @@
             "required": true
           }
         ]
-      }
-    },
-    {
-      "label": "RICONOSCE_PRINCIPIO",
-      "source": {
-        "label": "Articolo",
-        "attributes": [
-          {
-            "name": "numero_articolo",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
       },
-      "target": {
-        "label": "PrincipioNonDiscriminazione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      }
-    },
-    {
-      "label": "RICONOSCE_PRINCIPIO",
-      "source": {
-        "label": "Articolo",
-        "attributes": [
-          {
-            "name": "numero_articolo",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PrincipioPubblicita",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      }
-    },
-    {
-      "label": "RICONOSCE_PRINCIPIO",
-      "source": {
-        "label": "Articolo",
-        "attributes": [
-          {
-            "name": "numero_articolo",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PrincipioTrasparenza",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      }
-    },
-    {
-      "label": "RICONOSCE_PRINCIPIO",
-      "source": {
-        "label": "Articolo",
-        "attributes": [
-          {
-            "name": "numero_articolo",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PrincipioProporzionalita",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      }
-    },
-    {
-      "label": "RIFERITO_A_CODICE",
-      "source": {
-        "label": "Articolo",
-        "attributes": [
-          {
-            "name": "numero_articolo",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Codice",
-        "attributes": [
-          {
-            "name": "codice_identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
     }
   ]
 }

@@ -1,17 +1,65 @@
 {
   "entities": [
     {
-      "label": "Sezione",
+      "label": "ProceduraGara",
       "attributes": [
         {
-          "name": "nome",
+          "name": "cig",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "cup",
           "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_indizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "atto_di_indizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "appalto_pnrr_pnc",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "iva",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_aggiudicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "numero_massimo_lotti_offerti",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "visualizza_notifiche",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -33,7 +81,13 @@
           "required": false
         },
         {
-          "name": "abilitato_pubblicare",
+          "name": "ente_proponente",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ente_appaltante",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -41,10 +95,10 @@
       ]
     },
     {
-      "label": "Persona",
+      "label": "PersonaFisica",
       "attributes": [
         {
-          "name": "nome",
+          "name": "nominativo",
           "type": "string",
           "unique": true,
           "required": true
@@ -64,45 +118,10 @@
       ]
     },
     {
-      "label": "ProceduraDiGara",
-      "attributes": [
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "oggetto",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cig",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cup",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "appalto_pnrr_pnc",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
       "label": "OperatoreEconomico",
       "attributes": [
         {
-          "name": "ragione_sociale",
+          "name": "partita_iva",
           "type": "string",
           "unique": true,
           "required": true
@@ -114,13 +133,7 @@
           "required": false
         },
         {
-          "name": "partita_iva",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "registro_di_sistema",
+          "name": "ragione_sociale",
           "type": "string",
           "unique": false,
           "required": false
@@ -131,13 +144,13 @@
       "label": "Documento",
       "attributes": [
         {
-          "name": "nome_file",
+          "name": "titolo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "tipo_documento",
           "type": "string",
           "unique": false,
           "required": false
@@ -163,52 +176,17 @@
       ]
     },
     {
-      "label": "Atto",
+      "label": "Sezione",
       "attributes": [
         {
-          "name": "atto_di_indizione",
+          "name": "nome_sezione",
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "data_indizione",
-          "type": "string",
-          "unique": false,
-          "required": false
         },
         {
           "name": "descrizione",
           "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Importi",
-      "attributes": [
-        {
-          "name": "id_importi",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "iva",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "descrizione_opzioni",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "totale",
-          "type": "number",
           "unique": false,
           "required": false
         }
@@ -230,31 +208,13 @@
           "required": false
         },
         {
-          "name": "offerte_anomale",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "modalita_calcolo_pt",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "richiesta_campionatura",
+          "name": "offerte_anomale_automatica",
           "type": "boolean",
           "unique": false,
           "required": false
         },
         {
-          "name": "tipo_soggetto",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "tipo_aggiudicazione",
+          "name": "modalita_calcolo_pt",
           "type": "string",
           "unique": false,
           "required": false
@@ -265,125 +225,20 @@
       "label": "Parametro",
       "attributes": [
         {
-          "name": "nome",
+          "name": "nome_parametro",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "evidenza_pubblica",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "richiesta_quesito",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "richiesta_firma",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "genera_convenzione_completa",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "attestazione_partecipazione",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "visualizza_notifiche",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "richiedi_documentazione",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "accordo_di_servizio",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "destinatari_notifica",
+          "name": "valore",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "numero_massimo_lotti_offerti",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "BustaDocumentazione",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "contiene_dgue",
+          "name": "modificabile",
           "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "documentazione_amministrativa_tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "DGUE",
-      "attributes": [
-        {
-          "name": "id_dgue",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "strutturato",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "LuogoIstat",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "codice_identificativo",
-          "type": "string",
           "unique": false,
           "required": false
         }
@@ -393,13 +248,36 @@
       "label": "CPV",
       "attributes": [
         {
-          "name": "codice",
+          "name": "cpv_code",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
           "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Importo",
+      "attributes": [
+        {
+          "name": "id_importo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "valore",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "iva_inclusa",
           "type": "string",
           "unique": false,
           "required": false
@@ -420,50 +298,10 @@
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "Allegato",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "tipo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_inserimento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Referente",
-      "attributes": [
-        {
-          "name": "identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "profilo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
+          "name": "allegati_presenti",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -489,12 +327,12 @@
   ],
   "relations": [
     {
-      "label": "SEZIONE_COMPRENDE",
+      "label": "PUBBLICA_PER",
       "source": {
-        "label": "Sezione",
+        "label": "Ente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "denominazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -502,10 +340,10 @@
         ]
       },
       "target": {
-        "label": "ProceduraDiGara",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -514,7 +352,7 @@
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "ruolo_pubblicazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -522,7 +360,7 @@
       ]
     },
     {
-      "label": "ENTE_PUBBLICA_PER",
+      "label": "ENTE_PROPONE",
       "source": {
         "label": "Ente",
         "attributes": [
@@ -535,10 +373,10 @@
         ]
       },
       "target": {
-        "label": "ProceduraDiGara",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -547,20 +385,26 @@
       },
       "attributes": [
         {
-          "name": "pubblica_per_conto",
+          "name": "ente_proponente_flag",
           "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "rup_proposto",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "ENTE_HA_RUP",
+      "label": "RUP_DI",
       "source": {
-        "label": "Ente",
+        "label": "PersonaFisica",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "nominativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -568,10 +412,10 @@
         ]
       },
       "target": {
-        "label": "Persona",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "nome",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -579,6 +423,12 @@
         ]
       },
       "attributes": [
+        {
+          "name": "data_nomina",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
         {
           "name": "ruolo",
           "type": "string",
@@ -588,12 +438,12 @@
       ]
     },
     {
-      "label": "PROCEDURA_HA_ATTO",
+      "label": "HA_PRESENTATO_OFFERTA_IN",
       "source": {
-        "label": "ProceduraDiGara",
+        "label": "OperatoreEconomico",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "partita_iva",
             "type": "string",
             "unique": true,
             "required": true
@@ -601,10 +451,10 @@
         ]
       },
       "target": {
-        "label": "Atto",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "atto_di_indizione",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -613,7 +463,13 @@
       },
       "attributes": [
         {
-          "name": "data_inserimento",
+          "name": "data_invio",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "registro_di_sistema",
           "type": "string",
           "required": false,
           "unique": false
@@ -621,174 +477,23 @@
       ]
     },
     {
-      "label": "PROCEDURA_HA_IMPORTI",
+      "label": "DOCUMENTO_DI",
       "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Importi",
-        "attributes": [
-          {
-            "name": "id_importi",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "editabile",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PROCEDURA_HA_CRITERIO",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Criterio",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "CRITERIO_HA_PARAMETRO",
-      "source": {
-        "label": "Criterio",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Parametro",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "PROCEDURA_USA_BUSTA",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "BustaDocumentazione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "modo_compilazione_dgue",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "BUSTA_CONTIENE_DGUE",
-      "source": {
-        "label": "BustaDocumentazione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "DGUE",
-        "attributes": [
-          {
-            "name": "id_dgue",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "strutturato",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PROCEDURA_HA_DOCUMENTO",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "Documento",
         "attributes": [
           {
-            "name": "nome_file",
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -796,6 +501,12 @@
         ]
       },
       "attributes": [
+        {
+          "name": "sezione_riferimento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
         {
           "name": "ordine",
           "type": "number",
@@ -805,12 +516,12 @@
       ]
     },
     {
-      "label": "PROCEDURA_HA_LUOGO_ISTAT",
+      "label": "SEZIONE_DI",
       "source": {
-        "label": "ProceduraDiGara",
+        "label": "Sezione",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "nome_sezione",
             "type": "string",
             "unique": true,
             "required": true
@@ -818,88 +529,10 @@
         ]
       },
       "target": {
-        "label": "LuogoIstat",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "PROCEDURA_HA_CPV",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CPV",
-        "attributes": [
-          {
-            "name": "codice",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "PROCEDURA_HA_CRONOLOGIA",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Cronologia",
-        "attributes": [
-          {
-            "name": "id_cronologia",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "PROCEDURA_HA_ALLEGATO",
-      "source": {
-        "label": "ProceduraDiGara",
-        "attributes": [
-          {
-            "name": "titolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "nome",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -908,7 +541,40 @@
       },
       "attributes": [
         {
-          "name": "tipo_evento",
+          "name": "posizione",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CPV",
+      "source": {
+        "label": "CPV",
+        "attributes": [
+          {
+            "name": "cpv_code",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "luogo_istat",
           "type": "string",
           "required": false,
           "unique": false
@@ -916,12 +582,12 @@
       ]
     },
     {
-      "label": "PROCEDURA_HA_REFERENTE",
+      "label": "PARAMETRO_DI",
       "source": {
-        "label": "ProceduraDiGara",
+        "label": "Parametro",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "nome_parametro",
             "type": "string",
             "unique": true,
             "required": true
@@ -929,10 +595,10 @@
         ]
       },
       "target": {
-        "label": "Referente",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -941,7 +607,85 @@
       },
       "attributes": [
         {
-          "name": "ruolo",
+          "name": "valore",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "modificabile",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CRITERIO_DI",
+      "source": {
+        "label": "Criterio",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "calcolo_anomalia",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "modalita_calcolo_pt",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ENTE_HA_REFERENTE",
+      "source": {
+        "label": "Ente",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PersonaFisica",
+        "attributes": [
+          {
+            "name": "nominativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_assegnato",
           "type": "string",
           "required": true,
           "unique": false
@@ -962,10 +706,10 @@
         ]
       },
       "target": {
-        "label": "ProceduraDiGara",
+        "label": "ProceduraGara",
         "attributes": [
           {
-            "name": "titolo",
+            "name": "cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -974,9 +718,48 @@
       },
       "attributes": [
         {
-          "name": "azione",
+          "name": "azione_invio",
           "type": "string",
-          "required": true,
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "esito_possibile",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CRONOLOGIA_DI",
+      "source": {
+        "label": "Cronologia",
+        "attributes": [
+          {
+            "name": "id_cronologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "numero_eventi",
+          "type": "number",
+          "required": false,
           "unique": false
         }
       ]

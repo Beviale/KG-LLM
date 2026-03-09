@@ -4,13 +4,19 @@
       "label": "Manuale",
       "attributes": [
         {
-          "name": "versione",
+          "name": "titolo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "titolo",
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_versione",
           "type": "string",
           "unique": false,
           "required": false
@@ -21,13 +27,36 @@
       "label": "Societa",
       "attributes": [
         {
-          "name": "ragione_sociale",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo",
+          "name": "forma_giuridica",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Bando",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_pubblicazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -52,108 +81,7 @@
       ]
     },
     {
-      "label": "Bando",
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "StazioneAppaltante",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PubblicaAmministrazione",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "RaggruppamentoTemporaneoImprese",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "ResponsabileUnicoProgetto",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "DirettoreEsecuzioneContratto",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "PiattaformaContrattiPubblici",
+      "label": "Ruolo",
       "attributes": [
         {
           "name": "nome",
@@ -162,32 +90,10 @@
           "required": true
         },
         {
-          "name": "proprietario",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "AutoritaANAC",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "TED",
-      "attributes": [
-        {
-          "name": "sigla",
-          "type": "string",
-          "unique": true,
-          "required": true
         }
       ]
     },
@@ -212,13 +118,13 @@
       "label": "Allegato",
       "attributes": [
         {
-          "name": "tipo_allegato",
+          "name": "descrizione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "nome_file",
           "type": "string",
           "unique": false,
           "required": false
@@ -233,6 +139,12 @@
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -244,6 +156,12 @@
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "stato_lotto",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -255,17 +173,57 @@
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "Sezione",
+      "label": "Toolbar",
       "attributes": [
         {
           "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
+        }
+      ]
+    },
+    {
+      "label": "Piattaforma",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "id_utente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome_utente",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -277,18 +235,24 @@
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "DI_PROPRIETA_DI",
+      "label": "HA_PROPRIETARIO",
       "source": {
         "label": "Manuale",
         "attributes": [
           {
-            "name": "versione",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -299,7 +263,7 @@
         "label": "Societa",
         "attributes": [
           {
-            "name": "ragione_sociale",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -308,7 +272,7 @@
       },
       "attributes": [
         {
-          "name": "limiti_divulgazione",
+          "name": "nota",
           "type": "string",
           "required": false,
           "unique": false
@@ -316,7 +280,40 @@
       ]
     },
     {
-      "label": "APPLICABILE_A",
+      "label": "HA_FUNZIONE",
+      "source": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Funzione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "condizione_attivazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ESEGUITA_DA",
       "source": {
         "label": "Funzione",
         "attributes": [
@@ -329,73 +326,7 @@
         ]
       },
       "target": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "stato_attivazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "GESTISCE",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TRASMETTE_A",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "tipo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PiattaformaContrattiPubblici",
+        "label": "Ruolo",
         "attributes": [
           {
             "name": "nome",
@@ -407,7 +338,7 @@
       },
       "attributes": [
         {
-          "name": "modalita",
+          "name": "restrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -415,8 +346,19 @@
       ]
     },
     {
-      "label": "INVIDA_A",
+      "label": "AGISCE_SU",
       "source": {
+        "label": "Funzione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
         "label": "Documento",
         "attributes": [
           {
@@ -427,20 +369,9 @@
           }
         ]
       },
-      "target": {
-        "label": "TED",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
       "attributes": [
         {
-          "name": "condizione",
+          "name": "azione",
           "type": "string",
           "required": false,
           "unique": false
@@ -464,7 +395,7 @@
         "label": "Allegato",
         "attributes": [
           {
-            "name": "tipo_allegato",
+            "name": "descrizione",
             "type": "string",
             "unique": true,
             "required": true
@@ -473,15 +404,15 @@
       },
       "attributes": [
         {
-          "name": "minimo_allegati",
-          "type": "number",
+          "name": "motivazione_obbligatoria",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "MODIFICA_STATO",
+      "label": "HA_ALLEGATO",
       "source": {
         "label": "Documento",
         "attributes": [
@@ -494,7 +425,73 @@
         ]
       },
       "target": {
-        "label": "StatoProcedura",
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "descrizione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "obbligatorio",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CREATO_DA",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "tipo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "id_utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_RUOLO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "id_utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Ruolo",
         "attributes": [
           {
             "name": "nome",
@@ -506,53 +503,20 @@
       },
       "attributes": [
         {
-          "name": "nuovo_stato",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ESEGUITO_DA",
-      "source": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "tipo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ResponsabileUnicoProgetto",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "autore",
-          "type": "string",
+          "name": "attivo",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "SELEZIONA_LOTTO",
+      "label": "COMPRENDE_LOTTO",
       "source": {
-        "label": "Documento",
+        "label": "Bando",
         "attributes": [
           {
-            "name": "tipo_documento",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -572,93 +536,16 @@
       },
       "attributes": [
         {
-          "name": "azione",
-          "type": "string",
+          "name": "quantita",
+          "type": "number",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "CONTIENE_ATTO",
+      "label": "RIGUARDA",
       "source": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "AttoDiGara",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "posizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALLEGA",
-      "source": {
-        "label": "AttoDiGara",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "tipo_allegato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMANDO_PRESENTE_IN",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "Documento",
         "attributes": [
           {
@@ -669,9 +556,20 @@
           }
         ]
       },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "visibilita",
+          "name": "ruolo_documento",
           "type": "string",
           "required": false,
           "unique": false
@@ -679,9 +577,75 @@
       ]
     },
     {
-      "label": "COMANDO_IN_SEZIONE",
+      "label": "ATTO_DI_GARA_DI",
       "source": {
-        "label": "Comando",
+        "label": "AttoDiGara",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "presente",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SOSTITUISCE_ATTO",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "tipo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AttoDiGara",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "eliminato",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CONTENENTE_COMANDO",
+      "source": {
+        "label": "Toolbar",
         "attributes": [
           {
             "name": "nome",
@@ -692,7 +656,7 @@
         ]
       },
       "target": {
-        "label": "Sezione",
+        "label": "Comando",
         "attributes": [
           {
             "name": "nome",
@@ -712,12 +676,45 @@
       ]
     },
     {
-      "label": "STATO_CONDIZIONA_FUNZIONE",
+      "label": "PUBBLICATO_SU",
       "source": {
-        "label": "Funzione",
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Piattaforma",
         "attributes": [
           {
             "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita_pubblicazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_STATO",
+      "source": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -737,106 +734,7 @@
       },
       "attributes": [
         {
-          "name": "abilitato",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CREA_DOCUMENTO",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "tipo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "azione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ASSEGNA_A",
-      "source": {
-        "label": "Funzione",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "destinatario",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERISCE_A",
-      "source": {
-        "label": "PiattaformaContrattiPubblici",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "AutoritaANAC",
-        "attributes": [
-          {
-            "name": "sigla",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "responsabile",
+          "name": "data_ultimo_aggiornamento",
           "type": "string",
           "required": false,
           "unique": false

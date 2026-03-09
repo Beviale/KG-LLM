@@ -1,0 +1,231 @@
+{
+  "entities": [
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "valore_contratto_stimato",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codici_cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_nuts",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "luogo_principale_esecuzione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "luogo_principale_consegna",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tempi_consegna",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "durata_contratto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "condizioni_partecipazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "informazioni_aggiuntive",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_invio_avviso",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "EnteAggiudicatrice",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "identificazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_nuts",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "indirizzo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "sito_internet",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "telefono",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Avviso",
+      "attributes": [
+        {
+          "name": "titolo_avviso",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero_identificazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_nuts",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "profilo_committente_url",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "APPALTO_DI",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "EnteAggiudicatrice",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERISCE_A",
+      "source": {
+        "label": "Avviso",
+        "attributes": [
+          {
+            "name": "titolo_avviso",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "oggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_relazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

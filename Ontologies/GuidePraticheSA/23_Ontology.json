@@ -1,22 +1,16 @@
 {
   "entities": [
     {
-      "label": "ElencoProdotti",
+      "label": "Piattaforma",
       "attributes": [
         {
-          "name": "nome",
+          "name": "nome_piattaforma",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "compilazione_consigliata",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "modalita_compilazione",
+          "name": "versione",
           "type": "string",
           "unique": false,
           "required": false
@@ -24,13 +18,36 @@
       ]
     },
     {
-      "label": "Prodotto",
+      "label": "TabellaElencoProdotti",
       "attributes": [
         {
-          "name": "nome_articolo",
+          "name": "nome_tabella",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "numero_righe",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "identificativo_articolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "obbligatorio",
@@ -39,24 +56,7 @@
           "required": false
         },
         {
-          "name": "motivazione_anomalia",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Comando",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "posizione_toolbar",
+          "name": "colonna_contratto",
           "type": "string",
           "unique": false,
           "required": false
@@ -67,25 +67,37 @@
       "label": "Toolbar",
       "attributes": [
         {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Sistema",
-      "attributes": [
-        {
-          "name": "nome",
+          "name": "nome_toolbar",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "verifica_automatica_excel",
-          "type": "boolean",
+          "name": "posizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Comando",
+      "attributes": [
+        {
+          "name": "nome_comando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "azione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "posizione_toolbar",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -101,30 +113,7 @@
           "required": true
         },
         {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_creazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ModelloContratto",
-      "attributes": [
-        {
-          "name": "titolo_documento",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato",
+          "name": "stato_documento",
           "type": "string",
           "unique": false,
           "required": false
@@ -144,13 +133,42 @@
       ]
     },
     {
-      "label": "Contratto",
+      "label": "ModelloContratto",
       "attributes": [
         {
-          "name": "titolo_contratto",
+          "name": "titolo_documento",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "in_lavorazione",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "nominativo_creatore",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Contratto",
+      "attributes": [
+        {
+          "name": "id_contratto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "data_stipula",
@@ -169,12 +187,6 @@
           "type": "number",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
@@ -182,24 +194,30 @@
       "label": "StazioneAppaltante",
       "attributes": [
         {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Operatore",
-      "attributes": [
-        {
-          "name": "nome",
+          "name": "nome_stazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "ruolo",
+          "name": "amministrazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nominativo",
           "type": "string",
           "unique": false,
           "required": false
@@ -210,10 +228,16 @@
       "label": "Utente",
       "attributes": [
         {
-          "name": "username",
+          "name": "nominativo_utente",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
         },
         {
           "name": "codice_fiscale",
@@ -224,7 +248,81 @@
       ]
     },
     {
-      "label": "Sezione",
+      "label": "Cronologia",
+      "attributes": [
+        {
+          "name": "id_cronologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Scheda",
+      "attributes": [
+        {
+          "name": "codice_scheda",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_scheda",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "FirmaDigitale",
+      "attributes": [
+        {
+          "name": "codice_firmatario",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "firmatario_tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Anomalia",
+      "attributes": [
+        {
+          "name": "codice_anomalia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "motivo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "bloccante",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SezioneContratto",
       "attributes": [
         {
           "name": "titolo_sezione",
@@ -239,7 +337,7 @@
           "required": false
         },
         {
-          "name": "inclusa",
+          "name": "esclusa",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -247,49 +345,62 @@
       ]
     },
     {
-      "label": "ElencoDocumenti",
+      "label": "Allegato",
       "attributes": [
         {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Scheda",
-      "attributes": [
-        {
-          "name": "tipo_scheda",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "CronologiaPCP",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Messaggio",
-      "attributes": [
-        {
-          "name": "testo",
+          "name": "nome_file",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "livello",
+          "name": "formato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "firmato_digitalmente",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraGara",
+      "attributes": [
+        {
+          "name": "id_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "anno_indizione",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ServizioSupporto",
+      "attributes": [
+        {
+          "name": "email",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "telefono",
           "type": "string",
           "unique": false,
           "required": false
@@ -299,12 +410,12 @@
   ],
   "relations": [
     {
-      "label": "CONTENERE",
+      "label": "CONTIENE",
       "source": {
-        "label": "ElencoProdotti",
+        "label": "TabellaElencoProdotti",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_tabella",
             "type": "string",
             "unique": true,
             "required": true
@@ -312,10 +423,10 @@
         ]
       },
       "target": {
-        "label": "Prodotto",
+        "label": "Articolo",
         "attributes": [
           {
-            "name": "nome_articolo",
+            "name": "identificativo_articolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -324,7 +435,40 @@
       },
       "attributes": [
         {
-          "name": "modalita_compilazione",
+          "name": "posizione_riga",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_COMANDO",
+      "source": {
+        "label": "Toolbar",
+        "attributes": [
+          {
+            "name": "nome_toolbar",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "posizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -332,12 +476,12 @@
       ]
     },
     {
-      "label": "POSIZIONATO_IN",
+      "label": "UTILIZZA",
       "source": {
-        "label": "Comando",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nominativo_utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -345,25 +489,32 @@
         ]
       },
       "target": {
-        "label": "Toolbar",
+        "label": "Comando",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_comando",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "data_azione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
     },
     {
-      "label": "AGGIUNGE_A",
+      "label": "CREA",
       "source": {
-        "label": "Comando",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nominativo_utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -371,10 +522,391 @@
         ]
       },
       "target": {
-        "label": "ElencoProdotti",
+        "label": "Documento",
         "attributes": [
           {
-            "name": "nome",
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "MODELLO_PER",
+      "source": {
+        "label": "ModelloContratto",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "id_contratto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "editable",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ALLEGA",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "firmato_digitalmente",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ARCHIVIA",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "nominativo_utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_archiviazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "effetto_stato",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASSEGNATO_A",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "nominativo_utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_assegnazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "IN_CARICO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "nominativo_utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_presaincarico",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SEGNALA",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome_piattaforma",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Anomalia",
+        "attributes": [
+          {
+            "name": "codice_anomalia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "bloccante",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "motivo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "TRASMETTE_SCHEDA",
+      "source": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "id_contratto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "codice_scheda",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "automatico",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "condizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FIRMATO_DA",
+      "source": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "FirmaDigitale",
+        "attributes": [
+          {
+            "name": "codice_firmatario",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo_firmatario",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIGUARDA",
+      "source": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "id_contratto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIUDICATO_A",
+      "source": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "id_contratto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "dati_offerta",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "STORICIZZATO_IN",
+      "source": {
+        "label": "Documento",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Cronologia",
+        "attributes": [
+          {
+            "name": "id_cronologia",
             "type": "string",
             "unique": true,
             "required": true
@@ -387,108 +919,9 @@
           "type": "string",
           "required": false,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "VERIFICA",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ElencoProdotti",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "automatica",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "VERIFICA_AUTOMATICA",
-      "source": {
-        "label": "Sistema",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ElencoProdotti",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "evento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_ANOMALIA",
-      "source": {
-        "label": "Prodotto",
-        "attributes": [
-          {
-            "name": "nome_articolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Messaggio",
-        "attributes": [
-          {
-            "name": "testo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "colonna_esito",
-          "type": "string",
-          "required": false,
-          "unique": false
         },
         {
-          "name": "simbolo",
+          "name": "data",
           "type": "string",
           "required": false,
           "unique": false
@@ -496,75 +929,23 @@
       ]
     },
     {
-      "label": "CREATO_DA",
+      "label": "PARTE_DI",
       "source": {
-        "label": "ModelloContratto",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Operatore",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "IN_CARICO_A",
-      "source": {
-        "label": "ModelloContratto",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "username",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "COMPOSTO_DA",
-      "source": {
-        "label": "ModelloContratto",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Sezione",
+        "label": "SezioneContratto",
         "attributes": [
           {
             "name": "titolo_sezione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "id_contratto",
             "type": "string",
             "unique": true,
             "required": true
@@ -575,51 +956,24 @@
         {
           "name": "ordine",
           "type": "number",
-          "required": false,
+          "required": true,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALLEGA",
-      "source": {
-        "label": "ModelloContratto",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ElencoDocumenti",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
+        },
         {
-          "name": "formato",
-          "type": "string",
+          "name": "esclusa",
+          "type": "boolean",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "CONTENERE",
+      "label": "MODIFICA",
       "source": {
-        "label": "ElencoDocumenti",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nominativo_utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -630,7 +984,7 @@
         "label": "Contratto",
         "attributes": [
           {
-            "name": "titolo_contratto",
+            "name": "id_contratto",
             "type": "string",
             "unique": true,
             "required": true
@@ -639,7 +993,13 @@
       },
       "attributes": [
         {
-          "name": "colonna_allegato",
+          "name": "campi_modificati",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_modifica",
           "type": "string",
           "required": false,
           "unique": false
@@ -647,12 +1007,12 @@
       ]
     },
     {
-      "label": "TRASMETTERE",
+      "label": "RINNOVA",
       "source": {
-        "label": "Sistema",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nominativo_utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -660,10 +1020,10 @@
         ]
       },
       "target": {
-        "label": "Scheda",
+        "label": "Contratto",
         "attributes": [
           {
-            "name": "tipo_scheda",
+            "name": "id_contratto",
             "type": "string",
             "unique": true,
             "required": true
@@ -672,7 +1032,13 @@
       },
       "attributes": [
         {
-          "name": "condizione",
+          "name": "nuova_data_scadenza",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "motivo",
           "type": "string",
           "required": false,
           "unique": false
@@ -680,12 +1046,12 @@
       ]
     },
     {
-      "label": "REGISTRA",
+      "label": "ESTENDE",
       "source": {
-        "label": "CronologiaPCP",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nominativo_utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -693,10 +1059,82 @@
         ]
       },
       "target": {
-        "label": "Scheda",
+        "label": "Contratto",
         "attributes": [
           {
-            "name": "tipo_scheda",
+            "name": "id_contratto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo_estensione",
+          "type": "number",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "motivo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ELIMINA",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "nominativo_utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "id_contratto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_eliminazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VERIFICA",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "TabellaElencoProdotti",
+        "attributes": [
+          {
+            "name": "nome_tabella",
             "type": "string",
             "unique": true,
             "required": true
@@ -707,18 +1145,24 @@
         {
           "name": "esito",
           "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "messaggio",
+          "type": "string",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "APPONE_FIRMA",
+      "label": "CONFERMA",
       "source": {
         "label": "Utente",
         "attributes": [
           {
-            "name": "username",
+            "name": "nominativo_utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -726,79 +1170,7 @@
         ]
       },
       "target": {
-        "label": "Contratto",
-        "attributes": [
-          {
-            "name": "titolo_contratto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "codice_fiscale_firmatario",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "firma_digitale",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CARICA",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ElencoDocumenti",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "firma_digitale",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ARCHIVIA",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ModelloContratto",
+        "label": "Documento",
         "attributes": [
           {
             "name": "titolo_documento",
@@ -810,7 +1182,7 @@
       },
       "attributes": [
         {
-          "name": "nuovo_stato",
+          "name": "data_conferma",
           "type": "string",
           "required": false,
           "unique": false
@@ -818,12 +1190,12 @@
       ]
     },
     {
-      "label": "ANNULLA",
+      "label": "INVIA_PCP_ANAC",
       "source": {
-        "label": "Comando",
+        "label": "Piattaforma",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nome_piattaforma",
             "type": "string",
             "unique": true,
             "required": true
@@ -831,10 +1203,10 @@
         ]
       },
       "target": {
-        "label": "ModelloContratto",
+        "label": "Scheda",
         "attributes": [
           {
-            "name": "titolo_documento",
+            "name": "codice_scheda",
             "type": "string",
             "unique": true,
             "required": true
@@ -843,7 +1215,13 @@
       },
       "attributes": [
         {
-          "name": "effetto",
+          "name": "riuscita",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "errori",
           "type": "string",
           "required": false,
           "unique": false
@@ -851,12 +1229,12 @@
       ]
     },
     {
-      "label": "PROROGA",
+      "label": "RICHIESTA_SUPPORTO",
       "source": {
-        "label": "Comando",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "nominativo_utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -864,10 +1242,10 @@
         ]
       },
       "target": {
-        "label": "Contratto",
+        "label": "ServizioSupporto",
         "attributes": [
           {
-            "name": "titolo_contratto",
+            "name": "email",
             "type": "string",
             "unique": true,
             "required": true
@@ -876,46 +1254,13 @@
       },
       "attributes": [
         {
-          "name": "tipo",
+          "name": "allegati_json",
           "type": "string",
           "required": false,
           "unique": false
         },
         {
-          "name": "importo",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ELIMINA",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Contratto",
-        "attributes": [
-          {
-            "name": "titolo_contratto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "condizione",
+          "name": "oggetto",
           "type": "string",
           "required": false,
           "unique": false

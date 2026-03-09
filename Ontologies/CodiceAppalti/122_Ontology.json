@@ -1,0 +1,379 @@
+{
+  "entities": [
+    {
+      "label": "Appalto",
+      "attributes": [
+        {
+          "name": "numero_appalto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_prestazioni",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo_contrattuale",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipo_appalto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Penale",
+      "attributes": [
+        {
+          "name": "descrizione_penale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tasso_penale_per_mille_min",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tasso_penale_per_mille_max",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ritardo_giorni_di_ritardo_min",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "ritardo_giorni_di_ritardo_max",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "massimo_percentuale_ammontare",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PremioAccelerazione",
+      "attributes": [
+        {
+          "name": "descrizione_premio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "giorni_di_anticipo",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo_premio",
+          "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "criteri_calcolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CertificatoCollaudo",
+      "attributes": [
+        {
+          "name": "numero_certificato",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_certificazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato_approvazione",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoGara",
+      "attributes": [
+        {
+          "name": "id_documento_gara",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_documento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_pubblicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "TermineContrattuale",
+      "attributes": [
+        {
+          "name": "descrizione_termini",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "data_originale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "prorogato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "PENALI_AD_APPALTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Penale",
+        "attributes": [
+          {
+            "name": "descrizione_penale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "giorni_di_ritardo",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "tasso_penale_per_mille_min",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "tasso_penale_per_mille_max",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "massimo_percentuale_ammontare",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PREMIO_ACCELERAZIONE_AD_APPALTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PremioAccelerazione",
+        "attributes": [
+          {
+            "name": "descrizione_premio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "giorni_di_anticipo",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "importo_premio",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "criteri_calcolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COLLAUDATO",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CertificatoCollaudo",
+        "attributes": [
+          {
+            "name": "numero_certificato",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "stato_approvazione",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EMESSO_DA",
+      "source": {
+        "label": "DocumentoGara",
+        "attributes": [
+          {
+            "name": "id_documento_gara",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "TERMINI_CONTRATTUALI",
+      "source": {
+        "label": "Appalto",
+        "attributes": [
+          {
+            "name": "numero_appalto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "TermineContrattuale",
+        "attributes": [
+          {
+            "name": "descrizione_termini",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "origine",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

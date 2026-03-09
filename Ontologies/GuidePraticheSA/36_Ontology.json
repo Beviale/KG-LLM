@@ -4,77 +4,25 @@
       "label": "Bando",
       "attributes": [
         {
-          "name": "id_bando",
+          "name": "titolo",
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data_pubblicazione",
-          "type": "string",
-          "unique": false,
-          "required": false
         },
         {
           "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "Procedura",
-      "attributes": [
-        {
-          "name": "id_procedura",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "tipo_procedura",
+          "name": "termine_invio_quesiti",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "modalita",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Fase",
-      "attributes": [
-        {
-          "name": "id_fase",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "tipo_fase",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "termini_scadenza",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "importata_dalla_fase",
+          "name": "data_pubblicazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -91,19 +39,7 @@
           "required": true
         },
         {
-          "name": "testo_originale",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "testo_modificato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "stato",
+          "name": "testo_quesito",
           "type": "string",
           "unique": false,
           "required": true
@@ -115,19 +51,13 @@
           "required": false
         },
         {
-          "name": "data_pubblicazione",
+          "name": "stato_documento",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
           "name": "risposta",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "visibilita",
           "type": "string",
           "unique": false,
           "required": false
@@ -145,12 +75,6 @@
         },
         {
           "name": "email",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "riepilogo_richiesta",
           "type": "string",
           "unique": false,
           "required": false
@@ -173,7 +97,7 @@
           "required": false
         },
         {
-          "name": "tipo_utente",
+          "name": "username",
           "type": "string",
           "unique": false,
           "required": false
@@ -198,7 +122,24 @@
       ]
     },
     {
-      "label": "EsitoPubblicazione",
+      "label": "Comando",
+      "attributes": [
+        {
+          "name": "nome_comando",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Pubblicazione",
       "attributes": [
         {
           "name": "id_pubblicazione",
@@ -210,7 +151,7 @@
           "name": "tipo_documento",
           "type": "string",
           "unique": false,
-          "required": true
+          "required": false
         },
         {
           "name": "descrizione",
@@ -222,13 +163,13 @@
           "name": "data_pubblicazione",
           "type": "string",
           "unique": false,
-          "required": true
+          "required": false
         },
         {
-          "name": "stato_documento",
+          "name": "stato",
           "type": "string",
           "unique": false,
-          "required": true
+          "required": false
         }
       ]
     },
@@ -242,13 +183,76 @@
           "required": true
         },
         {
-          "name": "tipo_file",
+          "name": "dimensione",
           "type": "string",
           "unique": false,
           "required": false
         },
         {
-          "name": "dimensione",
+          "name": "tipo_mime",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiGara",
+      "attributes": [
+        {
+          "name": "id_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "modalita",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Fase",
+      "attributes": [
+        {
+          "name": "nome_fase",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "termine_scadenza",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PCP",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -265,16 +269,10 @@
           "required": true
         },
         {
-          "name": "mittente",
+          "name": "destinatari",
           "type": "string",
           "unique": false,
           "required": false
-        },
-        {
-          "name": "destinatario",
-          "type": "string",
-          "unique": false,
-          "required": true
         },
         {
           "name": "oggetto",
@@ -283,47 +281,7 @@
           "required": false
         },
         {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Comando",
-      "attributes": [
-        {
-          "name": "nome_comando",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "contesto",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PCP",
-      "attributes": [
-        {
-          "name": "nome_pcp",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato",
+          "name": "stato_invio",
           "type": "string",
           "unique": false,
           "required": false
@@ -338,7 +296,7 @@
         "label": "Bando",
         "attributes": [
           {
-            "name": "id_bando",
+            "name": "titolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -358,13 +316,7 @@
       },
       "attributes": [
         {
-          "name": "tipo_quesito",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "contesto",
+          "name": "modalita_visualizzazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -372,7 +324,7 @@
       ]
     },
     {
-      "label": "INVIATO_DA",
+      "label": "QUESITO_INVIATO_DA",
       "source": {
         "label": "Quesito",
         "attributes": [
@@ -401,17 +353,11 @@
           "type": "string",
           "required": true,
           "unique": false
-        },
-        {
-          "name": "riepilogo_richiesta",
-          "type": "string",
-          "required": false,
-          "unique": false
         }
       ]
     },
     {
-      "label": "ASSEGNATO_A",
+      "label": "QUESITO_ASSEGNATO_A",
       "source": {
         "label": "Quesito",
         "attributes": [
@@ -440,50 +386,11 @@
           "type": "string",
           "required": false,
           "unique": false
-        },
-        {
-          "name": "motivazione",
-          "type": "string",
-          "required": false,
-          "unique": false
         }
       ]
     },
     {
-      "label": "INDICATO_NEI_RIFERIMENTI",
-      "source": {
-        "label": "Bando",
-        "attributes": [
-          {
-            "name": "id_bando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ruolo_gestione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_RUOLO",
+      "label": "UTENTE_HA_RUOLO",
       "source": {
         "label": "Utente",
         "attributes": [
@@ -508,13 +415,73 @@
       },
       "attributes": [
         {
-          "name": "ambito",
-          "type": "string",
+          "name": "assegnazione_attiva",
+          "type": "boolean",
           "required": false,
           "unique": false
-        },
+        }
+      ]
+    },
+    {
+      "label": "BANDO_HA_RIFERIMENTO",
+      "source": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "nominativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
         {
-          "name": "assegnato_da",
+          "name": "tipo_riferimento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUO_ESEGUIRE",
+      "source": {
+        "label": "Ruolo",
+        "attributes": [
+          {
+            "name": "nome_ruolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "condizione_esecuzione",
           "type": "string",
           "required": false,
           "unique": false
@@ -522,7 +489,238 @@
       ]
     },
     {
-      "label": "GENERA_EMAIL",
+      "label": "COMANDO_AGISCE_SU_QUESITO",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Quesito",
+        "attributes": [
+          {
+            "name": "id_quesito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "effetto",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "QUESITO_HA_ALLEGATO",
+      "source": {
+        "label": "Quesito",
+        "attributes": [
+          {
+            "name": "id_quesito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "incluso_nella_risposta",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "BANDO_RIGUARDA_PROCEDURA",
+      "source": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_procedura",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PROCEDURA_HA_FASE",
+      "source": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Fase",
+        "attributes": [
+          {
+            "name": "nome_fase",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ordine_fase",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FASE_USA_PCP",
+      "source": {
+        "label": "Fase",
+        "attributes": [
+          {
+            "name": "nome_fase",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "azione_pcp",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "FASE_RICHIEDE_CIG",
+      "source": {
+        "label": "Fase",
+        "attributes": [
+          {
+            "name": "nome_fase",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita_richiesta",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUBBLICAZIONE_RIGUARDA_BANDO",
+      "source": {
+        "label": "Pubblicazione",
+        "attributes": [
+          {
+            "name": "id_pubblicazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Bando",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sezione_pubblica",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "QUESITO_GENERA_EMAIL",
       "source": {
         "label": "Quesito",
         "attributes": [
@@ -547,32 +745,20 @@
       },
       "attributes": [
         {
-          "name": "destinatario_tipo",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "oggetto",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "stato_invio",
-          "type": "string",
+          "name": "numero_messaggi",
+          "type": "number",
           "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "RIGUARDA",
+      "label": "EMAIL_RIVOLTA_A_UTENTE",
       "source": {
-        "label": "EsitoPubblicazione",
+        "label": "Email",
         "attributes": [
           {
-            "name": "id_pubblicazione",
+            "name": "id_email",
             "type": "string",
             "unique": true,
             "required": true
@@ -580,10 +766,10 @@
         ]
       },
       "target": {
-        "label": "Bando",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "id_bando",
+            "name": "nominativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -592,32 +778,20 @@
       },
       "attributes": [
         {
-          "name": "tipo_documento",
+          "name": "ruolo_destinatario",
           "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "data_pubblicazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "stato_documento",
-          "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "ALLEGATO_A_QUESITO",
+      "label": "PRENDE_IN_CARICO",
       "source": {
-        "label": "Allegato",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome_file",
+            "name": "nominativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -637,184 +811,7 @@
       },
       "attributes": [
         {
-          "name": "incluso_nella_risposta",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALLEGATO_A_ESITO",
-      "source": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "nome_file",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "EsitoPubblicazione",
-        "attributes": [
-          {
-            "name": "id_pubblicazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione_allegato",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CHIAMA_PCP",
-      "source": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "id_procedura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "nome_pcp",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "azione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "stato_chiamata",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_FASE",
-      "source": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "id_procedura",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Fase",
-        "attributes": [
-          {
-            "name": "id_fase",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ordine",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "IMPORTA_DA",
-      "source": {
-        "label": "Fase",
-        "attributes": [
-          {
-            "name": "id_fase",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Fase",
-        "attributes": [
-          {
-            "name": "id_fase",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "campi_importati",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ESEGUE_COMANDO",
-      "source": {
-        "label": "Utente",
-        "attributes": [
-          {
-            "name": "nominativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome_comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "contesto",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "data_esecuzione",
+          "name": "data",
           "type": "string",
           "required": false,
           "unique": false

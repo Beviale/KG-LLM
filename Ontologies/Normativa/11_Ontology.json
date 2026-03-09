@@ -1,0 +1,712 @@
+{
+  "entities": [
+    {
+      "label": "ProceduraVerificaPreventivaInteresseArcheologico",
+      "attributes": [
+        {
+          "name": "codice_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Carotaggio",
+      "attributes": [
+        {
+          "name": "codice_carotaggio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProspezioneGeofisica",
+      "attributes": [
+        {
+          "name": "codice_prospezione_geofisica",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProspezioneGeochimica",
+      "attributes": [
+        {
+          "name": "codice_prospezione_geochimica",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SaggioArcheologico",
+      "attributes": [
+        {
+          "name": "codice_saggio_archeologico",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Sondaggio",
+      "attributes": [
+        {
+          "name": "codice_sondaggio",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ScavoArcheologico",
+      "attributes": [
+        {
+          "name": "codice_scavo_archeologico",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "DocumentoIntegrativoProgettoFattibilita",
+      "attributes": [
+        {
+          "name": "codice_documento_integrativo_progetto_fattibilita",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RelazioneArcheologicaDefinitiva",
+      "attributes": [
+        {
+          "name": "codice_relazione_archeologica_definitiva",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_esiti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "prescrizioni",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "SoprintendenzaArcheologicaTerritorialmenteCompetente",
+      "attributes": [
+        {
+          "name": "codice_soprintendenza_archeologica_territorialmente_competente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "MinisteroBeniAttivitaCulturaliETurismo",
+      "attributes": [
+        {
+          "name": "codice_ministero_beni_attivita_culturali_turismo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "codice_stazione_appaltante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AccordoCoordinamentoCollaborazione",
+      "attributes": [
+        {
+          "name": "codice_acordo_coordinamento_collaborazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "LineeGuidaProceduraVerificaArcheologica",
+      "attributes": [
+        {
+          "name": "codice_linee_guida_verifica_archeologica",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "label": "COMPIE_INDAGINI",
+      "source": {
+        "label": "ProceduraVerificaPreventivaInteresseArcheologico",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Carotaggio",
+        "attributes": [
+          {
+            "name": "codice_carotaggio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sequenza",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMPIE_INDAGINI",
+      "source": {
+        "label": "ProceduraVerificaPreventivaInteresseArcheologico",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProspezioneGeofisica",
+        "attributes": [
+          {
+            "name": "codice_prospezione_geofisica",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sequenza",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMPIE_INDAGINI",
+      "source": {
+        "label": "ProceduraVerificaPreventivaInteresseArcheologico",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProspezioneGeochimica",
+        "attributes": [
+          {
+            "name": "codice_prospezione_geochimica",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sequenza",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMPIE_INDAGINI",
+      "source": {
+        "label": "ProceduraVerificaPreventivaInteresseArcheologico",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SaggioArcheologico",
+        "attributes": [
+          {
+            "name": "codice_saggio_archeologico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sequenza",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMPIE_INDAGINI",
+      "source": {
+        "label": "ProceduraVerificaPreventivaInteresseArcheologico",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Sondaggio",
+        "attributes": [
+          {
+            "name": "codice_sondaggio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sequenza",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMPIE_INDAGINI",
+      "source": {
+        "label": "ProceduraVerificaPreventivaInteresseArcheologico",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ScavoArcheologico",
+        "attributes": [
+          {
+            "name": "codice_scavo_archeologico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sequenza",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "REDIGE_DOCUMENTO_INTEGRATIVO_PROGETTO_FATTIBILITA",
+      "source": {
+        "label": "ProceduraVerificaPreventivaInteresseArcheologico",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "DocumentoIntegrativoProgettoFattibilita",
+        "attributes": [
+          {
+            "name": "codice_documento_integrativo_progetto_fattibilita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sequenza",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "REDIGE_RELAZIONE_ARCHEOLOGICA_DEFINITIVA",
+      "source": {
+        "label": "ProceduraVerificaPreventivaInteresseArcheologico",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RelazioneArcheologicaDefinitiva",
+        "attributes": [
+          {
+            "name": "codice_relazione_archeologica_definitiva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "sequenza",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DIREZIONE",
+      "source": {
+        "label": "SoprintendenzaArcheologicaTerritorialmenteCompetente",
+        "attributes": [
+          {
+            "name": "codice_soprintendenza_archeologica_territorialmente_competente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraVerificaPreventivaInteresseArcheologico",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AVVIA_PROCEDIMENTO_DECLARAZIONE",
+      "source": {
+        "label": "MinisteroBeniAttivitaCulturaliETurismo",
+        "attributes": [
+          {
+            "name": "codice_ministero_beni_attivita_culturali_turismo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraVerificaPreventivaInteresseArcheologico",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ONERI_A_CARICO_DI",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "codice_stazione_appaltante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraVerificaPreventivaInteresseArcheologico",
+        "attributes": [
+          {
+            "name": "codice_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPROVA_RELAZIONE_ARCHEOLOGICA_DEFINITIVA",
+      "source": {
+        "label": "SoprintendenzaArcheologicaTerritorialmenteCompetente",
+        "attributes": [
+          {
+            "name": "codice_soprintendenza_archeologica_territorialmente_competente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RelazioneArcheologicaDefinitiva",
+        "attributes": [
+          {
+            "name": "codice_relazione_archeologica_definitiva",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "STIPULA_COORDINAMENTO_COLLABORAZIONE",
+      "source": {
+        "label": "AccordoCoordinamentoCollaborazione",
+        "attributes": [
+          {
+            "name": "codice_acordo_coordinamento_collaborazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "codice_stazione_appaltante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "EMANA_LINEE_GUIDA",
+      "source": {
+        "label": "MinisteroBeniAttivitaCulturaliETurismo",
+        "attributes": [
+          {
+            "name": "codice_ministero_beni_attivita_culturali_turismo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "LineeGuidaProceduraVerificaArcheologica",
+        "attributes": [
+          {
+            "name": "codice_linee_guida_verifica_archeologica",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}

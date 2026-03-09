@@ -1,23 +1,34 @@
 {
   "entities": [
     {
-      "label": "OperatoreEconomico",
+      "label": "Comando",
       "attributes": [
         {
-          "name": "ragione_sociale",
+          "name": "nome_comando",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "partecipa",
-          "type": "boolean",
+          "name": "descrizione",
+          "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "Toolbar",
+      "attributes": [
+        {
+          "name": "nome_toolbar",
+          "type": "string",
+          "unique": true,
+          "required": true
         },
         {
-          "name": "documentazione_integrativa_richiesta",
-          "type": "boolean",
+          "name": "posizione",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -27,16 +38,10 @@
       "label": "OffertaTecnica",
       "attributes": [
         {
-          "name": "documento",
+          "name": "id_offerta",
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "firmata_digitalmente",
-          "type": "boolean",
-          "unique": false,
-          "required": false
         },
         {
           "name": "stato",
@@ -45,8 +50,25 @@
           "required": false
         },
         {
-          "name": "rettificata_ai_sensi_art_101_c_4_D_lgs_36_2023",
-          "type": "boolean",
+          "name": "firma_digitale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "identificativo_partecipazione",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -56,7 +78,7 @@
       "label": "BustaTecnica",
       "attributes": [
         {
-          "name": "busta",
+          "name": "id_busta",
           "type": "string",
           "unique": true,
           "required": true
@@ -64,125 +86,6 @@
         {
           "name": "conformita",
           "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "aperta",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CommissioneTecnica",
-      "attributes": [
-        {
-          "name": "commissione_tecnica",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "presidente",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "CommissioneEconomica",
-      "attributes": [
-        {
-          "name": "commissione_economica",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Rup",
-      "attributes": [
-        {
-          "name": "rup",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Presidente",
-      "attributes": [
-        {
-          "name": "presidente",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "soggetto_valutatore",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ProceduraGara",
-      "attributes": [
-        {
-          "name": "nome_gara",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato_procedura",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "tipo_procedura",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Lotto",
-      "attributes": [
-        {
-          "name": "lotto",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "multilotto",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Verbale",
-      "attributes": [
-        {
-          "name": "verbale",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "modificabile",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -198,41 +101,92 @@
           "required": true
         },
         {
-          "name": "presente",
-          "type": "boolean",
+          "name": "formato",
+          "type": "string",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "CartellaZip",
+      "label": "Verbale",
       "attributes": [
         {
-          "name": "cartella_zip",
+          "name": "id_verbale",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "suddivisa_in_sottocartelle",
-          "type": "boolean",
+          "name": "tipo",
+          "type": "string",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "FirmaDigitale",
+      "label": "ProceduraDiGara",
       "attributes": [
         {
-          "name": "firma_digitale",
+          "name": "id_procedura",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "esito",
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Lotto",
+      "attributes": [
+        {
+          "name": "id_lotto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "numero",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Commissione",
+      "attributes": [
+        {
+          "name": "id_commissione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "PersonaFisica",
+      "attributes": [
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "nome",
           "type": "string",
           "unique": false,
           "required": false
@@ -243,7 +197,7 @@
       "label": "CriterioValutazione",
       "attributes": [
         {
-          "name": "criterio",
+          "name": "nome_criterio",
           "type": "string",
           "unique": true,
           "required": true
@@ -260,13 +214,13 @@
       "label": "Punteggio",
       "attributes": [
         {
-          "name": "punteggio",
-          "type": "number",
+          "name": "id_punteggio",
+          "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "punteggio_riparametrato",
+          "name": "valore",
           "type": "number",
           "unique": false,
           "required": false
@@ -274,13 +228,36 @@
       ]
     },
     {
-      "label": "StatoOfferta",
+      "label": "Esito",
       "attributes": [
         {
-          "name": "stato",
+          "name": "nome_esito",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Rettifica",
+      "attributes": [
+        {
+          "name": "id_rettifica",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -288,13 +265,13 @@
       "label": "SchedaValutazione",
       "attributes": [
         {
-          "name": "scheda",
+          "name": "id_scheda",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "motivazione",
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
@@ -302,83 +279,10 @@
       ]
     },
     {
-      "label": "Tabella",
+      "label": "Riparametrazione",
       "attributes": [
         {
-          "name": "tabella",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Utente",
-      "attributes": [
-        {
-          "name": "utente",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "VerificaConformita",
-      "attributes": [
-        {
-          "name": "verifica_conformita",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "modalita",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "SedutaDiGara",
-      "attributes": [
-        {
-          "name": "seduta",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Comando",
-      "attributes": [
-        {
-          "name": "comando",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "attivazione_condizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Comunicazione",
-      "attributes": [
-        {
-          "name": "comunicazione",
+          "name": "id_riparametrazione",
           "type": "string",
           "unique": true,
           "required": true
@@ -392,16 +296,50 @@
       ]
     },
     {
-      "label": "Manuale",
+      "label": "Conformita",
       "attributes": [
         {
-          "name": "manuale",
+          "name": "id_conformita",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "versione",
+          "name": "esito",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RiepilogoFinale",
+      "attributes": [
+        {
+          "name": "id_riepilogo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CalcoloEconomico",
+      "attributes": [
+        {
+          "name": "id_calcolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
@@ -411,12 +349,12 @@
   ],
   "relations": [
     {
-      "label": "HA_INVIATO",
+      "label": "POSIZIONATO_IN",
       "source": {
-        "label": "OperatoreEconomico",
+        "label": "Comando",
         "attributes": [
           {
-            "name": "ragione_sociale",
+            "name": "nome_comando",
             "type": "string",
             "unique": true,
             "required": true
@@ -424,10 +362,10 @@
         ]
       },
       "target": {
-        "label": "OffertaTecnica",
+        "label": "Toolbar",
         "attributes": [
           {
-            "name": "documento",
+            "name": "nome_toolbar",
             "type": "string",
             "unique": true,
             "required": true
@@ -436,7 +374,7 @@
       },
       "attributes": [
         {
-          "name": "data_invio",
+          "name": "posizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -444,45 +382,12 @@
       ]
     },
     {
-      "label": "BUSTA_CONTIENE_OFFERTA",
+      "label": "SCARICA_ALLEGATI",
       "source": {
-        "label": "BustaTecnica",
+        "label": "Comando",
         "attributes": [
           {
-            "name": "busta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OffertaTecnica",
-        "attributes": [
-          {
-            "name": "documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "ordine_arrivo",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "OFFERTA_HA_ALLEGATO",
-      "source": {
-        "label": "OffertaTecnica",
-        "attributes": [
-          {
-            "name": "documento",
+            "name": "nome_comando",
             "type": "string",
             "unique": true,
             "required": true
@@ -502,621 +407,9 @@
       },
       "attributes": [
         {
-          "name": "numero_allegati",
-          "type": "number",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "OFFERTA_HA_FIRMA",
-      "source": {
-        "label": "OffertaTecnica",
-        "attributes": [
-          {
-            "name": "documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "FirmaDigitale",
-        "attributes": [
-          {
-            "name": "firma_digitale",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "esito_verifica",
-          "type": "string",
+          "name": "compressa",
+          "type": "boolean",
           "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "BUSTA_CONTIENE_ALLEGATI_ZIP",
-      "source": {
-        "label": "CartellaZip",
-        "attributes": [
-          {
-            "name": "cartella_zip",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "nome_file",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "sottocartelle_per_operatore",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PUO_SCARICARE",
-      "source": {
-        "label": "Rup",
-        "attributes": [
-          {
-            "name": "rup",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CartellaZip",
-        "attributes": [
-          {
-            "name": "cartella_zip",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "riservato_al_ruolo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PUO_SCARICARE",
-      "source": {
-        "label": "Presidente",
-        "attributes": [
-          {
-            "name": "presidente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CartellaZip",
-        "attributes": [
-          {
-            "name": "cartella_zip",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "riservato_al_ruolo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMMISSIONE_VALUTA_OFFERTA",
-      "source": {
-        "label": "CommissioneTecnica",
-        "attributes": [
-          {
-            "name": "commissione_tecnica",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OffertaTecnica",
-        "attributes": [
-          {
-            "name": "documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "esito_valutazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PRESIDENTE_AVVIA_VERIFICA",
-      "source": {
-        "label": "Presidente",
-        "attributes": [
-          {
-            "name": "presidente",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "VerificaConformita",
-        "attributes": [
-          {
-            "name": "verifica_conformita",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "condizione_avvio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PROCEDURA_CONTIENE_LOTTO",
-      "source": {
-        "label": "ProceduraGara",
-        "attributes": [
-          {
-            "name": "nome_gara",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Lotto",
-        "attributes": [
-          {
-            "name": "lotto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "multilotto",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "LOTTO_CONTIENE_BUSTA",
-      "source": {
-        "label": "Lotto",
-        "attributes": [
-          {
-            "name": "lotto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "BustaTecnica",
-        "attributes": [
-          {
-            "name": "busta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "aperta",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "SCHEDA_ASSEGNA_PUNTEGGIO",
-      "source": {
-        "label": "SchedaValutazione",
-        "attributes": [
-          {
-            "name": "scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Punteggio",
-        "attributes": [
-          {
-            "name": "punteggio",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "assegnato_da",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "data_assegnazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CRITERIO_ATTRIBUISCE_PUNTEGGIO",
-      "source": {
-        "label": "CriterioValutazione",
-        "attributes": [
-          {
-            "name": "criterio",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Punteggio",
-        "attributes": [
-          {
-            "name": "punteggio",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "coefficiente",
-          "type": "number",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "tipo_criterio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIPARAMETRA_PUNTEGGIO",
-      "source": {
-        "label": "Punteggio",
-        "attributes": [
-          {
-            "name": "punteggio",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Punteggio",
-        "attributes": [
-          {
-            "name": "punteggio",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo_riparametrazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "grado_rescaling",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "OFFERTA_HA_STATO",
-      "source": {
-        "label": "OffertaTecnica",
-        "attributes": [
-          {
-            "name": "documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "StatoOfferta",
-        "attributes": [
-          {
-            "name": "stato",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_aggiornamento",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMANDO_ESEGUE",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Verbale",
-        "attributes": [
-          {
-            "name": "verbale",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "condizione_attivazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMANDO_ESEGUE",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CartellaZip",
-        "attributes": [
-          {
-            "name": "cartella_zip",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "azione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMANDO_ESEGUE",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "SchedaValutazione",
-        "attributes": [
-          {
-            "name": "scheda",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "azione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMUNICAZIONE_INVIATA_A",
-      "source": {
-        "label": "Comunicazione",
-        "attributes": [
-          {
-            "name": "comunicazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OperatoreEconomico",
-        "attributes": [
-          {
-            "name": "ragione_sociale",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMANDO_GENERA_COMUNICAZIONE",
-      "source": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "comando",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Comunicazione",
-        "attributes": [
-          {
-            "name": "comunicazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "scopo",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "VERIFICA_APPLICA_A",
-      "source": {
-        "label": "VerificaConformita",
-        "attributes": [
-          {
-            "name": "verifica_conformita",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OffertaTecnica",
-        "attributes": [
-          {
-            "name": "documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "esito",
-          "type": "string",
-          "required": false,
           "unique": false
         },
         {
@@ -1128,12 +421,12 @@
       ]
     },
     {
-      "label": "SEDUTA_ALLEGA_VERBALE",
+      "label": "CREA_VERBALE",
       "source": {
-        "label": "SedutaDiGara",
+        "label": "Comando",
         "attributes": [
           {
-            "name": "seduta",
+            "name": "nome_comando",
             "type": "string",
             "unique": true,
             "required": true
@@ -1144,7 +437,7 @@
         "label": "Verbale",
         "attributes": [
           {
-            "name": "verbale",
+            "name": "id_verbale",
             "type": "string",
             "unique": true,
             "required": true
@@ -1153,7 +446,13 @@
       },
       "attributes": [
         {
-          "name": "allegato",
+          "name": "automatica",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "personalizzabile",
           "type": "boolean",
           "required": false,
           "unique": false
@@ -1161,12 +460,78 @@
       ]
     },
     {
-      "label": "UTENTE_RICEVE_RETTIFICA",
+      "label": "APRI_BUSTE",
       "source": {
-        "label": "Utente",
+        "label": "Comando",
         "attributes": [
           {
-            "name": "utente",
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "BustaTecnica",
+        "attributes": [
+          {
+            "name": "id_busta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ALLEGATO_DI",
+      "source": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "BustaTecnica",
+        "attributes": [
+          {
+            "name": "id_busta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "presente",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIFERITA_A",
+      "source": {
+        "label": "BustaTecnica",
+        "attributes": [
+          {
+            "name": "id_busta",
             "type": "string",
             "unique": true,
             "required": true
@@ -1177,7 +542,7 @@
         "label": "OffertaTecnica",
         "attributes": [
           {
-            "name": "documento",
+            "name": "id_offerta",
             "type": "string",
             "unique": true,
             "required": true
@@ -1186,9 +551,654 @@
       },
       "attributes": [
         {
-          "name": "visibilita_rettifica",
+          "name": "inclusa_in_offerta",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PRESENTATA_DA",
+      "source": {
+        "label": "OffertaTecnica",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "ragione_sociale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_presentazione",
           "type": "string",
           "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_ESITO",
+      "source": {
+        "label": "OffertaTecnica",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Esito",
+        "attributes": [
+          {
+            "name": "nome_esito",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_assegnazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "motivo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VALUTATA_DA",
+      "source": {
+        "label": "OffertaTecnica",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "id_commissione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "fase",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_SCHEDA",
+      "source": {
+        "label": "OffertaTecnica",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "SchedaValutazione",
+        "attributes": [
+          {
+            "name": "id_scheda",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_creazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASSEGNA_PUNTEGGIO",
+      "source": {
+        "label": "SchedaValutazione",
+        "attributes": [
+          {
+            "name": "id_scheda",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Punteggio",
+        "attributes": [
+          {
+            "name": "id_punteggio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "valore",
+          "type": "number",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "motivazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PUNTEGGIO_PER_CRITERIO",
+      "source": {
+        "label": "Punteggio",
+        "attributes": [
+          {
+            "name": "id_punteggio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CriterioValutazione",
+        "attributes": [
+          {
+            "name": "nome_criterio",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "coefficiente",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RESPONSABILE_DI",
+      "source": {
+        "label": "PersonaFisica",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PRESIDENTE_DI",
+      "source": {
+        "label": "PersonaFisica",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "id_commissione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "APPARTIENE_A",
+      "source": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "id_commissione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data_nomina",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "BUSTA_DI_LOTTO",
+      "source": {
+        "label": "BustaTecnica",
+        "attributes": [
+          {
+            "name": "id_busta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "id_lotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "lotto_numero",
+          "type": "number",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "LOTTO_DI_GARA",
+      "source": {
+        "label": "Lotto",
+        "attributes": [
+          {
+            "name": "id_lotto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "progressivo",
+          "type": "number",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RETTIFICA_DI",
+      "source": {
+        "label": "Rettifica",
+        "attributes": [
+          {
+            "name": "id_rettifica",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OffertaTecnica",
+        "attributes": [
+          {
+            "name": "id_offerta",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "articolo_riferimento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VISUALIZZA_RETTIFICA",
+      "source": {
+        "label": "Commissione",
+        "attributes": [
+          {
+            "name": "id_commissione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Rettifica",
+        "attributes": [
+          {
+            "name": "id_rettifica",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "accesso_iniziale",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RIPRISTINA_FASE",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ATTIVA",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "condizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIAMA_CALCOLO",
+      "source": {
+        "label": "CalcoloEconomico",
+        "attributes": [
+          {
+            "name": "id_calcolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ProceduraDiGara",
+        "attributes": [
+          {
+            "name": "id_procedura",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "stato",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASSEGNA_CONFORMITA",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Conformita",
+        "attributes": [
+          {
+            "name": "id_conformita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "scelta",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "TERMINA_VERIFICA",
+      "source": {
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Conformita",
+        "attributes": [
+          {
+            "name": "id_conformita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "conferma",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIORNA_GRADUATORIA",
+      "source": {
+        "label": "Conformita",
+        "attributes": [
+          {
+            "name": "id_conformita",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RiepilogoFinale",
+        "attributes": [
+          {
+            "name": "id_riepilogo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": true,
           "unique": false
         }
       ]

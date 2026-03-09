@@ -1,23 +1,6 @@
 {
   "entities": [
     {
-      "label": "Articolo",
-      "attributes": [
-        {
-          "name": "numero_articolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "contenuto",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
       "label": "Contratto",
       "attributes": [
         {
@@ -27,13 +10,13 @@
           "required": true
         },
         {
-          "name": "oggetto",
+          "name": "oggetto_contrattuale",
           "type": "string",
           "unique": false,
-          "required": false
+          "required": true
         },
         {
-          "name": "descrizione",
+          "name": "descrizione_contratto",
           "type": "string",
           "unique": false,
           "required": false
@@ -41,16 +24,22 @@
       ]
     },
     {
-      "label": "Bando",
+      "label": "Intervento",
       "attributes": [
         {
-          "name": "id_bando",
+          "name": "id_intervento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "descrizione_intervento",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "tipologia_intervento",
           "type": "string",
           "unique": false,
           "required": false
@@ -58,16 +47,22 @@
       ]
     },
     {
-      "label": "StazioneAppaltante",
+      "label": "QuadroEconomico",
       "attributes": [
         {
-          "name": "codice_stazione",
+          "name": "id_quadro_economico",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "descrizione_quadro",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "fondo_di_riferimento",
           "type": "string",
           "unique": false,
           "required": false
@@ -75,16 +70,136 @@
       ]
     },
     {
-      "label": "EnteConcedente",
+      "label": "ProceduraDiAppalto",
       "attributes": [
         {
-          "name": "codice_ente",
+          "name": "id_procedura",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "descrizione_procedura",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "pubblicita_rinegoziazione_nel_bando",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Aggiudicazione",
+      "attributes": [
+        {
+          "name": "id_aggiudicazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_aggiudicazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Rinegoziazione",
+      "attributes": [
+        {
+          "name": "id_rinegoziazione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "motivazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "buona_fede_applicata",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CircostanzaStraordinaria",
+      "attributes": [
+        {
+          "name": "descrizione_circostanza",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipologia",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ParteContrattuale",
+      "attributes": [
+        {
+          "name": "id_parte",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ruolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "denominazione_operatore",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "codice_fiscale_operatore",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Legge",
+      "attributes": [
+        {
+          "name": "codice_legge",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_legge",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "articoli_rilevanti",
           "type": "string",
           "unique": false,
           "required": false
@@ -94,19 +209,8 @@
   ],
   "relations": [
     {
-      "label": "RIFERISCE_A",
+      "label": "RINEGOZIAZIONE",
       "source": {
-        "label": "Articolo",
-        "attributes": [
-          {
-            "name": "numero_articolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "Contratto",
         "attributes": [
           {
@@ -117,22 +221,39 @@
           }
         ]
       },
+      "target": {
+        "label": "Rinegoziazione",
+        "attributes": [
+          {
+            "name": "id_rinegoziazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
         {
-          "name": "tipo_relazione",
+          "name": "motivo",
           "type": "string",
-          "required": true,
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "buona_fede",
+          "type": "boolean",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "FAVORISCE_RINEGOZIAZIONE",
+      "label": "PUBBLICITA_RINEGOZIAZIONE_NEL_BANDO",
       "source": {
-        "label": "StazioneAppaltante",
+        "label": "ProceduraDiAppalto",
         "attributes": [
           {
-            "name": "codice_stazione",
+            "name": "id_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -140,10 +261,10 @@
         ]
       },
       "target": {
-        "label": "Contratto",
+        "label": "Rinegoziazione",
         "attributes": [
           {
-            "name": "id_contratto",
+            "name": "id_rinegoziazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -152,20 +273,143 @@
       },
       "attributes": [
         {
-          "name": "descrizione_azione",
+          "name": "ambito",
           "type": "string",
-          "required": true,
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "quando_pubblicazione",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "PUBBLICIZZA_NEL_BANDO",
+      "label": "FINANZIAMENTO_RINEGOZIAZIONE",
       "source": {
-        "label": "Bando",
+        "label": "QuadroEconomico",
         "attributes": [
           {
-            "name": "id_bando",
+            "name": "id_quadro_economico",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Rinegoziazione",
+        "attributes": [
+          {
+            "name": "id_rinegoziazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "fonte_fondo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "PAGAMENTO_RINEGOZIAZIONE",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "denominazione_operatore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Rinegoziazione",
+        "attributes": [
+          {
+            "name": "id_rinegoziazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "importo_pagato",
+          "type": "number",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "modalita_pagamento",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIESTA_RINEGOZIAZIONE",
+      "source": {
+        "label": "ParteContrattuale",
+        "attributes": [
+          {
+            "name": "id_parte",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Rinegoziazione",
+        "attributes": [
+          {
+            "name": "id_rinegoziazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "motivazione_rinegoziazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "necessita_eventuale",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "CAUSE_RINEGOZIAZIONE",
+      "source": {
+        "label": "CircostanzaStraordinaria",
+        "attributes": [
+          {
+            "name": "descrizione_circostanza",
             "type": "string",
             "unique": true,
             "required": true
@@ -185,9 +429,9 @@
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "rilevanza",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]

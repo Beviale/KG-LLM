@@ -4,10 +4,22 @@
       "label": "ConflittoDiInteressi",
       "attributes": [
         {
-          "name": "codice_conflitto",
+          "name": "articolo_16",
           "type": "string",
           "unique": true,
           "required": true
+        },
+        {
+          "name": "definizione",
+          "type": "string",
+          "unique": false,
+          "required": true
+        },
+        {
+          "name": "note_normative",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -15,13 +27,13 @@
       "label": "ProceduraDiAggiudicazione",
       "attributes": [
         {
-          "name": "id_procedura",
+          "name": "procedura_di_aggiudicazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "fase",
+          "name": "descrizione_procedura",
           "type": "string",
           "unique": false,
           "required": false
@@ -36,18 +48,6 @@
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "cpv",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "anno_di_indizione",
-          "type": "number",
-          "unique": false,
-          "required": false
         }
       ]
     },
@@ -59,32 +59,20 @@
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "cpv",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "anno_di_indizione",
-          "type": "number",
-          "unique": false,
-          "required": false
         }
       ]
     },
     {
-      "label": "StazioneAppaltante",
+      "label": "Interesse",
       "attributes": [
         {
-          "name": "codice_stazione_appaltante",
+          "name": "tipologia_interesse",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "denominazione",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -92,27 +80,10 @@
       ]
     },
     {
-      "label": "EnteConcedente",
+      "label": "SoggettoIntervenente",
       "attributes": [
         {
-          "name": "codice_ente_concedente",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Soggetto",
-      "attributes": [
-        {
-          "name": "identificatore_soggetto",
+          "name": "identificativo_soggetto",
           "type": "string",
           "unique": true,
           "required": true
@@ -124,16 +95,55 @@
           "required": false
         }
       ]
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": [
+        {
+          "name": "denominazione_stazione_appaltante",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "EnteConcedente",
+      "attributes": [
+        {
+          "name": "denominazione_ente_concedente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "NormaRiferimento",
+      "attributes": [
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
     }
   ],
   "relations": [
     {
       "label": "HA_CONFLITTO_DI_INTERESSI",
       "source": {
-        "label": "Soggetto",
+        "label": "SoggettoIntervenente",
         "attributes": [
           {
-            "name": "identificatore_soggetto",
+            "name": "identificativo_soggetto",
             "type": "string",
             "unique": true,
             "required": true
@@ -144,7 +154,7 @@
         "label": "ConflittoDiInteressi",
         "attributes": [
           {
-            "name": "codice_conflitto",
+            "name": "articolo_16",
             "type": "string",
             "unique": true,
             "required": true
@@ -153,13 +163,40 @@
       },
       "attributes": [
         {
-          "name": "fase",
+          "name": "contesto",
           "type": "string",
           "required": true,
           "unique": false
-        },
+        }
+      ]
+    },
+    {
+      "label": "HA_INTERESSE_IN",
+      "source": {
+        "label": "SoggettoIntervenente",
+        "attributes": [
+          {
+            "name": "identificativo_soggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Interesse",
+        "attributes": [
+          {
+            "name": "tipologia_interesse",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
         {
-          "name": "descrizione_interesse",
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -167,12 +204,78 @@
       ]
     },
     {
-      "label": "COLPISCE_PROCEDURA_DI_AGGIUDICAZIONE",
+      "label": "COMUNICATO_A_STAZIONE_APPALTANTE",
       "source": {
-        "label": "ConflittoDiInteressi",
+        "label": "SoggettoIntervenente",
         "attributes": [
           {
-            "name": "codice_conflitto",
+            "name": "identificativo_soggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione_appaltante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "forma_comunicazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COMUNICATO_A_ENTE_CONCEDENTE",
+      "source": {
+        "label": "SoggettoIntervenente",
+        "attributes": [
+          {
+            "name": "identificativo_soggetto",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "EnteConcedente",
+        "attributes": [
+          {
+            "name": "denominazione_ente_concedente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "forma_comunicazione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASTIENE_DALLA_PROCEDURA",
+      "source": {
+        "label": "SoggettoIntervenente",
+        "attributes": [
+          {
+            "name": "identificativo_soggetto",
             "type": "string",
             "unique": true,
             "required": true
@@ -183,7 +286,7 @@
         "label": "ProceduraDiAggiudicazione",
         "attributes": [
           {
-            "name": "id_procedura",
+            "name": "procedura_di_aggiudicazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -192,13 +295,7 @@
       },
       "attributes": [
         {
-          "name": "fase",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "tipi_interesse",
+          "name": "azione",
           "type": "string",
           "required": true,
           "unique": false
@@ -206,12 +303,78 @@
       ]
     },
     {
-      "label": "COLPISCE_ESECUZIONE_APPALTO",
+      "label": "MISURE_ADOTTATE",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": [
+          {
+            "name": "denominazione_stazione_appaltante",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ConflittoDiInteressi",
+        "attributes": [
+          {
+            "name": "articolo_16",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione_misure",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_RIFERIMENTO_NORMATIVO",
       "source": {
         "label": "ConflittoDiInteressi",
         "attributes": [
           {
-            "name": "codice_conflitto",
+            "name": "articolo_16",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "NormaRiferimento",
+        "attributes": [
+          {
+            "name": "riferimento_normativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "note",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_CONFLITTO_DI_INTERESSI_IN_APPALTO",
+      "source": {
+        "label": "SoggettoIntervenente",
+        "attributes": [
+          {
+            "name": "identificativo_soggetto",
             "type": "string",
             "unique": true,
             "required": true
@@ -231,52 +394,7 @@
       },
       "attributes": [
         {
-          "name": "fase",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "tipi_interesse",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "COMUNICATO_A_STAZIONE_APPALTANTE",
-      "source": {
-        "label": "Soggetto",
-        "attributes": [
-          {
-            "name": "identificatore_soggetto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "codice_stazione_appaltante",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_di_comunicazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "contenuto_comunicazione",
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -284,12 +402,12 @@
       ]
     },
     {
-      "label": "COMUNICATO_A_ENTE_CONCEDENTE",
+      "label": "HA_CONFLITTO_DI_INTERESSI_IN_CONCESSIONE",
       "source": {
-        "label": "Soggetto",
+        "label": "SoggettoIntervenente",
         "attributes": [
           {
-            "name": "identificatore_soggetto",
+            "name": "identificativo_soggetto",
             "type": "string",
             "unique": true,
             "required": true
@@ -297,10 +415,10 @@
         ]
       },
       "target": {
-        "label": "EnteConcedente",
+        "label": "Concessione",
         "attributes": [
           {
-            "name": "codice_ente_concedente",
+            "name": "oggetto_concessione",
             "type": "string",
             "unique": true,
             "required": true
@@ -309,48 +427,9 @@
       },
       "attributes": [
         {
-          "name": "data_di_comunicazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "contenuto_comunicazione",
+          "name": "descrizione",
           "type": "string",
           "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ADOTTA_MISURE_CONFLITTO_DI_INTERESSI",
-      "source": {
-        "label": "StazioneAppaltante",
-        "attributes": [
-          {
-            "name": "codice_stazione_appaltante",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ConflittoDiInteressi",
-        "attributes": [
-          {
-            "name": "codice_conflitto",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione_misura",
-          "type": "string",
-          "required": true,
           "unique": false
         }
       ]

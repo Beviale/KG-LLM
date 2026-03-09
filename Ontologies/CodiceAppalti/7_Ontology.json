@@ -1,16 +1,33 @@
 {
   "entities": [
     {
+      "label": "Norma",
+      "attributes": [
+        {
+          "name": "articolo_numero",
+          "type": "number",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "contenuto_articolo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "PubblicaAmministrazione",
       "attributes": [
         {
-          "name": "codice_entita_pa",
+          "name": "tipo_pa",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "descrizione_pa",
           "type": "string",
           "unique": false,
           "required": false
@@ -27,7 +44,7 @@
           "required": true
         },
         {
-          "name": "oggetto",
+          "name": "oggetto_contratto",
           "type": "string",
           "unique": false,
           "required": false
@@ -44,13 +61,13 @@
       "label": "PrestazioneIntellettuale",
       "attributes": [
         {
-          "name": "id_prestazione",
+          "name": "descrizione_prestazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "categoria_prestazione",
           "type": "string",
           "unique": false,
           "required": false
@@ -61,19 +78,13 @@
       "label": "Professionista",
       "attributes": [
         {
-          "name": "codice_fiscale",
+          "name": "descrizione_professionista",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "specializzazione",
+          "name": "tipologia_professionista",
           "type": "string",
           "unique": false,
           "required": false
@@ -84,16 +95,10 @@
       "label": "EquoCompenso",
       "attributes": [
         {
-          "name": "id_equo_compenso",
+          "name": "riferimento_normativo",
           "type": "string",
           "unique": true,
           "required": true
-        },
-        {
-          "name": "articoli_riferiti",
-          "type": "string",
-          "unique": false,
-          "required": false
         }
       ]
     },
@@ -101,69 +106,95 @@
       "label": "Donazione",
       "attributes": [
         {
-          "name": "id_donazione",
+          "name": "descrizione_donazione",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "tipo_dono",
+          "name": "descrizione_donatore",
           "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "obbligo_di_gara",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "forma",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "descrizione_donazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "conformita_codice_civile",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "revocazione",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "azione_di_riduzione",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
       ]
     },
     {
-      "label": "Bene",
+      "label": "Gara",
       "attributes": [
         {
-          "name": "id_bene",
+          "name": "id_gara",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "obbligo_di_gara",
+          "type": "boolean",
+          "unique": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CodiceCivile",
+      "attributes": [
+        {
+          "name": "riferimento_codice_civile",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_normativa",
           "type": "string",
           "unique": false,
           "required": false
+        }
+      ]
+    },
+    {
+      "label": "CodiceLegge",
+      "attributes": [
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione_normativa",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Divieto",
+      "attributes": [
+        {
+          "name": "descrizione_divieto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "tipo_divieto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AutonomiaContrattuale",
+      "attributes": [
+        {
+          "name": "descrizione_autonomia",
+          "type": "string",
+          "unique": true,
+          "required": true
         }
       ]
     }
@@ -175,7 +206,7 @@
         "label": "PubblicaAmministrazione",
         "attributes": [
           {
-            "name": "codice_entita_pa",
+            "name": "tipo_pa",
             "type": "string",
             "unique": true,
             "required": true
@@ -195,47 +226,8 @@
       },
       "attributes": [
         {
-          "name": "modalita",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ESEGUI_PRESTAZIONE",
-      "source": {
-        "label": "Professionista",
-        "attributes": [
-          {
-            "name": "codice_fiscale",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PrestazioneIntellettuale",
-        "attributes": [
-          {
-            "name": "id_prestazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
           "name": "gratuito",
           "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "eccezioni",
-          "type": "string",
           "required": false,
           "unique": false
         }
@@ -247,7 +239,7 @@
         "label": "PubblicaAmministrazione",
         "attributes": [
           {
-            "name": "codice_entita_pa",
+            "name": "tipo_pa",
             "type": "string",
             "unique": true,
             "required": true
@@ -255,10 +247,10 @@
         ]
       },
       "target": {
-        "label": "EquoCompenso",
+        "label": "Professionista",
         "attributes": [
           {
-            "name": "id_equo_compenso",
+            "name": "descrizione_professionista",
             "type": "string",
             "unique": true,
             "required": true
@@ -267,110 +259,86 @@
       },
       "attributes": [
         {
-          "name": "articoli_riferiti",
-          "type": "string",
-          "required": false,
+          "name": "principio_applicato",
+          "type": "boolean",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "RICEVE_DONAZIONE",
+      "label": "RIFERIMENTO_NORMATIVO",
+      "source": {
+        "label": "EquoCompenso",
+        "attributes": [
+          {
+            "name": "riferimento_normativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CodiceLegge",
+        "attributes": [
+          {
+            "name": "riferimento_normativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "riferimento_normativo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DONAZIONE_RICEVUTA_DA",
+      "source": {
+        "label": "Donazione",
+        "attributes": [
+          {
+            "name": "descrizione_donazione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PubblicaAmministrazione",
+        "attributes": [
+          {
+            "name": "tipo_pa",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "senza_gara",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DIVIETO_PRESTAZIONI_INTELLETTUALI_GRATUITE",
       "source": {
         "label": "PubblicaAmministrazione",
         "attributes": [
           {
-            "name": "codice_entita_pa",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Donazione",
-        "attributes": [
-          {
-            "name": "id_donazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo_dono",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "obbligo_di_gara",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "forma",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "descrizione_donazione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "conformita_codice_civile",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DONAZIONE_CONSISTE_IN_BENE",
-      "source": {
-        "label": "Donazione",
-        "attributes": [
-          {
-            "name": "id_donazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Bene",
-        "attributes": [
-          {
-            "name": "id_bene",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione_bene",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DONAZIONE_CONSISTE_IN_PRESTAZIONE",
-      "source": {
-        "label": "Donazione",
-        "attributes": [
-          {
-            "name": "id_donazione",
+            "name": "tipo_pa",
             "type": "string",
             "unique": true,
             "required": true
@@ -381,7 +349,7 @@
         "label": "PrestazioneIntellettuale",
         "attributes": [
           {
-            "name": "id_prestazione",
+            "name": "descrizione_prestazione",
             "type": "string",
             "unique": true,
             "required": true
@@ -390,12 +358,38 @@
       },
       "attributes": [
         {
-          "name": "descrizione_prestazione",
+          "name": "descrizione_divieto",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
+    },
+    {
+      "label": "DESCRIVE_AUTONOMIA_CONTRATTUALE",
+      "source": {
+        "label": "Norma",
+        "attributes": [
+          {
+            "name": "articolo_numero",
+            "type": "number",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AutonomiaContrattuale",
+        "attributes": [
+          {
+            "name": "descrizione_autonomia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
     }
   ]
 }

@@ -1,10 +1,39 @@
 {
   "entities": [
     {
-      "label": "Contratto",
+      "label": "Scheda",
       "attributes": [
         {
           "name": "tipo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "discendente_da",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "campi_obbligatori",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Contratto",
+      "attributes": [
+        {
+          "name": "identificativo",
           "type": "string",
           "unique": true,
           "required": true
@@ -35,30 +64,7 @@
       ]
     },
     {
-      "label": "Scheda",
-      "attributes": [
-        {
-          "name": "tipo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "note",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Stato",
+      "label": "Colonna",
       "attributes": [
         {
           "name": "nome",
@@ -67,8 +73,54 @@
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "ordinabile",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Campo",
+      "attributes": [
+        {
+          "name": "nome",
           "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "obbligatorio",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Pulsante",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "azione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "visibile",
+          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -84,7 +136,7 @@
           "required": true
         },
         {
-          "name": "posizione",
+          "name": "pulsanti",
           "type": "string",
           "unique": false,
           "required": false
@@ -92,24 +144,7 @@
       ]
     },
     {
-      "label": "Pulsante",
-      "attributes": [
-        {
-          "name": "etichetta",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "azione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Colonna",
+      "label": "Funzione",
       "attributes": [
         {
           "name": "nome",
@@ -118,25 +153,8 @@
           "required": true
         },
         {
-          "name": "descrizione",
+          "name": "condizione_attivazione",
           "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Campo",
-      "attributes": [
-        {
-          "name": "nome_campo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -152,7 +170,7 @@
           "required": true
         },
         {
-          "name": "testo",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -160,10 +178,10 @@
       ]
     },
     {
-      "label": "Funzione",
+      "label": "Stato",
       "attributes": [
         {
-          "name": "nome_funzione",
+          "name": "valore",
           "type": "string",
           "unique": true,
           "required": true
@@ -177,67 +195,16 @@
       ]
     },
     {
-      "label": "PCP",
+      "label": "FormatoFile",
       "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Appalto",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Testata",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "chiudibile",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "FileExport",
-      "attributes": [
-        {
-          "name": "formato",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
         {
           "name": "estensione",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "mime",
           "type": "string",
           "unique": false,
           "required": false
@@ -247,19 +214,8 @@
   ],
   "relations": [
     {
-      "label": "HA_TAB",
+      "label": "CONTIENE",
       "source": {
-        "label": "Contratto",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
         "label": "Tab",
         "attributes": [
           {
@@ -270,20 +226,17 @@
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "esporta_xls",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "stati_presenti",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
+      "target": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
     },
     {
       "label": "HA_COLONNA",
@@ -308,113 +261,15 @@
             "required": true
           }
         ]
-      },
-      "attributes": [
-        {
-          "name": "ordinabile",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
+      }
     },
     {
-      "label": "VISUALIZZA_SCHEDA",
+      "label": "RIGUARDA_CAMPO",
       "source": {
-        "label": "Tab",
+        "label": "Colonna",
         "attributes": [
           {
             "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Scheda",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "stati_visualizzabili",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "azione_apri",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "scheda_modalita_visualizzazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "POSSIEDE_SCHEDA",
-      "source": {
-        "label": "Contratto",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Scheda",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "multipla",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "condizione_precedente_conclusiva",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "regole_selezione_tipo_scheda",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "HA_CAMPO",
-      "source": {
-        "label": "Scheda",
-        "attributes": [
-          {
-            "name": "tipo",
             "type": "string",
             "unique": true,
             "required": true
@@ -425,45 +280,6 @@
         "label": "Campo",
         "attributes": [
           {
-            "name": "nome_campo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "obbligatorio",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        },
-        {
-          "name": "importato",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "CAMPO_IMPORTATO_DA",
-      "source": {
-        "label": "Campo",
-        "attributes": [
-          {
-            "name": "nome_campo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Appalto",
-        "attributes": [
-          {
             "name": "nome",
             "type": "string",
             "unique": true,
@@ -473,7 +289,7 @@
       },
       "attributes": [
         {
-          "name": "importato_da_contratto_o_appalto",
+          "name": "campo_visualizzato",
           "type": "string",
           "required": true,
           "unique": false
@@ -481,40 +297,7 @@
       ]
     },
     {
-      "label": "HA_TOOLBAR",
-      "source": {
-        "label": "Scheda",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Toolbar",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "pulsanti",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "TOOLBAR_HA_PULSANTE",
+      "label": "HA_PULSANTE",
       "source": {
         "label": "Toolbar",
         "attributes": [
@@ -530,24 +313,66 @@
         "label": "Pulsante",
         "attributes": [
           {
-            "name": "etichetta",
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "APPARTIENE_A",
+      "source": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "tipo",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "ordine",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      "target": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "identificativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
     },
     {
-      "label": "DERIVA_DA",
+      "label": "HA_STATO",
+      "source": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Stato",
+        "attributes": [
+          {
+            "name": "valore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "DISCENDE_DA",
       "source": {
         "label": "Scheda",
         "attributes": [
@@ -574,18 +399,18 @@
         {
           "name": "condizione",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "APPLICA_VALIDAZIONE",
+      "label": "ATTIVA_FUNZIONE",
       "source": {
-        "label": "Scheda",
+        "label": "Pulsante",
         "attributes": [
           {
-            "name": "tipo",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -593,6 +418,61 @@
         ]
       },
       "target": {
+        "label": "Funzione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ATTIVA_SU",
+      "source": {
+        "label": "Funzione",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Contratto",
+        "attributes": [
+          {
+            "name": "identificativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "condizione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "SI_APPLICA_A",
+      "source": {
         "label": "Validazione",
         "attributes": [
           {
@@ -603,13 +483,18 @@
           }
         ]
       },
+      "target": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
       "attributes": [
-        {
-          "name": "riferimento_campi",
-          "type": "string",
-          "required": true,
-          "unique": false
-        },
         {
           "name": "descrizione",
           "type": "string",
@@ -619,48 +504,9 @@
       ]
     },
     {
-      "label": "HA_TESTATA",
+      "label": "OBBLIGATORIO_PER",
       "source": {
-        "label": "Scheda",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Testata",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "chiudibile",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "visualizzazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "STATO_DETERMINATO_DA",
-      "source": {
-        "label": "Stato",
+        "label": "Campo",
         "attributes": [
           {
             "name": "nome",
@@ -683,46 +529,7 @@
       },
       "attributes": [
         {
-          "name": "regola",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INVIATA_A",
-      "source": {
-        "label": "Scheda",
-        "attributes": [
-          {
-            "name": "tipo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "salvata_a_sistema",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        },
-        {
-          "name": "inviata_a_pcp",
+          "name": "obbligatorio",
           "type": "boolean",
           "required": true,
           "unique": false
@@ -730,7 +537,7 @@
       ]
     },
     {
-      "label": "ESPORTA_FILE",
+      "label": "PERMETTE_EXPORT",
       "source": {
         "label": "Tab",
         "attributes": [
@@ -743,10 +550,10 @@
         ]
       },
       "target": {
-        "label": "FileExport",
+        "label": "FormatoFile",
         "attributes": [
           {
-            "name": "formato",
+            "name": "estensione",
             "type": "string",
             "unique": true,
             "required": true
@@ -756,6 +563,72 @@
       "attributes": [
         {
           "name": "azione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VISUALIZZATA_IN",
+      "source": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "condizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DETERMINA_STATO",
+      "source": {
+        "label": "Scheda",
+        "attributes": [
+          {
+            "name": "tipo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Stato",
+        "attributes": [
+          {
+            "name": "valore",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "regola",
           "type": "string",
           "required": true,
           "unique": false

@@ -14,26 +14,9 @@
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "Documento",
-      "attributes": [
-        {
-          "name": "titolo",
-          "type": "string",
-          "unique": true,
-          "required": true
         },
         {
-          "name": "versione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "data",
+          "name": "url",
           "type": "string",
           "unique": false,
           "required": false
@@ -41,50 +24,51 @@
       ]
     },
     {
-      "label": "Autorita",
+      "label": "OrdinativoDiFornitura",
       "attributes": [
         {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "sito",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "PCP",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato_invio",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Scheda",
-      "attributes": [
-        {
-          "name": "tipo",
+          "name": "id_ordinativo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
           "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "cpv",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Utente",
+      "attributes": [
+        {
+          "name": "identificativo_utente",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "nome",
           "type": "string",
           "unique": false,
           "required": false
@@ -101,94 +85,8 @@
           "required": true
         },
         {
-          "name": "privilegi",
+          "name": "descrizione",
           "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "OrdinativoDiFornitura",
-      "attributes": [
-        {
-          "name": "codice",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "stato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cig_derivato",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "cig_master",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "collegato_pcp",
-          "type": "boolean",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "ServizioRegistrazioneProfilazione",
-      "attributes": [
-        {
-          "name": "url",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Menu",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "gruppo_funzionale",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Comando",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "asincrono",
-          "type": "boolean",
           "unique": false,
           "required": false
         }
@@ -198,7 +96,7 @@
       "label": "CIG",
       "attributes": [
         {
-          "name": "codice",
+          "name": "codice_cig",
           "type": "string",
           "unique": true,
           "required": true
@@ -218,27 +116,22 @@
       ]
     },
     {
-      "label": "Fornitore",
+      "label": "Scheda",
       "attributes": [
         {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "CronologiaPCP",
-      "attributes": [
-        {
-          "name": "identificativo",
+          "name": "codice_scheda",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "posizione",
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato_invio",
           "type": "string",
           "unique": false,
           "required": false
@@ -246,7 +139,7 @@
       ]
     },
     {
-      "label": "FileJSON",
+      "label": "Organizzazione",
       "attributes": [
         {
           "name": "nome",
@@ -255,8 +148,82 @@
           "required": true
         },
         {
-          "name": "contiene_errori",
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Servizio",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "asincrono",
           "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Manuale",
+      "attributes": [
+        {
+          "name": "titolo",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "versione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "File",
+      "attributes": [
+        {
+          "name": "nome_file",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "formato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Cronologia",
+      "attributes": [
+        {
+          "name": "id_cronologia",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
           "unique": false,
           "required": false
         }
@@ -264,39 +231,6 @@
     }
   ],
   "relations": [
-    {
-      "label": "GESTISCE",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "OrdinativoDiFornitura",
-        "attributes": [
-          {
-            "name": "codice",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "area",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
     {
       "label": "CONFIGURA",
       "source": {
@@ -314,7 +248,7 @@
         "label": "OrdinativoDiFornitura",
         "attributes": [
           {
-            "name": "codice",
+            "name": "id_ordinativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -323,15 +257,15 @@
       },
       "attributes": [
         {
-          "name": "puo_configurare_tutte_le_parti",
-          "type": "boolean",
-          "required": false,
+          "name": "ambito",
+          "type": "string",
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "INOLTRA_IN_APPROVAZIONE",
+      "label": "VERIFICA_CONTENUTO",
       "source": {
         "label": "Ruolo",
         "attributes": [
@@ -347,7 +281,7 @@
         "label": "OrdinativoDiFornitura",
         "attributes": [
           {
-            "name": "codice",
+            "name": "id_ordinativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -356,53 +290,20 @@
       },
       "attributes": [
         {
-          "name": "ruolo_tipico",
+          "name": "passi",
           "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ESEGUI_COMANDO",
-      "source": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Comando",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "richiede_profilazione_rup",
-          "type": "boolean",
           "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "INVIA_RICHIESTA",
+      "label": "ATTIVA_INTEROPERABILITA",
       "source": {
-        "label": "Comando",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "identificativo_utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -410,7 +311,7 @@
         ]
       },
       "target": {
-        "label": "PCP",
+        "label": "Servizio",
         "attributes": [
           {
             "name": "nome",
@@ -422,7 +323,7 @@
       },
       "attributes": [
         {
-          "name": "tipo_richiesta",
+          "name": "comando",
           "type": "string",
           "required": true,
           "unique": false
@@ -430,84 +331,18 @@
         {
           "name": "asincrono",
           "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RILASCIA",
-      "source": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CIG",
-        "attributes": [
-          {
-            "name": "codice",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tempo_di_rilascio",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "INSERISCE_MANUALMENTE",
-      "source": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CIG",
-        "attributes": [
-          {
-            "name": "codice",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "scollega_odf",
-          "type": "boolean",
           "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "ASSOCIA_A",
+      "label": "E_PROFILATO_IN",
       "source": {
-        "label": "CIG",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "codice",
+            "name": "identificativo_utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -515,10 +350,10 @@
         ]
       },
       "target": {
-        "label": "OrdinativoDiFornitura",
+        "label": "Servizio",
         "attributes": [
           {
-            "name": "codice",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -527,7 +362,13 @@
       },
       "attributes": [
         {
-          "name": "modalita",
+          "name": "profilato",
+          "type": "boolean",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "servizio_riferimento",
           "type": "string",
           "required": false,
           "unique": false
@@ -535,12 +376,12 @@
       ]
     },
     {
-      "label": "HA_CRONOLOGIA",
+      "label": "RILASCIA_CIG",
       "source": {
-        "label": "OrdinativoDiFornitura",
+        "label": "Organizzazione",
         "attributes": [
           {
-            "name": "codice",
+            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
@@ -548,10 +389,10 @@
         ]
       },
       "target": {
-        "label": "CronologiaPCP",
+        "label": "CIG",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "codice_cig",
             "type": "string",
             "unique": true,
             "required": true
@@ -560,7 +401,52 @@
       },
       "attributes": [
         {
-          "name": "posizione_nella_pagina",
+          "name": "condizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "tempo_risposta",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ASSOCIA_CIG_A_ODF",
+      "source": {
+        "label": "CIG",
+        "attributes": [
+          {
+            "name": "codice_cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OrdinativoDiFornitura",
+        "attributes": [
+          {
+            "name": "id_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "modalita_inserimento",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_associazione",
           "type": "string",
           "required": false,
           "unique": false
@@ -573,7 +459,7 @@
         "label": "OrdinativoDiFornitura",
         "attributes": [
           {
-            "name": "codice",
+            "name": "id_ordinativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -581,10 +467,10 @@
         ]
       },
       "target": {
-        "label": "PCP",
+        "label": "Scheda",
         "attributes": [
           {
-            "name": "nome",
+            "name": "codice_scheda",
             "type": "string",
             "unique": true,
             "required": true
@@ -593,40 +479,13 @@
       },
       "attributes": [
         {
-          "name": "scheda_tipo",
+          "name": "modalita_trasmissione",
           "type": "string",
           "required": true,
           "unique": false
-        }
-      ]
-    },
-    {
-      "label": "DESCRIVE_ANOMALIA",
-      "source": {
-        "label": "FileJSON",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "CronologiaPCP",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
+        },
         {
-          "name": "descrizione",
+          "name": "stato_pcp",
           "type": "string",
           "required": false,
           "unique": false
@@ -634,12 +493,12 @@
       ]
     },
     {
-      "label": "HA_ACCESSO_MENU",
+      "label": "FIRMA_DIGITALE",
       "source": {
-        "label": "Ruolo",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "identificativo_utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -647,7 +506,46 @@
         ]
       },
       "target": {
-        "label": "Menu",
+        "label": "OrdinativoDiFornitura",
+        "attributes": [
+          {
+            "name": "id_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo_firma",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_firma",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVIA_ODF_A_FORNITORE",
+      "source": {
+        "label": "OrdinativoDiFornitura",
+        "attributes": [
+          {
+            "name": "id_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Organizzazione",
         "attributes": [
           {
             "name": "nome",
@@ -659,7 +557,91 @@
       },
       "attributes": [
         {
-          "name": "abilitato",
+          "name": "ruolo_destinatario",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "DISABILITA_GESTIONE_PCP",
+      "source": {
+        "label": "CIG",
+        "attributes": [
+          {
+            "name": "codice_cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "effetto",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "nota",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INSERIMENTO_MANUALE_CIG",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "identificativo_utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CIG",
+        "attributes": [
+          {
+            "name": "codice_cig",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "metodo",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "scollegamento_pcp",
           "type": "boolean",
           "required": true,
           "unique": false
@@ -667,12 +649,12 @@
       ]
     },
     {
-      "label": "GESTISCE_SERVIZIO",
+      "label": "AGGIORNA_CRONOLOGIA",
       "source": {
-        "label": "Autorita",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "denominazione",
+            "name": "identificativo_utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -680,36 +662,10 @@
         ]
       },
       "target": {
-        "label": "ServizioRegistrazioneProfilazione",
+        "label": "Cronologia",
         "attributes": [
           {
-            "name": "url",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": []
-    },
-    {
-      "label": "E_PROFILATO_IN",
-      "source": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "ServizioRegistrazioneProfilazione",
-        "attributes": [
-          {
-            "name": "url",
+            "name": "id_cronologia",
             "type": "string",
             "unique": true,
             "required": true
@@ -718,7 +674,13 @@
       },
       "attributes": [
         {
-          "name": "ruolo_profilato",
+          "name": "azione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_azione",
           "type": "string",
           "required": false,
           "unique": false
@@ -726,12 +688,12 @@
       ]
     },
     {
-      "label": "CONTIENE_COMANDO",
+      "label": "ACCEDE_AL_MENU",
       "source": {
-        "label": "Menu",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome",
+            "name": "identificativo_utente",
             "type": "string",
             "unique": true,
             "required": true
@@ -739,7 +701,7 @@
         ]
       },
       "target": {
-        "label": "Comando",
+        "label": "Piattaforma",
         "attributes": [
           {
             "name": "nome",
@@ -751,7 +713,40 @@
       },
       "attributes": [
         {
-          "name": "posizione",
+          "name": "sezione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "UTILIZZA_MANUALE",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "identificativo_utente",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Manuale",
+        "attributes": [
+          {
+            "name": "titolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "riferimento",
           "type": "string",
           "required": false,
           "unique": false

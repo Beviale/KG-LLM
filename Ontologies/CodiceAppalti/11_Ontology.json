@@ -1,11 +1,11 @@
 {
   "entities": [
     {
-      "label": "Articolo",
+      "label": "Legge",
       "attributes": [
         {
-          "name": "numero",
-          "type": "number",
+          "name": "numero_normativa",
+          "type": "string",
           "unique": true,
           "required": true
         },
@@ -14,20 +14,78 @@
           "type": "string",
           "unique": false,
           "required": false
-        }
-      ]
-    },
-    {
-      "label": "Legge",
-      "attributes": [
+        },
         {
-          "name": "numero",
+          "name": "data_emanazione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "anno",
           "type": "number",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "oggetto",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "Articolo",
+      "attributes": [
+        {
+          "name": "numero_articolo",
+          "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "data",
+          "name": "testo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "riferimenti",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "CodiceCivile",
+      "attributes": [
+        {
+          "name": "numero_riferimento",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
+          "type": "string",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "ProceduraDiAffidamento",
+      "attributes": [
+        {
+          "name": "identificativo_procedura",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ambito",
           "type": "string",
           "unique": false,
           "required": false
@@ -41,180 +99,55 @@
       ]
     },
     {
-      "label": "Codice",
+      "label": "FaseDiEsecuzione",
       "attributes": [
         {
-          "name": "nome",
+          "name": "codice_fase",
           "type": "string",
           "unique": true,
           "required": true
-        }
-      ]
-    },
-    {
-      "label": "Procedura",
-      "attributes": [
+        },
         {
           "name": "descrizione",
           "type": "string",
-          "unique": true,
-          "required": true
+          "unique": false,
+          "required": false
         }
       ]
     },
     {
-      "label": "AttivitaAmministrativa",
+      "label": "Contratto",
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "identificativo_contratto",
           "type": "string",
           "unique": true,
           "required": true
-        }
-      ]
-    },
-    {
-      "label": "Ambito",
-      "attributes": [
+        },
         {
-          "name": "descrizione",
+          "name": "oggetto",
           "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Ruolo",
-      "attributes": [
+          "unique": false,
+          "required": false
+        },
         {
-          "name": "nome",
+          "name": "fase_contrattuale",
           "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Fase",
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "unique": true,
-          "required": true
+          "unique": false,
+          "required": false
         }
       ]
     }
   ],
   "relations": [
     {
-      "label": "APPLICA_DISPOSIZIONI_A_ALLA_PROCEDURA_DI_AFFIDAMENTO",
-      "source": {
-        "label": "Legge",
-        "attributes": [
-          {
-            "name": "numero",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Procedura",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "note",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPLICA_DISPOSIZIONI_A_ALTRE_ATTIVITA_AMMINISTRATIVE",
-      "source": {
-        "label": "Legge",
-        "attributes": [
-          {
-            "name": "numero",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "AttivitaAmministrativa",
-        "attributes": [
-          {
-            "name": "descrizione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "note",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "APPLICA_DISPOSIZIONI_A_AL_CODICE_CIVILE",
-      "source": {
-        "label": "Legge",
-        "attributes": [
-          {
-            "name": "numero",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Codice",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "note",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERISCE_A",
+      "label": "RINVIO_ESTERNO",
       "source": {
         "label": "Articolo",
         "attributes": [
           {
-            "name": "numero",
-            "type": "number",
+            "name": "numero_articolo",
+            "type": "string",
             "unique": true,
             "required": true
           }
@@ -224,8 +157,8 @@
         "label": "Legge",
         "attributes": [
           {
-            "name": "numero",
-            "type": "number",
+            "name": "numero_normativa",
+            "type": "string",
             "unique": true,
             "required": true
           }
@@ -233,31 +166,31 @@
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "ambito",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "RIFERISCE_A",
+      "label": "RINVIO_ESTERNO",
       "source": {
         "label": "Articolo",
         "attributes": [
           {
-            "name": "numero",
-            "type": "number",
+            "name": "numero_articolo",
+            "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
       "target": {
-        "label": "Codice",
+        "label": "CodiceCivile",
         "attributes": [
           {
-            "name": "nome",
+            "name": "numero_riferimento",
             "type": "string",
             "unique": true,
             "required": true
@@ -266,20 +199,20 @@
       },
       "attributes": [
         {
-          "name": "descrizione",
+          "name": "ambito",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_RUOLO",
+      "label": "RINVIO_ESTERNO",
       "source": {
-        "label": "Ambito",
+        "label": "Legge",
         "attributes": [
           {
-            "name": "descrizione",
+            "name": "numero_normativa",
             "type": "string",
             "unique": true,
             "required": true
@@ -287,10 +220,10 @@
         ]
       },
       "target": {
-        "label": "Ruolo",
+        "label": "ProceduraDiAffidamento",
         "attributes": [
           {
-            "name": "nome",
+            "name": "identificativo_procedura",
             "type": "string",
             "unique": true,
             "required": true
@@ -299,20 +232,20 @@
       },
       "attributes": [
         {
-          "name": "note",
+          "name": "ambito",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_FASE",
+      "label": "RINVIO_ESTERNO",
       "source": {
-        "label": "Ambito",
+        "label": "Legge",
         "attributes": [
           {
-            "name": "descrizione",
+            "name": "numero_normativa",
             "type": "string",
             "unique": true,
             "required": true
@@ -320,10 +253,10 @@
         ]
       },
       "target": {
-        "label": "Fase",
+        "label": "CodiceCivile",
         "attributes": [
           {
-            "name": "descrizione",
+            "name": "numero_riferimento",
             "type": "string",
             "unique": true,
             "required": true
@@ -332,9 +265,9 @@
       },
       "attributes": [
         {
-          "name": "note",
+          "name": "ambito",
           "type": "string",
-          "required": false,
+          "required": true,
           "unique": false
         }
       ]

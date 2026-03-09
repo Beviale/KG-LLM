@@ -1,10 +1,10 @@
 {
   "entities": [
     {
-      "label": "Ecosistema",
+      "label": "EcosistemaNazionaleApprovvigionamentoDigitale",
       "attributes": [
         {
-          "name": "nome",
+          "name": "key",
           "type": "string",
           "unique": true,
           "required": true
@@ -15,7 +15,7 @@
       "label": "Piattaforma",
       "attributes": [
         {
-          "name": "nome",
+          "name": "key",
           "type": "string",
           "unique": true,
           "required": true
@@ -23,76 +23,10 @@
       ]
     },
     {
-      "label": "ServizioDigitale",
+      "label": "ServizioDigitaleInfrastrutturale",
       "attributes": [
         {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Atto",
-      "attributes": [
-        {
-          "name": "identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Documento",
-      "attributes": [
-        {
-          "name": "identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "BancaDatiNazionaleContrattiPubblici",
-      "attributes": [
-        {
-          "name": "nome",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Fascicolo",
-      "attributes": [
-        {
-          "name": "identificativo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "OperatoreEconomico",
-      "attributes": [
-        {
-          "name": "denominazione",
-          "type": "string",
-          "unique": true,
-          "required": true
-        }
-      ]
-    },
-    {
-      "label": "Offerta",
-      "attributes": [
-        {
-          "name": "numero_offerta",
+          "name": "key",
           "type": "string",
           "unique": true,
           "required": true
@@ -103,7 +37,7 @@
       "label": "StazioneAppaltante",
       "attributes": [
         {
-          "name": "denominazione",
+          "name": "key",
           "type": "string",
           "unique": true,
           "required": true
@@ -111,10 +45,10 @@
       ]
     },
     {
-      "label": "Appalto",
+      "label": "BancaDatiNazionaleContrattiPubblici",
       "attributes": [
         {
-          "name": "numero_appalto",
+          "name": "key",
           "type": "string",
           "unique": true,
           "required": true
@@ -122,10 +56,10 @@
       ]
     },
     {
-      "label": "Contratto",
+      "label": "DocumentoDiGaraUnicoEuropeo",
       "attributes": [
         {
-          "name": "numero_contratto",
+          "name": "key",
           "type": "string",
           "unique": true,
           "required": true
@@ -133,10 +67,76 @@
       ]
     },
     {
-      "label": "CPV",
+      "label": "FascicoloDiGara",
       "attributes": [
         {
-          "name": "codice_cpv",
+          "name": "key",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "FascicoloVirtualeOperatoreEconomico",
+      "attributes": [
+        {
+          "name": "key",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Offerta",
+      "attributes": [
+        {
+          "name": "key",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "DocumentoDiGara",
+      "attributes": [
+        {
+          "name": "key",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "key",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "ContrattoPubblico",
+      "attributes": [
+        {
+          "name": "key",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "Garanzia",
+      "attributes": [
+        {
+          "name": "key",
           "type": "string",
           "unique": true,
           "required": true
@@ -148,17 +148,28 @@
       "attributes": [
         {
           "name": "numero_articolo",
-          "type": "number",
+          "type": "string",
           "unique": true,
           "required": true
         }
       ]
     },
     {
-      "label": "Garanzia",
+      "label": "DecretoLegislativo",
       "attributes": [
         {
-          "name": "codice_garanzia",
+          "name": "numero_decreto",
+          "type": "string",
+          "unique": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "label": "CategoriaMerceologica",
+      "attributes": [
+        {
+          "name": "codice_cpv",
           "type": "string",
           "unique": true,
           "required": true
@@ -168,12 +179,12 @@
   ],
   "relations": [
     {
-      "label": "COMPONE_PIATTAFORMA",
+      "label": "COMPRENDE",
       "source": {
-        "label": "Ecosistema",
+        "label": "EcosistemaNazionaleApprovvigionamentoDigitale",
         "attributes": [
           {
-            "name": "nome",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
@@ -184,29 +195,22 @@
         "label": "Piattaforma",
         "attributes": [
           {
-            "name": "nome",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      "attributes": []
     },
     {
-      "label": "COMPONE_SERVIZIO_DIGITALE",
+      "label": "COMPRENDE",
       "source": {
-        "label": "Ecosistema",
+        "label": "EcosistemaNazionaleApprovvigionamentoDigitale",
         "attributes": [
           {
-            "name": "nome",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
@@ -214,98 +218,25 @@
         ]
       },
       "target": {
-        "label": "ServizioDigitale",
+        "label": "ServizioDigitaleInfrastrutturale",
         "attributes": [
           {
-            "name": "nome",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      "attributes": []
     },
     {
-      "label": "GESTISCE_DOCUMENTI",
+      "label": "PUBBLICA_E_TRANSMETTE_DATI",
       "source": {
         "label": "Piattaforma",
         "attributes": [
           {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "REDAZIONE_ATTI",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Atto",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PUBBLICA_SU_BANCADATI",
-      "source": {
-        "label": "Atto",
-        "attributes": [
-          {
-            "name": "identificativo",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
@@ -316,21 +247,14 @@
         "label": "BancaDatiNazionaleContrattiPubblici",
         "attributes": [
           {
-            "name": "nome",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      "attributes": []
     },
     {
       "label": "ACCESSO_ELETTRONICO_A_DOCUMENTAZIONE_GARA",
@@ -338,7 +262,7 @@
         "label": "Piattaforma",
         "attributes": [
           {
-            "name": "nome",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
@@ -346,65 +270,25 @@
         ]
       },
       "target": {
-        "label": "Documento",
+        "label": "DocumentoDiGara",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      "attributes": []
     },
     {
-      "label": "INTEROPERABILITA_FASCICOLO_OPERATORE_ECONOMICO",
+      "label": "PRESENTAZIONE_DELLA_OFFERTA",
       "source": {
         "label": "Piattaforma",
         "attributes": [
           {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Fascicolo",
-        "attributes": [
-          {
-            "name": "identificativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PRESENTA_OFFERTA",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": [
-          {
-            "name": "nome",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
@@ -415,29 +299,22 @@
         "label": "Offerta",
         "attributes": [
           {
-            "name": "numero_offerta",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      "attributes": []
     },
     {
-      "label": "GESTISCE_FASCICOLO_GARA_DIGITALE",
+      "label": "GESTIONE_FASCICOLO_GARA_DIGITALE",
       "source": {
         "label": "Piattaforma",
         "attributes": [
           {
-            "name": "nome",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
@@ -445,32 +322,25 @@
         ]
       },
       "target": {
-        "label": "Fascicolo",
+        "label": "FascicoloDiGara",
         "attributes": [
           {
-            "name": "identificativo",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      "attributes": []
     },
     {
-      "label": "CONTROLLA_CONTRATTI",
+      "label": "INTEROPERIBILITA_CON_FASCICOLO_VIRTUALE_OPERATORE_ECONOMICO",
       "source": {
         "label": "Piattaforma",
         "attributes": [
           {
-            "name": "nome",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
@@ -478,32 +348,51 @@
         ]
       },
       "target": {
-        "label": "Contratto",
+        "label": "FascicoloVirtualeOperatoreEconomico",
         "attributes": [
           {
-            "name": "numero_contratto",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      "attributes": []
     },
     {
-      "label": "GESTIONE_GARANZIE",
+      "label": "CONTROLLI_TECNICO_CONTABILE_AMMINISTRATIVO_DEI_CONTRATTI",
       "source": {
-        "label": "Contratto",
+        "label": "ServizioDigitaleInfrastrutturale",
         "attributes": [
           {
-            "name": "numero_contratto",
+            "name": "key",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "ContrattoPubblico",
+        "attributes": [
+          {
+            "name": "key",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": []
+    },
+    {
+      "label": "GESTIONE_GARANZE",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": [
+          {
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
@@ -514,29 +403,22 @@
         "label": "Garanzia",
         "attributes": [
           {
-            "name": "codice_garanzia",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      "attributes": []
     },
     {
-      "label": "ALIMENTA_ECOSISTEMA",
+      "label": "UTILIZZA_PIATTAFORMA",
       "source": {
-        "label": "BancaDatiNazionaleContrattiPubblici",
+        "label": "StazioneAppaltante",
         "attributes": [
           {
-            "name": "nome",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
@@ -544,32 +426,25 @@
         ]
       },
       "target": {
-        "label": "Ecosistema",
+        "label": "Piattaforma",
         "attributes": [
           {
-            "name": "nome",
+            "name": "key",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      "attributes": []
     },
     {
-      "label": "RIFERIMENTO_ARTICOLO_60",
+      "label": "INDICA_ARTICOLO_DEI_DECRETI",
       "source": {
-        "label": "Ecosistema",
+        "label": "DecretoLegislativo",
         "attributes": [
           {
-            "name": "nome",
+            "name": "numero_decreto",
             "type": "string",
             "unique": true,
             "required": true
@@ -581,86 +456,13 @@
         "attributes": [
           {
             "name": "numero_articolo",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERIMENTO_ARTICOLO_23",
-      "source": {
-        "label": "Ecosistema",
-        "attributes": [
-          {
-            "name": "nome",
             "type": "string",
             "unique": true,
             "required": true
           }
         ]
       },
-      "target": {
-        "label": "Articolo",
-        "attributes": [
-          {
-            "name": "numero_articolo",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RIFERIMENTO_ARTICOLO_25",
-      "source": {
-        "label": "Ecosistema",
-        "attributes": [
-          {
-            "name": "nome",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Articolo",
-        "attributes": [
-          {
-            "name": "numero_articolo",
-            "type": "number",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "descrizione",
-          "type": "string",
-          "required": false,
-          "unique": false
-        }
-      ]
+      "attributes": []
     }
   ]
 }

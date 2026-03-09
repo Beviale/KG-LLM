@@ -1,28 +1,16 @@
 {
   "entities": [
     {
-      "label": "Documento",
+      "label": "Utente",
       "attributes": [
         {
-          "name": "titolo_documento",
+          "name": "ruolo",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "data_invio",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "tipo_documento",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "registro_di_sistema",
+          "name": "nome",
           "type": "string",
           "unique": false,
           "required": false
@@ -30,7 +18,7 @@
       ]
     },
     {
-      "label": "OrdinativoDiFornitura",
+      "label": "OrdinativoFornitura",
       "attributes": [
         {
           "name": "titolo_ordinativo",
@@ -39,13 +27,25 @@
           "required": true
         },
         {
-          "name": "valore_totale",
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "importo_totale",
           "type": "number",
           "unique": false,
           "required": false
         },
         {
-          "name": "stato",
+          "name": "tipo_ordinativo",
           "type": "string",
           "unique": false,
           "required": false
@@ -56,13 +56,25 @@
       "label": "RichiestaAnnullamento",
       "attributes": [
         {
-          "name": "id_richiesta",
+          "name": "titolo_documento",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
+          "name": "stato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
           "name": "data_invio",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "registro_sistema",
           "type": "string",
           "unique": false,
           "required": false
@@ -75,40 +87,6 @@
         },
         {
           "name": "note_approvatore",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Ruolo",
-      "attributes": [
-        {
-          "name": "nome_ruolo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione_ruolo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Comando",
-      "attributes": [
-        {
-          "name": "nome_comando",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "posizione_toolbar",
           "type": "string",
           "unique": false,
           "required": false
@@ -141,6 +119,64 @@
           "type": "number",
           "unique": false,
           "required": false
+        },
+        {
+          "name": "quota_richiesta",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": [
+        {
+          "name": "codice_fiscale",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "ragione_sociale",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "registrato",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "AffidamentoDiretto",
+      "attributes": [
+        {
+          "name": "oggetto_ad",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "CUP",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "luogo_istat",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "codice_CPV",
+          "type": "string",
+          "unique": false,
+          "required": false
         }
       ]
     },
@@ -154,7 +190,13 @@
           "required": true
         },
         {
-          "name": "tipo_cig",
+          "name": "tipo",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "stato",
           "type": "string",
           "unique": false,
           "required": false
@@ -162,45 +204,16 @@
       ]
     },
     {
-      "label": "CUP",
+      "label": "PCP",
       "attributes": [
         {
-          "name": "cup",
+          "name": "nome",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "importo_affidamento",
-          "type": "number",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "AffidamentoDiretto",
-      "attributes": [
-        {
-          "name": "titolo_ad",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "luogo_istat",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "codice_cpv",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "stato_transmissione",
+          "name": "endpoint",
           "type": "string",
           "unique": false,
           "required": false
@@ -208,67 +221,16 @@
       ]
     },
     {
-      "label": "ANAC",
+      "label": "CronologiaPCP",
       "attributes": [
         {
-          "name": "nome_anac",
+          "name": "nome_cronologia",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "descrizione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "GruppoFunzionale",
-      "attributes": [
-        {
-          "name": "nome_gruppo",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione_gruppo",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "Tabella",
-      "attributes": [
-        {
-          "name": "nome_tabella",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "campi_visualizzati",
-          "type": "string",
-          "unique": false,
-          "required": false
-        }
-      ]
-    },
-    {
-      "label": "StatoDocumento",
-      "attributes": [
-        {
-          "name": "nome_stato",
-          "type": "string",
-          "unique": true,
-          "required": true
-        },
-        {
-          "name": "descrizione_stato",
+          "name": "dettagli",
           "type": "string",
           "unique": false,
           "required": false
@@ -285,7 +247,13 @@
           "required": true
         },
         {
-          "name": "firmato_digitalmente",
+          "name": "formato",
+          "type": "string",
+          "unique": false,
+          "required": false
+        },
+        {
+          "name": "firmato",
           "type": "boolean",
           "unique": false,
           "required": false
@@ -293,16 +261,16 @@
       ]
     },
     {
-      "label": "OperatoreEconomico",
+      "label": "Comando",
       "attributes": [
         {
-          "name": "identificativo_oe",
+          "name": "nome_comando",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "forma_giuridica",
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -310,22 +278,16 @@
       ]
     },
     {
-      "label": "OperazioneStorico",
+      "label": "Tabella",
       "attributes": [
         {
-          "name": "id_operazione",
+          "name": "nome_tabella",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "data_operazione",
-          "type": "string",
-          "unique": false,
-          "required": false
-        },
-        {
-          "name": "utente_operazione",
+          "name": "filtri",
           "type": "string",
           "unique": false,
           "required": false
@@ -333,16 +295,50 @@
       ]
     },
     {
-      "label": "PCP",
+      "label": "QuadroEconomico",
       "attributes": [
         {
-          "name": "nome_pcp",
+          "name": "riferimento_quadro",
           "type": "string",
           "unique": true,
           "required": true
         },
         {
-          "name": "cronologia",
+          "name": "importi",
+          "type": "number",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "RegistroDiSistema",
+      "attributes": [
+        {
+          "name": "nome_registro",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "presente",
+          "type": "boolean",
+          "unique": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "StatoDocumento",
+      "attributes": [
+        {
+          "name": "nome",
+          "type": "string",
+          "unique": true,
+          "required": true
+        },
+        {
+          "name": "descrizione",
           "type": "string",
           "unique": false,
           "required": false
@@ -352,9 +348,9 @@
   ],
   "relations": [
     {
-      "label": "DOCUMENTO_RIFERISCE_A",
+      "label": "CREATA_DA",
       "source": {
-        "label": "Documento",
+        "label": "RichiestaAnnullamento",
         "attributes": [
           {
             "name": "titolo_documento",
@@ -365,43 +361,10 @@
         ]
       },
       "target": {
-        "label": "OrdinativoDiFornitura",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "titolo_ordinativo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "tipo_documento",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "RICHIESTA_CREATA_DA",
-      "source": {
-        "label": "RichiestaAnnullamento",
-        "attributes": [
-          {
-            "name": "id_richiesta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome_ruolo",
+            "name": "ruolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -418,12 +381,12 @@
       ]
     },
     {
-      "label": "RICHIESTA_INVIATA_A",
+      "label": "INVIATA_A",
       "source": {
         "label": "RichiestaAnnullamento",
         "attributes": [
           {
-            "name": "id_richiesta",
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -431,10 +394,10 @@
         ]
       },
       "target": {
-        "label": "Ruolo",
+        "label": "Utente",
         "attributes": [
           {
-            "name": "nome_ruolo",
+            "name": "ruolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -449,7 +412,52 @@
           "unique": false
         },
         {
-          "name": "modalita_invio",
+          "name": "notifica_inviata",
+          "type": "boolean",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "VALUTA",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "ruolo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RichiestaAnnullamento",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "esito",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "data_valutazione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "note",
           "type": "string",
           "required": false,
           "unique": false
@@ -457,9 +465,9 @@
       ]
     },
     {
-      "label": "HA_STATO",
+      "label": "AGGIORNA_STATO",
       "source": {
-        "label": "Documento",
+        "label": "RichiestaAnnullamento",
         "attributes": [
           {
             "name": "titolo_documento",
@@ -470,10 +478,10 @@
         ]
       },
       "target": {
-        "label": "StatoDocumento",
+        "label": "OrdinativoFornitura",
         "attributes": [
           {
-            "name": "nome_stato",
+            "name": "titolo_ordinativo",
             "type": "string",
             "unique": true,
             "required": true
@@ -482,17 +490,101 @@
       },
       "attributes": [
         {
+          "name": "stato",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
           "name": "data_aggiornamento",
           "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "INVIA_NOTIFICA",
+      "source": {
+        "label": "RichiestaAnnullamento",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "canale",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "email_inviata",
+          "type": "boolean",
           "required": true,
           "unique": false
         }
       ]
     },
     {
-      "label": "APPARTIENE_A",
+      "label": "ALLEGA_A",
       "source": {
-        "label": "OrdinativoDiFornitura",
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RichiestaAnnullamento",
+        "attributes": [
+          {
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "tipo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data_allegato",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "COLLEGATO_A",
+      "source": {
+        "label": "OrdinativoFornitura",
         "attributes": [
           {
             "name": "titolo_ordinativo",
@@ -523,7 +615,178 @@
       ]
     },
     {
-      "label": "APPLICATO_SU",
+      "label": "DERIVA_DA",
+      "source": {
+        "label": "AffidamentoDiretto",
+        "attributes": [
+          {
+            "name": "oggetto_ad",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "Convenzione",
+        "attributes": [
+          {
+            "name": "titolo_convenzione",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "cig_padre",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "RICHIEDE_CIG",
+      "source": {
+        "label": "AffidamentoDiretto",
+        "attributes": [
+          {
+            "name": "oggetto_ad",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "azione",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "name": "esito",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "TRACCIA_PCP",
+      "source": {
+        "label": "PCP",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "CronologiaPCP",
+        "attributes": [
+          {
+            "name": "nome_cronologia",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "dettagli",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ALLEGATO_DISPONIBILE_A",
+      "source": {
+        "label": "Allegato",
+        "attributes": [
+          {
+            "name": "nome_file",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "accesso",
+          "type": "string",
+          "required": true,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "AGGIUDICATO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": [
+          {
+            "name": "codice_fiscale",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "AffidamentoDiretto",
+        "attributes": [
+          {
+            "name": "oggetto_ad",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "ruolo",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "ESEGUE_SU",
       "source": {
         "label": "Comando",
         "attributes": [
@@ -536,7 +799,7 @@
         ]
       },
       "target": {
-        "label": "Documento",
+        "label": "RichiestaAnnullamento",
         "attributes": [
           {
             "name": "titolo_documento",
@@ -548,7 +811,7 @@
       },
       "attributes": [
         {
-          "name": "posizione",
+          "name": "descrizione",
           "type": "string",
           "required": false,
           "unique": false
@@ -556,9 +819,53 @@
       ]
     },
     {
-      "label": "INVIA_NOTIFICA",
+      "label": "VISUALIZZA",
       "source": {
-        "label": "Documento",
+        "label": "Comando",
+        "attributes": [
+          {
+            "name": "nome_comando",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "OrdinativoFornitura",
+        "attributes": [
+          {
+            "name": "titolo_ordinativo",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "descrizione",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "MOSTRA_TABLA",
+      "source": {
+        "label": "Tabella",
+        "attributes": [
+          {
+            "name": "nome_tabella",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "RichiestaAnnullamento",
         "attributes": [
           {
             "name": "titolo_documento",
@@ -568,99 +875,22 @@
           }
         ]
       },
-      "target": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome_ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
       "attributes": [
         {
-          "name": "motivo",
+          "name": "filtro",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "APPROVA",
-      "source": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome_ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RichiestaAnnullamento",
-        "attributes": [
-          {
-            "name": "id_richiesta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "effetti",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "NON_APPROVA",
-      "source": {
-        "label": "Ruolo",
-        "attributes": [
-          {
-            "name": "nome_ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "RichiestaAnnullamento",
-        "attributes": [
-          {
-            "name": "id_richiesta",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "motivo_rifiuto",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ASSOCIA_CIG",
+      "label": "CONTIENE_QUADRO",
       "source": {
         "label": "AffidamentoDiretto",
         "attributes": [
           {
-            "name": "titolo_ad",
+            "name": "oggetto_ad",
             "type": "string",
             "unique": true,
             "required": true
@@ -668,10 +898,10 @@
         ]
       },
       "target": {
-        "label": "CIG",
+        "label": "QuadroEconomico",
         "attributes": [
           {
-            "name": "cig",
+            "name": "riferimento_quadro",
             "type": "string",
             "unique": true,
             "required": true
@@ -682,18 +912,18 @@
         {
           "name": "tipo",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "RICHIEDE_CIG",
+      "label": "REGISTRA_OPERAZIONE",
       "source": {
-        "label": "Comando",
+        "label": "RichiestaAnnullamento",
         "attributes": [
           {
-            "name": "nome_comando",
+            "name": "titolo_documento",
             "type": "string",
             "unique": true,
             "required": true
@@ -701,10 +931,10 @@
         ]
       },
       "target": {
-        "label": "AffidamentoDiretto",
+        "label": "RegistroDiSistema",
         "attributes": [
           {
-            "name": "titolo_ad",
+            "name": "nome_registro",
             "type": "string",
             "unique": true,
             "required": true
@@ -713,20 +943,59 @@
       },
       "attributes": [
         {
-          "name": "requisito_rup_accesso",
+          "name": "presente",
           "type": "boolean",
-          "required": true,
+          "required": false,
+          "unique": false
+        },
+        {
+          "name": "data",
+          "type": "string",
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "ANNULLA_AFFIDAMENTO",
+      "label": "HA_STATO",
       "source": {
-        "label": "Comando",
+        "label": "RichiestaAnnullamento",
         "attributes": [
           {
-            "name": "nome_comando",
+            "name": "titolo_documento",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "target": {
+        "label": "StatoDocumento",
+        "attributes": [
+          {
+            "name": "nome",
+            "type": "string",
+            "unique": true,
+            "required": true
+          }
+        ]
+      },
+      "attributes": [
+        {
+          "name": "data",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "label": "HA_ACCESSO",
+      "source": {
+        "label": "Utente",
+        "attributes": [
+          {
+            "name": "ruolo",
             "type": "string",
             "unique": true,
             "required": true
@@ -737,7 +1006,7 @@
         "label": "AffidamentoDiretto",
         "attributes": [
           {
-            "name": "titolo_ad",
+            "name": "oggetto_ad",
             "type": "string",
             "unique": true,
             "required": true
@@ -746,53 +1015,20 @@
       },
       "attributes": [
         {
-          "name": "scheda_inviata",
+          "name": "ruolo_utente",
           "type": "string",
-          "required": true,
+          "required": false,
           "unique": false
         }
       ]
     },
     {
-      "label": "HA_ACCESSO_A",
+      "label": "EXPORTA",
       "source": {
-        "label": "Ruolo",
+        "label": "Comando",
         "attributes": [
           {
-            "name": "nome_ruolo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "GruppoFunzionale",
-        "attributes": [
-          {
-            "name": "nome_gruppo",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "permesso",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "MOSTRA",
-      "source": {
-        "label": "GruppoFunzionale",
-        "attributes": [
-          {
-            "name": "nome_gruppo",
+            "name": "nome_comando",
             "type": "string",
             "unique": true,
             "required": true
@@ -812,106 +1048,7 @@
       },
       "attributes": [
         {
-          "name": "filtro_enabled",
-          "type": "boolean",
-          "required": false,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "ALLEGA",
-      "source": {
-        "label": "Allegato",
-        "attributes": [
-          {
-            "name": "nome_file",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "firmato_digitalmente",
-          "type": "boolean",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "REGISTRA_OPERAZIONE",
-      "source": {
-        "label": "OperazioneStorico",
-        "attributes": [
-          {
-            "name": "id_operazione",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "Documento",
-        "attributes": [
-          {
-            "name": "titolo_documento",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "data_operazione",
-          "type": "string",
-          "required": true,
-          "unique": false
-        }
-      ]
-    },
-    {
-      "label": "PCP_TRACCIA",
-      "source": {
-        "label": "PCP",
-        "attributes": [
-          {
-            "name": "nome_pcp",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "target": {
-        "label": "AffidamentoDiretto",
-        "attributes": [
-          {
-            "name": "titolo_ad",
-            "type": "string",
-            "unique": true,
-            "required": true
-          }
-        ]
-      },
-      "attributes": [
-        {
-          "name": "esiti",
+          "name": "formato",
           "type": "string",
           "required": false,
           "unique": false
