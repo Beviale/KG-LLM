@@ -1,0 +1,248 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "157",
+        "snippet": "Art. 157. (Procedura negoziata con pubblicazione di un bando)"
+      }
+    },
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "169",
+        "snippet": "articolo 169, comma 2"
+      }
+    },
+    {
+      "label": "RiferimentoNormativo",
+      "attributes": {
+        "numero_articolo_riferimento": 169,
+        "snippet": "secondo quanto previsto dall'articolo 169, comma 2."
+      }
+    },
+    {
+      "label": "Avviso",
+      "attributes": {
+        "id_avviso": "AV-INDIZIONE-1",
+        "snippet": "avviso di indizione di gara"
+      }
+    },
+    {
+      "label": "Bando",
+      "attributes": {
+        "id_bando": "BANDO-INDIZIONE-1",
+        "snippet": "bando di gara"
+      }
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": {
+        "codice_stazione_appaltante": "SA-001",
+        "snippet": "stazione appaltante"
+      }
+    },
+    {
+      "label": "PubblicaAmministrazione",
+      "attributes": {
+        "denominazione": "EnteConcedente",
+        "snippet": "ente concedente"
+      }
+    },
+    {
+      "label": "Appalto",
+      "attributes": {
+        "identificativo_appalto": "APPALTO_1",
+        "snippet": "appalto associato al bando"
+      }
+    },
+    {
+      "label": "Procedura",
+      "attributes": {
+        "id_procedura": "PROC_1",
+        "snippet": "Procedura negoziata con pubblicazione di un bando"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_153",
+        "text": "\nArt. 157. (Procedura negoziata con pubblicazione di un bando)\n\n1. Nelle procedure negoziate con pubblicazione di un bando qualsiasi operatore economico può presentare una domanda di partecipazione in risposta a un avviso di indizione di gara, fornendo le informazioni richieste dalla stazione appaltante o dall’ente concedente.\n\n2. Il termine minimo per la ricezione delle domande di partecipazione è fissato di norma in non meno di trenta giorni dalla data di trasmissione del bando di gara o, se come mezzo di indizione di gara è usato un avviso periodico indicativo, dalla data dell'invito a confermare interesse e non è in alcun caso inferiore a quindici giorni.\n\n3. Soltanto gli operatori economici invitati dalla stazione appaltante o dall’ente concedente in seguito alla valutazione delle informazioni fornite partecipano alle negoziazioni. Le stazioni appaltanti e gli enti concedenti possono limitare il numero di candidati idonei da invitare a partecipare alla procedura secondo quanto previsto dall'articolo 169, comma 2.\n\n4. Il termine per la ricezione delle offerte può essere fissato d'accordo tra la stazione appaltante o l’ente concedente e tutti i candidati selezionati, purché questi ultimi dispongano di un termine identico per redigere e presentare le loro offerte. In assenza di un accordo sul termine per la ricezione delle offerte, questo non è inferiore a dieci giorni dalla data di invio dell'invito a presentare offerte.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "EMETTE_AVVISO_DI_GARA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "SA-001"
+        }
+      },
+      "target": {
+        "label": "Avviso",
+        "attributes": {
+          "id_avviso": "AV-INDIZIONE-1"
+        }
+      },
+      "attributes": {
+        "contenuto_riferimento": "avviso di indizione di gara",
+        "snippet": "La stazione appaltante SA-001 emette l'avviso di gara."
+      }
+    },
+    {
+      "label": "INDICA_RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "157"
+        }
+      },
+      "target": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 169
+        }
+      },
+      "attributes": {
+        "snippet": "Articolo 157 si riferisce al riferimento normativo articolo 169, comma 2."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "157"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_153"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "169"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_153"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 169
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_153"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Avviso",
+        "attributes": {
+          "id_avviso": "AV-INDIZIONE-1"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_153"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Bando",
+        "attributes": {
+          "id_bando": "BANDO-INDIZIONE-1"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_153"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "SA-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_153"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "PubblicaAmministrazione",
+        "attributes": {
+          "denominazione": "EnteConcedente"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_153"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APPALTO_1"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_153"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "PROC_1"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_153"
+        }
+      }
+    }
+  ]
+}

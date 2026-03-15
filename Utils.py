@@ -471,6 +471,7 @@ def check_duplicated_relation(json_relations, json_ontology, errors):
             continue
         id = id + f"target_label:'{target_label}', "
         
+        relation_ontology_schema = None
         if relation_label is not None and source_label is not None and target_label is not None:
             for relation_ontology in json_ontology['relations']:
                 relation_label_ontology = relation_ontology.get("label")

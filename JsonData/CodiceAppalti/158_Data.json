@@ -1,0 +1,269 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "162",
+        "snippet": "Art. 162. (Avvisi sull'esistenza di un sistema di qualificazione)"
+      }
+    },
+    {
+      "label": "Allegato",
+      "attributes": {
+        "id_allegato": "Allegato_II6",
+        "numero_allegato": "II.6",
+        "snippet": "allegato II.6, Parte II, Sezione H"
+      }
+    },
+    {
+      "label": "Norma",
+      "attributes": {
+        "codice_norma": "ARTICOLO_84",
+        "descrizione": "Norma riferita all'articolo 84",
+        "snippet": "articolo 84 di qualsiasi cambiamento di tale periodo di efficacia"
+      }
+    },
+    {
+      "label": "Norma",
+      "attributes": {
+        "codice_norma": "ARTICOLO_14",
+        "descrizione": "Norma riferita all'articolo 14",
+        "snippet": "articolo 14"
+      }
+    },
+    {
+      "label": "RiferimentoNormativo",
+      "attributes": {
+        "numero_articolo_riferimento": 84,
+        "rif_id": "RIF84",
+        "snippet": "Riferimento normativo al numero 84 citato nel testo"
+      }
+    },
+    {
+      "label": "RiferimentoNormativo",
+      "attributes": {
+        "numero_articolo_riferimento": 14,
+        "rif_id": "RIF14",
+        "snippet": "Riferimento normativo al numero 14 citato nel testo"
+      }
+    },
+    {
+      "label": "DecretoLegislativo",
+      "attributes": {
+        "identificatore_normativo": "DECRETO_84",
+        "snippet": "Decreto legislativo relativo all'articolo 84 citato nel testo"
+      }
+    },
+    {
+      "label": "Appalto",
+      "attributes": {
+        "identificativo_appalto": "APPALTO_ESEMPIO_1",
+        "snippet": "Appalto di esempio relativo al testo sull'avviso e al sistema di qualificazione."
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_158",
+        "text": "\nArt. 162. (Avvisi sull'esistenza di un sistema di qualificazione)\n\n1. Le stazioni appaltanti e gli enti concedenti possono istituire e gestire un proprio sistema di qualificazione degli operatori economici. Il sistema è reso pubblico con un avviso di cui all'allegato II.6, Parte II, Sezione H, indicando le finalità e le modalità per conoscere le disposizioni relative al funzionamento. Le stazioni appaltanti e gli enti concedenti possono utilizzare il sistema di qualificazione istituito da un'altra stazione appaltante o ente concedente o da altro organismo terzo, dandone idonea comunicazione agli operatori economici interessati.\n\n2. Quando è indetta una gara con un avviso di cui al comma 1, gli offerenti in una procedura ristretta, o i partecipanti in una procedura negoziata, sono selezionati tra i candidati qualificati con tale sistema.\n\n3. Le stazioni appaltanti e gli enti concedenti indicano nell'avviso sull'esistenza del sistema il periodo di efficacia del sistema di qualificazione. Per gli appalti di importo pari o superiore alle soglie di cui all'articolo 14, essi informano l'Ufficio delle pubblicazioni dell'Unione europea secondo le modalità di cui all’articolo 84 di qualsiasi cambiamento di tale periodo di efficacia utilizzando i seguenti modelli di formulari:\n\na) se il periodo di efficacia è modificato senza porre fine al sistema, il modello utilizzato inizialmente per gli avvisi sull'esistenza dei sistemi di qualificazione;\nb) se è posto termine al sistema, un avviso di aggiudicazione di cui all'articolo 163.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDICA_RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "162"
+        }
+      },
+      "target": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 84
+        }
+      },
+      "attributes": {
+        "descrizione": "Connessione tra Articolo 162 e RiferimentoNormativo 84",
+        "snippet": "Art. 162 indica un riferimento all'articolo 84."
+      }
+    },
+    {
+      "label": "INDICA_RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "162"
+        }
+      },
+      "target": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 14
+        }
+      },
+      "attributes": {
+        "descrizione": "Connessione tra Articolo 162 e RiferimentoNormativo 14",
+        "snippet": "Art. 162 indica un riferimento all'articolo 14."
+      }
+    },
+    {
+      "label": "PUBBLICAZIONE_SECONDO_DECRETO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "162"
+        }
+      },
+      "target": {
+        "label": "DecretoLegislativo",
+        "attributes": {
+          "identificatore_normativo": "DECRETO_84"
+        }
+      },
+      "attributes": {
+        "snippet": "secondo le modalità di cui all’articolo 84 di qualsiasi cambiamento di tale periodo di efficacia utilizzando i seguenti modelli di formulari:"
+      }
+    },
+    {
+      "label": "RIFERIMENTO_NORMATIVA_ALLEGATO",
+      "source": {
+        "label": "Allegato",
+        "attributes": {
+          "id_allegato": "Allegato_II6"
+        }
+      },
+      "target": {
+        "label": "Norma",
+        "attributes": {
+          "codice_norma": "ARTICOLO_84"
+        }
+      },
+      "attributes": {
+        "descrizione_riferimento": "Allegato II6 riferisce all'articolo 84",
+        "snippet": "Allegato II.6 riferisce all'articolo 84."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "162"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_158"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Allegato",
+        "attributes": {
+          "id_allegato": "Allegato_II6"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_158"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Norma",
+        "attributes": {
+          "codice_norma": "ARTICOLO_84"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_158"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Norma",
+        "attributes": {
+          "codice_norma": "ARTICOLO_14"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_158"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 84
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_158"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 14
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_158"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "DecretoLegislativo",
+        "attributes": {
+          "identificatore_normativo": "DECRETO_84"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_158"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APPALTO_ESEMPIO_1"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_158"
+        }
+      }
+    }
+  ]
+}

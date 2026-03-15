@@ -56,19 +56,22 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
     #client = FalkorDB(**client_kwargs)
     model = LiteModel(model_name=model_name)
 
-    """
+    codice_appalti_ontology_filename = "Ontologies/CodiceAppalti/Ontology.json"
+    with open(codice_appalti_ontology_filename, "r", encoding="utf-8") as file:
+        text_ontology = file.read()
+    json_ontology = json.loads(text_ontology)
+    codice_appalti_ontology = Ontology.from_json(json_ontology)
     codice_appalti = KnowledgeGraph(
         name="CodiceAppalti",
         model_config=KnowledgeGraphModelConfig.with_model(model),
         host=host,
         port=port,
-        username=username, 
-        password=password 
+        ontology=codice_appalti_ontology
     )
     if codice_appalti==None:
         print(f"{Fore.RED} An error occured while instantiating the 'CodiceAppalti' KG!")
         return None
-    """
+    
     disciplina_di_utilizzo_ontology_filename = "Ontologies/DisciplinaDiUtilizzo/Ontology.json"
     with open(disciplina_di_utilizzo_ontology_filename, "r", encoding="utf-8") as file:
         text_ontology = file.read()
@@ -80,8 +83,6 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
         host=host,
         port=port,
         ontology=disciplina_di_utilizzo_ontology
-        #username=username, 
-        #password=password 
     )
     if disciplina_utilizzo==None:
         print(f"{Fore.RED} An error occured while instantiating the 'DisciplinaDiUtilizzo' KG!")
@@ -147,14 +148,12 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
         return None
     """
 
-
-    """
     codice_appalti_agent = KGAgent(
         agent_id="CodiceAppaltiAgent",
         kg=codice_appalti,
         introduction="Sono un agente esperto nel rispondere a domande relative all'intero Codice degli appalti italiano.",
     )
-    """
+    
     disciplina_utilizzo_agent = KGAgent(
         agent_id="DisciplinaDiUtilizzoAgent",
         kg=disciplina_utilizzo,
@@ -194,7 +193,7 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
     )
 
     # Register the agents that we created above.
-    #orchestrator.register_agent(codice_appalti_agent)
+    orchestrator.register_agent(codice_appalti_agent)
     orchestrator.register_agent(disciplina_utilizzo_agent)
     orchestrator.register_agent(guide_praticheOE_Agent)
     #orchestrator.register_agent(guide_praticheSA_Agent)

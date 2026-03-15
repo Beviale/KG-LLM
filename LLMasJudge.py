@@ -13,15 +13,15 @@ def main():
     number_of_tests = int(input("Choose the number of tests: "))
     correct_answers = 0
     total_answers = 0
-    categories = ["CodiceAppalti", "FAQ", "GuidePraticheOE", "GuidePraticheSA", "Normativa"]
-    category = random.choice(categories)
-    directory = Path(f"InputPDFtoText/{category}")
-    all_text_paths = list(directory.rglob("*.txt"))
+    categories = ["DisciplinaDiUtilizzo", "CodiceAppalti", "FAQ", "GuidePraticheOE"]
     model = "openai/gpt-5-nano"
     orchestrator = None
     results_filename = "Results.csv"
 
     for i in range(number_of_tests):
+        category = random.choice(categories)
+        directory = Path(f"InputPDFtoText/{category}")
+        all_text_paths = list(directory.rglob("*.txt"))
         text_path = random.choice(all_text_paths) # We choose randomly a .txt file of any category
         with open(text_path, "r", encoding="utf-8") as file:
             text = file.read()
@@ -30,7 +30,7 @@ def main():
         else:
             chunks = GenerateKG.split_text_chunks(text, False)
         chunk = random.choice(chunks)
-        print("Consutrcting the question...")
+        print("Constructing the question...")
         question_to_ask = completion(
                             model=model,
                             messages=[
