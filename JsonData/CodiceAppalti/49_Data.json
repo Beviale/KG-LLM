@@ -1,0 +1,138 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "51",
+        "snippet": "Art. 51. (Commissione giudicatrice)"
+      }
+    },
+    {
+      "label": "Commissione",
+      "attributes": {
+        "id_commissione": "commissione_giudicatrice_51",
+        "snippet": "Art. 51. (Commissione giudicatrice)"
+      }
+    },
+    {
+      "label": "PersonaFisica",
+      "attributes": {
+        "codice_fiscale": "RUP_51",
+        "snippet": "RUP, anche in qualità di presidente."
+      }
+    },
+    {
+      "label": "CriterioAggiudicazione",
+      "attributes": {
+        "nome_criterio": "offerta economicamente più vantaggiosa",
+        "snippet": "con il criterio dell'offerta economicamente più vantaggiosa"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_49",
+        "text": "\nArt. 51. (Commissione giudicatrice)\n\n1. Nel caso di aggiudicazione dei contratti di cui alla presente Parte con il criterio dell'offerta economicamente più vantaggiosa, alla commissione giudicatrice può partecipare il RUP, anche in qualità di presidente.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDICA_CRITERIO_A",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "51"
+        }
+      },
+      "target": {
+        "label": "CriterioAggiudicazione",
+        "attributes": {
+          "nome_criterio": "offerta economicamente più vantaggiosa"
+        }
+      },
+      "attributes": {
+        "snippet": "Articolo 51 indica il criterio dell'offerta economicamente più vantaggiosa."
+      }
+    },
+    {
+      "label": "PRESIDENTE_DI_COMMISSIONE",
+      "source": {
+        "label": "Commissione",
+        "attributes": {
+          "id_commissione": "commissione_giudicatrice_51"
+        }
+      },
+      "target": {
+        "label": "PersonaFisica",
+        "attributes": {
+          "codice_fiscale": "RUP_51"
+        }
+      },
+      "attributes": {
+        "ruolo": "presidente",
+        "snippet": "RUP, anche in qualità di presidente."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "51"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_49"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Commissione",
+        "attributes": {
+          "id_commissione": "commissione_giudicatrice_51"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_49"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "PersonaFisica",
+        "attributes": {
+          "codice_fiscale": "RUP_51"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_49"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "CriterioAggiudicazione",
+        "attributes": {
+          "nome_criterio": "offerta economicamente più vantaggiosa"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_49"
+        }
+      }
+    }
+  ]
+}

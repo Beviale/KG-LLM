@@ -1,0 +1,354 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "101",
+        "snippet": "Art. 101. (Soccorso istruttorio)"
+      }
+    },
+    {
+      "label": "Principio",
+      "attributes": {
+        "nome": "SoccorsoIstruttorio",
+        "snippet": "Soccorso istruttorio"
+      }
+    },
+    {
+      "label": "RiferimentoNormativo",
+      "attributes": {
+        "numero_articolo_riferimento": 101,
+        "snippet": "Riferimento normativo relativo all'articolo 101"
+      }
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": {
+        "codice_stazione_appaltante": "SA-001",
+        "denominazione": "StazioneAppaltante",
+        "snippet": "La stazione appaltante assegna un termine non inferiore a cinque giorni e non superiore a dieci giorni per:"
+      }
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": {
+        "partita_iva": "OP-001",
+        "snippet": "Operatore economico"
+      }
+    },
+    {
+      "label": "FascicoloVirtualeOperatoreEconomico",
+      "attributes": {
+        "id_fascicolo_virtuale": "FV-001",
+        "snippet": "Fascicolo virtuale dell’operatore economico nel testo"
+      }
+    },
+    {
+      "label": "Appalto",
+      "attributes": {
+        "identificativo_appalto": "APP-001",
+        "snippet": "Appalto citato nel testo"
+      }
+    },
+    {
+      "label": "Procedura",
+      "attributes": {
+        "id_procedura": "PROC-101",
+        "snippet": "Procedura di gara"
+      }
+    },
+    {
+      "label": "Documento",
+      "attributes": {
+        "id_documento": "DOC-101",
+        "key": "DOC-101-KEY",
+        "snippet": "Documento citato nel testo"
+      }
+    },
+    {
+      "label": "DocumentoDiGara",
+      "attributes": {
+        "link_documenti_gara": "DOCG-101",
+        "snippet": "documento di gara unico europeo"
+      }
+    },
+    {
+      "label": "Garanzia",
+      "attributes": {
+        "identificatore_garanzia": "GAR-PRV-01",
+        "snippet": "garanzia provvisoria"
+      }
+    },
+    {
+      "label": "Offerta",
+      "attributes": {
+        "id_offerta": "OFF-001",
+        "snippet": "Offerta presentata nell'ambito della procedura di gara"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_98",
+        "text": "\nArt. 101. (Soccorso istruttorio)\n\n1. Salvo che al momento della scadenza del termine per la presentazione dell’offerta il documento sia presente nel fascicolo virtuale dell’operatore economico, la stazione appaltante assegna un termine non inferiore a cinque giorni e non superiore a dieci giorni per:\n\na) integrare di ogni elemento mancante la documentazione trasmessa alla stazione appaltante nel termine per la presentazione delle offerte con la domanda di partecipazione alla procedura di gara o con il documento di gara unico europeo, con esclusione della documentazione che compone l’offerta tecnica e l’offerta economica; la mancata presentazione della garanzia provvisoria, del contratto di avvalimento e dell’impegno a conferire mandato collettivo speciale in caso di raggruppamenti di concorrenti non ancora costituiti è sanabile mediante documenti aventi data certa anteriore al termine fissato per la presentazione delle offerte;\nb) sanare ogni omissione, inesattezza o irregolarità della domanda di partecipazione, del documento di gara unico europeo e di ogni altro documento richiesto dalla stazione appaltante per la partecipazione alla procedura di gara, con esclusione della documentazione che compone l’offerta tecnica e l’offerta economica. Non sono sanabili le omissioni, inesattezze e irregolarità che rendono assolutamente incerta l’identità del concorrente.\n\n2. L’operatore economico che non adempie alle richieste della stazione appaltante nel termine stabilito è escluso dalla procedura di gara.\n\n3. La stazione appaltante può sempre richiedere chiarimenti sui cont enuti dell’offerta tecnica e dell’offerta economica e su ogni loro allegato. L’operatore economico è tenuto a fornire risposta nel termine fissato dalla stazione appaltante, che non può essere inferiore a cinque giorni e superiore a dieci giorni. I chiarimenti resi dall’operatore economico non possono modificare il contenuto dell’offerta tecnica e dell’offerta economica.\n\n4. Fino al giorno fissato per la loro apertura, l’operatore economico, con le stesse modalità di presentazione della domanda di partecipazione, può richiedere la rettifica di un errore materiale contenuto nell’offerta tecnica o nell’offerta economica di cui si sia avveduto dopo la scadenza del termine per la loro presentazione a condizione che la rettifica non comporti la presentazione di una nuova offerta, o comunque la sua modifica sostanziale, e che resti comunque assicurato l’anonimato.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDICA_RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "101"
+        }
+      },
+      "target": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 101
+        }
+      },
+      "attributes": {
+        "descrizione": "",
+        "snippet": "Art. 101. (Soccorso istruttorio)"
+      }
+    },
+    {
+      "label": "APPLICA_PRINCIPIO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "101"
+        }
+      },
+      "target": {
+        "label": "Principio",
+        "attributes": {
+          "nome": "SoccorsoIstruttorio"
+        }
+      },
+      "attributes": {
+        "descrizione": "Applica il principio SoccorsoIstruttorio",
+        "snippet": "Art. 101. (Soccorso istruttorio)"
+      }
+    },
+    {
+      "label": "CONTENUTO_DOCUMENTO",
+      "source": {
+        "label": "FascicoloVirtualeOperatoreEconomico",
+        "attributes": {
+          "id_fascicolo_virtuale": "FV-001"
+        }
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "DOC-101"
+        }
+      },
+      "attributes": {
+        "snippet": "FascicoloVirtualeOperatoreEconomico contiene Documento DOC-101"
+      }
+    },
+    {
+      "label": "RICHIEDE_GARANZIA_PROVVISORIA",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "PROC-101"
+        }
+      },
+      "target": {
+        "label": "Garanzia",
+        "attributes": {
+          "identificatore_garanzia": "GAR-PRV-01"
+        }
+      },
+      "attributes": {
+        "condizione": "obbligatoria per partecipazione",
+        "snippet": "La procedura richiede la garanzia provvisoria."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "101"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_98"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Principio",
+        "attributes": {
+          "nome": "SoccorsoIstruttorio"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_98"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 101
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_98"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "SA-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_98"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": {
+          "partita_iva": "OP-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_98"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "FascicoloVirtualeOperatoreEconomico",
+        "attributes": {
+          "id_fascicolo_virtuale": "FV-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_98"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APP-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_98"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "PROC-101"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_98"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "DOC-101"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_98"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "DocumentoDiGara",
+        "attributes": {
+          "link_documenti_gara": "DOCG-101"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_98"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Garanzia",
+        "attributes": {
+          "identificatore_garanzia": "GAR-PRV-01"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_98"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Offerta",
+        "attributes": {
+          "id_offerta": "OFF-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_98"
+        }
+      }
+    }
+  ]
+}

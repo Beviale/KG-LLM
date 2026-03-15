@@ -1,0 +1,97 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "20",
+        "snippet": "Art. 20. (Principi in materia di trasparenza)"
+      }
+    },
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "28",
+        "snippet": "l'articolo 28"
+      }
+    },
+    {
+      "label": "DecretoLegislativo",
+      "attributes": {
+        "identificatore_normativo": "DL_2013_033",
+        "snippet": "decreto legislativo 14 marzo 2013, n. 33"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_19",
+        "text": "\nArt. 20. (Principi in materia di trasparenza)\n\n1. Fermi restando gli obblighi di pubblicità legale, a fini di trasparenza i dati, le informazioni e gli atti relativi ai contratti pubblici sono indicati nell’articolo 28 e sono pubblicati secondo quanto stabilito dal decreto legislativo 14 marzo 2013, n. 33.\n\n2. Le comunicazioni e l’interscambio di dati per le finalità di conoscenza e di trasparenza avvengono nel rispetto del principio di unicità del luogo di pubblicazione e dell’invio delle informazioni.\n\n3. Le regioni e le province autonome assicurano la trasparenza nel settore dei contratti pubblici.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "PUBBLICAZIONE_SECONDO_DECRETO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "28"
+        }
+      },
+      "target": {
+        "label": "DecretoLegislativo",
+        "attributes": {
+          "identificatore_normativo": "DL_2013_033"
+        }
+      },
+      "attributes": {
+        "snippet": "pubblicati secondo quanto stabilito dal decreto legislativo 14 marzo 2013, n. 33."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "20"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_19"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "28"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_19"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "DecretoLegislativo",
+        "attributes": {
+          "identificatore_normativo": "DL_2013_033"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_19"
+        }
+      }
+    }
+  ]
+}

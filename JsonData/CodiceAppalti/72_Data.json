@@ -1,0 +1,76 @@
+{
+  "entities": [
+    {
+      "label": "OperatoreEconomico",
+      "attributes": {
+        "partita_iva": "IT12345678901",
+        "snippet": "operatore economico"
+      }
+    },
+    {
+      "label": "Appalto",
+      "attributes": {
+        "identificativo_appalto": "APP-0001",
+        "snippet": "l'appalto"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_72",
+        "text": "\nArt. 74. (Dialogo competitivo)\n\n1. Nel dialogo competitivo qualsiasi operatore economico può chiedere di partecipare in risposta a un bando di gara, o a un avviso di indizione di gara, fornendo le informazioni richieste dalla stazione appaltante.\n\n2. Il termine minimo per la ricezione delle domande di partecipazione è di trenta giorni dalla data di trasmissione del bando di gara ai sensi dell’articolo 84.\n\n3. Le stazioni appaltanti indicano nel bando di gara o nell’avviso di indizione di gara o in un documento descrittivo allegato le esigenze che intendono perseguire, i requisiti da soddisfare, il criterio di aggiudicazione, la durata indicativa della procedura nonché eventuali premi o pagamenti per i partecipanti al dialogo. L’appalto è aggiudicato unicamente sulla base del criterio dell’offerta con il miglior rapporto qualità/prezzo conformemente all’articolo 108.\n\n4. Prima dell’avvio del dialogo le stazioni appaltanti possono organizzare una consultazione con gli operatori economici selezionati sulla base della documentazione posta a base di gara e sulle modalità di svolgimento del dialogo. Nei trenta giorni successivi alla conclusione della consultazione i partecipanti selezionati possono recedere dal dialogo.\n\n5. Il dialogo competitivo riguarda tutti gli aspetti dell’appalto ed è finalizzato all'individuazione e alla definizione dei mezzi più idonei a soddisfare le necessità della stazione appaltante. Ove previsto nel bando di gara o nel documento descrittivo e in applicazione del criterio di aggiudicazione ivi previsto, il dialogo competitivo può svolgersi in fasi successive per ridurre il numero di soluzioni emerse durante la fase del dialogo. Il dialogo competitivo prosegue finché la stazione appaltante non individua la soluzione o le soluzioni idonee a soddisfare le proprie esigenze. Dichiarato concluso il dialogo e informati i partecipanti rimanenti, la stazione appaltante invita ciascuno di loro a presentare l’offerta finale sulla base della soluzione o delle soluzioni presentate e specificate nella fase del dialogo. L’offerta contiene tutti gli elementi richiesti e necessari per l'esecuzione del progetto. Le offerte presentate possono essere, su richiesta della stazione appaltante, chiarite, precisate e perfezionate. I chiarimenti, le precisazioni e il completamento delle informazioni non possono avere l'effetto di modificare gli aspetti essenziali dell'offerta o dell'appalto, compresi i requisiti e le esigenze indicati nel bando di gara, nell'avviso di indizione di gara o nel documento descrittivo, qualora le variazioni rischino di falsare la concorrenza o di avere un effetto discriminatorio.\n\n6. Le stazioni appaltanti valutano le offerte ricevute sulla base dei criteri di aggiudicazione fissati nel bando di gara, nell'avviso di indizione di gara o nel documento descrittivo.\n\n7. La stazione appaltante può condurre ulteriori negoziazioni con l'operatore economico che risulta aver presentato l'offerta con il miglior rapporto qualità/prezzo per confermare gli impegni finanziari o altri contenuti dell'offerta attraverso il completamento delle clausole del contratto, a condizione che da ciò non consegua la modifica sostanziale di elementi fondamentali dell’offerta o dell’appalto pubblico, comprese le esigenze e i requisiti definiti nel bando di gara o nel documento descrittivo, e che non si rischi di falsare la concorrenza o creare discriminazioni.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "PARTECIPA_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": {
+          "partita_iva": "IT12345678901"
+        }
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APP-0001"
+        }
+      },
+      "attributes": {
+        "tipo_partecipazione": "Partecipante",
+        "snippet": "L'operatore economico IT12345678901 partecipa all'appalto APP-0001."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": {
+          "partita_iva": "IT12345678901"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_72"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APP-0001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_72"
+        }
+      }
+    }
+  ]
+}

@@ -2198,7 +2198,7 @@ Tramite EmPULIA, InnovaPuglia in qualità di Soggetto Aggregatore eroga i seguen
 4) servizi per la gestione completamente telematica delle procedure di gara (aperte, ristrette e negoziate, sia sopra che sotto soglia comunitaria) con criteri di aggiudicazione basati sul prezzo più basso o sull'offerta economicamente più vantaggiosa;
 5) servizi per la pubblicazione sul portale EmPULIA di gare svolte in modalità tradizionale (gare cartacee) con funzioni di archiviazione e ricerca di tutta la documentazione di gara.
 
-## 2.Quindi, EmPulia, per conto di InnovaPuglia, eroga alcuni servizi. InnovaPuglia è un soggetto aggregatore della Regione Puglia....cos'è un soggetto aggregatore?
+## 2. Quindi, EmPulia, per conto di InnovaPuglia, eroga alcuni servizi. InnovaPuglia è un soggetto aggregatore della Regione Puglia....cos'è un soggetto aggregatore?
 Un soggetto aggregatore è una centrale di committenza qualificata (come Consip o aggregatori regionali) iscritta all'apposito elenco ANAC, che gestisce gare d'appalto per l'acquisto di beni e servizi per conto di altre pubbliche amministrazioni. 
 L'obiettivo è centralizzare la domanda, ottenere risparmi economici (economie di scala) e semplificare le procedure. 
 
@@ -2224,7 +2224,7 @@ Il dominio è quello della Pubblica Amministrazione e del Codice degli Appalti i
 """
 
 LLM_AS_JUDGE_QUESTION_TO_ASK = """
-Dato il seguente testo, formula una domanda legato ad esso.
+Dato il seguente testo, formula una domanda diretta e chiara legato ad esso.
 
 Text:
 {text}

@@ -1,0 +1,292 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "86",
+        "snippet": "Art. 86. (Avviso volontario per la trasparenza preventiva)"
+      }
+    },
+    {
+      "label": "Avviso",
+      "attributes": {
+        "id_avviso": "avviso_86",
+        "snippet": "Avviso volontario per la trasparenza preventiva"
+      }
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": {
+        "codice_stazione_appaltante": "SA-001",
+        "denominazione": "StazioneAppaltante",
+        "snippet": "denominazione e recapito della stazione appaltante"
+      }
+    },
+    {
+      "label": "Norma",
+      "attributes": {
+        "codice_norma": "89/665/CEE",
+        "descrizione": "Direttiva 89/665/CEE",
+        "snippet": "Direttiva 89/665/CEE del Consiglio, 21 dicembre 1989"
+      }
+    },
+    {
+      "label": "Norma",
+      "attributes": {
+        "codice_norma": "92/13/CEE",
+        "descrizione": "Direttiva 92/13/CEE",
+        "snippet": "Direttiva 92/13/CEE del Consiglio, 25 febbraio 1992"
+      }
+    },
+    {
+      "label": "RiferimentoNormativo",
+      "attributes": {
+        "numero_articolo_riferimento": 3,
+        "rif_id": "rif_3_ter",
+        "tipo_riferimento": "articolo_di_riferimento",
+        "snippet": "articolo 3-ter"
+      }
+    },
+    {
+      "label": "DecretoLegislativo",
+      "attributes": {
+        "identificatore_normativo": "DECRETO_89_665_CEE",
+        "snippet": "Decreto legislativo relativo alla direttiva 89/665/CEE"
+      }
+    },
+    {
+      "label": "Principio",
+      "attributes": {
+        "nome": "Trasparenza",
+        "snippet": "Principio di trasparenza nell'ambito della pubblica amministrazione e degli appalti"
+      }
+    },
+    {
+      "label": "Prestazione",
+      "attributes": {
+        "tipo_prestazione": "TrasparenzaPreventiva",
+        "snippet": "Trasparenza preventiva come principio di gestione degli appalti"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_83",
+        "text": "\nArt. 86. (Avviso volontario per la trasparenza preventiva)\n\n1. L’avviso volontario per la trasparenza preventiva, il cui formato è stabilito dalla Commissione europea secondo la procedura di consultazione di cui all’articolo 3-ter, paragrafo 2, della direttiva 89/665/CEE del Consiglio, del 21 dicembre 1989 e di cui all’articolo 3-ter, paragrafo 2, della direttiva 92/13/CEE del Consiglio, del 25 febbraio 1992, contiene le seguenti informazioni:\n\na) denominazione e recapito della stazione appaltante;\nb) descrizione dell’oggetto del contratto;\nc) motivazione della decisione della stazione appaltante di affidare il contratto senza pubblicazione di un bando di gara nella Gazzetta ufficiale dell’Unione europea;\nd) denominazione e recapito dell’operatore economico a favore del quale è avvenuta l’aggiudicazione;\ne) se del caso, qualunque altra informazione ritenuta utile dalla stazione appaltante.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDICA_RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "86"
+        }
+      },
+      "target": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 3
+        }
+      },
+      "attributes": {
+        "descrizione": "Riferimento tra articolo 86 e normativa 3-ter",
+        "snippet": "L'articolo 86 fa riferimento all'articolo 3-ter della direttiva."
+      }
+    },
+    {
+      "label": "PUBBLICAZIONE_SECONDO_DECRETO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "86"
+        }
+      },
+      "target": {
+        "label": "DecretoLegislativo",
+        "attributes": {
+          "identificatore_normativo": "DECRETO_89_665_CEE"
+        }
+      },
+      "attributes": {
+        "descrizione": "Pubblicazione secondo decreto",
+        "snippet": "Articolo 86 si riferisce al decreto DECRETO_89_665_CEE."
+      }
+    },
+    {
+      "label": "APPLICA_PRINCIPIO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "86"
+        }
+      },
+      "target": {
+        "label": "Principio",
+        "attributes": {
+          "nome": "Trasparenza"
+        }
+      },
+      "attributes": {
+        "descrizione": "Applicazione del principio di trasparenza",
+        "snippet": "Articolo 86 applica il principio Trasparenza."
+      }
+    },
+    {
+      "label": "EMETTE_AVVISO_DI_GARA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "SA-001"
+        }
+      },
+      "target": {
+        "label": "Avviso",
+        "attributes": {
+          "id_avviso": "avviso_86"
+        }
+      },
+      "attributes": {
+        "contenuto_riferimento": "Richiamo all'avviso di gara in relazione all'Articolo 86",
+        "snippet": "La stazione appaltante SA-001 emette l'avviso avviso_86."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "86"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_83"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Avviso",
+        "attributes": {
+          "id_avviso": "avviso_86"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_83"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "SA-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_83"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Norma",
+        "attributes": {
+          "codice_norma": "89/665/CEE"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_83"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Norma",
+        "attributes": {
+          "codice_norma": "92/13/CEE"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_83"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 3
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_83"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "DecretoLegislativo",
+        "attributes": {
+          "identificatore_normativo": "DECRETO_89_665_CEE"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_83"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Principio",
+        "attributes": {
+          "nome": "Trasparenza"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_83"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Prestazione",
+        "attributes": {
+          "tipo_prestazione": "TrasparenzaPreventiva"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_83"
+        }
+      }
+    }
+  ]
+}

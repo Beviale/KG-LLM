@@ -1,0 +1,115 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "102",
+        "snippet": "Art. 102. (Impegni dell’operatore economico)"
+      }
+    },
+    {
+      "label": "RiferimentoNormativo",
+      "attributes": {
+        "numero_articolo_riferimento": 110,
+        "snippet": "Riferimento all'articolo 110 citato nel testo."
+      }
+    },
+    {
+      "label": "Principio",
+      "attributes": {
+        "nome": "PariOpportunitaGenerazionali",
+        "snippet": "Pari opportunita generazionali, di genere e di inclusione lavorativa per le persone con disabilita o svantaggiate."
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_99",
+        "text": "\nArt. 102. (Impegni dell’operatore economico)\n\n1. Nei bandi, negli avvisi e negli inviti le stazioni appaltanti, tenuto conto della prestazione oggetto del contratto, richiedono agli operatori economici di assumere i seguenti impegni:\n\na) garantire la stabilità occupazionale del personale impiegato;\nb) garantire l’applicazione dei contratti collettivi nazionali e territoriali di settore, tenendo conto, in relazione all’oggetto dell’appalto e alle prestazioni da eseguire, anche in maniera prevalente, di quelli stipulati dalle associazioni dei datori e dei prestatori di lavoro comparativamente più rappresentative sul piano nazionale e di quelli il cui ambito di applicazione sia strettamente connesso con l’attività oggetto dell’appalto o della concessione svolta dall’impresa anche in maniera prevalente, nonché garantire le stesse tutele economiche e normative per i lavoratori in subappalto rispetto ai dipendenti dell’appaltatore e contro il lavoro irregolare;\nc) garantire le pari opportunità generazionali, di genere e di inclusione lavorativa per le persone con disabilità o svantaggiate.\n\n2. Per i fini di cui al comma 1 l’operatore economico indica nell’offerta le modalità con le quali intende adempiere quegli impegni. La stazione appaltante verifica l’attendibilità degli impegni assunti con qualsiasi adeguato mezzo, anche con le modalità di cui all’articolo 110, solo nei confronti dell’offerta dell’aggiudicatario.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "APPLICA_PRINCIPIO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "102"
+        }
+      },
+      "target": {
+        "label": "Principio",
+        "attributes": {
+          "nome": "PariOpportunitaGenerazionali"
+        }
+      },
+      "attributes": {
+        "snippet": "L'articolo 102 applica il principio di pari opportunita generazionali, di genere e di inclusione lavorativa per le persone con disabilita o svantaggiate."
+      }
+    },
+    {
+      "label": "INDICA_RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "102"
+        }
+      },
+      "target": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 110
+        }
+      },
+      "attributes": {
+        "snippet": "L'articolo 102 indica il riferimento all'articolo 110 citato nel testo."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "102"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_99"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 110
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_99"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Principio",
+        "attributes": {
+          "nome": "PariOpportunitaGenerazionali"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_99"
+        }
+      }
+    }
+  ]
+}

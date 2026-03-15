@@ -1,0 +1,311 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "81",
+        "snippet": "Art. 81. (Avvisi di pre-informazione)"
+      }
+    },
+    {
+      "label": "Avviso",
+      "attributes": {
+        "id_avviso": "AVV_PREINFO_1",
+        "snippet": "Avviso di pre-informazione pubblicato entro i termini previsti dall'articolo 81."
+      }
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": {
+        "codice_stazione_appaltante": "SAT-001",
+        "snippet": "Stazione appaltante pubblica l'avviso sul proprio sito istituzionale."
+      }
+    },
+    {
+      "label": "AutoritaNazionaleAnticorruzione",
+      "attributes": {
+        "identificatore": "ANAC-001",
+        "snippet": "ANAC - Autorita Nazionale Anticorruzione."
+      }
+    },
+    {
+      "label": "BancaDatiContrattiPubblici",
+      "attributes": {
+        "denominazione": "BancaDatiContrattiPubblici",
+        "snippet": "Banca dati nazionale dei contratti pubblici."
+      }
+    },
+    {
+      "label": "GazzettaUfficialeUE",
+      "attributes": {
+        "nome_pubblicazione": "Gazzetta ufficiale dell'Unione Europea",
+        "snippet": "Gazzetta Ufficiale dell'Unione Europea."
+      }
+    },
+    {
+      "label": "Norma",
+      "attributes": {
+        "codice_norma": "II.6",
+        "snippet": "Allegato II.6, Parte I, lettera B, sezione B.1."
+      }
+    },
+    {
+      "label": "Appalto",
+      "attributes": {
+        "identificativo_appalto": "APPALTO-1",
+        "snippet": "APPALTO-1: bandi e indizioni."
+      }
+    },
+    {
+      "label": "DecretoLegislativo",
+      "attributes": {
+        "identificatore_normativo": "Direttiva2014/24/UE",
+        "snippet": "Direttiva 2014/24/UE citata nel testo."
+      }
+    },
+    {
+      "label": "PubblicaAmministrazione",
+      "attributes": {
+        "denominazione": "PubblicaAmministrazione",
+        "snippet": "Pubblica Amministrazione."
+      }
+    },
+    {
+      "label": "Principio",
+      "attributes": {
+        "nome": "Trasparenza",
+        "snippet": "Trasparenza."
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_77",
+        "text": "\nArt. 81. (Avvisi di pre-informazione)\n\n1. Le stazioni appaltanti rendono nota entro il 31 dicembre di ogni anno l'intenzione di bandire per l'anno successivo appalti, pubblicando sul proprio sito istituzionale un avviso di pre-informazione recante le informazioni di cui all'allegato II.6, Parte I, lettera B, sezione B.1. Per gli appalti di importo pari o superiore alle soglie di cui all'articolo 14, l’avviso di pre-informazione è pubblicato dall'Ufficio delle pubblicazioni dell'Unione europea o dalla stazione appaltante sul proprio sito istituzionale. In quest'ultimo caso le stazioni appaltanti comunicano l’avviso di pre-informazione all’ANAC che, tramite la Banca dati nazionale dei contratti pubblici, cura l’invio al suddetto Ufficio di un avviso relativo alla pubblicazione sul sito istituzionale della stazione appaltante contenente le informazioni di cui all’allegato II.6, Parte I, lettera A.\n\n2. Per le procedure ristrette e le procedure competitive con negoziazione, le stazioni appaltanti sub-centrali possono utilizzare un avviso di pre-informazione come indizione di gara, purché l'avviso soddisfi tutte le seguenti condizioni:\n\na) si riferisca specificatamente alle forniture, ai lavori o ai servizi che saranno oggetto dell'appalto da aggiudicare;\nb) indichi che l'appalto sarà aggiudicato mediante una procedura ristretta o una procedura competitiva con negoziazione senza ulteriore pubblicazione di un avviso di indizione di gara e inviti gli operatori economici interessati a manifestare il proprio interesse;\nc) contenga, oltre alle informazioni di cui all'allegato II.6, Parte I, lettera B, sezione B.1, le informazioni di cui al medesimo all’allegato II.6, Parte I, lettera B, sezione B.2;\nd) sia stato inviato alla pubblicazione non meno di trentacinque giorni e non oltre 12 dodici mesi prima della data di invio dell'invito a confermare l’interesse di cui all'articolo 89, comma 1.\n\n3. L'avviso di cui al comma 2 è pubblicato sul sito istituzionale della stazione appaltante quale pubblicazione supplementare a livello nazionale, a norma dell'articolo 85.\n\n4. Il periodo coperto dall'avviso di pre-informazione non può superare il termine di dodici mesi dalla data di trasmissione dell'avviso per la pubblicazione. Tuttavia, nel caso di appalti pubblici per i servizi di cui all’allegato XIV alla direttiva 2014/24/UE del Parlamento europeo e del Consiglio, del 26 febbraio 2014, l'avviso di pre-informazione può coprire un periodo fino a ventiquattro mesi.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "EMETTE_AVVISO_DI_GARA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "SAT-001"
+        }
+      },
+      "target": {
+        "label": "Avviso",
+        "attributes": {
+          "id_avviso": "AVV_PREINFO_1"
+        }
+      },
+      "attributes": {
+        "contenuto_riferimento": "Avviso di pre-informazione relativo all'intenzione di bandire appalti",
+        "snippet": "Le stazioni appaltanti rendono nota entro il 31 dicembre di ogni anno l'intenzione di bandire appalti, pubblicando sul proprio sito istituzionale un avviso di pre-informazione."
+      }
+    },
+    {
+      "label": "PUBBLICAZIONE_SECONDO_DECRETO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "81"
+        }
+      },
+      "target": {
+        "label": "DecretoLegislativo",
+        "attributes": {
+          "identificatore_normativo": "Direttiva2014/24/UE"
+        }
+      },
+      "attributes": {
+        "snippet": "L articolo 81 fa riferimento alla pubblicazione secondo Decreto Legislativo in conformità con la Direttiva 2014/24/UE."
+      }
+    },
+    {
+      "label": "APPLICA_PRINCIPIO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "81"
+        }
+      },
+      "target": {
+        "label": "Principio",
+        "attributes": {
+          "nome": "Trasparenza"
+        }
+      },
+      "attributes": {
+        "descrizione": "Applicazione del principio di trasparenza alle informazioni sull'avviso di pre-informazione",
+        "snippet": "L'articolo 81 si applica al principio di Trasparenza."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "81"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_77"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Avviso",
+        "attributes": {
+          "id_avviso": "AVV_PREINFO_1"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_77"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "SAT-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_77"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "AutoritaNazionaleAnticorruzione",
+        "attributes": {
+          "identificatore": "ANAC-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_77"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "BancaDatiContrattiPubblici",
+        "attributes": {
+          "denominazione": "BancaDatiContrattiPubblici"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_77"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "GazzettaUfficialeUE",
+        "attributes": {
+          "nome_pubblicazione": "Gazzetta ufficiale dell'Unione Europea"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_77"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Norma",
+        "attributes": {
+          "codice_norma": "II.6"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_77"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APPALTO-1"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_77"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "DecretoLegislativo",
+        "attributes": {
+          "identificatore_normativo": "Direttiva2014/24/UE"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_77"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "PubblicaAmministrazione",
+        "attributes": {
+          "denominazione": "PubblicaAmministrazione"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_77"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Principio",
+        "attributes": {
+          "nome": "Trasparenza"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_77"
+        }
+      }
+    }
+  ]
+}

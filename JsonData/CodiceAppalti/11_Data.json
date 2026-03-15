@@ -1,0 +1,119 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "12",
+        "snippet": "Art. 12. (Rinvio esterno)"
+      }
+    },
+    {
+      "label": "RiferimentoNormativo",
+      "attributes": {
+        "numero_articolo_riferimento": 241,
+        "descrizione": "Legge 7 agosto 1990, n. 241",
+        "snippet": "Legge 7 agosto 1990, n. 241"
+      }
+    },
+    {
+      "label": "RiferimentoNormativo",
+      "attributes": {
+        "numero_articolo_riferimento": 9999,
+        "descrizione": "Codice Civile",
+        "snippet": "Codice Civile"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_11",
+        "text": "\nArt. 12. (Rinvio esterno)\n\n1. Per quanto non espressamente previsto nel codice:\n\na) alle procedure di affidamento e alle altre attività amministrative in materia di contratti si applicano le disposizioni di cui alla legge 7 agosto 1990, n. 241;\nb) alla stipula del con1990_0241.htmtratto e alla fase di esecuzione si applicano le disposizioni del codice civile.\n\nTitolo II - L’ambito di applicazione, il responsabile unico e le fasi dell’affidamento.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDICA_RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "12"
+        }
+      },
+      "target": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 241
+        }
+      },
+      "attributes": {
+        "descrizione": "Rinvio esterno tra articolo 12 e legge 241/1990",
+        "snippet": "Art. 12 richiama le disposizioni della legge 7 agosto 1990, n. 241."
+      }
+    },
+    {
+      "label": "INDICA_RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "12"
+        }
+      },
+      "target": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 9999
+        }
+      },
+      "attributes": {
+        "descrizione": "Rinvio al Codice Civile",
+        "snippet": "Art. 12 richiama le disposizioni del Codice Civile."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "12"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_11"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 241
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_11"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 9999
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_11"
+        }
+      }
+    }
+  ]
+}

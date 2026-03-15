@@ -1,0 +1,532 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "91",
+        "snippet": "Art. 91. (Domande, documento di gara unico europeo, offerte)"
+      }
+    },
+    {
+      "label": "Appalto",
+      "attributes": {
+        "identificativo_appalto": "APPALTO_001",
+        "snippet": "Appalto oggetto della procedura di gara descritta dall'Articolo 91."
+      }
+    },
+    {
+      "label": "Documento",
+      "attributes": {
+        "id_documento": "DOC_GARA_UNICO_EUROPEO",
+        "key": "KEY_DOC_GUE",
+        "snippet": "Documento di gara unico europeo (DGUE)."
+      }
+    },
+    {
+      "label": "FascicoloVirtualeOperatoreEconomico",
+      "attributes": {
+        "id_fascicolo_virtuale": "FVOE_001",
+        "snippet": "Fascicolo virtuale dell'operatore economico."
+      }
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": {
+        "partita_iva": "IT12345678901",
+        "snippet": "Operatore economico partecipante alla procedura di gara."
+      }
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": {
+        "codice_stazione_appaltante": "STAZ_0001",
+        "snippet": "Stazione appaltante."
+      }
+    },
+    {
+      "label": "AccordoQuadro",
+      "attributes": {
+        "identificatore": "ACQ_001",
+        "snippet": "Accordo quadro fittizio."
+      }
+    },
+    {
+      "label": "Commissione",
+      "attributes": {
+        "id_commissione": "COM_001",
+        "snippet": "Commissione fittizia."
+      }
+    },
+    {
+      "label": "ContraenteGenerale",
+      "attributes": {
+        "denominazione": "CG_001",
+        "snippet": "Contraente Generale fittizio."
+      }
+    },
+    {
+      "label": "Associazione",
+      "attributes": {
+        "id_associazione": "ASSOC_001",
+        "snippet": "Associazione fittizia."
+      }
+    },
+    {
+      "label": "RaggruppamentoTemporaneo",
+      "attributes": {
+        "id_raggruppamento": "RGT_001",
+        "snippet": "Raggruppamento temporaneo fittizio."
+      }
+    },
+    {
+      "label": "Allegato",
+      "attributes": {
+        "id_allegato": "ALG_001",
+        "numero_allegato": "001",
+        "snippet": "Allegato fittizio."
+      }
+    },
+    {
+      "label": "Norma",
+      "attributes": {
+        "codice_norma": "NORM_001",
+        "snippet": "Norma fittizia."
+      }
+    },
+    {
+      "label": "Prestazione",
+      "attributes": {
+        "tipo_prestazione": "servizi",
+        "snippet": "Prestazione di tipo servizi fittizia."
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_88",
+        "text": "\nArt. 91. (Domande, documento di gara unico europeo, offerte)\n\n1. L’operatore economico che intende partecipare ad una procedura per l’aggiudicazione di un appalto utilizza la piattaforma di approvvigionamento digitale messa a disposizione dalla stazione appaltante per compilare i seguenti atti:\n\na) la domanda di partecipazione;\nb) il documento di gara unico europeo;\nc) l’offerta;\nd) ogni altro documento richiesto per la partecipazione alla procedura di gara.\n\n2. La domanda di partecipazione contiene gli elementi di identificazione del concorrente e l’indicazione della forma giuridica con la quale si presenta in gara, l’eventuale dichiarazione della volontà di avvalersi di impresa ausiliaria, nonché l’indicazione dei dati e dei documenti relativi ai requisiti speciali di partecipazione di cui agli articoli 100 e 103 contenuti nel fascicolo virtuale dell’operatore economico di cui all’articolo 24.\n\n3. Con il documento di gara unico europeo, redatto in forma digitale in conformità al modello di formulario approvato con regolamento della Commissione europea, prodotto secondo il comma 1, l’operatore economico e le imprese ausiliarie dichiarano:\n\na) di essere in possesso dei requisiti di ordine generale di cui al Titolo IV, Capo II, della presente Parte;\nb) di essere in possesso dei requisiti di ordine speciale di cui all’articolo 100 e, se richiesto, dei requisiti di cui all’articolo 103.\n\n4. Il documento di gara unico europeo contiene tutte le informazioni richieste dalla stazione appaltante e, nel caso di partecipazione alla procedura di gara nella forma giuridica prevista dagli articoli 65 e 66, la dichiarazione circa la ripartizione della prestazione tra i componenti del raggruppamento o tra le imprese consorziate.\n\n5. Le offerte tecniche ed economiche, redatte secondo le modalità di cui al comma 1, sono corredate dai documenti prescritti dal bando o dall’invito o dal capitolato di oneri. Nelle offerte l’operatore economico dichiara alla stazione appaltante il prezzo, i costi del personale e quelli aziendali per la sicurezza e le caratteristiche della prestazione, ovvero assume l’impegno ad eseguire la stessa alle condizioni indicate dalla stazione appaltante e dalla disciplina applicabile, nonché fornisce ogni altra informazione richiesta dalla stazione appaltante nei documenti di gara.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "PARTECIPA_A",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": {
+          "partita_iva": "IT12345678901"
+        }
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APPALTO_001"
+        }
+      },
+      "attributes": {
+        "tipo_partecipazione": "partecipante",
+        "snippet": "L'operatore economico IT12345678901 partecipa alla procedura di gara per l'aggiudicazione dell'appalto."
+      }
+    },
+    {
+      "label": "CONTENUTO_DOCUMENTO",
+      "source": {
+        "label": "FascicoloVirtualeOperatoreEconomico",
+        "attributes": {
+          "id_fascicolo_virtuale": "FVOE_001"
+        }
+      },
+      "target": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "DOC_GARA_UNICO_EUROPEO"
+        }
+      },
+      "attributes": {
+        "snippet": "Fascicolo virtuale contiene il documento di gara unico europeo."
+      }
+    },
+    {
+      "label": "AFFIDA_A",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "STAZ_0001"
+        }
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APPALTO_001"
+        }
+      },
+      "attributes": {
+        "descrizione": "Stazione appaltante assegna l'appalto",
+        "snippet": "La stazione appaltante STAZ_0001 affida l'appalto APPALTO_001."
+      }
+    },
+    {
+      "label": "APPALTO_BASATO_SU_ACCORDO_QUADRO",
+      "source": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APPALTO_001"
+        }
+      },
+      "target": {
+        "label": "AccordoQuadro",
+        "attributes": {
+          "identificatore": "ACQ_001"
+        }
+      },
+      "attributes": {
+        "descrizione": "Appalto basato su accordo quadro",
+        "snippet": "L'appalto APPALTO_001 è basato su l'AccordoQuadro ACQ_001."
+      }
+    },
+    {
+      "label": "PARTECIPA_A_ACCORDO_QUADRO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": {
+          "partita_iva": "IT12345678901"
+        }
+      },
+      "target": {
+        "label": "AccordoQuadro",
+        "attributes": {
+          "identificatore": "ACQ_001"
+        }
+      },
+      "attributes": {
+        "ruolo": "partecipante",
+        "snippet": "L'operatore economico IT12345678901 partecipa all'accordo quadro ACQ_001."
+      }
+    },
+    {
+      "label": "PARTECIPA_IN",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": {
+          "partita_iva": "IT12345678901"
+        }
+      },
+      "target": {
+        "label": "Commissione",
+        "attributes": {
+          "id_commissione": "COM_001"
+        }
+      },
+      "attributes": {
+        "ruolo": "membro",
+        "snippet": "L'operatore economico IT12345678901 partecipa alla commissione COM_001."
+      }
+    },
+    {
+      "label": "PARTECIPA_IN_ASSOCIAZIONE",
+      "source": {
+        "label": "ContraenteGenerale",
+        "attributes": {
+          "denominazione": "CG_001"
+        }
+      },
+      "target": {
+        "label": "Associazione",
+        "attributes": {
+          "id_associazione": "ASSOC_001"
+        }
+      },
+      "attributes": {
+        "ruolo": "membro",
+        "snippet": "La Contraente Generale CG_001 partecipa all'Associazione ASSOC_001."
+      }
+    },
+    {
+      "label": "PARTECIPA_NEL_RAGGRUPPAMENTO_TEMPORANEO",
+      "source": {
+        "label": "ContraenteGenerale",
+        "attributes": {
+          "denominazione": "CG_001"
+        }
+      },
+      "target": {
+        "label": "RaggruppamentoTemporaneo",
+        "attributes": {
+          "id_raggruppamento": "RGT_001"
+        }
+      },
+      "attributes": {
+        "ruolo": "membro",
+        "snippet": "La Contraente Generale CG_001 partecipa al Raggruppamento Temporaneo RGT_001."
+      }
+    },
+    {
+      "label": "RIFERIMENTO_NORMATIVA_ALLEGATO",
+      "source": {
+        "label": "Allegato",
+        "attributes": {
+          "id_allegato": "ALG_001",
+          "numero_allegato": "001"
+        }
+      },
+      "target": {
+        "label": "Norma",
+        "attributes": {
+          "codice_norma": "NORM_001"
+        }
+      },
+      "attributes": {
+        "descrizione_riferimento": "riferimento allegato normativo",
+        "snippet": "Riferimento normativo dell Allegato ALG_001 al Norma NORM_001."
+      }
+    },
+    {
+      "label": "RIFERIMENTO_NORMATIVA_APPALTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APPALTO_001"
+        }
+      },
+      "target": {
+        "label": "Norma",
+        "attributes": {
+          "codice_norma": "NORM_001"
+        }
+      },
+      "attributes": {
+        "descrizione": "riferimento norma appalto",
+        "snippet": "Appalto APPALTO_001 riferito alla Norma NORM_001."
+      }
+    },
+    {
+      "label": "APPLICATO_A_PRESTAZIONE",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "STAZ_0001"
+        }
+      },
+      "target": {
+        "label": "Prestazione",
+        "attributes": {
+          "tipo_prestazione": "servizi"
+        }
+      },
+      "attributes": {
+        "descrizione_trattamento": "trattamento servizi appalto",
+        "snippet": "La stazione appaltante STAZ_0001 applica la prestazione di tipo servizi."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "91"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APPALTO_001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "DOC_GARA_UNICO_EUROPEO"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "FascicoloVirtualeOperatoreEconomico",
+        "attributes": {
+          "id_fascicolo_virtuale": "FVOE_001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": {
+          "partita_iva": "IT12345678901"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "STAZ_0001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "AccordoQuadro",
+        "attributes": {
+          "identificatore": "ACQ_001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Commissione",
+        "attributes": {
+          "id_commissione": "COM_001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "ContraenteGenerale",
+        "attributes": {
+          "denominazione": "CG_001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Associazione",
+        "attributes": {
+          "id_associazione": "ASSOC_001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "RaggruppamentoTemporaneo",
+        "attributes": {
+          "id_raggruppamento": "RGT_001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Allegato",
+        "attributes": {
+          "id_allegato": "ALG_001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Norma",
+        "attributes": {
+          "codice_norma": "NORM_001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Prestazione",
+        "attributes": {
+          "tipo_prestazione": "servizi"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_88"
+        }
+      }
+    }
+  ]
+}

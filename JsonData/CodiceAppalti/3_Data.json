@@ -1,0 +1,76 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "3",
+        "snippet": "Art. 3. (Principio dell’accesso al mercato)"
+      }
+    },
+    {
+      "label": "Principio",
+      "attributes": {
+        "nome": "Principio dell’accesso al mercato",
+        "snippet": "Principio dell’accesso al mercato"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_3",
+        "text": "\nArt. 3. (Principio dell’accesso al mercato)\n\n1. Le stazioni appaltanti e gli enti concedenti favoriscono, secondo le modalità indicate dal codice, l’accesso al mercato degli operatori economici nel rispetto dei principi di concorrenza, di imparzialità, di non discriminazione, di pubblicità e trasparenza, di proporzionalità.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "APPLICA_PRINCIPIO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "3"
+        }
+      },
+      "target": {
+        "label": "Principio",
+        "attributes": {
+          "nome": "Principio dell’accesso al mercato"
+        }
+      },
+      "attributes": {
+        "descrizione": "Articolo 3 applica il Principio dell’accesso al mercato secondo quanto indicato dal testo.",
+        "snippet": "Art. 3. (Principio dell’accesso al mercato)"
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "3"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Principio",
+        "attributes": {
+          "nome": "Principio dell’accesso al mercato"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    }
+  ]
+}

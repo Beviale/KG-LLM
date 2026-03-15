@@ -1,0 +1,99 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "52",
+        "snippet": "Art. 52. (Controllo sul possesso dei requisiti)"
+      }
+    },
+    {
+      "label": "RiferimentoNormativo",
+      "attributes": {
+        "numero_articolo_riferimento": 50,
+        "rif_id": "RN-50",
+        "snippet": "articolo 50, comma 1, lettere a) e b)"
+      }
+    },
+    {
+      "label": "AutoritaNazionaleAnticorruzione",
+      "attributes": {
+        "identificatore": "ANAC",
+        "snippet": "ANAC"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_50",
+        "text": "\nArt. 52. (Controllo sul possesso dei requisiti)\n\n1. Nelle procedure di affidamento di cui all’articolo 50, comma 1, lettere a) e b), di importo inferiore a 40.000 euro, gli operatori economici attestano con dichiarazione sostitutiva di atto di notorietà il possesso dei requisiti di partecipazione e di qualificazione richiesti. La stazione appaltante verifica le dichiarazioni, anche previo sorteggio di un campione individuato con modalità predeterminate ogni anno.\n\n2. Quando in conseguenza della verifica non sia confermato il possesso dei requisiti generali o speciali dichiarati, la stazione appaltante procede alla risoluzione del contratto, all’escussione della eventuale garanzia definitiva, alla comunicazione all’ANAC e alla sospensione dell’operatore economico dalla partecipazione alle procedure di affidamento indette dalla medesima stazione appaltante per un periodo da uno a dodici mesi decorrenti dall’adozione del provvedimento.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDICA_RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "52"
+        }
+      },
+      "target": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 50
+        }
+      },
+      "attributes": {
+        "descrizione": "Riferimento tra articolo 52 e articolo 50",
+        "snippet": "Articolo 52 fa riferimento all'articolo 50, comma 1, lettere a) e b) per i requisiti."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "52"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_50"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 50
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_50"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "AutoritaNazionaleAnticorruzione",
+        "attributes": {
+          "identificatore": "ANAC"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_50"
+        }
+      }
+    }
+  ]
+}

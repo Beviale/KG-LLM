@@ -1,0 +1,288 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "53",
+        "snippet": "Art. 53. (Garanzie a corredo dell'offerta e garanzie definitive)"
+      }
+    },
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "50",
+        "snippet": "articolo 50, comma 1"
+      }
+    },
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "106",
+        "snippet": "articolo 106"
+      }
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": {
+        "codice_stazione_appaltante": "SA_001",
+        "snippet": "La stazione appaltante non richiede le garanzie provvisorie di cui all'articolo 106 salvo che, nelle procedure di cui alle lettere c, d ed e dello stesso comma 1 dell'articolo 50, ricorrano particolari esigenze che ne giustifichino la richiesta."
+      }
+    },
+    {
+      "label": "Avviso",
+      "attributes": {
+        "id_avviso": "AVV_AVVISA_53",
+        "snippet": "avviso di indizione della procedura"
+      }
+    },
+    {
+      "label": "Procedura",
+      "attributes": {
+        "id_procedura": "PROC_AFF_53",
+        "snippet": "procedura di affidamento"
+      }
+    },
+    {
+      "label": "RiferimentoNormativo",
+      "attributes": {
+        "numero_articolo_riferimento": 50,
+        "snippet": "Riferimento normativo all'articolo 50"
+      }
+    },
+    {
+      "label": "Garanzia",
+      "attributes": {
+        "identificatore_garanzia": "GAR_PROVVISORIA_ART53",
+        "snippet": "Garanzia provvisoria ai sensi dell'articolo 53"
+      }
+    },
+    {
+      "label": "Garanzia",
+      "attributes": {
+        "identificatore_garanzia": "GAR_DEFINITIVA_ART53",
+        "snippet": "Garanzia definitiva ai sensi dell'articolo 53"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_51",
+        "text": "\nArt. 53. (Garanzie a corredo dell’offerta e garanzie definitive)\n\n1. Nelle procedure di affidamento di cui all’articolo 50, comma 1, la stazione appaltante non richiede le garanzie provvisorie di cui all’articolo 106 salvo che, nelle procedure di cui alle lettere c), d) ed e) dello stesso comma 1 dell’articolo 50, in considerazione della tipologia e specificità della singola procedura, ricorrano particolari esigenze che ne giustifichino la richiesta. Le esigenze particolari sono indicate nella decisione di contrarre oppure nell’avviso di indizione della procedura o in altro atto equivalente.\n\n2. Quando è richiesta la garanzia provvisoria, il relativo ammontare non può superare l’uno per cento dell’importo previsto nell’avviso o nell’invito per il contratto oggetto di affidamento.\n\n3. La garanzia provvisoria può essere costituita sotto forma di cauzione oppure di fideiussione con le modalità di cui all’articolo 106.\n\n4. In casi debitamente motivati è facoltà della stazione appaltante non richiedere la garanzia definitiva per l’esecuzione dei contratti di cui alla presente Parte oppure per i contratti di pari importo a valere su un accordo quadro. Quando richiesta, la garanzia definitiva è pari al 5 per cento dell’importo contrattuale.\n\n4-bis. Alla garanzia provvisoria e definitiva non si applicano le riduzioni previste dall'articolo 106, comma 8, e gli aumenti previsti dall'articolo 117, comma 2.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDICA_RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "53"
+        }
+      },
+      "target": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 50
+        }
+      },
+      "attributes": {
+        "descrizione": "Riferimento all'articolo 50",
+        "snippet": "Nelle procedure di affidamento di cui all'articolo 50, comma 1"
+      }
+    },
+    {
+      "label": "EMETTE_AVVISO_DI_GARA",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "SA_001"
+        }
+      },
+      "target": {
+        "label": "Avviso",
+        "attributes": {
+          "id_avviso": "AVV_AVVISA_53"
+        }
+      },
+      "attributes": {
+        "contenuto_riferimento": "avviso di indizione",
+        "snippet": "avviso di indizione della procedura"
+      }
+    },
+    {
+      "label": "RICHIEDE_GARANZIA_PROVVISORIA",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "PROC_AFF_53"
+        }
+      },
+      "target": {
+        "label": "Garanzia",
+        "attributes": {
+          "identificatore_garanzia": "GAR_PROVVISORIA_ART53"
+        }
+      },
+      "attributes": {
+        "condizione": "In presenza di particolari esigenze indicate nelle decisione di contrarre o nell'avviso di indizione della procedura",
+        "snippet": "La stazione appaltante non richiede le garanzie provvisorie di cui all'articolo 106 salvo che, nelle procedure di cui alle lettere c, d ed e dello stesso comma 1 dell'articolo 50, ricorrano particolari esigenze che ne giustifichino la richiesta."
+      }
+    },
+    {
+      "label": "RICHIEDE_GARANZIA_DEFINITIVA",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "PROC_AFF_53"
+        }
+      },
+      "target": {
+        "label": "Garanzia",
+        "attributes": {
+          "identificatore_garanzia": "GAR_DEFINITIVA_ART53"
+        }
+      },
+      "attributes": {
+        "condizione_definitiva": "quando richiesta",
+        "percentuale_definitiva": 5,
+        "snippet": "In casi debitamente motivati è facoltà della stazione appaltante non richiedere la garanzia definitiva per l’esecuzione dei contratti di cui alla presente Parte oppure per i contratti di pari importo a valere su un accordo quadro. Quando richiesta, la garanzia definitiva è pari al 5 per cento dell’importo contrattuale."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "53"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_51"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "50"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_51"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "106"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_51"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "SA_001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_51"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Avviso",
+        "attributes": {
+          "id_avviso": "AVV_AVVISA_53"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_51"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "PROC_AFF_53"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_51"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 50
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_51"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Garanzia",
+        "attributes": {
+          "identificatore_garanzia": "GAR_PROVVISORIA_ART53"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_51"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Garanzia",
+        "attributes": {
+          "identificatore_garanzia": "GAR_DEFINITIVA_ART53"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_51"
+        }
+      }
+    }
+  ]
+}

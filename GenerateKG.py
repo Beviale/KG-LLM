@@ -25,7 +25,7 @@ import numpy as np
 
 init(autoreset=True)
 
-LIMIT_WHILE_LLM = 50 # Indicates the maximum number of times the script can repeat the same question to the LLM.
+LIMIT_WHILE_LLM = 10 # Indicates the maximum number of times the script can repeat the same question to the LLM.
 
 
 load_dotenv()
@@ -268,18 +268,11 @@ def split_text_chunks(text: str, ontology=False):
         chunks.append(" ".join(chunk))
         chunk.clear()
     return chunks
-        
 
-def merge_ontologies_chunk(category, model=None):
-    """
-    It merges the ontologies created for each text chunk of a specific category (e.g. 'DisciplinaDiUtilizzo') into a single ontology file.
-    Returns 'True' if the chunk ontologies have been merged and saved correctly; 'False' otherwise.
-    """
-    if model is None:
-        model = "openai/gpt-5-nano"
+
+
+def get_step_ontologies(category):
     json_merge = []
-
-
     next_level_index = 0
     while(True):
         next_level_index = next_level_index + 1
@@ -294,6 +287,8 @@ def merge_ontologies_chunk(category, model=None):
             next_level_index = next_level_index - 1
             if os.path.exists(last_last_next_level_dir):
                 for file_path in last_last_next_level_dir.iterdir():
+                    if file_path.suffix.lower() != ".json":
+                        continue
                     with file_path.open("r", encoding="utf-8") as f:
                         json_item = json.load(f)
                     json_merge.append(json_item)
@@ -304,7 +299,7 @@ def merge_ontologies_chunk(category, model=None):
                     if file_path.exists()==False:
                         break
                     
-                    with file_path.open("r", encoding="utf-8") as f:
+                    with file_path.open("r", encoding="utf-8") as f:                       
                         json_item = json.load(f)
 
                     json_merge.append(json_item)
@@ -314,6 +309,8 @@ def merge_ontologies_chunk(category, model=None):
                 numberOfIterationsToSkip = numberOfIterationsToSkip + 1
         else:
             for file_path in last_next_level_dir.iterdir():
+                if file_path.suffix.lower() != ".json":
+                    continue
                 with file_path.open("r", encoding="utf-8") as f:
                     json_item = json.load(f)
                 json_merge.append(json_item)
@@ -329,7 +326,18 @@ def merge_ontologies_chunk(category, model=None):
 
             json_merge.append(json_item)
             index += 1
+    return next_level_index, numberOfIterationsToSkip, json_merge
 
+
+def merge_ontologies_chunk(category, model=None):
+    """
+    It merges the ontologies created for each text chunk of a specific category (e.g. 'DisciplinaDiUtilizzo') into a single ontology file.
+    Returns 'True' if the chunk ontologies have been merged and saved correctly; 'False' otherwise.
+    """
+    if model is None:
+        model = "openai/gpt-5-nano"
+
+    next_level_index, numberOfIterationsToSkip, json_merge = get_step_ontologies(category)
     current_json_elements = json_merge[:]
     while len(current_json_elements) > 1:
         next_level = []
@@ -405,16 +413,15 @@ def merge_ontologies_chunk(category, model=None):
             file_path_next_level = Path(f"Ontologies/{category}/NextLevel_{next_level_index}/{next_level_file_index}_Ontology.json")
             with open(file_path_next_level, "w", encoding="utf-8") as f:
                 f.write(json.dumps(json_item, indent=2, ensure_ascii=False))
-
-                
-        current_json_elements = next_level  
+             
         end_next_level_file = Path(f"Ontologies/{category}/NextLevel_{next_level_index}/final.txt")
         with open(end_next_level_file, "w", encoding="utf-8") as f:
             f.write("END")
-        next_level_index = next_level_index + 1
+        next_level_index, numberOfIterationsToSkip, json_merge = get_step_ontologies(category)
+        current_json_elements = json_merge[:] 
+
 
     new_json = current_json_elements[0]
-
 
     new_attr = {
         "name": "snippet",
@@ -635,7 +642,7 @@ def generate_data(category: str, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-mini"
+        model = "openai/gpt-5-nano"
 
 
     print(f"{Fore.GREEN}--Generating the data for the '{category}' category")

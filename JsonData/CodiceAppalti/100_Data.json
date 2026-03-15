@@ -1,0 +1,164 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "103",
+        "snippet": "Art. 103. (Requisiti di partecipazione a procedure di lavori di rilevante importo)"
+      }
+    },
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "100",
+        "snippet": "articolo 100"
+      }
+    },
+    {
+      "label": "OperatoreEconomico",
+      "attributes": {
+        "partita_iva": "P_IVA_GENERICA",
+        "snippet": "l’operatore economico fornisce prova di aver eseguito lavori per entità e tipologia"
+      }
+    },
+    {
+      "label": "Appalto",
+      "attributes": {
+        "identificativo_appalto": "APPALTO_GENERICO_1",
+        "snippet": "Appalto generico non esplicitamente istanziato nel testo."
+      }
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": {
+        "codice_stazione_appaltante": "STAZIONE_GENERICA",
+        "snippet": "la stazione appaltante può richiedere requisiti aggiuntivi"
+      }
+    },
+    {
+      "label": "RiferimentoNormativo",
+      "attributes": {
+        "numero_articolo_riferimento": 100,
+        "snippet": "riferimento all'articolo 100"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_100",
+        "text": "\nArt. 103. (Requisiti di partecipazione a procedure di lavori di rilevante importo)\n\n1. Per gli appalti di lavori di importo pari o superiore ad euro 20.658.000, oltre ai requisiti di cui all'articolo 100, la stazione appaltante può richiedere requisiti aggiuntivi:\n\na) per verificare la capacità economico-finanziaria dell’operatore economico; in tal caso quest’ultimo fornisce i parametri economico-finanziari significativi richiesti, certificati da società di revisione ovvero da altri soggetti preposti che si affianchino alle valutazioni tecniche proprie dell'organismo di certificazione, da cui emerga in modo inequivoco l’esposizione finanziaria dell’operatore economico al momento in cui partecipa a una gara di appalto;\nb) per verificare la capacità professionale per gli appalti per i quali è richiesta la classifica illimitata; in tal caso l’operatore economico fornisce prova di aver eseguito lavori per entità e tipologia compresi nella categoria individuata come prevalente a quelli posti in appalto opportunamente certificati dalle rispettive stazioni appaltanti, tramite presentazione del certificato di esecuzione lavori; tale requisito si applica solo agli appalti di lavori di importo pari o superiore a 100 milioni di euro.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "INDICA_RIFERIMENTO_ARTICOLO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "103"
+        }
+      },
+      "target": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 100
+        }
+      },
+      "attributes": {
+        "descrizione": "Riferimento tra Articolo 103 e Articolo 100",
+        "snippet": "Art. 103. (Requisiti di partecipazione a procedure di lavori di rilevante importo) indica, nei requisiti, un riferimento all'articolo 100."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "103"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_100"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "100"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_100"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "OperatoreEconomico",
+        "attributes": {
+          "partita_iva": "P_IVA_GENERICA"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_100"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APPALTO_GENERICO_1"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_100"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "STAZIONE_GENERICA"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_100"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "RiferimentoNormativo",
+        "attributes": {
+          "numero_articolo_riferimento": 100
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_100"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "1",
+        "snippet": "Art. 1. (Principio del risultato)"
+      }
+    },
+    {
+      "label": "Principio",
+      "attributes": {
+        "nome": "PrincipioDelRisultato",
+        "snippet": "Il principio del risultato costituisce attuazione, nel settore dei contratti pubblici, del principio del buon andamento e dei correlati principi di efficienza, efficacia ed economicità."
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_1",
+        "text": "\nArt. 1. (Principio del risultato)\n\n1. Le stazioni appaltanti e gli enti concedenti perseguono il risultato dell’affidamento del contratto e della sua esecuzione con la massima tempestività e il migliore rapporto possibile tra qualità e prezzo, nel rispetto dei principi di legalità, trasparenza e concorrenza.\n\n2. La concorrenza tra gli operatori economici è funzionale a conseguire il miglior risultato possibile nell’affidare ed eseguire i contratti. La trasparenza è funzionale alla massima semplicità e celerità nella corretta applicazione delle regole del presente decreto, di seguito denominato «codice» e ne assicura la piena verificabilità.\n\n3. Il principio del risultato costituisce attuazione, nel settore dei contratti pubblici, del principio del buon andamento e dei correlati principi di efficienza, efficacia ed economicità. Esso è perseguito nell’interesse della comunità e per il raggiungimento degli obiettivi dell’Unione europea.\n\n4. Il principio del risultato costituisce criterio prioritario per l’esercizio del potere discrezionale e per l’individuazione della regola del caso concreto, nonché per:\n\na) valutare la responsabilità del personale che svolge funzioni amministrative o tecniche nelle fasi di programmazione, progettazione, affidamento ed esecuzione dei contratti;\nb) attribuire gli incentivi secondo le modalità previste dalla contrattazione collettiva.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "APPLICA_PRINCIPIO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "1"
+        }
+      },
+      "target": {
+        "label": "Principio",
+        "attributes": {
+          "nome": "PrincipioDelRisultato"
+        }
+      },
+      "attributes": {
+        "descrizione": "Collega Articolo 1 al Principio Del Risultato",
+        "snippet": "Art. 1. (Principio del risultato)"
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "1"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Principio",
+        "attributes": {
+          "nome": "PrincipioDelRisultato"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    }
+  ]
+}

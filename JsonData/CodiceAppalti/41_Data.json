@@ -1,0 +1,181 @@
+{
+  "entities": [
+    {
+      "label": "Articolo",
+      "attributes": {
+        "numero_articolo": "42",
+        "snippet": "Art. 42. (Verifica della progettazione)"
+      }
+    },
+    {
+      "label": "StazioneAppaltante",
+      "attributes": {
+        "codice_stazione_appaltante": "SA-001",
+        "snippet": "stazione appaltante"
+      }
+    },
+    {
+      "label": "Appalto",
+      "attributes": {
+        "identificativo_appalto": "APP-001",
+        "snippet": "appalto"
+      }
+    },
+    {
+      "label": "ProgettoFattibilitaTecnicoEconomica",
+      "attributes": {
+        "id_progetto_fatt_te": "FT-001",
+        "snippet": "progetto di fattibilità tecnico-economica"
+      }
+    },
+    {
+      "label": "ProgettoEsecutivo",
+      "attributes": {
+        "id_progetto_esecutivo": "PE-001",
+        "snippet": "progetto esecutivo"
+      }
+    },
+    {
+      "label": "Progettista",
+      "attributes": {
+        "id_progettista": "PD-001",
+        "snippet": "progettista"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_41",
+        "text": "\nArt. 42. (Verifica della progettazione)\n\n1. Nei contratti relativi ai lavori la stazione appaltante e l’ente concedente verificano la rispondenza del progetto alle esigenze espresse nel documento d’indirizzo e la sua conformità alla normativa vigente. La verifica ha luogo durante lo sviluppo della progettazione in relazione allo specifico livello previsto per l’appalto. In caso di affidamento congiunto di progettazione ed esecuzione, nonché nei contratti di partenariato pubblico-privato, la verifica del progetto di fattibilità tecnico-economica è completata prima dell’avvio della procedura di affidamento e la verifica del progetto esecutivo redatto dall’aggiudicatario è effettuata prima dell'inizio dei lavori.\n\n2. Per accertare la coerenza del progetto nelle sue diverse fasi con il documento di indirizzo della progettazione, il RUP, se non effettua personalmente la verifica, ne segue lo sviluppo parallelamente alla progettazione, garantendo il contraddittorio tra il soggetto che esegue la verifica e il progettista. L’attività di verifica è incompatibile, per uno stesso progetto, con le attività di progettazione, di coordinamento della relativa sicurezza, di direzione dei lavori e di collaudo.\n\n3. La verifica accerta la conformità del progetto alle prescrizioni eventualmente impartite dalle amministrazioni competenti prima dell’avvio della fase di affidamento e, se ha esito positivo, assolve a tutti gli obblighi di deposito e di autorizzazione per le costruzioni in zone sismiche, nonché di denuncia dei lavori all’ufficio del genio civile. I progetti, corredati della attestazione dell’avvenuta positiva verifica, sono depositati con modalità telematica interoperabile presso l’Archivio informatico nazionale delle opere pubbliche del Ministero delle infrastrutture e dei trasporti.\n\n4. La validazione del progetto posto a base di gara è l'atto formale che riporta gli esiti della verifica. La validazione è sottoscritta dal responsabile del relativo procedimento e fa preciso riferimento al rapporto conclusivo del soggetto preposto alla verifica e alle eventuali controdeduzioni del progettista. Il bando e la lettera di invito per l’affidamento dei lavori devono contenere gli estremi dell’avvenuta validazione del progetto posto a base di gara.\n\n5. L’allegato I.7 indica i contenuti e le modalità delle attività di verifica, nonché i soggetti che vi provvedono. Gli oneri conseguenti all’accertamento della rispondenza agli elaborati progettuali sono ricompresi nelle risorse stanziate per la realizzazione delle opere.\n"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "HA_BASE_DI_PROGETTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APP-001"
+        }
+      },
+      "target": {
+        "label": "ProgettoFattibilitaTecnicoEconomica",
+        "attributes": {
+          "id_progetto_fatt_te": "FT-001"
+        }
+      },
+      "attributes": {
+        "snippet": "Appalto APP-001 ha base di progetto FT-001."
+      }
+    },
+    {
+      "label": "HA_PROGETTO_ESECUTIVO",
+      "source": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APP-001"
+        }
+      },
+      "target": {
+        "label": "ProgettoEsecutivo",
+        "attributes": {
+          "id_progetto_esecutivo": "PE-001"
+        }
+      },
+      "attributes": {
+        "snippet": "Appalto APP-001 ha associato il progetto esecutivo PE-001."
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Articolo",
+        "attributes": {
+          "numero_articolo": "42"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_41"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "StazioneAppaltante",
+        "attributes": {
+          "codice_stazione_appaltante": "SA-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_41"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Appalto",
+        "attributes": {
+          "identificativo_appalto": "APP-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_41"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "ProgettoFattibilitaTecnicoEconomica",
+        "attributes": {
+          "id_progetto_fatt_te": "FT-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_41"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "ProgettoEsecutivo",
+        "attributes": {
+          "id_progetto_esecutivo": "PE-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_41"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Progettista",
+        "attributes": {
+          "id_progettista": "PD-001"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_41"
+        }
+      }
+    }
+  ]
+}
