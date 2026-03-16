@@ -18,9 +18,12 @@ from falkordb import FalkorDB
 from graphrag_sdk.steps import extract_data_step
 import pysbd
 from colorama import init, Fore, Style
-from litellm import embedding
 import numpy as np
-#from sklearn.cluster import AgglomerativeClustering
+from tqdm import tqdm
+from litellm import embedding
+import umap
+import hdbscan
+from sklearn.preprocessing import StandardScaler
 
 
 init(autoreset=True)
@@ -745,40 +748,38 @@ def generate_data(category: str, model=None, dataItems=None):
         print(f"{Fore.GREEN}Upload completed successfully for the '{category}' category!")
 
 
-def get_clusters(item_embedding_dict: dict, distance_threshold=0.5):
+def get_clusters_entities(item_embedding_dict: dict, distance_threshold=0.5):
     """
-    It performs the agglomerative clustering operation on the given items.
+    It performs the clustering operation on the given entities.
     
-    :param item_embedding_dict: dictionary where each key is a generic item and the value si the corresponding embedding vector. 
+    :param item_embedding_dict: dictionary where each key is an entity and the value is the corresponding embedding vector. 
     :param distance_threshold: the linkage distance threshold at or above which clusters will not be merged.
     """
+    # Dimensionality Reduction
+    entities_string = item_embedding_dict.keys()
+    data = np.array(list(item_embedding_dict.values()))
+    reducer = umap.UMAP(
+        n_neighbors=3, 
+        n_components=5,    
+        metric='cosine',   
+        random_state=42,
+        min_dist=0.0
+    )
+    embeddings_reduced = reducer.fit_transform(data)
+    clusterer = hdbscan.HDBSCAN(
+        min_cluster_size=2,     
+        min_samples=1,            
+    )
+    labels = clusterer.fit_predict(embeddings_reduced)
 
-    #clusterer = hdbscan.HDBSCAN()
-    clusterer.fit(item_embedding_dict)
-    #HDBSCAN(algorithm='best', alpha=1.0, approx_min_span_tree=True,
-    #gen_min_span_tree=False, leaf_size=40, memory=Memory(None),
-    #metric='euclidean', min_cluster_size=5, min_samples=None, p=None)
-
-    items = list(item_embedding_dict.keys())
-    # Convert the embeddings in a numpy matrix
-    X = np.array(list(item_embedding_dict.values()))
-    # Distance range values [0,2]
-   # clusterer = hdbscan.HDBSCAN()
-    #clusterer.fit(item_embedding_dict)
-    #HDBSCAN(algorithm='best', alpha=1.0, approx_min_span_tree=True,
-    #gen_min_span_tree=False, leaf_size=40, memory=Memory(None),
-    #metric='euclidean', min_cluster_size=5, min_samples=None, p=None)    labels = clustering.fit_predict(X)
 
     clusters = dict()
-    for item, label_cluster in zip(items, labels):
-        clusters[label_cluster].append(item)
-
-    clusters = {
-        label_cluster: items
-        for label_cluster, items in clusters.items()
-        if len(items) >= 2
-    }
-
+    for entity_string, label_cluster in zip(entities_string, labels):
+        if label_cluster == -1:
+            continue
+        if label_cluster not in clusters:
+            clusters[label_cluster] = []
+        clusters[label_cluster].append(entity_string)
     return clusters
 
 
@@ -885,119 +886,95 @@ def ask_LLM_merge_duplicated_entities(duplicated_entities, entity_label, key_att
     return new_entity
 
 
-def refine_with_LLM(json_data, category, json_ontology):
+def refine_with_LLM(category):
     """
-    It takes as input a JSON object containing entities, relations, and attributes. Using the embeddings, it finds similar nodes or edges that can be duplicates.
+    It takes as input a JSON object containing entities, relations, and attributes. Using the embeddings, it identifies similar entities that might be duplicates.
     The duplicates are removed and merged using LLM.
     """
-    # We define a "text description" as an artificial text constructed to describe a relation or an entity.
+    json_ontology_filename = f"Ontologies/{category}/Ontology.json"
+    with open(json_ontology_filename, "r", encoding="utf-8") as file:
+        text_ontology = file.read()
+    json_ontology = json.loads(text_ontology)
+    json_data_filename = f"JsonData/{category}/Data.json"
+    with open(json_data_filename, "r", encoding="utf-8") as file:
+        text_data = file.read()
+    json_data = json.loads(text_data)
+
+    # We define a "text description" as an artificial text constructed to describe an entity.
     by_text_desciption_entity_dict = dict() # The key is the entity and the value is the 'text_description'
-    by_text_desciption_relation_dict = dict() # The key is the relation and the value is the 'text_description'
 
     label_nameKeyAttribute_dict = Utils.get_dict_label_nameKeyAttribute(json_ontology)
-
-    for entity in json_data["entities"]:
+    for index, entity in enumerate(tqdm(json_data["entities"], desc="Constructing the text descriptions")):        
+        entity_string = json.dumps(entity, sort_keys=True, ensure_ascii=False)
         entity_id = ""
         text_descritpion = ""
         entity_label = entity.get("label")
-        text_descritpion = f"label:'{entity_label}"
-        attrs = entity.get("attrs")
+        if entity_label == "TextChunk":
+            continue     
+        text_descritpion = f"label:'{entity_label}'"
+        attrs = entity.get("attributes")
         if attrs is not None:  
             for key, value in attrs.items():
                 if key == label_nameKeyAttribute_dict[entity_label]:
                     entity_id = value
-                text_descritpion = text_descritpion + f", '{key}':'{value}'"
+                text_descritpion = text_descritpion + f", {key}:'{value}'"
         text_descritpion = text_descritpion + "."
 
         for relation in json_data["relations"]:
-            if relation.get("source").get("label") != entity_label:
+            isSource = False
+            isTarget = False
+            if relation.get("source").get("label") == entity_label:
+                if relation.get("source").get("attributes")[label_nameKeyAttribute_dict[entity_label]] == entity_id:
+                    isSource = True
+            if relation.get("target").get("label") == entity_label:
+                if relation.get("target").get("attributes")[label_nameKeyAttribute_dict[entity_label]] == entity_id:
+                    isTarget = True
+            if isSource == False and isTarget == False:
                 continue
-            if relation.get("source").get("label").get("attributes")[label_nameKeyAttribute_dict[entity_label]] != entity_id:
-                    continue
-            text_descritpion = text_descritpion + " It has the relation: "
+            if relation.get("label") == "ESTRATTO_DA_TESTO":
+                continue
+            text_descritpion = text_descritpion + " Ha la seguente relazione:"
             label = relation.get("label")
-            text_descritpion = f" label:'{label}'"
+            text_descritpion = text_descritpion + f" label:'{label}'"
             source = relation.get("source")
             source_label = source.get("label")
             text_descritpion = text_descritpion + f", sourceLabel:'{source_label}'"
             source_attrs = source.get("attributes")
             if source_attrs is not None:
                 for key, value in source_attrs.items():
-                    text_descritpion = text_descritpion + f", sourceAttribute_{key}:'{value}'"
+                    text_descritpion = text_descritpion + f", attributoSource_{key}:'{value}'"
             target = relation.get("target")
             target_label = target.get("label")
             text_descritpion = text_descritpion + f", targetLabel:'{target_label}'"
             target_attrs = target.get("attributes")
             if target_attrs is not None:
                 for key, value in target_attrs.items():
-                    text_descritpion = text_descritpion + f", targetAttribute_{key}:'{value}"
+                    text_descritpion = text_descritpion + f", attributoTarget_{key}:'{value}'"
             relation_attrs = relation.get("attrs")
             if relation_attrs is not None:
                 for key, value in relation_attrs.items():
-                    text_descritpion = text_descritpion + f", relationAttribute_{key}:'{value}'"
+                    text_descritpion = text_descritpion + f", attributoDiRelazione_{key}:'{value}'"
             text_descritpion = text_descritpion + "." 
-        by_text_desciption_entity_dict[entity].append(text_descritpion)
+        by_text_desciption_entity_dict[entity_string] = text_descritpion
         
 
-    for relation in json_data["relations"]:
-        text_descritpion = ""
-        label = relation.get("label")
-        text_descritpion = f"label:'{label}'"
-        source = relation.get("source")
-        source_label = source.get("label")
-        text_descritpion = text_descritpion + f", sourceLabel:'{source_label}'"
-        source_attrs = source.get("attributes")
-        if source_attrs is not None:
-            for key, value in source_attrs.items():
-                text_descritpion = text_descritpion + f", sourceAttribute_{key}:'{value}'"
-        target = relation.get("target")
-        target_label = target.get("label")
-        text_descritpion = text_descritpion + f", targetLabel:'{target_label}'"
-        target_attrs = target.get("attributes")
-        if target_attrs is not None:
-            for key, value in target_attrs.items():
-                text_descritpion = text_descritpion + f", targetAttribute_{key}:'{value}"
-        relation_attrs = relation.get("attrs")
-        if relation_attrs is not None:
-            for key, value in relation_attrs.items():
-                text_descritpion = text_descritpion + f", relationAttribute_{key}:'{value}'"
-        text_descritpion = text_descritpion + "." 
-        by_text_desciption_relation_dict[relation].append(text_descritpion)
-       
 
     by_text_description_embedding_entity_dict = dict() # The key is the entity and the value is the embedding of the 'text description'
-    for entity, text_descritpion in by_text_desciption_entity_dict():         
+    for entity_string, text_description in tqdm(by_text_desciption_entity_dict.items(), desc="Constructing the text description embeddings: "):   
         response_embedding = embedding(
             model="text-embedding-3-small",
             input=text_descritpion
         )
-        embedding = response_embedding["data"][0]["embedding"]
-        by_text_description_embedding_entity_dict[entity] = embedding
-    entity_partitions = get_clusters(by_text_description_embedding_entity_dict)
+        embedded = response_embedding["data"][0]["embedding"]
+        by_text_description_embedding_entity_dict[entity_string] = embedded
+    entity_partitions = get_clusters_entities(by_text_description_embedding_entity_dict)
 
-
-    by_text_description_embedding_relation_dict = dict() # The key is the relation and the value is the embedding of the 'text description'
-    for relation, text_descritpion in by_text_desciption_relation_dict():         
-        response_embedding = embedding(
-            model="text-embedding-3-small",
-            input=text_descritpion
-        )
-        embedding = response_embedding["data"][0]["embedding"]
-        by_text_description_embedding_relation_dict[relation] = embedding
-    relation_partisions = get_clusters(by_text_description_embedding_relation_dict)
 
     for cluster_id, entities_in_partition in entity_partitions.itmes():
         new_entities = ask_LLM_merge_similar_entities(entities_in_partition.copy(), json_ontology)
         ids_to_remove = {id(e) for e in entities_in_partition}
         json_data['entities'] = [in_json for in_json in json_data['entities'] if id(in_json) not in ids_to_remove]
         json_data['entities'].extend(new_entities)
-
-
-    for cluster_id, relations_in_partition in relation_partisions.itmes():
-        new_relations = ask_LLM_merge_similar_relations(relations_in_partition.copy(), json_ontology)
-        ids_to_remove = {id(e) for e in relations_in_partition}
-        json_data['relations'] = [in_json for in_json in json_data['relations'] if id(in_json) not in ids_to_remove]
-        json_data['relations'].extend(new_relations)
 
 
 def aggregate_data_and_remove_duplicates(json_data_list : list, json_ontology, text_ontology: str):
@@ -1139,7 +1116,7 @@ def main():
         print("1. Preprocess all the .pdf files converting them to .txt files")
         print("2. Generate the ontologies")
         print("3. Load the data")
-        print("4. Refine the data removing similar entities/relations from the KG using LLM")
+        print("4. Refine the data removing similar entities from the KG using LLM")
         print("5. Exit")
         choice = int(input("What do you want to do? "))
         if choice == 1:
