@@ -273,7 +273,6 @@ def split_text_chunks(text: str, ontology=False):
     return chunks
 
 
-
 def get_step_ontologies(category):
     json_merge = []
     next_level_index = 0
@@ -338,7 +337,7 @@ def merge_ontologies_chunk(category, model=None):
     Returns 'True' if the chunk ontologies have been merged and saved correctly; 'False' otherwise.
     """
     if model is None:
-        model = "openai/gpt-5-nano"
+        model = "openai/gpt-5-mini"
 
     next_level_index, numberOfIterationsToSkip, json_merge = get_step_ontologies(category)
     current_json_elements = json_merge[:]
