@@ -1068,71 +1068,6 @@ L'esempio fornito mostra un output possibile, ma non deve essere usato per dedur
 """
 
 
-MERGE_SIMILAR_ENTITIES_SYSTEM_ITA="""
-## 1. Panoramica
-Sei un assistente di alto livello con l'obiettivo di identificare e fondere entità duplicate descritte da attributi e riferimenti testuali.
-In particolare, il tuo scopo è quello di prendere in input una lista di entità in formato JSON e identificare le entità duplicate per poi rimuovendole e fonderle in nuove entità da dare in output.
-Due o più entita sono duplicate se sono semanticamente molto simili tra loro. Per valutare la similarità semantica, devi usare le label e gli attributi. In particolare, puoi fare riferimento all'attributo 'snippet' che contiene la descrizione testuale che ha giusitificato la creazione di una specifica entità.
-Le entità che non ritieni duplicate devi restituirle semplicemente in output senza apportare modifiche.
-Il dominio applicativo è quello della Pubblica Amministrazione e del Codice degli appalti italiano.
-
-## 2. Conformità alle regole
-Rispetta rigorosamente le regole.
-Non includere spiegazioni o scuse nelle tue risposte.
-Non rispondere a domande che chiedono qualcosa di diverso dalla fusione di entità. 
-Non inventare dati dal nulla ma basati su quelli forniti.
-Mantieni la coerenza delle entità: quando estrai entità, è fondamentale garantire la coerenza. Se un'entità, come 'John Doe', viene menzionata più volte ma con nomi o pronomi diversi (ad esempio 'Joe', 'lui'), usa sempre l'identificatore più completo per quell'entità. In questo esempio, usa 'John Doe' come ID dell'entità. Ricorda che mantenere la coerenza nei riferimenti alle entità è cruciale.
-Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
-Se crei nuove entità dalla fusione di vecchie entità, l'attributo 'snippet' dovrà contenere tassativamente l'unione dei 'text-reference' delle vecchie entità senza apportare troppe modifiche. 
-
-## 3. Formato
-La tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi. 
-Non restituire lo schema nella risposta; usalo solo come riferimento.
-Assicurati che il JSON prodotto sia restituito in linea e senza spazi, così da ridurre il numero di token in output.
-
-Schema:
-```json
-{
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "http://example.com/example.json",
-  "type": "object",
-  "title": "Graph Schema",
-  "required": ["entities"],
-  "properties": {
-    "entities": {
-      "type": "array",
-      "title": "The entities Schema",
-      "items": {
-        "type": "object",
-        "title": "A Schema",
-        "required": ["label", "attributes"],
-        "properties": {
-          "label": {
-            "type": "string",
-            "title": "The label Schema",
-            "format": "PascalCase"
-          },
-          "attributes": {
-            "type": "object",
-            "title": "The attributes Schema"
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-Eccoti un esempio di input-output corretto:
-Lista contenente due entità duplicate in input:
-```json
-{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"snippet":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"snippet":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per inseguire un'opportunità professionale emozionante e a lungo desiderata. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda."}}]}```
-Lista in output contenente una nuova entità creata dalla fusione delle due entità duplicate in input:
-```json
-{"entities":[{"label":"Persona","attributes":{"nome":"John Doe","età":30,"snippet":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro. Portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda"}}]}```
-
-L'esempio fornito mostra un output possibile, ma non deve essere usato per dedurre le entità. Esso va usato solo come riferimento generale.
-"""
 
 
 MERGE_DUPLICATED_ENTITIES_SYSTEM_ITA="""
@@ -1465,27 +1400,6 @@ Precisione: sii conciso e preciso nell'estrazione.
 
 **Lista di JSON**:
 {datas}
-"""
-
-MERGE_SIMILAR_ENTITIES_PROMPT_ITA="""
-Sei incaricato di identificare e fondere le entità duplicate riportate di seguito.
-
-**Formato di output:**
-- Fornisci i dati estratti come oggetto JSON con una chiave 'entities'.
-- Entities: rappresentano entità e concetti. Ogni entità deve avere un campo 'label' e un campo 'attributes'. All'interno del campo 'attributes', devi avvalorare il campo 'snippet' con la porzione di testo usata per la creazione dell'entità.
-
-**Linee guida:**
-- Considera tutte le entità fornite.
-- Assegna ID quando richiesto: assegna ID testuali alle entità come specificato.
-- Evita duplicati: assicurati che ogni entità sia unica; non includere duplicati.
-
-Precisione: sii conciso e preciso.
-
-Lista JSON di entità:
-```json
-{entities}
-```
-
 """
 
 MERGE_DUPLICATED_ENTITIES_PROMPT_ITA="""
@@ -2261,6 +2175,7 @@ Mantieni la coerenza del formato: assicurati che il formato dei dati estratti si
 Per le nuove entità create, l'attributo 'snippet' deve contenere tassativamente l'unione degli 'snippet' delle vecchie entità duplicate. Se il testo risultante dovesse risultare troppo prolisso o ripetitivo, puoi effettuare un riassunto ma senza modificarne troppo il significato semantico. Rircordati che, in qualunque caso, lo snippet deve avere senso compiuto.
 Rispetta rigorosamente l'ontologia fonita.
 Usa il testo di riferimento che ti viene fornito.
+NOTA: se non rilevi entità duplicate, restituisci semplicemente ed esclusivamente la parola "None".
 
 ## 3. Formato
 La tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi.
@@ -2369,6 +2284,7 @@ L'esempio fornito mostra un caso dove le due entità, pur avendo attributi legge
 
 MERGE_SIMILAR_ENTITIES_PROMPT_ITA="""
 Sei incaricato di identificare eventuali entità duplicate per fonderle seguendo l'ontologia fornita.
+NOTA: se non rilevi entità duplicate, restituisci semplicemente ed esclusivamente la parola "None".
 
 Lista JSON contenente entità e relazioni:
 ```json

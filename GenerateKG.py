@@ -22,7 +22,7 @@ import numpy as np
 from tqdm import tqdm
 from litellm import embedding
 import umap
-import hdbscan
+from sklearn.cluster import HDBSCAN
 from sklearn.preprocessing import StandardScaler
 import copy
 
@@ -749,7 +749,7 @@ def generate_data(category: str, model=None, dataItems=None):
         print(f"{Fore.GREEN}Upload completed successfully for the '{category}' category!")
 
 
-def get_clusters_entities(item_embedding_dict: dict):
+def get_clusters_entities(item_embedding_dict: dict, prob_threshold=0.85):
     """
     It performs the clustering operation on the given entities.
     
@@ -762,7 +762,7 @@ def get_clusters_entities(item_embedding_dict: dict):
 
     number_of_entities = len(item_embedding_dict.keys())
     if number_of_entities < 50:
-        neighbors_hyparameter = max(3, number_of_entities // 4) # For smaller dataset
+        neighbors_hyparameter = max(3, number_of_entities // 5) # For smaller dataset
     else:
         neighbors_hyparameter = 15 # for bigger dataset
 
@@ -773,24 +773,37 @@ def get_clusters_entities(item_embedding_dict: dict):
         random_state=42,
         min_dist=0.0
     )
+    print("Applying UMAP...")
     embeddings_reduced = reducer.fit_transform(data)
 
-    clusterer = hdbscan.HDBSCAN(
+
+    print("Applying HDBSCAN...")
+    clusterer = HDBSCAN(
         min_cluster_size=2,     
         min_samples=1,    
         metric='cosine',
         cluster_selection_method='eom'        
     )
     labels = clusterer.fit_predict(embeddings_reduced)
+    probs = clusterer.probabilities_
 
-
+    count_noise = 0
+    count_entities_clustered = 0
     clusters = dict()
+    index = 0
     for entity_string, label_cluster in zip(entities_string, labels):
         if label_cluster == -1: # Noise
-            continue
-        if label_cluster not in clusters:
-            clusters[label_cluster] = []
-        clusters[label_cluster].append(entity_string)
+            count_noise = count_noise + 1
+            index = index + 1
+            continue      
+        if probs[index] > prob_threshold:
+            if label_cluster not in clusters:
+                clusters[label_cluster] = []
+            clusters[label_cluster].append(entity_string)
+            count_entities_clustered = count_entities_clustered + 1
+        index = index + 1
+    print(f"Number of noise entities: {count_noise}")
+    print(f"Number of clustered entities: {count_entities_clustered}")
     return clusters
 
 
@@ -819,7 +832,7 @@ def ask_LLM_merge_duplicated_relations(duplicated_relations, entities, relation_
             {"role": "user",   "content": Prompt.MERGE_DUPLICATED_RELATIONS_PROMPT_ITA.format(relations=duplicated_relations_text, ontology=text_ontology_relation)}
         ]
     )
-    response_content = response.choices[0].message["content"].strip()
+    response_content = response.choices[0].message["content"].strip()        
     limit_while_count = 0
     while(True):
         limit_while_count = limit_while_count + 1
@@ -981,22 +994,22 @@ def refine_with_LLM(category):
     entity_partitions = get_clusters_entities(by_text_description_embedding_entity_dict)
 
 
-    for cluster_id, entities_in_partition in entity_partitions.itmes():
-        new_entities = ask_LLM_merge_similar_entities(entities_in_partition, json_ontology)
-        ids_to_remove = {id(e) for e in entities_in_partition}
-        json_data['entities'] = [in_json for in_json in json_data['entities'] if id(in_json) not in ids_to_remove]
-        json_data['entities'].extend(new_entities)
+    for cluster_id, entities_in_partition in entity_partitions.items():
+        new_entities = ask_LLM_merge_similar_entities(entities_in_partition, json_data, json_ontology)
+    print(f"{Fore.GREEN}-- KG refinement '{category}' completed!")
 
 
 
-def ask_LLM_merge_similar_entities(similar_entities: str, json_data, json_ontology):
+
+
+def ask_LLM_merge_similar_entities(similar_entities: str, json_data, json_ontology, model=None):
     """
     Given a list of entities, it prompts the LLM to merge any duplicates (if any).
     """
     if model is None:
         model = "openai/gpt-5-nano"
 
-    print(f"{Fore.WHITE}Asking LLM to merge similar entities..")
+    print(f"\n\n{Fore.WHITE}--NEW CLUSTER--")
     label_nameKeyAttribute_dict = Utils.get_dict_label_nameKeyAttribute(json_ontology)
 
     cluster = copy.deepcopy(json_data)
@@ -1009,9 +1022,12 @@ def ask_LLM_merge_similar_entities(similar_entities: str, json_data, json_ontolo
             if entity_string == similar_entity:
                 cluster["entities"].append(entity)
                 break
+
+
+
     estratto_da_relations_string = []
-    chunk_ids = []
-    for entity in cluster["entities"]:
+    chunk_ids = []  
+    for entity in tqdm(list(cluster["entities"]), desc="Constructing the cluster: "):
         entity_label = entity.get("label")
         entity_id = ""
         attrs = entity.get("attributes")
@@ -1019,6 +1035,7 @@ def ask_LLM_merge_similar_entities(similar_entities: str, json_data, json_ontolo
             for key, value in attrs.items():
                 if key == label_nameKeyAttribute_dict[entity_label]:
                     entity_id = value
+                    break
 
         for relation in json_data["relations"]:           
             isSource = False
@@ -1034,22 +1051,24 @@ def ask_LLM_merge_similar_entities(similar_entities: str, json_data, json_ontolo
 
             if relation.get("label") == "ESTRATTO_DA_TESTO":
                 estratto_da_relations_string.append(json.dumps(relation, sort_keys=True, ensure_ascii=False))
-                for key, value in relation.get("target").get("attributes"):
+                for key, value in relation.get("target").get("attributes").items():
                     if key == "Id":
-                        chunk_ids.append(value)               
+                        if value not in chunk_ids:
+                            chunk_ids.append(value)   
+                        break            
                 continue
             
             entity_label_to_find = ""
             entity_id_to_find = ""
             if isSource:
                 entity_label_to_find = relation.get("target").get("label")
-                for key, value in relation.get("target").get("attributes"):
+                for key, value in relation.get("target").get("attributes").items():
                     if key == label_nameKeyAttribute_dict[entity_label_to_find]:
                         entity_id_to_find = value
                         break
             else:
                 entity_label_to_find = relation.get("source").get("label")
-                for key, value in relation.get("source").get("attributes"):
+                for key, value in relation.get("source").get("attributes").items():
                     if key == label_nameKeyAttribute_dict[entity_label_to_find]:
                         entity_id_to_find = value
                         break
@@ -1057,7 +1076,7 @@ def ask_LLM_merge_similar_entities(similar_entities: str, json_data, json_ontolo
             for entity in json_data["entities"]:
                 if entity.get("label") != entity_label_to_find:
                     continue
-                for key, value in entity.get("attributes"):
+                for key, value in entity.get("attributes").items():
                     if key == label_nameKeyAttribute_dict[entity_label_to_find]:
                         if value == entity_id_to_find:
                             cluster["entities"].append(entity)
@@ -1078,7 +1097,7 @@ def ask_LLM_merge_similar_entities(similar_entities: str, json_data, json_ontolo
                if entity.get("attributes")["Id"] == chunk_id:
                    text = text + entity.get("attributes")["text"]
 
-
+    print(f"{Fore.WHITE}Asking LLM to merge similar entities..")
     response = completion(
         model=model,
         messages=[
@@ -1087,66 +1106,68 @@ def ask_LLM_merge_similar_entities(similar_entities: str, json_data, json_ontolo
         ]
     )
     response_content = response.choices[0].message["content"].strip()
-    limit_while_count = 0
-    while(True):
-        limit_while_count = limit_while_count + 1
-        if limit_while_count>LIMIT_WHILE_LLM:
-            print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
-            return None
-        try:
-            new_data = Utils.get_json_data(response_content, ontology, json_ontology)
-            break
-        except Exception as e:
+    if response_content.lower() != "none":
+        limit_while_count = 0
+        while(True):
+            limit_while_count = limit_while_count + 1
+            if limit_while_count>LIMIT_WHILE_LLM:
+                print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
+                return None
             try:
-                # fallback 
-                error = f"TypeError: '{type(e)}', error: '{e}'"
-                print(f"Error extracting JSON. {error}")
-                print(f"Prompting model to fix JSON")
-                json_fix_response = completion(
-                        model=model,
-                        messages=[
-                            {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-                            {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_DATA_ITA.format(errors=error, json=response_content, text=text, ontology=text_ontology)}         
-                        ]
-                    )
-                response_content = json_fix_response.choices[0].message["content"].strip()
+                new_data = Utils.get_json_data(response_content, ontology, json_ontology)
+                break
             except Exception as e:
-                continue
+                try:
+                    # fallback 
+                    error = f"TypeError: '{type(e)}', error: '{e}'"
+                    print(f"Error extracting JSON. {error}")
+                    print(f"Prompting model to fix JSON")
+                    json_fix_response = completion(
+                            model=model,
+                            messages=[
+                                {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
+                                {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_DATA_ITA.format(errors=error, json=response_content, text=text, ontology=text_ontology)}         
+                            ]
+                        )
+                    response_content = json_fix_response.choices[0].message["content"].strip()
+                except Exception as e:
+                    continue
 
 
-    # We remove the cluster
-    for cluster_entity in cluster["entities"]:
-        entity_to_remove = None
-        for old_entity in json_data["entities"]:
-            if json.dumps(old_entity, sort_keys=True, ensure_ascii=False) == cluster_entity:
-                entity_to_remove = old_entity
-                break
-        if entity_to_remove is not None:
-            json_data["entities"].remove(entity_to_remove)
+        # We remove the cluster
+        for cluster_entity in cluster["entities"]:
+            entity_to_remove = None
+            for old_entity in json_data["entities"]:
+                if json.dumps(old_entity, sort_keys=True, ensure_ascii=False) == cluster_entity:
+                    entity_to_remove = old_entity
+                    break
+            if entity_to_remove is not None:
+                json_data["entities"].remove(entity_to_remove)
 
-    for cluster_relation in cluster["relations"]:
-        relation_to_remove = None
-        for old_relation in json_data["relations"]:
-            if json.dumps(old_relation, sort_keys=True, ensure_ascii=False) == json.dumps(cluster_relation, sort_keys=True, ensure_ascii=False):
-                relation_to_remove = old_entity
-                break
-        if relation_to_remove is not None:
-            json_data["relations"].remove(relation_to_remove)
+        for cluster_relation in cluster["relations"]:
+            relation_to_remove = None
+            for old_relation in json_data["relations"]:
+                if json.dumps(old_relation, sort_keys=True, ensure_ascii=False) == json.dumps(cluster_relation, sort_keys=True, ensure_ascii=False):
+                    relation_to_remove = old_entity
+                    break
+            if relation_to_remove is not None:
+                json_data["relations"].remove(relation_to_remove)
     
-    for estratto_relation in estratto_da_relations_string:
-        relation_to_remove = None
-        for old_relation in json_data["relations"]:
-            if json.dumps(old_relation, sort_keys=True, ensure_ascii=False) == json.dumps(estratto_relation, sort_keys=True, ensure_ascii=False):
-                relation_to_remove = old_entity
-                break
-        if relation_to_remove is not None:
-            json_data["relations"].remove(relation_to_remove)
+        for estratto_relation in estratto_da_relations_string:
+            relation_to_remove = None
+            for old_relation in json_data["relations"]:
+                if json.dumps(old_relation, sort_keys=True, ensure_ascii=False) == json.dumps(estratto_relation, sort_keys=True, ensure_ascii=False):
+                    relation_to_remove = old_entity
+                    break
+            if relation_to_remove is not None:
+                json_data["relations"].remove(relation_to_remove)
         
-    # We add the new data
-    for chunk_id in chunk_ids:
-        Utils.add_riferimento_testuale_relation(new_data, chunk_id, json_ontology)
-    json_data["entities"].extend(new_data["entities"])
-    json_data["relations"].extend(new_data["relations"])
+        # We add the new data
+        for chunk_id in chunk_ids:
+            Utils.add_riferimento_testuale_relation(new_data, chunk_id, json_ontology)
+        json_data["entities"].extend(new_data["entities"])
+        json_data["relations"].extend(new_data["relations"])
+    
 
 
 
