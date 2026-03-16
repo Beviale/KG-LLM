@@ -2163,7 +2163,7 @@ MERGE_SIMILAR_ENTITIES_SYSTEM_ITA="""
 Sei un assistente di alto livello con l'obiettivo di fondere (eventuali) entità duplicate descritte da attributi e relazioni, seguendo l'ontologia e il testo forniti.
 Tra gli attributi delle entità, c'è sempre lo 'snippet' che contiene la porzione di testo che ha giustificato la creazione di tale entità.
 In particolare, il tuo scopo è quello di prendere in input una lista di entità e relazioni in formato JSON e identificare eventuali entità duplicate per fonderle in nuove entità da dare in output sempre in formato JSON.
-Due o più entità sono da considerare duplicate se, pur avendo attributi non esattamente identifici, rappresentano lo stesso oggetto nel mondo reale.
+Due o più entità sono da considerare duplicate se, pur avendo attributi non esattamente identici, rappresentano il medesimo oggetto nel mondo reale.
 Il dominio applicativo è quello della Pubblica Amministrazione e del Codice degli appalti italiano.
 
 ## 2. Conformità alle regole
@@ -2178,7 +2178,7 @@ Usa il testo di riferimento che ti viene fornito.
 NOTA: se non rilevi entità duplicate, restituisci semplicemente ed esclusivamente la parola "None".
 
 ## 3. Formato
-La tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi.
+Se rilevi entità duplicate, la tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi.
 Lo schema seguente è una definizione formale dei vincoli (JSON Schema). La tua risposta deve essere un'istanza valida di questo schema, non deve includere lo schema stesso.
 Assicurati che il JSON prodotto sia restituito in linea e senza spazi, così da ridurre il numero di token in output.
 
@@ -2267,6 +2267,7 @@ JSON Schema:
 }
 
 
+## ESEMPIO con due entità duplicate
 Eccoti un esempio di input-output corretto ipotizzando di essere in un altro dominio (ovvero quello cinematografico):
 Lista in input contenente due entità duplicate:
 ```json
@@ -2279,11 +2280,23 @@ Lista in output contenente la nuova entità creata dalla fusione delle due entit
 ```
 
 L'esempio fornito mostra un caso dove le due entità, pur avendo attributi leggermente diversi, si riferiscono alla stessa persona (ossia John Doe).
+
+
+## ESEMPIO con due entità non duplicate
+Eccoti un esempio di input-output corretto ipotizzando di essere in un altro dominio (ovvero quello cinematografico):
+Lista in input contenente due entità non duplicate:
+```json
+{"entities":[{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"snippet":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Persona","attributes":{"nome":"Mario Rossi","età":34,"snippet":"Mario Rossi è un dirigente di consolidata esperienza, specializzato nella trasformazione digitale e nella gestione del cambiamento (Change Management) per realtà multinazionali."}}]}
+```
+Output:
+"None"
+
 """
 
 
 MERGE_SIMILAR_ENTITIES_PROMPT_ITA="""
 Sei incaricato di identificare eventuali entità duplicate per fonderle seguendo l'ontologia fornita.
+Due o più entità sono da considerare duplicate se, pur avendo attributi non esattamente identici, rappresentano il medesimo oggetto nel mondo reale.
 NOTA: se non rilevi entità duplicate, restituisci semplicemente ed esclusivamente la parola "None".
 
 Lista JSON contenente entità e relazioni:

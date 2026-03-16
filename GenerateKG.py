@@ -995,7 +995,7 @@ def refine_with_LLM(category):
 
 
     for cluster_id, entities_in_partition in entity_partitions.items():
-        new_entities = ask_LLM_merge_similar_entities(entities_in_partition, json_data, json_ontology)
+        ask_LLM_merge_similar_entities(entities_in_partition, json_data, json_ontology)
     print(f"{Fore.GREEN}-- KG refinement '{category}' completed!")
 
 
@@ -1106,68 +1106,70 @@ def ask_LLM_merge_similar_entities(similar_entities: str, json_data, json_ontolo
         ]
     )
     response_content = response.choices[0].message["content"].strip()
-    if response_content.lower() != "none":
-        limit_while_count = 0
-        while(True):
-            limit_while_count = limit_while_count + 1
-            if limit_while_count>LIMIT_WHILE_LLM:
-                print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
-                return None
+    if response_content.lower() == "none":
+        print("No duplicate entities found by the LLM.!")
+        return
+    limit_while_count = 0
+    while(True):
+        limit_while_count = limit_while_count + 1
+        if limit_while_count>LIMIT_WHILE_LLM:
+            print(f"{Fore.RED} -----------LIMIT_WHILE_LLM exceeded!!---------")
+            return None
+        try:
+            new_data = Utils.get_json_data(response_content, ontology, json_ontology)
+            break
+        except Exception as e:
             try:
-                new_data = Utils.get_json_data(response_content, ontology, json_ontology)
-                break
+                # fallback 
+                error = f"TypeError: '{type(e)}', error: '{e}'"
+                print(f"Error extracting JSON. {error}")
+                print(f"Prompting model to fix JSON")
+                json_fix_response = completion(
+                        model=model,
+                        messages=[
+                            {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
+                            {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_DATA_ITA.format(errors=error, json=response_content, text=text, ontology=text_ontology)}         
+                        ]
+                    )
+                response_content = json_fix_response.choices[0].message["content"].strip()
             except Exception as e:
-                try:
-                    # fallback 
-                    error = f"TypeError: '{type(e)}', error: '{e}'"
-                    print(f"Error extracting JSON. {error}")
-                    print(f"Prompting model to fix JSON")
-                    json_fix_response = completion(
-                            model=model,
-                            messages=[
-                                {"role": "system", "content": Prompt.EXTRACT_DATA_SYSTEM_ITA},
-                                {"role": "user",   "content": Prompt.FIX_JSON_PROMPT_DATA_ITA.format(errors=error, json=response_content, text=text, ontology=text_ontology)}         
-                            ]
-                        )
-                    response_content = json_fix_response.choices[0].message["content"].strip()
-                except Exception as e:
-                    continue
+                continue
 
 
-        # We remove the cluster
-        for cluster_entity in cluster["entities"]:
-            entity_to_remove = None
-            for old_entity in json_data["entities"]:
-                if json.dumps(old_entity, sort_keys=True, ensure_ascii=False) == cluster_entity:
-                    entity_to_remove = old_entity
-                    break
-            if entity_to_remove is not None:
-                json_data["entities"].remove(entity_to_remove)
+    # We remove the cluster
+    for cluster_entity in cluster["entities"]:
+        entity_to_remove = None
+        for old_entity in json_data["entities"]:
+            if json.dumps(old_entity, sort_keys=True, ensure_ascii=False) == cluster_entity:
+                entity_to_remove = old_entity
+                break
+        if entity_to_remove is not None:
+            json_data["entities"].remove(entity_to_remove)
 
-        for cluster_relation in cluster["relations"]:
-            relation_to_remove = None
-            for old_relation in json_data["relations"]:
-                if json.dumps(old_relation, sort_keys=True, ensure_ascii=False) == json.dumps(cluster_relation, sort_keys=True, ensure_ascii=False):
-                    relation_to_remove = old_entity
-                    break
-            if relation_to_remove is not None:
-                json_data["relations"].remove(relation_to_remove)
+    for cluster_relation in cluster["relations"]:
+        relation_to_remove = None
+        for old_relation in json_data["relations"]:
+            if json.dumps(old_relation, sort_keys=True, ensure_ascii=False) == json.dumps(cluster_relation, sort_keys=True, ensure_ascii=False):
+                relation_to_remove = old_entity
+                break
+        if relation_to_remove is not None:
+            json_data["relations"].remove(relation_to_remove)
+
+    for estratto_relation in estratto_da_relations_string:
+        relation_to_remove = None
+        for old_relation in json_data["relations"]:
+            if json.dumps(old_relation, sort_keys=True, ensure_ascii=False) == json.dumps(estratto_relation, sort_keys=True, ensure_ascii=False):
+                relation_to_remove = old_entity
+                break
+        if relation_to_remove is not None:
+            json_data["relations"].remove(relation_to_remove)
     
-        for estratto_relation in estratto_da_relations_string:
-            relation_to_remove = None
-            for old_relation in json_data["relations"]:
-                if json.dumps(old_relation, sort_keys=True, ensure_ascii=False) == json.dumps(estratto_relation, sort_keys=True, ensure_ascii=False):
-                    relation_to_remove = old_entity
-                    break
-            if relation_to_remove is not None:
-                json_data["relations"].remove(relation_to_remove)
-        
-        # We add the new data
-        for chunk_id in chunk_ids:
-            Utils.add_riferimento_testuale_relation(new_data, chunk_id, json_ontology)
-        json_data["entities"].extend(new_data["entities"])
-        json_data["relations"].extend(new_data["relations"])
-    
+    # We add the new data
+    for chunk_id in chunk_ids:
+        Utils.add_riferimento_testuale_relation(new_data, chunk_id, json_ontology)
+    json_data["entities"].extend(new_data["entities"])
+    json_data["relations"].extend(new_data["relations"])
+
 
 
 
