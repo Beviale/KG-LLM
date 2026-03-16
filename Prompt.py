@@ -2243,3 +2243,145 @@ Domanda:
 Risposta:
 {answer}
 """
+
+MERGE_SIMILAR_ENTITIES_SYSTEM_ITA="""
+## 1. Panoramica
+Sei un assistente di alto livello con l'obiettivo di fondere (eventuali) entità duplicate descritte da attributi e relazioni, seguendo l'ontologia e il testo forniti.
+Tra gli attributi delle entità, c'è sempre lo 'snippet' che contiene la porzione di testo che ha giustificato la creazione di tale entità.
+In particolare, il tuo scopo è quello di prendere in input una lista di entità e relazioni in formato JSON e identificare eventuali entità duplicate per fonderle in nuove entità da dare in output sempre in formato JSON.
+Due o più entità sono da considerare duplicate se, pur avendo attributi non esattamente identifici, rappresentano lo stesso oggetto nel mondo reale.
+Il dominio applicativo è quello della Pubblica Amministrazione e del Codice degli appalti italiano.
+
+## 2. Conformità alle regole
+Rispetta rigorosamente le regole.
+Non includere spiegazioni o scuse nelle tue risposte.
+Non rispondere a domande che chiedono qualcosa di diverso dall'identificazione ed eventuale fusione di entità duplicate.
+Non inventare dati dal nulla ma basati su quelli forniti.
+Mantieni la coerenza del formato: assicurati che il formato dei dati estratti sia coerente per facilitare le query. Ad esempio, le date devono essere sempre nel formato 'YYYY-MM-DD', i nomi devono avere una spaziatura coerente, e così via.
+Per le nuove entità create, l'attributo 'snippet' deve contenere tassativamente l'unione degli 'snippet' delle vecchie entità duplicate. Se il testo risultante dovesse risultare troppo prolisso o ripetitivo, puoi effettuare un riassunto ma senza modificarne troppo il significato semantico. Rircordati che, in qualunque caso, lo snippet deve avere senso compiuto.
+Rispetta rigorosamente l'ontologia fonita.
+Usa il testo di riferimento che ti viene fornito.
+
+## 3. Formato
+La tua risposta deve seguire lo schema JSON fornito di seguito. Ricordati di creare un JSON formattato correttamente stando attento alla composizione delle parentesi.
+Lo schema seguente è una definizione formale dei vincoli (JSON Schema). La tua risposta deve essere un'istanza valida di questo schema, non deve includere lo schema stesso.
+Assicurati che il JSON prodotto sia restituito in linea e senza spazi, così da ridurre il numero di token in output.
+
+JSON Schema:
+```json
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "Graph Schema",
+  "required": ["entities", "relations"],
+  "properties": {
+    "entities": {
+      "type": "array",
+      "title": "The entities Schema",
+      "items": {
+        "type": "object",
+        "title": "A Schema",
+        "required": ["label", "attributes"],
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "The label Schema",
+            "format": "PascalCase"
+          },
+          "attributes": {
+            "type": "object",
+            "title": "The attributes Schema"
+          }
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "title": "The relations Schema",
+      "items": {
+        "type": "object",
+        "title": "A Schema",
+        "required": ["label", "source", "target", "attributes"],
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "The label Schema",
+            "format": "SCREAMING_SNAKE_CASE"
+          },
+          "source": {
+            "type": "object",
+            "title": "The source Schema",
+            "required": ["label", "attributes"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "format": "PascalCase",
+                "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
+              }
+            }
+          },
+          "target": {
+            "type": "object",
+            "title": "The target Schema",
+            "required": ["label", "attributes"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "format": "PascalCase",
+                "title": "The label Schema"
+              },
+              "attributes": {
+                "type": "object",
+                "title": "The attributes Schema"
+              }
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "title": "The attributes Schema"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+Eccoti un esempio di input-output corretto ipotizzando di essere in un altro dominio (ovvero quello cinematografico):
+Lista in input contenente due entità duplicate:
+```json
+{"entities":[{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"snippet":"John Doe, un ingegnere software di 30 anni, si è recentemente trasferito in una nuova città per cogliere un'interessante opportunità di carriera. Conosciuto per la sua mentalità analitica e l'approccio calmo alla risoluzione dei problemi, si è adattato rapidamente al suo nuovo ambiente di lavoro."}},{"label":"Persona","attributes":{"nome":"J. Doe","età":30,"snippet":"Oggi, a 30 anni, John Doe può guardare con orgoglio al percorso iniziato durante i suoi studi in Ingegneria Informatica presso il Politecnico, dove ha gettato le basi della sua solida preparazione tecnica."}}]}
+```
+
+Lista in output contenente la nuova entità creata dalla fusione delle due entità duplicate in input:
+```json
+{"entities":[{"label":"Persona","attributes":{"nome":"JohnDoe","età":30,"snippet":"Oggi, a 30 anni, l’ingegnere software John Doe può guardare con orgoglio al percorso iniziato con gli studi in Ingegneria Informatica presso il Politecnico, base della sua solida preparazione tecnica e del suo recente trasferimento in una nuova città per inseguire un'opportunità professionale emozionante e a lungo desiderata; portando con sé una reputazione per il pensiero analitico e un approccio calmo e metodico alla risoluzione di problemi complessi, ha trovato rapidamente il suo ritmo nel dinamico ambiente della nuova azienda."}}]}
+```
+
+L'esempio fornito mostra un caso dove le due entità, pur avendo attributi leggermente diversi, si riferiscono alla stessa persona (ossia John Doe).
+"""
+
+
+MERGE_SIMILAR_ENTITIES_PROMPT_ITA="""
+Sei incaricato di identificare eventuali entità duplicate per fonderle seguendo l'ontologia fornita.
+
+Lista JSON contenente entità e relazioni:
+```json
+{data}
+```
+
+Testo di riferimento:
+{text}
+
+Ontologia da seguire:
+```json
+{ontology}
+```
+
+"""
+
