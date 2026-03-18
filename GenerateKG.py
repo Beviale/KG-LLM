@@ -951,8 +951,8 @@ def refine_with_LLM(category):
                     break
                 if first:
                     first = False
-                    text_descritpion = text_description + " ha gli attributi"
-                    text_descritpion = text_descritpion + f" '{key}' uguale a'{value}'"
+                    text_descritpion = text_descritpion + " ha gli attributi"
+                    text_descritpion = text_descritpion + f" '{key}' uguale a '{value}'"
                 else:
                     text_descritpion = text_descritpion + f", '{key}' uguale a '{value}'"              
         text_descritpion = text_descritpion + "."
@@ -978,7 +978,7 @@ def refine_with_LLM(category):
             source_attrs = source.get("attributes")
             if source_attrs is not None:
                 first = True
-                for key, value in source_attrs.items():
+                for key, value in source_attrs.items():               
                     if first:
                         first = False
                         text_descritpion = text_descritpion + " ("
@@ -995,11 +995,12 @@ def refine_with_LLM(category):
             if target_attrs is not None:
                 first = True
                 for key, value in target_attrs.items():
-                    first = False
-                    text_descritpion = text_descritpion + " ("
-                    text_descritpion = text_descritpion + f"{key} uguale a'{value}'"
-                else:
-                    text_descritpion = text_descritpion + f", {key} uguale a'{value}'"
+                    if first:
+                        first = False
+                        text_descritpion = text_descritpion + " ("
+                        text_descritpion = text_descritpion + f"{key} uguale a '{value}'"
+                    else:
+                        text_descritpion = text_descritpion + f", {key} uguale a '{value}'"
                 if first == False:
                     text_descritpion = text_descritpion + ")"
 
@@ -1011,7 +1012,7 @@ def refine_with_LLM(category):
                         first = False
                         text_descritpion = text_descritpion + f" e ha '{key}' uguale a '{value}'"
                     else:
-                        text_descritpion = text_descritpion + f", {key} uguale a '{value}'"
+                        text_descritpion = text_descritpion + f", '{key}' uguale a '{value}'"
             text_descritpion = text_descritpion + "." 
         by_text_desciption_entity_dict[entity_string] = text_descritpion
         
