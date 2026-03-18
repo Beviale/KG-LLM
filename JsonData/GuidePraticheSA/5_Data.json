@@ -1,0 +1,471 @@
+{
+  "entities": [
+    {
+      "label": "Procedura",
+      "attributes": {
+        "id_procedura": "Procedura",
+        "descrizione": "il compilatore potrà definire il metodo di calcolo da utilizzare tra quelli disponibili."
+      }
+    },
+    {
+      "label": "MetodoDiCalcolo",
+      "attributes": {
+        "nome": "C",
+        "richiede_sconto_riferimento": true
+      }
+    },
+    {
+      "label": "MetodoDiCalcolo",
+      "attributes": {
+        "nome": "A",
+        "richiede_sconto_riferimento": false
+      }
+    },
+    {
+      "label": "MetodoDiCalcolo",
+      "attributes": {
+        "nome": "4/5",
+        "richiede_sconto_riferimento": false
+      }
+    },
+    {
+      "label": "CriterioAggiudicazione",
+      "attributes": {
+        "codice": "PPB",
+        "descrizione": "metodo A per le gare al PPB."
+      }
+    },
+    {
+      "label": "CriterioAggiudicazione",
+      "attributes": {
+        "codice": "OEPV",
+        "descrizione": "metodo 4/5 per le gare OEPV; per le gare con criterio OEPV si devono inoltre definire modalità di calcolo PT e PE."
+      }
+    },
+    {
+      "label": "CriterioAnomalia",
+      "attributes": {
+        "nome": "CriterioAnomalia_OEPV",
+        "modalita_pt": "ante riparametrazione; post riparametrazione",
+        "modalita_pe": "ante riparametrazione; post riparametrazione",
+        "metodo_di_calcolo": "manuale; valutazione"
+      }
+    },
+    {
+      "label": "Figura",
+      "attributes": {
+        "numero": "7",
+        "didascalia": "FIGURA 7 – SCELTA DEL METODO"
+      }
+    },
+    {
+      "label": "Figura",
+      "attributes": {
+        "numero": "8",
+        "didascalia": "FIGURA 8 - SCELTA modalità OFFERTE ANOMALE"
+      }
+    },
+    {
+      "label": "Figura",
+      "attributes": {
+        "numero": "9",
+        "didascalia": "FIGURA 9 - ALTRI PARAMETRI"
+      }
+    },
+    {
+      "label": "Figura",
+      "attributes": {
+        "numero": "1",
+        "didascalia": "FIGURA 1 – ESCLUSIONE AUTOMATICA"
+      }
+    },
+    {
+      "label": "Figura",
+      "attributes": {
+        "numero": "2",
+        "didascalia": "FIGURA 2 - ESCLUSIONE AUTOMATICA (2)"
+      }
+    },
+    {
+      "label": "Figura",
+      "attributes": {
+        "numero": "3",
+        "didascalia": "FIGURA 3 – modalità VALUTAZIONE"
+      }
+    },
+    {
+      "label": "Figura",
+      "attributes": {
+        "numero": "4",
+        "didascalia": "FIGURA 4 - modalità MANUALE"
+      }
+    },
+    {
+      "label": "Figura",
+      "attributes": {
+        "numero": "5",
+        "didascalia": "FIGURA 5 - TIPO GARA"
+      }
+    },
+    {
+      "label": "Figura",
+      "attributes": {
+        "numero": "6",
+        "didascalia": "FIGURA 6 – SCELTA CALCOLO ANOMALIA"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_5",
+        "text": "il compilatore potrà definire il metodo di calcolo da utilizzare tra quelli disponibili. FIGURA 7 – SCELTA DEL METODO solo nel caso di scelta del metodo C, verrà richiesto obbligatoriamente di inserire anche lo sconto di riferimento. 2) nelle altre ipotesi l’opzione offerte anomale prevederà la possibilità di scegliere tra manuale o valutazione. manuale SA | calcolo dell’anomalia pag.10 manuale SA | calcolo dell’anomalia vers.2.1 FIGURA 8 - SCELTA modalità OFFERTE ANOMALE nel caso di scelta manuale, non ci sarà da configurare nessun metodo di calcolo, dal momento che sarà la commissione ad indicare manualmente eventuali offerte anomale o sospette tali. nel caso di scelta valutazione, a seconda del criterio di aggiudicazione, sarà necessario indicare: • metodo A per le gare al PPB; • metodo 4/5 per le gare OEPV resta inteso che, qualora la SA abbia previsto dei metodi di calcolo dell’anomalia diversi da quelli sopra elencati, si dovrà indicare la valutazione di tipo manuale, oppure disattivare completamente il calcolo dell’anomalia e gestirlo extra piattaforma. FIGURA 9 - ALTRI PARAMETRI per le gare con criterio OEPV, si dovranno infine definire nella sezione criteri anomalia anche: • modalità di calcolo PT: definisce se il punteggio tecnico, ai fini del calcolo dell’anomalia, debba essere considerato: o ante riparametrazione: nel calcolo dell'anomalia vengono considerati i punteggi prima della riparametrazione; o post riparametrazione: nel calcolo dell'anomalia vengono considerati i punteggi dopo la riparametrazione. • modalità di calcolo PE: definisce se il punteggio economico, ai fini del calcolo dell’anomalia, debba essere considerato: manuale SA | calcolo dell’anomalia pag.11 manuale SA | calcolo dell’anomalia vers.2.1 o ante riparametrazione: nel calcolo dell'anomalia vengono considerati i punteggi prima della riparametrazione; o post riparametrazione: nel calcolo dell'anomalia vengono considerati i punteggi dopo la riparametrazione. 4. PRECISAZIONI SUI CALCOLI AUTOMATICI al fine di condividere con le SA, e conseguentemente affinché le stesse possano rendere noti ai partecipanti, quali sono i criteri di calcolo che utilizza la piattaforma nella definizione della soglia di anomalia, si riportano le seguenti regole: • gli arrotondamenti, qualora fossero necessari, sono effettuati secondo la prassi consolidata che arrotonda alla cifra superiore in caso di valore >= 5, mentre alla cifra inferiore nel caso contrario; • tutte le informazioni che concorrono alla formazione della soglia di anomalia, prima di essere utilizzate vengono riportate ad un campo DECIMAL con 10 decimali con il relativo arrotondamento se il dato sorgente prevede un numero di decimali superiore a 10; • tutte le informazioni intermedie di calcolo sono definite DECIMAL con 10 decimali; • tutti i calcoli che comprendono operazioni che potenzialmente comportano un aumento di decimali (e.g. prodotti, rapporti, elevazione a potenza, etc.) vengono effettuati in operazioni elementari che impediscono al sistema di utilizzare campi di transito definiti diversamente da quanto specificato • tutte le informazioni presenti nel calcolo dell’anomalia vengono registrate in una struttura opportuna che potrà essere utilizzata in caso di contestazioni; • con riferimento all’operazione di taglio delle ali (comune a tutti e tre i metodi), la piattaforma adotta, nel caso di ribassi di pari valore entro le ali o ai margini delle stesse, il criterio del c.d. “blocco unitario”, accorpando i ribassi di uguale valore e contandoli come un’unica offerta. manuale SA | calcolo dell’anomalia pag.12 manuale SA | calcolo dell’anomalia vers.2.1 5. INDICE DELLE FIGURE le immagini sono puramente indicative e possono subire variazioni. FIGURA 1 – ESCLUSIONE AUTOMATICA FIGURA 2 - ESCLUSIONE AUTOMATICA (2) FIGURA 3 – modalità VALUTAZIONE FIGURA 4 - modalità MANUALE FIGURA 5 - TIPO GARA FIGURA 6 – SCELTA CALCOLO ANOMALIA FIGURA 7 – SCELTA DEL METODO FIGURA 8 - SCELTA modalità OFFERTE ANOMALE FIGURA 9 - ALTRI PARAMETRI"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "UTILIZZA_METODO",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "Procedura"
+        }
+      },
+      "target": {
+        "label": "MetodoDiCalcolo",
+        "attributes": {
+          "nome": "C"
+        }
+      },
+      "attributes": {
+        "modalita_scelta": "scelta del metodo C (richiede inserimento obbligatorio dello sconto di riferimento)"
+      }
+    },
+    {
+      "label": "UTILIZZA_METODO",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "Procedura"
+        }
+      },
+      "target": {
+        "label": "MetodoDiCalcolo",
+        "attributes": {
+          "nome": "A"
+        }
+      },
+      "attributes": {
+        "modalita_scelta": "metodo A (per gare al PPB)"
+      }
+    },
+    {
+      "label": "UTILIZZA_METODO",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "Procedura"
+        }
+      },
+      "target": {
+        "label": "MetodoDiCalcolo",
+        "attributes": {
+          "nome": "4/5"
+        }
+      },
+      "attributes": {
+        "modalita_scelta": "metodo 4/5 (per gare OEPV)"
+      }
+    },
+    {
+      "label": "HA_CRITERIO_AGGIUDICAZIONE",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "Procedura"
+        }
+      },
+      "target": {
+        "label": "CriterioAggiudicazione",
+        "attributes": {
+          "codice": "PPB"
+        }
+      },
+      "attributes": {}
+    },
+    {
+      "label": "HA_CRITERIO_AGGIUDICAZIONE",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "Procedura"
+        }
+      },
+      "target": {
+        "label": "CriterioAggiudicazione",
+        "attributes": {
+          "codice": "OEPV"
+        }
+      },
+      "attributes": {}
+    },
+    {
+      "label": "HA_CRITERIO_ANOMALIA",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "Procedura"
+        }
+      },
+      "target": {
+        "label": "CriterioAnomalia",
+        "attributes": {
+          "nome": "CriterioAnomalia_OEPV"
+        }
+      },
+      "attributes": {
+        "opzione_calcolo": "definizione modalità PT e PE (ante riparametrazione; post riparametrazione)"
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "Procedura"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "MetodoDiCalcolo",
+        "attributes": {
+          "nome": "C"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "MetodoDiCalcolo",
+        "attributes": {
+          "nome": "A"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "MetodoDiCalcolo",
+        "attributes": {
+          "nome": "4/5"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "CriterioAggiudicazione",
+        "attributes": {
+          "codice": "PPB"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "CriterioAggiudicazione",
+        "attributes": {
+          "codice": "OEPV"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "CriterioAnomalia",
+        "attributes": {
+          "nome": "CriterioAnomalia_OEPV"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Figura",
+        "attributes": {
+          "numero": "7"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Figura",
+        "attributes": {
+          "numero": "8"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Figura",
+        "attributes": {
+          "numero": "9"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Figura",
+        "attributes": {
+          "numero": "1"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Figura",
+        "attributes": {
+          "numero": "2"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Figura",
+        "attributes": {
+          "numero": "3"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Figura",
+        "attributes": {
+          "numero": "4"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Figura",
+        "attributes": {
+          "numero": "5"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Figura",
+        "attributes": {
+          "numero": "6"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_5"
+        }
+      }
+    }
+  ]
+}

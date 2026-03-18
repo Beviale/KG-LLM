@@ -25,6 +25,7 @@ import umap
 from sklearn.cluster import HDBSCAN
 from sklearn.preprocessing import StandardScaler
 import copy
+import traceback
 
 
 init(autoreset=True)
@@ -339,7 +340,7 @@ def merge_ontologies_chunk(category, model=None):
     Returns 'True' if the chunk ontologies have been merged and saved correctly; 'False' otherwise.
     """
     if model is None:
-        model = "openai/gpt-5-nano"
+        model = "openai/gpt-5-mini"
 
     next_level_index, numberOfIterationsToSkip, json_merge = get_step_ontologies(category)
     current_json_elements = json_merge[:]
@@ -597,6 +598,8 @@ def process_reponse_data(category, index_chunk, response, json_ontolgogy, text_o
         except Exception as e:
             try:
                 # fallback 
+                print("--- DEBUG ERRORE ---")
+                traceback.print_exc() 
                 error = f"TypeError: '{type(e)}', error: '{e}'"
                 print(f"Error extracting JSON. {error}")
                 print(f"Prompting model to fix JSON")
@@ -646,7 +649,7 @@ def generate_data(category: str, model=None, dataItems=None):
         all_text_paths = list(directory.rglob("*.txt"))
     
     if model is None:
-        model = "openai/gpt-5-nano"
+        model = "openai/gpt-5-mini"
 
 
     print(f"{Fore.GREEN}--Generating the data for the '{category}' category")
@@ -935,13 +938,23 @@ def refine_with_LLM(category):
         entity_label = entity.get("label")
         if entity_label == "TextChunk":
             continue     
-        text_descritpion = f"label:'{entity_label}'"
+        text_descritpion = text_descritpion + f"L'entità '{entity_label}'"
         attrs = entity.get("attributes")
         if attrs is not None:  
+            num_elements = len(attrs)
+            first = True
             for key, value in attrs.items():
                 if key == label_nameKeyAttribute_dict[entity_label]:
                     entity_id = value
-                text_descritpion = text_descritpion + f", {key}:'{value}'"
+                if num_elements == 1:
+                    text_descritpion = text_descritpion + f" ha l'attributo '{key}' uguale a '{value}'"                   
+                    break
+                if first:
+                    first = False
+                    text_descritpion = text_description + " ha gli attributi"
+                    text_descritpion = text_descritpion + f" '{key}' uguale a'{value}'"
+                else:
+                    text_descritpion = text_descritpion + f", '{key}' uguale a '{value}'"              
         text_descritpion = text_descritpion + "."
 
         for relation in json_data["relations"]:           
@@ -957,27 +970,48 @@ def refine_with_LLM(category):
                 continue
             if relation.get("label") == "ESTRATTO_DA_TESTO":
                 continue
-            text_descritpion = text_descritpion + " Ha la seguente relazione:"
             label = relation.get("label")
-            text_descritpion = text_descritpion + f" label:'{label}'"
+            text_descritpion = text_descritpion + f" Ha la relazione '{label}'"
             source = relation.get("source")
             source_label = source.get("label")
-            text_descritpion = text_descritpion + f", sourceLabel:'{source_label}'"
+            text_descritpion = text_descritpion + f" che connette '{source_label}'"
             source_attrs = source.get("attributes")
             if source_attrs is not None:
+                first = True
                 for key, value in source_attrs.items():
-                    text_descritpion = text_descritpion + f", attributoSource_{key}:'{value}'"
+                    if first:
+                        first = False
+                        text_descritpion = text_descritpion + " ("
+                        text_descritpion = text_descritpion + f"'{key}' uguale a '{value}'"
+                    else:
+                        text_descritpion = text_descritpion + f", '{key}' uguale a '{value}'"
+                if first == False:
+                    text_descritpion = text_descritpion + ")"
+
             target = relation.get("target")
             target_label = target.get("label")
-            text_descritpion = text_descritpion + f", targetLabel:'{target_label}'"
+            text_descritpion = text_descritpion + f" con '{target_label}'"
             target_attrs = target.get("attributes")
             if target_attrs is not None:
+                first = True
                 for key, value in target_attrs.items():
-                    text_descritpion = text_descritpion + f", attributoTarget_{key}:'{value}'"
+                    first = False
+                    text_descritpion = text_descritpion + " ("
+                    text_descritpion = text_descritpion + f"{key} uguale a'{value}'"
+                else:
+                    text_descritpion = text_descritpion + f", {key} uguale a'{value}'"
+                if first == False:
+                    text_descritpion = text_descritpion + ")"
+
             relation_attrs = relation.get("attrs")
             if relation_attrs is not None:
+                first = True
                 for key, value in relation_attrs.items():
-                    text_descritpion = text_descritpion + f", attributoDiRelazione_{key}:'{value}'"
+                    if first:
+                        first = False
+                        text_descritpion = text_descritpion + f" e ha '{key}' uguale a '{value}'"
+                    else:
+                        text_descritpion = text_descritpion + f", {key} uguale a '{value}'"
             text_descritpion = text_descritpion + "." 
         by_text_desciption_entity_dict[entity_string] = text_descritpion
         

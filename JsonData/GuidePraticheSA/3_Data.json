@@ -1,0 +1,707 @@
+{
+  "entities": [
+    {
+      "label": "Manuale",
+      "attributes": {
+        "titolo": "manuale SA | approfondimento formule economiche vers.1.0",
+        "nome": "manuale SA | approfondimento formule economiche vers.1.0",
+        "versione": "1.0"
+      }
+    },
+    {
+      "label": "Piattaforma",
+      "attributes": {
+        "nome": "empulia",
+        "descrizione": "piattaforma empulia dove sono descritte le formule economiche"
+      }
+    },
+    {
+      "label": "Funzionalita",
+      "attributes": {
+        "nome": "ScontoRelativoCondizionale",
+        "descrizione": "formula condizionale basata su pmax, roff, rmaxoff, asoglia e coefficiente X"
+      }
+    },
+    {
+      "label": "Funzionalita",
+      "attributes": {
+        "nome": "MassimoSpreadAScalino",
+        "descrizione": "massimo spread a scalino: formula che calcola P in base a (vmaxoff-voff)*α rispetto a pmax"
+      }
+    },
+    {
+      "label": "Funzionalita",
+      "attributes": {
+        "nome": "MinimoSpreadAScalino",
+        "descrizione": "minimo spread a scalino: formula simile al massimo spread ma con vminoff"
+      }
+    },
+    {
+      "label": "Funzionalita",
+      "attributes": {
+        "nome": "ValoreOffertaSuMassimoValoreOfferta",
+        "descrizione": "valore offerta / massimo valore offerta * pmax, disponibile per concessioni (formula al rialzo)"
+      }
+    },
+    {
+      "label": "Funzionalita",
+      "attributes": {
+        "nome": "PercentualeOffertaSuMassimaPercentualeOfferta",
+        "descrizione": "percentuale offerta / massima percentuale offerta * pmax, disponibile per concessioni"
+      }
+    },
+    {
+      "label": "Funzionalita",
+      "attributes": {
+        "nome": "Esponenziale",
+        "descrizione": "formula esponenziale pmax * (1 - (voff/VBA)^α) con α in {3,4,5,6}"
+      }
+    },
+    {
+      "label": "Funzionalita",
+      "attributes": {
+        "nome": "ValutazioneSoggettiva",
+        "descrizione": "valutazione soggettiva: inserimento discrezionale di un coefficiente tra 0 e 1 proporzionale al punteggio massimo"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "pmax",
+        "tipo": "numero",
+        "unita_misura": "punteggio massimo"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "roff",
+        "unita_misura": "sconto offerto (percentuale)"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "rmaxoff",
+        "unita_misura": "sconto massimo offerto (percentuale)"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "asoglia",
+        "unita_misura": "media aritmetica degli sconti sul prezzo delle offerte dei concorrenti"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "numero_offerte",
+        "unita_misura": "numero totale di offerte ricevute (usato nella condizione numero offerte > 2.0)"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "sconto_offerto",
+        "unita_misura": "sconto offerto nella singola offerta"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "media_sconti_offerti",
+        "unita_misura": "media degli sconti offerti dai concorrenti"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "coefficiente_X",
+        "unita_misura": "coefficiente X usato nella formula condizionale"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "voff",
+        "unita_misura": "valore offerto"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "vmaxoff",
+        "unita_misura": "valore massimo offerto"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "vminoff",
+        "unita_misura": "valore minimo offerto"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "alfa",
+        "unita_misura": "α corrisponde allo scalino di riduzione del punteggio"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "VBA",
+        "unita_misura": "valore della base d’asta (valore base asta)"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "percentuale_offerta",
+        "unita_misura": "percentuale offerta (usata nelle formule per concessioni)"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "sconto_migliore",
+        "unita_misura": "sconto migliore considerato nella comparazione (sconto migliore)"
+      }
+    },
+    {
+      "label": "Attributo",
+      "attributes": {
+        "nome": "punteggio",
+        "unita_misura": "valore base 'punteggio' usato come moltiplicatore nelle descrizioni empulia"
+      }
+    },
+    {
+      "label": "TextChunk",
+      "attributes": {
+        "Id": "chunk_3",
+        "text": "pag.9 manuale SA | approfondimento formule economiche vers.1.0 pmax corrisponde al punteggio massimo. roff corrisponde allo sconto offerto rmaxoff corrisponde allo sconto massimo offerto asoglia corrisponde alla media aritmetica degli sconti sul prezzo delle offerte dei concorrenti DESCRZIONE FORMULA SU empulia: punteggio * ( SE VERO CHE numero offerte > 2.0 ALLORA ( SE VERO CHE sconto offerto <= media sconti offerti ALLORA coefficiente X * sconto offerto / media sconti offerti ALTRIMENTI coefficiente X + ( 1 - coefficiente X ) * (( sconto offerto-media sconti offerti ) / ( massimo sconto offerto-media sconti offerti ) ) POI ) ALTRIMENTI ( sconto offerto / sconto migliore ) POI ) 2.10. massimo spread a scalino disponibile sia per offerta espressa in percentuale che come prezzo: SE [(vmax off − voff) ∗ α ≥ pmax] ALLORA P = 0 SE [(vmax off − voff) ∗ α < pmax] ALLORA P = pmax ∗ {1 − [(vmax off − voff) ∗ ( α pmax )]} dove: voff corrisponde al valore offerto vmaxoff corrisponde al valore massimo offerto α corrisponde allo scalino di riduzione del punteggio pmax corrisponde al punteggio massimo DESCRZIONE FORMULA SU empulia: punteggio * SE VERO CHE ( massimo valore offerta-offerta corrente ) * alfa >= punteggio ALLORA 0 ALTRIMENTI ( massimo valore offerta-offerta corrente ) * ( alfa / punteggio ) POI manuale SA | approfondimento formule economiche pag.10 manuale SA | approfondimento formule economiche vers.1.0 2.11. minimo spread a scalino disponibile sia per offerta espressa in percentuale che come prezzo: E [( voff − vmin off) ∗ α ≥ pmax ] ALLORA P = 0 SE [( voff − vmin off) ∗ α < pmax] ALLORA P = pmax ∗ {1 − [( voff − vmin off) ∗ ( α pmax )]} dove: voff corrisponde al valore offerto vminoff corrisponde al valore minimo offerto α corrisponde allo scalino di riduzione del punteggio pmax corrisponde al punteggio massimo. DESCRZIONE FORMULA SU empulia: punteggio * SE VERO CHE ( offerta corrente-minimo valore offerta ) * alfa >= punteggio ALLORA 0 ALTRIMENTI ( offerta corrente-minimo valore offerta ) * ( alfa / punteggio ) POI 2.12. valore offerta / massimo valore offerta * punteggio disponibile solo per concessioni (formula al rialzo): P = pmax * ( (voff vmaxoff ) dove: pmax corrisponde al punteggio massimo. voff corrisponde al valore offerto vmaxoff corrisponde al valore massimo offerto DESCRZIONE FORMULA SU empulia: punteggio * ( valore offerta / massimo valore offerta ) manuale SA | approfondimento formule economiche pag.11 manuale SA | approfondimento formule economiche vers.1.0 2.13. percentuale offerta / massima percentuale offerta * punteggio disponibile solo per concessioni (formula al rialzo): P = pmax * ( (voff vmaxoff ) dove: pmax corrisponde al punteggio massimo. roff percentuale offerto rmaxoff percentuale massima offerta DESCRZIONE FORMULA SU empulia: punteggio * ( percentuale offerta / massima percentuale offerta ) 2.14. esponenziale (3,4,5,6) disponibile sia per offerta espressa in percentuale che come prezzo: pmax * (1- ( voff VBA )α) dove: α può essere scelto tra {3; 4; 5; 6} pmax corrisponde al punteggio massimo. voff corrisponde al valore offerto VBA corrisponde al valore della base d’asta DESCRZIONE FORMULA SU empulia: punteggio * ( 1 - potenza ( valore offerta / valore base asta, α ) ) manuale SA | approfondimento formule economiche pag.12 manuale SA | approfondimento formule economiche vers.1.0 3. VALUTAZIONE SOGGETTIVA attraverso l’utilizzo di questa opzione viene discrezionalmente inserito un valore dal sistema: la piattaforma offre la possibilità di inserire un coefficiente (compreso nell’intervallo tra 0 e 1), proporzionale al punteggio massimo, come punteggio finale. L’offerta economica viene caricata a sistema solo come allegato e il calcolo per il punteggio viene effettuato dall’autorità competente extra piattaforma empulia. ad esempio: • si assegnano (extra piattaforma) 4 punteggi: 22,30; 32,57; 48,70; 50,00 su punteggio massimo 50, • si calcolano (extra piattaforma) i coefficienti fra 0 e 1 associati ai punteggi: o (22,30/50)= 0,4460 o (32,27/50)= 0,6454 o (48,70/50)= 0,9740 o (50,00/50)= 1,0000 • si inseriscono a sistema i coefficienti così ottenuti. A quel punto la piattaforma calcolerà il punteggio finale per ogni concorrente."
+      }
+    }
+  ],
+  "relations": [
+    {
+      "label": "DESCRIVE",
+      "source": {
+        "label": "Manuale",
+        "attributes": {
+          "titolo": "manuale SA | approfondimento formule economiche vers.1.0"
+        }
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": {
+          "nome": "empulia"
+        }
+      },
+      "attributes": {}
+    },
+    {
+      "label": "DESCRIVE",
+      "source": {
+        "label": "Manuale",
+        "attributes": {
+          "titolo": "manuale SA | approfondimento formule economiche vers.1.0"
+        }
+      },
+      "target": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "ScontoRelativoCondizionale"
+        }
+      },
+      "attributes": {
+        "descrizione": "formula condizionale su sconto relativo, pmax, roff, rmaxoff, asoglia e coefficiente X"
+      }
+    },
+    {
+      "label": "DESCRIVE",
+      "source": {
+        "label": "Manuale",
+        "attributes": {
+          "titolo": "manuale SA | approfondimento formule economiche vers.1.0"
+        }
+      },
+      "target": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "MassimoSpreadAScalino"
+        }
+      },
+      "attributes": {
+        "descrizione": "massimo spread a scalino: P = 0 se (vmaxoff-voff)*α ≥ pmax altrimenti formula con pmax"
+      }
+    },
+    {
+      "label": "DESCRIVE",
+      "source": {
+        "label": "Manuale",
+        "attributes": {
+          "titolo": "manuale SA | approfondimento formule economiche vers.1.0"
+        }
+      },
+      "target": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "MinimoSpreadAScalino"
+        }
+      },
+      "attributes": {
+        "descrizione": "minimo spread a scalino: P = 0 se (voff-vminoff)*α ≥ pmax altrimenti formula con pmax"
+      }
+    },
+    {
+      "label": "DESCRIVE",
+      "source": {
+        "label": "Manuale",
+        "attributes": {
+          "titolo": "manuale SA | approfondimento formule economiche vers.1.0"
+        }
+      },
+      "target": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "ValoreOffertaSuMassimoValoreOfferta"
+        }
+      },
+      "attributes": {
+        "descrizione": "P = pmax * (voff / vmaxoff) disponibile per concessioni (formula al rialzo)"
+      }
+    },
+    {
+      "label": "DESCRIVE",
+      "source": {
+        "label": "Manuale",
+        "attributes": {
+          "titolo": "manuale SA | approfondimento formule economiche vers.1.0"
+        }
+      },
+      "target": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "PercentualeOffertaSuMassimaPercentualeOfferta"
+        }
+      },
+      "attributes": {
+        "descrizione": "P = pmax * (percentuale offerta / massima percentuale offerta) disponibile per concessioni"
+      }
+    },
+    {
+      "label": "DESCRIVE",
+      "source": {
+        "label": "Manuale",
+        "attributes": {
+          "titolo": "manuale SA | approfondimento formule economiche vers.1.0"
+        }
+      },
+      "target": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "Esponenziale"
+        }
+      },
+      "attributes": {
+        "descrizione": "formula esponenziale pmax * (1 - (voff/VBA)^α) con α in {3,4,5,6}"
+      }
+    },
+    {
+      "label": "DESCRIVE",
+      "source": {
+        "label": "Manuale",
+        "attributes": {
+          "titolo": "manuale SA | approfondimento formule economiche vers.1.0"
+        }
+      },
+      "target": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "ValutazioneSoggettiva"
+        }
+      },
+      "attributes": {
+        "descrizione": "opzione per inserire un coefficiente tra 0 e 1 proporzionale al punteggio massimo; esempi di calcolo dei coefficienti forniti"
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Manuale",
+        "attributes": {
+          "titolo": "manuale SA | approfondimento formule economiche vers.1.0"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": {
+          "nome": "empulia"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "ScontoRelativoCondizionale"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "MassimoSpreadAScalino"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "MinimoSpreadAScalino"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "ValoreOffertaSuMassimoValoreOfferta"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "PercentualeOffertaSuMassimaPercentualeOfferta"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "Esponenziale"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Funzionalita",
+        "attributes": {
+          "nome": "ValutazioneSoggettiva"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "pmax"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "roff"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "rmaxoff"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "asoglia"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "numero_offerte"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "sconto_offerto"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "media_sconti_offerti"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "coefficiente_X"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "voff"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "vmaxoff"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "vminoff"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "alfa"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "VBA"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "percentuale_offerta"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "sconto_migliore"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Attributo",
+        "attributes": {
+          "nome": "punteggio"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_3"
+        }
+      }
+    }
+  ]
+}

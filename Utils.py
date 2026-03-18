@@ -272,7 +272,7 @@ def verify_entity(json_entity, json_ontology: str, errors):
     entity_schema = get_entity_schema(entity_label, json_ontology)
     if entity_schema is None:
         errors = errors + f"The entity {entity_label} does not exist in the ontology - "
-        return
+        return errors
     entity_attrs_schema = entity_schema.get("attributes")
     name_entity_attrs_schema = [item['name'] for item in entity_attrs_schema if 'name' in item]
 
@@ -347,7 +347,7 @@ def verify_relation(relation, entities, json_ontology, errors, toLower=False):
     relation_schema = get_relation_schema(relation_label, source_label, target_label, json_ontology)
     if relation_schema is None:
         errors = errors + f"The relation {relation_label} does not exist in the ontology - "
-        return
+        return errors
     relation_attrs_schema = relation_schema.get("attributes")
     name_relation_attrs_schema = [item['name'] for item in relation_attrs_schema if 'name' in item]
 
