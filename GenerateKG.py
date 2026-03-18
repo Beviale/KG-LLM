@@ -1234,22 +1234,26 @@ def aggregate_data_and_remove_duplicates(json_data_list : list, json_ontology, t
     relations_duplicated_tuples = Utils.get_duplicated_relations_as_tuples(json_data["relations"], json_ontology)
     label_nameKey_dict = Utils.get_dict_label_nameKeyAttribute(json_ontology)
 
-
+    total_duplicated_entities = len(entities_duplicated_tuples)
+    index_duplicated_entities = 0
     for entity_label, entity_id, json_entities in entities_duplicated_tuples:
         for json_entity in json_entities:
             json_data['entities'].remove(json_entity)
         entity_to_save = None 
         entity_to_save = ask_LLM_merge_duplicated_entities(json_entities.copy(), entity_label, entity_id, json_ontology)
-        print("New entity created!")
+        index_duplicated_entities = index_duplicated_entities + 1
+        print(f"New entity created! {index_duplicated_entities}/{total_duplicated_entities}")
         json_data['entities'].append(entity_to_save)
     
-
+    total_duplicated_relations = len(relations_duplicated_tuples)
+    index_duplicated_relations = 0
     for relation_label, source_label, target_label, source_keyref, target_keyref, json_relations in relations_duplicated_tuples:
         for json_relation in json_relations:
             json_data['relations'].remove(json_relation)
         relation_to_save = None 
         relation_to_save = ask_LLM_merge_duplicated_relations(json_relations.copy(), json_data["entities"], relation_label, source_label, target_label, source_keyref, target_keyref, json_ontology) 
-        print("New relation created!")      
+        index_duplicated_relations = index_duplicated_relations + 1
+        print(f"New relation created! {index_duplicated_relations}/{total_duplicated_relations}")      
         json_data['relations'].append(relation_to_save)
     return json_data
 
