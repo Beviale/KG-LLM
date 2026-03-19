@@ -1,129 +1,122 @@
 {
   "entities": [
     {
-      "label": "PCP",
-      "attributes": {
-        "nome": "PCP"
-      }
-    },
-    {
-      "label": "ANAC",
-      "attributes": {
-        "nome": "ANAC"
-      }
-    },
-    {
-      "label": "Piattaforma",
-      "attributes": {
-        "nome": "FVOE"
-      }
-    },
-    {
       "label": "GruppoFunzionale",
       "attributes": {
-        "nome": "Fascicolo Virtuale Group"
+        "nome": "Fascicolo Virtuale",
+        "snippet": "gruppo funzionale fascicolo virtuale e successivamente sulla funzionalità documenti FVOE"
       }
     },
     {
-      "label": "Funzione",
+      "label": "Funzionalita",
       "attributes": {
-        "nome_voce": "Documenti FVOE"
-      }
-    },
-    {
-      "label": "Comando",
-      "attributes": {
-        "nome": "recupero id documenti"
+        "nome": "Documenti FVOE",
+        "snippet": "funzionalità documenti FVOE del medesimo gruppo funzionale"
       }
     },
     {
       "label": "Comando",
       "attributes": {
-        "nome": "apri"
+        "nome": "chiudi",
+        "snippet": "chiudi permette di chiudere il dettaglio della pagina e tornare alla pagina precedente."
       }
     },
     {
       "label": "Comando",
       "attributes": {
-        "nome": "esporta in xlsx"
+        "nome": "invio",
+        "snippet": "predisposto correttamente il documento cliccare sul comando invio."
       }
     },
     {
       "label": "Comando",
       "attributes": {
-        "nome": "aggiungi"
+        "nome": "cerca",
+        "snippet": "compilare almeno uno dei campi e cliccare su cerca."
       }
     },
     {
       "label": "Comando",
       "attributes": {
-        "nome": "cerca"
+        "nome": "aggiungi",
+        "snippet": "identificato l’id appalto ANAC d’interesse, cliccare sul comando aggiungi."
       }
     },
     {
       "label": "Comando",
       "attributes": {
-        "nome": "invio"
+        "nome": "recupero id documenti",
+        "snippet": "cliccando sul comando recupero id documenti disponibile nella toolbar in alto al documento."
       }
     },
     {
       "label": "Comando",
       "attributes": {
-        "nome": "chiudi"
+        "nome": "esporta in xlsx",
+        "snippet": "al di sopra della tabella è presente il comando esporta in xlsx tramite cui è possibile effettuare il download della lista dei documenti in formato xls."
       }
     },
     {
-      "label": "Servizio",
+      "label": "Comando",
       "attributes": {
-        "nome_servizio": "ricerca-documenti-fvoe"
+        "nome": "download documento",
+        "snippet": "cliccare sulle specifiche icone per: • effettuare il download del documento;"
       }
     },
     {
-      "label": "Servizio",
+      "label": "Organizzazione",
       "attributes": {
-        "nome_servizio": "recupera-documento-fvoe"
+        "denominazione": "ANAC",
+        "snippet": "l’OE deve autorizzare l’accesso direttamente attraverso il servizio FVOE 2.0 messo a disposizione da ANAC"
+      }
+    },
+    {
+      "label": "PCP",
+      "attributes": {
+        "nome": "PCP",
+        "snippet": "le schede PCP precedentemente trasmesse dalla piattaforma"
       }
     },
     {
       "label": "Appalto",
       "attributes": {
-        "id_appalto_anac": "ID_APPALTO_ANAC"
+        "id_appalto_anac": "ID_APPALTO_ANAC",
+        "snippet": "digitare dunque l’id appalto ANAC nell’apposito campo o, in alternativa, attivare il comando."
       }
     },
     {
       "label": "OperatoreEconomico",
       "attributes": {
-        "partita_iva": "OE_GENERIC"
-      }
-    },
-    {
-      "label": "Documento",
-      "attributes": {
-        "id_documento": "DOCUMENTO_GENERIC"
+        "partita_iva": "OPERATORE_ECONOMICO",
+        "snippet": "operatori economici hanno dato risposta o almeno uno di loro ha approvato l’accesso; elenco degli OE, accessibile tramite comando, si popola solo a seguito della selezione dell’id appalto ANAC, e riporta gli OE partecipanti recuperati dalle schede PCP"
       }
     },
     {
       "label": "PersonaFisica",
       "attributes": {
-        "nominativo": "PersonaFisica_Generic"
+        "nominativo": "RUP",
+        "snippet": "inserendo uno o più criteri di ricerca (id appalto ANAC, registro di sistema appalto, titolo appalto oppure CIG) per cui l’utente risulta essere RUP"
       }
     },
     {
-      "label": "ResponsabileUnicoProgetto",
+      "label": "Procedura",
       "attributes": {
-        "nominativo": "RUP"
+        "id_procedura": "PROCEDURA",
+        "snippet": "le regole ANAC prevedono l’identificazione della procedura attraverso l’id appalto anac, e dunque per le procedure multi-lotto l’attivazione dei servizi avviene a livello di gara e non di singolo lotto."
       }
     },
     {
-      "label": "Tabella",
+      "label": "Documento",
       "attributes": {
-        "nome": "Documenti FVOE"
+        "id_documento": "DOCUMENTO_FVOE",
+        "snippet": "una volta scaricati e recuperati i documenti saranno visibili nella funzionalità documenti FVOE; lista dei corrispettivi documenti e relativa tipologia."
       }
     },
     {
       "label": "FascicoloVirtuale",
       "attributes": {
-        "nome": "Fascicolo Virtuale"
+        "nome": "Fascicolo Virtuale Operatore Economico",
+        "snippet": "fascicolo virtuale operatore economico pag.10 ... accesso al FVOE; accesso attraverso la funzionalità documenti FVOE del medesimo gruppo funzionale, nella specifica cartella controlli."
       }
     },
     {
@@ -136,38 +129,6 @@
   ],
   "relations": [
     {
-      "label": "UTILIZZA_SERVIZIO",
-      "source": {
-        "label": "PCP",
-        "attributes": {
-          "nome": "PCP"
-        }
-      },
-      "target": {
-        "label": "Servizio",
-        "attributes": {
-          "nome_servizio": "ricerca-documenti-fvoe"
-        }
-      },
-      "attributes": {}
-    },
-    {
-      "label": "UTILIZZA_SERVIZIO",
-      "source": {
-        "label": "PCP",
-        "attributes": {
-          "nome": "PCP"
-        }
-      },
-      "target": {
-        "label": "Servizio",
-        "attributes": {
-          "nome_servizio": "recupera-documento-fvoe"
-        }
-      },
-      "attributes": {}
-    },
-    {
       "label": "COMANDO_AGISCE_SU",
       "source": {
         "label": "Comando",
@@ -178,47 +139,106 @@
       "target": {
         "label": "Documento",
         "attributes": {
-          "id_documento": "DOCUMENTO_GENERIC"
+          "id_documento": "DOCUMENTO_FVOE"
         }
       },
       "attributes": {
-        "azione": "recupero id documenti"
+        "azione": "recupero_id_documenti",
+        "posizione_toolbar": "toolbar in alto",
+        "snippet": "cliccando sul comando recupero id documenti disponibile nella toolbar in alto al documento."
       }
     },
     {
-      "label": "COMANDO_AGISCE_SU",
+      "label": "FASCICOLO_CONTIENE_DOCUMENTO",
       "source": {
-        "label": "Comando",
+        "label": "Procedura",
         "attributes": {
-          "nome": "apri"
+          "id_procedura": "PROCEDURA"
         }
       },
       "target": {
         "label": "Documento",
         "attributes": {
-          "id_documento": "DOCUMENTO_GENERIC"
+          "id_documento": "DOCUMENTO_FVOE"
         }
       },
       "attributes": {
-        "azione": "apri"
+        "sezione_riferimento": "lista documenti per operatore economico",
+        "snippet": "nella tabella, per ciascun documento sono presenti una serie di informazioni quali tipo documento, stato documento, l’id documento e codice fiscale della persona fisica."
       }
     },
     {
-      "label": "EXPORTA",
+      "label": "PARTECIPA_A",
       "source": {
-        "label": "Comando",
+        "label": "OperatoreEconomico",
         "attributes": {
-          "nome": "esporta in xlsx"
+          "partita_iva": "OPERATORE_ECONOMICO"
         }
       },
       "target": {
-        "label": "Tabella",
+        "label": "Procedura",
         "attributes": {
-          "nome": "Documenti FVOE"
+          "id_procedura": "PROCEDURA"
         }
       },
       "attributes": {
-        "formato": "xlsx"
+        "snippet": "elenco degli OE ... riporta gli OE partecipanti recuperati dalle schede PCP precedentemente trasmesse dalla piattaforma."
+      }
+    },
+    {
+      "label": "FASCICOLO_ASSOCIATO",
+      "source": {
+        "label": "FascicoloVirtuale",
+        "attributes": {
+          "nome": "Fascicolo Virtuale Operatore Economico"
+        }
+      },
+      "target": {
+        "label": "OperatoreEconomico",
+        "attributes": {
+          "partita_iva": "OPERATORE_ECONOMICO"
+        }
+      },
+      "attributes": {
+        "puo_caricare": true,
+        "snippet": "fascicolo virtuale operatore economico ... verrà richiamato automaticamente il servizio ricerca-documenti-fvoe mediante il quale viene fornita la lista dei corrispettivi documenti"
+      }
+    },
+    {
+      "label": "HA_RUP",
+      "source": {
+        "label": "Procedura",
+        "attributes": {
+          "id_procedura": "PROCEDURA"
+        }
+      },
+      "target": {
+        "label": "PersonaFisica",
+        "attributes": {
+          "nominativo": "RUP"
+        }
+      },
+      "attributes": {
+        "ruolo": "RUP",
+        "snippet": "inserendo uno o più criteri di ricerca ... per cui l’utente risulta essere RUP"
+      }
+    },
+    {
+      "label": "DOCUMENTO_DI_APPALTO",
+      "source": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "DOCUMENTO_FVOE"
+        }
+      },
+      "target": {
+        "label": "Appalto",
+        "attributes": {
+          "id_appalto_anac": "ID_APPALTO_ANAC"
+        }
+      },
+      "attributes": {
+        "snippet": "la riga corrispondente allo specifico appalto verrà visualizzata se almeno un operatore economico ha accettato."
       }
     },
     {
@@ -226,75 +246,28 @@
       "source": {
         "label": "Documento",
         "attributes": {
-          "id_documento": "DOCUMENTO_GENERIC"
+          "id_documento": "DOCUMENTO_FVOE"
         }
       },
       "target": {
         "label": "PersonaFisica",
         "attributes": {
-          "nominativo": "PersonaFisica_Generic"
+          "nominativo": "RUP"
         }
       },
-      "attributes": {}
+      "attributes": {
+        "richiedibile_per_persona": true,
+        "snippet": "poiché vi sono alcuni documenti che, oltre che per persona giuridica, possono essere richiesti anche per persona fisica ... cliccando sul comando sarà sempre possibile inviare la richiesta affinché si ottenga il documento anche per i singoli individui in azienda."
+      }
     },
     {
-      "label": "HA_VOCE",
+      "label": "ESTRATTO_DA_TESTO",
       "source": {
         "label": "GruppoFunzionale",
-        "attributes": {
-          "nome": "Fascicolo Virtuale Group"
-        }
-      },
-      "target": {
-        "label": "Funzione",
-        "attributes": {
-          "nome_voce": "Documenti FVOE"
-        }
-      },
-      "attributes": {}
-    },
-    {
-      "label": "PIATTAFORMA_GESTISCE",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": {
-          "nome": "FVOE"
-        }
-      },
-      "target": {
-        "label": "FascicoloVirtuale",
         "attributes": {
           "nome": "Fascicolo Virtuale"
         }
       },
-      "attributes": {}
-    },
-    {
-      "label": "ALLEGATO_DISPONIBILE_A",
-      "source": {
-        "label": "Documento",
-        "attributes": {
-          "id_documento": "DOCUMENTO_GENERIC"
-        }
-      },
-      "target": {
-        "label": "OperatoreEconomico",
-        "attributes": {
-          "partita_iva": "OE_GENERIC"
-        }
-      },
-      "attributes": {
-        "accesso": "scaricabile"
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "PCP",
-        "attributes": {
-          "nome": "PCP"
-        }
-      },
       "target": {
         "label": "TextChunk",
         "attributes": {
@@ -305,54 +278,9 @@
     {
       "label": "ESTRATTO_DA_TESTO",
       "source": {
-        "label": "ANAC",
+        "label": "Funzionalita",
         "attributes": {
-          "nome": "ANAC"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_30"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "Piattaforma",
-        "attributes": {
-          "nome": "FVOE"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_30"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "GruppoFunzionale",
-        "attributes": {
-          "nome": "Fascicolo Virtuale Group"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_30"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "Funzione",
-        "attributes": {
-          "nome_voce": "Documenti FVOE"
+          "nome": "Documenti FVOE"
         }
       },
       "target": {
@@ -367,67 +295,7 @@
       "source": {
         "label": "Comando",
         "attributes": {
-          "nome": "recupero id documenti"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_30"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "Comando",
-        "attributes": {
-          "nome": "apri"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_30"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "Comando",
-        "attributes": {
-          "nome": "esporta in xlsx"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_30"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "Comando",
-        "attributes": {
-          "nome": "aggiungi"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_30"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "Comando",
-        "attributes": {
-          "nome": "cerca"
+          "nome": "chiudi"
         }
       },
       "target": {
@@ -457,7 +325,7 @@
       "source": {
         "label": "Comando",
         "attributes": {
-          "nome": "chiudi"
+          "nome": "cerca"
         }
       },
       "target": {
@@ -470,9 +338,9 @@
     {
       "label": "ESTRATTO_DA_TESTO",
       "source": {
-        "label": "Servizio",
+        "label": "Comando",
         "attributes": {
-          "nome_servizio": "ricerca-documenti-fvoe"
+          "nome": "aggiungi"
         }
       },
       "target": {
@@ -485,9 +353,69 @@
     {
       "label": "ESTRATTO_DA_TESTO",
       "source": {
-        "label": "Servizio",
+        "label": "Comando",
         "attributes": {
-          "nome_servizio": "recupera-documento-fvoe"
+          "nome": "recupero id documenti"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_30"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "esporta in xlsx"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_30"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "download documento"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_30"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Organizzazione",
+        "attributes": {
+          "denominazione": "ANAC"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_30"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "PCP",
+        "attributes": {
+          "nome": "PCP"
         }
       },
       "target": {
@@ -517,22 +445,7 @@
       "source": {
         "label": "OperatoreEconomico",
         "attributes": {
-          "partita_iva": "OE_GENERIC"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_30"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "Documento",
-        "attributes": {
-          "id_documento": "DOCUMENTO_GENERIC"
+          "partita_iva": "OPERATORE_ECONOMICO"
         }
       },
       "target": {
@@ -547,21 +460,6 @@
       "source": {
         "label": "PersonaFisica",
         "attributes": {
-          "nominativo": "PersonaFisica_Generic"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_30"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "ResponsabileUnicoProgetto",
-        "attributes": {
           "nominativo": "RUP"
         }
       },
@@ -575,9 +473,24 @@
     {
       "label": "ESTRATTO_DA_TESTO",
       "source": {
-        "label": "Tabella",
+        "label": "Procedura",
         "attributes": {
-          "nome": "Documenti FVOE"
+          "id_procedura": "PROCEDURA"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_30"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Documento",
+        "attributes": {
+          "id_documento": "DOCUMENTO_FVOE"
         }
       },
       "target": {
@@ -592,7 +505,7 @@
       "source": {
         "label": "FascicoloVirtuale",
         "attributes": {
-          "nome": "Fascicolo Virtuale"
+          "nome": "Fascicolo Virtuale Operatore Economico"
         }
       },
       "target": {

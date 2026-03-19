@@ -1022,7 +1022,7 @@ def refine_with_LLM(category):
     for entity_string, text_description in tqdm(by_text_desciption_entity_dict.items(), desc="Constructing the text description embeddings: "):   
         response_embedding = embedding(
             model="text-embedding-3-small",
-            input=text_descritpion
+            input=text_description
         )
         embedded = response_embedding["data"][0]["embedding"]
         by_text_description_embedding_entity_dict[entity_string] = embedded

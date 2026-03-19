@@ -3,76 +3,69 @@
     {
       "label": "OperatoreEconomico",
       "attributes": {
-        "partita_iva": "AGGIUDICATARIO",
-        "denominazione": "Aggiudicatario"
-      }
-    },
-    {
-      "label": "Piattaforma",
-      "attributes": {
-        "nome": "Piattaforma"
-      }
-    },
-    {
-      "label": "PersonaFisica",
-      "attributes": {
-        "nominativo": "RUP"
-      }
-    },
-    {
-      "label": "PCP",
-      "attributes": {
-        "nome": "PCP"
-      }
-    },
-    {
-      "label": "AffidamentoDiretto",
-      "attributes": {
-        "titolo": "AD su accordo quadro"
+        "partita_iva": "PART_AGE_0001",
+        "denominazione": "Aggiudicatario",
+        "registrato": true,
+        "snippet": "FIGURA 49 - AGGIUDICATARIO si precisa che l’aggiudicatario deve essere necessariamente registrato in piattaforma. nella sezione allegati ... è possibile allegare documentazione che verrà resa disponibile all’aggiudicatario."
       }
     },
     {
       "label": "Documento",
       "attributes": {
-        "id_documento": "Documento_AD",
-        "titolo_documento": "documentazione allegata AD"
+        "id_documento": "DOC_ALLEGATI_AD",
+        "titolo": "allegati AD",
+        "snippet": "nella sezione allegati, presente nella parte bassa della pagina, è possibile allegare documentazione che verrà resa disponibile all’aggiudicatario."
       }
     },
     {
-      "label": "Allegato",
+      "label": "AffidamentoDiretto",
       "attributes": {
-        "id_allegato": "Allegato_AD",
-        "nome": "allegati AD"
+        "titolo": "AD su accordo quadro",
+        "snippet": "AD su accordo quadro: accesso al dettaglio dell’AD su accordo quadro ed ai suoi eventuali allegati in sola visualizzazione; area quadro economico e importi dell’AD su accordo quadro."
       }
     },
     {
-      "label": "CronologiaPCP",
+      "label": "PCP",
       "attributes": {
-        "id_cronologia": "CronologiaPCP"
-      }
-    },
-    {
-      "label": "NotificaEmail",
-      "attributes": {
-        "tipo": "Notifica_CIG"
-      }
-    },
-    {
-      "label": "ANAC",
-      "attributes": {
-        "nome": "ANAC"
+        "nome": "PCP_ANAC",
+        "snippet": "attivare l’interoperabilità con la PCP di ANAC per l’ottenimento del CIG derivato."
       }
     },
     {
       "label": "MenuGestionePCP",
       "attributes": {
-        "nome": "MenuGestionePCP"
+        "nome": "MenuGestionePCP",
+        "snippet": "opzione richiedi CIG (presente nella toolbar in alto, all’interno del menù gestione PCP); opzione modifica CUP e/o importo; comando annulla affidamento; comando invia modifica."
       }
     },
     {
-      "label": "AccordoQuadro",
+      "label": "PersonaFisica",
       "attributes": {
-        "titolo": "AccordoQuadro"
+        "nominativo": "RUP_Indicata",
+        "ha_effettuato_accesso_autenticazione_forte": true,
+        "ultimo_accesso_giorni": 30,
+        "snippet": "qualora il comando sia attivato da un punto istruttore, è necessario che il RUP indicato nel documento abbia effettuato almeno un accesso con sistema di autenticazione forte (SPID o CIE/CNS) negli ultimi 30 giorni."
+      }
+    },
+    {
+      "label": "NotificaEmail",
+      "attributes": {
+        "tipo": "NOTIFICA_CIG",
+        "snippet": "una volta ottenuto il CIG derivato, viene inviata una mail di notifica al RUP ed una all’aggiudicatario indicati nel documento."
+      }
+    },
+    {
+      "label": "CronologiaPCP",
+      "attributes": {
+        "id_cronologia": "CRON_PCp_AD",
+        "snippet": "verificare l’esito visualizzando la sezione cronologia PCP (presente in fondo alla pagina); è possibile verificare la corretta trasmissione della scheda cm1 nella cronologia PCP."
+      }
+    },
+    {
+      "label": "Piattaforma",
+      "attributes": {
+        "nome": "Piattaforma",
+        "snippet": "ad eccezione degli OE non in possesso di codice fiscale italiano, la piattaforma verifica la correttezza formale del c.f. indicato."
       }
     },
     {
@@ -85,111 +78,22 @@
   ],
   "relations": [
     {
-      "label": "PRESENTE_SU_PIATTAFORMA",
-      "source": {
-        "label": "AffidamentoDiretto",
-        "attributes": {
-          "titolo": "AD su accordo quadro"
-        }
-      },
-      "target": {
-        "label": "Piattaforma",
-        "attributes": {
-          "nome": "Piattaforma"
-        }
-      },
-      "attributes": {
-        "accesso_previo_autenticazione": true
-      }
-    },
-    {
-      "label": "RICHIEDE_CIG",
-      "source": {
-        "label": "AffidamentoDiretto",
-        "attributes": {
-          "titolo": "AD su accordo quadro"
-        }
-      },
-      "target": {
-        "label": "PCP",
-        "attributes": {
-          "nome": "PCP"
-        }
-      },
-      "attributes": {
-        "azione": "richiedi CIG"
-      }
-    },
-    {
-      "label": "RICHIEDE_CIG",
-      "source": {
-        "label": "MenuGestionePCP",
-        "attributes": {
-          "nome": "MenuGestionePCP"
-        }
-      },
-      "target": {
-        "label": "PCP",
-        "attributes": {
-          "nome": "PCP"
-        }
-      },
-      "attributes": {
-        "attiva_interoperabilita": true
-      }
-    },
-    {
-      "label": "TRACCIA_PCP",
-      "source": {
-        "label": "PCP",
-        "attributes": {
-          "nome": "PCP"
-        }
-      },
-      "target": {
-        "label": "CronologiaPCP",
-        "attributes": {
-          "id_cronologia": "CronologiaPCP"
-        }
-      },
-      "attributes": {
-        "dettagli": "cronologia delle trasmissioni e delle modifiche"
-      }
-    },
-    {
       "label": "ALLEGATO_DISPONIBILE_A",
       "source": {
         "label": "Documento",
         "attributes": {
-          "id_documento": "Documento_AD"
+          "id_documento": "DOC_ALLEGATI_AD"
         }
       },
       "target": {
         "label": "OperatoreEconomico",
         "attributes": {
-          "partita_iva": "AGGIUDICATARIO"
+          "partita_iva": "PART_AGE_0001"
         }
       },
       "attributes": {
-        "accesso": "visualizzazione"
-      }
-    },
-    {
-      "label": "HA_AGGIUDICATARIO",
-      "source": {
-        "label": "AffidamentoDiretto",
-        "attributes": {
-          "titolo": "AD su accordo quadro"
-        }
-      },
-      "target": {
-        "label": "OperatoreEconomico",
-        "attributes": {
-          "partita_iva": "AGGIUDICATARIO"
-        }
-      },
-      "attributes": {
-        "ruolo": "aggiudicatario"
+        "accesso": "visualizzazione",
+        "snippet": "nella sezione allegati ... è possibile allegare documentazione che verrà resa disponibile all’aggiudicatario."
       }
     },
     {
@@ -197,7 +101,7 @@
       "source": {
         "label": "OperatoreEconomico",
         "attributes": {
-          "partita_iva": "AGGIUDICATARIO"
+          "partita_iva": "PART_AGE_0001"
         }
       },
       "target": {
@@ -208,7 +112,66 @@
       },
       "attributes": {
         "modalita": "visualizzazione",
-        "richiede_autenticazione": true
+        "richiede_autenticazione": true,
+        "snippet": "L’aggiudicatario ha inoltre accesso, previa autenticazione in piattaforma, al dettaglio dell’AD su accordo quadro ed ai suoi eventuali allegati in sola visualizzazione."
+      }
+    },
+    {
+      "label": "RICHIEDE_CIG",
+      "source": {
+        "label": "MenuGestionePCP",
+        "attributes": {
+          "nome": "MenuGestionePCP"
+        }
+      },
+      "target": {
+        "label": "PCP",
+        "attributes": {
+          "nome": "PCP_ANAC"
+        }
+      },
+      "attributes": {
+        "attiva_interoperabilita": true,
+        "snippet": "utilizzare l’opzione richiedi CIG (presente nella toolbar in alto, all’interno del menù gestione PCP) per attivare l’interoperabilità con la PCP di ANAC per l’ottenimento del CIG derivato."
+      }
+    },
+    {
+      "label": "RESPONSABILE_DI",
+      "source": {
+        "label": "PersonaFisica",
+        "attributes": {
+          "nominativo": "RUP_Indicata"
+        }
+      },
+      "target": {
+        "label": "AffidamentoDiretto",
+        "attributes": {
+          "titolo": "AD su accordo quadro"
+        }
+      },
+      "attributes": {
+        "richiede_accesso_forte": true,
+        "ultimo_accesso_giorni": 30,
+        "snippet": "è necessario che il RUP indicato nel documento abbia effettuato almeno un accesso con sistema di autenticazione forte (SPID o CIE/CNS) negli ultimi 30 giorni."
+      }
+    },
+    {
+      "label": "TRACCIA_PCP",
+      "source": {
+        "label": "PCP",
+        "attributes": {
+          "nome": "PCP_ANAC"
+        }
+      },
+      "target": {
+        "label": "CronologiaPCP",
+        "attributes": {
+          "id_cronologia": "CRON_PCp_AD"
+        }
+      },
+      "attributes": {
+        "dettagli": "sezione cronologia PCP",
+        "snippet": "L’operazione potrebbe richiedere qualche minuto per cui si consiglia di verificare l’esito visualizzando la sezione cronologia PCP (presente in fondo alla pagina)."
       }
     },
     {
@@ -216,17 +179,18 @@
       "source": {
         "label": "NotificaEmail",
         "attributes": {
-          "tipo": "Notifica_CIG"
+          "tipo": "NOTIFICA_CIG"
         }
       },
       "target": {
         "label": "PersonaFisica",
         "attributes": {
-          "nominativo": "RUP"
+          "nominativo": "RUP_Indicata"
         }
       },
       "attributes": {
-        "destinatario": "RUP"
+        "destinatario": "RUP_Indicata",
+        "snippet": "viene inviata una mail di notifica al RUP indicato nel documento dopo l’ottenimento del CIG derivato."
       }
     },
     {
@@ -234,17 +198,78 @@
       "source": {
         "label": "NotificaEmail",
         "attributes": {
-          "tipo": "Notifica_CIG"
+          "tipo": "NOTIFICA_CIG"
         }
       },
       "target": {
         "label": "OperatoreEconomico",
         "attributes": {
-          "partita_iva": "AGGIUDICATARIO"
+          "partita_iva": "PART_AGE_0001"
         }
       },
       "attributes": {
-        "destinatario": "AGGIUDICATARIO"
+        "destinatario": "Aggiudicatario",
+        "snippet": "viene inviata una mail di notifica all’aggiudicatario indicato nel documento una volta ottenuto il CIG derivato."
+      }
+    },
+    {
+      "label": "MODIFICA_CUP_O_IMPORTO",
+      "source": {
+        "label": "MenuGestionePCP",
+        "attributes": {
+          "nome": "MenuGestionePCP"
+        }
+      },
+      "target": {
+        "label": "AffidamentoDiretto",
+        "attributes": {
+          "titolo": "AD su accordo quadro"
+        }
+      },
+      "attributes": {
+        "puo_modificare_cup": true,
+        "puo_modificare_importo": true,
+        "snippet": "accedendo all’affidamento diretto su accordo quadro è possibile accedere al menu gestione PCP e selezionare l’opzione modifica CUP e/o importo."
+      }
+    },
+    {
+      "label": "INVIA_MODIFICA",
+      "source": {
+        "label": "MenuGestionePCP",
+        "attributes": {
+          "nome": "MenuGestionePCP"
+        }
+      },
+      "target": {
+        "label": "PCP",
+        "attributes": {
+          "nome": "PCP_ANAC"
+        }
+      },
+      "attributes": {
+        "trasmette_scheda": "cm1",
+        "snippet": "ultimate le modifiche, si può procedere cliccando sul comando invia modifica all’interno del menu gestione PCP. è possibile verificare la corretta trasmissione della scheda cm1 nella cronologia PCP."
+      }
+    },
+    {
+      "label": "ANNULLA_AFFIDAMENTO",
+      "source": {
+        "label": "MenuGestionePCP",
+        "attributes": {
+          "nome": "MenuGestionePCP"
+        }
+      },
+      "target": {
+        "label": "PCP",
+        "attributes": {
+          "nome": "PCP_ANAC"
+        }
+      },
+      "attributes": {
+        "funzione_disattivata_fino_all_acquisizione_cig": true,
+        "richiede_precedente_richiesta_cig": true,
+        "condizione_scheda_co1_non_trasmessa": true,
+        "snippet": "per gli AD senza negoziazione su accordo quadro è possibile annullare il CIG inviando la scheda ANN tramite il comando annulla affidamento nel menu gestione PCP; la funzione sarà disattivata fino all’acquisizione del CIG e la scheda ANN è trasmissibile solo dopo aver richiesto il CIG e se non è stata trasmessa la scheda co1."
       }
     },
     {
@@ -252,7 +277,7 @@
       "source": {
         "label": "OperatoreEconomico",
         "attributes": {
-          "partita_iva": "AGGIUDICATARIO"
+          "partita_iva": "PART_AGE_0001"
         }
       },
       "target": {
@@ -265,39 +290,9 @@
     {
       "label": "ESTRATTO_DA_TESTO",
       "source": {
-        "label": "Piattaforma",
+        "label": "Documento",
         "attributes": {
-          "nome": "Piattaforma"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_28"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "PersonaFisica",
-        "attributes": {
-          "nominativo": "RUP"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_28"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "PCP",
-        "attributes": {
-          "nome": "PCP"
+          "id_documento": "DOC_ALLEGATI_AD"
         }
       },
       "target": {
@@ -325,69 +320,9 @@
     {
       "label": "ESTRATTO_DA_TESTO",
       "source": {
-        "label": "Documento",
+        "label": "PCP",
         "attributes": {
-          "id_documento": "Documento_AD"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_28"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "Allegato",
-        "attributes": {
-          "id_allegato": "Allegato_AD"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_28"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "CronologiaPCP",
-        "attributes": {
-          "id_cronologia": "CronologiaPCP"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_28"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "NotificaEmail",
-        "attributes": {
-          "tipo": "Notifica_CIG"
-        }
-      },
-      "target": {
-        "label": "TextChunk",
-        "attributes": {
-          "Id": "chunk_28"
-        }
-      }
-    },
-    {
-      "label": "ESTRATTO_DA_TESTO",
-      "source": {
-        "label": "ANAC",
-        "attributes": {
-          "nome": "ANAC"
+          "nome": "PCP_ANAC"
         }
       },
       "target": {
@@ -415,9 +350,54 @@
     {
       "label": "ESTRATTO_DA_TESTO",
       "source": {
-        "label": "AccordoQuadro",
+        "label": "PersonaFisica",
         "attributes": {
-          "titolo": "AccordoQuadro"
+          "nominativo": "RUP_Indicata"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_28"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "NotificaEmail",
+        "attributes": {
+          "tipo": "NOTIFICA_CIG"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_28"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "CronologiaPCP",
+        "attributes": {
+          "id_cronologia": "CRON_PCp_AD"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_28"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Piattaforma",
+        "attributes": {
+          "nome": "Piattaforma"
         }
       },
       "target": {

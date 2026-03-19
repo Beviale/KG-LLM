@@ -3,21 +3,121 @@
     {
       "label": "Piattaforma",
       "attributes": {
-        "nome": "Empulia"
+        "nome": "empulia",
+        "snippet": "nuova piattaforma empulia (\"nuova piattaforma empulia\" )"
+      }
+    },
+    {
+      "label": "Organizzazione",
+      "attributes": {
+        "denominazione": "Stazione Appaltante",
+        "snippet": "utente di una stazione appaltante sulla piattaforma empulia"
       }
     },
     {
       "label": "Manuale",
       "attributes": {
-        "titolo": "Guida Rapida Migrazione Empulia",
-        "nome": "GuidaRapidaMigrazioneEmpulia"
+        "titolo": "GUIDA RAPIDA PER LA PRIMA PROFILAZIONE",
+        "nome": "Guida rapida per la prima profilazione",
+        "snippet": "UTENTI DELLE S.A. MIGRAZIONE ALLA NUOVA PIATTAFORMA empulia GUIDA RAPIDA PER LA PRIMA PROFILAZIONE DEGLI UTENTI DELLE STAZIONI APPALTANTI MIGRATI"
       }
     },
     {
-      "label": "Profilo",
+      "label": "Utente",
       "attributes": {
-        "nome_profilo": "ProfiloMigrazioneEmpulia",
-        "descrizione": "Profilo Migrazione Empulia creato per la gestione delle utenze migrate."
+        "codice_fiscale": "UTENTE_SA",
+        "snippet": "se sei già registrato ed operativo come utente di una stazione appaltante sulla piattaforma empulia, la tua utenza è stata migrata anche sulla nuova piattaforma"
+      }
+    },
+    {
+      "label": "Comando",
+      "attributes": {
+        "nome": "cambio password",
+        "snippet": "clicca su cambio password e configura la nuova password rispettando i criteri di sicurezza richiesti"
+      }
+    },
+    {
+      "label": "Comando",
+      "attributes": {
+        "nome": "modifica ruolo",
+        "snippet": "dal menu di sinistra entra in gestione utente e quindi clicca su modifica ruolo"
+      }
+    },
+    {
+      "label": "Comando",
+      "attributes": {
+        "nome": "genera pdf",
+        "snippet": "seleziona genera pdf, firmare digitalmente il documento, riallegarlo firmato tramite allega pdf firmato"
+      }
+    },
+    {
+      "label": "Comando",
+      "attributes": {
+        "nome": "allega pdf firmato",
+        "snippet": "riallegarlo firmato tramite allega pdf firmato"
+      }
+    },
+    {
+      "label": "Comando",
+      "attributes": {
+        "nome": "modifica dati",
+        "snippet": "clicca su modifica dati per creare un nuovo modello"
+      }
+    },
+    {
+      "label": "Comando",
+      "attributes": {
+        "nome": "conferma",
+        "snippet": "dopo aver caricato il file firmato, clicca su conferma"
+      }
+    },
+    {
+      "label": "Sezione",
+      "attributes": {
+        "nome": "informazioni utente",
+        "snippet": "1) in informazioni utente trovi le tue informazioni anagrafiche e di contatto, importate dalla vecchia piattaforma"
+      }
+    },
+    {
+      "label": "Sezione",
+      "attributes": {
+        "nome": "scelta del proprio ruolo",
+        "snippet": "2) in scelta del proprio ruolo seleziona uno o più ruoli da associare al tuo profilo tra punto istruttore, punto ordinante, RUP PDG (procedure di gara)"
+      }
+    },
+    {
+      "label": "Sezione",
+      "attributes": {
+        "nome": "altri dati",
+        "snippet": "3) la sezione altri dati varia a seconda delle scelte effettuate precedentemente"
+      }
+    },
+    {
+      "label": "Ruolo",
+      "attributes": {
+        "nome": "punto istruttore",
+        "snippet": "se selezioni punto istruttore, dovrai obbligatoriamente indicare un approvatore di riferimento"
+      }
+    },
+    {
+      "label": "Ruolo",
+      "attributes": {
+        "nome": "punto ordinante",
+        "snippet": "se selezioni punto ordinante dovrai generare un pdf riepilogativo, da firmare digitalmente e riallegare firmato per poter completare la procedura"
+      }
+    },
+    {
+      "label": "Ruolo",
+      "attributes": {
+        "nome": "RUP PDG",
+        "snippet": "se selezioni RUP PDG dovrai obbligatoriamente allegare l’atto di nomina o idoneità"
+      }
+    },
+    {
+      "label": "GruppoFunzionale",
+      "attributes": {
+        "nome": "Gruppi funzionali",
+        "snippet": "troverai nel menu di sinistra tutti i gruppi funzionali a cui sei abilitato sulla base del ruolo assegnato"
       }
     },
     {
@@ -30,11 +130,255 @@
   ],
   "relations": [
     {
+      "label": "UTILIZZA",
+      "source": {
+        "label": "Organizzazione",
+        "attributes": {
+          "denominazione": "Stazione Appaltante"
+        }
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": {
+          "nome": "empulia"
+        }
+      },
+      "attributes": {
+        "snippet": "utente di una stazione appaltante sulla piattaforma empulia, la tua utenza è stata migrata anche sulla nuova piattaforma"
+      }
+    },
+    {
+      "label": "ESEGUE_COMANDO",
+      "source": {
+        "label": "Utente",
+        "attributes": {
+          "codice_fiscale": "UTENTE_SA"
+        }
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "cambio password"
+        }
+      },
+      "attributes": {
+        "eseguito_in": "",
+        "esito": "",
+        "snippet": "clicca su cambio password e configura la nuova password rispettando i criteri di sicurezza richiesti"
+      }
+    },
+    {
+      "label": "ESEGUE_COMANDO",
+      "source": {
+        "label": "Utente",
+        "attributes": {
+          "codice_fiscale": "UTENTE_SA"
+        }
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "modifica ruolo"
+        }
+      },
+      "attributes": {
+        "eseguito_in": "",
+        "esito": "",
+        "snippet": "dal menu di sinistra entra in gestione utente e quindi clicca su modifica ruolo"
+      }
+    },
+    {
+      "label": "ESEGUE_COMANDO",
+      "source": {
+        "label": "Utente",
+        "attributes": {
+          "codice_fiscale": "UTENTE_SA"
+        }
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "genera pdf"
+        }
+      },
+      "attributes": {
+        "eseguito_in": "",
+        "esito": "",
+        "snippet": "se sei punto ordinante o RUP PDG dovrai inoltre cliccare su genera pdf, firmare digitalmente il documento, riallegarlo firmato tramite allega pdf firmato"
+      }
+    },
+    {
+      "label": "ESEGUE_COMANDO",
+      "source": {
+        "label": "Utente",
+        "attributes": {
+          "codice_fiscale": "UTENTE_SA"
+        }
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "allega pdf firmato"
+        }
+      },
+      "attributes": {
+        "eseguito_in": "",
+        "esito": "",
+        "snippet": "riallegarlo firmato tramite allega pdf firmato"
+      }
+    },
+    {
+      "label": "ESEGUE_COMANDO",
+      "source": {
+        "label": "Utente",
+        "attributes": {
+          "codice_fiscale": "UTENTE_SA"
+        }
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "modifica dati"
+        }
+      },
+      "attributes": {
+        "eseguito_in": "",
+        "esito": "",
+        "snippet": "se hai già generato il pdf e vuoi fare modifiche al contenuto, clicca su modifica dati per creare un nuovo modello"
+      }
+    },
+    {
+      "label": "ESEGUE_COMANDO",
+      "source": {
+        "label": "Utente",
+        "attributes": {
+          "codice_fiscale": "UTENTE_SA"
+        }
+      },
+      "target": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "conferma"
+        }
+      },
+      "attributes": {
+        "eseguito_in": "",
+        "esito": "",
+        "snippet": "dopo aver caricato il file firmato, clicca su conferma"
+      }
+    },
+    {
+      "label": "UTENTE_RICOPRE_RUOLO",
+      "source": {
+        "label": "Utente",
+        "attributes": {
+          "codice_fiscale": "UTENTE_SA"
+        }
+      },
+      "target": {
+        "label": "Ruolo",
+        "attributes": {
+          "nome": "punto istruttore"
+        }
+      },
+      "attributes": {
+        "snippet": "seleziona uno o più ruoli da associare al tuo profilo tra punto istruttore, punto ordinante, RUP PDG"
+      }
+    },
+    {
+      "label": "UTENTE_RICOPRE_RUOLO",
+      "source": {
+        "label": "Utente",
+        "attributes": {
+          "codice_fiscale": "UTENTE_SA"
+        }
+      },
+      "target": {
+        "label": "Ruolo",
+        "attributes": {
+          "nome": "punto ordinante"
+        }
+      },
+      "attributes": {
+        "snippet": "seleziona uno o più ruoli da associare al tuo profilo tra punto istruttore, punto ordinante, RUP PDG"
+      }
+    },
+    {
+      "label": "UTENTE_RICOPRE_RUOLO",
+      "source": {
+        "label": "Utente",
+        "attributes": {
+          "codice_fiscale": "UTENTE_SA"
+        }
+      },
+      "target": {
+        "label": "Ruolo",
+        "attributes": {
+          "nome": "RUP PDG"
+        }
+      },
+      "attributes": {
+        "snippet": "seleziona uno o più ruoli da associare al tuo profilo tra punto istruttore, punto ordinante, RUP PDG"
+      }
+    },
+    {
+      "label": "HA_GRUPPO_FUNZIONALE",
+      "source": {
+        "label": "Organizzazione",
+        "attributes": {
+          "denominazione": "Stazione Appaltante"
+        }
+      },
+      "target": {
+        "label": "GruppoFunzionale",
+        "attributes": {
+          "nome": "Gruppi funzionali"
+        }
+      },
+      "attributes": {
+        "posizione": "",
+        "snippet": "troverai nel menu di sinistra tutti i gruppi funzionali a cui sei abilitato sulla base del ruolo assegnato"
+      }
+    },
+    {
+      "label": "DESCRIVE",
+      "source": {
+        "label": "Manuale",
+        "attributes": {
+          "titolo": "GUIDA RAPIDA PER LA PRIMA PROFILAZIONE"
+        }
+      },
+      "target": {
+        "label": "Piattaforma",
+        "attributes": {
+          "nome": "empulia"
+        }
+      },
+      "attributes": {
+        "snippet": "per maggiori informazioni consulta su http://www.empulia.it i manuali e gli altri strumenti di apprendimento pubblicati nella sezione dedicata alla migrazione piattaforma"
+      }
+    },
+    {
       "label": "ESTRATTO_DA_TESTO",
       "source": {
         "label": "Piattaforma",
         "attributes": {
-          "nome": "Empulia"
+          "nome": "empulia"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Organizzazione",
+        "attributes": {
+          "denominazione": "Stazione Appaltante"
         }
       },
       "target": {
@@ -49,7 +393,7 @@
       "source": {
         "label": "Manuale",
         "attributes": {
-          "titolo": "Guida Rapida Migrazione Empulia"
+          "titolo": "GUIDA RAPIDA PER LA PRIMA PROFILAZIONE"
         }
       },
       "target": {
@@ -62,9 +406,204 @@
     {
       "label": "ESTRATTO_DA_TESTO",
       "source": {
-        "label": "Profilo",
+        "label": "Utente",
         "attributes": {
-          "nome_profilo": "ProfiloMigrazioneEmpulia"
+          "codice_fiscale": "UTENTE_SA"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "cambio password"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "modifica ruolo"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "genera pdf"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "allega pdf firmato"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "modifica dati"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Comando",
+        "attributes": {
+          "nome": "conferma"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Sezione",
+        "attributes": {
+          "nome": "informazioni utente"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Sezione",
+        "attributes": {
+          "nome": "scelta del proprio ruolo"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Sezione",
+        "attributes": {
+          "nome": "altri dati"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Ruolo",
+        "attributes": {
+          "nome": "punto istruttore"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Ruolo",
+        "attributes": {
+          "nome": "punto ordinante"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "Ruolo",
+        "attributes": {
+          "nome": "RUP PDG"
+        }
+      },
+      "target": {
+        "label": "TextChunk",
+        "attributes": {
+          "Id": "chunk_1"
+        }
+      }
+    },
+    {
+      "label": "ESTRATTO_DA_TESTO",
+      "source": {
+        "label": "GruppoFunzionale",
+        "attributes": {
+          "nome": "Gruppi funzionali"
         }
       },
       "target": {
