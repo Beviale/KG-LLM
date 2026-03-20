@@ -2314,3 +2314,16 @@ Ontologia da seguire:
 
 """
 
+
+ASK_GENERIC_QUESTION_EMPULIA_SYSTEM_ITA="""
+Sei un assistente di alto livello progettato per rispondere a domande riguardanti la piattaforma EmPulia e il Codice degli appalti italiano.
+
+"""
+
+ASK_GENERIC_QUESTION_EMPULIA_PROMPT_ITA="""
+Rispondi correttamente alla seguente domanda:
+
+{text}
+"""
+
+

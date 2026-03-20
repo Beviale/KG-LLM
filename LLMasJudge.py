@@ -6,17 +6,27 @@ import Prompt
 import csv
 import os
 from pathlib import Path
+from colorama import init, Fore, Style
 
 
 
-def main():
+
+def main(with_KGs: bool):
     number_of_tests = int(input("Choose the number of tests: "))
     correct_answers = 0
     total_answers = 0
     categories = ["DisciplinaDiUtilizzo", "CodiceAppalti", "FAQ", "GuidePraticheOE"]
     model = "openai/gpt-5-nano"
     orchestrator = None
-    results_filename = "Results.csv"
+
+    if with_KGs:
+        with_KGs_row = "True"
+        results_filename = "ResultsWithKGs.csv"
+
+    else:
+        with_KGs_row = "False"
+        results_filename = "ResultsWithoutKGs.csv"
+
 
     for i in range(number_of_tests):
         category = random.choice(categories)
@@ -40,10 +50,25 @@ def main():
                         )
         question = question_to_ask.choices[0].message.content
         question = question + " Fornisci una sola risposta diretta, non rispondere con altre domande!"
-        print("Asking the question...")
-        orchestrator, answer = askLLM.ask(question, orchestrator)
-        if answer is None:
-            continue
+
+        if with_KGs:
+            print("Asking the question (LLM with KGs)...")
+            orchestrator, answer = askLLM.ask(question, orchestrator)
+            if answer is None:
+                continue
+        else:
+            print("Asking the question (LLM without KGs)...")
+            answer = completion(
+                        model=model,
+                        messages=[
+                                {"role": "system", "content": Prompt.ASK_GENERIC_QUESTION_EMPULIA_SYSTEM_ITA},
+                                {"role": "user",   "content": Prompt.ASK_GENERIC_QUESTION_EMPULIA_PROMPT_ITA.format(text=question)}         
+                            ],
+                         tools=[
+                                {"type": "web_search"}         
+                            ]
+                    )
+                  
         print("Constructing the verdict...")
         judge_response = completion(
             model=model,
@@ -60,11 +85,12 @@ def main():
         verdict = judge_response.choices[0].message.content.strip().lower()
         total_answers += 1
 
+
         with open(results_filename, "a", newline="", encoding="utf-8") as file:
             writer = csv.writer(file)
             if not results_filename or os.stat(results_filename).st_size == 0:
-                writer.writerow(["Category", "Question", "Answer", "Verdict"])
-            new_data = [category, question.strip(), answer.strip()]
+                writer.writerow(["With KGs","Category", "Question", "Answer", "Verdict"])
+            new_data = [with_KGs_row, category, question.strip(), answer.strip()]
             if "sì" in verdict or "yes" in verdict or "si" in verdict:
                 correct_answers += 1
                 print(f"Test {i+1}: ✅ Correct")
@@ -81,4 +107,17 @@ def main():
         
 
 if __name__ == "__main__":
-    main()
+    print(f"{Fore.WHITE}---------------------------")
+    print("1. Test the LLM integrated with the Knowledge Graphs")
+    print("2. Test the LLM without the Knowledge Graphs")
+    print("3. Exit")
+    choice = int(input("What do you want to do? "))
+    while (True):
+        if choice == 1:
+                main(True)
+        elif choice == 2:
+                main(False)
+        elif choice == 3:
+                break
+        else:
+            print("Invalid choice. Please try again")
