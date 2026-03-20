@@ -737,11 +737,10 @@ def generate_data(category: str, model=None, dataItems=None):
     data_file_name = f"JsonData/{category}/Data.json"
     if os.path.exists(data_file_name):
         with open(data_file_name, "r", encoding="utf-8") as file:
-            aggregate_Json = json.load(file)
+            json_data = json.load(file)
+            aggregate_Json = aggregate_data_and_remove_duplicates([json_data], json_ontology, text_ontology, category)
     else:
-        aggregate_Json = aggregate_data_and_remove_duplicates(json_data_chunks, json_ontology, text_ontology)
-        with open(data_file_name, "w", encoding="utf-8") as file:
-            file.write(json.dumps(aggregate_Json, indent=2, ensure_ascii=False))
+        aggregate_Json = aggregate_data_and_remove_duplicates(json_data_chunks, json_ontology, text_ontology, category)
     json_ontology_with_ref = Utils.get_json_ontology_with_ref(json_ontology, aggregate_Json["entities"])
     ontology_with_ref = Ontology.from_json(json_ontology_with_ref)
     upload_correctly = upload_data(category, aggregate_Json, ontology_with_ref)
@@ -1211,12 +1210,13 @@ def ask_LLM_merge_similar_entities(similar_entities: str, json_data, json_ontolo
 
 
 
-def aggregate_data_and_remove_duplicates(json_data_list : list, json_ontology, text_ontology: str):
+def aggregate_data_and_remove_duplicates(json_data_list : list, json_ontology, text_ontology: str, category: str):
     """
     Takes as input a list of JSON objects containing entities, relations, and attributes related to a specific .txt file, and merges them into a single JSON object.
     It also detects and merges entities and relations that are duplicated.
     """
 
+    data_file_name = f"JsonData/{category}/Data.json"
     print("--Removing duplicate entity and relations")
     all_entities = []
     all_relations = []
@@ -1245,6 +1245,8 @@ def aggregate_data_and_remove_duplicates(json_data_list : list, json_ontology, t
         index_duplicated_entities = index_duplicated_entities + 1
         print(f"New entity created! {index_duplicated_entities}/{total_duplicated_entities}")
         json_data['entities'].append(entity_to_save)
+        with open(data_file_name, "w", encoding="utf-8") as file:
+                file.write(json.dumps(json_data, indent=2, ensure_ascii=False))
     
     total_duplicated_relations = len(relations_duplicated_tuples)
     index_duplicated_relations = 0
@@ -1256,6 +1258,8 @@ def aggregate_data_and_remove_duplicates(json_data_list : list, json_ontology, t
         index_duplicated_relations = index_duplicated_relations + 1
         print(f"New relation created! {index_duplicated_relations}/{total_duplicated_relations}")      
         json_data['relations'].append(relation_to_save)
+        with open(data_file_name, "w", encoding="utf-8") as file:
+                file.write(json.dumps(json_data, indent=2, ensure_ascii=False))
     return json_data
 
 
