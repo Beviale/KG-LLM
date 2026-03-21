@@ -6,6 +6,7 @@ import Prompt
 import csv
 import os
 from pathlib import Path
+from datetime import datetime
 from colorama import init, Fore, Style
 
 
@@ -15,7 +16,7 @@ def main(with_KGs: bool):
     number_of_tests = int(input("Choose the number of tests: "))
     correct_answers = 0
     total_answers = 0
-    categories = ["DisciplinaDiUtilizzo", "CodiceAppalti", "FAQ", "GuidePraticheOE"]
+    categories = ["DisciplinaDiUtilizzo", "CodiceAppalti", "FAQ", "GuidePraticheOE", "GuidePraticheSA"]
     model = "openai/gpt-5-nano"
     orchestrator = None
 
@@ -89,8 +90,8 @@ def main(with_KGs: bool):
         with open(results_filename, "a", newline="", encoding="utf-8") as file:
             writer = csv.writer(file)
             if not results_filename or os.stat(results_filename).st_size == 0:
-                writer.writerow(["With KGs","Category", "Question", "Answer", "Verdict"])
-            new_data = [with_KGs_row, category, question.strip(), answer.strip()]
+                writer.writerow(["With KGs", "Timestamp", "Category", "Question", "Answer", "Verdict"])
+            new_data = [with_KGs_row, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), category, question.strip(), answer.strip()]
             if "sì" in verdict or "yes" in verdict or "si" in verdict:
                 correct_answers += 1
                 print(f"Test {i+1}: ✅ Correct")

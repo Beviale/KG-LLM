@@ -71,6 +71,7 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
     if codice_appalti==None:
         print(f"{Fore.RED} An error occured while instantiating the 'CodiceAppalti' KG!")
         return None
+    print("'CodiceAppalti' Ok!")
     
     disciplina_di_utilizzo_ontology_filename = "Ontologies/DisciplinaDiUtilizzo/Ontology.json"
     with open(disciplina_di_utilizzo_ontology_filename, "r", encoding="utf-8") as file:
@@ -87,6 +88,8 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
     if disciplina_utilizzo==None:
         print(f"{Fore.RED} An error occured while instantiating the 'DisciplinaDiUtilizzo' KG!")
         return None
+    print("'DisciplinaDiUtilizzo' Ok!")
+
 
     faq_ontology_filename = "Ontologies/FAQ/Ontology.json"
     with open(faq_ontology_filename, "r", encoding="utf-8") as file:
@@ -103,6 +106,8 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
     if faq==None:
         print(f"{Fore.RED} An error occured while instantiating the 'FAQ' KG!")
         return None
+    print("'FAQ' Ok!")
+
 
     guide_pratiche_oe_filename = "Ontologies/GuidePraticheOE/Ontology.json"
     with open(guide_pratiche_oe_filename, "r", encoding="utf-8") as file:
@@ -119,20 +124,25 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
     if guide_pratiche_oe==None:
         print(f"{Fore.RED} An error occured while instantiating the 'GuidePraticheOE' KG!")
         return None
-    
-    """
+    print("'GuidePraticheOE' Ok!")
+ 
+    guide_pratiche_sa_filename = "Ontologies/GuidePraticheSA/Ontology.json"
+    with open(guide_pratiche_sa_filename, "r", encoding="utf-8") as file:
+        text_ontology = file.read()
+    json_ontology = json.loads(text_ontology)
+    guide_pratiche_sa_ontology = Ontology.from_json(json_ontology)
     guide_pratiche_sa = KnowledgeGraph(
         name="GuidePraticheSA",
         model_config=KnowledgeGraphModelConfig.with_model(model),
         host=host,
         port=port,
-        username=username, 
-        password=password 
+        ontology=guide_pratiche_sa_ontology 
     )
     if guide_pratiche_sa==None:
         print(f"{Fore.RED} An error occured while instantiating the 'GuidePraticheSA' KG!")
         return None
-    """
+    print("'GuidePraticheSA' Ok!")
+
 
     """
     normativa = KnowledgeGraph(
@@ -164,13 +174,13 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
         kg=guide_pratiche_oe,
         introduction="Sono un agente esperto nel rispondere a domande relative alle guide pratiche della piattaforma EmPULIA. Le guide pratiche sono dei manuali d'uso dettagliati e sempre aggiornati per facilitare - mediante l'utilizzo di percorsi guidati - tutte le operazioni effettuabili on line sulla piattaforma di E-Procurement EmPULIA. Posso rispondere soltanto a domande relative agli operatori economici",
     )
-    """
+    
     guide_praticheSA_Agent = KGAgent(
         agent_id="GuidePraticheSAAgent",
         kg=guide_pratiche_sa,
         introduction="Sono un agente esperto nel rispondere a domande relative alle guide pratiche della piattaforma EmPULIA. Le guide pratiche sono dei manuali d'uso dettagliati e sempre aggiornati per facilitare - mediante l'utilizzo di percorsi guidati - tutte le operazioni effettuabili on line sulla piattaforma di E-Procurement EmPULIA. Posso rispondere soltanto a domande relative alle stazioni appaltanti.",
     )
-    """
+    
     """
     normativa_agent = KGAgent(
         agent_id="NormativaAgent",
@@ -194,16 +204,22 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
 
     # Register the agents that we created above.
     orchestrator.register_agent(codice_appalti_agent)
+    print("'CodiceAppalti' agent Ok!")
     orchestrator.register_agent(disciplina_utilizzo_agent)
+    print("'DisciplinaDiUtilizzo' agent Ok!")
     orchestrator.register_agent(guide_praticheOE_Agent)
-    #orchestrator.register_agent(guide_praticheSA_Agent)
+    print("'GuidePraticheOE' agent Ok!")
+    orchestrator.register_agent(guide_praticheSA_Agent)
+    print("'GuidePraticheSA' agent Ok!")
     #orchestrator.register_agent(normativa_agent)
     orchestrator.register_agent(faq_agent)
+    print("'FAQ' agent Ok!")
 
     return orchestrator
 
 
 def run_orchestrator(orchestrator, question):
+    print("Asking the orchestrator...")
     runner = orchestrator.ask(question)
     return runner.output
 
