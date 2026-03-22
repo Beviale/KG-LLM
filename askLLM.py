@@ -48,7 +48,7 @@ def translate_sdkPrompts_to_ITA():
 
 
 
-def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
+def istantiate_KG_and_Agents(model_name="openai/gpt-5-mini"):
     """
     It instantiates all the Knowledge Graphs and the associated agents. It returns the Orchestrator object with all the agents created registered to it.
     """
@@ -203,25 +203,31 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-nano"):
     )
 
     # Register the agents that we created above.
-    orchestrator.register_agent(codice_appalti_agent)
-    print("'CodiceAppalti' agent Ok!")
-    orchestrator.register_agent(disciplina_utilizzo_agent)
-    print("'DisciplinaDiUtilizzo' agent Ok!")
+    #orchestrator.register_agent(codice_appalti_agent)
+    #print("'CodiceAppalti' agent Ok!")
+    #orchestrator.register_agent(disciplina_utilizzo_agent)
+    #print("'DisciplinaDiUtilizzo' agent Ok!")
     orchestrator.register_agent(guide_praticheOE_Agent)
     print("'GuidePraticheOE' agent Ok!")
     orchestrator.register_agent(guide_praticheSA_Agent)
     print("'GuidePraticheSA' agent Ok!")
-    #orchestrator.register_agent(normativa_agent)
-    orchestrator.register_agent(faq_agent)
-    print("'FAQ' agent Ok!")
+    #orchestrator.register_agent(faq_agent)
+    #print("'FAQ' agent Ok!")
 
     return orchestrator
 
 
 def run_orchestrator(orchestrator, question):
     print("Asking the orchestrator...")
-    runner = orchestrator.ask(question)
-    return runner.output
+    repeat = True
+    while(repeat):
+        try:
+            runner = orchestrator.ask(question)
+            return runner.output
+        except Exception as e:
+            repeat = True
+
+
 
 
 def ask(question, orchestrator=None):
