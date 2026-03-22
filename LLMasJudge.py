@@ -27,7 +27,15 @@ client = TavilyClient(api_key=tavyl_api_key)
 
 def ask_with_web(question, question_complete, model_name):
     to_search = "Nel contesto della piattaforma EmPulia e del Codice degli appalti italiano..." + question
-    search = client.search(query=to_search, search_depth="basic")
+    a = 0
+    while(True):
+        try:
+            search = client.search(query=to_search, search_depth="basic")
+            break
+        except Exception as e:
+            a = 1
+    
+    
 
     results = "\n".join([r["content"] for r in search["results"][:5]])
 
@@ -50,8 +58,8 @@ def main():
     correct_answers_with_web = 0
     total_answers = 0
     #categories = ["DisciplinaDiUtilizzo", "CodiceAppalti", "FAQ", "GuidePraticheOE", "GuidePraticheSA"]
-    categories = ["GuidePraticheSA"]
-    model = "openai/gpt-5-nano"
+    categories = ["CodiceAppalti"]
+    model = "openai/gpt-5-mini"
 
 
     for i in range(number_of_tests):
