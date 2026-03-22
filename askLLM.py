@@ -15,6 +15,7 @@ from graphrag_sdk.models.litellm import LiteModel
 from graphrag_sdk import KnowledgeGraph, Ontology
 import json
 from contextlib import redirect_stdout
+import Utils
 
 init(autoreset=True)
 
@@ -60,6 +61,7 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-mini"):
     with open(codice_appalti_ontology_filename, "r", encoding="utf-8") as file:
         text_ontology = file.read()
     json_ontology = json.loads(text_ontology)
+    json_ontology = Utils.add_text_chunks_ontology(json_ontology)
     codice_appalti_ontology = Ontology.from_json(json_ontology)
     codice_appalti = KnowledgeGraph(
         name="CodiceAppalti",
@@ -77,6 +79,7 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-mini"):
     with open(disciplina_di_utilizzo_ontology_filename, "r", encoding="utf-8") as file:
         text_ontology = file.read()
     json_ontology = json.loads(text_ontology)
+    json_ontology = Utils.add_text_chunks_ontology(json_ontology)
     disciplina_di_utilizzo_ontology = Ontology.from_json(json_ontology)
     disciplina_utilizzo = KnowledgeGraph(
         name="DisciplinaDiUtilizzo",
@@ -95,6 +98,7 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-mini"):
     with open(faq_ontology_filename, "r", encoding="utf-8") as file:
         text_ontology = file.read()
     json_ontology = json.loads(text_ontology)
+    json_ontology = Utils.add_text_chunks_ontology(json_ontology)
     faq_ontology = Ontology.from_json(json_ontology)
     faq = KnowledgeGraph(
         name="FAQ",
@@ -113,6 +117,7 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-mini"):
     with open(guide_pratiche_oe_filename, "r", encoding="utf-8") as file:
         text_ontology = file.read()
     json_ontology = json.loads(text_ontology)
+    json_ontology = Utils.add_text_chunks_ontology(json_ontology)
     guide_pratiche_oe_ontology = Ontology.from_json(json_ontology)
     guide_pratiche_oe = KnowledgeGraph(
         name="GuidePraticheOE",
@@ -130,6 +135,7 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-mini"):
     with open(guide_pratiche_sa_filename, "r", encoding="utf-8") as file:
         text_ontology = file.read()
     json_ontology = json.loads(text_ontology)
+    json_ontology = Utils.add_text_chunks_ontology(json_ontology)
     guide_pratiche_sa_ontology = Ontology.from_json(json_ontology)
     guide_pratiche_sa = KnowledgeGraph(
         name="GuidePraticheSA",

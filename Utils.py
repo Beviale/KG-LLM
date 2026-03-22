@@ -1046,3 +1046,51 @@ def get_json_ontology_with_ref(json_ontology, json_entities):
         new_ontology["relations"].append(new_relation)
 
     return new_ontology
+
+
+
+def add_text_chunks_ontology(json_ontology):
+    new_entity_text_chunk_attr = [{
+        "name": "Id",
+        "type": "string",
+        "unique": True,
+        "required": True
+    }]
+
+    new_entity_text_chunk = {
+        "label": "TextChunk",
+        "attributes": new_entity_text_chunk_attr
+    }
+    dict_key = get_dict_label_nameKeyAttribute(json_ontology)
+
+
+    for entity in json_ontology.get("entities"):
+        new_relationship = {
+            "label": "ESTRATTO_DA_TESTO",
+            "source": {
+                "label": entity.get("label"),
+                "attributes": {
+                    "name": dict_key.get(entity.get("label")), 
+                    "type": "string",
+                    "unique": True,
+                    "required": True
+                }
+            },
+            "target": {  
+                "label": "TextChunk",
+                "attributes": {
+                    "name": "Id", 
+                    "type": "string",
+                    "unique": True,
+                    "required": True
+                }
+            },
+            "attributes": [] 
+        }
+
+        
+        json_ontology["relations"].append(new_relationship)
+    
+    json_ontology["entities"].append(new_entity_text_chunk)
+    
+    return json_ontology
