@@ -782,9 +782,9 @@ def get_clusters_entities(item_embedding_dict: dict, prob_threshold=0.85):
     print("Applying HDBSCAN...")
     clusterer = HDBSCAN(
         min_cluster_size=2,     
-        min_samples=1,    
+        min_samples=1,   # a 2-3 
         metric='cosine',
-        cluster_selection_method='eom'        
+        cluster_selection_method='eom'  #leaf      
     )
     labels = clusterer.fit_predict(embeddings_reduced)
     probs = clusterer.probabilities_
@@ -941,19 +941,21 @@ def refine_with_LLM(category):
         attrs = entity.get("attributes")
         if attrs is not None:  
             num_elements = len(attrs)
-            first = True
+            count_iter = 0
             for key, value in attrs.items():
                 if key == label_nameKeyAttribute_dict[entity_label]:
                     entity_id = value
                 if num_elements == 1:
                     text_descritpion = text_descritpion + f" ha l'attributo '{key}' uguale a '{value}'"                   
                     break
-                if first:
-                    first = False
+                if count_iter == 0:
                     text_descritpion = text_descritpion + " ha gli attributi"
                     text_descritpion = text_descritpion + f" '{key}' uguale a '{value}'"
+                elif count_iter == num_elements-1:
+                    text_descritpion = text_descritpion + f" e '{key}' uguale a '{value}'"   
                 else:
-                    text_descritpion = text_descritpion + f", '{key}' uguale a '{value}'"              
+                    text_descritpion = text_descritpion + f", '{key}' uguale a '{value}'"   
+                count_iter = count_iter + 1
         text_descritpion = text_descritpion + "."
 
         for relation in json_data["relations"]:           
@@ -1141,7 +1143,7 @@ def ask_LLM_merge_similar_entities(similar_entities: str, json_data, json_ontolo
     )
     response_content = response.choices[0].message["content"].strip()
     if response_content.lower() == "none":
-        print("No duplicate entities found by the LLM.!")
+        print("No duplicate entities found by the LLM!")
         return
     limit_while_count = 0
     while(True):

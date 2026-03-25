@@ -209,14 +209,14 @@ def istantiate_KG_and_Agents(model_name="openai/gpt-5-mini"):
     )
 
     # Register the agents that we created above.
-    orchestrator.register_agent(codice_appalti_agent)
-    print("'CodiceAppalti' agent Ok!")
+    #orchestrator.register_agent(codice_appalti_agent)
+    #print("'CodiceAppalti' agent Ok!")
     #orchestrator.register_agent(disciplina_utilizzo_agent)
     #print("'DisciplinaDiUtilizzo' agent Ok!")
     #orchestrator.register_agent(guide_praticheOE_Agent)
     #print("'GuidePraticheOE' agent Ok!")
-    #orchestrator.register_agent(guide_praticheSA_Agent)
-    #print("'GuidePraticheSA' agent Ok!")
+    orchestrator.register_agent(guide_praticheSA_Agent)
+    print("'GuidePraticheSA' agent Ok!")
     #orchestrator.register_agent(faq_agent)
     #print("'FAQ' agent Ok!")
 

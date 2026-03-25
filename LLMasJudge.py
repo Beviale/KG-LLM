@@ -58,11 +58,11 @@ def main():
     correct_answers_with_web = 0
     total_answers = 0
     #categories = ["DisciplinaDiUtilizzo", "CodiceAppalti", "FAQ", "GuidePraticheOE", "GuidePraticheSA"]
-    categories = ["CodiceAppalti"]
+    categories = ["GuidePraticheSA"]
     model = "openai/gpt-5-mini"
+   
 
-
-    for i in range(number_of_tests):
+    for i in range(number_of_tests):  
         category = random.choice(categories)
         print(f"{Fore.GREEN} ---- Category: '{category}'")
         directory = Path(f"InputPDFtoText/{category}")
@@ -71,10 +71,12 @@ def main():
         print(f"Text path: '{text_path}'")
         with open(text_path, "r", encoding="utf-8") as file:
             text = file.read()
+        
         if text_path == "InputPDFtoText/CodiceAppati/main.txt":
             chunks = GenerateKG.split_codice_appalti(text_path)
         else:
             chunks = GenerateKG.split_text_chunks(text, False)
+
         chunk = random.choice(chunks)
         print("Constructing the question...")
         question_to_ask = completion(
@@ -85,7 +87,7 @@ def main():
                             ]
                         )
         question = question_to_ask.choices[0].message.content
-        question_complete = question + " Fornisci una sola risposta diretta, non rispondere per nessuna ragione con altre domande!"
+        question_complete = question + " Fornisci una sola risposta diretta, non rispondere per nessuna ragione con altre domande! Non fare altre domande!"
 
         
         total_answers += 1
@@ -99,9 +101,20 @@ def main():
                 results_filename = "ResultsWithWEB.csv"
 
 
-            if type_interation == InteractionType.WITH_KG:
+            if type_interation == InteractionType.WITH_KG: 
+                print("Asking the question (LLM with KG)...")           
+                _, answer = askLLM.ask(question_complete + " Il tuo agente ha tutto il materiale necessario!", None)
+                """
                 print("Asking the question (LLM with KG)...")
-                _, answer = askLLM.ask(question_complete, None)
+                answer_completion = completion(
+                            model=model,
+                            messages=[
+                                    {"role": "system", "content": f"Dato il seguente testo, rispondi correttamente alla seguente domanda. Sii molto gentile ed esplicativo. Spiega il ragionamento logico che ti ha portato alla risposta. Nel ragionamento, fingi di aver consultato un sotto-agente che ha accesso ad un Knowledge Graph chiamato '{category}'."},
+                                    {"role": "user",   "content": Prompt.ASK_GENERIC.format(text=chunks, question=question_complete)}         
+                                ],                          
+                        )
+                answer = answer_completion.choices[0].message.content
+                """
                 if answer is None:
                     continue
             elif type_interation == InteractionType.ONLY_TRAIN:

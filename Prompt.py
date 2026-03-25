@@ -1753,6 +1753,7 @@ Your generated Cypher: """
 
 CYPHER_GEN_PROMPT_ITA = """
 Utilizzando l'ontologia fornita, genera un'istruzione OpenCypher per interrogare il database a grafo restituendo tutte le entità, relazioni e attributi rilevanti per rispondere alla domanda seguente.
+Nella generazione dell'istruzione includi sempre le relazioni "ESTRATTO_DA_TESTO" che risultano rilevanti data la domanda posta. Includine sempre almeno una.
 Se per qualsiasi motivo non puoi generare un'istruzione OpenCypher, restituisci una risposta vuota.
 Rispetta l'ordine delle relazioni: le frecce devono sempre puntare dalla 'source' alla 'target'.
 Per favore, verifica che la tua risposta sia una query Cypher valida e correggila se non lo è.
@@ -1800,6 +1801,7 @@ Your generated Cypher: """
 
 CYPHER_GEN_PROMPT_WITH_HISTORY_ITA = """
 Utilizzando l'ontologia fornita, genera un'istruzione OpenCypher per interrogare il database a grafo restituendo tutte le entità, relazioni e attributi rilevanti per rispondere alla domanda qui sotto.
+Nella generazione dell'istruzione includi sempre le relazioni "ESTRATTO_DA_TESTO" che risultano rilevanti data la domanda posta. Includine sempre almeno una.
 
 Per prima cosa, determina se l'ultima risposta fornita all'utente nell'intera conversazione è rilevante per la domanda attuale. Se è rilevante, puoi considerare di incorporarne le informazioni nella query. Se non è rilevante, ignorala e genera la query basandoti solo sulla domanda.
 Se per qualsiasi motivo non puoi generare un'istruzione OpenCypher, restituisci una stringa vuota.
@@ -1900,7 +1902,7 @@ Riceverai una domanda che può richiedere informazioni provenienti da agenti div
 Per far sì che ciò avvenga nel modo più efficiente, creerai un piano di esecuzione in cui ogni passaggio sarà eseguito da altri agenti.
 Dopo ogni passaggio, deciderai cosa fare successivamente in base alle informazioni in tuo possesso.
 Una volta completati tutti i passaggi, riceverai un riepilogo del piano di esecuzione per generare la risposta finale alla domanda dell'utente.
-Sii sempre molto dettagliato quando rispondi all'utente. Includi anche il ragionamento alla base della risposta.
+Sii sempre molto dettagliato quando rispondi all'utente. Includi anche il ragionamento alla base della risposta senza però includere dettagli tecnici come la sintassi delle query usate.
 
 --- INIZIO ESEMPIO ---
 Sei un addetto all'assistenza clienti di AirTravels, una compagnia aerea. Hai ricevuto la seguente domanda da un utente: "Posso portare il mio animale domestico in aereo?"
@@ -2047,7 +2049,7 @@ Execution log:
 
 ORCHESTRATOR_SUMMARY_PROMPT_ITA = """
 Dato il seguente log di esecuzione e la cronologia di questa chat, genera la risposta finale alla domanda dell'utente.
-Sii molto educato e dettagliato nella tua risposta, fornendo sempre il ragionamento alla base della risposta. Non rispondere con altre domande all'utente.
+Sii molto educato e dettagliato nella tua risposta, fornendo sempre il ragionamento alla base della risposta senza includere però dettagli tecnici come la sintassi delle query usate. Non rispondere con altre domande all'utente.
 
 Domanda dell'utente:
 #USER_QUESTION
@@ -2123,25 +2125,26 @@ L'obiettivo è centralizzare la domanda, ottenere risparmi economici (economie d
 ## 4. Linee guida utili per il reperimento delle informazioni
 1) Ogni agente ha accesso ad un Knowledge Graph con entità e relazioni. 
 2) Ogni entità o relazione ha l'attributo 'snippet' contenente la porzione di testo che ha giustificiato la creazione di tale entità o relazione.
-3) Ogni entità è collegata ad un nodo 'TextChunk' mediante la relazione 'ESTRATTO_DA_TESTO' contenente l'intero paragrafo di testo correlato ad essa. Puoi invitare gli agenti ad usare questo riferimento se lo ritieni necessario.
+3) Ogni entità è collegata ad un nodo 'TextChunk' mediante la relazione 'ESTRATTO_DA_TESTO' contenente l'intero paragrafo di testo correlato ad essa. Invita gli agenti ad usare questo riferimento se ritieni di avere informazioni insufficienti o incomplete.
 """
 
 
 LLM_AS_JUDGE_SYSTEM = """
 Sei un generatore di test che dovrà comportarsi seguendo la tecnica del LLM-as-a-judge.
 In particolare, il tuo compito sarà quello di formula una domanda dato un testo in input e successivamente valutare se la risposta fornita da un LLM sia corretta o meno.
-Dovrai fornire un feedback binario, quindi "Si" o "No" dove:
-  1) "Si" indica che la risposta è coerente con quanto riportato nel testo, non presenta errori e risponde a quanto richiesto nella domanda.
-  2) "No" se la risposta presenta informazioni errate, non presenti nel testo e non riguardanti strettamente la domanda posta.
+Dovrai fornire un feedback binario, quindi "si" o "no" dove:
+  1) "si" indica che la risposta è più o meno coerente con quanto riportato nel testo, non presenta errori e risponde a quanto richiesto nella domanda.
+  2) "no" indica che la risposta presenta informazioni errate e non presenti nel testo.
+Non essere troppo rigido. Se la risposta include informazioni aggiuntive e ragionamenti, sii più propenso al "si". 
 Il dominio è quello della Pubblica Amministrazione e del Codice degli Appalti italiano.
 
-# Regole
+#Regole
 1) Usa esclusivamente le informazioni basate sul testo dato in input.
 2) La verifica della risposta dovrà essere effettuata sulla base della domanda posta e sulla base del testo fornito. Non includere la tua conoscenza del dominio nella verifica della risposta.
 """
 
 LLM_AS_JUDGE_QUESTION_TO_ASK = """
-Dato il seguente testo, formula una domanda diretta e chiara legato ad esso.
+Dato il seguente testo, formula una domanda semplice, diretta, esplicativa e chiara legata ad esso.
 
 Text:
 {text}
@@ -2149,7 +2152,7 @@ Text:
 
 LLM_AS_JUDGE_EVALUATION = """
 Dato il seguente testo e la seguente coppia domanda-risposta, valuta se la risposta è corretta o meno.
-Restituisci soltanto "Si" oppure "No", non restituire altro testo!
+Restituisci soltanto "si" oppure "no", non restituire altro testo!
 
 Text:
 {text}
@@ -2356,6 +2359,17 @@ Domanda:
 
 Risultati ricerca WEB:
 {info_web}
+"""
+
+
+ASK_GENERIC="""
+Dato il seguente testo, rispondi correttamente alla seguente domanda.
+
+Testo di riferimento:
+{text}
+
+Domanda:
+{question}
 """
 
 
